@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <!--Game-->
+  <DefaultBackgroundColor>Purple</DefaultBackgroundColor>
+  <Width>1000</Width>
+  <Height>1000</Height>
+  
+  <!--Sprites-->
+  <MaxSpriteCount>infinity</MaxSpriteCount>
+  
+  <!--Button-->
+  <ButtonX>300</ButtonX>
+  <ButtonY>300</ButtonY>
+  <ButtonWidth>50</ButtonWidth>
+  <ButtonHeight>50</ButtonHeight>
+</Settings>

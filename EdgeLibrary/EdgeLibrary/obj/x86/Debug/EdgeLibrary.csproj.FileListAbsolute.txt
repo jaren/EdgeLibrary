@@ -1,0 +1,247 @@
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\desertHouse.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\desertHouse.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles-hd.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\smoke.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\snow.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2_mini.xnb
+C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\ParticleYellow.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles-hd.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\smoke.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\snow.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2_mini.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles-hd.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\smoke.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\snow.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2-grayscale.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2_mini.xnb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe.config
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\EdgeLibrary.pdb
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.exe
+C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\obj\x86\Debug\EdgeLibrary.pdb

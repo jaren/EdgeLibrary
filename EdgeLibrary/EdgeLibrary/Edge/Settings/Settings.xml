@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Settings>
+  <!--Game-->
+  <DefaultBackgroundColor>Purple</DefaultBackgroundColor>
+  <Width>1000</Width>
+  <Height>1000</Height>
+  
+  <!--Sprites-->
+  <MaxSpriteCount>infinity</MaxSpriteCount>
+</Settings>
