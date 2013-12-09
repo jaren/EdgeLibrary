@@ -78,6 +78,9 @@ namespace EdgeLibrary
             edgeGame.setWindowHeight(1000);
             edgeGame.setWindowWidth(1000);
 
+            //edgeGame.setWindowHeight(700);
+            //edgeGame.setWindowWidth(700);
+
             edgeGame.MouseMove += new EdgeGame.EMouseEvent(mouseMove);
             edgeGame.MouseClick += new EdgeGame.EMouseEvent(mouseClick);
         }

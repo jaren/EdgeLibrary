@@ -106,17 +106,13 @@ namespace EdgeLibrary.Edge
         #region UPDATE
         public void Update(EUpdateArgs updateArgs)
         {
-            try
-            {
-                scenes[selectedSceneIndex].Update(updateArgs);
+            scenes[selectedSceneIndex].Update(updateArgs);
 
-                if (updateArgs.mouseState.X != previousMouseState.X || updateArgs.mouseState.Y != previousMouseState.Y) { MouseMove(updateArgs); }
-                if (updateArgs.mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) { MouseClick(updateArgs); }
-                else if (updateArgs.mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed) { MouseRelease(updateArgs); }
+            if (updateArgs.mouseState.X != previousMouseState.X || updateArgs.mouseState.Y != previousMouseState.Y) { MouseMove(updateArgs); }
+            if (updateArgs.mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) { MouseClick(updateArgs); }
+            else if (updateArgs.mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed) { MouseRelease(updateArgs); }
 
-                previousMouseState = updateArgs.mouseState;
-            }
-            catch { }
+            previousMouseState = updateArgs.mouseState;
         }
 
         public string getSetting(string settingName)
@@ -159,11 +155,7 @@ namespace EdgeLibrary.Edge
         {
             graphicsDevice.Clear(clearColor);
             spriteBatch.Begin();
-            try
-            {
-                scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
-            }
-            catch { }
+            scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
             spriteBatch.End();
         }
         #endregion
