@@ -7,12 +7,15 @@ namespace EdgeLibrary.Edge
 {
     public class ETickerEventArgs : EventArgs
     {
-        public EUpdateArgs updateArgs;
+        /// <summary>
+        /// The update arguments for the update which caused the event.
+        /// </summary>
+        public EUpdateArgs UpdateArgs;
         public int value;
 
         public ETickerEventArgs(EUpdateArgs eUpdateArgs, int eValue)
         {
-            updateArgs = eUpdateArgs;
+            UpdateArgs = eUpdateArgs;
             value = eValue;
         }
     }
@@ -48,7 +51,7 @@ namespace EdgeLibrary.Edge
         {
             elapsedMilliseconds += updateArgs.gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsedMilliseconds > MillisecondsWait)
+            if (elapsedMilliseconds >= MillisecondsWait)
             {
                 elapsedMilliseconds = 0;
                 currentValue++;
@@ -56,7 +59,10 @@ namespace EdgeLibrary.Edge
                 {
                     currentValue = (int)ValueRange.Min;
                 }
-                Tick(new ETickerEventArgs(updateArgs, currentValue));
+                if (Tick != null)
+                {
+                    Tick(new ETickerEventArgs(updateArgs, currentValue));
+                }
             }
         }
     }

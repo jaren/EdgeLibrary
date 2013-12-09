@@ -12,6 +12,9 @@ using System.Xml;
 
 namespace EdgeLibrary.Edge
 {
+    /// <summary>
+    /// An emmiter of particles.
+    /// </summary>
     public class EParticleEmitter : ESprite
     {
         public bool ShouldEmit { get; set; }
@@ -39,7 +42,7 @@ namespace EdgeLibrary.Edge
         protected Random random;
 
         public delegate void ParticleEventHandler(EParticleEmitter sender);
-        public ParticleEventHandler OnEmit;
+        public event ParticleEventHandler OnEmit;
 
         public EParticleEmitter(string eTextureName, Vector2 ePosition) : base(eTextureName, ePosition, 0, 0) 
         {
@@ -65,8 +68,6 @@ namespace EdgeLibrary.Edge
 
             clampPos = Vector2.Zero;
 
-            //To prevent from crashing
-            OnEmit += new ParticleEventHandler(nullHandler);
 
             timeSinceLastEmit = TimeSpan.Zero;
 
@@ -85,8 +86,6 @@ namespace EdgeLibrary.Edge
             LifeVariance = eLifeVariance;
             EmitWait = eEmitRate;
         }
-
-        protected void nullHandler(EParticleEmitter sender) { }
 
         public void clampTo(EElement eElement)
         {
@@ -117,7 +116,10 @@ namespace EdgeLibrary.Edge
                 particle.runAction(ActionToRunOnParticles);
                 particles.Add(particle);
 
-                OnEmit(this);
+                if (OnEmit != null)
+                {
+                    OnEmit(this);
+                }
         }
 
         public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
