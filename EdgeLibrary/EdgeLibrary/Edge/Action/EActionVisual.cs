@@ -11,9 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Edge
 {
-    public enum EdgeActionVisualTypes
+    [Flags]
+    public enum EdgeActionVisualTypes : byte
     {
-        Color, Size, Rotation, All
+        Color = 1,
+        Size = 2,
+        Rotation = 4,
+        All = 7
     }
 
     public class EActionVisual : EAction
@@ -38,7 +42,8 @@ namespace EdgeLibrary.Edge
             initVars();
         }
 
-        public EActionVisual(Color eColor, Vector2 eSize, float eRotation) : this(EdgeActionVisualTypes.All)
+        public EActionVisual(Color eColor, Vector2 eSize, float eRotation)
+            : this(EdgeActionVisualTypes.All)
         {
             color = eColor;
             size = eSize;
@@ -46,19 +51,22 @@ namespace EdgeLibrary.Edge
             initVars();
         }
 
-        public EActionVisual(Color eColor) : this(EdgeActionVisualTypes.Color)
+        public EActionVisual(Color eColor)
+            : this(EdgeActionVisualTypes.Color)
         {
             color = eColor;
             initVars();
         }
 
-        public EActionVisual(Vector2 eSize) : this(EdgeActionVisualTypes.Size)
+        public EActionVisual(Vector2 eSize)
+            : this(EdgeActionVisualTypes.Size)
         {
             size = eSize;
             initVars();
         }
 
-        public EActionVisual(float eRotation) : this(EdgeActionVisualTypes.Rotation)
+        public EActionVisual(float eRotation)
+            : this(EdgeActionVisualTypes.Rotation)
         {
             rotation = eRotation;
             initVars();
@@ -71,23 +79,19 @@ namespace EdgeLibrary.Edge
 
         public override void initWithSprite(ESprite sprite)
         {
-            switch (actionType)
+            if (actionType.HasFlag(EdgeActionVisualTypes.Rotation))
             {
-                case EdgeActionVisualTypes.All:
-                    sprite.Scale = size;
-                    sprite.Color = color;
-                    sprite.Rotation = rotation;
-                    break;
-                case EdgeActionVisualTypes.Rotation:
-                    sprite.Rotation = rotation;
-                    break;
-                case EdgeActionVisualTypes.Color:
-                    sprite.Color = color;
-                    break;
-                case EdgeActionVisualTypes.Size:
-                    sprite.Scale = size;
-                    break;
+                sprite.Rotation = rotation;
             }
+            if (actionType.HasFlag(EdgeActionVisualTypes.Color))
+            {
+                sprite.Color = color;
+            }
+            if (actionType.HasFlag(EdgeActionVisualTypes.Size))
+            {
+                sprite.Scale = size;
+            }
+
         }
     }
 }
