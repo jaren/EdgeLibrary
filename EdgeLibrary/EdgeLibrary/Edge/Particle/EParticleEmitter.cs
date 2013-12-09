@@ -175,9 +175,9 @@ namespace EdgeLibrary.Edge
                     particlesToRemove.Clear();
                 }
 
-                if (particles.Count >= MaxParticles)
+                while (particles.Count > MaxParticles)
                 {
-                    particles.Clear();
+                    particles.RemoveAt(0);
                 }
 
                 if (ClampedToMouse) { Position = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y); }
