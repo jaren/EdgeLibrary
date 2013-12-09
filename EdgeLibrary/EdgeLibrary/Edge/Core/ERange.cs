@@ -5,12 +5,15 @@ using System.Text;
 
 namespace EdgeLibrary.Edge
 {
-    public class ERange
+    /// <summary>
+    /// Represents a range of values.
+    /// </summary>
+    public struct ERange
     {
         public float Min;
         public float Max;
 
-        protected float temp;
+        private float temp;
 
         public ERange(float min, float max)
         {
@@ -39,7 +42,7 @@ namespace EdgeLibrary.Edge
             return random.Next((int)Min, (int)Max);
         }
 
-        protected void reorder()
+        private void reorder()
         {
             if (Min > Max)
             {
@@ -50,9 +53,17 @@ namespace EdgeLibrary.Edge
         }
     }
 
+    /// <summary>
+    /// Represents a collection of a range of values.
+    /// </summary>
     public struct ERangeArray
     {
         public List<ERange> Ranges;
+
+        public static implicit operator List<ERange>(ERangeArray rangeArray)
+        {
+            return rangeArray.Ranges;
+        }
 
         public ERangeArray(params ERange[] items)
         {

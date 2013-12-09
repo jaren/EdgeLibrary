@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb</Output>
-      <Time>2013-11-24T14:32:23-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2013-12-08T17:11:28.6109565-08:00</Time>
     </Item>
     <Item>
       <Source>RPG Simple Shop v1_0 (16-bit).mp3</Source>
@@ -16,9 +16,9 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb</Output>
-      <Extra>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma</Extra>
-      <Time>2013-11-24T14:32:22-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.xnb</Output>
+      <Extra>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\RPG Shop.wma</Extra>
+      <Time>2013-12-08T17:11:28.5910686-08:00</Time>
     </Item>
     <Item>
       <Source>button-3.wav</Source>
@@ -26,8 +26,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb</Output>
-      <Time>2013-11-24T14:32:25-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\button-3.xnb</Output>
+      <Time>2013-12-08T17:11:28.6089552-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player.png</Source>
@@ -35,8 +35,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb</Output>
-      <Time>2013-11-24T14:32:55-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player.xnb</Output>
+      <Time>2013-12-08T17:11:28.5928665-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\Player_ALL.png</Source>
@@ -44,8 +44,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb</Output>
-      <Time>2013-11-24T14:33:30-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\Player_ALL.xnb</Output>
+      <Time>2013-12-08T17:11:28.5934343-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_down_1.png</Source>
@@ -53,8 +53,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb</Output>
-      <Time>2013-11-24T14:33:29-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_1.xnb</Output>
+      <Time>2013-12-08T17:11:28.5934343-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_down_2.png</Source>
@@ -62,8 +62,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb</Output>
-      <Time>2013-11-24T14:33:28-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_2.xnb</Output>
+      <Time>2013-12-08T17:11:28.5947218-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_down_3.png</Source>
@@ -71,8 +71,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb</Output>
-      <Time>2013-11-24T14:33:27-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_down_3.xnb</Output>
+      <Time>2013-12-08T17:11:28.5947218-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_left_1.png</Source>
@@ -80,8 +80,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb</Output>
-      <Time>2013-11-24T14:33:26-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_1.xnb</Output>
+      <Time>2013-12-08T17:11:28.5957248-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_left_2.png</Source>
@@ -89,8 +89,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb</Output>
-      <Time>2013-11-24T14:33:24-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_2.xnb</Output>
+      <Time>2013-12-08T17:11:28.5957248-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_left_3.png</Source>
@@ -98,8 +98,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb</Output>
-      <Time>2013-11-24T14:33:23-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_left_3.xnb</Output>
+      <Time>2013-12-08T17:11:28.596726-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_right_1.png</Source>
@@ -107,8 +107,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb</Output>
-      <Time>2013-11-24T14:33:22-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_1.xnb</Output>
+      <Time>2013-12-08T17:11:28.596726-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_right_2.png</Source>
@@ -116,8 +116,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb</Output>
-      <Time>2013-11-24T14:33:21-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_2.xnb</Output>
+      <Time>2013-12-08T17:11:28.5977266-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_right_3.png</Source>
@@ -125,8 +125,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb</Output>
-      <Time>2013-11-24T14:33:20-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_right_3.xnb</Output>
+      <Time>2013-12-08T17:11:28.5977266-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_up_1.png</Source>
@@ -134,8 +134,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb</Output>
-      <Time>2013-11-24T14:33:19-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_1.xnb</Output>
+      <Time>2013-12-08T17:11:28.5977266-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_up_2.png</Source>
@@ -143,8 +143,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb</Output>
-      <Time>2013-11-24T14:33:18-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_2.xnb</Output>
+      <Time>2013-12-08T17:11:28.5987264-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Player_All\Player\player_up_3.png</Source>
@@ -152,8 +152,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb</Output>
-      <Time>2013-11-24T14:33:16-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Player_All\Player\player_up_3.xnb</Output>
+      <Time>2013-12-08T17:11:28.5987264-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Dotty.png</Source>
@@ -161,8 +161,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb</Output>
-      <Time>2013-11-24T14:33:12-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty.xnb</Output>
+      <Time>2013-12-08T17:11:28.5997271-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Dotty_2x.png</Source>
@@ -170,8 +170,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb</Output>
-      <Time>2013-11-24T14:33:11-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Dotty_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.5997271-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\frichim.png</Source>
@@ -179,8 +179,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb</Output>
-      <Time>2013-11-24T14:33:10-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim.xnb</Output>
+      <Time>2013-12-08T17:11:28.6047789-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\frichim_2x.png</Source>
@@ -188,8 +188,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb</Output>
-      <Time>2013-11-24T14:33:09-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\frichim_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6057796-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Jorge.png</Source>
@@ -197,8 +197,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb</Output>
-      <Time>2013-11-24T14:33:08-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge.xnb</Output>
+      <Time>2013-12-08T17:11:28.6007277-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Jorge_2x.png</Source>
@@ -206,8 +206,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb</Output>
-      <Time>2013-11-24T14:33:07-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Jorge_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6017303-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\medieval_soldier.png</Source>
@@ -215,8 +215,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb</Output>
-      <Time>2013-11-24T14:33:06-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier.xnb</Output>
+      <Time>2013-12-08T17:11:28.6069501-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\medieval_soldier_2x.png</Source>
@@ -224,8 +224,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb</Output>
-      <Time>2013-11-24T14:33:04-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\medieval_soldier_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6069501-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Oswaldo.png</Source>
@@ -233,8 +233,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb</Output>
-      <Time>2013-11-24T14:33:03-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo.xnb</Output>
+      <Time>2013-12-08T17:11:28.6017303-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Oswaldo_2x.png</Source>
@@ -242,8 +242,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb</Output>
-      <Time>2013-11-24T14:33:02-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Oswaldo_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6027748-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Roberto.png</Source>
@@ -251,8 +251,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb</Output>
-      <Time>2013-11-24T14:32:59-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto.xnb</Output>
+      <Time>2013-12-08T17:11:28.6027748-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Roberto_2x.png</Source>
@@ -260,8 +260,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb</Output>
-      <Time>2013-11-24T14:32:58-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Roberto_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6037787-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Suy.png</Source>
@@ -269,8 +269,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb</Output>
-      <Time>2013-11-24T14:32:57-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy.xnb</Output>
+      <Time>2013-12-08T17:11:28.6037787-08:00</Time>
     </Item>
     <Item>
       <Source>Used Files\Sprites\Suy_2x.png</Source>
@@ -278,8 +278,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb</Output>
-      <Time>2013-11-24T14:32:55-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Used Files\Sprites\Suy_2x.xnb</Output>
+      <Time>2013-12-08T17:11:28.6047789-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\fire-grayscale.png</Source>
@@ -287,8 +287,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire-grayscale.xnb</Output>
-      <Time>2013-11-24T16:08:51.0491307-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire-grayscale.xnb</Output>
+      <Time>2013-12-08T17:11:28.5699929-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\fire.png</Source>
@@ -296,8 +296,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire.xnb</Output>
-      <Time>2013-11-24T16:08:51.0491307-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\fire.xnb</Output>
+      <Time>2013-12-08T17:11:28.5706357-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\particles-hd.png</Source>
@@ -305,8 +305,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles-hd.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles-hd.xnb</Output>
+      <Time>2013-12-08T17:11:28.5715352-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\particles.png</Source>
@@ -314,8 +314,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\particles.xnb</Output>
+      <Time>2013-12-08T17:11:28.5715352-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\smoke.png</Source>
@@ -323,8 +323,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\smoke.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\smoke.xnb</Output>
+      <Time>2013-12-08T17:11:28.5725382-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\snow.png</Source>
@@ -332,8 +332,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\snow.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\snow.xnb</Output>
+      <Time>2013-12-08T17:11:28.5725382-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\stars-grayscale.png</Source>
@@ -341,8 +341,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars-grayscale.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars-grayscale.xnb</Output>
+      <Time>2013-12-08T17:11:28.5735388-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\stars.png</Source>
@@ -350,8 +350,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars.xnb</Output>
+      <Time>2013-12-08T17:11:28.5735388-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\stars2-grayscale.png</Source>
@@ -359,8 +359,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2-grayscale.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2-grayscale.xnb</Output>
+      <Time>2013-12-08T17:11:28.5735388-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\stars2.png</Source>
@@ -368,8 +368,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2.xnb</Output>
+      <Time>2013-12-08T17:11:28.5745386-08:00</Time>
     </Item>
     <Item>
       <Source>Particle Textures\stars2_mini.png</Source>
@@ -377,8 +377,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2_mini.xnb</Output>
-      <Time>2013-11-24T16:08:51.0647308-08:00</Time>
+      <Output>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\Particle Textures\stars2_mini.xnb</Output>
+      <Time>2013-12-08T17:11:28.5745386-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -387,39 +387,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibraryContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibraryContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibrary\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-07:00</Value>
+        <Value>2011-09-01T14:22:30-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-12-23T00:11:15.1042181-08:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2013-10-20T17:54:58.2811645-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
