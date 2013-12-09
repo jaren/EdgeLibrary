@@ -24,8 +24,8 @@ namespace EdgeLibrary.Edge
         public void cancel() { done = true; }
         public virtual void initWithSprite(ESprite sprite) { }
         //Returns true if the action has finished
-        public bool Update(ESprite targetSprite) { if (done) { return true; } return updateAction(targetSprite); }
-        public virtual bool updateAction(ESprite targetSprite) { return true; }
+        public bool Update(ESprite targetSprite) { if (done) { return true; } return UpdateAction(targetSprite); }
+        public virtual bool UpdateAction(ESprite targetSprite) { return true; }
     }
 
     /*

@@ -38,7 +38,7 @@ namespace EdgeLibrary.Edge
             sprite.runAction(action);
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             if (action.Update(targetSprite))
             {
@@ -76,7 +76,7 @@ namespace EdgeLibrary.Edge
             sprite.runAction(action);
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             if (action.Update(targetSprite))
             {
