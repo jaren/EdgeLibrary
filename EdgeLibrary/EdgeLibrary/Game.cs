@@ -15,6 +15,9 @@ namespace EdgeLibrary
     public class Game : Microsoft.Xna.Framework.Game
     {
         /*
+         * 
+         * APPLE PIE
+         * 
          * TODO:
          * -General
          *   -Delete function in objects?
