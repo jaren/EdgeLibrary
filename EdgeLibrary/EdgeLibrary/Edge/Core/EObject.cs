@@ -13,6 +13,9 @@ using System.Xml;
 namespace EdgeLibrary.Edge
 {
     //Unfinished class - base for everything that does not need to be updated
+    /// <summary>
+    /// The base class for most types in this library.
+    /// </summary>
     public class EObject
     {
         public virtual string ID { get; set;}

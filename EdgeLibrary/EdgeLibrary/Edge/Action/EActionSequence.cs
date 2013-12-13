@@ -47,7 +47,7 @@ namespace EdgeLibrary.Edge
             Actions[currentNumber].initWithSprite(sprite);
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             if (Actions.Count - 1 < currentNumber)
             {

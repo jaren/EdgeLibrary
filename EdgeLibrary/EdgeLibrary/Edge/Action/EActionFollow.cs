@@ -23,7 +23,7 @@ namespace EdgeLibrary.Edge
             spriteToFollow = eSpriteToFollow;
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             moveAction.cancel();
             moveAction = new EActionMove(spriteToFollow.Position, speed);

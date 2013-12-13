@@ -30,7 +30,7 @@ namespace EdgeLibrary.Edge
             startRotation = sprite.Rotation;
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             if ((rotation > 0) && (targetSprite.Rotation > (rotation + startRotation - speed))) return true;
             else if ((rotation < 0) && (targetSprite.Rotation < (rotation + startRotation + speed))) return true;

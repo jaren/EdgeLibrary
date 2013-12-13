@@ -73,7 +73,7 @@ namespace EdgeLibrary.Edge
             moveVelocity.Normalize();
         }
 
-        public override bool updateAction(ESprite targetSprite)
+        public override bool UpdateAction(ESprite targetSprite)
         {
             if (checkIfEnd(targetSprite))
             {
