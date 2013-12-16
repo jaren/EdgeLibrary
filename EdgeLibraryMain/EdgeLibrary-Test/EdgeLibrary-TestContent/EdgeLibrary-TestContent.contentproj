@@ -92,928 +92,553 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Platform\background.png">
-      <Name>background</Name>
+    <Compile Include="Players\Ninja\ninja1.png">
+      <Name>ninja1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\entities.png">
-      <Name>entities</Name>
+    <Compile Include="Players\Ninja\ninja10.png">
+      <Name>ninja10</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite01.png">
-      <Name>sprite01</Name>
+    <Compile Include="Players\Ninja\ninja11.png">
+      <Name>ninja11</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite02.png">
-      <Name>sprite02</Name>
+    <Compile Include="Players\Ninja\ninja12.png">
+      <Name>ninja12</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite03.png">
-      <Name>sprite03</Name>
+    <Compile Include="Players\Ninja\ninja13.png">
+      <Name>ninja13</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite04.png">
-      <Name>sprite04</Name>
+    <Compile Include="Players\Ninja\ninja14.png">
+      <Name>ninja14</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite05.png">
-      <Name>sprite05</Name>
+    <Compile Include="Players\Ninja\ninja15.png">
+      <Name>ninja15</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite06.png">
-      <Name>sprite06</Name>
+    <Compile Include="Players\Ninja\ninja16.png">
+      <Name>ninja16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite07.png">
-      <Name>sprite07</Name>
+    <Compile Include="Players\Ninja\ninja17.png">
+      <Name>ninja17</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite08.png">
-      <Name>sprite08</Name>
+    <Compile Include="Players\Ninja\ninja18.png">
+      <Name>ninja18</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite09.png">
-      <Name>sprite09</Name>
+    <Compile Include="Players\Ninja\ninja19.png">
+      <Name>ninja19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite10.png">
-      <Name>sprite10</Name>
+    <Compile Include="Players\Ninja\ninja2.png">
+      <Name>ninja2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite100.png">
-      <Name>sprite100</Name>
+    <Compile Include="Players\Ninja\ninja20.png">
+      <Name>ninja20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite101.png">
-      <Name>sprite101</Name>
+    <Compile Include="Players\Ninja\ninja21.png">
+      <Name>ninja21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite102.png">
-      <Name>sprite102</Name>
+    <Compile Include="Players\Ninja\ninja22.png">
+      <Name>ninja22</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite103.png">
-      <Name>sprite103</Name>
+    <Compile Include="Players\Ninja\ninja23.png">
+      <Name>ninja23</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite104.png">
-      <Name>sprite104</Name>
+    <Compile Include="Players\Ninja\ninja24.png">
+      <Name>ninja24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite105.png">
-      <Name>sprite105</Name>
+    <Compile Include="Players\Ninja\ninja25.png">
+      <Name>ninja25</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite106.png">
-      <Name>sprite106</Name>
+    <Compile Include="Players\Ninja\ninja26.png">
+      <Name>ninja26</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite107.png">
-      <Name>sprite107</Name>
+    <Compile Include="Players\Ninja\ninja27.png">
+      <Name>ninja27</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite108.png">
-      <Name>sprite108</Name>
+    <Compile Include="Players\Ninja\ninja28.png">
+      <Name>ninja28</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite109.png">
-      <Name>sprite109</Name>
+    <Compile Include="Players\Ninja\ninja29.png">
+      <Name>ninja29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite11.png">
-      <Name>sprite11</Name>
+    <Compile Include="Players\Ninja\ninja3.png">
+      <Name>ninja3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite110.png">
-      <Name>sprite110</Name>
+    <Compile Include="Players\Ninja\ninja30.png">
+      <Name>ninja30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite111.png">
-      <Name>sprite111</Name>
+    <Compile Include="Players\Ninja\ninja31.png">
+      <Name>ninja31</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite112.png">
-      <Name>sprite112</Name>
+    <Compile Include="Players\Ninja\ninja32.png">
+      <Name>ninja32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite113.png">
-      <Name>sprite113</Name>
+    <Compile Include="Players\Ninja\ninja33.png">
+      <Name>ninja33</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite114.png">
-      <Name>sprite114</Name>
+    <Compile Include="Players\Ninja\ninja34.png">
+      <Name>ninja34</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite115.png">
-      <Name>sprite115</Name>
+    <Compile Include="Players\Ninja\ninja35.png">
+      <Name>ninja35</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite116.png">
-      <Name>sprite116</Name>
+    <Compile Include="Players\Ninja\ninja36.png">
+      <Name>ninja36</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite117.png">
-      <Name>sprite117</Name>
+    <Compile Include="Players\Ninja\ninja37.png">
+      <Name>ninja37</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite118.png">
-      <Name>sprite118</Name>
+    <Compile Include="Players\Ninja\ninja38.png">
+      <Name>ninja38</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite119.png">
-      <Name>sprite119</Name>
+    <Compile Include="Players\Ninja\ninja39.png">
+      <Name>ninja39</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite12.png">
-      <Name>sprite12</Name>
+    <Compile Include="Players\Ninja\ninja4.png">
+      <Name>ninja4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite120.png">
-      <Name>sprite120</Name>
+    <Compile Include="Players\Ninja\ninja40.png">
+      <Name>ninja40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite121.png">
-      <Name>sprite121</Name>
+    <Compile Include="Players\Ninja\ninja41.png">
+      <Name>ninja41</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite122.png">
-      <Name>sprite122</Name>
+    <Compile Include="Players\Ninja\ninja42.png">
+      <Name>ninja42</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite123.png">
-      <Name>sprite123</Name>
+    <Compile Include="Players\Ninja\ninja43.png">
+      <Name>ninja43</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite124.png">
-      <Name>sprite124</Name>
+    <Compile Include="Players\Ninja\ninja44.png">
+      <Name>ninja44</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite125.png">
-      <Name>sprite125</Name>
+    <Compile Include="Players\Ninja\ninja45.png">
+      <Name>ninja45</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite126.png">
-      <Name>sprite126</Name>
+    <Compile Include="Players\Ninja\ninja46.png">
+      <Name>ninja46</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite127.png">
-      <Name>sprite127</Name>
+    <Compile Include="Players\Ninja\ninja47.png">
+      <Name>ninja47</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite128.png">
-      <Name>sprite128</Name>
+    <Compile Include="Players\Ninja\ninja48.png">
+      <Name>ninja48</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite129.png">
-      <Name>sprite129</Name>
+    <Compile Include="Players\Ninja\ninja49.png">
+      <Name>ninja49</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite13.png">
-      <Name>sprite13</Name>
+    <Compile Include="Players\Ninja\ninja5.png">
+      <Name>ninja5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite130.png">
-      <Name>sprite130</Name>
+    <Compile Include="Players\Ninja\ninja50.png">
+      <Name>ninja50</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite131.png">
-      <Name>sprite131</Name>
+    <Compile Include="Players\Ninja\ninja51.png">
+      <Name>ninja51</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite132.png">
-      <Name>sprite132</Name>
+    <Compile Include="Players\Ninja\ninja52.png">
+      <Name>ninja52</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite133.png">
-      <Name>sprite133</Name>
+    <Compile Include="Players\Ninja\ninja53.png">
+      <Name>ninja53</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite134.png">
-      <Name>sprite134</Name>
+    <Compile Include="Players\Ninja\ninja6.png">
+      <Name>ninja6</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite135.png">
-      <Name>sprite135</Name>
+    <Compile Include="Players\Ninja\ninja7.png">
+      <Name>ninja7</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite136.png">
-      <Name>sprite136</Name>
+    <Compile Include="Players\Ninja\ninja8.png">
+      <Name>ninja8</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite137.png">
-      <Name>sprite137</Name>
+    <Compile Include="Players\Ninja\ninja9.png">
+      <Name>ninja9</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite138.png">
-      <Name>sprite138</Name>
+    <Compile Include="Players\Ninja\ninja_full.png">
+      <Name>ninja_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite139.png">
-      <Name>sprite139</Name>
+    <Compile Include="Players\Normal\advnt_full.png">
+      <Name>advnt_full</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite14.png">
-      <Name>sprite14</Name>
+    <Compile Include="Players\Normal\player1.png">
+      <Name>player1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite140.png">
-      <Name>sprite140</Name>
+    <Compile Include="Players\Normal\player10.png">
+      <Name>player10</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite141.png">
-      <Name>sprite141</Name>
+    <Compile Include="Players\Normal\player11.png">
+      <Name>player11</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite142.png">
-      <Name>sprite142</Name>
+    <Compile Include="Players\Normal\player12.png">
+      <Name>player12</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite143.png">
-      <Name>sprite143</Name>
+    <Compile Include="Players\Normal\player13.png">
+      <Name>player13</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite144.png">
-      <Name>sprite144</Name>
+    <Compile Include="Players\Normal\player14.png">
+      <Name>player14</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite145.png">
-      <Name>sprite145</Name>
+    <Compile Include="Players\Normal\player15.png">
+      <Name>player15</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite146.png">
-      <Name>sprite146</Name>
+    <Compile Include="Players\Normal\player16.png">
+      <Name>player16</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite147.png">
-      <Name>sprite147</Name>
+    <Compile Include="Players\Normal\player17.png">
+      <Name>player17</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite148.png">
-      <Name>sprite148</Name>
+    <Compile Include="Players\Normal\player18.png">
+      <Name>player18</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite149.png">
-      <Name>sprite149</Name>
+    <Compile Include="Players\Normal\player19.png">
+      <Name>player19</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite15.png">
-      <Name>sprite15</Name>
+    <Compile Include="Players\Normal\player2.png">
+      <Name>player2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite150.png">
-      <Name>sprite150</Name>
+    <Compile Include="Players\Normal\player20.png">
+      <Name>player20</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite151.png">
-      <Name>sprite151</Name>
+    <Compile Include="Players\Normal\player21.png">
+      <Name>player21</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite152.png">
-      <Name>sprite152</Name>
+    <Compile Include="Players\Normal\player22.png">
+      <Name>player22</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite153.png">
-      <Name>sprite153</Name>
+    <Compile Include="Players\Normal\player23.png">
+      <Name>player23</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite154.png">
-      <Name>sprite154</Name>
+    <Compile Include="Players\Normal\player24.png">
+      <Name>player24</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite155.png">
-      <Name>sprite155</Name>
+    <Compile Include="Players\Normal\player25.png">
+      <Name>player25</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite156.png">
-      <Name>sprite156</Name>
+    <Compile Include="Players\Normal\player26.png">
+      <Name>player26</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite157.png">
-      <Name>sprite157</Name>
+    <Compile Include="Players\Normal\player27.png">
+      <Name>player27</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite158.png">
-      <Name>sprite158</Name>
+    <Compile Include="Players\Normal\player28.png">
+      <Name>player28</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite159.png">
-      <Name>sprite159</Name>
+    <Compile Include="Players\Normal\player29.png">
+      <Name>player29</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite16.png">
-      <Name>sprite16</Name>
+    <Compile Include="Players\Normal\player3.png">
+      <Name>player3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite160.png">
-      <Name>sprite160</Name>
+    <Compile Include="Players\Normal\player30.png">
+      <Name>player30</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite161.png">
-      <Name>sprite161</Name>
+    <Compile Include="Players\Normal\player31.png">
+      <Name>player31</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite162.png">
-      <Name>sprite162</Name>
+    <Compile Include="Players\Normal\player32.png">
+      <Name>player32</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite163.png">
-      <Name>sprite163</Name>
+    <Compile Include="Players\Normal\player33.png">
+      <Name>player33</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite164.png">
-      <Name>sprite164</Name>
+    <Compile Include="Players\Normal\player34.png">
+      <Name>player34</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite17.png">
-      <Name>sprite17</Name>
+    <Compile Include="Players\Normal\player35.png">
+      <Name>player35</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite18.png">
-      <Name>sprite18</Name>
+    <Compile Include="Players\Normal\player36.png">
+      <Name>player36</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite19.png">
-      <Name>sprite19</Name>
+    <Compile Include="Players\Normal\player37.png">
+      <Name>player37</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite20.png">
-      <Name>sprite20</Name>
+    <Compile Include="Players\Normal\player38.png">
+      <Name>player38</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite21.png">
-      <Name>sprite21</Name>
+    <Compile Include="Players\Normal\player39.png">
+      <Name>player39</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite22.png">
-      <Name>sprite22</Name>
+    <Compile Include="Players\Normal\player4.png">
+      <Name>player4</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite23.png">
-      <Name>sprite23</Name>
+    <Compile Include="Players\Normal\player40.png">
+      <Name>player40</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite24.png">
-      <Name>sprite24</Name>
+    <Compile Include="Players\Normal\player41.png">
+      <Name>player41</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite25.png">
-      <Name>sprite25</Name>
+    <Compile Include="Players\Normal\player42.png">
+      <Name>player42</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite26.png">
-      <Name>sprite26</Name>
+    <Compile Include="Players\Normal\player43.png">
+      <Name>player43</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite27.png">
-      <Name>sprite27</Name>
+    <Compile Include="Players\Normal\player44.png">
+      <Name>player44</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite28.png">
-      <Name>sprite28</Name>
+    <Compile Include="Players\Normal\player45.png">
+      <Name>player45</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite29.png">
-      <Name>sprite29</Name>
+    <Compile Include="Players\Normal\player46.png">
+      <Name>player46</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite30.png">
-      <Name>sprite30</Name>
+    <Compile Include="Players\Normal\player47.png">
+      <Name>player47</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite31.png">
-      <Name>sprite31</Name>
+    <Compile Include="Players\Normal\player48.png">
+      <Name>player48</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite32.png">
-      <Name>sprite32</Name>
+    <Compile Include="Players\Normal\player49.png">
+      <Name>player49</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite33.png">
-      <Name>sprite33</Name>
+    <Compile Include="Players\Normal\player5.png">
+      <Name>player5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite34.png">
-      <Name>sprite34</Name>
+    <Compile Include="Players\Normal\player50.png">
+      <Name>player50</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite35.png">
-      <Name>sprite35</Name>
+    <Compile Include="Players\Normal\player51.png">
+      <Name>player51</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite36.png">
-      <Name>sprite36</Name>
+    <Compile Include="Players\Normal\player52.png">
+      <Name>player52</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite37.png">
-      <Name>sprite37</Name>
+    <Compile Include="Players\Normal\player53.png">
+      <Name>player53</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite38.png">
-      <Name>sprite38</Name>
+    <Compile Include="Players\Normal\player6.png">
+      <Name>player6</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite39.png">
-      <Name>sprite39</Name>
+    <Compile Include="Players\Normal\player7.png">
+      <Name>player7</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite40.png">
-      <Name>sprite40</Name>
+    <Compile Include="Players\Normal\player8.png">
+      <Name>player8</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite41.png">
-      <Name>sprite41</Name>
+    <Compile Include="Players\Normal\player9.png">
+      <Name>player9</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite42.png">
-      <Name>sprite42</Name>
+    <Compile Include="Statues\sprite1.png">
+      <Name>sprite1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Platform\Entities\sprite43.png">
-      <Name>sprite43</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite44.png">
-      <Name>sprite44</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite45.png">
-      <Name>sprite45</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite46.png">
-      <Name>sprite46</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite47.png">
-      <Name>sprite47</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite48.png">
-      <Name>sprite48</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite49.png">
-      <Name>sprite49</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite50.png">
-      <Name>sprite50</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite51.png">
-      <Name>sprite51</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite52.png">
-      <Name>sprite52</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite53.png">
-      <Name>sprite53</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite54.png">
-      <Name>sprite54</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite55.png">
-      <Name>sprite55</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite56.png">
-      <Name>sprite56</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite57.png">
-      <Name>sprite57</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite58.png">
-      <Name>sprite58</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite59.png">
-      <Name>sprite59</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite60.png">
-      <Name>sprite60</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite61.png">
-      <Name>sprite61</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite62.png">
-      <Name>sprite62</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite63.png">
-      <Name>sprite63</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite64.png">
-      <Name>sprite64</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite65.png">
-      <Name>sprite65</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite66.png">
-      <Name>sprite66</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite67.png">
-      <Name>sprite67</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite68.png">
-      <Name>sprite68</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite69.png">
-      <Name>sprite69</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite70.png">
-      <Name>sprite70</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite71.png">
-      <Name>sprite71</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite72.png">
-      <Name>sprite72</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite73.png">
-      <Name>sprite73</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite74.png">
-      <Name>sprite74</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite75.png">
-      <Name>sprite75</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite76.png">
-      <Name>sprite76</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite77.png">
-      <Name>sprite77</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite78.png">
-      <Name>sprite78</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite79.png">
-      <Name>sprite79</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite80.png">
-      <Name>sprite80</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite81.png">
-      <Name>sprite81</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite82.png">
-      <Name>sprite82</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite83.png">
-      <Name>sprite83</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite84.png">
-      <Name>sprite84</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite85.png">
-      <Name>sprite85</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite86.png">
-      <Name>sprite86</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite87.png">
-      <Name>sprite87</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite88.png">
-      <Name>sprite88</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite89.png">
-      <Name>sprite89</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite90.png">
-      <Name>sprite90</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite91.png">
-      <Name>sprite91</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite92.png">
-      <Name>sprite92</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite93.png">
-      <Name>sprite93</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite94.png">
-      <Name>sprite94</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite95.png">
-      <Name>sprite95</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite96.png">
-      <Name>sprite96</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite97.png">
-      <Name>sprite97</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite98.png">
-      <Name>sprite98</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\Entities\sprite99.png">
-      <Name>sprite99</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\example1.png">
-      <Name>example1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\example2.png">
-      <Name>example2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\ashRocks.png">
-      <Name>ashRocks</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\blackness.png">
-      <Name>blackness</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\dirt.png">
-      <Name>dirt</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\dryGrass.png">
-      <Name>dryGrass</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\dryGrassPatches.png">
-      <Name>dryGrassPatches</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\redDirt.png">
-      <Name>redDirt</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\rocks.png">
-      <Name>rocks</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\sand.png">
-      <Name>sand</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\sandStones.png">
-      <Name>sandStones</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\stones.png">
-      <Name>stones</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\thickGrass.png">
-      <Name>thickGrass</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\thickGrassPatches.png">
-      <Name>thickGrassPatches</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\thickIce.png">
-      <Name>thickIce</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\thinGrass.png">
-      <Name>thinGrass</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\thinGrassPatches.png">
-      <Name>thinGrassPatches</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\wallpaper.png">
-      <Name>wallpaper</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Platform\tiles\wallpaperMask.png">
-      <Name>wallpaperMask</Name>
+    <Compile Include="Statues\sprite2.png">
+      <Name>sprite2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
