@@ -1,8 +1,0 @@
-C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\MC2Visitor\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\JarenMendelsohn\Desktop\EdgeLibrary\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\MC2Visitor\Desktop\EdgeLibraryNew\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\JarenMendelsohn\Desktop\EdgeLibraryNewNew\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December1\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\JarenMendelsohn\Desktop\Games\EdgeLibrary\EdgeLibrary-December8\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Glen\Documents\GitHub\EdgeLibrary\EdgeLibrary\EdgeLibraryContent\obj\x86\Debug\EdgeLibraryContent.contentprojResolveAssemblyReference.cache

@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibrary-Test", "EdgeLibrary-Test\EdgeLibrary-Test\EdgeLibrary-Test.csproj", "{037499AE-9D75-4795-986C-1134DC966D9E}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "EdgeLibrary-TestContent", "EdgeLibrary-Test\EdgeLibrary-TestContent\EdgeLibrary-TestContent.contentproj", "{F20DEB27-F235-4E60-833B-2BBA7E87FA81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibraryBasic", "EdgeLibraryParts\EdgeLibraryBasic\EdgeLibraryBasic\EdgeLibraryBasic.csproj", "{8300EA61-C704-4216-B16A-4F249CFF4F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibraryEffects", "EdgeLibraryParts\EdgeLibraryEffects\EdgeLibraryEffects\EdgeLibraryEffects.csproj", "{E9FD706A-D1E3-46C4-A511-9F4598117117}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibraryMenu", "EdgeLibraryParts\EdgeLibraryMenu\EdgeLibraryMenu\EdgeLibraryMenu.csproj", "{E71F10E2-9EF7-4F19-B6D7-6C57F7D163FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{037499AE-9D75-4795-986C-1134DC966D9E}.Debug|x86.ActiveCfg = Debug|x86
+		{037499AE-9D75-4795-986C-1134DC966D9E}.Debug|x86.Build.0 = Debug|x86
+		{037499AE-9D75-4795-986C-1134DC966D9E}.Release|x86.ActiveCfg = Release|x86
+		{037499AE-9D75-4795-986C-1134DC966D9E}.Release|x86.Build.0 = Release|x86
+		{F20DEB27-F235-4E60-833B-2BBA7E87FA81}.Debug|x86.ActiveCfg = Debug|x86
+		{F20DEB27-F235-4E60-833B-2BBA7E87FA81}.Release|x86.ActiveCfg = Release|x86
+		{8300EA61-C704-4216-B16A-4F249CFF4F89}.Debug|x86.ActiveCfg = Debug|x86
+		{8300EA61-C704-4216-B16A-4F249CFF4F89}.Debug|x86.Build.0 = Debug|x86
+		{8300EA61-C704-4216-B16A-4F249CFF4F89}.Release|x86.ActiveCfg = Release|x86
+		{8300EA61-C704-4216-B16A-4F249CFF4F89}.Release|x86.Build.0 = Release|x86
+		{E9FD706A-D1E3-46C4-A511-9F4598117117}.Debug|x86.ActiveCfg = Debug|x86
+		{E9FD706A-D1E3-46C4-A511-9F4598117117}.Debug|x86.Build.0 = Debug|x86
+		{E9FD706A-D1E3-46C4-A511-9F4598117117}.Release|x86.ActiveCfg = Release|x86
+		{E9FD706A-D1E3-46C4-A511-9F4598117117}.Release|x86.Build.0 = Release|x86
+		{E71F10E2-9EF7-4F19-B6D7-6C57F7D163FF}.Debug|x86.ActiveCfg = Debug|x86
+		{E71F10E2-9EF7-4F19-B6D7-6C57F7D163FF}.Debug|x86.Build.0 = Debug|x86
+		{E71F10E2-9EF7-4F19-B6D7-6C57F7D163FF}.Release|x86.ActiveCfg = Release|x86
+		{E71F10E2-9EF7-4F19-B6D7-6C57F7D163FF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
