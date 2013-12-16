@@ -69,10 +69,12 @@
     <Compile Include="Action\EActionSequence.cs" />
     <Compile Include="Action\EActionTeleport.cs" />
     <Compile Include="Action\EActionVisual.cs" />
+    <Compile Include="Core\ECollisionBody.cs" />
     <Compile Include="Core\EElement.cs" />
     <Compile Include="Core\ELabel.cs" />
     <Compile Include="Core\EObject.cs" />
     <Compile Include="Core\ERange.cs" />
+    <Compile Include="Core\EShape.cs" />
     <Compile Include="Core\ESprite.cs" />
     <Compile Include="Core\ETicker.cs" />
     <Compile Include="Core\EUpdateArgs.cs" />
