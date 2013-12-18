@@ -17,11 +17,11 @@ namespace EdgeLibrary.Basic
 
         public EActionQuickSequence(params EAction[] eActions)
         {
-            requiresUpdate = false;
+            RequiresUpdate = false;
             Actions = new List<EAction>(eActions);
         }
 
-        public override void initWithSprite(ESprite sprite)
+        public override void PerformAction(ESprite sprite)
         {
             foreach (EAction action in Actions)
             {
@@ -38,16 +38,16 @@ namespace EdgeLibrary.Basic
         public EActionSequence(params EAction[] eActions)
         {
             currentNumber = 0;
-            requiresUpdate = true;
+            RequiresUpdate = true;
             Actions = new List<EAction>(eActions);
         }
 
-        public override void initWithSprite(ESprite sprite)
+        public override void PerformAction(ESprite sprite)
         {
-            Actions[currentNumber].initWithSprite(sprite);
+            Actions[currentNumber].PerformAction(sprite);
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             if (Actions.Count - 1 < currentNumber)
             {
@@ -65,7 +65,7 @@ namespace EdgeLibrary.Basic
                     return true;
                 }
 
-                Actions[currentNumber].initWithSprite(targetSprite);
+                Actions[currentNumber].PerformAction(targetSprite);
             }
 
             return false;

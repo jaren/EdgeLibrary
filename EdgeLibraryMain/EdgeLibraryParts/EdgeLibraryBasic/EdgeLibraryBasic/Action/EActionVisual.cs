@@ -74,10 +74,10 @@ namespace EdgeLibrary.Basic
 
         protected void initVars()
         {
-            requiresUpdate = false;
+            RequiresUpdate = false;
         }
 
-        public override void initWithSprite(ESprite sprite)
+        public override void PerformAction(ESprite sprite)
         {
             if (actionType.HasFlag(EdgeActionVisualTypes.Rotation))
             {

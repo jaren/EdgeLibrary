@@ -33,7 +33,7 @@ namespace EdgeLibrary.Basic
 
         protected void initVars()
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
             moveVelocity = Vector2.Zero;
         }
 
@@ -67,14 +67,14 @@ namespace EdgeLibrary.Basic
             return false;
         }
 
-        public override void initWithSprite(ESprite targetSprite)
+        public override void PerformAction(ESprite targetSprite)
         {
             moveVelocity = new Vector2(targetPos.X - targetSprite.Position.X, targetPos.Y - targetSprite.Position.Y);
             moveVelocity.Normalize();
-            UpdateAction(targetSprite);
+            Update(targetSprite);
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             moveVelocity = new Vector2(targetPos.X - targetSprite.Position.X, targetPos.Y - targetSprite.Position.Y);
             moveVelocity.Normalize();

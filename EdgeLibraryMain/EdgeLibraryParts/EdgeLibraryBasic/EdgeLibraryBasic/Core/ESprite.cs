@@ -64,8 +64,8 @@ namespace EdgeLibrary.Basic
 
         public void runAction(EAction action)
         {
-            action.initWithSprite(this);
-            if (action.requiresUpdate)
+            action.PerformAction(this);
+            if (action.RequiresUpdate)
             {
                 Actions.Add(action);
             }

@@ -12,12 +12,12 @@ namespace EdgeLibrary.Basic
 
         public EActionRemove(EdgeGame mainGame, EElement elementToRemove)
         {
-            requiresUpdate = false;
+            RequiresUpdate = false;
             game = mainGame;
             element = elementToRemove;
         }
 
-        public override void initWithSprite(ESprite targetSprite)
+        public override void PerformAction(ESprite targetSprite)
         {
             game.RemoveElement(element);
         }
@@ -30,10 +30,10 @@ namespace EdgeLibrary.Basic
         public EActionRemoveSelf(EdgeGame mainGame)
         {
             game = mainGame;
-            requiresUpdate = false;
+            RequiresUpdate = false;
         }
 
-        public override void initWithSprite(ESprite targetSprite)
+        public override void PerformAction(ESprite targetSprite)
         {
             game.RemoveElement(targetSprite);
         }

@@ -13,19 +13,19 @@ namespace EdgeLibrary.Basic
 {
     public class EActionFollow : EAction
     {
-        public ESprite spriteToFollow { get; set; }
+        public EElement spriteToFollow { get; set; }
         public float speed { get; set; }
         protected EActionMove moveAction;
 
-        public EActionFollow(ESprite eSpriteToFollow, float eSpeed)
+        public EActionFollow(EElement eSpriteToFollow, float eSpeed)
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
             spriteToFollow = eSpriteToFollow;
             speed = eSpeed;
             moveAction = new EActionMove(spriteToFollow.Position, speed);
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             if (spriteToFollow == null) 
             {

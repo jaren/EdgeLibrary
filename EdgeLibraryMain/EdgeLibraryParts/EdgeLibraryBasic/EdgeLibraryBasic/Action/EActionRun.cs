@@ -11,19 +11,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    [Obsolete("Subclass EAction to implement an action instead.")]
     public class EActionRunEventArgs : EventArgs
     {
         public EAction action;
-        public ESprite sender;
+
+        /// <summary>
+        /// The sprite the action is performed on.
+        /// </summary>
+        public ESprite Sprite;
 
         public EActionRunEventArgs(EAction eAction, ESprite eSender)
         {
             action = eAction;
-            sender = eSender;
+            Sprite = eSender;
         }
     }
 
     //Runs a function
+    [Obsolete("Subclass EAction to implement an action instead.")]
     public class EActionRun : EAction
     {
         public delegate void EActivate(EActionRunEventArgs e);
@@ -32,16 +38,20 @@ namespace EdgeLibrary.Basic
         public EActionRun(EActivate activate)
         {
             OnActivate += activate;
-            requiresUpdate = false;
+            RequiresUpdate = false;
         }
 
-        public EActionRun(EActionRun action) : this(action.OnActivate)
+        public EActionRun(EActionRun action)
+            : this(action.OnActivate)
         {
         }
 
-        public override void initWithSprite(ESprite sprite)
+        public override void PerformAction(ESprite sprite)
         {
-            OnActivate(new EActionRunEventArgs(this, sprite));
+            if (OnActivate != null)
+            {
+                OnActivate(new EActionRunEventArgs(this, sprite));
+            }
         }
     }
 }

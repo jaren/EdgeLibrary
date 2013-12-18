@@ -13,19 +13,32 @@ namespace EdgeLibrary.Basic
 {
     public class EAction : EObject
     {
-        public bool requiresUpdate { get; protected set; }
-        protected bool done = false;
+        /// <summary>
+        /// Gets a boolean indicating whether this action needs to be continuously updated from this point onwards.
+        /// </summary>
+        public bool RequiresUpdate { get; protected set; }
 
         public EAction()
         {
-            requiresUpdate = false;
+            RequiresUpdate = false;
         }
 
-        public void cancel() { done = true; }
-        public virtual void initWithSprite(ESprite targetSprite) { }
-        //Returns true if the action has finished
-        public bool Update(ESprite targetSprite) { if (done) { return true; } return UpdateAction(targetSprite); }
-        public virtual bool UpdateAction(ESprite targetSprite) { return true; }
+        /// <summary>
+        /// Immediately completes the action so that it is not further updated.
+        /// </summary>
+        public void cancel() { RequiresUpdate = false; }
+
+        /// <summary>
+        /// Performs this action on a sprite, setting <see cref="RequiresUpdate"/> if this action needs further updating.
+        /// </summary>
+        /// <param name="targetSprite">The sprite to perform the action on.</param>
+        public virtual void PerformAction(ESprite targetSprite) { }
+        /// <summary>
+        /// Continues to perform the action on the sprite.
+        /// </summary>
+        /// <param name="targetSprite">The sprite to continue to perform this action on.</param>
+        /// <returns>True if the action is completed; false otherwise.</returns>
+        public virtual bool Update(ESprite targetSprite) { return true; }
     }
 
     /*

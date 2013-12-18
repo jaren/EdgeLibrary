@@ -19,25 +19,25 @@ namespace EdgeLibrary.Basic
 
         public EActionRepeat(EActionRepeat eAction)
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
             repeatTimes = eAction.repeatTimes;
             action = eAction.action;
         }
 
         public EActionRepeat(int eRepeatTimes, EAction eAction)
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
             completedTimes = 0;
             repeatTimes = eRepeatTimes;
             action = eAction;
         }
 
-        public override void initWithSprite(ESprite targetSprite)
+        public override void PerformAction(ESprite targetSprite)
         {
             targetSprite.runAction(action);
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             if (action.Update(targetSprite))
             {
@@ -63,18 +63,18 @@ namespace EdgeLibrary.Basic
 
         public EActionRepeatForever(EAction eAction)
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
 
             completedTimes = 0;
             action = eAction;
         }
 
-        public override void initWithSprite(ESprite targetSprite)
+        public override void PerformAction(ESprite targetSprite)
         {
             targetSprite.runAction(action);
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             if (action.Update(targetSprite))
             {

@@ -20,17 +20,17 @@ namespace EdgeLibrary.Basic
 
         public EActionRotate(float eRotation, float eSpeed)
         {
-            requiresUpdate = true;
+            RequiresUpdate = true;
             rotation = eRotation;
             speed = Math.Abs(eSpeed);
         }
 
-        public override void initWithSprite(ESprite sprite)
+        public override void PerformAction(ESprite sprite)
         {
             startRotation = sprite.Rotation;
         }
 
-        public override bool UpdateAction(ESprite targetSprite)
+        public override bool Update(ESprite targetSprite)
         {
             if ((rotation > 0) && (targetSprite.Rotation > (rotation + startRotation - speed))) return true;
             else if ((rotation < 0) && (targetSprite.Rotation < (rotation + startRotation + speed))) return true;
