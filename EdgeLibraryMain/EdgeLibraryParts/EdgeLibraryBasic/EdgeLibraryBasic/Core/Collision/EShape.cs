@@ -53,7 +53,7 @@ namespace EdgeLibrary.Basic
                     return (EMath.DistanceBetween(CenterPosition, shape.CenterPosition) <= (Radius + ((EShapeCircle)shape).Radius));
                     break;
                 case EShapeTypes.rectangle:
-
+                    return shape.CollidesWith(new EShapeRectangle(CenterPosition, Radius, Radius));
                     break;
             }
             return false;
@@ -76,6 +76,8 @@ namespace EdgeLibrary.Basic
             switch (shape.ShapeType)
             {
                 case EShapeTypes.circle:
+                    EShapeRectangle rectangle = new EShapeRectangle(shape.CenterPosition, ((EShapeCircle)shape).Radius, ((EShapeCircle)shape).Radius);
+                    return new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y + (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)rectangle.CenterPosition.X + (int)((EShapeRectangle)rectangle).Width / 2, (int)rectangle.CenterPosition.Y + (int)((EShapeRectangle)rectangle).Height / 2, (int)((EShapeRectangle)rectangle).Width, (int)((EShapeRectangle)rectangle).Height));
                     break;
                 case EShapeTypes.rectangle:
                     return new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y + (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)shape.CenterPosition.X + (int)((EShapeRectangle)shape).Width / 2, (int)shape.CenterPosition.Y + (int)((EShapeRectangle)shape).Height / 2, (int)((EShapeRectangle)shape).Width, (int)((EShapeRectangle)shape).Height));

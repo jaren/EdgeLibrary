@@ -82,11 +82,11 @@ namespace EdgeLibrary.Basic
         {
             foreach (EElement element in elements)
             {
-                if (element.SupportsCollision && element.CollisionBody != null && CollisionStart != null)
+                if (element != this && element.SupportsCollision && element.CollisionBody != null)
                 {
                     if (CollisionBody.CheckForCollide(element.CollisionBody))
                     {
-                        CollisionStart(new ESpriteCollisionArgs(this, element));
+                        if (CollisionStart != null) { CollisionStart(new ESpriteCollisionArgs(this, element)); }
                     }
                 }
             }

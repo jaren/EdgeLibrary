@@ -101,8 +101,8 @@ namespace EdgeLibrary.Basic
             try
             {
                 scenes[selectedSceneIndex].Update(updateArgs);
-            }
-            catch { }
+                }
+                catch{}
 
             if ((updateArgs.mouseState.X != previousMouseState.X || updateArgs.mouseState.Y != previousMouseState.Y) && MouseMove != null) { MouseMove(updateArgs); }
             if ((updateArgs.mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) && MouseClick != null) { MouseClick(updateArgs); }
@@ -111,6 +111,7 @@ namespace EdgeLibrary.Basic
             previousMouseState = updateArgs.mouseState;
         }
 
+        //NOTE: For these, the element is not actually set to "null". You must do it manually.
         public void RemoveElement(EElement eElement)
         {
             foreach (EScene scene in scenes)
@@ -119,6 +120,7 @@ namespace EdgeLibrary.Basic
             }
         }
 
+        //NOTE: For these, the element is not actually set to "null". You must do it manually.
         public void RemoveObject(EObject eObject)
         {
             foreach (EScene scene in scenes)

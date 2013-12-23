@@ -18,10 +18,9 @@ namespace EdgeLibrary_Test
     /// TODO:
     /// -General
     ///     -Add "Animation" function
-    ///     -Fix "Remove Element/Object" function
-    ///     -Add basic collision functions
-    ///         -Fix collision between a circle and a rectangle
+    ///     -Fix collision between a circle and a rectangle - it currently just converts the circle to a rectangle
     /// -Actions
+    ///     -Fix running action sequences on multiple sprites
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
     /// -Menu
@@ -43,6 +42,9 @@ namespace EdgeLibrary_Test
         SpriteBatch spriteBatch;
 
         EdgeGame edgeGame;
+
+        ELabel label;
+        int collisionCount;
 
         #region NOT-USED
         public MainGame()
@@ -89,6 +91,8 @@ namespace EdgeLibrary_Test
         {
             edgeGame.LoadSong("battleThemeA", "battleSong");
 
+            edgeGame.LoadFont("font", "font");
+
             edgeGame.LoadTexture("Particle Textures/fire", "fire");
             edgeGame.LoadTexture("Particle Textures/stars", "star");
             edgeGame.LoadTexture("Particle Textures/smoke", "smoke");
@@ -109,10 +113,24 @@ namespace EdgeLibrary_Test
 
         private void initializeMenuScene()
         {
+            int movespeed = 5;
+            EActionMove move1 = new EActionMove(new Vector2(100, 100), movespeed);
+            EActionMove move2 = new EActionMove(new Vector2(610, 100), movespeed);
+            EActionMove move3 = new EActionMove(new Vector2(610, 610), movespeed);
+            EActionMove move4 = new EActionMove(new Vector2(100, 610), movespeed);
+            EActionSequence sequence = new EActionSequence(move1, move2, move3, move4);
+            EActionRepeatForever repeat = new EActionRepeatForever(sequence);
+
+            EActionMove moveBack1 = new EActionMove(new Vector2(100, 100), movespeed);
+            EActionMove moveBack2 = new EActionMove(new Vector2(700, 100), movespeed);
+            EActionSequence sequenceBack = new EActionSequence(moveBack1, moveBack2);
+            EActionRepeatForever repeatBack = new EActionRepeatForever(sequenceBack);
+
             EScene menuScene = new EScene("menuScene");
             edgeGame.addScene(menuScene);
 
             ESprite sprite = new ESprite("player", new Vector2(450, 450), 50, 100);
+            sprite.runAction(repeat);
             menuScene.addElement(sprite);
 
             #region PARTICLES
@@ -140,21 +158,27 @@ namespace EdgeLibrary_Test
             mouseEmitter.GrowSpeed = 1f;
             mouseEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
             mouseEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
-            mouseEmitter.LifeVariance = new ERange(1000);
+            mouseEmitter.LifeVariance = new ERange(500);
             mouseEmitter.EmitWait = 0;
-            mouseEmitter.ActionToRunOnParticles = new EActionFollow(sprite, 4);
+            mouseEmitter.ActionToRunOnParticles = new EActionFollow(sprite, 10);
             mouseEmitter.ClampToMouse();
             menuScene.addElement(mouseEmitter);
             #endregion
 
+          
             ESprite s1 = new ESprite("player", new Vector2(100, 100), 50, 50);
-            s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 1), "something"));
-            s1.runAction(new EActionMove(new Vector2(500, 100), 1));
+            s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
+            s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
+            s1.runAction(repeatBack);
             menuScene.addElement(s1);
             ESprite s2 = new ESprite("player", new Vector2(500, 100), 50, 50);
-            s2.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 1), "something"));
-            s2.runAction(new EActionMove(new Vector2(100, 100), 1));
+            s2.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
+            s2.runAction(repeatBack);
             menuScene.addElement(s2);
+
+            label = new ELabel("font", new Vector2(10, 10), "Collision Count: 0", Color.Purple);
+            collisionCount = 0;
+            menuScene.addElement(label);
         }
 
         private void initializeGameScene()
@@ -166,6 +190,8 @@ namespace EdgeLibrary_Test
 
         private void SpriteCollisionStart(ESpriteCollisionArgs e)
         {
+            collisionCount++;
+            label.Text = string.Format("Collision Count: {0}", collisionCount);
         }
     }
 }

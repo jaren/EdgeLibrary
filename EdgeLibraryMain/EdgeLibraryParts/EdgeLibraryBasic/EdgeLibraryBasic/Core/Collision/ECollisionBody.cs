@@ -39,6 +39,15 @@ namespace EdgeLibrary.Basic
 
         public bool CheckForCollide(ECollisionBody body)
         {
+            if (CollidesWithIDs == null)
+            {
+                if (collidesWithAll)
+                {
+                    return Shape.CollidesWith(body.Shape);
+                }
+                return false;
+            }
+
             if (CollidesWithIDs.Contains(body.ID) || collidesWithAll)
             {
                 return Shape.CollidesWith(body.Shape);

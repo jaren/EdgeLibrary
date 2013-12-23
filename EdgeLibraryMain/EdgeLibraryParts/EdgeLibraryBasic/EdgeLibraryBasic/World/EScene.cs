@@ -33,18 +33,14 @@ namespace EdgeLibrary.Basic
         #region UPDATE
         public override void updateElement(EUpdateArgs updateArgs)
         {
-            try
+            foreach (EElement element in eelements)
             {
-                foreach (EElement element in eelements)
+                element.Update(updateArgs);
+                if (element.IsActive && element.SupportsCollision)
                 {
-                    element.Update(updateArgs);
-                    if (element.IsActive && element.SupportsCollision)
-                    {
-                        element.UpdateCollision(eelements);
-                    }
+                    element.UpdateCollision(eelements);
                 }
             }
-            catch { }
         }
 
         public void addElement(EElement eElement)
@@ -60,21 +56,23 @@ namespace EdgeLibrary.Basic
             eelements.Add(eElement);
         }
 
-        public void RemoveObject(EObject eObject)
+        public bool RemoveObject(EObject eObject)
         {
             if (eobjects.Contains(eObject)) 
             {
                 eobjects.Remove(eObject);
-                eObject = null;
+                return true;
             }
+            return false;
         }
-        public void RemoveElement(EElement eElement)
+        public bool RemoveElement(EElement eElement)
         {
             if (eelements.Contains(eElement))
             {
                 eelements.Remove(eElement);
-                eElement = null;
+                return true;
             }
+            return false;
         }
 
         public void addObject(EObject eObject)
