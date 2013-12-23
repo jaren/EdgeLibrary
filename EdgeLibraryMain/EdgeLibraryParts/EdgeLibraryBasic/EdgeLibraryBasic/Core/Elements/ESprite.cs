@@ -38,6 +38,7 @@ namespace EdgeLibrary.Basic
         protected float _width;
         protected float _height;
         protected Vector2 _scale;
+        protected List<string> currentlyCollidingWithIDs;
 
         //Extra
         public float Rotation;
@@ -48,6 +49,7 @@ namespace EdgeLibrary.Basic
 
         public delegate void SpriteCollisionEvent(ESpriteCollisionArgs e);
         public event SpriteCollisionEvent CollisionStart;
+        public event SpriteCollisionEvent Collision;
 
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : base()
         {
@@ -60,6 +62,8 @@ namespace EdgeLibrary.Basic
             Color = Color.White;
             Rotation = 0;
             Scale = Vector2.One;
+
+            currentlyCollidingWithIDs = new List<string>();
 
             Actions = new List<EAction>();
             ActionsToRemove = new List<int>();
@@ -86,7 +90,17 @@ namespace EdgeLibrary.Basic
                 {
                     if (CollisionBody.CheckForCollide(element.CollisionBody))
                     {
-                        if (CollisionStart != null) { CollisionStart(new ESpriteCollisionArgs(this, element)); }
+                        if (Collision != null) { Collision(new ESpriteCollisionArgs(this, element)); }
+                        if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(element.CollisionBody.ID))
+                        {
+                            CollisionStart(new ESpriteCollisionArgs(this, element));
+                            currentlyCollidingWithIDs.Add(element.CollisionBody.ID);
+                        }
+                    }
+                    //Checks if it's not colliding with the element, then removes it from the colliding list
+                    else if (currentlyCollidingWithIDs.Contains(element.CollisionBody.ID))
+                    {
+                        currentlyCollidingWithIDs.Remove(element.CollisionBody.ID);
                     }
                 }
             }
@@ -108,11 +122,6 @@ namespace EdgeLibrary.Basic
 
         public void ClampToMouse() { ClampedToMouse = true; }
         public void UnclampFromMouse() { ClampedToMouse = false; }
-
-        public void Delete()
-        {
-            //Don't know what to do here
-        }
 
         public override void updateElement(EUpdateArgs updateArgs)
         {

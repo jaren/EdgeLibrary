@@ -17,7 +17,7 @@ namespace EdgeLibrary.Basic
         public float speed { get; set; }
         protected EActionMove moveAction;
 
-        public EActionFollow(EElement eSpriteToFollow, float eSpeed)
+        public EActionFollow(EElement eSpriteToFollow, float eSpeed) : base()
         {
             RequiresUpdate = true;
             spriteToFollow = eSpriteToFollow;

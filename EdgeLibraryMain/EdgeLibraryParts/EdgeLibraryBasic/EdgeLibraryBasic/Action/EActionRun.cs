@@ -35,7 +35,7 @@ namespace EdgeLibrary.Basic
         public delegate void EActivate(EActionRunEventArgs e);
         public event EActivate OnActivate;
 
-        public EActionRun(EActivate activate)
+        public EActionRun(EActivate activate)  : base()
         {
             OnActivate += activate;
             RequiresUpdate = false;

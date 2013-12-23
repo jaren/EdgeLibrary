@@ -17,14 +17,14 @@ namespace EdgeLibrary.Basic
         public int completedTimes { get; protected set; }
         public EAction action;
 
-        public EActionRepeat(EActionRepeat eAction)
+        public EActionRepeat(EActionRepeat eAction) : base()
         {
             RequiresUpdate = true;
             repeatTimes = eAction.repeatTimes;
             action = eAction.action;
         }
 
-        public EActionRepeat(int eRepeatTimes, EAction eAction)
+        public EActionRepeat(int eRepeatTimes, EAction eAction) : base()
         {
             RequiresUpdate = true;
             completedTimes = 0;

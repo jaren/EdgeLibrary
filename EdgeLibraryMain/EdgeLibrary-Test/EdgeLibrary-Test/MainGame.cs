@@ -17,8 +17,9 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Add "Animation" function
+    ///     -Add "Animated Sprite"
     ///     -Fix collision between a circle and a rectangle - it currently just converts the circle to a rectangle
+    ///     -Fix the "Start Collision" - currently it keeps calling every frame when colliding
     /// -Actions
     ///     -Fix running action sequences on multiple sprites
     ///     -Fix "EActionSequence"

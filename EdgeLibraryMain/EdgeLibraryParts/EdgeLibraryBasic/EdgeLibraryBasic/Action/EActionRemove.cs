@@ -10,7 +10,7 @@ namespace EdgeLibrary.Basic
         public EdgeGame game;
         public EElement element;
 
-        public EActionRemove(EdgeGame mainGame, EElement elementToRemove)
+        public EActionRemove(EdgeGame mainGame, EElement elementToRemove) : base()
         {
             RequiresUpdate = false;
             game = mainGame;
@@ -27,7 +27,7 @@ namespace EdgeLibrary.Basic
     {
         EdgeGame game;
 
-        public EActionRemoveSelf(EdgeGame mainGame)
+        public EActionRemoveSelf(EdgeGame mainGame) : base()
         {
             game = mainGame;
             RequiresUpdate = false;

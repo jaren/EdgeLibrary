@@ -28,7 +28,7 @@ namespace EdgeLibrary.Basic
 
         EdgeActionVisualTypes actionType;
 
-        public EActionVisual(EActionVisual action)
+        public EActionVisual(EActionVisual action) : base()
         {
             color = action.color;
             size = action.size;
@@ -36,7 +36,7 @@ namespace EdgeLibrary.Basic
             actionType = action.actionType;
         }
 
-        public EActionVisual(EdgeActionVisualTypes type)
+        public EActionVisual(EdgeActionVisualTypes type) : base()
         {
             actionType = type;
             initVars();

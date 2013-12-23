@@ -18,7 +18,7 @@ namespace EdgeLibrary.Basic
 
         protected float startRotation;
 
-        public EActionRotate(float eRotation, float eSpeed)
+        public EActionRotate(float eRotation, float eSpeed) : base()
         {
             RequiresUpdate = true;
             rotation = eRotation;

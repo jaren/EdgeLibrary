@@ -19,16 +19,11 @@ namespace EdgeLibrary.Basic
 
         protected Vector2 moveVelocity;
 
-        public EActionMove(Vector2 eTargetPos, float eSpeed)
+        public EActionMove(Vector2 eTargetPos, float eSpeed) : base()
         {
             targetPos = eTargetPos;
             speed = eSpeed;
             initVars();
-        }
-
-        public EActionMove(EActionMove action) : this(action.targetPos, action.speed)
-        {
-            //Pass-through constructor
         }
 
         protected void initVars()

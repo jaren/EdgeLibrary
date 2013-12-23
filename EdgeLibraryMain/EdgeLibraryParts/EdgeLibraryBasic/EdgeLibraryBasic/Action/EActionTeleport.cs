@@ -15,13 +15,13 @@ namespace EdgeLibrary.Basic
     {
         public Vector2 targetPos { get; set; }
 
-        public EActionTeleport(Vector2 eTargetPos)
+        public EActionTeleport(Vector2 eTargetPos) : base()
         {
             targetPos = eTargetPos;
             initVars();
         }
 
-        public EActionTeleport(EActionTeleport action)
+        public EActionTeleport(EActionTeleport action) : base()
         {
             targetPos = action.targetPos;
             initVars();

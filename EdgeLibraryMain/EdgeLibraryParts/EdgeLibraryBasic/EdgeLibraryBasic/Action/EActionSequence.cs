@@ -15,7 +15,7 @@ namespace EdgeLibrary.Basic
     {
         protected List<EAction> Actions;
 
-        public EActionQuickSequence(params EAction[] eActions)
+        public EActionQuickSequence(params EAction[] eActions) : base()
         {
             RequiresUpdate = false;
             Actions = new List<EAction>(eActions);
@@ -33,39 +33,40 @@ namespace EdgeLibrary.Basic
     public class EActionSequence : EAction
     {
         protected List<EAction> Actions;
-        public int currentNumber { get; set; }
+        protected Dictionary<ESprite, int> SpriteCurrentNumbers;
 
-        public EActionSequence(params EAction[] eActions)
+        public EActionSequence(params EAction[] eActions) : base()
         {
-            currentNumber = 0;
+            SpriteCurrentNumbers = new Dictionary<ESprite, int>();
             RequiresUpdate = true;
             Actions = new List<EAction>(eActions);
         }
 
         public override void PerformAction(ESprite sprite)
         {
-            Actions[currentNumber].PerformAction(sprite);
+            Actions[0].PerformAction(sprite);
+            SpriteCurrentNumbers.Add(sprite, 0);
         }
 
         public override bool Update(ESprite targetSprite)
         {
-            if (Actions.Count - 1 < currentNumber)
+            if (Actions.Count - 1 < SpriteCurrentNumbers[targetSprite])
             {
-                currentNumber = 0;
+                SpriteCurrentNumbers[targetSprite] = 0;
                 return true;
             }
 
-            if (Actions[currentNumber].Update(targetSprite))
+            if (Actions[SpriteCurrentNumbers[targetSprite]].Update(targetSprite))
             {
-                currentNumber++;
+                SpriteCurrentNumbers[targetSprite]++;
 
-                if (Actions.Count - 1 < currentNumber)
+                if (Actions.Count - 1 < SpriteCurrentNumbers[targetSprite])
                 {
-                    currentNumber = 0;
+                    SpriteCurrentNumbers[targetSprite] = 0;
                     return true;
                 }
 
-                Actions[currentNumber].PerformAction(targetSprite);
+                Actions[SpriteCurrentNumbers[targetSprite]].PerformAction(targetSprite);
             }
 
             return false;

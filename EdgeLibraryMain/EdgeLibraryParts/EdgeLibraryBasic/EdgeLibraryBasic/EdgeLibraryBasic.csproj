@@ -70,6 +70,7 @@
     <Compile Include="Action\EActionTeleport.cs" />
     <Compile Include="Action\EActionVisual.cs" />
     <Compile Include="Core\Collision\ECollisionBody.cs" />
+    <Compile Include="Core\Elements\EAnimatedSprite.cs" />
     <Compile Include="Core\Elements\EElement.cs" />
     <Compile Include="Core\Elements\ELabel.cs" />
     <Compile Include="Core\Other\EMath.cs" />
