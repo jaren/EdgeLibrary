@@ -18,10 +18,7 @@ namespace EdgeLibrary_Test
     /// TODO:
     /// -General
     ///     -Add "Animated Sprite"
-    ///     -Fix collision between a circle and a rectangle - it currently just converts the circle to a rectangle
-    ///     -Fix the "Start Collision" - currently it keeps calling every frame when colliding
     /// -Actions
-    ///     -Fix running action sequences on multiple sprites
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
     /// -Menu
@@ -65,7 +62,7 @@ namespace EdgeLibrary_Test
         }
         protected override void LoadContent()
         {
-            edgeGame.LoadContent();
+            edgeGame.LoadContent(this.Content.Load<Texture2D>("pixel"));
         }
         protected override void UnloadContent() { edgeGame.UnloadContent(); }
         protected override void Update(GameTime gameTime)
@@ -106,6 +103,7 @@ namespace EdgeLibrary_Test
 
         private void initializeGameWindow()
         {
+            edgeGame.DrawType = EdgeGameDrawTypes.Debug;
             edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(1000);
             edgeGame.setWindowWidth(1000);
@@ -173,7 +171,7 @@ namespace EdgeLibrary_Test
             s1.runAction(repeatBack);
             menuScene.addElement(s1);
             ESprite s2 = new ESprite("player", new Vector2(500, 100), 50, 50);
-            s2.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
+            s2.AddCollision(new ECollisionBody(new EShapeRectangle(Vector2.Zero, s2.Width, s2.Height), "something"));
             s2.runAction(repeatBack);
             menuScene.addElement(s2);
 

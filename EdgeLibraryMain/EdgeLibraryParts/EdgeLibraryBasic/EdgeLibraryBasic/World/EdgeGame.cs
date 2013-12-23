@@ -12,6 +12,12 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
+    public enum EdgeGameDrawTypes
+    {
+        Normal,
+        Debug
+    }
+
     public class EdgeGame
     {
         #region VARIABLES
@@ -21,11 +27,14 @@ namespace EdgeLibrary.Basic
         private GraphicsDevice graphicsDevice;
 
         private Color clearColor = Color.Black;
+        public Color DebugDrawColor = Color.White;
 
         private List<EScene> scenes;
         private int selectedSceneIndex;
 
         public EData edgeData;
+
+        public EdgeGameDrawTypes DrawType;
 
         private MouseState previousMouseState;
         public delegate void EMouseEvent(EUpdateArgs e);
@@ -34,10 +43,14 @@ namespace EdgeLibrary.Basic
         public event EMouseEvent MouseMove;
 
         private ESettingsHandler settingsLoader;
+
+        private Texture2D pixel;
         #endregion
 
         public EdgeGame(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
         {
+            DrawType = EdgeGameDrawTypes.Normal;
+
             Content = eContent;
             spriteBatch = eSpriteBatch;
             graphics = eGraphics;
@@ -67,8 +80,9 @@ namespace EdgeLibrary.Basic
         #endregion
 
         #region LOAD
-        public void LoadContent()
+        public void LoadContent(Texture2D pixelTexture)
         {
+            pixel = pixelTexture;
         }
 
         public void LoadTexture(string texturePath, string textureName)
@@ -147,6 +161,7 @@ namespace EdgeLibrary.Basic
         public void addScene(EScene scene)
         {
             scene.setEData(edgeData);
+            scene.mainGame = this;
             scenes.Add(scene);
         }
 
@@ -171,10 +186,22 @@ namespace EdgeLibrary.Basic
             spriteBatch.Begin();
             try
             {
+                scenes[selectedSceneIndex].DrawType = DrawType;
+                scenes[selectedSceneIndex].DebugDrawColor = DebugDrawColor;
                 scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
             }
             catch { }
             spriteBatch.End();
+        }
+
+        public void DrawPixelAt(Vector2 position, Color color)
+        {
+            spriteBatch.Draw(pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
+        }
+        public void DrawLineAt(Vector2 position1, Vector2 position2, Color color)
+        {
+            //Fix this
+            spriteBatch.Draw(pixel, new Rectangle((int)position1.X, (int)position1.Y, (int)position1.X - (int)position2.X + 1, (int)position1.Y - (int)position2.Y + 1), color);
         }
         #endregion
 

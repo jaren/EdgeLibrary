@@ -53,6 +53,7 @@ namespace EdgeLibrary.Basic
                 float y1 = -(y - centerPosition.Y) + centerPosition.Y;
 
                 points.Add(new Vector2(x, y));
+                points.Add(new Vector2(x, y1));
             }
 
             return points;
