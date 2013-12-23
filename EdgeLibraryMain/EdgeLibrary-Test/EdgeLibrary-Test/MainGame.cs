@@ -17,8 +17,10 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
+    ///     -Add "Animation" function
     ///     -Fix "Remove Element/Object" function
     ///     -Add basic collision functions
+    ///         -Fix collision between a circle and a rectangle
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
@@ -144,12 +146,26 @@ namespace EdgeLibrary_Test
             mouseEmitter.ClampToMouse();
             menuScene.addElement(mouseEmitter);
             #endregion
+
+            ESprite s1 = new ESprite("player", new Vector2(100, 100), 50, 50);
+            s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 1), "something"));
+            s1.runAction(new EActionMove(new Vector2(500, 100), 1));
+            menuScene.addElement(s1);
+            ESprite s2 = new ESprite("player", new Vector2(500, 100), 50, 50);
+            s2.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 1), "something"));
+            s2.runAction(new EActionMove(new Vector2(100, 100), 1));
+            menuScene.addElement(s2);
         }
 
         private void initializeGameScene()
         {
             EScene gameScene = new EScene("gameScene");
+
             edgeGame.addScene(gameScene);
+        }
+
+        private void SpriteCollisionStart(ESpriteCollisionArgs e)
+        {
         }
     }
 }

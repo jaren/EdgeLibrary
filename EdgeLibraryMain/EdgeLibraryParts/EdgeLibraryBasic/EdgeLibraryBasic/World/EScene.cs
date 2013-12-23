@@ -38,6 +38,10 @@ namespace EdgeLibrary.Basic
                 foreach (EElement element in eelements)
                 {
                     element.Update(updateArgs);
+                    if (element.IsActive && element.SupportsCollision)
+                    {
+                        element.UpdateCollision(eelements);
+                    }
                 }
             }
             catch { }

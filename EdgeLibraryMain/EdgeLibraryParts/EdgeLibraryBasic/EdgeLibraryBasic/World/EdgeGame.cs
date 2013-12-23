@@ -176,23 +176,5 @@ namespace EdgeLibrary.Basic
         }
         #endregion
 
-        #region EXTRAS
-        private Color getColorFromString(string colorString)
-        {
-            var typeProperty = typeof(Color).GetProperty(colorString);
-            if (typeProperty != null)
-            {
-                return (Color)typeProperty.GetValue(null, null);
-            }
-            else
-            {
-                return Color.Black;
-            }
-        }
-
-        public static double RadiansToDegrees(float radians) { return radians * (180 / Math.PI); }
-        public static double DegreesToRadians(float degrees) { return degrees / (180 / Math.PI); }
-
-        #endregion
     }
 }

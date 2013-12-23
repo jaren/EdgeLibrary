@@ -16,10 +16,12 @@ namespace EdgeLibrary.Basic
     public class EElement : EObject
     {
         public virtual bool ClampedToMouse { get; set; }
+        public ECollisionBody CollisionBody { get; set; }
         public virtual Vector2 Position { get; set; }
         public virtual string Data { get; set; }
         public virtual bool IsVisible { get; set; }
         public virtual bool IsActive { get; set; }
+        public virtual bool SupportsCollision { get; set; }
         public virtual int DrawLayer { get; set; }
 
         public Texture2D Texture { get; set; }
@@ -29,6 +31,7 @@ namespace EdgeLibrary.Basic
         {
             IsActive = true;
             IsVisible = true;
+            SupportsCollision = false;
             DrawLayer = 0;
         }
 
@@ -46,14 +49,16 @@ namespace EdgeLibrary.Basic
         public virtual void updateElement(EUpdateArgs updateArgs) { }
         public virtual void drawElement(SpriteBatch spriteBatch, GameTime gameTime) { }
 
+        public virtual void UpdateCollision(List<EElement> elements) { }
+
         protected void DrawStringToSpriteBatch(SpriteBatch spriteBatch, SpriteFont font, string text, Color color, float Rotation, Vector2 scale)
         {
-            spriteBatch.DrawString(font, text, Position, color, (float)EdgeGame.RadiansToDegrees(Rotation), Vector2.Zero, scale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, text, Position, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, scale, SpriteEffects.None, 0);
         }
 
         protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Texture2D texture, Rectangle bounds, Color color, float Rotation, Vector2 scale)
         {
-            spriteBatch.Draw(texture, bounds, null, color, (float)EdgeGame.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, bounds, null, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
         }
     }
 }

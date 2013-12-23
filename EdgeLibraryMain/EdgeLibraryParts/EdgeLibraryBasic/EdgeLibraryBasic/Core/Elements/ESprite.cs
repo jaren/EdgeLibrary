@@ -11,13 +11,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    public class ESpriteCollisionArgs : EventArgs
+    {
+        public ESprite Sprite;
+        public EElement Element;
+
+        public ESpriteCollisionArgs(ESprite sprite, EElement element)
+        {
+            Sprite = sprite;
+            Element = element;
+        }
+    }
+
     public class ESprite : EElement
     {
         //The texture name is stored in "Data"
         //The texture is stored in "ETexture" - CANNOT BE TEXTURE BECAUSE THERE IS A CLASS CALLED TEXTURE
 
         //Required for bounding box
-        public Rectangle BoundingBox;
+        public Rectangle BoundingBox { get; set; }
         public override Vector2 Position { get { return _position; } set { _position = value; reloadBoundingBox(); } }
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
@@ -33,6 +45,9 @@ namespace EdgeLibrary.Basic
 
         protected List<EAction> Actions;
         protected List<int> ActionsToRemove;
+
+        public delegate void SpriteCollisionEvent(ESpriteCollisionArgs e);
+        public event SpriteCollisionEvent CollisionStart;
 
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : base()
         {
@@ -55,6 +70,26 @@ namespace EdgeLibrary.Basic
             Color = eColor;
             Rotation = eRotation;
             Scale = eScale;
+        }
+
+        public void AddCollision(ECollisionBody collisionBody)
+        {
+            CollisionBody = collisionBody;
+            SupportsCollision = true;
+        }
+
+        public override void UpdateCollision(List<EElement> elements)
+        {
+            foreach (EElement element in elements)
+            {
+                if (element.SupportsCollision && element.CollisionBody != null && CollisionStart != null)
+                {
+                    if (CollisionBody.CheckForCollide(element.CollisionBody))
+                    {
+                        CollisionStart(new ESpriteCollisionArgs(this, element));
+                    }
+                }
+            }
         }
 
         public void reloadBoundingBox()
@@ -98,6 +133,11 @@ namespace EdgeLibrary.Basic
                 {
                     ActionsToRemove[i]--;
                 }
+            }
+
+            if (CollisionBody != null)
+            {
+                CollisionBody.Position = new Vector2(Position.X + Width/2, Position.Y + Height/2);
             }
 
             if (ClampedToMouse) { _position.X = updateArgs.mouseState.X; _position.Y = updateArgs.mouseState.Y; reloadBoundingBox(); }
