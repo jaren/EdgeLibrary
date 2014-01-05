@@ -18,6 +18,12 @@ namespace EdgeLibrary.Basic
         public List<string> TextureData;
         public List<Texture2D> Textures;
 
+        public ETextureIndex()
+        {
+            TextureData = new List<string>();
+            Textures = new List<Texture2D>();
+        }
+
         public void Fill(EScene scene)
         {
             scene.FillTextureIndex(this);
@@ -35,25 +41,23 @@ namespace EdgeLibrary.Basic
         public int currentTexture;
         private float elapsedSinceLastSwitch;
 
-        public EAnimationIndex()
+        public EAnimationIndex() : base()
         {
             TextureTimes = new List<int>();
             elapsedSinceLastSwitch = 0;
             currentTexture = 0;
         }
 
-        public EAnimationIndex(int loopRate, List<string> textures)
-            : this()
+        public EAnimationIndex(int loopRate, List<string> textures) : this()
         {
-            for (int i = 0; i < TextureData.Count; i++)
+            for (int i = 0; i < textures.Count; i++)
             {
                 TextureData.Add(textures[i]);
                 TextureTimes.Add(loopRate);
             }
         }
 
-        public EAnimationIndex(int loopRate, params string[] textures)
-            : this(loopRate, new List<string>(textures))
+        public EAnimationIndex(int loopRate, params string[] textures) : this(loopRate, new List<string>(textures))
         {
         }
 

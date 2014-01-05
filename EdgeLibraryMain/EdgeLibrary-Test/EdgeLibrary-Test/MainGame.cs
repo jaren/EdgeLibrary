@@ -128,11 +128,20 @@ namespace EdgeLibrary_Test
             EScene menuScene = new EScene("menuScene");
             edgeGame.addScene(menuScene);
 
+            #region ANIMATION TEST
+            EAnimationIndex animationIndex = new EAnimationIndex(500, "player", "ninja");
+            animationIndex.Fill(menuScene);
+            ESpriteA animatedSprite = new ESpriteA(animationIndex, new Vector2(200, 200), 100, 100);
+            menuScene.addElement(animatedSprite);
+            #endregion
+
+            #region PARTICLE TEST
+            /* PARTICLE TEST
+             * ===================================
             ESprite sprite = new ESprite("player", new Vector2(450, 450), 50, 100);
             sprite.runAction(repeat);
             menuScene.addElement(sprite);
 
-            #region PARTICLES
             EParticleEmitter dotsEmitter = new EParticleEmitter("snow", new Vector2(500, 0));
             dotsEmitter.ShouldEmit = true;
             dotsEmitter.DrawLayer = 1;
@@ -162,9 +171,13 @@ namespace EdgeLibrary_Test
             mouseEmitter.ActionToRunOnParticles = new EActionFollow(sprite, 10);
             mouseEmitter.ClampToMouse();
             menuScene.addElement(mouseEmitter);
+             * ===================
+             */
             #endregion
 
-          
+
+            #region COLLISION TEST
+            /* COLLISION TEST
             ESprite s1 = new ESprite("player", new Vector2(100, 100), 50, 50);
             s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
             s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
@@ -175,9 +188,12 @@ namespace EdgeLibrary_Test
             s2.runAction(repeatBack);
             menuScene.addElement(s2);
 
+             
             label = new ELabel("font", new Vector2(10, 10), "Collision Count: 0", Color.Purple);
             collisionCount = 0;
             menuScene.addElement(label);
+             */
+            #endregion
         }
 
         private void initializeGameScene()
