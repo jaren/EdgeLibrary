@@ -17,7 +17,6 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Add comments on EVERYTHING
     ///     -Fix the spritesheet animation's last row
     ///     -More Collision Shapes?
     /// -Actions

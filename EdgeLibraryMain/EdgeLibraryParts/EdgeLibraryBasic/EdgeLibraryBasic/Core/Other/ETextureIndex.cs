@@ -120,6 +120,7 @@ namespace EdgeLibrary.Basic
     //Disadvantages - no specifying loopRate for different frames
     public class ESpriteSheetAnimationIndex : EAnimationBase
     {
+        public List<Vector2> positions = new List<Vector2>();
         public Texture2D SpriteSheet;
         public string textureData;
         public int TextureWidth;
@@ -169,9 +170,9 @@ namespace EdgeLibrary.Basic
                 TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
                 TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
 
-                if (FinishTexture > (TextureRows * TextureColumns))
+                if (FinishTexture > (TextureRows * TextureColumns - 1))
                 {
-                    FinishTexture = TextureRows * TextureColumns;
+                    FinishTexture = TextureRows * TextureColumns - 1;
                 }
             }
             catch 
@@ -205,7 +206,8 @@ namespace EdgeLibrary.Basic
 
         private void reloadTextureBox()
         {
-            textureBox = new Rectangle(((CurrentColumn - 1) * TextureWidth) + 1, CurrentRow*TextureHeight, TextureWidth, TextureHeight);
+            textureBox = new Rectangle((CurrentColumn - 1) * TextureWidth, (CurrentRow-1)*TextureHeight, TextureWidth, TextureHeight);
+            positions.Add(new Vector2(textureBox.X, textureBox.Y));
         }
 
         public override Rectangle getTextureBox()
