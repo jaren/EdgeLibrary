@@ -103,7 +103,7 @@ namespace EdgeLibrary_Test
 
         private void initializeGameWindow()
         {
-            edgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
+            edgeGame.DrawType = EdgeGameDrawTypes.Normal;
             //edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(1000);
             edgeGame.setWindowWidth(1000);
@@ -170,7 +170,7 @@ namespace EdgeLibrary_Test
             s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
             s1.runAction(repeatBack);
             menuScene.addElement(s1);
-            ESprite s2 = new ESprite("player", new Vector2(500, 100), 50, 50);
+            ESprite s2 = new ESprite("ninja", new Vector2(500, 100), 50, 50);
             s2.AddCollision(new ECollisionBody(new EShapeRectangle(Vector2.Zero, s2.Width, s2.Height), "something"));
             s2.runAction(repeatBack);
             menuScene.addElement(s2);

@@ -63,7 +63,7 @@ namespace EdgeLibrary.Basic
 
         public override void DebugDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            List<Vector2> points = EMath.GetCirclePoints(CenterPosition, Radius);
+            List<Vector2> points = EMath.GetOuterCirclePoints(CenterPosition, Radius);
             foreach (Vector2 point in points)
             {
                 EMath.DrawPixelAt(spriteBatch, point, drawColor);
