@@ -137,6 +137,26 @@ namespace EdgeLibrary.Basic
             }
         }
 
+        public void FillTextureIndex(ETextureIndex textureIndex)
+        {
+            try
+            {
+                textureIndex.Textures.Clear();
+
+                foreach (string textureData in textureIndex.TextureData)
+                {
+                    textureIndex.Textures.Add(edgeData.getTexture(textureData));
+                }
+            }
+            catch
+            { }
+        }
+
+        public Texture2D GetTexture(string texture)
+        {
+            return edgeData.getTexture(texture);
+        }
+
         //NOTE: For these, the element is not actually set to "null". You must do it manually.
         public void RemoveObject(EObject eObject)
         {
