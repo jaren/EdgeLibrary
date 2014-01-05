@@ -103,23 +103,14 @@ namespace EdgeLibrary.Basic
                             //Debug Draw Here
                             if (element.SupportsCollision && element.CollisionBody != null)
                             {
-                                switch(element.CollisionBody.Shape.ShapeType)
-                                {
-                                    case EShapeTypes.circle:
-                                        List<Vector2> points = EMath.GetCirclePoints(element.CollisionBody.Shape.CenterPosition, ((EShapeCircle)element.CollisionBody.Shape).Radius);
-                                        foreach (Vector2 point in points)
-                                        {
-                                            mainGame.DrawPixelAt(point, DebugDrawColor);
-                                        }
-                                        break;
-                                    case EShapeTypes.rectangle:
-                                        Rectangle rectangle = new Rectangle((int)((EShapeRectangle)element.CollisionBody.Shape).CenterPosition.X - (int)((EShapeRectangle)element.CollisionBody.Shape).Width / 2, (int)((EShapeRectangle)element.CollisionBody.Shape).CenterPosition.Y - (int)((EShapeRectangle)element.CollisionBody.Shape).Height / 2, (int)((EShapeRectangle)element.CollisionBody.Shape).Width, (int)((EShapeRectangle)element.CollisionBody.Shape).Height);
-                                        mainGame.DrawLineAt(new Vector2(rectangle.Left, rectangle.Top), new Vector2(rectangle.Left, rectangle.Bottom), DebugDrawColor);
-                                        mainGame.DrawLineAt(new Vector2(rectangle.Right, rectangle.Top), new Vector2(rectangle.Right, rectangle.Bottom), DebugDrawColor);
-                                        mainGame.DrawLineAt(new Vector2(rectangle.Left, rectangle.Bottom), new Vector2(rectangle.Right, rectangle.Bottom), DebugDrawColor);
-                                        mainGame.DrawLineAt(new Vector2(rectangle.Left, rectangle.Top), new Vector2(rectangle.Right, rectangle.Top), DebugDrawColor);
-                                        break;
-                                }
+                                element.CollisionBody.Shape.DebugDraw(spriteBatch, DebugDrawColor);
+                            }
+                            break;
+                        case EdgeGameDrawTypes.Hybrid:
+                            element.Draw(spriteBatch, gameTime);
+                            if (element.SupportsCollision && element.CollisionBody != null)
+                            {
+                                element.CollisionBody.Shape.DebugDraw(spriteBatch, DebugDrawColor);
                             }
                             break;
                     }

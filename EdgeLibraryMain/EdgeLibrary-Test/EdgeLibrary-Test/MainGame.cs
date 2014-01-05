@@ -18,6 +18,7 @@ namespace EdgeLibrary_Test
     /// TODO:
     /// -General
     ///     -Add "Animated Sprite"
+    ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
@@ -62,7 +63,6 @@ namespace EdgeLibrary_Test
         }
         protected override void LoadContent()
         {
-            edgeGame.LoadContent(this.Content.Load<Texture2D>("pixel"));
         }
         protected override void UnloadContent() { edgeGame.UnloadContent(); }
         protected override void Update(GameTime gameTime)
@@ -103,8 +103,8 @@ namespace EdgeLibrary_Test
 
         private void initializeGameWindow()
         {
-            edgeGame.DrawType = EdgeGameDrawTypes.Debug;
-            edgeGame.playSong("battleSong");
+            edgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
+            //edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(1000);
             edgeGame.setWindowWidth(1000);
             IsMouseVisible = true;

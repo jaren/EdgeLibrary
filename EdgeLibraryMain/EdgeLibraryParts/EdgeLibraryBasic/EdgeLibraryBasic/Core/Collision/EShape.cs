@@ -34,6 +34,8 @@ namespace EdgeLibrary.Basic
         {
             return false;
         }
+
+        public virtual void DebugDraw(SpriteBatch spriteBatch, Color drawColor) { }
     }
 
     public class EShapeCircle : EShape
@@ -57,6 +59,15 @@ namespace EdgeLibrary.Basic
                     break;
             }
             return false;
+        }
+
+        public override void DebugDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            List<Vector2> points = EMath.GetCirclePoints(CenterPosition, Radius);
+            foreach (Vector2 point in points)
+            {
+                EMath.DrawPixelAt(spriteBatch, point, drawColor);
+            }
         }
     }
 
@@ -92,6 +103,15 @@ namespace EdgeLibrary.Basic
                     break;
             }
             return false;
+        }
+
+        public override void DebugDraw(SpriteBatch spriteBatch, Color drawColor)
+        {
+            Rectangle rectangle = new Rectangle((int)CenterPosition.X - (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
+            EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
+            EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
+            EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
+            EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
         }
     }
 }

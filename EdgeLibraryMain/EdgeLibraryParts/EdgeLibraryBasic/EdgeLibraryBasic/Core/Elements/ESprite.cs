@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+
+    //The sprite's position is the center
     public class ESpriteCollisionArgs : EventArgs
     {
         public ESprite Sprite;
@@ -146,7 +148,7 @@ namespace EdgeLibrary.Basic
 
             if (CollisionBody != null)
             {
-                CollisionBody.Position = new Vector2(Position.X + Width/2, Position.Y + Height/2);
+                CollisionBody.Position = Position;
             }
 
             if (ClampedToMouse) { _position.X = updateArgs.mouseState.X; _position.Y = updateArgs.mouseState.Y; reloadBoundingBox(); }

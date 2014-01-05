@@ -14,7 +14,15 @@ namespace EdgeLibrary.Basic
 {
     public static class EMath
     {
-        public static float circlePointStep = 0.05f;
+        public static Texture2D Pixel;
+
+        public static void Init(GraphicsDevice graphicsDevice)
+        {
+            Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            Pixel.SetData(new Color[1]{Color.White});
+        }
+
+        public static float circlePointStep = 1f;
 
         public static Color ColorFromString(string colorString)
         {
@@ -40,6 +48,32 @@ namespace EdgeLibrary.Basic
         {
             List<Vector2> points = new List<Vector2>();
 
+            for (float currentRadius = radius; currentRadius > 0; currentRadius -= circlePointStep)
+            {
+                for (float x = centerPosition.X - radius; x <= centerPosition.X + currentRadius; x += circlePointStep)
+                {
+                    /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
+                                             (x-centerX)^2 + (y-centerY)^2 = r^2
+                                             y = SqRt(r^2 - (x-centerX)^2) + centerY  */
+
+                    //First point's y coordinate - bottom half
+                    float y = (float)(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(x - centerPosition.X, 2)) + centerPosition.Y);
+
+                    //Second point's y coordinate - top half
+                    float y1 = -(y - centerPosition.Y) + centerPosition.Y;
+
+                    points.Add(new Vector2(x, y));
+                    points.Add(new Vector2(x, y1));
+                }
+            }
+
+            return points;
+        }
+
+        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)
+        {
+            List<Vector2> points = new List<Vector2>();
+
             for (float x = centerPosition.X - radius; x <= centerPosition.X + radius; x += circlePointStep)
             {
                 /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
@@ -57,6 +91,16 @@ namespace EdgeLibrary.Basic
             }
 
             return points;
+        }
+
+        public static void DrawPixelAt(SpriteBatch spriteBatch, Vector2 position, Color color)
+        {
+            spriteBatch.Draw(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
+        }
+        public static void DrawRectangleAt(SpriteBatch spriteBatch, Vector2 position, int width, int height, Color color)
+        {
+            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+            spriteBatch.Draw(Pixel, rectangle, color);
         }
 
         public static double RadiansToDegrees(float radians) { return radians * (180 / Math.PI); }

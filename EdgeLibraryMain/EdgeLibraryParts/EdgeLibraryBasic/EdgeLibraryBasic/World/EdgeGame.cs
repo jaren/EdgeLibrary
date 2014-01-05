@@ -15,7 +15,8 @@ namespace EdgeLibrary.Basic
     public enum EdgeGameDrawTypes
     {
         Normal,
-        Debug
+        Debug,
+        Hybrid
     }
 
     public class EdgeGame
@@ -68,11 +69,13 @@ namespace EdgeLibrary.Basic
         #region INIT
         public void Init()
         {
+            EMath.Init(graphicsDevice);
         }
 
-        public void Init(string xmlPath)
+        public void InitWithXML(string xmlPath)
         {
             settingsLoader = new ESettingsHandler(xmlPath);
+            Init();
         }
 
         public void setWindowWidth(int width) { graphics.PreferredBackBufferWidth = width; graphics.ApplyChanges(); }
@@ -192,16 +195,6 @@ namespace EdgeLibrary.Basic
             }
             catch { }
             spriteBatch.End();
-        }
-
-        public void DrawPixelAt(Vector2 position, Color color)
-        {
-            spriteBatch.Draw(pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
-        }
-        public void DrawLineAt(Vector2 position1, Vector2 position2, Color color)
-        {
-            //Fix this
-            spriteBatch.Draw(pixel, new Rectangle((int)position1.X, (int)position1.Y, (int)position1.X - (int)position2.X + 1, (int)position1.Y - (int)position2.Y + 1), color);
         }
         #endregion
 
