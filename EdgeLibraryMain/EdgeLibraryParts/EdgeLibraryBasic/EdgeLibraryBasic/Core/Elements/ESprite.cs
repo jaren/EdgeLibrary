@@ -11,6 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    public enum ESpriteDrawType
+    {
+        NoRatio,
+        KeepWidth,
+        KeepHeight,
+        Scaled
+    }
 
     //The sprite's position is the center
     public class ESpriteCollisionArgs : EventArgs
@@ -36,6 +43,8 @@ namespace EdgeLibrary.Basic
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+        public ESpriteDrawType DrawType;
+        public float ScaledDrawScale;
         protected Vector2 _position;
         protected float _width;
         protected float _height;
@@ -55,6 +64,8 @@ namespace EdgeLibrary.Basic
 
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : base()
         {
+            DrawType = ESpriteDrawType.NoRatio;
+            ScaledDrawScale = 1f;
             Data = eTextureName;
             _position = ePosition;
             _width = eWidth;
@@ -156,7 +167,21 @@ namespace EdgeLibrary.Basic
 
         public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            base.DrawToSpriteBatch(spriteBatch, Texture, BoundingBox, Color, Rotation, Scale);
+            switch (DrawType)
+            {
+                case ESpriteDrawType.NoRatio:
+                    base.DrawToSpriteBatch(spriteBatch, Texture, BoundingBox, Color, Rotation);
+                    break;
+                case ESpriteDrawType.KeepHeight:
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, Position, Texture, Height, Color, Rotation);
+                    break;
+                case ESpriteDrawType.KeepWidth:
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, Position, Texture, Width, Color, Rotation);
+                    break;
+                case ESpriteDrawType.Scaled:
+                    base.DrawToSpriteBatchWithScale(spriteBatch, Position, Texture, ScaledDrawScale, Color, Rotation);
+                    break;
+            }
         }
     }
 }

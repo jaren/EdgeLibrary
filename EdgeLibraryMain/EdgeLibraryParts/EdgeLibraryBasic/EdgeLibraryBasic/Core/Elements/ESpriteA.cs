@@ -33,10 +33,5 @@ namespace EdgeLibrary.Basic
 
             Texture = TextureIndex.Update(updateArgs);
         }
-
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            base.DrawToSpriteBatch(spriteBatch, Texture, BoundingBox, Color, Rotation, Scale);
-        }
     }
 }

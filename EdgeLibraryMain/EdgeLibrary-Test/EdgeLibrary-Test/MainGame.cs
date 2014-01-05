@@ -17,7 +17,7 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Add "Animated Sprite"
+    ///     -Add ability to load animations from a single spritesheet
     ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
@@ -98,6 +98,14 @@ namespace EdgeLibrary_Test
 
             edgeGame.LoadTexture("Players/Ninja/ninja1", "ninja");
             edgeGame.LoadTexture("Players/Normal/player1", "player");
+            edgeGame.LoadTexture("Players/Normal/player2", "player2");
+            edgeGame.LoadTexture("Players/Normal/player3", "player3");
+            edgeGame.LoadTexture("Players/Normal/player4", "player4");
+            edgeGame.LoadTexture("Players/Normal/player5", "player5");
+            edgeGame.LoadTexture("Players/Normal/player6", "player6");
+            edgeGame.LoadTexture("Players/Normal/player7", "player7");
+            edgeGame.LoadTexture("Players/Normal/player8", "player8");
+            edgeGame.LoadTexture("Players/Normal/player9", "player9");
             edgeGame.LoadTexture("Statues/sprite1", "statues");
         }
 
@@ -129,9 +137,11 @@ namespace EdgeLibrary_Test
             edgeGame.addScene(menuScene);
 
             #region ANIMATION TEST
-            EAnimationIndex animationIndex = new EAnimationIndex(500, "player", "ninja");
+            EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
             animationIndex.Fill(menuScene);
-            ESpriteA animatedSprite = new ESpriteA(animationIndex, new Vector2(200, 200), 100, 100);
+            ESpriteA animatedSprite = new ESpriteA(animationIndex, new Vector2(200, 200), 25, 50);
+            animatedSprite.DrawType = ESpriteDrawType.Scaled;
+            animatedSprite.ScaledDrawScale = 2;
             menuScene.addElement(animatedSprite);
             #endregion
 

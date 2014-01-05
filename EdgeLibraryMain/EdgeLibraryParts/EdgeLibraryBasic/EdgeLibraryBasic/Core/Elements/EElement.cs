@@ -56,9 +56,26 @@ namespace EdgeLibrary.Basic
             spriteBatch.DrawString(font, text, Position, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, scale, SpriteEffects.None, 0);
         }
 
-        protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Texture2D texture, Rectangle bounds, Color color, float Rotation, Vector2 scale)
+        protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Texture2D texture, Rectangle bounds, Color color, float Rotation)
         {
             spriteBatch.Draw(texture, bounds, null, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+        }
+
+        protected void DrawToSpriteBatchWithScale(SpriteBatch spriteBatch, Vector2 centerPos, Texture2D texture, float scale, Color color, float Rotation)
+        {
+            spriteBatch.Draw(texture, new Rectangle((int)(centerPos.X - texture.Width/2 * scale), (int)(centerPos.Y - texture.Height/2 * scale), (int)(texture.Width*scale), (int)(texture.Height*scale)), null, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+        }
+
+        protected void DrawToSpriteBatchWithWidth(SpriteBatch spriteBatch, Vector2 centerPos, Texture2D texture, float width, Color color, float Rotation)
+        {
+            float ratioWH = texture.Width / texture.Height;
+            spriteBatch.Draw(texture, new Rectangle((int)(centerPos.X - width / 2), (int)(centerPos.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), null, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+        }
+
+        protected void DrawToSpriteBatchWithHeight(SpriteBatch spriteBatch, Vector2 centerPos, Texture2D texture, float height, Color color, float Rotation)
+        {
+            float ratioHW = texture.Height / texture.Width;
+            spriteBatch.Draw(texture, new Rectangle((int)(centerPos.X - height * ratioHW / 2), (int)(centerPos.Y - height / 2), (int)(height * ratioHW), (int)height), null, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
         }
     }
 }
