@@ -40,6 +40,11 @@ namespace EdgeLibrary.Basic
             Color = eColor;
         }
 
+        public override void FillTexture(EData eData)
+        {
+            Font = eData.getFont(Data);
+        }
+
         public void runAction(EAction action)
         {
             sprite.runAction(action);

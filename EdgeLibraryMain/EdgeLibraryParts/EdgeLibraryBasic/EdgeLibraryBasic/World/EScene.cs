@@ -51,28 +51,12 @@ namespace EdgeLibrary.Basic
         {
             try
             {
-                eElement.Texture = edgeData.getTexture(eElement.Data);
-                eElement.Font = edgeData.getFont(eElement.Data);
+                eElement.FillTexture(edgeData);
             }
             catch
             { }
             eElement.OnAddToScene(this);
             eelements.Add(eElement);
-        }
-
-        public void FillTextureIndex(ETextureIndex textureIndex)
-        {
-            try
-            {
-                textureIndex.Textures.Clear();
-
-                foreach (string textureData in textureIndex.TextureData)
-                {
-                    textureIndex.Textures.Add(edgeData.getTexture(textureData));
-                }
-            }
-            catch
-            { }
         }
 
         public Texture2D GetTexture(string texture)

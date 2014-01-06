@@ -17,7 +17,8 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Add ability to load animations from a single spritesheet
+    ///     -Make animation indexes not needed to be "filled"
+    ///     -Add comments on EVERYTHING
     ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
@@ -106,6 +107,7 @@ namespace EdgeLibrary_Test
             edgeGame.LoadTexture("Players/Normal/player7", "player7");
             edgeGame.LoadTexture("Players/Normal/player8", "player8");
             edgeGame.LoadTexture("Players/Normal/player9", "player9");
+            edgeGame.LoadTexture("Players/Normal/advnt_full", "playerSheet");
             edgeGame.LoadTexture("Statues/sprite1", "statues");
         }
 
@@ -138,11 +140,14 @@ namespace EdgeLibrary_Test
 
             #region ANIMATION TEST
             EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
-            animationIndex.Fill(menuScene);
-            ESpriteA animatedSprite = new ESpriteA(animationIndex, new Vector2(200, 200), 25, 50);
+
+            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 10, 10, 200);
+
+            ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200), 25, 50);
             animatedSprite.DrawType = ESpriteDrawType.Scaled;
             animatedSprite.ScaledDrawScale = 2;
             menuScene.addElement(animatedSprite);
+            int x = 0;
             #endregion
 
             #region PARTICLE TEST

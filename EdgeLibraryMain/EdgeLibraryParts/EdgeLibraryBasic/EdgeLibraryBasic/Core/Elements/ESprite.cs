@@ -89,6 +89,11 @@ namespace EdgeLibrary.Basic
             Scale = eScale;
         }
 
+        public override void FillTexture(EData eData)
+        {
+            Texture = eData.getTexture(Data);
+        }
+
         public void AddCollision(ECollisionBody collisionBody)
         {
             CollisionBody = collisionBody;
@@ -170,16 +175,16 @@ namespace EdgeLibrary.Basic
             switch (DrawType)
             {
                 case ESpriteDrawType.NoRatio:
-                    base.DrawToSpriteBatch(spriteBatch, Texture, BoundingBox, Color, Rotation);
+                    base.DrawToSpriteBatch(spriteBatch, null, Texture, BoundingBox, Color, Rotation);
                     break;
                 case ESpriteDrawType.KeepHeight:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, Position, Texture, Height, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Height, Color, Rotation);
                     break;
                 case ESpriteDrawType.KeepWidth:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, Position, Texture, Width, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Width, Color, Rotation);
                     break;
                 case ESpriteDrawType.Scaled:
-                    base.DrawToSpriteBatchWithScale(spriteBatch, Position, Texture, ScaledDrawScale, Color, Rotation);
+                    base.DrawToSpriteBatchWithScale(spriteBatch, null, Texture, ScaledDrawScale, Color, Rotation);
                     break;
             }
         }
