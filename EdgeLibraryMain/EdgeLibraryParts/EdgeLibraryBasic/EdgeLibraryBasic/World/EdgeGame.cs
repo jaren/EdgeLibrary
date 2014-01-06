@@ -44,8 +44,6 @@ namespace EdgeLibrary.Basic
         public event EMouseEvent MouseMove;
 
         private ESettingsHandler settingsLoader;
-
-        private Texture2D pixel;
         #endregion
 
         public EdgeGame(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
@@ -83,10 +81,8 @@ namespace EdgeLibrary.Basic
         #endregion
 
         #region LOAD
-        public void LoadContent(Texture2D pixelTexture)
-        {
-            pixel = pixelTexture;
-        }
+        //Currently unused
+        public void LoadContent() { }
 
         public void LoadTexture(string texturePath, string textureName)
         {
@@ -113,8 +109,10 @@ namespace EdgeLibrary.Basic
         #endregion
 
         #region UPDATE
-        public void Update(EUpdateArgs updateArgs)
+        public void Update(GameTime gameTime)
         {
+            EUpdateArgs updateArgs = new EUpdateArgs(gameTime, Keyboard.GetState(), Mouse.GetState());
+
             try
             {
                 scenes[selectedSceneIndex].Update(updateArgs);

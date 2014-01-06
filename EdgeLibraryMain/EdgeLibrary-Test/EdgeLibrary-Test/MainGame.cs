@@ -60,12 +60,12 @@ namespace EdgeLibrary_Test
 
             base.Initialize();
         }
-        protected override void LoadContent() { }
+        protected override void LoadContent() { edgeGame.LoadContent(); }
         protected override void UnloadContent() { edgeGame.UnloadContent(); }
         //Updates the game
         protected override void Update(GameTime gameTime)
         {
-            edgeGame.Update(new EUpdateArgs(gameTime, Keyboard.GetState(), Mouse.GetState()));
+            edgeGame.Update(gameTime);
             base.Update(gameTime);
         }
         //Draws the game
