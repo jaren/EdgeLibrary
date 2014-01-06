@@ -132,6 +132,7 @@ namespace EdgeLibrary.Basic
         public int TextureWidth;
         public int TextureHeight;
         public int FinishTexture;
+        public int StartTexture;
         public int LoopRate;
 
         private int TextureRows;
@@ -152,12 +153,13 @@ namespace EdgeLibrary.Basic
             currentTexture = 0;
             HasRunThrough = false;
             ShouldRepeat = true;
+            FinishTexture = 1;
+            StartTexture = 0;
             resetTexturePosition();
         }
 
-        public ESpriteSheetAnimationIndex(int loopRate, string spriteSheet, int textureWidth, int textureHeight, int finishTextureNumber) : this()
+        public ESpriteSheetAnimationIndex(int loopRate, string spriteSheet, int textureWidth, int textureHeight) : this()
         {
-            FinishTexture = finishTextureNumber;
             LoopRate = loopRate;
             TextureWidth = textureWidth;
             TextureHeight = textureHeight;
@@ -172,10 +174,7 @@ namespace EdgeLibrary.Basic
                 TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
                 TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
 
-                if (FinishTexture > (TextureRows * TextureColumns - 1))
-                {
-                    FinishTexture = TextureRows * TextureColumns - 1;
-                }
+                FinishTexture = TextureRows * TextureColumns - 1;
             }
             catch 
             { }
@@ -205,14 +204,14 @@ namespace EdgeLibrary.Basic
         public override void Reset()
         {
             HasRunThrough = false;
-            currentTexture = 0;
+            currentTexture = StartTexture;
             resetTexturePosition();
         }
 
         private void resetTexturePosition()
         {
-            CurrentRow = 1;
-            CurrentColumn = 1;
+            CurrentRow = (StartTexture/TextureRows) - (StartTexture % TextureRows) + 1;
+            CurrentColumn = StartTexture % TextureRows;
         }
 
         private void reloadTextureBox()

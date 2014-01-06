@@ -116,7 +116,7 @@ namespace EdgeLibrary_Test
             edgeGame.MouseClick += new EdgeGame.EMouseEvent(MouseClick);
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(50, "explosion", 92, 92, 200);
+            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(50, "explosion", 92, 92);
             explosionAnimation.ShouldRepeat = false;
             explosion = new ESpriteA(explosionAnimation, new Vector2(-100, -100));
             explosion.DrawType = ESpriteDrawType.Scaled;
