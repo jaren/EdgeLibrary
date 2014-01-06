@@ -38,17 +38,28 @@ namespace EdgeLibrary.Basic
             collidesWithAll = false;
         }
 
+        //MUST BE CALLED AFTER SPRITE HAS BEEN ADDED TO SCENE IF THE SPRITE IS INITIALIZED WITHOUT WIDTH AND HEIGHT AND "SCALE COLLISION BODY" IS FALSE!
+        public static ECollisionBody BodyWithSpriteAndIDs(EShapeTypes shapeType, ESprite sprite, string collisionID, List<string> collidesWithIDs)
+        {
+            switch(shapeType)
+            {
+                case EShapeTypes.circle:
+                    return new ECollisionBody(new EShapeCircle(sprite.Position, (sprite.Width + sprite.Height) / 4), collisionID, collidesWithIDs); //It's the average over 2, because the average of width+height is the diameter and this is the radius
+                    break;
+                case EShapeTypes.rectangle:
+                    return new ECollisionBody(new EShapeRectangle(sprite.Position, sprite.Width, sprite.Height), collisionID, collidesWithIDs);
+                    break;
+            }
+            return null;
+        }
+
+        public static ECollisionBody BodyWithSprite(EShapeTypes shapeType, ESprite sprite, string collisionID, params string[] collidesWithIDs)
+        {
+            return ECollisionBody.BodyWithSpriteAndIDs(shapeType, sprite, collisionID, new List<string>(collidesWithIDs));
+        }
+
         public bool CheckForCollide(ECollisionBody body)
         {
-            if (CollidesWithIDs == null)
-            {
-                if (collidesWithAll)
-                {
-                    return Shape.CollidesWith(body.Shape);
-                }
-                return false;
-            }
-
             if (CollidesWithIDs.Contains(body.ID) || collidesWithAll)
             {
                 return Shape.CollidesWith(body.Shape);

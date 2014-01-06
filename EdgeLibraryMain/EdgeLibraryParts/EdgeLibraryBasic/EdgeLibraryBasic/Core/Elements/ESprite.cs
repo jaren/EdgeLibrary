@@ -44,6 +44,7 @@ namespace EdgeLibrary.Basic
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+        public bool ScaleCollisionBody;
         public ESpriteDrawType DrawType;
         public float ScaledDrawScale;
         protected Vector2 _position;
@@ -63,15 +64,15 @@ namespace EdgeLibrary.Basic
         public event SpriteCollisionEvent CollisionStart;
         public event SpriteCollisionEvent Collision;
 
-        public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : base()
+        public ESprite(string eTextureName, Vector2 ePosition) : base()
         {
             DrawType = ESpriteDrawType.NoRatio;
+            ScaleCollisionBody = true;
             ScaledDrawScale = 1f;
             Data = eTextureName;
             _position = ePosition;
-            _width = eWidth;
-            _height = eHeight;
-            reloadBoundingBox();
+            _width = 0;
+            _height = 0;
 
             Color = Color.White;
             Rotation = 0;
@@ -81,6 +82,13 @@ namespace EdgeLibrary.Basic
 
             Actions = new List<EAction>();
             ActionsToRemove = new List<int>();
+        }
+
+        public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(eTextureName, ePosition)
+        {
+            _width = eWidth;
+            _height = eHeight;
+            reloadBoundingBox();
         }
 
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(eTextureName, ePosition, eWidth, eHeight)
@@ -93,6 +101,15 @@ namespace EdgeLibrary.Basic
         public override void FillTexture(EData eData)
         {
             Texture = eData.getTexture(Data);
+            if (_width == 0)
+            {
+                _width = Texture.Width;
+            }
+            if (_height == 0)
+            {
+                _height = Texture.Height;
+            }
+            reloadBoundingBox();
         }
 
         public void AddCollision(ECollisionBody collisionBody)
@@ -166,6 +183,19 @@ namespace EdgeLibrary.Basic
             if (CollisionBody != null)
             {
                 CollisionBody.Position = Position;
+                if (ScaleCollisionBody)
+                {
+                    switch (CollisionBody.Shape.ShapeType)
+                    {
+                        case EShapeTypes.circle:
+                            ((EShapeCircle)CollisionBody.Shape).Radius = (_width+_height)/4; //It's the average over 2, because the average of width+height is the diameter and this is the radius
+                            break;
+                        case EShapeTypes.rectangle:
+                            ((EShapeRectangle)CollisionBody.Shape).Width = _width;
+                            ((EShapeRectangle)CollisionBody.Shape).Height = _height;
+                            break;
+                    }
+                }
             }
 
             if (ClampedToMouse) { _position.X = updateArgs.mouseState.X; _position.Y = updateArgs.mouseState.Y; reloadBoundingBox(); }

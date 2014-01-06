@@ -92,7 +92,7 @@ namespace EdgeLibrary.Basic
                     List<Vector2> circlePoints = EMath.GetCirclePoints(shape.CenterPosition, ((EShapeCircle)shape).Radius);
                     foreach(Vector2 point in circlePoints)
                     {
-                        if (rectangle.Contains(new Point((int)point.X, (int)point.Y)))
+                        if (rectangle.Contains((int)point.X, (int)point.Y))
                         {
                             return true;
                         }

@@ -23,8 +23,8 @@ namespace EdgeLibrary.Basic
             Pixel.SetData(new Color[1]{Color.White});
         }
 
-        public static float circlePointStep = 0.5f;
-        public static float outerCirclePointStep = 0.05f;
+        public static float circlePointStep = 8;
+        public static float outerCirclePointStep = 1;
 
         public static Color ColorFromString(string colorString)
         {
@@ -49,10 +49,11 @@ namespace EdgeLibrary.Basic
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
         {
             List<Vector2> points = new List<Vector2>();
+            float actualStep = circlePointStep / radius;
 
-            for (float currentRadius = radius; currentRadius > 0; currentRadius -= circlePointStep)
+            for (float currentRadius = radius; currentRadius > 0; currentRadius -= actualStep)
             {
-                for (float x = centerPosition.X - currentRadius; x <= centerPosition.X + currentRadius; x += circlePointStep)
+                for (float x = centerPosition.X - currentRadius; x <= centerPosition.X + currentRadius; x += actualStep)
                 {
                     /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
                                              (x-centerX)^2 + (y-centerY)^2 = r^2
@@ -75,8 +76,9 @@ namespace EdgeLibrary.Basic
         public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)
         {
             List<Vector2> points = new List<Vector2>();
+            float actualStep = outerCirclePointStep / radius;
 
-            for (float x = centerPosition.X - radius; x <= centerPosition.X + radius; x += outerCirclePointStep)
+            for (float x = centerPosition.X - radius; x <= centerPosition.X + radius; x += actualStep)
             {
                 /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
                                          (x-centerX)^2 + (y-centerY)^2 = r^2

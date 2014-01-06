@@ -19,11 +19,21 @@ namespace EdgeLibrary.Basic
 
         private string normalAnimation = "normal";
 
-        public ESpriteA(EAnimationBase textures, Vector2 ePosition, int eWidth, int eHeight) : base("", ePosition, eWidth, eHeight)
+        public ESpriteA(EAnimationBase textures, Vector2 ePosition) : base("", ePosition)
         {
             Animations = new Dictionary<string, EAnimationBase>();
             Animations.Add(normalAnimation, textures);
             selectedAnimation = normalAnimation;
+
+            _width = 0;
+            _height = 0;
+        }
+
+        public ESpriteA(EAnimationBase textures, Vector2 ePosition, int eWidth, int eHeight) : this(textures, ePosition)
+        {
+            _width = eWidth;
+            _height = eHeight;
+            reloadBoundingBox();
         }
 
         public ESpriteA(EAnimationIndex textures, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(textures, ePosition, eWidth, eHeight)
@@ -61,6 +71,16 @@ namespace EdgeLibrary.Basic
             {
                 animationIndex.FillTexture(eData);
             }
+
+            if (_width == 0)
+            {
+                _width = Animations.Values.First().Textures[0].Width;
+            }
+            if (_height == 0)
+            {
+                _height = Animations.Values.First().Textures[0].Height;
+            }
+            reloadBoundingBox();
         }
 
         public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)

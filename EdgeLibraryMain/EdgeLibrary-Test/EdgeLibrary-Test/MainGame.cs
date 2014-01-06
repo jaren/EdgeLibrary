@@ -17,7 +17,6 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Fix the spritesheet animation's last row
     ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
@@ -117,7 +116,7 @@ namespace EdgeLibrary_Test
         //Sets up the game window
         private void initializeGameWindow()
         {
-            edgeGame.DrawType = EdgeGameDrawTypes.Normal;
+            edgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
             //edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(1000);
             edgeGame.setWindowWidth(1000);
@@ -144,18 +143,20 @@ namespace EdgeLibrary_Test
             edgeGame.addScene(menuScene);
 
             #region ANIMATION TEST
+            /*
             EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
 
             ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 42, 51, 200);
 
-            ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200), 25, 50);
+            ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200));
             animatedSprite.DrawType = ESpriteDrawType.Scaled;
             animatedSprite.ScaledDrawScale = 2;
             menuScene.addElement(animatedSprite);
+             * */
             #endregion
 
             #region PARTICLE TEST
-            /* 
+            /*
             ESprite sprite = new ESprite("player", new Vector2(450, 450), 50, 100);
             sprite.runAction(repeat);
             menuScene.addElement(sprite);
@@ -194,22 +195,22 @@ namespace EdgeLibrary_Test
 
             
             #region COLLISION TEST
-            /*
-            ESprite s1 = new ESprite("player", new Vector2(100, 100), 50, 50);
-            s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
+            
+            ESprite s1 = new ESprite("player", new Vector2(100, 100));
+            s1.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, s1, "s1", "s2"));
             s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
-            s1.runAction(repeatBack);
+          //  s1.runAction(repeatBack);
             menuScene.addElement(s1);
-            ESprite s2 = new ESprite("ninja", new Vector2(500, 100), 50, 50);
-            s2.AddCollision(new ECollisionBody(new EShapeRectangle(Vector2.Zero, s2.Width, s2.Height), "something"));
-            s2.runAction(repeatBack);
+            ESprite s2 = new ESprite("ninja", new Vector2(500, 100));
+            s2.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.rectangle, s2, "s2"));
+            //s2.runAction(repeatBack);
             menuScene.addElement(s2);
 
              
             label = new ELabel("font", new Vector2(10, 10), "Collision Count: 0", Color.Purple);
             collisionCount = 0;
             menuScene.addElement(label);
-             */
+             
             
             #endregion
         }
