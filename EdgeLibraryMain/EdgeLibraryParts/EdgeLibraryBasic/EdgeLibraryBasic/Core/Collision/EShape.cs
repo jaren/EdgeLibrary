@@ -88,7 +88,7 @@ namespace EdgeLibrary.Basic
             switch (shape.ShapeType)
             {
                 case EShapeTypes.circle:
-                    Rectangle rectangle = new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y + (int)Height / 2, (int)Width, (int)Height);
+                    Rectangle rectangle = new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
                     List<Vector2> circlePoints = EMath.GetCirclePoints(shape.CenterPosition, ((EShapeCircle)shape).Radius);
                     foreach(Vector2 point in circlePoints)
                     {
@@ -100,7 +100,7 @@ namespace EdgeLibrary.Basic
                     return false;
                     break;
                 case EShapeTypes.rectangle:
-                    return new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y + (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)shape.CenterPosition.X + (int)((EShapeRectangle)shape).Width / 2, (int)shape.CenterPosition.Y + (int)((EShapeRectangle)shape).Height / 2, (int)((EShapeRectangle)shape).Width, (int)((EShapeRectangle)shape).Height));
+                    return new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)shape.CenterPosition.X + (int)((EShapeRectangle)shape).Width / 2, (int)shape.CenterPosition.Y + (int)((EShapeRectangle)shape).Height / 2, (int)((EShapeRectangle)shape).Width, (int)((EShapeRectangle)shape).Height));
                     break;
             }
             return false;

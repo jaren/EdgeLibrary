@@ -16,8 +16,6 @@ namespace EdgeLibrary_Test
 {
     /// <summary>
     /// TODO:
-    /// -General
-    ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
@@ -109,6 +107,8 @@ namespace EdgeLibrary_Test
             edgeGame.LoadTexture("Players/Normal/player7", "player7");
             edgeGame.LoadTexture("Players/Normal/player8", "player8");
             edgeGame.LoadTexture("Players/Normal/player9", "player9");
+            edgeGame.LoadTexture("Players/Ninja/ninja_full", "ninjaSheetNorm");
+            edgeGame.LoadTexture("Players/Normal/advnt_full", "playerSheetNorm");
             edgeGame.LoadTexture("spritesheet", "playerSheet");
             edgeGame.LoadTexture("Statues/sprite1", "statues");
         }
@@ -126,7 +126,7 @@ namespace EdgeLibrary_Test
         //A sample scene
         private void initializeMenuScene()
         {
-            int movespeed = 5;
+            int movespeed = 1;
             EActionMove move1 = new EActionMove(new Vector2(100, 100), movespeed);
             EActionMove move2 = new EActionMove(new Vector2(610, 100), movespeed);
             EActionMove move3 = new EActionMove(new Vector2(610, 610), movespeed);
@@ -143,16 +143,16 @@ namespace EdgeLibrary_Test
             edgeGame.addScene(menuScene);
 
             #region ANIMATION TEST
-            /*
+            
             EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
 
-            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 42, 51, 200);
+            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(100, "playerSheetNorm", 32, 65, 200);
 
             ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200));
             animatedSprite.DrawType = ESpriteDrawType.Scaled;
-            animatedSprite.ScaledDrawScale = 2;
+            animatedSprite.ScaledDrawScale = 1;
             menuScene.addElement(animatedSprite);
-             * */
+             
             #endregion
 
             #region PARTICLE TEST
@@ -197,13 +197,13 @@ namespace EdgeLibrary_Test
             #region COLLISION TEST
             
             ESprite s1 = new ESprite("player", new Vector2(100, 100));
-            s1.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, s1, "s1", "s2"));
+            s1.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.rectangle, s1, "s1", "s2"));
             s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
-          //  s1.runAction(repeatBack);
+            s1.runAction(repeatBack);
             menuScene.addElement(s1);
             ESprite s2 = new ESprite("ninja", new Vector2(500, 100));
-            s2.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.rectangle, s2, "s2"));
-            //s2.runAction(repeatBack);
+            s2.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, s2, "s2"));
+            s2.runAction(repeatBack);
             menuScene.addElement(s2);
 
              
