@@ -141,13 +141,12 @@ namespace EdgeLibrary_Test
             #region ANIMATION TEST
             EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
 
-            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 10, 10, 200);
+            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 10, 20, 200);
 
             ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200), 25, 50);
             animatedSprite.DrawType = ESpriteDrawType.Scaled;
             animatedSprite.ScaledDrawScale = 2;
             menuScene.addElement(animatedSprite);
-            int x = 0;
             #endregion
 
             #region PARTICLE TEST

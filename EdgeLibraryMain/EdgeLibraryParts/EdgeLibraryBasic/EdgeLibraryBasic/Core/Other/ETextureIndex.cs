@@ -75,7 +75,7 @@ namespace EdgeLibrary.Basic
         {
         }
 
-        public Rectangle getTextureBox()
+        public virtual Rectangle getTextureBox()
         {
             return new Rectangle(0, 0, Textures[currentTexture].Width, Textures[currentTexture].Height);
         }
@@ -196,7 +196,7 @@ namespace EdgeLibrary.Basic
             textureBox = new Rectangle(((CurrentColumn - 1) * TextureWidth) + 1, CurrentRow*TextureHeight, TextureWidth, TextureHeight);
         }
 
-        public new Rectangle getTextureBox()
+        public override Rectangle getTextureBox()
         {
             return textureBox;
         }
@@ -226,11 +226,7 @@ namespace EdgeLibrary.Basic
                 }
             }
 
-            return Textures[currentTexture];
-        }
-
-        public void Draw()
-        {
+            return SpriteSheet;
         }
     }
 
