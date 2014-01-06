@@ -54,38 +54,38 @@ namespace EdgeLibrary.Basic
         public virtual void UpdateCollision(List<EElement> elements) { }
 
 
-        protected void DrawStringToSpriteBatch(SpriteBatch spriteBatch, SpriteFont font, string text, Color color, float Rotation, Vector2 scale)
+        protected void DrawStringToSpriteBatch(SpriteBatch spriteBatch, SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
         {
-            spriteBatch.DrawString(font, text, Position, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, scale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, text, Position, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, scale, effects, 0);
         }
 
-        protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation)
+        protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation, SpriteEffects effects)
         {
-            spriteBatch.Draw(texture, bounds, origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, bounds, origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, effects, 0);
         }
 
-        protected void DrawToSpriteBatchWithScale(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float scale, Color color, float Rotation)
+        protected void DrawToSpriteBatchWithScale(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float scale, Color color, float Rotation, SpriteEffects effects)
         {
             if (origin == null)
             {
-                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, effects, 0);
             }
             else
             {
-                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, effects, 0);
             }
         }
 
-        protected void DrawToSpriteBatchWithWidth(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float width, Color color, float Rotation)
+        protected void DrawToSpriteBatchWithWidth(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float width, Color color, float Rotation, SpriteEffects effects)
         {
             float ratioWH = texture.Width / texture.Height;
-            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, effects, 0);
         }
 
-        protected void DrawToSpriteBatchWithHeight(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float height, Color color, float Rotation)
+        protected void DrawToSpriteBatchWithHeight(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float height, Color color, float Rotation, SpriteEffects effects)
         {
             float ratioHW = texture.Height / texture.Width;
-            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, (float)EMath.RadiansToDegrees(Rotation), Vector2.Zero, effects, 0);
         }
     }
 }

@@ -95,16 +95,16 @@ namespace EdgeLibrary.Basic
             switch (DrawType)
             {
                 case ESpriteDrawType.NoRatio:
-                    base.DrawToSpriteBatch(spriteBatch, origin, Texture, BoundingBox, Color, Rotation);
+                    base.DrawToSpriteBatch(spriteBatch, origin, Texture, BoundingBox, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.KeepHeight:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Height, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Height, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.KeepWidth:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Width, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Width, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.Scaled:
-                    base.DrawToSpriteBatchWithScale(spriteBatch, origin, Texture, ScaledDrawScale, Color, Rotation);
+                    base.DrawToSpriteBatchWithScale(spriteBatch, origin, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
                     break;
             }
         }

@@ -21,6 +21,7 @@ namespace EdgeLibrary.Basic
         public override Vector2 Position { get { return _position; } set { sprite.Position = value; loadFromSprite(); } }
         public Color Color { get { return _color; } set { sprite.Color = value; loadFromSprite(); } }
         public float Rotation { get { return _rotation; } set { sprite.Rotation = value; loadFromSprite(); } }
+        public SpriteEffects spriteEffects;
 
         //Used for actions
         protected Vector2 _scale;
@@ -35,6 +36,7 @@ namespace EdgeLibrary.Basic
         {
             sprite = new ESprite("", Vector2.Zero, 0, 0);
 
+            spriteEffects = SpriteEffects.None;
             Data = eFontName;
             sprite.Position = ePosition;
             Text = eText;
@@ -72,7 +74,7 @@ namespace EdgeLibrary.Basic
 
         public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            base.DrawStringToSpriteBatch(spriteBatch, Font, Text, Color, Rotation, Scale);
+            base.DrawStringToSpriteBatch(spriteBatch, Font, Text, Color, Rotation, Scale, spriteEffects);
         }
     }
 }

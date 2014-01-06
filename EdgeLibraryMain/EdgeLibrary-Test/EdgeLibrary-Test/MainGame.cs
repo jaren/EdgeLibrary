@@ -114,8 +114,9 @@ namespace EdgeLibrary_Test
             edgeGame.addScene(menuScene);
 
             edgeGame.MouseClick += new EdgeGame.EMouseEvent(MouseClick);
+            edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(10, "explosion", 92, 92, 200);
+            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(50, "explosion", 92, 92, 200);
             explosionAnimation.ShouldRepeat = false;
             explosion = new ESpriteA(explosionAnimation, new Vector2(-100, -100));
             explosion.DrawType = ESpriteDrawType.Scaled;
@@ -123,7 +124,7 @@ namespace EdgeLibrary_Test
             menuScene.addElement(explosion);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
-            mouseEmitter.ShouldEmit = true;
+            mouseEmitter.ShouldEmit = false;
             mouseEmitter.DrawLayer = 3;
             mouseEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
             mouseEmitter.ColorVariance = new ERangeArray(new ERange(0), new ERange(40, 80), new ERange(40, 80), new ERange(255));
@@ -156,6 +157,10 @@ namespace EdgeLibrary_Test
         {
             explosion.ResetAnimation();
             explosion.Position = new Vector2(e.mouseState.X, e.mouseState.Y);
+        }
+
+        private void EdgeGameUpdate(EUpdateArgs e)
+        {
         }
     }
 }

@@ -44,6 +44,7 @@ namespace EdgeLibrary.Basic
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+        public SpriteEffects spriteEffects;
         public bool ScaleCollisionBody;
         public ESpriteDrawType DrawType;
         public float ScaledDrawScale;
@@ -67,6 +68,7 @@ namespace EdgeLibrary.Basic
         public ESprite(string eTextureName, Vector2 ePosition) : base()
         {
             DrawType = ESpriteDrawType.NoRatio;
+            spriteEffects = SpriteEffects.None;
             ScaleCollisionBody = true;
             ScaledDrawScale = 1f;
             Data = eTextureName;
@@ -206,16 +208,16 @@ namespace EdgeLibrary.Basic
             switch (DrawType)
             {
                 case ESpriteDrawType.NoRatio:
-                    base.DrawToSpriteBatch(spriteBatch, null, Texture, BoundingBox, Color, Rotation);
+                    base.DrawToSpriteBatch(spriteBatch, null, Texture, BoundingBox, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.KeepHeight:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Height, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Height, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.KeepWidth:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Width, Color, Rotation);
+                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Width, Color, Rotation, spriteEffects);
                     break;
                 case ESpriteDrawType.Scaled:
-                    base.DrawToSpriteBatchWithScale(spriteBatch, null, Texture, ScaledDrawScale, Color, Rotation);
+                    base.DrawToSpriteBatchWithScale(spriteBatch, null, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
                     break;
             }
         }

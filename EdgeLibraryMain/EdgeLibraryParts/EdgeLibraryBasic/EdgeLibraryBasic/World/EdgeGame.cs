@@ -43,6 +43,9 @@ namespace EdgeLibrary.Basic
         public event EMouseEvent MouseRelease;
         public event EMouseEvent MouseMove;
 
+        public delegate void EdgeGameUpdateEvent(EUpdateArgs e);
+        public event EdgeGameUpdateEvent UpdateEvent;
+
         private ESettingsHandler settingsLoader;
         #endregion
 
@@ -124,6 +127,11 @@ namespace EdgeLibrary.Basic
             else if ((updateArgs.mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed) && MouseRelease != null) { MouseRelease(updateArgs); }
 
             previousMouseState = updateArgs.mouseState;
+
+            if (UpdateEvent != null)
+            {
+                UpdateEvent(updateArgs);
+            }
         }
 
         //NOTE: For these, the element is not actually set to "null". You must do it manually.
