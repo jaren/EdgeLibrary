@@ -53,6 +53,11 @@ namespace EdgeLibrary.Basic
             return false;
         }
 
+        public void ResetAnimation()
+        {
+            Animations[selectedAnimation].Reset();
+        }
+
         public void AddAnimation(string key, EAnimationIndex animation)
         {
             Animations.Add(key, animation);

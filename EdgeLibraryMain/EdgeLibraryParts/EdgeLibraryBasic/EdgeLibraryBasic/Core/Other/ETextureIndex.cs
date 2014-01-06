@@ -18,6 +18,10 @@ namespace EdgeLibrary.Basic
         //Unfinished
         public List<string> TextureData;
         public List<Texture2D> Textures;
+        public bool ShouldRepeat;
+        public bool HasRunThrough { get; protected set; }
+        public int currentTexture;
+        protected float elapsedSinceLastSwitch;
 
         public EAnimationBase()
         {
@@ -40,6 +44,8 @@ namespace EdgeLibrary.Basic
             { }
         }
 
+        public virtual void Reset() { }
+
         public virtual Rectangle getTextureBox() { return new Rectangle(0,0,0,0); }
 
         public virtual Texture2D Update(EUpdateArgs updateArgs) { return Textures[0]; }
@@ -51,10 +57,6 @@ namespace EdgeLibrary.Basic
     public class EAnimationIndex : EAnimationBase
     {
         public List<int> TextureTimes;
-        public int currentTexture;
-        protected float elapsedSinceLastSwitch;
-        public bool HasRunThrough { get; protected set; }
-        public bool ShouldRepeat;
 
         public EAnimationIndex() : base()
         {
@@ -83,7 +85,7 @@ namespace EdgeLibrary.Basic
             return new Rectangle(0, 0, Textures[currentTexture].Width, Textures[currentTexture].Height);
         }
 
-        public void Reset()
+        public override void Reset()
         {
             HasRunThrough = false;
             currentTexture = 0;
@@ -109,9 +111,13 @@ namespace EdgeLibrary.Basic
 
                     elapsedSinceLastSwitch = 0;
                 }
-            }
 
-            return Textures[currentTexture];
+                return Textures[currentTexture];
+            }
+            else
+            {
+                return EMath.Blank;
+            }
         }
     }
 
@@ -127,10 +133,6 @@ namespace EdgeLibrary.Basic
         public int TextureHeight;
         public int FinishTexture;
         public int LoopRate;
-        public int currentTexture;
-        protected float elapsedSinceLastSwitch;
-        public bool HasRunThrough { get; protected set; }
-        public bool ShouldRepeat;
 
         private int TextureRows;
         private int TextureColumns;
@@ -177,6 +179,8 @@ namespace EdgeLibrary.Basic
             }
             catch 
             { }
+
+            reloadTextureBox();
         }
 
         private void addPositionOfTexture()
@@ -196,6 +200,13 @@ namespace EdgeLibrary.Basic
                 currentTexture = 0;
                 HasRunThrough = true;
             }
+        }
+
+        public override void Reset()
+        {
+            HasRunThrough = false;
+            currentTexture = 0;
+            resetTexturePosition();
         }
 
         private void resetTexturePosition()
@@ -225,9 +236,12 @@ namespace EdgeLibrary.Basic
                 {
                     if (currentTexture >= FinishTexture)
                     {
-                        currentTexture = 0;
+                        if (ShouldRepeat)
+                        {
+                            currentTexture = 0;
+                            resetTexturePosition();
+                        }
                         HasRunThrough = true;
-                        resetTexturePosition();
                     }
                     else
                     {
@@ -238,9 +252,13 @@ namespace EdgeLibrary.Basic
                     reloadTextureBox();
                     elapsedSinceLastSwitch = 0;
                 }
-            }
 
-            return SpriteSheet;
+                return SpriteSheet;
+            }
+            else
+            {
+                return EMath.Blank;
+            }
         }
     }
 

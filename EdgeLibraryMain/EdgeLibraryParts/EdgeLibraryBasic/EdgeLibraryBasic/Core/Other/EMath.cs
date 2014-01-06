@@ -16,11 +16,14 @@ namespace EdgeLibrary.Basic
     public static class EMath
     {
         public static Texture2D Pixel;
+        public static Texture2D Blank;
 
         public static void Init(GraphicsDevice graphicsDevice)
         {
             Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new Color[1]{Color.White});
+            Blank = new Texture2D(graphicsDevice, 1, 1);
+            Blank.SetData(new Color[1]{new Color(0, 0, 0, 0)});
         }
 
         public static float circlePointStep = 8;

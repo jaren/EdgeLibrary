@@ -40,6 +40,7 @@ namespace EdgeLibrary_Test
         EdgeGame edgeGame;
 
         ELabel label;
+        ESpriteA explosion;
         int collisionCount;
 
         //This region is not likely to be modified
@@ -92,6 +93,7 @@ namespace EdgeLibrary_Test
 
             edgeGame.LoadFont("font", "font");
 
+            edgeGame.LoadTexture("Particle Textures/fire", "fire");
             edgeGame.LoadTexture("explosion", "explosion");
         }
 
@@ -111,9 +113,11 @@ namespace EdgeLibrary_Test
             EScene menuScene = new EScene("menuScene");
             edgeGame.addScene(menuScene);
 
-            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(1000, "explosion", 92, 92, 200);
+            edgeGame.MouseClick += new EdgeGame.EMouseEvent(MouseClick);
 
-            ESpriteA explosion = new ESpriteA(explosionAnimation, new Vector2(200, 200));
+            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(10, "explosion", 92, 92, 200);
+            explosionAnimation.ShouldRepeat = false;
+            explosion = new ESpriteA(explosionAnimation, new Vector2(-100, -100));
             explosion.DrawType = ESpriteDrawType.Scaled;
             explosion.ScaledDrawScale = 1;
             menuScene.addElement(explosion);
@@ -146,6 +150,12 @@ namespace EdgeLibrary_Test
         {
             collisionCount++;
             label.Text = string.Format("Collision Count: {0}", collisionCount);
+        }
+
+        private void MouseClick(EUpdateArgs e)
+        {
+            explosion.ResetAnimation();
+            explosion.Position = new Vector2(e.mouseState.X, e.mouseState.Y);
         }
     }
 }
