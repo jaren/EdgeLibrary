@@ -92,25 +92,7 @@ namespace EdgeLibrary_Test
 
             edgeGame.LoadFont("font", "font");
 
-            edgeGame.LoadTexture("Particle Textures/fire", "fire");
-            edgeGame.LoadTexture("Particle Textures/stars", "star");
-            edgeGame.LoadTexture("Particle Textures/smoke", "smoke");
-            edgeGame.LoadTexture("Particle Textures/snow", "snow");
-
-            edgeGame.LoadTexture("Players/Ninja/ninja1", "ninja");
-            edgeGame.LoadTexture("Players/Normal/player1", "player");
-            edgeGame.LoadTexture("Players/Normal/player2", "player2");
-            edgeGame.LoadTexture("Players/Normal/player3", "player3");
-            edgeGame.LoadTexture("Players/Normal/player4", "player4");
-            edgeGame.LoadTexture("Players/Normal/player5", "player5");
-            edgeGame.LoadTexture("Players/Normal/player6", "player6");
-            edgeGame.LoadTexture("Players/Normal/player7", "player7");
-            edgeGame.LoadTexture("Players/Normal/player8", "player8");
-            edgeGame.LoadTexture("Players/Normal/player9", "player9");
-            edgeGame.LoadTexture("Players/Ninja/ninja_full", "ninjaSheetNorm");
-            edgeGame.LoadTexture("Players/Normal/advnt_full", "playerSheetNorm");
-            edgeGame.LoadTexture("spritesheet", "playerSheet");
-            edgeGame.LoadTexture("Statues/sprite1", "statues");
+            edgeGame.LoadTexture("explosion", "explosion");
         }
 
         //Sets up the game window
@@ -126,54 +108,15 @@ namespace EdgeLibrary_Test
         //A sample scene
         private void initializeMenuScene()
         {
-            int movespeed = 1;
-            EActionMove move1 = new EActionMove(new Vector2(100, 100), movespeed);
-            EActionMove move2 = new EActionMove(new Vector2(610, 100), movespeed);
-            EActionMove move3 = new EActionMove(new Vector2(610, 610), movespeed);
-            EActionMove move4 = new EActionMove(new Vector2(100, 610), movespeed);
-            EActionSequence sequence = new EActionSequence(move1, move2, move3, move4);
-            EActionRepeatForever repeat = new EActionRepeatForever(sequence);
-
-            EActionMove moveBack1 = new EActionMove(new Vector2(100, 100), movespeed);
-            EActionMove moveBack2 = new EActionMove(new Vector2(700, 100), movespeed);
-            EActionSequence sequenceBack = new EActionSequence(moveBack1, moveBack2);
-            EActionRepeatForever repeatBack = new EActionRepeatForever(sequenceBack);
-
             EScene menuScene = new EScene("menuScene");
             edgeGame.addScene(menuScene);
 
-            #region ANIMATION TEST
-            
-            EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
+            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(1000, "explosion", 92, 92, 200);
 
-            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(100, "playerSheetNorm", 32, 65, 200);
-
-            ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200));
-            animatedSprite.DrawType = ESpriteDrawType.Scaled;
-            animatedSprite.ScaledDrawScale = 1;
-            menuScene.addElement(animatedSprite);
-             
-            #endregion
-
-            #region PARTICLE TEST
-            /*
-            ESprite sprite = new ESprite("player", new Vector2(450, 450), 50, 100);
-            sprite.runAction(repeat);
-            menuScene.addElement(sprite);
-
-            EParticleEmitter dotsEmitter = new EParticleEmitter("snow", new Vector2(500, 0));
-            dotsEmitter.ShouldEmit = true;
-            dotsEmitter.DrawLayer = 1;
-            dotsEmitter.EmitPositionVariance = new ERangeArray(ERange.RangeWithDiffer(0, 900), ERange.RangeWithDiffer(0, 0));
-            dotsEmitter.ColorVariance = new ERangeArray(new ERange(100), new ERange(100), new ERange(100), new ERange(255));
-            dotsEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 0.1f), ERange.RangeWithDiffer(8, 2.5f));
-            dotsEmitter.SizeVariance = new ERangeArray(new ERange(15), new ERange(15));
-            dotsEmitter.GrowSpeed = 0f;
-            dotsEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
-            dotsEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
-            dotsEmitter.LifeVariance = new ERange(5000);
-            dotsEmitter.EmitWait = 0;
-            menuScene.addElement(dotsEmitter);
+            ESpriteA explosion = new ESpriteA(explosionAnimation, new Vector2(200, 200));
+            explosion.DrawType = ESpriteDrawType.Scaled;
+            explosion.ScaledDrawScale = 1;
+            menuScene.addElement(explosion);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
             mouseEmitter.ShouldEmit = true;
@@ -187,32 +130,9 @@ namespace EdgeLibrary_Test
             mouseEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
             mouseEmitter.LifeVariance = new ERange(500);
             mouseEmitter.EmitWait = 0;
-            mouseEmitter.ActionToRunOnParticles = new EActionFollow(sprite, 10);
             mouseEmitter.ClampToMouse();
             menuScene.addElement(mouseEmitter);
-             */
-            #endregion
 
-            
-            #region COLLISION TEST
-            
-            ESprite s1 = new ESprite("player", new Vector2(100, 100));
-            s1.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.rectangle, s1, "s1", "s2"));
-            s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
-            s1.runAction(repeatBack);
-            menuScene.addElement(s1);
-            ESprite s2 = new ESprite("ninja", new Vector2(500, 100));
-            s2.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, s2, "s2"));
-            s2.runAction(repeatBack);
-            menuScene.addElement(s2);
-
-             
-            label = new ELabel("font", new Vector2(10, 10), "Collision Count: 0", Color.Purple);
-            collisionCount = 0;
-            menuScene.addElement(label);
-             
-            
-            #endregion
         }
 
         private void initializeGameScene()
