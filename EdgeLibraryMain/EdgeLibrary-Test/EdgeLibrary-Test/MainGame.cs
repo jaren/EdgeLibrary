@@ -107,7 +107,7 @@ namespace EdgeLibrary_Test
             edgeGame.LoadTexture("Players/Normal/player7", "player7");
             edgeGame.LoadTexture("Players/Normal/player8", "player8");
             edgeGame.LoadTexture("Players/Normal/player9", "player9");
-            edgeGame.LoadTexture("Players/Normal/advnt_full", "playerSheet");
+            edgeGame.LoadTexture("spritesheet", "playerSheet");
             edgeGame.LoadTexture("Statues/sprite1", "statues");
         }
 
@@ -141,7 +141,7 @@ namespace EdgeLibrary_Test
             #region ANIMATION TEST
             EAnimationIndex animationIndex = new EAnimationIndex(100, "player", "player2", "player3", "player4", "player5", "player6", "player7", "player8", "player9");
 
-            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 10, 20, 200);
+            ESpriteSheetAnimationIndex spriteSheetAnimation = new ESpriteSheetAnimationIndex(50, "playerSheet", 42, 51, 200);
 
             ESpriteA animatedSprite = new ESpriteA(spriteSheetAnimation, new Vector2(200, 200), 25, 50);
             animatedSprite.DrawType = ESpriteDrawType.Scaled;

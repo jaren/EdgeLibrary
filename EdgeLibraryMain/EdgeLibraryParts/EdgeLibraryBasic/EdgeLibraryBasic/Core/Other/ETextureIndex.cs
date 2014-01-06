@@ -147,11 +147,6 @@ namespace EdgeLibrary.Basic
             TextureWidth = textureWidth;
             TextureHeight = textureHeight;
             textureData = spriteSheet;
-
-            if (finishTextureNumber > (TextureRows * TextureColumns))
-            {
-                finishTextureNumber = TextureRows * TextureColumns;
-            }
         }
 
         public override void FillTexture(EData eData)
@@ -159,8 +154,13 @@ namespace EdgeLibrary.Basic
             try
             {
                 SpriteSheet = eData.getTexture(textureData);
-                TextureRows = (SpriteSheet.Width/TextureWidth) - (SpriteSheet.Width % TextureWidth);
-                TextureColumns = (SpriteSheet.Height / TextureHeight) - (SpriteSheet.Height % TextureHeight);
+                TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
+                TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
+
+                if (FinishTexture > (TextureRows * TextureColumns))
+                {
+                    FinishTexture = TextureRows * TextureColumns;
+                }
             }
             catch 
             { }
