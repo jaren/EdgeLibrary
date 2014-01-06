@@ -27,7 +27,7 @@ namespace EdgeLibrary.Basic
         private GraphicsDeviceManager graphics;
         private GraphicsDevice graphicsDevice;
 
-        private Color clearColor = Color.Black;
+        public Color ClearColor = Color.Black;
         public Color DebugDrawColor = Color.White;
 
         private List<EScene> scenes;
@@ -188,7 +188,7 @@ namespace EdgeLibrary.Basic
         #region DRAW
         public void Draw(GameTime gameTime)
         {
-            graphicsDevice.Clear(clearColor);
+            graphicsDevice.Clear(ClearColor);
             spriteBatch.Begin();
             try
             {
