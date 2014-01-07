@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
-
+    //An action to make a sprite move to a position at a speed
     public class EActionMove : EAction
     {
         public Vector2 targetPos { get; set; }

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //Serves as the collision body for an element, can check if it is colliding with another element
     public class ECollisionBody : EObject
     {
         public bool collidesWithAll { get; set; }

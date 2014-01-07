@@ -32,6 +32,7 @@ namespace EdgeLibrary.Basic
         }
     }
 
+    //Provides a base textured game object
     public class ESprite : EElement
     {
         //The texture name is stored in "Data"

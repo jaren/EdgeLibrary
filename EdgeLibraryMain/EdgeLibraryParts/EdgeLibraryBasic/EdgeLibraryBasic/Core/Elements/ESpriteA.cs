@@ -11,16 +11,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //A sprite with animation capabilities
     public class ESpriteA : ESprite
     {
-        public Dictionary<string, EAnimationIndex> Animations;
+        public Dictionary<string, EAnimationBase> Animations;
         public string selectedAnimation {get; protected set;}
 
         private string normalAnimation = "normal";
 
-        public ESpriteA(EAnimationIndex textures, Vector2 ePosition, int eWidth, int eHeight) : base("", ePosition, eWidth, eHeight)
+        public ESpriteA(EAnimationBase textures, Vector2 ePosition, int eWidth, int eHeight) : base("", ePosition, eWidth, eHeight)
         {
-            Animations = new Dictionary<string, EAnimationIndex>();
+            Animations = new Dictionary<string, EAnimationBase>();
             Animations.Add(normalAnimation, textures);
             selectedAnimation = normalAnimation;
         }
@@ -56,7 +57,7 @@ namespace EdgeLibrary.Basic
 
         public override void FillTexture(EData eData)
         {
-            foreach(EAnimationIndex animationIndex in Animations.Values)
+            foreach(EAnimationBase animationIndex in Animations.Values)
             {
                 animationIndex.FillTexture(eData);
             }

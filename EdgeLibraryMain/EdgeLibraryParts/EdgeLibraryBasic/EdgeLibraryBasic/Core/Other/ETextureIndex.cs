@@ -13,13 +13,13 @@ using System.Xml;
 namespace EdgeLibrary.Basic
 {
     //Base for animations
-    public class ETextureIndex : EObject
+    public class EAnimationBase : EObject
     {
         //Unfinished
         public List<string> TextureData;
         public List<Texture2D> Textures;
 
-        public ETextureIndex()
+        public EAnimationBase()
         {
             TextureData = new List<string>();
             Textures = new List<Texture2D>();
@@ -40,12 +40,15 @@ namespace EdgeLibrary.Basic
             { }
         }
 
+        public virtual Rectangle getTextureBox() { return new Rectangle(0,0,0,0); }
+
         public virtual Texture2D Update(EUpdateArgs updateArgs) { return Textures[0]; }
     }
 
+    //An animation index which doesn't support spritesheets
     //Advantages of this - loopRate can be specified between frames
     //Disadvantages - textures must be loaded individually
-    public class EAnimationIndex : ETextureIndex
+    public class EAnimationIndex : EAnimationBase
     {
         public List<int> TextureTimes;
         public int currentTexture;
@@ -75,7 +78,7 @@ namespace EdgeLibrary.Basic
         {
         }
 
-        public virtual Rectangle getTextureBox()
+        public override Rectangle getTextureBox()
         {
             return new Rectangle(0, 0, Textures[currentTexture].Width, Textures[currentTexture].Height);
         }
@@ -112,9 +115,10 @@ namespace EdgeLibrary.Basic
         }
     }
 
+    //An animation index which supports spritesheets
     //Advantages of this - animations can be loaded from a single spritesheet
     //Disadvantages - no specifying loopRate for different frames
-    public class ESpriteSheetAnimationIndex : EAnimationIndex
+    public class ESpriteSheetAnimationIndex : EAnimationBase
     {
         public Texture2D SpriteSheet;
         public string textureData;
@@ -122,6 +126,10 @@ namespace EdgeLibrary.Basic
         public int TextureHeight;
         public int FinishTexture;
         public int LoopRate;
+        public int currentTexture;
+        protected float elapsedSinceLastSwitch;
+        public bool HasRunThrough { get; protected set; }
+        public bool ShouldRepeat;
 
         private int TextureRows;
         private int TextureColumns;
@@ -137,6 +145,10 @@ namespace EdgeLibrary.Basic
             TextureHeight = 0;
             TextureRows = 1;
             TextureColumns = 1;
+            elapsedSinceLastSwitch = 0;
+            currentTexture = 0;
+            HasRunThrough = false;
+            ShouldRepeat = true;
             resetTexturePosition();
         }
 

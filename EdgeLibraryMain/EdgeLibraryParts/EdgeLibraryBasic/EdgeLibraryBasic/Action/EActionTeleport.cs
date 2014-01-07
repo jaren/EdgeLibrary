@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to instantly change the position of a sprite
     public class EActionTeleport : EAction
     {
         public Vector2 targetPos { get; set; }

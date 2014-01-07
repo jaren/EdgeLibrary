@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //Just a label - can have actions run on it thanks to a sprite inside it
     public class ELabel : EElement
     {
         //Font name is stored in "Data"

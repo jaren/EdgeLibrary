@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action that runs many actions at one time
     public class EActionQuickSequence : EAction
     {
         protected List<EAction> Actions;
@@ -30,6 +31,7 @@ namespace EdgeLibrary.Basic
         }
     }
 
+    //An action which runs many actions, one after the other
     public class EActionSequence : EAction
     {
         protected List<EAction> Actions;

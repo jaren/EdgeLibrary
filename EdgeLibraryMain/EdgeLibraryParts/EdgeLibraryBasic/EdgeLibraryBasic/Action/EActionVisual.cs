@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to change the appearance of a sprite
     [Flags]
     public enum EdgeActionVisualTypes : byte
     {

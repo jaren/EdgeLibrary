@@ -12,6 +12,7 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
+    //Holds all the calculation and simple drawing functions
     public static class EMath
     {
         public static Texture2D Pixel;

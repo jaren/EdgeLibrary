@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action that loops an action a certain number of times
     public class EActionRepeat : EAction
     {
         public int repeatTimes { get; set; }
@@ -54,6 +55,7 @@ namespace EdgeLibrary.Basic
         }
     }
 
+    //An action that loops an action forever
     public class EActionRepeatForever : EAction
     {
         public int completedTimes { get; protected set; }

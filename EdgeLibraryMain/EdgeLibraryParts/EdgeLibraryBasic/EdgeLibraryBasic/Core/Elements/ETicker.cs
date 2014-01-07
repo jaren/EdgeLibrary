@@ -20,6 +20,7 @@ namespace EdgeLibrary.Basic
         }
     }
 
+    //Basically a timer - sends off an event whenever a certain time has passed
     public class ETicker : EElement
     {
         public double MillisecondsWait { get; set; }

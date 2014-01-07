@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to make a sprite follow an element
     public class EActionFollow : EAction
     {
         public EElement spriteToFollow { get; set; }

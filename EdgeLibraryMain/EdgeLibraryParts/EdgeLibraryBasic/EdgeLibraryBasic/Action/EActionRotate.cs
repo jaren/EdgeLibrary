@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to rotate a sprite at a constant speed
     public class EActionRotate : EAction
     {
         public float rotation { get; set; }

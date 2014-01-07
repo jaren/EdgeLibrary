@@ -17,8 +17,8 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// TODO:
     /// -General
-    ///     -Make animation indexes not needed to be "filled"
     ///     -Add comments on EVERYTHING
+    ///     -Fix the spritesheet animation's last row
     ///     -More Collision Shapes?
     /// -Actions
     ///     -Fix "EActionSequence"
@@ -46,12 +46,14 @@ namespace EdgeLibrary_Test
         ELabel label;
         int collisionCount;
 
+        //This region is not likely to be modified
         #region NOT-USED
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
+        //Initializes the game
         protected override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -62,15 +64,15 @@ namespace EdgeLibrary_Test
 
             base.Initialize();
         }
-        protected override void LoadContent()
-        {
-        }
+        protected override void LoadContent() { }
         protected override void UnloadContent() { edgeGame.UnloadContent(); }
+        //Updates the game
         protected override void Update(GameTime gameTime)
         {
             edgeGame.Update(new EUpdateArgs(gameTime, Keyboard.GetState(), Mouse.GetState()));
             base.Update(gameTime);
         }
+        //Draws the game
         protected override void Draw(GameTime gameTime)
         {
             edgeGame.Draw(gameTime);
@@ -78,6 +80,7 @@ namespace EdgeLibrary_Test
         }
         #endregion
 
+        //This calls all the loading functions
         private void initializeGame()
         {
             loadResources();
@@ -86,6 +89,7 @@ namespace EdgeLibrary_Test
             initializeGameScene();
         }
 
+        //This is the "load content" function
         private void loadResources()
         {
             edgeGame.LoadSong("battleThemeA", "battleSong");
@@ -111,6 +115,7 @@ namespace EdgeLibrary_Test
             edgeGame.LoadTexture("Statues/sprite1", "statues");
         }
 
+        //Sets up the game window
         private void initializeGameWindow()
         {
             edgeGame.DrawType = EdgeGameDrawTypes.Normal;
@@ -120,6 +125,7 @@ namespace EdgeLibrary_Test
             IsMouseVisible = true;
         }
 
+        //A sample scene
         private void initializeMenuScene()
         {
             int movespeed = 5;
@@ -150,8 +156,7 @@ namespace EdgeLibrary_Test
             #endregion
 
             #region PARTICLE TEST
-            /* PARTICLE TEST
-             * ===================================
+            /* 
             ESprite sprite = new ESprite("player", new Vector2(450, 450), 50, 100);
             sprite.runAction(repeat);
             menuScene.addElement(sprite);
@@ -185,13 +190,12 @@ namespace EdgeLibrary_Test
             mouseEmitter.ActionToRunOnParticles = new EActionFollow(sprite, 10);
             mouseEmitter.ClampToMouse();
             menuScene.addElement(mouseEmitter);
-             * ===================
              */
             #endregion
 
-
+            
             #region COLLISION TEST
-            /* COLLISION TEST
+            /*
             ESprite s1 = new ESprite("player", new Vector2(100, 100), 50, 50);
             s1.AddCollision(new ECollisionBody(new EShapeCircle(Vector2.Zero, 25), "something"));
             s1.CollisionStart +=new ESprite.SpriteCollisionEvent(SpriteCollisionStart);
@@ -207,6 +211,7 @@ namespace EdgeLibrary_Test
             collisionCount = 0;
             menuScene.addElement(label);
              */
+            
             #endregion
         }
 

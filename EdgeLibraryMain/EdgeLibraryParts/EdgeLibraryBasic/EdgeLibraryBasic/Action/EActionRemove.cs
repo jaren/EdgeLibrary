@@ -5,6 +5,7 @@ using System.Text;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to remove a sprite from the game
     public class EActionRemove : EAction
     {
         public EdgeGame game;

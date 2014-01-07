@@ -12,6 +12,7 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
+    //Provides the base for the collision bodies, checks if other shapes are in collision and supports debug draw
     public enum EShapeTypes
     {
         circle,

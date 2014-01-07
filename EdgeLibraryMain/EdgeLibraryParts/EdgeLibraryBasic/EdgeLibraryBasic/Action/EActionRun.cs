@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary.Basic
 {
+    //An action to run a function
     [Obsolete("Subclass EAction to implement an action instead.")]
     public class EActionRunEventArgs : EventArgs
     {
@@ -28,7 +29,6 @@ namespace EdgeLibrary.Basic
         }
     }
 
-    //Runs a function
     [Obsolete("Subclass EAction to implement an action instead.")]
     public class EActionRun : EAction
     {
