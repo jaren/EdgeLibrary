@@ -27,6 +27,12 @@ namespace EdgeLibrary_Test
     /// 
 
     /// <summary>
+    /// KNOWN ISSUES:
+    ///  -Animation spritesheets should be EXACTLY or greater than the size they're supposed to be for the number and size of individual frames
+    /// 
+    /// </summary>
+
+    /// <summary>
     /// MUSIC AND TEXTURES:
     /// - cynicmusic.com/pixelsphere.org
     /// - MoikMellah at OpenGameArt.org
@@ -103,8 +109,8 @@ namespace EdgeLibrary_Test
         {
             edgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
             //edgeGame.playSong("battleSong");
-            edgeGame.setWindowHeight(1000);
-            edgeGame.setWindowWidth(1000);
+            edgeGame.setWindowHeight(700);
+            edgeGame.setWindowWidth(700);
             IsMouseVisible = true;
         }
 
@@ -118,6 +124,7 @@ namespace EdgeLibrary_Test
 
             ESpriteSheetAnimationIndex walkAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
             walkAnimation.StartTexture = 10;
+            walkAnimation.FinishTexture = 18;
             walkAnimation.ShouldRepeat = true;
             player = new ESpriteA(walkAnimation, new Vector2(100, 100));
             player.DrawType = ESpriteDrawType.Scaled;
@@ -128,7 +135,7 @@ namespace EdgeLibrary_Test
             mouseEmitter.ShouldEmit = true;
             mouseEmitter.DrawLayer = 3;
             mouseEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
-            mouseEmitter.ColorVariance = new ERangeArray(new ERange(0), new ERange(40, 80), new ERange(40, 80), new ERange(255));
+            mouseEmitter.ColorVariance = new ERangeArray(new ERange(60, 80), new ERange(30, 40), new ERange(0), new ERange(255));
             mouseEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 4), ERange.RangeWithDiffer(0, 4));
             mouseEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(100, 25), ERange.RangeWithDiffer(100, 25));
             mouseEmitter.GrowSpeed = 1f;

@@ -77,6 +77,7 @@ namespace EdgeLibrary.Basic
                 animationIndex.FillTexture(eData);
             }
 
+            //Doesn't work with spritesheet animations
             if (_width == 0)
             {
                 _width = Animations.Values.First().Textures[0].Width;

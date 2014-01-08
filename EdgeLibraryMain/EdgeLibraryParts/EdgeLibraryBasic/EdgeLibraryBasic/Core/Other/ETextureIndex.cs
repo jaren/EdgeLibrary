@@ -126,13 +126,13 @@ namespace EdgeLibrary.Basic
     //Disadvantages - no specifying loopRate for different frames
     public class ESpriteSheetAnimationIndex : EAnimationBase
     {
-        public List<Vector2> positions = new List<Vector2>();
         public Texture2D SpriteSheet;
         public string textureData;
         public int TextureWidth;
         public int TextureHeight;
         public int FinishTexture;
-        public int StartTexture;
+        public int StartTexture { get { return _startTexture; } set { _startTexture = value; setStartTextureToCurrent(); } }
+        private int _startTexture;
         public int LoopRate;
 
         private int TextureRows;
@@ -153,8 +153,8 @@ namespace EdgeLibrary.Basic
             currentTexture = 0;
             HasRunThrough = false;
             ShouldRepeat = true;
-            FinishTexture = 1;
-            StartTexture = 0;
+            FinishTexture = 0;
+            _startTexture = 0;
             resetTexturePosition();
         }
 
@@ -174,7 +174,12 @@ namespace EdgeLibrary.Basic
                 TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
                 TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
 
-                FinishTexture = TextureRows * TextureColumns - 1;
+                if (FinishTexture == 0 || FinishTexture > TextureRows * TextureColumns)
+                {
+                    FinishTexture = TextureRows * TextureColumns;
+                }
+
+                resetTexturePosition();
             }
             catch 
             { }
@@ -196,7 +201,6 @@ namespace EdgeLibrary.Basic
             if (CurrentRow > TextureRows && CurrentColumn > TextureColumns)
             {
                 resetTexturePosition();
-                currentTexture = 0;
                 HasRunThrough = true;
             }
         }
@@ -204,20 +208,29 @@ namespace EdgeLibrary.Basic
         public override void Reset()
         {
             HasRunThrough = false;
-            currentTexture = StartTexture;
+            currentTexture = _startTexture;
             resetTexturePosition();
         }
 
         private void resetTexturePosition()
         {
-            CurrentRow = (StartTexture/TextureRows) - (StartTexture % TextureRows) + 1;
-            CurrentColumn = StartTexture % TextureRows;
+            currentTexture = _startTexture;
+
+            CurrentRow = ((_startTexture - (_startTexture % TextureColumns)) / TextureColumns) + 1;
+            CurrentColumn = _startTexture % CurrentRow + 1;
+        }
+
+        private void setStartTextureToCurrent()
+        {
+            if (currentTexture < _startTexture)
+            {
+                currentTexture = _startTexture;
+            }
         }
 
         private void reloadTextureBox()
         {
             textureBox = new Rectangle((CurrentColumn - 1) * TextureWidth, (CurrentRow-1)*TextureHeight, TextureWidth, TextureHeight);
-            positions.Add(new Vector2(textureBox.X, textureBox.Y));
         }
 
         public override Rectangle getTextureBox()
@@ -237,7 +250,6 @@ namespace EdgeLibrary.Basic
                     {
                         if (ShouldRepeat)
                         {
-                            currentTexture = 0;
                             resetTexturePosition();
                         }
                         HasRunThrough = true;
