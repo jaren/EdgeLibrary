@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Drawing;
 using System.Xml;
 
 namespace EdgeLibrary.Basic
@@ -36,7 +37,7 @@ namespace EdgeLibrary.Basic
             return false;
         }
 
-        public virtual void DebugDraw(SpriteBatch spriteBatch, Color drawColor) { }
+        public virtual void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor) { }
     }
 
     public class EShapeCircle : EShape
@@ -62,7 +63,7 @@ namespace EdgeLibrary.Basic
             return false;
         }
 
-        public override void DebugDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
         {
             List<Vector2> points = EMath.GetOuterCirclePoints(CenterPosition, Radius);
             foreach (Vector2 point in points)
@@ -88,11 +89,11 @@ namespace EdgeLibrary.Basic
             switch (shape.ShapeType)
             {
                 case EShapeTypes.circle:
-                    Rectangle rectangle = new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
+                    RectangleF RectangleF = new RectangleF(CenterPosition.X + Width / 2, CenterPosition.Y - Height / 2, Width, Height);
                     List<Vector2> circlePoints = EMath.GetCirclePoints(shape.CenterPosition, ((EShapeCircle)shape).Radius);
                     foreach(Vector2 point in circlePoints)
                     {
-                        if (rectangle.Contains((int)point.X, (int)point.Y))
+                        if (RectangleF.Contains(point.X, point.Y))
                         {
                             return true;
                         }
@@ -100,15 +101,15 @@ namespace EdgeLibrary.Basic
                     return false;
                     break;
                 case EShapeTypes.rectangle:
-                    return new Rectangle((int)CenterPosition.X + (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)shape.CenterPosition.X + (int)((EShapeRectangle)shape).Width / 2, (int)shape.CenterPosition.Y + (int)((EShapeRectangle)shape).Height / 2, (int)((EShapeRectangle)shape).Width, (int)((EShapeRectangle)shape).Height));
+                    return new RectangleF(CenterPosition.X + Width / 2, CenterPosition.Y - Height / 2, Width, Height).IntersectsWith(new RectangleF(shape.CenterPosition.X + ((EShapeRectangle)shape).Width / 2, shape.CenterPosition.Y + ((EShapeRectangle)shape).Height / 2, ((EShapeRectangle)shape).Width, ((EShapeRectangle)shape).Height));
                     break;
             }
             return false;
         }
 
-        public override void DebugDraw(SpriteBatch spriteBatch, Color drawColor)
+        public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
         {
-            Rectangle rectangle = new Rectangle((int)CenterPosition.X - (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
+            RectangleF rectangle = new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height);
             EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
             EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
             EMath.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);

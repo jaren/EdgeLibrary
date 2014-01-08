@@ -104,9 +104,9 @@ namespace EdgeLibrary.Basic
         {
             spriteBatch.Draw(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
         }
-        public static void DrawRectangleAt(SpriteBatch spriteBatch, Vector2 position, int width, int height, Color color)
+        public static void DrawRectangleAt(SpriteBatch spriteBatch, Vector2 position, float width, float height, Color color)
         {
-            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
             spriteBatch.Draw(Pixel, rectangle, color);
         }
 

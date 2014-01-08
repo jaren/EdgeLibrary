@@ -19,6 +19,7 @@ namespace EdgeLibrary_Test
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
+    ///     -Add animations able to load a spritesheet backwards
     /// -Menu
     ///     -More Menu Items
     ///         -Label button
@@ -40,7 +41,7 @@ namespace EdgeLibrary_Test
         EdgeGame edgeGame;
 
         ELabel label;
-        ESpriteA explosion;
+        ESpriteA player;
         int collisionCount;
 
         //This region is not likely to be modified
@@ -94,7 +95,7 @@ namespace EdgeLibrary_Test
             edgeGame.LoadFont("font", "font");
 
             edgeGame.LoadTexture("Particle Textures/fire", "fire");
-            edgeGame.LoadTexture("explosion", "explosion");
+            edgeGame.LoadTexture("mage_walk", "walk");
         }
 
         //Sets up the game window
@@ -113,18 +114,18 @@ namespace EdgeLibrary_Test
             EScene menuScene = new EScene("menuScene");
             edgeGame.addScene(menuScene);
 
-            edgeGame.MouseClick += new EdgeGame.EMouseEvent(MouseClick);
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ESpriteSheetAnimationIndex explosionAnimation = new ESpriteSheetAnimationIndex(50, "explosion", 92, 92);
-            explosionAnimation.ShouldRepeat = false;
-            explosion = new ESpriteA(explosionAnimation, new Vector2(-100, -100));
-            explosion.DrawType = ESpriteDrawType.Scaled;
-            explosion.ScaledDrawScale = 1;
-            menuScene.addElement(explosion);
+            ESpriteSheetAnimationIndex walkAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
+            walkAnimation.StartTexture = 10;
+            walkAnimation.ShouldRepeat = true;
+            player = new ESpriteA(walkAnimation, new Vector2(100, 100));
+            player.DrawType = ESpriteDrawType.Scaled;
+            player.ScaledDrawScale = 1;
+            menuScene.addElement(player);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
-            mouseEmitter.ShouldEmit = false;
+            mouseEmitter.ShouldEmit = true;
             mouseEmitter.DrawLayer = 3;
             mouseEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
             mouseEmitter.ColorVariance = new ERangeArray(new ERange(0), new ERange(40, 80), new ERange(40, 80), new ERange(255));
@@ -151,12 +152,6 @@ namespace EdgeLibrary_Test
         {
             collisionCount++;
             label.Text = string.Format("Collision Count: {0}", collisionCount);
-        }
-
-        private void MouseClick(EUpdateArgs e)
-        {
-            explosion.ResetAnimation();
-            explosion.Position = new Vector2(e.mouseState.X, e.mouseState.Y);
         }
 
         private void EdgeGameUpdate(EUpdateArgs e)
