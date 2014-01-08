@@ -17,26 +17,24 @@ namespace EdgeLibrary.Basic
         public Dictionary<string, EAnimationBase> Animations;
         public string selectedAnimation {get; protected set;}
 
-        private string normalAnimation = "normal";
-
-        public ESpriteA(EAnimationBase textures, Vector2 ePosition) : base("", ePosition)
+        public ESpriteA(EAnimationBase textures, string texturesID, Vector2 ePosition) : base("", ePosition)
         {
             Animations = new Dictionary<string, EAnimationBase>();
-            Animations.Add(normalAnimation, textures);
-            selectedAnimation = normalAnimation;
+            Animations.Add(texturesID, textures);
+            selectedAnimation = texturesID;
 
             _width = 0;
             _height = 0;
         }
 
-        public ESpriteA(EAnimationBase textures, Vector2 ePosition, int eWidth, int eHeight) : this(textures, ePosition)
+        public ESpriteA(EAnimationBase textures, string texturesID, Vector2 ePosition, int eWidth, int eHeight) : this(textures, texturesID, ePosition)
         {
             _width = eWidth;
             _height = eHeight;
             reloadBoundingBox();
         }
 
-        public ESpriteA(EAnimationIndex textures, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(textures, ePosition, eWidth, eHeight)
+        public ESpriteA(EAnimationIndex textures, string texturesID, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(textures, texturesID, ePosition, eWidth, eHeight)
         {
             Color = eColor;
             Rotation = eRotation;
@@ -58,7 +56,7 @@ namespace EdgeLibrary.Basic
             Animations[selectedAnimation].Reset();
         }
 
-        public void AddAnimation(string key, EAnimationIndex animation)
+        public void AddAnimation(string key, EAnimationBase animation)
         {
             Animations.Add(key, animation);
         }

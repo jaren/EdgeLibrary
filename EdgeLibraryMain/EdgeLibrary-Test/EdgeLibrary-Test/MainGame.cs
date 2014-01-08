@@ -20,6 +20,7 @@ namespace EdgeLibrary_Test
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
     ///     -Add animations able to load a spritesheet backwards
+    ///     -Problems with StartTexture and FinishTexture in spritesheet animations
     /// -Menu
     ///     -More Menu Items
     ///         -Label button
@@ -122,14 +123,36 @@ namespace EdgeLibrary_Test
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ESpriteSheetAnimationIndex walkAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
-            walkAnimation.StartTexture = 10;
-            walkAnimation.FinishTexture = 18;
-            walkAnimation.ShouldRepeat = true;
-            player = new ESpriteA(walkAnimation, new Vector2(100, 100));
+            #region WALK ANIMATIONS
+            ESpriteSheetAnimationIndex walkUpAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
+            walkUpAnimation.StartTexture = 1;
+            walkUpAnimation.FinishTexture = 9;
+            walkUpAnimation.ShouldRepeat = true;
+
+            ESpriteSheetAnimationIndex walkLeftAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
+            walkLeftAnimation.StartTexture = 10;
+            walkLeftAnimation.FinishTexture = 18;
+            walkLeftAnimation.ShouldRepeat = true;
+
+            ESpriteSheetAnimationIndex walkDownAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
+            walkDownAnimation.StartTexture = 19;
+            walkDownAnimation.FinishTexture = 27;
+            walkDownAnimation.ShouldRepeat = true;
+
+            ESpriteSheetAnimationIndex walkRightAnimation = new ESpriteSheetAnimationIndex(50, "walk", 65, 65);
+            walkRightAnimation.StartTexture = 28;
+            walkRightAnimation.FinishTexture = 35;
+            walkRightAnimation.ShouldRepeat = true;
+            #endregion
+
+            player = new ESpriteA(walkUpAnimation, "up", new Vector2(100, 100));
+            player.AddAnimation("down", walkDownAnimation);
+            player.AddAnimation("left", walkLeftAnimation);
+            player.AddAnimation("right", walkRightAnimation);
             player.DrawType = ESpriteDrawType.Scaled;
             player.ScaledDrawScale = 1;
             menuScene.addElement(player);
+
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
             mouseEmitter.ShouldEmit = true;
@@ -163,6 +186,22 @@ namespace EdgeLibrary_Test
 
         private void EdgeGameUpdate(EUpdateArgs e)
         {
+            if (e.keyboardState.IsKeyDown(Keys.Left))
+            {
+                player.SelectAnimation("left");
+            }
+            else if (e.keyboardState.IsKeyDown(Keys.Right))
+            {
+                player.SelectAnimation("right");
+            }
+            else if (e.keyboardState.IsKeyDown(Keys.Up))
+            {
+                player.SelectAnimation("up");
+            }
+            else if (e.keyboardState.IsKeyDown(Keys.Down))
+            {
+                player.SelectAnimation("down");
+            }
         }
     }
 }

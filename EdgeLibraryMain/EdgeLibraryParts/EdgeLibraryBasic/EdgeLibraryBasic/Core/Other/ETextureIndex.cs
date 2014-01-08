@@ -18,6 +18,7 @@ namespace EdgeLibrary.Basic
         //Unfinished
         public List<string> TextureData;
         public List<Texture2D> Textures;
+        public bool ShowBlankOnFinish;
         public bool ShouldRepeat;
         public bool HasRunThrough { get; protected set; }
         public int currentTexture;
@@ -27,6 +28,7 @@ namespace EdgeLibrary.Basic
         {
             TextureData = new List<string>();
             Textures = new List<Texture2D>();
+            ShowBlankOnFinish = false;
         }
 
         public virtual void FillTexture(EData eData)
@@ -116,7 +118,14 @@ namespace EdgeLibrary.Basic
             }
             else
             {
-                return EMath.Blank;
+                if (ShowBlankOnFinish)
+                {
+                    return EMath.Blank;
+                }
+                else
+                {
+                    return Textures[0];
+                }
             }
         }
     }
@@ -150,11 +159,11 @@ namespace EdgeLibrary.Basic
             TextureRows = 1;
             TextureColumns = 1;
             elapsedSinceLastSwitch = 0;
-            currentTexture = 0;
+            currentTexture = 1;
             HasRunThrough = false;
             ShouldRepeat = true;
-            FinishTexture = 0;
-            _startTexture = 0;
+            FinishTexture = 1;
+            _startTexture = 1;
             resetTexturePosition();
         }
 
@@ -174,7 +183,7 @@ namespace EdgeLibrary.Basic
                 TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
                 TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
 
-                if (FinishTexture == 0 || FinishTexture > TextureRows * TextureColumns)
+                if (FinishTexture == 1 || FinishTexture > TextureRows * TextureColumns)
                 {
                     FinishTexture = TextureRows * TextureColumns;
                 }
@@ -268,7 +277,14 @@ namespace EdgeLibrary.Basic
             }
             else
             {
-                return EMath.Blank;
+                if (ShowBlankOnFinish)
+                {
+                    return EMath.Blank;
+                }
+                else
+                {
+                    return SpriteSheet;
+                }
             }
         }
     }
