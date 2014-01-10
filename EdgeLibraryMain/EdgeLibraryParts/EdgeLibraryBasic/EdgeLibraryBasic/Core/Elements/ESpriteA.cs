@@ -46,6 +46,7 @@ namespace EdgeLibrary.Basic
             if (Animations.Keys.Contains(key))
             {
                 selectedAnimation = key;
+                Animations[selectedAnimation].Reset();
                 return true;
             }
             return false;

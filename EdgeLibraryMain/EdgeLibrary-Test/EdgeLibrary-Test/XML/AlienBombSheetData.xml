@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture name="aliendropping0001.png" x="158" y="125" width="76" height="123"/>
+	<SubTexture name="aliendropping0002.png" x="79" y="125" width="77" height="123"/>
+	<SubTexture name="aliendropping0003.png" x="0" y="0" width="78" height="123"/>
+	<SubTexture name="aliendropping0004.png" x="79" y="250" width="77" height="123"/>
+	<SubTexture name="aliendropping0005.png" x="80" y="0" width="77" height="123"/>
+	<SubTexture name="aliendropping0006.png" x="79" y="375" width="77" height="123"/>
+	<SubTexture name="aliendropping0007.png" x="0" y="375" width="77" height="123"/>
+	<SubTexture name="aliendropping0008.png" x="0" y="250" width="77" height="123"/>
+	<SubTexture name="aliendropping0009.png" x="0" y="125" width="77" height="123"/>
+</TextureAtlas>

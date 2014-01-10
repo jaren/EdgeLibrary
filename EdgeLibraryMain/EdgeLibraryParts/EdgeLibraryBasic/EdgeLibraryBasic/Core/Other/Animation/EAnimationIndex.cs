@@ -12,46 +12,6 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
-    //Base for animations
-    public class EAnimationBase : EObject
-    {
-        //Unfinished
-        public List<string> TextureData;
-        public List<Texture2D> Textures;
-        public bool ShowBlankOnFinish;
-        public bool ShouldRepeat;
-        public bool HasRunThrough { get; protected set; }
-        public int currentTexture;
-        protected float elapsedSinceLastSwitch;
-
-        public EAnimationBase()
-        {
-            TextureData = new List<string>();
-            Textures = new List<Texture2D>();
-            ShowBlankOnFinish = false;
-        }
-
-        public virtual void FillTexture(EData eData)
-        {
-            try
-            {
-                Textures.Clear();
-
-                foreach (string textureData in TextureData)
-                {
-                    Textures.Add(eData.getTexture(textureData));
-                }
-            }
-            catch 
-            { }
-        }
-
-        public virtual void Reset() { }
-
-        public virtual Rectangle getTextureBox() { return new Rectangle(0,0,0,0); }
-
-        public virtual Texture2D Update(EUpdateArgs updateArgs) { return Textures[0]; }
-    }
 
     //An animation index which doesn't support spritesheets
     //Advantages of this - loopRate can be specified between frames
@@ -60,7 +20,8 @@ namespace EdgeLibrary.Basic
     {
         public List<int> TextureTimes;
 
-        public EAnimationIndex() : base()
+        public EAnimationIndex()
+            : base()
         {
             TextureTimes = new List<int>();
             elapsedSinceLastSwitch = 0;
@@ -69,7 +30,8 @@ namespace EdgeLibrary.Basic
             ShouldRepeat = true;
         }
 
-        public EAnimationIndex(int loopRate, List<string> textures) : this()
+        public EAnimationIndex(int loopRate, List<string> textures)
+            : this()
         {
             for (int i = 0; i < textures.Count; i++)
             {
@@ -78,7 +40,8 @@ namespace EdgeLibrary.Basic
             }
         }
 
-        public EAnimationIndex(int loopRate, params string[] textures) : this(loopRate, new List<string>(textures))
+        public EAnimationIndex(int loopRate, params string[] textures)
+            : this(loopRate, new List<string>(textures))
         {
         }
 
@@ -129,11 +92,12 @@ namespace EdgeLibrary.Basic
             }
         }
     }
+    #region SPRITESHEET - SOME GLITCHES
 
     //An animation index which supports spritesheets
     //Advantages of this - animations can be loaded from a single spritesheet
     //Disadvantages - no specifying loopRate for different frames
-    public class ESpriteSheetAnimationIndex : EAnimationBase
+    public class ESAnimationIndex : EAnimationBase
     {
         public Texture2D SpriteSheet;
         public string textureData;
@@ -152,7 +116,8 @@ namespace EdgeLibrary.Basic
 
         private Rectangle textureBox;
 
-        public ESpriteSheetAnimationIndex() : base()
+        public ESAnimationIndex()
+            : base()
         {
             TextureWidth = 0;
             TextureHeight = 0;
@@ -167,7 +132,8 @@ namespace EdgeLibrary.Basic
             resetTexturePosition();
         }
 
-        public ESpriteSheetAnimationIndex(int loopRate, string spriteSheet, int textureWidth, int textureHeight) : this()
+        public ESAnimationIndex(int loopRate, string spriteSheet, int textureWidth, int textureHeight)
+            : this()
         {
             LoopRate = loopRate;
             TextureWidth = textureWidth;
@@ -180,8 +146,8 @@ namespace EdgeLibrary.Basic
             try
             {
                 SpriteSheet = eData.getTexture(textureData);
-                TextureColumns = ((SpriteSheet.Width-(SpriteSheet.Width % TextureWidth)) / TextureWidth);
-                TextureRows = ((SpriteSheet.Height-(SpriteSheet.Height % TextureHeight)) / TextureHeight);
+                TextureColumns = ((SpriteSheet.Width - (SpriteSheet.Width % TextureWidth)) / TextureWidth);
+                TextureRows = ((SpriteSheet.Height - (SpriteSheet.Height % TextureHeight)) / TextureHeight);
 
                 if (FinishTexture == 1 || FinishTexture > TextureRows * TextureColumns)
                 {
@@ -190,7 +156,7 @@ namespace EdgeLibrary.Basic
 
                 resetTexturePosition();
             }
-            catch 
+            catch
             { }
 
             reloadTextureBox();
@@ -239,7 +205,7 @@ namespace EdgeLibrary.Basic
 
         private void reloadTextureBox()
         {
-            textureBox = new Rectangle((CurrentColumn - 1) * TextureWidth, (CurrentRow-1)*TextureHeight, TextureWidth, TextureHeight);
+            textureBox = new Rectangle((CurrentColumn - 1) * TextureWidth, (CurrentRow - 1) * TextureHeight, TextureWidth, TextureHeight);
         }
 
         public override Rectangle getTextureBox()
@@ -288,5 +254,5 @@ namespace EdgeLibrary.Basic
             }
         }
     }
-
+#endregion
 }

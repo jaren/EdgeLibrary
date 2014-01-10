@@ -99,8 +99,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="mage_walk.png">
-      <Name>mage_walk</Name>
+    <Compile Include="Alien\AlienBomb\AlienBombSheet.png">
+      <Name>AlienBombSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Alien\AlienOrb\AlienOrbSheet.png">
+      <Name>AlienOrbSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Alien\Ship\ShipSheet.png">
+      <Name>ShipSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

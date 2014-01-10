@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture name="alien10001.png" x="66" y="131" width="63" height="64"/>
+	<SubTexture name="alien10002.png" x="66" y="197" width="63" height="64"/>
+	<SubTexture name="alien10003.png" x="0" y="260" width="64" height="63"/>
+	<SubTexture name="alien10004.png" x="0" y="325" width="64" height="63"/>
+	<SubTexture name="alien10005.png" x="0" y="130" width="64" height="63"/>
+	<SubTexture name="alien10006.png" x="0" y="390" width="63" height="63"/>
+	<SubTexture name="alien10007.png" x="66" y="65" width="63" height="64"/>
+	<SubTexture name="alien10008.png" x="65" y="390" width="63" height="64"/>
+	<SubTexture name="alien10009.png" x="130" y="328" width="63" height="64"/>
+	<SubTexture name="alien10010.png" x="66" y="263" width="63" height="63"/>
+	<SubTexture name="alien10011.png" x="0" y="0" width="64" height="63"/>
+	<SubTexture name="alien10012.png" x="0" y="65" width="64" height="63"/>
+	<SubTexture name="alien10013.png" x="0" y="195" width="64" height="63"/>
+	<SubTexture name="alien10014.png" x="66" y="0" width="63" height="63"/>
+	<SubTexture name="alien10015.png" x="130" y="394" width="63" height="64"/>
+</TextureAtlas>
