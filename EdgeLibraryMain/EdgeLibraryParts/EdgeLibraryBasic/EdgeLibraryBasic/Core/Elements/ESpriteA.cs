@@ -67,6 +67,9 @@ namespace EdgeLibrary.Basic
             base.updateElement(updateArgs);
 
             Texture = Animations[selectedAnimation].Update(updateArgs);
+
+            _width = Animations[selectedAnimation].getTextureBox().Width;
+            _height = Animations[selectedAnimation].getTextureBox().Height;
         }
 
         public override void FillTexture(EData eData)

@@ -123,9 +123,9 @@ namespace EdgeLibrary_Test
             alienBomb.ShouldRepeat = true;
             player = new ESpriteA(alienBomb, "alien", new Vector2(100, 100));
             player.DrawType = ESpriteDrawType.Scaled;
+            player.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, player, "something"));
             player.ScaledDrawScale = 1;
             menuScene.addElement(player);
-
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
             mouseEmitter.ShouldEmit = true;
