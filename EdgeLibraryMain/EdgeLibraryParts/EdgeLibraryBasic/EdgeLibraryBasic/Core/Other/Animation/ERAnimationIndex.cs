@@ -20,6 +20,11 @@ namespace EdgeLibrary.Basic
     {
         public Texture2D SpriteSheet;
         public XDocument TexturePositions;
+
+        public int StartTexture { get { return _startTexture; } set { _startTexture = value; recalculateStartFinishTextures(); } }
+        public int FinishTexture { get { return _finishTexture; } set { _finishTexture = value; recalculateStartFinishTextures(); } }
+        private int _finishTexture;
+        private int _startTexture;
         public int LoopRate;
         public string SpriteSheetData;
 
@@ -29,12 +34,13 @@ namespace EdgeLibrary.Basic
             string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, xmlPath);
             TexturePositions = XDocument.Load(completePath);
             SpriteSheetData = spriteSheet;
+            _finishTexture = TexturePositions.Root.Elements().Count();
         }
 
         public override void Reset()
         {
             HasRunThrough = false;
-            currentTexture = 0;
+            currentTexture = _startTexture;
         }
 
         public override void FillTexture(EData eData)
@@ -42,9 +48,30 @@ namespace EdgeLibrary.Basic
             try
             {
                 SpriteSheet = eData.getTexture(SpriteSheetData);
+                recalculateStartFinishTextures();
             }
             catch
             { }
+        }
+
+        private void recalculateStartFinishTextures()
+        {
+            if (_finishTexture > TexturePositions.Root.Elements().Count())
+            {
+                _finishTexture = TexturePositions.Root.Elements().Count();
+            }
+
+            if (_startTexture < 1)
+            {
+                _startTexture = 1;
+            }
+
+            if (_startTexture > _finishTexture)
+            {
+                int temp = _startTexture;
+                _startTexture = _finishTexture;
+                _finishTexture = temp;
+            }
         }
 
         public override Rectangle getTextureBox()
@@ -66,9 +93,9 @@ namespace EdgeLibrary.Basic
 
                 if (elapsedSinceLastSwitch >= LoopRate)
                 {
-                    if (currentTexture >= TexturePositions.Root.Elements().Count() - 1)
+                    if (currentTexture >= _finishTexture)
                     {
-                        currentTexture = 0;
+                        currentTexture = _startTexture;
                         HasRunThrough = true;
                     }
                     else
