@@ -26,12 +26,6 @@ namespace EdgeLibrary_Test
     /// 
 
     /// <summary>
-    /// KNOWN ISSUES:
-    ///  -Animation spritesheets should be EXACTLY or greater than the size they're supposed to be for the number and size of individual frames
-    /// 
-    /// </summary>
-
-    /// <summary>
     /// MUSIC AND TEXTURES:
     /// - cynicmusic.com/pixelsphere.org
     /// - MoikMellah at OpenGameArt.org
