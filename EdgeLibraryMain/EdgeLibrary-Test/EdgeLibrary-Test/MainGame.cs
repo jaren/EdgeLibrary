@@ -19,8 +19,6 @@ namespace EdgeLibrary_Test
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
-    ///     -Problems with StartTexture and FinishTexture in spritesheet animations
-    ///     -Add ShoeBox spritesheet animation capability
     /// -Menu
     ///     -More Menu Items
     ///         -Label button
@@ -103,6 +101,10 @@ namespace EdgeLibrary_Test
             edgeGame.LoadFont("font", "font");
 
             edgeGame.LoadTexture("Particle Textures/fire", "fire");
+
+            edgeGame.LoadTexture("Alien/AlienBombSheet", "alienbomb");
+            edgeGame.LoadTexture("Alien/AlienOrbSheet", "alienorb");
+            edgeGame.LoadTexture("Alien/ShipSheet", "ship");
         }
 
         //Sets up the game window
@@ -123,7 +125,9 @@ namespace EdgeLibrary_Test
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            //player = new ESpriteA(, "up", new Vector2(100, 100));
+            ERAnimationIndex alienBomb = new ERAnimationIndex(50, "alienorb", "AlienOrbSheetData.xml");
+            alienBomb.ShouldRepeat = true;
+            player = new ESpriteA(alienBomb, "alien", new Vector2(100, 100));
             player.DrawType = ESpriteDrawType.Scaled;
             player.ScaledDrawScale = 1;
             menuScene.addElement(player);

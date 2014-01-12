@@ -99,21 +99,43 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alien\AlienBomb\AlienBombSheet.png">
+    <Compile Include="Alien\AlienBombSheet.png">
       <Name>AlienBombSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Alien\AlienOrb\AlienOrbSheet.png">
+    <Compile Include="Alien\AlienOrbSheet.png">
       <Name>AlienOrbSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Alien\Ship\ShipSheet.png">
+    <Compile Include="Alien\ShipSheet.png">
       <Name>ShipSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AlienBombSheetData.xml">
+      <Name>AlienBombSheetData</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AlienOrbSheetData.xml">
+      <SubType>Designer</SubType>
+      <Name>AlienOrbSheetData</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShipSheetData.xml">
+      <Name>ShipSheetData</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

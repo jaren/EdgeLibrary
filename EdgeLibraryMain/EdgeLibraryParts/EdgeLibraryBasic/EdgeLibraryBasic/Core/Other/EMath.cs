@@ -17,6 +17,7 @@ namespace EdgeLibrary.Basic
     {
         public static Texture2D Pixel;
         public static Texture2D Blank;
+        public static string ContentRootDirectory;
 
         public static void Init(GraphicsDevice graphicsDevice)
         {

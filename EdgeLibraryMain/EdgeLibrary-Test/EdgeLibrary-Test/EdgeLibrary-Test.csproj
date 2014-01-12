@@ -81,11 +81,6 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
-    <Content Include="XML\AlienBombSheetData.xml" />
-    <Content Include="XML\AlienOrbSheetData.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="XML\ShipSheetData.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibraryParts\EdgeLibraryBasic\EdgeLibraryBasic\EdgeLibraryBasic.csproj">

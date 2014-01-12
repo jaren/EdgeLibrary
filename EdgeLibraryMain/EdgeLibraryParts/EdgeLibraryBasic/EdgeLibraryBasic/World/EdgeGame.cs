@@ -71,6 +71,7 @@ namespace EdgeLibrary.Basic
         public void Init()
         {
             EMath.Init(graphicsDevice);
+            EMath.ContentRootDirectory = Content.RootDirectory;
         }
 
         public void InitWithXML(string xmlPath)

@@ -15,6 +15,7 @@ namespace EdgeLibrary.Basic
 {
     //To be used with a spritesheet and an xml document showing the position of textures on that spritesheet
     //Normally used with "Shoebox" spritesheets - these spritesheets have the same rectangle system as XNA
+    //Put XML documents in content
     public class ERAnimationIndex : EAnimationBase
     {
         public Texture2D SpriteSheet;
@@ -25,7 +26,8 @@ namespace EdgeLibrary.Basic
         public ERAnimationIndex(int loopRate, string spriteSheet, string xmlPath) : base()
         {
             LoopRate = loopRate;
-            TexturePositions = XDocument.Load(xmlPath);
+            string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, xmlPath);
+            TexturePositions = XDocument.Load(completePath);
             SpriteSheetData = spriteSheet;
         }
 
