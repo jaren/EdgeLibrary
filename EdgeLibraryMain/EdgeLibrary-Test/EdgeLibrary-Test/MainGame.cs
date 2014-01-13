@@ -104,7 +104,7 @@ namespace EdgeLibrary_Test
         //Sets up the game window
         private void initializeGameWindow()
         {
-            edgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
+            EMath.DrawType = EdgeGameDrawTypes.Hybrid;
             //edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(700);
             edgeGame.setWindowWidth(700);
@@ -115,7 +115,9 @@ namespace EdgeLibrary_Test
         private void initializeMenuScene()
         {
             EScene menuScene = new EScene("menuScene");
+            ELayer mainLayer = new ELayer("main");
             edgeGame.addScene(menuScene);
+            menuScene.AddLayer(mainLayer);
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
@@ -125,7 +127,7 @@ namespace EdgeLibrary_Test
             player.DrawType = ESpriteDrawType.Scaled;
             player.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, player, "something"));
             player.ScaledDrawScale = 1;
-            menuScene.addElement(player);
+            mainLayer.addElement(player);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
             mouseEmitter.ShouldEmit = true;
@@ -140,7 +142,7 @@ namespace EdgeLibrary_Test
             mouseEmitter.LifeVariance = new ERange(500);
             mouseEmitter.EmitWait = 0;
             mouseEmitter.ClampToMouse();
-            menuScene.addElement(mouseEmitter);
+            mainLayer.addElement(mouseEmitter);
 
         }
 

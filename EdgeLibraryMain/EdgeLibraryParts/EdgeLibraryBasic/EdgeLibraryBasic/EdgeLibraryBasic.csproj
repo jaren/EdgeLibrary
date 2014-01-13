@@ -89,6 +89,7 @@
     <Compile Include="Settings\ESettingsHandler.cs" />
     <Compile Include="World\EData.cs" />
     <Compile Include="World\EdgeGame.cs" />
+    <Compile Include="World\ELayer.cs" />
     <Compile Include="World\EScene.cs" />
   </ItemGroup>
   <ItemGroup>

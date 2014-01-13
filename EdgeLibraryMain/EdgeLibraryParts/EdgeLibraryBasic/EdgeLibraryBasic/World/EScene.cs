@@ -14,19 +14,15 @@ namespace EdgeLibrary.Basic
 {
     public class EScene : EElement
     {
-        protected List<EObject> eobjects;
-        protected List<EElement> eelements;
         public EData edgeData;
         public EdgeGame mainGame;
-        public EdgeGameDrawTypes DrawType;
-        public Color DebugDrawColor;
+        public List<ELayer> layers;
 
         public EScene(string id) : base()
         {
-            DrawType = EdgeGameDrawTypes.Normal;
             ID = id;
-            eobjects = new List<EObject>();
-            eelements = new List<EElement>();
+
+            layers = new List<ELayer>();
         }
 
         public void setEData(EData data)
@@ -37,26 +33,28 @@ namespace EdgeLibrary.Basic
         #region UPDATE
         public override void updateElement(EUpdateArgs updateArgs)
         {
-            foreach (EElement element in eelements)
+            foreach (ELayer layer in layers)
             {
-                element.Update(updateArgs);
-                if (element.IsActive && element.SupportsCollision)
-                {
-                    element.UpdateCollision(eelements);
-                }
+                layer.updateElement(updateArgs);
             }
         }
 
-        public void addElement(EElement eElement)
+        public void AddLayer(ELayer layer)
         {
-            try
+            layer.setEData(edgeData);
+            layers.Add(layer);
+        }
+
+        public ELayer getLayer(string layerName)
+        {
+            foreach (ELayer layer in layers)
             {
-                eElement.FillTexture(edgeData);
+                if (layer.ID == layerName)
+                {
+                    return layer;
+                }
             }
-            catch
-            { }
-            eElement.OnAddToScene(this);
-            eelements.Add(eElement);
+            return null;
         }
 
         public Texture2D GetTexture(string texture)
@@ -64,28 +62,20 @@ namespace EdgeLibrary.Basic
             return edgeData.getTexture(texture);
         }
 
-        public bool RemoveObject(EObject eObject)
+        public void RemoveElement(EElement eElement)
         {
-            if (eobjects.Contains(eObject)) 
+            foreach (ELayer layer in layers)
             {
-                eobjects.Remove(eObject);
-                return true;
+                layer.RemoveElement(eElement);
             }
-            return false;
-        }
-        public bool RemoveElement(EElement eElement)
-        {
-            if (eelements.Contains(eElement))
-            {
-                eelements.Remove(eElement);
-                return true;
-            }
-            return false;
         }
 
-        public void addObject(EObject eObject)
+        public void RemoveObject(EObject eObject)
         {
-            eobjects.Add(eObject);
+            foreach (ELayer layer in layers)
+            {
+                layer.RemoveObject(eObject);
+            }
         }
         #endregion
 
@@ -94,30 +84,10 @@ namespace EdgeLibrary.Basic
         {
             if (IsVisible)
             {
-                eelements = eelements.OrderBy(x => x.DrawLayer).ToList();
-
-                foreach (EElement element in eelements)
+                layers = layers.OrderBy(x => x.DrawLayer).ToList();
+                foreach (ELayer layer in layers)
                 {
-                    switch (DrawType)
-                    {
-                        case EdgeGameDrawTypes.Normal:
-                            element.Draw(spriteBatch, gameTime);
-                            break;
-                        case EdgeGameDrawTypes.Debug:
-                            //Debug Draw Here
-                            if (element.SupportsCollision && element.CollisionBody != null)
-                            {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, DebugDrawColor);
-                            }
-                            break;
-                        case EdgeGameDrawTypes.Hybrid:
-                            element.Draw(spriteBatch, gameTime);
-                            if (element.SupportsCollision && element.CollisionBody != null)
-                            {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, DebugDrawColor);
-                            }
-                            break;
-                    }
+                    layer.drawElement(spriteBatch, gameTime);
                 }
             }
         }

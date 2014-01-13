@@ -27,15 +27,10 @@ namespace EdgeLibrary.Basic
         private GraphicsDeviceManager graphics;
         private GraphicsDevice graphicsDevice;
 
-        public Color ClearColor = Color.Black;
-        public Color DebugDrawColor = Color.White;
-
         private List<EScene> scenes;
         private int selectedSceneIndex;
 
         public EData edgeData;
-
-        public EdgeGameDrawTypes DrawType;
 
         private MouseState previousMouseState;
         public delegate void EMouseEvent(EUpdateArgs e);
@@ -51,8 +46,6 @@ namespace EdgeLibrary.Basic
 
         public EdgeGame(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
         {
-            DrawType = EdgeGameDrawTypes.Normal;
-
             Content = eContent;
             spriteBatch = eSpriteBatch;
             graphics = eGraphics;
@@ -192,17 +185,27 @@ namespace EdgeLibrary.Basic
             }
             return false;
         }
+
+        public EScene getScene(string sceneName)
+        {
+            foreach (EScene scene in scenes)
+            {
+                if (scene.ID == sceneName)
+                {
+                    return scene;
+                }
+            }
+            return null;
+        }
         #endregion
 
         #region DRAW
         public void Draw(GameTime gameTime)
         {
-            graphicsDevice.Clear(ClearColor);
+            graphicsDevice.Clear(EMath.ClearColor);
             spriteBatch.Begin();
             try
             {
-                scenes[selectedSceneIndex].DrawType = DrawType;
-                scenes[selectedSceneIndex].DebugDrawColor = DebugDrawColor;
                 scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
             }
             catch { }

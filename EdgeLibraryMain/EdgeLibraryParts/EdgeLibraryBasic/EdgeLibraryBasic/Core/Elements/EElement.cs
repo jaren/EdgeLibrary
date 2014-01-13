@@ -46,7 +46,7 @@ namespace EdgeLibrary.Basic
             if (IsVisible) { drawElement(spriteBatch, gameTime); }
         }
 
-        public virtual void OnAddToScene(EScene scene) { }
+        public virtual void OnAddToLayer(ELayer layer) { }
 
         public virtual void updateElement(EUpdateArgs updateArgs) { }
         public virtual void drawElement(SpriteBatch spriteBatch, GameTime gameTime) { }

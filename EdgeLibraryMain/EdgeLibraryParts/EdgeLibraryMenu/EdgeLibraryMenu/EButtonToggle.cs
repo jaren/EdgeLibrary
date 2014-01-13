@@ -49,10 +49,10 @@ namespace EdgeLibrary.Menu
             HasChangedMouseOver = false;
         }
 
-        public override void OnAddToScene(EScene scene)
+        public override void OnAddToLayer(ELayer layer)
         {
-            ButtonOn.Texture = scene.edgeData.getTexture(ButtonOn.Data);
-            ButtonOff.Texture = scene.edgeData.getTexture(ButtonOff.Data);
+            ButtonOn.Texture = layer.edgeData.getTexture(ButtonOn.Data);
+            ButtonOff.Texture = layer.edgeData.getTexture(ButtonOff.Data);
         }
 
         public override void updateElement(EUpdateArgs updateArgs)

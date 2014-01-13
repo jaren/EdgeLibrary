@@ -18,6 +18,9 @@ namespace EdgeLibrary.Basic
         public static Texture2D Pixel;
         public static Texture2D Blank;
         public static string ContentRootDirectory;
+        public static EdgeGameDrawTypes DrawType;
+        public static Color ClearColor;
+        public static Color DebugDrawColor;
 
         public static void Init(GraphicsDevice graphicsDevice)
         {
@@ -25,6 +28,9 @@ namespace EdgeLibrary.Basic
             Pixel.SetData(new Color[1] { Color.White });
             Blank = new Texture2D(graphicsDevice, 1, 1);
             Blank.SetData(new Color[1] { Color.Transparent });
+            ClearColor = Color.Black;
+            DebugDrawColor = Color.White;
+            DrawType = EdgeGameDrawTypes.Normal;
         }
 
         public static float circlePointStep = 8;
