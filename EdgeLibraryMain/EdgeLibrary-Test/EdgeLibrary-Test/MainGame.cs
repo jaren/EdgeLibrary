@@ -96,9 +96,7 @@ namespace EdgeLibrary_Test
 
             edgeGame.LoadTexture("Particle Textures/fire", "fire");
 
-            edgeGame.LoadTexture("Alien/AlienBombSheet", "alienbomb");
-            edgeGame.LoadTexture("Alien/AlienOrbSheet", "alienorb");
-            edgeGame.LoadTexture("Alien/ShipSheet", "ship");
+            edgeGame.LoadTexture("sheet", "sheet");
         }
 
         //Sets up the game window
@@ -121,11 +119,10 @@ namespace EdgeLibrary_Test
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ERAnimationIndex alienBomb = new ERAnimationIndex(50, "alienorb", "AlienOrbSheetData.xml");
+            ERAnimationIndex alienBomb = new ERAnimationIndex(100, "sheet", "sheet.xml");
             alienBomb.ShouldRepeat = true;
-            player = new ESpriteA(alienBomb, "alien", new Vector2(100, 100));
+            player = new ESpriteA(alienBomb, "sheet", new Vector2(100, 100));
             player.DrawType = ESpriteDrawType.Scaled;
-            player.AddCollision(ECollisionBody.BodyWithSprite(EShapeTypes.circle, player, "something"));
             player.ScaledDrawScale = 1;
             mainLayer.addElement(player);
 
