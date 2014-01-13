@@ -18,16 +18,20 @@ namespace EdgeLibrary.Basic
         //Unfinished
         public List<string> TextureData;
         public List<Texture2D> Textures;
+        public bool RunBackwards;
         public bool ShowBlankOnFinish;
         public bool ShouldRepeat;
         public bool HasRunThrough { get; protected set; }
         public int currentTexture;
         protected float elapsedSinceLastSwitch;
 
+        public delegate void AnimationEvent(EAnimationBase e);
+
         public EAnimationBase()
         {
             TextureData = new List<string>();
             Textures = new List<Texture2D>();
+            RunBackwards = false;
             ShowBlankOnFinish = false;
         }
 

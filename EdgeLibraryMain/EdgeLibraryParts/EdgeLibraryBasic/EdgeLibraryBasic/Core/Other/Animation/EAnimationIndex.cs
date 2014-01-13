@@ -19,19 +19,18 @@ namespace EdgeLibrary.Basic
     public class EAnimationIndex : EAnimationBase
     {
         public List<int> TextureTimes;
+        public event AnimationEvent FinishedAnimation;
 
-        public EAnimationIndex()
-            : base()
+        public EAnimationIndex() : base()
         {
             TextureTimes = new List<int>();
             elapsedSinceLastSwitch = 0;
-            currentTexture = 0;
+            currentTexture = 1;
             HasRunThrough = false;
             ShouldRepeat = true;
         }
 
-        public EAnimationIndex(int loopRate, List<string> textures)
-            : this()
+        public EAnimationIndex(int loopRate, List<string> textures) : this()
         {
             for (int i = 0; i < textures.Count; i++)
             {
@@ -40,20 +39,26 @@ namespace EdgeLibrary.Basic
             }
         }
 
-        public EAnimationIndex(int loopRate, params string[] textures)
-            : this(loopRate, new List<string>(textures))
+        public EAnimationIndex(int loopRate, params string[] textures) : this(loopRate, new List<string>(textures))
         {
         }
 
         public override Rectangle getTextureBox()
         {
-            return new Rectangle(0, 0, Textures[currentTexture].Width, Textures[currentTexture].Height);
+            if (!RunBackwards)
+            {
+                return new Rectangle(0, 0, Textures[currentTexture].Width, Textures[currentTexture].Height);
+            }
+            else
+            {
+                return new Rectangle(0, 0, Textures[Textures.Count - currentTexture].Width, Textures[Textures.Count - currentTexture].Height);
+            }
         }
 
         public override void Reset()
         {
             HasRunThrough = false;
-            currentTexture = 0;
+            currentTexture = 1;
         }
 
         public override Texture2D Update(EUpdateArgs updateArgs)
@@ -64,10 +69,14 @@ namespace EdgeLibrary.Basic
 
                 if (elapsedSinceLastSwitch >= TextureTimes[currentTexture])
                 {
-                    if (currentTexture >= Textures.Count - 1)
+                    if (currentTexture >= Textures.Count)
                     {
-                        currentTexture = 0;
+                        currentTexture = 1;
                         HasRunThrough = true;
+                        if (FinishedAnimation != null)
+                        {
+                            FinishedAnimation(this);
+                        }
                     }
                     else
                     {
@@ -77,7 +86,14 @@ namespace EdgeLibrary.Basic
                     elapsedSinceLastSwitch = 0;
                 }
 
-                return Textures[currentTexture];
+                if (!RunBackwards)
+                {
+                    return Textures[currentTexture];
+                }
+                else
+                {
+                    return Textures[Textures.Count - currentTexture];
+                }
             }
             else
             {

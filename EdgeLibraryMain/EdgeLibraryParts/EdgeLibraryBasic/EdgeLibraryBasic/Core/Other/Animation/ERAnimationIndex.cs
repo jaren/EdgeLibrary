@@ -20,6 +20,7 @@ namespace EdgeLibrary.Basic
     {
         public Texture2D SpriteSheet;
         public XDocument TexturePositions;
+        public event AnimationEvent FinishedAnimation;
 
         public int StartTexture { get { return _startTexture; } set { _startTexture = value; recalculateStartFinishTextures(); } }
         public int FinishTexture { get { return _finishTexture; } set { _finishTexture = value; recalculateStartFinishTextures(); } }
@@ -34,7 +35,9 @@ namespace EdgeLibrary.Basic
             string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, xmlPath);
             TexturePositions = XDocument.Load(completePath);
             SpriteSheetData = spriteSheet;
-            _finishTexture = TexturePositions.Root.Elements().Count();
+            currentTexture = 1;
+            _startTexture = 1;
+            _finishTexture = TexturePositions.Root.Elements().Count() - 1;
         }
 
         public override void Reset()
@@ -56,9 +59,9 @@ namespace EdgeLibrary.Basic
 
         private void recalculateStartFinishTextures()
         {
-            if (_finishTexture > TexturePositions.Root.Elements().Count())
+            if (_finishTexture > TexturePositions.Root.Elements().Count() - 1)
             {
-                _finishTexture = TexturePositions.Root.Elements().Count();
+                _finishTexture = TexturePositions.Root.Elements().Count() - 1;
             }
 
             if (_startTexture < 1)
@@ -76,7 +79,14 @@ namespace EdgeLibrary.Basic
 
         public override Rectangle getTextureBox()
         {
-            return getRectangleOfXmlElement(currentTexture);
+            if (!RunBackwards)
+            {
+                return getRectangleOfXmlElement(currentTexture);
+            }
+            else
+            {
+                return getRectangleOfXmlElement(_finishTexture - currentTexture);
+            }
         }
 
         private Rectangle getRectangleOfXmlElement(int index)
@@ -97,6 +107,10 @@ namespace EdgeLibrary.Basic
                     {
                         currentTexture = _startTexture;
                         HasRunThrough = true;
+                        if (FinishedAnimation != null)
+                        {
+                            FinishedAnimation(this);
+                        }
                     }
                     else
                     {
