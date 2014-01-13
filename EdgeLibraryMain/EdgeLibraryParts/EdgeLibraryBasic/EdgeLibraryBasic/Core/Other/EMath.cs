@@ -24,12 +24,13 @@ namespace EdgeLibrary.Basic
             Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new Color[1]{Color.White});
             Blank = new Texture2D(graphicsDevice, 1, 1);
-            Blank.SetData(new Color[1]{new Color(0, 0, 0, 0)});
+            Blank.SetData(new Color[1]{Color.Transparent});
         }
 
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
 
+        [Obsolete("This method uses reflection; please use a static property on the Color class instead.")]
         public static Color ColorFromString(string colorString)
         {
             var typeProperty = typeof(Color).GetProperty(colorString);
