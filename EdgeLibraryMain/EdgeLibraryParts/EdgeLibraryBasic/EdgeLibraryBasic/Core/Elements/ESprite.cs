@@ -86,6 +86,11 @@ namespace EdgeLibrary.Basic
             ActionsToRemove = new List<int>();
         }
 
+        public ESprite(Texture2D eTexture, Vector2 ePosition) : this("", ePosition)
+        {
+            Texture = eTexture;
+        }
+
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(eTextureName, ePosition)
         {
             _width = eWidth;
@@ -102,7 +107,10 @@ namespace EdgeLibrary.Basic
 
         public override void FillTexture(EData eData)
         {
-            Texture = eData.getTexture(Data);
+            if (Data != null)
+            {
+                Texture = eData.getTexture(Data);
+            }
             if (_width == 0)
             {
                 _width = Texture.Width;

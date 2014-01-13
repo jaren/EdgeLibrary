@@ -96,7 +96,7 @@ namespace EdgeLibrary_Test
 
             edgeGame.LoadTexture("Particle Textures/fire", "fire");
 
-            edgeGame.LoadTexture("sheet", "sheet");
+            edgeGame.LoadTexture("SpaceSheet", "sheet");
         }
 
         //Sets up the game window
@@ -119,12 +119,9 @@ namespace EdgeLibrary_Test
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            ERAnimationIndex alienBomb = new ERAnimationIndex(100, "sheet", "sheet.xml");
-            alienBomb.ShouldRepeat = true;
-            player = new ESpriteA(alienBomb, "sheet", new Vector2(100, 100));
-            player.DrawType = ESpriteDrawType.Scaled;
-            player.ScaledDrawScale = 1;
-            mainLayer.addElement(player);
+            Dictionary<string, Texture2D> textures = EMath.SplitSpritesheet("sheet", "SpaceSheet.xml");
+            ESprite sprite = new ESprite(textures["meteorBig.png"], new Vector2(200, 200));
+            mainLayer.addElement(sprite);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
             mouseEmitter.ShouldEmit = true;

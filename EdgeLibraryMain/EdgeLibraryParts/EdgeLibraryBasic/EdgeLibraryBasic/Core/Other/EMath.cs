@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace EdgeLibrary.Basic
 {
@@ -21,9 +22,12 @@ namespace EdgeLibrary.Basic
         public static EdgeGameDrawTypes DrawType;
         public static Color ClearColor;
         public static Color DebugDrawColor;
+        public static EdgeGame mainGame;
+        private static GraphicsDevice graphicsDevice;
 
-        public static void Init(GraphicsDevice graphicsDevice)
+        public static void Init(GraphicsDevice graphics_Device)
         {
+            graphicsDevice = graphics_Device;
             Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new Color[1] { Color.White });
             Blank = new Texture2D(graphicsDevice, 1, 1);
@@ -61,13 +65,39 @@ namespace EdgeLibrary.Basic
             return (float)Math.Sqrt(distX * distX + distY * distY);
         }
 
-        public static Color[] GetInnerTexture(Color[] colorData, Rectangle rectangle)
+        public static Texture2D GetInnerTexture(Texture2D texture, Rectangle rectangle)
         {
+            Texture2D returnTexture = new Texture2D(graphicsDevice, rectangle.Width, rectangle.Height);
+            Color[] colorData = new Color[texture.Width*texture.Height];
+            texture.GetData<Color>(colorData);
+
             Color[] color = new Color[rectangle.Width * rectangle.Height];
             for (int x = 0; x < rectangle.Width; x++)
                 for (int y = 0; y < rectangle.Height; y++)
                     color[x + y * rectangle.Width] = colorData[x + rectangle.X + (y + rectangle.Y)];
-            return color;
+
+            returnTexture.SetData<Color>(color);
+            return returnTexture;
+        }
+
+        public static Dictionary<string, Texture2D> SplitSpritesheet(string spriteSheetTexture, string XMLPath)
+        {
+            return SplitSpritesheet(mainGame.GetTexture(spriteSheetTexture), XMLPath);
+        }
+
+        public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
+        {
+            Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
+            string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, XMLPath);
+            XDocument textureData = XDocument.Load(completePath);
+
+            foreach (XElement element in textureData.Root.Elements())
+            {
+                Rectangle rectangle = new Rectangle(int.Parse(element.Attribute("x").Value), int.Parse(element.Attribute("y").Value), int.Parse(element.Attribute("width").Value), int.Parse(element.Attribute("height").Value));
+                textures.Add(element.Attribute("name").Value, GetInnerTexture(spriteSheetTexture, rectangle));
+            }
+
+            return textures;
         }
 
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)

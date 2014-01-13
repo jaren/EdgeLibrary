@@ -64,6 +64,7 @@ namespace EdgeLibrary.Basic
         public void Init()
         {
             EMath.Init(graphicsDevice);
+            EMath.mainGame = this;
             EMath.ContentRootDirectory = Content.RootDirectory;
         }
 
