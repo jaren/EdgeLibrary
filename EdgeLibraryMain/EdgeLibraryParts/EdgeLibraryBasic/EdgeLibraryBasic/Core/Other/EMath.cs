@@ -22,9 +22,9 @@ namespace EdgeLibrary.Basic
         public static void Init(GraphicsDevice graphicsDevice)
         {
             Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            Pixel.SetData(new Color[1]{Color.White});
+            Pixel.SetData(new Color[1] { Color.White });
             Blank = new Texture2D(graphicsDevice, 1, 1);
-            Blank.SetData(new Color[1]{Color.Transparent});
+            Blank.SetData(new Color[1] { Color.Transparent });
         }
 
         public static float circlePointStep = 8;
@@ -48,7 +48,7 @@ namespace EdgeLibrary.Basic
         {
             float distX = point2.X - point.X;
             float distY = point.Y - point2.Y;
-            return (float)Math.Sqrt(distX*distX + distY*distY);
+            return (float)Math.Sqrt(distX * distX + distY * distY);
         }
 
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
@@ -112,8 +112,8 @@ namespace EdgeLibrary.Basic
             spriteBatch.Draw(Pixel, rectangle, color);
         }
 
-        public static double RadiansToDegrees(float radians) { return radians * (180 / Math.PI); }
-        public static double DegreesToRadians(float degrees) { return degrees / (180 / Math.PI); }
+        //public static double RadiansToDegrees(float radians) { return radians * (180 / Math.PI); }
+        //public static double DegreesToRadians(float degrees) { return degrees / (180 / Math.PI); }
 
     }
 }
