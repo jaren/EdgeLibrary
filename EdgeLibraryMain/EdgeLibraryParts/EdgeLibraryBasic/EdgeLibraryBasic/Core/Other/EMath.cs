@@ -61,6 +61,15 @@ namespace EdgeLibrary.Basic
             return (float)Math.Sqrt(distX * distX + distY * distY);
         }
 
+        public static Color[] GetInnerTexture(Color[] colorData, Rectangle rectangle)
+        {
+            Color[] color = new Color[rectangle.Width * rectangle.Height];
+            for (int x = 0; x < rectangle.Width; x++)
+                for (int y = 0; y < rectangle.Height; y++)
+                    color[x + y * rectangle.Width] = colorData[x + rectangle.X + (y + rectangle.Y)];
+            return color;
+        }
+
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
         {
             List<Vector2> points = new List<Vector2>();
