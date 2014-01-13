@@ -36,7 +36,11 @@ namespace EdgeLibrary.Basic
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
 
-        [Obsolete("This method uses reflection; please use a static property on the Color class instead.")]
+        /// <summary>
+        /// Retrieves a color by its name.
+        /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
+        /// If the color is known at compile time, a static property on the <see cref="Color"/> class should be used instead.
+        /// </summary>
         public static Color ColorFromString(string colorString)
         {
             var typeProperty = typeof(Color).GetProperty(colorString);
@@ -117,9 +121,5 @@ namespace EdgeLibrary.Basic
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
             spriteBatch.Draw(Pixel, rectangle, color);
         }
-
-        //public static double RadiansToDegrees(float radians) { return radians * (180 / Math.PI); }
-        //public static double DegreesToRadians(float degrees) { return degrees / (180 / Math.PI); }
-
     }
 }
