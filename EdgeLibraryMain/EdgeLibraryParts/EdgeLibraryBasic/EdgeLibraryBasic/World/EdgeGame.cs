@@ -45,8 +45,6 @@ namespace EdgeLibrary.Basic
 
         public delegate void EdgeGameUpdateEvent(EUpdateArgs e);
         public event EdgeGameUpdateEvent UpdateEvent;
-
-        private ESettingsHandler settingsLoader;
         #endregion
 
         public EdgeGame(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
@@ -74,12 +72,6 @@ namespace EdgeLibrary.Basic
         {
             EMath.Init(this);
             ContentRootDirectory = Content.RootDirectory;
-        }
-
-        public void InitWithXML(string xmlPath)
-        {
-            settingsLoader = new ESettingsHandler(xmlPath);
-            Init();
         }
 
         public void setWindowWidth(int width) { graphics.PreferredBackBufferWidth = width; graphics.ApplyChanges(); }
@@ -168,11 +160,6 @@ namespace EdgeLibrary.Basic
             {
                 scene.RemoveObject(eObject);
             }
-        }
-
-        public string getSetting(string settingName)
-        {
-            return settingsLoader.getSetting(settingName);
         }
 
         public void playSong(string songName)

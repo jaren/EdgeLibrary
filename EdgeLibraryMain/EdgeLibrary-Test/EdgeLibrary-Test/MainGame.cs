@@ -28,7 +28,7 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// MUSIC AND TEXTURES:
     /// - cynicmusic.com/pixelsphere.org
-    /// - MoikMellah at OpenGameArt.org
+    /// - MoikMellah, axtoncrolley at OpenGameArt.org
     /// - Kenney at kenney.nl
     /// - http://millionthvector.blogspot.de/
     /// </summary>
@@ -147,6 +147,7 @@ namespace EdgeLibrary_Test
             EScene gameScene = new EScene("gameScene");
 
             edgeGame.addScene(gameScene);
+            edgeGame.playSong("battleSong");
         }
 
         private void SpriteCollisionStart(ESpriteCollisionArgs e)

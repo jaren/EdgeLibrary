@@ -141,11 +141,11 @@ namespace EdgeLibrary.Menu
             {
                 if (On)
                 {
-                    spriteBatch.Draw(ButtonOn.Texture, ButtonOn.BoundingBox, null, ButtonOn.Color, MathHelper.ToDegrees(ButtonOn.Rotation), Vector2.Zero, SpriteEffects.None, 0);
+                    spriteBatch.Draw(ButtonOn.Texture, ButtonOn.BoundingBox, null, ButtonOn.Color, MathHelper.ToRadians(ButtonOn.Rotation), Vector2.Zero, SpriteEffects.None, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(ButtonOff.Texture, ButtonOff.BoundingBox, null, ButtonOff.Color, MathHelper.ToDegrees(ButtonOff.Rotation), Vector2.Zero, SpriteEffects.None, 0);
+                    spriteBatch.Draw(ButtonOff.Texture, ButtonOff.BoundingBox, null, ButtonOff.Color, MathHelper.ToRadians(ButtonOff.Rotation), Vector2.Zero, SpriteEffects.None, 0);
                 }
             }
         }
