@@ -86,11 +86,6 @@ namespace EdgeLibrary.Basic
             ActionsToRemove = new List<int>();
         }
 
-        public ESprite(Texture2D eTexture, Vector2 ePosition) : this("", ePosition)
-        {
-            Texture = eTexture;
-        }
-
         public ESprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(eTextureName, ePosition)
         {
             _width = eWidth;

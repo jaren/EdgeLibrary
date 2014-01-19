@@ -22,10 +22,15 @@ namespace EdgeLibrary.Basic
     public class EdgeGame
     {
         #region VARIABLES
-        private ContentManager Content;
-        private SpriteBatch spriteBatch;
-        private GraphicsDeviceManager graphics;
-        private GraphicsDevice graphicsDevice;
+        public ContentManager Content;
+        public SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public GraphicsDevice graphicsDevice;
+
+        public static string ContentRootDirectory;
+        public static EdgeGameDrawTypes DrawType;
+        public static Color ClearColor;
+        public static Color DebugDrawColor;
 
         private List<EScene> scenes;
         private int selectedSceneIndex;
@@ -58,14 +63,17 @@ namespace EdgeLibrary.Basic
             edgeData = new EData();
 
             selectedSceneIndex = 0;
+
+            ClearColor = Color.Black;
+            DebugDrawColor = Color.White;
+            DrawType = EdgeGameDrawTypes.Normal;
         }
 
         #region INIT
         public void Init()
         {
-            EMath.Init(graphicsDevice);
-            EMath.mainGame = this;
-            EMath.ContentRootDirectory = Content.RootDirectory;
+            EMath.Init(this);
+            ContentRootDirectory = Content.RootDirectory;
         }
 
         public void InitWithXML(string xmlPath)
@@ -85,6 +93,16 @@ namespace EdgeLibrary.Basic
         public void LoadTexture(string texturePath, string textureName)
         {
             edgeData.addTexture(textureName, Content.Load<Texture2D>(texturePath));
+        }
+
+        public void LoadTextureFromSpritesheet(string spritesheetpath, string xmlpath)
+        {
+            Dictionary<string, Texture2D> textures = EMath.SplitSpritesheet(spritesheetpath, xmlpath);
+
+            foreach (KeyValuePair<string, Texture2D> texture in textures)
+            {
+                edgeData.addTexture(texture.Key, texture.Value);
+            }
         }
 
         public void LoadFont(string fontPath, string fontName)
@@ -203,7 +221,7 @@ namespace EdgeLibrary.Basic
         #region DRAW
         public void Draw(GameTime gameTime)
         {
-            graphicsDevice.Clear(EMath.ClearColor);
+            graphicsDevice.Clear(ClearColor);
             spriteBatch.Begin();
             try
             {

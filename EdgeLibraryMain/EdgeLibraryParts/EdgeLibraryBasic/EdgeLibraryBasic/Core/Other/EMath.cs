@@ -18,23 +18,15 @@ namespace EdgeLibrary.Basic
     {
         public static Texture2D Pixel;
         public static Texture2D Blank;
-        public static string ContentRootDirectory;
-        public static EdgeGameDrawTypes DrawType;
-        public static Color ClearColor;
-        public static Color DebugDrawColor;
-        public static EdgeGame mainGame;
-        private static GraphicsDevice graphicsDevice;
+        private static EdgeGame mainGame;
 
-        public static void Init(GraphicsDevice graphics_Device)
+        public static void Init(EdgeGame edgeGame)
         {
-            graphicsDevice = graphics_Device;
-            Pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            mainGame = edgeGame;
+            Pixel = new Texture2D(mainGame.graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new Color[1] { Color.White });
-            Blank = new Texture2D(graphicsDevice, 1, 1);
+            Blank = new Texture2D(mainGame.graphicsDevice, 1, 1);
             Blank.SetData(new Color[1] { Color.Transparent });
-            ClearColor = Color.Black;
-            DebugDrawColor = Color.White;
-            DrawType = EdgeGameDrawTypes.Normal;
         }
 
         public static float circlePointStep = 8;
@@ -67,14 +59,18 @@ namespace EdgeLibrary.Basic
 
         public static Texture2D GetInnerTexture(Texture2D texture, Rectangle rectangle)
         {
-            Texture2D returnTexture = new Texture2D(graphicsDevice, rectangle.Width, rectangle.Height);
+            Texture2D returnTexture = new Texture2D(mainGame.graphicsDevice, rectangle.Width, rectangle.Height);
             Color[] colorData = new Color[texture.Width*texture.Height];
             texture.GetData<Color>(colorData);
 
             Color[] color = new Color[rectangle.Width * rectangle.Height];
-            for (int x = 0; x < rectangle.Width; x++)
-                for (int y = 0; y < rectangle.Height; y++)
-                    color[x + y * rectangle.Width] = colorData[x + rectangle.X + (y + rectangle.Y)];
+            for (int y = 0; y < rectangle.Height; y++)
+            {
+                for (int x = 0; x < rectangle.Width; x++)
+                {
+                    color[x + y * rectangle.Width] = colorData[x + rectangle.X + (y + rectangle.Y)*texture.Width];
+                }
+            }
 
             returnTexture.SetData<Color>(color);
             return returnTexture;
@@ -88,7 +84,7 @@ namespace EdgeLibrary.Basic
         public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
         {
             Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
-            string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, XMLPath);
+            string completePath = string.Format("{0}\\{1}", EdgeGame.ContentRootDirectory, XMLPath);
             XDocument textureData = XDocument.Load(completePath);
 
             foreach (XElement element in textureData.Root.Elements())

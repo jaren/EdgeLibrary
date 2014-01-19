@@ -1,16 +1,16 @@
-<TextureAtlas imagePath="sheet.png">
-	<SubTexture name="enemyShip.png" x="138" y="197" width="98" height="50"/>
-	<SubTexture name="enemyUFO.png" x="239" y="77" width="91" height="91"/>
-	<SubTexture name="laserGreen.png" x="201" y="77" width="9" height="33"/>
-	<SubTexture name="laserGreenShot.png" x="312" y="0" width="56" height="54"/>
-	<SubTexture name="laserRed.png" x="190" y="77" width="9" height="33"/>
-	<SubTexture name="laserRedShot.png" x="254" y="0" width="56" height="54"/>
-	<SubTexture name="life.png" x="153" y="77" width="35" height="27"/>
-	<SubTexture name="meteorBig.png" x="0" y="120" width="136" height="111"/>
-	<SubTexture name="meteorSmall.png" x="332" y="56" width="44" height="42"/>
-	<SubTexture name="player.png" x="138" y="120" width="99" height="75"/>
-	<SubTexture name="playerDamaged.png" x="153" y="0" width="99" height="75"/>
-	<SubTexture name="playerLeft.png" x="331" y="170" width="90" height="77"/>
-	<SubTexture name="playerRight.png" x="239" y="170" width="90" height="77"/>
-	<SubTexture name="shield.png" x="0" y="0" width="151" height="118"/>
+<TextureAtlas imagePath="sheet">
+	<SubTexture name="enemyShip" x="138" y="197" width="98" height="50"/>
+	<SubTexture name="enemyUFO" x="239" y="77" width="91" height="91"/>
+	<SubTexture name="laserGreen" x="201" y="77" width="9" height="33"/>
+	<SubTexture name="laserGreenShot" x="312" y="0" width="56" height="54"/>
+	<SubTexture name="laserRed" x="190" y="77" width="9" height="33"/>
+	<SubTexture name="laserRedShot" x="254" y="0" width="56" height="54"/>
+	<SubTexture name="life" x="153" y="77" width="35" height="27"/>
+	<SubTexture name="meteorBig" x="0" y="120" width="136" height="111"/>
+	<SubTexture name="meteorSmall" x="332" y="56" width="44" height="42"/>
+	<SubTexture name="player" x="138" y="120" width="99" height="75"/>
+	<SubTexture name="playerDamaged" x="153" y="0" width="99" height="75"/>
+	<SubTexture name="playerLeft" x="331" y="170" width="90" height="77"/>
+	<SubTexture name="playerRight" x="239" y="170" width="90" height="77"/>
+	<SubTexture name="shield" x="0" y="0" width="151" height="118"/>
 </TextureAtlas>

@@ -51,7 +51,7 @@ namespace EdgeLibrary.Basic
 
                 foreach (EElement element in eelements)
                 {
-                    switch (EMath.DrawType)
+                    switch (EdgeGame.DrawType)
                     {
                         case EdgeGameDrawTypes.Normal:
                             element.Draw(spriteBatch, gameTime);
@@ -60,14 +60,14 @@ namespace EdgeLibrary.Basic
                             //Debug Draw Here
                             if (element.SupportsCollision && element.CollisionBody != null)
                             {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EMath.DebugDrawColor);
+                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EdgeGame.DebugDrawColor);
                             }
                             break;
                         case EdgeGameDrawTypes.Hybrid:
                             element.Draw(spriteBatch, gameTime);
                             if (element.SupportsCollision && element.CollisionBody != null)
                             {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EMath.DebugDrawColor);
+                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EdgeGame.DebugDrawColor);
                             }
                             break;
                     }

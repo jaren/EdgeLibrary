@@ -29,6 +29,7 @@ namespace EdgeLibrary_Test
     /// MUSIC AND TEXTURES:
     /// - cynicmusic.com/pixelsphere.org
     /// - MoikMellah at OpenGameArt.org
+    /// - Kenney at kenney.nl
     /// - http://millionthvector.blogspot.de/
     /// </summary>
     /// 
@@ -102,7 +103,7 @@ namespace EdgeLibrary_Test
         //Sets up the game window
         private void initializeGameWindow()
         {
-            EMath.DrawType = EdgeGameDrawTypes.Hybrid;
+            EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
             //edgeGame.playSong("battleSong");
             edgeGame.setWindowHeight(700);
             edgeGame.setWindowWidth(700);
@@ -119,8 +120,9 @@ namespace EdgeLibrary_Test
 
             edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            Dictionary<string, Texture2D> textures = EMath.SplitSpritesheet("sheet", "SpaceSheet.xml");
-            ESprite sprite = new ESprite(textures["meteorBig.png"], new Vector2(200, 200));
+            edgeGame.LoadTextureFromSpritesheet("sheet", "SpaceSheet.xml");
+
+            ESprite sprite = new ESprite("enemyShip", new Vector2(150, 150));
             mainLayer.addElement(sprite);
 
             EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));

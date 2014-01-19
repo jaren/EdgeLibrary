@@ -32,7 +32,7 @@ namespace EdgeLibrary.Basic
         public ERAnimationIndex(int loopRate, string spriteSheet, string xmlPath) : base()
         {
             LoopRate = loopRate;
-            string completePath = string.Format("{0}\\{1}", EMath.ContentRootDirectory, xmlPath);
+            string completePath = string.Format("{0}\\{1}", EdgeGame.ContentRootDirectory, xmlPath);
             TexturePositions = XDocument.Load(completePath);
             SpriteSheetData = spriteSheet;
             currentTexture = 1;
