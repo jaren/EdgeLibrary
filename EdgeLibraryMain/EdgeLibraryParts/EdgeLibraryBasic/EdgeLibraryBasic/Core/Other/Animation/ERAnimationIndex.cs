@@ -46,11 +46,11 @@ namespace EdgeLibrary.Basic
             currentTexture = _startTexture;
         }
 
-        public override void FillTexture(EData eData)
+        public override void FillTexture()
         {
             try
             {
-                SpriteSheet = eData.getTexture(SpriteSheetData);
+                SpriteSheet = EData.getTexture(SpriteSheetData);
                 recalculateStartFinishTextures();
             }
             catch

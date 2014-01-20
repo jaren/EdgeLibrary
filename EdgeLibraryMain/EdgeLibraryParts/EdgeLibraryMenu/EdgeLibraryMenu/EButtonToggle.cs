@@ -51,8 +51,8 @@ namespace EdgeLibrary.Menu
 
         public override void OnAddToLayer(ELayer layer)
         {
-            ButtonOn.Texture = layer.edgeData.getTexture(ButtonOn.Data);
-            ButtonOff.Texture = layer.edgeData.getTexture(ButtonOff.Data);
+            ButtonOn.Texture = EData.getTexture(ButtonOn.Data);
+            ButtonOff.Texture = EData.getTexture(ButtonOff.Data);
         }
 
         public override void updateElement(EUpdateArgs updateArgs)

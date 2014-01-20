@@ -43,9 +43,9 @@ namespace EdgeLibrary.Basic
             Color = eColor;
         }
 
-        public override void FillTexture(EData eData)
+        public override void FillTexture()
         {
-            Font = eData.getFont(Data);
+            Font = EData.getFont(Data);
         }
 
         public void runAction(EAction action)

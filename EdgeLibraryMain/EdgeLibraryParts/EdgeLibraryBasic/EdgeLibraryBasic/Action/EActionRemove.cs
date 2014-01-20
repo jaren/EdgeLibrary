@@ -8,35 +8,30 @@ namespace EdgeLibrary.Basic
     //An action to remove a sprite from the game
     public class EActionRemove : EAction
     {
-        public EdgeGame game;
         public EElement element;
 
-        public EActionRemove(EdgeGame mainGame, EElement elementToRemove) : base()
+        public EActionRemove(EElement elementToRemove) : base()
         {
             RequiresUpdate = false;
-            game = mainGame;
             element = elementToRemove;
         }
 
         public override void PerformAction(ESprite targetSprite)
         {
-            game.RemoveElement(element);
+            EdgeGame.RemoveElement(element);
         }
     }
 
     public class EActionRemoveSelf : EAction
     {
-        EdgeGame game;
-
-        public EActionRemoveSelf(EdgeGame mainGame) : base()
+        public EActionRemoveSelf() : base()
         {
-            game = mainGame;
             RequiresUpdate = false;
         }
 
         public override void PerformAction(ESprite targetSprite)
         {
-            game.RemoveElement(targetSprite);
+            EdgeGame.RemoveElement(targetSprite);
         }
     }
 }

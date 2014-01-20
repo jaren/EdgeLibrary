@@ -39,8 +39,6 @@ namespace EdgeLibrary_Test
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        EdgeGame edgeGame;
-
         //This region is not likely to be modified
         #region NOT-USED
         public MainGame()
@@ -52,25 +50,24 @@ namespace EdgeLibrary_Test
         protected override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            edgeGame = new EdgeGame(Content, spriteBatch, graphics, GraphicsDevice);
-            edgeGame.Init();
+            EdgeGame.Init(Content, spriteBatch, graphics, GraphicsDevice);
 
             initializeGame();
 
             base.Initialize();
         }
-        protected override void LoadContent() { edgeGame.LoadContent(); }
-        protected override void UnloadContent() { edgeGame.UnloadContent(); }
+        protected override void LoadContent() { EdgeGame.LoadContent(); }
+        protected override void UnloadContent() { EdgeGame.UnloadContent(); }
         //Updates the game
         protected override void Update(GameTime gameTime)
         {
-            edgeGame.Update(gameTime);
+            EdgeGame.Update(gameTime);
             base.Update(gameTime);
         }
         //Draws the game
         protected override void Draw(GameTime gameTime)
         {
-            edgeGame.Draw(gameTime);
+            EdgeGame.Draw(gameTime);
             base.Draw(gameTime);
         }
         #endregion
@@ -87,22 +84,22 @@ namespace EdgeLibrary_Test
         //This is the "load content" function
         private void loadResources()
         {
-            edgeGame.LoadSong("battleThemeA", "battleSong");
+            EdgeGame.LoadSong("battleThemeA", "battleSong");
 
-            edgeGame.LoadFont("font", "font");
+            EdgeGame.LoadFont("font", "font");
 
-            edgeGame.LoadTexture("Particle Textures/fire", "fire");
+            EdgeGame.LoadTexture("Particle Textures/fire", "fire");
 
-            edgeGame.LoadTexture("SpaceSheet", "sheet");
+            EdgeGame.LoadTexture("SpaceSheet", "sheet");
         }
 
         //Sets up the game window
         private void initializeGameWindow()
         {
             EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
-            //edgeGame.playSong("battleSong");
-            edgeGame.setWindowHeight(700);
-            edgeGame.setWindowWidth(700);
+            //EdgeGame.playSong("battleSong");
+            EdgeGame.setWindowHeight(700);
+            EdgeGame.setWindowWidth(700);
             IsMouseVisible = true;
         }
 
@@ -111,38 +108,20 @@ namespace EdgeLibrary_Test
         {
             EScene menuScene = new EScene("menuScene");
             ELayer mainLayer = new ELayer("main");
-            edgeGame.addScene(menuScene);
+            EdgeGame.addScene(menuScene);
             menuScene.AddLayer(mainLayer);
 
-            edgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
+            EdgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
 
-            edgeGame.LoadTextureFromSpritesheet("sheet", "SpaceSheet.xml");
-
-            ESprite sprite = new ESprite("enemyShip", new Vector2(150, 150));
-            mainLayer.addElement(sprite);
-
-            EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
-            mouseEmitter.ShouldEmit = true;
-            mouseEmitter.DrawLayer = 3;
-            mouseEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
-            mouseEmitter.ColorVariance = new ERangeArray(new ERange(60, 80), new ERange(30, 40), new ERange(0), new ERange(255));
-            mouseEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 4), ERange.RangeWithDiffer(0, 4));
-            mouseEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(100, 25), ERange.RangeWithDiffer(100, 25));
-            mouseEmitter.GrowSpeed = 1f;
-            mouseEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
-            mouseEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
-            mouseEmitter.LifeVariance = new ERange(500);
-            mouseEmitter.EmitWait = 0;
-            mouseEmitter.ClampToMouse();
-            mainLayer.addElement(mouseEmitter);
+            EdgeGame.LoadTextureFromSpritesheet("sheet", "SpaceSheet.xml");
         }
 
         private void initializeGameScene()
         {
             EScene gameScene = new EScene("gameScene");
 
-            edgeGame.addScene(gameScene);
-            edgeGame.playSong("battleSong");
+            EdgeGame.addScene(gameScene);
+            EdgeGame.playSong("battleSong");
         }
 
         private void EdgeGameUpdate(EUpdateArgs e)

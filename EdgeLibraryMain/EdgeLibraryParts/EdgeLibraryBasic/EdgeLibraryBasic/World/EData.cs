@@ -12,14 +12,14 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
-    public class EData
+    public static class EData
     {
-        protected Dictionary<string, Texture2D> textures;
-        protected Dictionary<string, SpriteFont> fonts;
-        protected Dictionary<string, SoundEffect> sounds;
-        protected Dictionary<string, Song> songs;
+        private static Dictionary<string, Texture2D> textures;
+        private static Dictionary<string, SpriteFont> fonts;
+        private static Dictionary<string, SoundEffect> sounds;
+        private static Dictionary<string, Song> songs;
 
-        public EData()
+        public static void Init()
         {
             textures = new Dictionary<string, Texture2D>();
             fonts = new Dictionary<string, SpriteFont>();
@@ -27,37 +27,37 @@ namespace EdgeLibrary.Basic
             songs = new Dictionary<string, Song>();
         }
 
-        public void addTexture(string textureName, Texture2D texture)
+        public static void addTexture(string textureName, Texture2D texture)
         {
             textures.Add(textureName, texture);
         }
 
-        public void addFont(string fontName, SpriteFont font)
+        public static void addFont(string fontName, SpriteFont font)
         {
             fonts.Add(fontName, font);
         }
 
-        public void addSound(string soundName, SoundEffect sound)
+        public static void addSound(string soundName, SoundEffect sound)
         {
             sounds.Add(soundName, sound);
         }
 
-        public void addSong(string songName, Song song)
+        public static void addSong(string songName, Song song)
         {
             songs.Add(songName, song);
         }
 
-        public void playSong(string songName)
+        public static void playSong(string songName)
         {
             MediaPlayer.Play(getSong(songName));
         }
 
-        public void playSound(string soundName)
+        public static void playSound(string soundName)
         {
             getSound(soundName).Play();
         }
 
-        public Song getSong(string songName)
+        public static Song getSong(string songName)
         {
             foreach (var song in songs)
             {
@@ -69,7 +69,7 @@ namespace EdgeLibrary.Basic
             return null;
         }
 
-        public SoundEffect getSound(string soundName)
+        public static SoundEffect getSound(string soundName)
         {
             foreach (var sound in sounds)
             {
@@ -81,7 +81,7 @@ namespace EdgeLibrary.Basic
             return null;
         }
 
-        public Texture2D getTexture(string textureName)
+        public static Texture2D getTexture(string textureName)
         {
             foreach (var texture in textures)
             {
@@ -92,7 +92,7 @@ namespace EdgeLibrary.Basic
             }
             return null;
         }
-        public SpriteFont getFont(string fontName)
+        public static SpriteFont getFont(string fontName)
         {
             foreach (var font in fonts)
             {

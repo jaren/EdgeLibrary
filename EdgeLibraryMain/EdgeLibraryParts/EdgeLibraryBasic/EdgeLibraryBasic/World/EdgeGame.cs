@@ -19,35 +19,33 @@ namespace EdgeLibrary.Basic
         Hybrid
     }
 
-    public class EdgeGame
+    public static class EdgeGame
     {
         #region VARIABLES
-        public ContentManager Content;
-        public SpriteBatch spriteBatch;
-        public GraphicsDeviceManager graphics;
-        public GraphicsDevice graphicsDevice;
+        public static ContentManager Content;
+        public static SpriteBatch spriteBatch;
+        public static GraphicsDeviceManager graphics;
+        public static GraphicsDevice graphicsDevice;
 
         public static string ContentRootDirectory;
         public static EdgeGameDrawTypes DrawType;
         public static Color ClearColor;
         public static Color DebugDrawColor;
 
-        private List<EScene> scenes;
-        private int selectedSceneIndex;
+        private static List<EScene> scenes;
+        private static int selectedSceneIndex;
 
-        public EData edgeData;
-
-        private MouseState previousMouseState;
+        private static MouseState previousMouseState;
         public delegate void EMouseEvent(EUpdateArgs e);
-        public event EMouseEvent MouseClick;
-        public event EMouseEvent MouseRelease;
-        public event EMouseEvent MouseMove;
+        public static event EMouseEvent MouseClick;
+        public static event EMouseEvent MouseRelease;
+        public static event EMouseEvent MouseMove;
 
         public delegate void EdgeGameUpdateEvent(EUpdateArgs e);
-        public event EdgeGameUpdateEvent UpdateEvent;
+        public static event EdgeGameUpdateEvent UpdateEvent;
         #endregion
 
-        public EdgeGame(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
+        public static void Init(ContentManager eContent, SpriteBatch eSpriteBatch, GraphicsDeviceManager eGraphics, GraphicsDevice eGraphicsDevice)
         {
             Content = eContent;
             spriteBatch = eSpriteBatch;
@@ -58,66 +56,65 @@ namespace EdgeLibrary.Basic
 
             scenes = new List<EScene>();
 
-            edgeData = new EData();
-
             selectedSceneIndex = 0;
 
             ClearColor = Color.Black;
             DebugDrawColor = Color.White;
             DrawType = EdgeGameDrawTypes.Normal;
-        }
 
-        #region INIT
-        public void Init()
-        {
-            EMath.Init(this);
+            EMath.Init();
+            EData.Init();
             ContentRootDirectory = Content.RootDirectory;
         }
 
-        public void setWindowWidth(int width) { graphics.PreferredBackBufferWidth = width; graphics.ApplyChanges(); }
-        public void setWindowHeight(int height) { graphics.PreferredBackBufferHeight = height; graphics.ApplyChanges(); }
-        #endregion
+        public static void setWindowWidth(int width) { graphics.PreferredBackBufferWidth = width; graphics.ApplyChanges(); }
+        public static void setWindowHeight(int height) { graphics.PreferredBackBufferHeight = height; graphics.ApplyChanges(); }
+
+        public static ELayer GetLayerFromObject(EObject eobject)
+        {
+            return getScene(eobject.SceneID).getLayer(eobject.LayerID);
+        }
 
         #region LOAD
         //Currently unused
-        public void LoadContent() { }
+        public static void LoadContent() { }
 
-        public void LoadTexture(string texturePath, string textureName)
+        public static void LoadTexture(string texturePath, string textureName)
         {
-            edgeData.addTexture(textureName, Content.Load<Texture2D>(texturePath));
+            EData.addTexture(textureName, Content.Load<Texture2D>(texturePath));
         }
 
-        public void LoadTextureFromSpritesheet(string spritesheetpath, string xmlpath)
+        public static void LoadTextureFromSpritesheet(string spritesheetpath, string xmlpath)
         {
             Dictionary<string, Texture2D> textures = EMath.SplitSpritesheet(spritesheetpath, xmlpath);
 
             foreach (KeyValuePair<string, Texture2D> texture in textures)
             {
-                edgeData.addTexture(texture.Key, texture.Value);
+                EData.addTexture(texture.Key, texture.Value);
             }
         }
 
-        public void LoadFont(string fontPath, string fontName)
+        public static void LoadFont(string fontPath, string fontName)
         {
-            edgeData.addFont(fontName, Content.Load<SpriteFont>(fontPath));
+            EData.addFont(fontName, Content.Load<SpriteFont>(fontPath));
         }
 
-        public void LoadSong(string songPath, string songName)
+        public static void LoadSong(string songPath, string songName)
         {
-            edgeData.addSong(songName, Content.Load<Song>(songPath));
+            EData.addSong(songName, Content.Load<Song>(songPath));
         }
 
-        public void LoadSound(string soundPath, string soundName)
+        public static void LoadSound(string soundPath, string soundName)
         {
-            edgeData.addSound(soundName, Content.Load<SoundEffect>(soundPath));
+            EData.addSound(soundName, Content.Load<SoundEffect>(soundPath));
         }
 
         //Currently Unused
-        public void UnloadContent() { }
+        public static void UnloadContent() { }
         #endregion
 
         #region UPDATE
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
             EUpdateArgs updateArgs = new EUpdateArgs(gameTime, Keyboard.GetState(), Mouse.GetState());
 
@@ -140,7 +137,7 @@ namespace EdgeLibrary.Basic
         }
 
         //NOTE: For these, the element is not actually set to "null". You must do it manually.
-        public void RemoveElement(EElement eElement)
+        public static void RemoveElement(EElement eElement)
         {
             foreach (EScene scene in scenes)
             {
@@ -148,13 +145,13 @@ namespace EdgeLibrary.Basic
             }
         }
 
-        public Texture2D GetTexture(string texture)
+        public static Texture2D GetTexture(string texture)
         {
-            return edgeData.getTexture(texture);
+            return EData.getTexture(texture);
         }
 
         //NOTE: For these, the element is not actually set to "null". You must do it manually.
-        public void RemoveObject(EObject eObject)
+        public static void RemoveObject(EObject eObject)
         {
             foreach (EScene scene in scenes)
             {
@@ -162,24 +159,22 @@ namespace EdgeLibrary.Basic
             }
         }
 
-        public void playSong(string songName)
+        public static void playSong(string songName)
         {
-            edgeData.playSong(songName);
+            EData.playSong(songName);
         }
 
-        public void playSound(string soundName)
+        public static void playSound(string soundName)
         {
-            edgeData.playSound(soundName);
+            EData.playSound(soundName);
         }
 
-        public void addScene(EScene scene)
+        public static void addScene(EScene scene)
         {
-            scene.setEData(edgeData);
-            scene.mainGame = this;
             scenes.Add(scene);
         }
 
-        public bool switchScene(string sceneName)
+        public static bool switchScene(string sceneName)
         {
             for (int i = 0; i < scenes.Count; i++)
             {
@@ -192,7 +187,7 @@ namespace EdgeLibrary.Basic
             return false;
         }
 
-        public EScene getScene(string sceneName)
+        public static EScene getScene(string sceneName)
         {
             foreach (EScene scene in scenes)
             {
@@ -206,7 +201,7 @@ namespace EdgeLibrary.Basic
         #endregion
 
         #region DRAW
-        public void Draw(GameTime gameTime)
+        public static void Draw(GameTime gameTime)
         {
             graphicsDevice.Clear(ClearColor);
             spriteBatch.Begin();

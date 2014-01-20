@@ -34,7 +34,7 @@ namespace EdgeLibrary.Basic
         {
             for (int i = 0; i < textures.Count; i++)
             {
-                TextureData.Add(textures[i]);
+                TexturEData.Add(textures[i]);
                 TextureTimes.Add(loopRate);
             }
         }

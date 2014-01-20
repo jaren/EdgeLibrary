@@ -19,5 +19,7 @@ namespace EdgeLibrary.Basic
     public class EObject
     {
         public virtual string ID { get; set;}
+        public string SceneID { get; set; }
+        public string LayerID { get; set; }
     }
 }

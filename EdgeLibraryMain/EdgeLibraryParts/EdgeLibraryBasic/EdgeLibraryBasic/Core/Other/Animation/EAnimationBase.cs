@@ -16,7 +16,7 @@ namespace EdgeLibrary.Basic
     public class EAnimationBase : EObject
     {
         //Unfinished
-        public List<string> TextureData;
+        public List<string> TexturEData;
         public List<Texture2D> Textures;
         public bool RunBackwards;
         public bool ShowBlankOnFinish;
@@ -29,21 +29,21 @@ namespace EdgeLibrary.Basic
 
         public EAnimationBase()
         {
-            TextureData = new List<string>();
+            TexturEData = new List<string>();
             Textures = new List<Texture2D>();
             RunBackwards = false;
             ShowBlankOnFinish = false;
         }
 
-        public virtual void FillTexture(EData eData)
+        public virtual void FillTexture()
         {
             try
             {
                 Textures.Clear();
 
-                foreach (string textureData in TextureData)
+                foreach (string texturEData in TexturEData)
                 {
-                    Textures.Add(eData.getTexture(textureData));
+                    Textures.Add(EData.getTexture(texturEData));
                 }
             }
             catch

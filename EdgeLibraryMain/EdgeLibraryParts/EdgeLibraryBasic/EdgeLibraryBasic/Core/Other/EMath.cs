@@ -18,14 +18,12 @@ namespace EdgeLibrary.Basic
     {
         public static Texture2D Pixel;
         public static Texture2D Blank;
-        private static EdgeGame mainGame;
 
-        public static void Init(EdgeGame edgeGame)
+        public static void Init()
         {
-            mainGame = edgeGame;
-            Pixel = new Texture2D(mainGame.graphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            Pixel = new Texture2D(EdgeGame.graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new Color[1] { Color.White });
-            Blank = new Texture2D(mainGame.graphicsDevice, 1, 1);
+            Blank = new Texture2D(EdgeGame.graphicsDevice, 1, 1);
             Blank.SetData(new Color[1] { Color.Transparent });
         }
 
@@ -59,7 +57,7 @@ namespace EdgeLibrary.Basic
 
         public static Texture2D GetInnerTexture(Texture2D texture, Rectangle rectangle)
         {
-            Texture2D returnTexture = new Texture2D(mainGame.graphicsDevice, rectangle.Width, rectangle.Height);
+            Texture2D returnTexture = new Texture2D(EdgeGame.graphicsDevice, rectangle.Width, rectangle.Height);
             Color[] colorData = new Color[texture.Width*texture.Height];
             texture.GetData<Color>(colorData);
 
@@ -78,16 +76,16 @@ namespace EdgeLibrary.Basic
 
         public static Dictionary<string, Texture2D> SplitSpritesheet(string spriteSheetTexture, string XMLPath)
         {
-            return SplitSpritesheet(mainGame.GetTexture(spriteSheetTexture), XMLPath);
+            return SplitSpritesheet(EdgeGame.GetTexture(spriteSheetTexture), XMLPath);
         }
 
         public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
         {
             Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
             string completePath = string.Format("{0}\\{1}", EdgeGame.ContentRootDirectory, XMLPath);
-            XDocument textureData = XDocument.Load(completePath);
+            XDocument texturEData = XDocument.Load(completePath);
 
-            foreach (XElement element in textureData.Root.Elements())
+            foreach (XElement element in texturEData.Root.Elements())
             {
                 Rectangle rectangle = new Rectangle(int.Parse(element.Attribute("x").Value), int.Parse(element.Attribute("y").Value), int.Parse(element.Attribute("width").Value), int.Parse(element.Attribute("height").Value));
                 textures.Add(element.Attribute("name").Value, GetInnerTexture(spriteSheetTexture, rectangle));

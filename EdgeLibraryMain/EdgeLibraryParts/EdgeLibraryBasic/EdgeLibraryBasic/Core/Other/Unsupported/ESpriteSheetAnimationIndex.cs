@@ -20,7 +20,7 @@ namespace EdgeLibrary.Unsupported
     public class ESAnimationIndex : EAnimationBase
     {
         public Texture2D SpriteSheet;
-        public string textureData;
+        public string texturEData;
         public int TextureWidth;
         public int TextureHeight;
         public int FinishTexture;
@@ -58,14 +58,14 @@ namespace EdgeLibrary.Unsupported
             LoopRate = loopRate;
             TextureWidth = textureWidth;
             TextureHeight = textureHeight;
-            textureData = spriteSheet;
+            texturEData = spriteSheet;
         }
 
-        public override void FillTexture(EData eData)
+        public override void FillTexture()
         {
             try
             {
-                SpriteSheet = eData.getTexture(textureData);
+                SpriteSheet = EData.getTexture(texturEData);
                 TextureColumns = ((SpriteSheet.Width - (SpriteSheet.Width % TextureWidth)) / TextureWidth);
                 TextureRows = ((SpriteSheet.Height - (SpriteSheet.Height % TextureHeight)) / TextureHeight);
 

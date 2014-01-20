@@ -35,7 +35,7 @@ namespace EdgeLibrary.Basic
             DrawLayer = 0;
         }
 
-        public virtual void FillTexture(EData eData) { }
+        public virtual void FillTexture() { }
 
         public void Update(EUpdateArgs updateArgs)
         {

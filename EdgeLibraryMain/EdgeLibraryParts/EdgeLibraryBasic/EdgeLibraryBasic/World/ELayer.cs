@@ -16,7 +16,6 @@ namespace EdgeLibrary.Basic
     {
         protected List<EObject> eobjects;
         protected List<EElement> eelements;
-        public EData edgeData;
 
         public ELayer(string id) : base()
         {
@@ -25,12 +24,6 @@ namespace EdgeLibrary.Basic
             eobjects = new List<EObject>();
             eelements = new List<EElement>();
         }
-
-        public void setEData(EData data)
-        {
-            edgeData = data;
-        }
-
         public override void updateElement(EUpdateArgs updateArgs)
         {
             foreach (EElement element in eelements)
@@ -79,7 +72,9 @@ namespace EdgeLibrary.Basic
         {
             try
             {
-                eElement.FillTexture(edgeData);
+                eElement.FillTexture();
+                eElement.LayerID = ID;
+                eElement.SceneID = SceneID;
             }
             catch
             { }
@@ -108,6 +103,8 @@ namespace EdgeLibrary.Basic
 
         public void addObject(EObject eObject)
         {
+            eObject.LayerID = ID;
+            eObject.SceneID = SceneID;
             eobjects.Add(eObject);
         }
     }

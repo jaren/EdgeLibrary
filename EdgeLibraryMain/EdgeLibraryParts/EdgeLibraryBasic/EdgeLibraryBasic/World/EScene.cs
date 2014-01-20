@@ -14,8 +14,6 @@ namespace EdgeLibrary.Basic
 {
     public class EScene : EElement
     {
-        public EData edgeData;
-        public EdgeGame mainGame;
         public List<ELayer> layers;
 
         public EScene(string id) : base()
@@ -23,11 +21,6 @@ namespace EdgeLibrary.Basic
             ID = id;
 
             layers = new List<ELayer>();
-        }
-
-        public void setEData(EData data)
-        {
-            edgeData = data;
         }
 
         #region UPDATE
@@ -41,7 +34,8 @@ namespace EdgeLibrary.Basic
 
         public void AddLayer(ELayer layer)
         {
-            layer.setEData(edgeData);
+            layer.SceneID = ID;
+            layer.LayerID = layer.ID;
             layers.Add(layer);
         }
 
@@ -59,7 +53,7 @@ namespace EdgeLibrary.Basic
 
         public Texture2D GetTexture(string texture)
         {
-            return edgeData.getTexture(texture);
+            return EData.getTexture(texture);
         }
 
         public void RemoveElement(EElement eElement)

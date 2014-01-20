@@ -100,11 +100,11 @@ namespace EdgeLibrary.Basic
             Scale = eScale;
         }
 
-        public override void FillTexture(EData eData)
+        public override void FillTexture()
         {
             if (Data != null)
             {
-                Texture = eData.getTexture(Data);
+                Texture = EData.getTexture(Data);
             }
             if (_width == 0)
             {

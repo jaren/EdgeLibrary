@@ -72,11 +72,11 @@ namespace EdgeLibrary.Basic
             _height = Animations[selectedAnimation].getTextureBox().Height;
         }
 
-        public override void FillTexture(EData eData)
+        public override void FillTexture()
         {
             foreach(EAnimationBase animationIndex in Animations.Values)
             {
-                animationIndex.FillTexture(eData);
+                animationIndex.FillTexture();
             }
 
             //Doesn't work with spritesheet animations
