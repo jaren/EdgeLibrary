@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EButton.cs" />
+    <Compile Include="EButtonRound.cs" />
     <Compile Include="EButtonToggle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

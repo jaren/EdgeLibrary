@@ -84,8 +84,14 @@ namespace EdgeLibrary.Basic
             EData.addTexture(textureName, Content.Load<Texture2D>(texturePath));
         }
 
+        public static void LoadTexture(string path)
+        {
+            EData.addTexture(EMath.LastPortionOfPath(path), Content.Load<Texture2D>(path));
+        }
+
         public static void LoadTextureFromSpritesheet(string spritesheetpath, string xmlpath)
         {
+            EData.addTexture(spritesheetpath, Content.Load<Texture2D>(spritesheetpath));
             Dictionary<string, Texture2D> textures = EMath.SplitSpritesheet(spritesheetpath, xmlpath);
 
             foreach (KeyValuePair<string, Texture2D> texture in textures)
@@ -99,14 +105,29 @@ namespace EdgeLibrary.Basic
             EData.addFont(fontName, Content.Load<SpriteFont>(fontPath));
         }
 
+        public static void LoadFont(string path)
+        {
+            EData.addFont(EMath.LastPortionOfPath(path), Content.Load<SpriteFont>(path));
+        }
+
         public static void LoadSong(string songPath, string songName)
         {
             EData.addSong(songName, Content.Load<Song>(songPath));
         }
 
+        public static void LoadSong(string path)
+        {
+            EData.addSong(EMath.LastPortionOfPath(path), Content.Load<Song>(path));
+        }
+
         public static void LoadSound(string soundPath, string soundName)
         {
             EData.addSound(soundName, Content.Load<SoundEffect>(soundPath));
+        }
+
+        public static void LoadSound(string path)
+        {
+            EData.addSound(EMath.LastPortionOfPath(path), Content.Load<SoundEffect>(path));
         }
 
         //Currently Unused

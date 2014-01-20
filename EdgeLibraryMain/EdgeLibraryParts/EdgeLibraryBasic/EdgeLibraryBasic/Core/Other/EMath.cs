@@ -48,6 +48,13 @@ namespace EdgeLibrary.Basic
             }
         }
 
+        //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
+        public static string LastPortionOfPath(string path)
+        {
+            string[] splitParts = path.Split('/');
+            return splitParts[splitParts.Length - 1];
+        }
+
         public static float DistanceBetween(Vector2 point, Vector2 point2)
         {
             float distX = point2.X - point.X;

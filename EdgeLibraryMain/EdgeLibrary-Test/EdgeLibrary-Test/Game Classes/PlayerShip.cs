@@ -18,20 +18,24 @@ namespace EdgeLibrary_Test
     {
         public PlayerShip(string eTextureName, Vector2 ePosition): base(eTextureName, ePosition)
         {
-            EParticleEmitter mouseEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
-            mouseEmitter.ShouldEmit = true;
-            mouseEmitter.DrawLayer = 3;
-            mouseEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
-            mouseEmitter.ColorVariance = new ERangeArray(new ERange(60, 80), new ERange(30, 40), new ERange(0), new ERange(255));
-            mouseEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 4), ERange.RangeWithDiffer(0, 4));
-            mouseEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(100, 25), ERange.RangeWithDiffer(100, 25));
-            mouseEmitter.GrowSpeed = 1f;
-            mouseEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
-            mouseEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
-            mouseEmitter.LifeVariance = new ERange(500);
-            mouseEmitter.EmitWait = 0;
-            mouseEmitter.ClampToMouse();
-            EdgeGame.GetLayerFromObject(this).addElement(mouseEmitter);
+        }
+
+        public override void FillTexture()
+        {
+            EParticleEmitter FireEmitter = new EParticleEmitter("fire", new Vector2(400, 400));
+            FireEmitter.ShouldEmit = true;
+            FireEmitter.DrawLayer = 3;
+            FireEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
+            FireEmitter.ColorVariance = new ERangeArray(new ERange(60, 80), new ERange(30, 40), new ERange(0), new ERange(255));
+            FireEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 4), ERange.RangeWithDiffer(0, 4));
+            FireEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(100, 25), ERange.RangeWithDiffer(100, 25));
+            FireEmitter.GrowSpeed = 1f;
+            FireEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
+            FireEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
+            FireEmitter.LifeVariance = new ERange(500);
+            FireEmitter.EmitWait = 0;
+            FireEmitter.clampTo(this);
+            EdgeGame.GetLayerFromObject(this).addElement(FireEmitter);
         }
     }
 }

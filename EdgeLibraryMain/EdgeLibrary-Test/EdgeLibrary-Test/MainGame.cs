@@ -84,20 +84,23 @@ namespace EdgeLibrary_Test
         //This is the "load content" function
         private void loadResources()
         {
-            EdgeGame.LoadSong("battleThemeA", "battleSong");
+            EdgeGame.LoadSong("battleThemeA");
+            EdgeGame.LoadSong("spaceBossMusic");
 
-            EdgeGame.LoadFont("font", "font");
+            EdgeGame.LoadFont("font");
 
-            EdgeGame.LoadTexture("Particle Textures/fire", "fire");
+            EdgeGame.LoadTextureFromSpritesheet("SpaceSheet", "SpaceSheet.xml");
 
-            EdgeGame.LoadTexture("SpaceSheet", "sheet");
+            EdgeGame.LoadTexture("Particle Textures/fire");
+            EdgeGame.LoadTexture("buttonOn");
+            EdgeGame.LoadTexture("buttonOff");
         }
 
         //Sets up the game window
         private void initializeGameWindow()
         {
             EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
-            //EdgeGame.playSong("battleSong");
+            EdgeGame.playSong("battleThemeA");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
             IsMouseVisible = true;
@@ -107,25 +110,30 @@ namespace EdgeLibrary_Test
         private void initializeMenuScene()
         {
             EScene menuScene = new EScene("menuScene");
-            ELayer mainLayer = new ELayer("main");
+            ELayer menuLayer = new ELayer("menuLayer");
             EdgeGame.addScene(menuScene);
-            menuScene.AddLayer(mainLayer);
+            menuScene.AddLayer(menuLayer);
 
-            EdgeGame.UpdateEvent += new EdgeGame.EdgeGameUpdateEvent(EdgeGameUpdate);
+            EButtonRound button = new EButtonRound("buttonOff", new Vector2(350, 350), 126, Color.White);
+            button.setClickTexture("buttonOn");
+            button.Click += new EButton.ButtonEventHandler(button_Click);
+            menuLayer.addElement(button);
+        }
 
-            EdgeGame.LoadTextureFromSpritesheet("sheet", "SpaceSheet.xml");
+        void button_Click(ButtonEventArgs e)
+        {
+            EdgeGame.switchScene("gameScene");
         }
 
         private void initializeGameScene()
         {
             EScene gameScene = new EScene("gameScene");
-
+            ELayer gameLayer = new ELayer("gameLayer");
             EdgeGame.addScene(gameScene);
-            EdgeGame.playSong("battleSong");
-        }
+            gameScene.AddLayer(gameLayer);
 
-        private void EdgeGameUpdate(EUpdateArgs e)
-        {
+            PlayerShip playerShip = new PlayerShip("enemyShip", new Vector2(400, 600));
+            gameLayer.addElement(playerShip);
         }
     }
 }

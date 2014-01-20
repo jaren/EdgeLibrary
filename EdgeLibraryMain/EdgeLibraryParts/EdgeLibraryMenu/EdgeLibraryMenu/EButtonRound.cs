@@ -15,76 +15,27 @@ using EdgeLibrary.Basic;
 
 namespace EdgeLibrary.Menu
 {
-    public class ButtonEventArgs : EventArgs
+    public class EButtonRound : EButton
     {
-        public EButton button;
-        public Vector2 clickPosition;
-    }
+        public int Radius;
 
-    public class EButton : ESprite
-    {
-        //Not yet implemented
-        public ELabel label;
-        public Color offColor;
-        public Color onColor;
-        public Texture2D onTexture;
-        public Texture2D offTexture;
-        private string onData;
-        private string offData;
+        public override event ButtonEventHandler Click;
+        public override event ButtonEventHandler MouseOver;
+        public override event ButtonEventHandler MouseOff;
 
-        protected bool launchedMouseOver;
-        protected bool launchedMouseOff;
-        
-        public delegate void ButtonEventHandler(ButtonEventArgs e);
-        public virtual event ButtonEventHandler Click;
-        public virtual event ButtonEventHandler MouseOver;
-        public virtual event ButtonEventHandler MouseOff;
-
-        public EButton(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor) : base(eTextureName, ePosition, eWidth, eHeight)
+        public EButtonRound(string eTextureName, Vector2 ePosition, int radius, Color eClickColor): base(eTextureName, ePosition, radius * 2, radius * 2, eClickColor)
         {
-            onColor = eClickColor;
-            offData = eTextureName;
-            init();
+            Radius = radius;
         }
 
-        public EButton(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor, Color eColor, float eRotation, Vector2 eScale) : base(eTextureName, ePosition, eWidth, eHeight, eColor, eRotation, eScale)
+        public EButtonRound(string eTextureName, Vector2 ePosition, int radius, Color eClickColor, Color eColor, float eRotation, Vector2 eScale): base(eTextureName, ePosition, radius * 2, radius * 2, eClickColor, eColor, eRotation, eScale)
         {
-            onColor = eClickColor;
-            offData = eTextureName;
-            init();
-        }
-
-        public void setClickTexture(string textureName)
-        {
-            onData = textureName;
-        }
-
-        protected void init()
-        {
-            IsActive = true;
-            offColor = Color.White;
-            launchedMouseOver = false;
-            launchedMouseOff = false;
-        }
-
-        public override void FillTexture()
-        {
-            try
-            {
-                onTexture = EData.getTexture(onData);
-            }
-            catch { }
-            offTexture = EData.getTexture(offData);
-        }
-
-        protected void UpdateSpritePortion(EUpdateArgs updateArgs)
-        {
-            base.updateElement(updateArgs);
+            Radius = radius;
         }
 
         public override void updateElement(EUpdateArgs updateArgs)
         {
-            base.updateElement(updateArgs);
+            base.UpdateSpritePortion(updateArgs);
 
             Vector2 mousePosition = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y);
 
@@ -93,7 +44,7 @@ namespace EdgeLibrary.Menu
                 Color = Color.White;
             }
 
-            if (BoundingBox.Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
+            if (EMath.DistanceBetween(Position, mousePosition) <= Radius)
             {
                 Color = onColor;
                 Texture = onTexture;

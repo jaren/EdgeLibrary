@@ -206,6 +206,21 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="spaceBossMusic.mp3">
+      <Name>spaceBossMusic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="buttonOff.png">
+      <Name>buttonOff</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="buttonOn.png">
+      <Name>buttonOn</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="SpaceSheet.xml">
       <Name>SpaceSheet</Name>
       <Importer>XmlImporter</Importer>
