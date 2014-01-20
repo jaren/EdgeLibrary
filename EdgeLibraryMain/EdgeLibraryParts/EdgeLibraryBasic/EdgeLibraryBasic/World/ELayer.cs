@@ -96,6 +96,10 @@ namespace EdgeLibrary.Basic
             if (eelements.Contains(eElement))
             {
                 eelements.Remove(eElement);
+                eElement.Texture = null;
+                eElement.CollisionBody = null;
+                eElement.SupportsCollision = false;
+                eElement.ID = "deletedElement";
                 return true;
             }
             return false;

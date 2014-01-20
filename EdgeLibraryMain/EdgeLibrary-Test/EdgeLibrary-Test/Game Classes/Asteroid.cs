@@ -14,20 +14,21 @@ using EdgeLibrary.Effects;
 
 namespace EdgeLibrary_Test
 {
-    public class PlayerShip : ESprite
+    public class Asteroid : ESprite
     {
         int Speed;
+        int Size;
 
-        public PlayerShip(): base("enemyShip", new Vector2(400, EdgeGame.WindowSize.Y - 100))
+        public Asteroid(int speed, int size, int X) : base("meteorBig", new Vector2(X, 0), size, size)
         {
-            Speed = 10;
+            Speed = speed;
+            Size = size;
 
-            AddCollision(ECollisionBody.BodyWithSpriteAndIDs(EShapeTypes.circle, this, "player", new List<string>(){"asteroid", "laser"}));
-            CollisionStart += new SpriteCollisionEvent(Collide);
-        }
+            //The "collides with IDs" is blank because the player is colliding with the asteroids, not the other way around
+            AddCollision(ECollisionBody.BodyWithSpriteAndIDs(EShapeTypes.circle, this, "asteroid", new List<string>()));
 
-        void Collide(ESpriteCollisionArgs e)
-        {
+            EActionMove fall = new EActionMove(new Vector2(Position.X, EdgeGame.WindowSize.Y + Height), speed);
+            runAction(fall);
         }
 
         public override void FillTexture()
@@ -38,15 +39,15 @@ namespace EdgeLibrary_Test
             FireEmitter.ShouldEmit = true;
             FireEmitter.DrawLayer = 3;
             FireEmitter.EmitPositionVariance = new ERangeArray(new ERange(0), new ERange(0));
-            FireEmitter.ColorVariance = new ERangeArray(new ERange(0), new ERange(30, 40), new ERange(60, 80), new ERange(255));
-            FireEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0,3), ERange.RangeWithDiffer(6,2));
-            FireEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(50, 2), ERange.RangeWithDiffer(50, 2));
+            FireEmitter.ColorVariance = new ERangeArray(new ERange(0), new ERange(60, 80), new ERange(0, 10), new ERange(255));
+            FireEmitter.VelocityVariance = new ERangeArray(ERange.RangeWithDiffer(0, 5), ERange.RangeWithDiffer(0, 5));
+            FireEmitter.SizeVariance = new ERangeArray(ERange.RangeWithDiffer(Size/1.5f, 2), ERange.RangeWithDiffer(Size/1.5f, 2));
             FireEmitter.GrowSpeed = -0.2f;
             FireEmitter.StartRotationVariance = ERange.RangeWithDiffer(0, 0);
             FireEmitter.RotationSpeedVariance = ERange.RangeWithDiffer(0, 0);
             FireEmitter.LifeVariance = new ERange(225);
             FireEmitter.EmitWait = 0;
-            FireEmitter.clampToAt(this, new Vector2(0, 15));
+            FireEmitter.clampToAt(this, new Vector2(0, 0));
             EdgeGame.GetLayerFromObject(this).addElement(FireEmitter);
         }
 
@@ -54,13 +55,12 @@ namespace EdgeLibrary_Test
         {
             base.updateElement(updateArgs);
 
-            if (updateArgs.keyboardState.IsKeyDown(Keys.Left) && Position.X > 0)
+            if (Position.Y >= EdgeGame.WindowSize.Y + Height / 2)
             {
-                Position = new Vector2(Position.X - Speed, Position.Y);
-            }
-            if (updateArgs.keyboardState.IsKeyDown(Keys.Right) && Position.Y < EdgeGame.WindowSize.X)
-            {
-                Position = new Vector2(Position.X + Speed, Position.Y);
+                EdgeGame.RemoveElement(this);
+                Texture = null;
+                CollisionBody = null;
+                Actions.Clear();
             }
         }
     }

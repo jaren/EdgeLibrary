@@ -32,6 +32,14 @@ namespace EdgeLibrary.Basic
         public static Color ClearColor;
         public static Color DebugDrawColor;
 
+
+        public static Vector2 WindowSize
+        {
+            get { return new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); }
+            set {  }
+        }
+        
+
         private static List<EScene> scenes;
         private static int selectedSceneIndex;
 

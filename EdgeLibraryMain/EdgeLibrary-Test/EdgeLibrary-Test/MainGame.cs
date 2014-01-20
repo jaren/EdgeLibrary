@@ -19,6 +19,7 @@ namespace EdgeLibrary_Test
     /// -Actions
     ///     -Fix "EActionSequence"
     ///     -Fix "EActionRotate"?
+    ///     -For some reason, in the asteroid game, if the player ship is a rectangle and the asteroids circles, collision occurs even when the collisions don't appear to occur
     /// -Menu
     ///     -More Menu Items
     ///         -Label button
@@ -28,9 +29,8 @@ namespace EdgeLibrary_Test
     /// <summary>
     /// MUSIC AND TEXTURES:
     /// - cynicmusic.com/pixelsphere.org
-    /// - MoikMellah, axtoncrolley at OpenGameArt.org
+    /// - axtoncrolley at OpenGameArt.org
     /// - Kenney at kenney.nl
-    /// - http://millionthvector.blogspot.de/
     /// </summary>
     /// 
 
@@ -99,11 +99,15 @@ namespace EdgeLibrary_Test
         //Sets up the game window
         private void initializeGameWindow()
         {
-            EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
+            EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
             EdgeGame.playSong("battleThemeA");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
             IsMouseVisible = true;
+
+            //Asteroid collision bodies EXTREMELY laggy
+            EMath.circlePointStep = 50;
+            EMath.outerCirclePointStep = 50;
         }
 
         //A sample scene
@@ -132,8 +136,8 @@ namespace EdgeLibrary_Test
             EdgeGame.addScene(gameScene);
             gameScene.AddLayer(gameLayer);
 
-            PlayerShip playerShip = new PlayerShip();
-            gameLayer.addElement(playerShip);
+            SpaceGameHandler spaceGameHandler = new SpaceGameHandler();
+            gameLayer.addElement(spaceGameHandler);
         }
     }
 }
