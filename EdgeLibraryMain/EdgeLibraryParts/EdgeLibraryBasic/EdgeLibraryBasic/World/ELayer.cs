@@ -72,9 +72,9 @@ namespace EdgeLibrary.Basic
         {
             try
             {
-                eElement.FillTexture();
                 eElement.LayerID = ID;
                 eElement.SceneID = SceneID;
+                eElement.FillTexture();
             }
             catch
             { }

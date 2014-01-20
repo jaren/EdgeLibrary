@@ -24,6 +24,9 @@ namespace EdgeLibrary.Basic
         public virtual bool SupportsCollision { get; set; }
         public virtual int DrawLayer { get; set; }
 
+        protected EElement clampedObject;
+        protected Vector2 clampPos;
+
         public Texture2D Texture { get; set; }
         public SpriteFont Font { get; set; }
 
@@ -35,11 +38,25 @@ namespace EdgeLibrary.Basic
             DrawLayer = 0;
         }
 
+        public void clampTo(EElement eElement)
+        {
+            clampedObject = eElement;
+            clampPos = Vector2.Zero;
+        }
+
+        public void clampToAt(EElement eElement, Vector2 eClampPos)
+        {
+            clampedObject = eElement;
+            clampPos = eClampPos;
+        }
+
+        public void unclampFromElement() { clampedObject = null; }
+
         public virtual void FillTexture() { }
 
         public void Update(EUpdateArgs updateArgs)
         {
-            if (IsActive) { updateElement(updateArgs); }
+            if (IsActive) { if (ClampedToMouse) { Position = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y); } else if (clampedObject != null) { Position = clampedObject.Position + clampPos; } updateElement(updateArgs); }
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {

@@ -35,8 +35,6 @@ namespace EdgeLibrary.Effects
         public EAction ActionToRunOnParticles { get; set; }
 
         protected List<EParticle> particles;
-        protected EElement clampedObject;
-        protected Vector2 clampPos;
         protected TimeSpan timeSinceLastEmit;
         //To stop garbage collection every single time
         protected List<EParticle> particlesToRemove;
@@ -90,19 +88,6 @@ namespace EdgeLibrary.Effects
             EmitWait = eEmitRate;
         }
 
-        public void clampTo(EElement eElement)
-        {
-            clampedObject = eElement;
-        }
-
-        public void clampToAt(EElement eElement, Vector2 eClampPos)
-        {
-            clampedObject = eElement;
-            clampPos = eClampPos;
-        }
-
-        public void unclampFromObject() { clampedObject = null; }
-
         public void EmitSingleParticle()
         {
                 EParticle particle = new EParticle(LifeVariance.GetRandom(random), new Vector2(VelocityVariance.GetRandom(0, random), VelocityVariance.GetRandom(1, random)), RotationSpeedVariance.GetRandom(random), GrowSpeed);
@@ -146,11 +131,6 @@ namespace EdgeLibrary.Effects
         {
                 timeSinceLastEmit += updateArgs.gameTime.ElapsedGameTime;
 
-                if (clampedObject != null)
-                {
-                    Position = clampedObject.Position + clampPos;
-                }
-
                 if (timeSinceLastEmit.TotalMilliseconds >= EmitWait)
                 {
                     timeSinceLastEmit = new TimeSpan(0);
@@ -182,8 +162,6 @@ namespace EdgeLibrary.Effects
                 {
                     particles.RemoveAt(0);
                 }
-
-                if (ClampedToMouse) { Position = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y); }
             }
     }
 }

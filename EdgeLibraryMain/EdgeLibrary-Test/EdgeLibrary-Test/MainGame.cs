@@ -132,7 +132,7 @@ namespace EdgeLibrary_Test
             EdgeGame.addScene(gameScene);
             gameScene.AddLayer(gameLayer);
 
-            PlayerShip playerShip = new PlayerShip("enemyShip", new Vector2(400, 600));
+            PlayerShip playerShip = new PlayerShip();
             gameLayer.addElement(playerShip);
         }
     }
