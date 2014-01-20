@@ -41,10 +41,6 @@ namespace EdgeLibrary_Test
 
         EdgeGame edgeGame;
 
-        ELabel label;
-        ESpriteA player;
-        int collisionCount;
-
         //This region is not likely to be modified
         #region NOT-USED
         public MainGame()
@@ -139,7 +135,6 @@ namespace EdgeLibrary_Test
             mouseEmitter.EmitWait = 0;
             mouseEmitter.ClampToMouse();
             mainLayer.addElement(mouseEmitter);
-
         }
 
         private void initializeGameScene()
@@ -148,12 +143,6 @@ namespace EdgeLibrary_Test
 
             edgeGame.addScene(gameScene);
             edgeGame.playSong("battleSong");
-        }
-
-        private void SpriteCollisionStart(ESpriteCollisionArgs e)
-        {
-            collisionCount++;
-            label.Text = string.Format("Collision Count: {0}", collisionCount);
         }
 
         private void EdgeGameUpdate(EUpdateArgs e)

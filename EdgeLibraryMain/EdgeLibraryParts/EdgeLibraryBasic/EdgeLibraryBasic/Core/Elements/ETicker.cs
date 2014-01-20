@@ -37,7 +37,6 @@ namespace EdgeLibrary.Basic
             elapsedMilliseconds = 0;
             ValueRange = new ERange(0);
             currentValue = 0;
-            Tick += new ETickerEventHandler(nullHandler);
         }
 
         public ETicker(double eMilliseconds, ERange eValueRange) : this(eMilliseconds)
@@ -45,8 +44,6 @@ namespace EdgeLibrary.Basic
             ValueRange = eValueRange;
             currentValue = (int)ValueRange.Min;
         }
-
-        protected void nullHandler(ETickerEventArgs e) { }
 
         public override void updateElement(EUpdateArgs updateArgs)
         {
