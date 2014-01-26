@@ -71,7 +71,14 @@ namespace EdgeLibrary.Menu
         {
             try
             {
-                onTexture = EData.getTexture(onData);
+                if (onData == null)
+                {
+                    onTexture = EData.getTexture(offData);
+                }
+                else
+                {
+                    onTexture = EData.getTexture(onData);
+                }
             }
             catch { }
             offTexture = EData.getTexture(offData);

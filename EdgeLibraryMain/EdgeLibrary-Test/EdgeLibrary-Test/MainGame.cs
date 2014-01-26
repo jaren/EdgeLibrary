@@ -34,6 +34,11 @@ namespace EdgeLibrary_Test
     /// </summary>
     /// 
 
+    /// <summary>
+    /// NOTES:
+    /// -All XML Spritesheets must be set to "Content" and "Copy if Newer"
+    /// </summary>
+
     public class MainGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -90,16 +95,15 @@ namespace EdgeLibrary_Test
             EdgeGame.LoadFont("font");
 
             EdgeGame.LoadTextureFromSpritesheet("SpaceSheet", "SpaceSheet.xml");
+            EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
 
             EdgeGame.LoadTexture("Particle Textures/fire");
-            EdgeGame.LoadTexture("buttonOn");
-            EdgeGame.LoadTexture("buttonOff");
         }
 
         //Sets up the game window
         private void initializeGameWindow()
         {
-            EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
+            EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
             EdgeGame.playSong("battleThemeA");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
@@ -118,8 +122,8 @@ namespace EdgeLibrary_Test
             EdgeGame.addScene(menuScene);
             menuScene.AddLayer(menuLayer);
 
-            EButtonRound button = new EButtonRound("buttonOff", new Vector2(350, 350), 126, Color.White);
-            button.setClickTexture("buttonOn");
+            EButton button = new EButton("shadedDark42", new Vector2(350, 350), 120, 40, Color.White);
+            button.setClickTexture("transparentDark40");
             button.Click += new EButton.ButtonEventHandler(button_Click);
             menuLayer.addElement(button);
         }

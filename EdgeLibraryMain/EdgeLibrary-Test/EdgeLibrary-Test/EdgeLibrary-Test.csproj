@@ -17,7 +17,9 @@
     <XnaCrossPlatformGroupID>32eb4399-cd26-40bf-a3d2-6f91a2161ee6</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <Thumbnail>
+    </Thumbnail>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -30,7 +32,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -72,18 +73,17 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game Classes\Asteroid.cs" />
-    <Compile Include="Game Classes\PlayerShip.cs" />
-    <Compile Include="Game Classes\SpaceGameHandler.cs" />
+    <Compile Include="Game Classes\SpaceGame\Asteroid.cs" />
+    <Compile Include="Game Classes\SpaceGame\PlayerShip.cs" />
+    <Compile Include="Game Classes\SpaceGame\SpaceGameHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="MainGame.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Game.ico.ico" />
+    <Content Include="GameThumbnail.png" />
     <Content Include="Game.ico" />
-    <Content Include="GameThumbnail.png">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibraryParts\EdgeLibraryBasic\EdgeLibraryBasic\EdgeLibraryBasic.csproj">

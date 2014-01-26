@@ -89,8 +89,11 @@ namespace EdgeLibrary.Basic
             switch (shape.ShapeType)
             {
                 case EShapeTypes.circle:
-                    RectangleF RectangleF = new RectangleF(CenterPosition.X + Width / 2, CenterPosition.Y - Height / 2, Width, Height);
-                    List<Vector2> circlePoints = EMath.GetCirclePoints(shape.CenterPosition, ((EShapeCircle)shape).Radius);
+                    RectangleF RectangleF = new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height);
+                    EShapeCircle realshape = ((EShapeCircle)shape);
+                    if (RectangleF.IntersectsWith(new RectangleF(realshape.CenterPosition.X - realshape.Radius, CenterPosition.Y - realshape.Radius, realshape.Radius*2, realshape.Radius*2)))
+                    {
+                    List<Vector2> circlePoints = EMath.GetCirclePoints(shape.CenterPosition, realshape.Radius);
                     foreach(Vector2 point in circlePoints)
                     {
                         if (RectangleF.Contains(point.X, point.Y))
@@ -98,10 +101,11 @@ namespace EdgeLibrary.Basic
                             return true;
                         }
                     }
+                    }
                     return false;
                     break;
                 case EShapeTypes.rectangle:
-                    return new RectangleF(CenterPosition.X + Width / 2, CenterPosition.Y - Height / 2, Width, Height).IntersectsWith(new RectangleF(shape.CenterPosition.X + ((EShapeRectangle)shape).Width / 2, shape.CenterPosition.Y + ((EShapeRectangle)shape).Height / 2, ((EShapeRectangle)shape).Width, ((EShapeRectangle)shape).Height));
+                    return new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height).IntersectsWith(new RectangleF(shape.CenterPosition.X - ((EShapeRectangle)shape).Width / 2, shape.CenterPosition.Y + ((EShapeRectangle)shape).Height / 2, ((EShapeRectangle)shape).Width, ((EShapeRectangle)shape).Height));
                     break;
             }
             return false;
