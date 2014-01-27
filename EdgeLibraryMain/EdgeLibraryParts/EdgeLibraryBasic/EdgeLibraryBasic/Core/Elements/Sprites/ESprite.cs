@@ -114,6 +114,8 @@ namespace EdgeLibrary.Basic
             {
                 _height = Texture.Height;
             }
+
+            reloadBoundingBox();
         }
 
         public void AddCollision(ECollisionBody collisionBody)
