@@ -94,6 +94,7 @@ namespace EdgeLibrary_Test
 
             EdgeGame.LoadTextureFromSpritesheet("SpaceSheet", "SpaceSheet.xml");
             EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
+            EdgeGame.LoadTexture("Backdrop", "backdrop");
 
             EdgeGame.LoadTexture("Particle Textures/fire");
         }
@@ -116,6 +117,7 @@ namespace EdgeLibrary_Test
         {
             MenuScene menuScene = new MenuScene();
             SpaceGameScene spaceGame = new SpaceGameScene();
+            EdgeGame.addScene(menuScene);
             EdgeGame.addScene(spaceGame);
         }
     }

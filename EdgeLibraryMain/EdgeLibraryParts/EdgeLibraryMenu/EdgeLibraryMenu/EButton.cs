@@ -20,7 +20,7 @@ namespace EdgeLibrary.Menu
         public EButton button;
         public Vector2 clickPosition;
     }
-
+    
     public class EButton : ESprite
     {
         public ELabel label;
@@ -43,6 +43,7 @@ namespace EdgeLibrary.Menu
 
         public EButton(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor) : base(eTextureName, ePosition, eWidth, eHeight)
         {
+            label = new ELabel("", new Vector2(0, 0), "", Color.White);
             previousPosition = Position;
             onColor = eClickColor;
             offData = eTextureName;
@@ -76,7 +77,10 @@ namespace EdgeLibrary.Menu
 
         public override void FillTexture()
         {
-            label.FillTexture();
+            if (label != null)
+            {
+                label.FillTexture();
+            }
             reloadLabel();
 
                 if (onData == null)
@@ -99,8 +103,11 @@ namespace EdgeLibrary.Menu
 
         protected void reloadLabel()
         {
-            label.Position = Position - label.Font.MeasureString(label.Text) / 2;
-            label.DrawLayer = this.DrawLayer + 1;
+            if (label.Font != null)
+            {
+                label.Position = Position - label.Font.MeasureString(label.Text) / 2;
+                label.DrawLayer = this.DrawLayer + 1;
+            }
         }
 
         public override void updateElement(EUpdateArgs updateArgs)

@@ -114,6 +114,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Backdrop.png">
+      <Name>Backdrop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="ButtonSheet.xml">
       <Name>ButtonSheet</Name>
       <Importer>XmlImporter</Importer>
