@@ -103,6 +103,7 @@ namespace EdgeLibrary_Test
         private void initializeGameWindow()
         {
             EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
+            EdgeGame.ClearColor = Color.Gray;
             EdgeGame.playSong("battleThemeA");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
@@ -119,6 +120,10 @@ namespace EdgeLibrary_Test
             SpaceGameScene spaceGame = new SpaceGameScene();
             EdgeGame.addScene(menuScene);
             EdgeGame.addScene(spaceGame);
+
+            //Will be filled with the end scene
+            EScene endScene = new EScene("end");
+            EdgeGame.addScene(endScene);
         }
     }
 }
