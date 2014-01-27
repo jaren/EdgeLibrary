@@ -12,6 +12,7 @@ using System.Xml;
 
 namespace EdgeLibrary.Basic
 {
+    //Like an EElement that contains other EElements in an EScene, optional
     public class ELayer : EElement
     {
         protected List<EObject> eobjects;
@@ -26,12 +27,12 @@ namespace EdgeLibrary.Basic
         }
         public override void updateElement(EUpdateArgs updateArgs)
         {
-            foreach (EElement element in eelements)
+            for (int i = 0; i < eelements.Count; i++ )
             {
-                element.Update(updateArgs);
-                if (element.IsActive && element.SupportsCollision)
+                eelements[i].Update(updateArgs);
+                if (eelements[i].IsActive && eelements[i].SupportsCollision)
                 {
-                    element.UpdateCollision(eelements);
+                    eelements[i].UpdateCollision(eelements);
                 }
             }
         }
@@ -70,14 +71,9 @@ namespace EdgeLibrary.Basic
 
         public void addElement(EElement eElement)
         {
-            try
-            {
                 eElement.LayerID = ID;
                 eElement.SceneID = SceneID;
                 eElement.FillTexture();
-            }
-            catch
-            { }
             eElement.OnAddToLayer(this);
             eelements.Add(eElement);
         }

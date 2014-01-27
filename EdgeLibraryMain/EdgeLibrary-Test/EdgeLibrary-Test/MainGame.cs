@@ -51,7 +51,6 @@ namespace EdgeLibrary_Test
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-        //Initializes the game
         protected override void Initialize()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -63,13 +62,11 @@ namespace EdgeLibrary_Test
         }
         protected override void LoadContent() { EdgeGame.LoadContent(); }
         protected override void UnloadContent() { EdgeGame.UnloadContent(); }
-        //Updates the game
         protected override void Update(GameTime gameTime)
         {
             EdgeGame.Update(gameTime);
             base.Update(gameTime);
         }
-        //Draws the game
         protected override void Draw(GameTime gameTime)
         {
             EdgeGame.Draw(gameTime);
@@ -77,13 +74,12 @@ namespace EdgeLibrary_Test
         }
         #endregion
 
-        //This calls all the loading functions
+        //Calls all the initialize functions
         private void initializeGame()
         {
             loadResources();
             initializeGameWindow();
-            initializeMenuScene();
-            initializeGameScene();
+            initializeScenes();
         }
 
         //This is the "load content" function
@@ -92,7 +88,9 @@ namespace EdgeLibrary_Test
             EdgeGame.LoadSong("battleThemeA");
             EdgeGame.LoadSong("spaceBossMusic");
 
-            EdgeGame.LoadFont("font");
+            EdgeGame.LoadFont("SpriteFonts/smallFont");
+            EdgeGame.LoadFont("SpriteFonts/mediumFont");
+            EdgeGame.LoadFont("SpriteFonts/largeFont");
 
             EdgeGame.LoadTextureFromSpritesheet("SpaceSheet", "SpaceSheet.xml");
             EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
@@ -103,7 +101,7 @@ namespace EdgeLibrary_Test
         //Sets up the game window
         private void initializeGameWindow()
         {
-            EdgeGame.DrawType = EdgeGameDrawTypes.Hybrid;
+            EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
             EdgeGame.playSong("battleThemeA");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
@@ -114,34 +112,11 @@ namespace EdgeLibrary_Test
             EMath.outerCirclePointStep = 50;
         }
 
-        //A sample scene
-        private void initializeMenuScene()
+        private void initializeScenes()
         {
-            EScene menuScene = new EScene("menuScene");
-            ELayer menuLayer = new ELayer("menuLayer");
-            EdgeGame.addScene(menuScene);
-            menuScene.AddLayer(menuLayer);
-
-            EButton button = new EButton("shadedDark42", new Vector2(350, 350), 120, 40, Color.White);
-            button.setClickTexture("transparentDark40");
-            button.Click += new EButton.ButtonEventHandler(button_Click);
-            menuLayer.addElement(button);
-        }
-
-        void button_Click(ButtonEventArgs e)
-        {
-            EdgeGame.switchScene("gameScene");
-        }
-
-        private void initializeGameScene()
-        {
-            EScene gameScene = new EScene("gameScene");
-            ELayer gameLayer = new ELayer("gameLayer");
-            EdgeGame.addScene(gameScene);
-            gameScene.AddLayer(gameLayer);
-
-            SpaceGameHandler spaceGameHandler = new SpaceGameHandler();
-            gameLayer.addElement(spaceGameHandler);
+            MenuScene menuScene = new MenuScene();
+            SpaceGameScene spaceGame = new SpaceGameScene();
+            EdgeGame.addScene(spaceGame);
         }
     }
 }

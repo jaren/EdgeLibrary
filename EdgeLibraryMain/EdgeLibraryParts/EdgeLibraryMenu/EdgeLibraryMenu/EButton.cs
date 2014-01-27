@@ -23,7 +23,6 @@ namespace EdgeLibrary.Menu
 
     public class EButton : ESprite
     {
-        //Not yet implemented
         public ELabel label;
         public Color offColor;
         public Color onColor;
@@ -31,6 +30,8 @@ namespace EdgeLibrary.Menu
         public Texture2D offTexture;
         private string onData;
         private string offData;
+
+        private Vector2 previousPosition;
 
         protected bool launchedMouseOver;
         protected bool launchedMouseOff;
@@ -42,6 +43,7 @@ namespace EdgeLibrary.Menu
 
         public EButton(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor) : base(eTextureName, ePosition, eWidth, eHeight)
         {
+            previousPosition = Position;
             onColor = eClickColor;
             offData = eTextureName;
             init();
@@ -67,10 +69,16 @@ namespace EdgeLibrary.Menu
             launchedMouseOff = false;
         }
 
+        public override void OnAddToLayer(ELayer layer)
+        {
+            layer.addElement(label);
+        }
+
         public override void FillTexture()
         {
-            try
-            {
+            label.FillTexture();
+            reloadLabel();
+
                 if (onData == null)
                 {
                     onTexture = EData.getTexture(offData);
@@ -79,9 +87,9 @@ namespace EdgeLibrary.Menu
                 {
                     onTexture = EData.getTexture(onData);
                 }
-            }
-            catch { }
             offTexture = EData.getTexture(offData);
+
+            Texture = offTexture;
         }
 
         protected void UpdateSpritePortion(EUpdateArgs updateArgs)
@@ -89,8 +97,19 @@ namespace EdgeLibrary.Menu
             base.updateElement(updateArgs);
         }
 
+        protected void reloadLabel()
+        {
+            label.Position = Position - label.Font.MeasureString(label.Text) / 2;
+            label.DrawLayer = this.DrawLayer + 1;
+        }
+
         public override void updateElement(EUpdateArgs updateArgs)
         {
+            if (previousPosition != Position)
+            {
+                reloadLabel();
+            }
+
             base.updateElement(updateArgs);
 
             Vector2 mousePosition = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y);
@@ -137,11 +156,16 @@ namespace EdgeLibrary.Menu
                     ButtonEventArgs clickArgs = new ButtonEventArgs();
                     clickArgs.button = this;
                     clickArgs.clickPosition = Vector2.Zero;
-                    MouseOff(clickArgs);
+                    if (MouseOff != null)
+                    {
+                        MouseOff(clickArgs);
+                    }
                     launchedMouseOver = false;
                     launchedMouseOff = true;
                 }
             }
+
+            previousPosition = Position;
         }
     }
 }

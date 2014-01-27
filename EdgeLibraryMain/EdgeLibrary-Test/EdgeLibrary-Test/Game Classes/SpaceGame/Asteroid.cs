@@ -19,8 +19,11 @@ namespace EdgeLibrary_Test
         int Speed;
         int Size;
 
-        public Asteroid(int speed, int size, int X) : base("meteorBig", new Vector2(X, 0), size, size)
+        EScene GameScene;
+
+        public Asteroid(EScene gameScene, int speed, int size, int X) : base("meteorBig", new Vector2(X, 0), size, size)
         {
+            GameScene = gameScene;
             Speed = speed;
             Size = size;
 
@@ -48,7 +51,7 @@ namespace EdgeLibrary_Test
             FireEmitter.LifeVariance = new ERange(225);
             FireEmitter.EmitWait = 0;
             FireEmitter.clampToAt(this, new Vector2(0, 0));
-            EdgeGame.GetLayerFromObject(this).addElement(FireEmitter);
+            GameScene.addElement(FireEmitter);
         }
 
         public override void updateElement(EUpdateArgs updateArgs)
@@ -58,7 +61,7 @@ namespace EdgeLibrary_Test
             if (Position.Y >= EdgeGame.WindowSize.Y + Height / 2)
             {
                 EdgeGame.RemoveElement(this);
-                Texture = null;
+               // Texture = null;
                 CollisionBody = null;
                 Actions.Clear();
             }

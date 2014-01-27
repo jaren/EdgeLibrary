@@ -48,6 +48,11 @@ namespace EdgeLibrary.Basic
             }
         }
 
+        public static float CenterXString(ELabel label)
+        {
+            return (EdgeGame.WindowSize.X - label.Font.MeasureString(label.Text).X ) / 2;
+        }
+
         //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
         public static string LastPortionOfPath(string path)
         {

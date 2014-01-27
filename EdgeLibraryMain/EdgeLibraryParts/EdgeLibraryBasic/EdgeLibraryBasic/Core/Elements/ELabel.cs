@@ -35,9 +35,8 @@ namespace EdgeLibrary.Basic
         public ELabel(string eFontName, Vector2 ePosition, string eText, Color eColor) : base()
         {
             sprite = new ESprite("", Vector2.Zero, 0, 0);
-
-            spriteEffects = SpriteEffects.None;
             Data = eFontName;
+            spriteEffects = SpriteEffects.None;
             sprite.Position = ePosition;
             Text = eText;
             Color = eColor;
@@ -46,6 +45,11 @@ namespace EdgeLibrary.Basic
         public override void FillTexture()
         {
             Font = EData.getFont(Data);
+        }
+
+        public void CenterX()
+        {
+            Position = new Vector2(EMath.CenterXString(this), Position.Y);
         }
 
         public void runAction(EAction action)

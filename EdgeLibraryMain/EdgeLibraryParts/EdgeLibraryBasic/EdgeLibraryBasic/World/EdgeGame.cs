@@ -147,11 +147,10 @@ namespace EdgeLibrary.Basic
         {
             EUpdateArgs updateArgs = new EUpdateArgs(gameTime, Keyboard.GetState(), Mouse.GetState());
 
-            try
+            if (scenes.Count != 0)
             {
                 scenes[selectedSceneIndex].Update(updateArgs);
                 }
-                catch{}
 
             if ((updateArgs.mouseState.X != previousMouseState.X || updateArgs.mouseState.Y != previousMouseState.Y) && MouseMove != null) { MouseMove(updateArgs); }
             if ((updateArgs.mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released) && MouseClick != null) { MouseClick(updateArgs); }
@@ -234,11 +233,10 @@ namespace EdgeLibrary.Basic
         {
             graphicsDevice.Clear(ClearColor);
             spriteBatch.Begin();
-            try
+            if (scenes.Count != 0)
             {
                 scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
             }
-            catch { }
             spriteBatch.End();
         }
         #endregion

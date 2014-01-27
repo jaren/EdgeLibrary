@@ -15,12 +15,15 @@ namespace EdgeLibrary.Basic
     public class EScene : EElement
     {
         public List<ELayer> layers;
+        public ELayer mainLayer;
 
         public EScene(string id) : base()
         {
             ID = id;
 
+            mainLayer = new ELayer("main");
             layers = new List<ELayer>();
+            layers.Add(mainLayer);
         }
 
         #region UPDATE
@@ -49,6 +52,16 @@ namespace EdgeLibrary.Basic
                 }
             }
             return null;
+        }
+
+        public void addElement(EElement eElement)
+        {
+            mainLayer.addElement(eElement);
+        }
+
+        public void addObject(EObject eObject)
+        {
+            mainLayer.addObject(eObject);
         }
 
         public Texture2D GetTexture(string texture)

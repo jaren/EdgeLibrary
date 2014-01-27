@@ -17,10 +17,14 @@ namespace EdgeLibrary_Test
     public class PlayerShip : ESprite
     {
         int Speed;
+        public bool dead = false;
+        public EScene GameScene;
 
-        public PlayerShip(): base("enemyShip", new Vector2(400, EdgeGame.WindowSize.Y - 100))
+        public PlayerShip(EScene gameScene): base("enemyShip", new Vector2(400, EdgeGame.WindowSize.Y - 100))
         {
             Speed = 10;
+
+            GameScene = gameScene;
 
             AddCollision(ECollisionBody.BodyWithSpriteAndIDs(EShapeTypes.rectangle, this, "player", new List<string>(){"asteroid", "laser"}));
             CollisionStart += new SpriteCollisionEvent(Collide);
@@ -28,6 +32,7 @@ namespace EdgeLibrary_Test
 
         void Collide(ESpriteCollisionArgs e)
         {
+            dead = true;
         }
 
         public override void FillTexture()
@@ -47,7 +52,7 @@ namespace EdgeLibrary_Test
             FireEmitter.LifeVariance = new ERange(225);
             FireEmitter.EmitWait = 0;
             FireEmitter.clampToAt(this, new Vector2(0, 15));
-            EdgeGame.GetLayerFromObject(this).addElement(FireEmitter);
+            GameScene.addElement(FireEmitter);
         }
 
         public override void updateElement(EUpdateArgs updateArgs)
@@ -58,7 +63,7 @@ namespace EdgeLibrary_Test
             {
                 Position = new Vector2(Position.X - Speed, Position.Y);
             }
-            if (updateArgs.keyboardState.IsKeyDown(Keys.Right) && Position.Y < EdgeGame.WindowSize.X)
+            if (updateArgs.keyboardState.IsKeyDown(Keys.Right) && Position.X < EdgeGame.WindowSize.X)
             {
                 Position = new Vector2(Position.X + Speed, Position.Y);
             }
