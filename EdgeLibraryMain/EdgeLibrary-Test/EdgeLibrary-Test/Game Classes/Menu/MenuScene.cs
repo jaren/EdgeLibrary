@@ -77,7 +77,7 @@ namespace EdgeLibrary_Test
             creditsLayer.addElement(credits4);
 
             backdropLayer = new ELayer("backdrop");
-            backdropLayer.DrawLayer = 5;
+            backdropLayer.DrawLayer = -1;
             AddLayer(backdropLayer);
 
             ELabel backdropMenu = new ELabel("largeFont", Vector2.Zero, "Menu", Color.White);
@@ -136,13 +136,11 @@ namespace EdgeLibrary_Test
         {
             foreach(ELayer tempLayer in layers)
             {
-                if (tempLayer.ID != backdropLayer.ID)
-                {
-                    layer.DrawLayer = backdropLayer.DrawLayer - 1;
-                }
+                tempLayer.IsVisible = false;
             }
 
-            layer.DrawLayer = backdropLayer.DrawLayer + 1;
+            layer.IsVisible = true;
+            backdropLayer.IsVisible = true;
         }
     }
 }
