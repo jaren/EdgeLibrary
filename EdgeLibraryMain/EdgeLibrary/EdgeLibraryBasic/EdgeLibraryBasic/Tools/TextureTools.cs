@@ -31,7 +31,7 @@ namespace EdgeLibrary
         {
             Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
             Color[] colorData = new Color[width*height];
-            for (int y = 10; y < height; y++)
+            for (int y = 0; y < height; y++)
             {
                 Color rowColor = new Color();
                 if (y < height / 2)
@@ -43,10 +43,10 @@ namespace EdgeLibrary
                 }
                 else
                 {
-                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, (int)((y - (height / 2f)) / (height / 2f)));
-                    rowColor.G = (byte)MathTools.SpecialAverage(color2.G, color1.G, (int)((y - (height / 2f)) / (height / 2f)));
-                    rowColor.B = (byte)MathTools.SpecialAverage(color2.B, color1.B, (int)((y - (height / 2f)) / (height / 2f)));
-                    rowColor.A = (byte)MathTools.SpecialAverage(color2.A, color1.A, (int)((y - (height / 2f)) / (height / 2f)));
+                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, ((height/2-(y - (height / 2f)))) / (height / 2f));
+                    rowColor.G = (byte)MathTools.SpecialAverage(color2.G, color1.G, ((height / 2 - (y - (height / 2f)))) / (height / 2f));
+                    rowColor.B = (byte)MathTools.SpecialAverage(color2.B, color1.B, ((height / 2 - (y - (height / 2f)))) / (height / 2f));
+                    rowColor.A = (byte)MathTools.SpecialAverage(color2.A, color1.A, ((height / 2 - (y - (height / 2f)))) / (height / 2f));
                 }
                 for (int x = 0; x < width; x++)
                 {
