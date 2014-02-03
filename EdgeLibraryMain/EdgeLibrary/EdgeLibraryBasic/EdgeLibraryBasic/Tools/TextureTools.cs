@@ -26,6 +26,36 @@ namespace EdgeLibrary
             Blank.SetData(new Color[1] { Color.Transparent });
         }
 
+        #region GENERATING TOOLS
+        public static Texture2D CreateVerticalGradient(int width, int height, Color color1, Color color2)
+        {
+            Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
+            Color[] colorData = new Color[width*height];
+            for (int y = 0; y < height; y++)
+            {
+                Color rowColor = new Color();
+                if (y < height / 2)
+                {
+                    rowColor.R = (byte)MathTools.SpecialAverage(color1.R, color2.R, (int)(y / (height / 2)));
+                    rowColor.G = (byte)MathTools.SpecialAverage(color1.R, color2.R, (int)(y / (height / 2)));
+                    rowColor.B = (byte)MathTools.SpecialAverage(color1.R, color2.R, (int)(y / (height / 2)));
+                    rowColor.A = (byte)MathTools.SpecialAverage(color1.R, color2.R, (int)(y / (height / 2)));
+                }
+                else
+                {
+                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, (int)((y-(height/2)) / (height / 2)));
+                }
+                for (int x = 0; x < width; x++)
+                {
+                    colorData[y*width+x] = rowColor;
+                }
+            }
+            Texture.SetData<Color>(colorData);
+            return Texture;
+        }
+        #endregion
+
+        #region SPLITTING TOOLS
         public static Texture2D GetInnerTexture(Texture2D texture, Rectangle rectangle)
         {
             Texture2D returnTexture = new Texture2D(EdgeGame.graphicsDevice, rectangle.Width, rectangle.Height);
@@ -64,7 +94,9 @@ namespace EdgeLibrary
 
             return textures;
         }
+        #endregion
 
+        #region DRAWING TOOLS
         public static void DrawPixelAt(SpriteBatch spriteBatch, Vector2 position, Color color)
         {
             spriteBatch.Draw(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
@@ -74,5 +106,6 @@ namespace EdgeLibrary
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
             spriteBatch.Draw(Pixel, rectangle, color);
         }
+        #endregion
     }
 }

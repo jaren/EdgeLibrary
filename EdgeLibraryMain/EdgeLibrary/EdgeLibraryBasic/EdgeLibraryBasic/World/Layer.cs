@@ -71,9 +71,10 @@ namespace EdgeLibrary
 
         public void addElement(Element Element)
         {
-                Element.LayerID = ID;
-                Element.SceneID = SceneID;
-            Elements.Add(Element);
+           Element.LayerID = ID;
+           Element.SceneID = SceneID;
+           Element.FillTexture();
+           Elements.Add(Element);
         }
 
         public bool RemovObject(Object Object)

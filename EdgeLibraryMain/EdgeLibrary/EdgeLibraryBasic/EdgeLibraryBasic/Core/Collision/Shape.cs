@@ -54,7 +54,7 @@ namespace EdgeLibrary
             switch (shape.ShapeType)
             {
                 case ShapeTypes.circle:
-                    return (MathTools.DistanceBetween(CenterPosition, shape.CenterPosition) <= (Radius + ((ShapeCircle)shape).Radius));
+                    return (Vector2.Distance(CenterPosition, shape.CenterPosition) <= (Radius + ((ShapeCircle)shape).Radius));
                     break;
                 case ShapeTypes.rectangle:
                     return shape.CollidesWith(this);

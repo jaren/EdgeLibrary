@@ -39,6 +39,12 @@ namespace EdgeLibrary
             }
         }
 
+        //Returns the average of the first number/second number with an "influence (percentage/100)" of number 2
+        public static int SpecialAverage(int number1, int number2, int influence)
+        {
+            return (100 * number1 + influence * 100 * number2) / (100 + influence * 100);
+        }
+
         public static float CenterXString(Label label)
         {
             return (EdgeGame.WindowSize.X - label.Font.MeasureString(label.Text).X ) / 2;
@@ -49,13 +55,6 @@ namespace EdgeLibrary
         {
             string[] splitParts = path.Split('/');
             return splitParts[splitParts.Length - 1];
-        }
-
-        public static float DistanceBetween(Vector2 point, Vector2 point2)
-        {
-            float distX = point2.X - point.X;
-            float distY = point.Y - point2.Y;
-            return (float)Math.Sqrt(distX * distX + distY * distY);
         }
 
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)

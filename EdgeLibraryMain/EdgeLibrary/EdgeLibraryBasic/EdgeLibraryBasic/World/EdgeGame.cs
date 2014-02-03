@@ -92,6 +92,11 @@ namespace EdgeLibrary
             ResourceData.addTexture(textureName, Content.Load<Texture2D>(texturePath));
         }
 
+        public static void LoadTexture(Texture2D texture, string textureName)
+        {
+            ResourceData.addTexture(textureName, texture);
+        }
+
         public static void LoadTexture(string path)
         {
             ResourceData.addTexture(MathTools.LastPortionOfPath(path), Content.Load<Texture2D>(path));

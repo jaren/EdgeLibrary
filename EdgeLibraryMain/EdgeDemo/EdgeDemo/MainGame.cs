@@ -65,7 +65,7 @@ namespace EdgeDemo
         {
             loadResources();
             initializeGameWindow();
-            initializScenes();
+            initializeScenes();
         }
 
         //This is the "load content" function
@@ -78,6 +78,8 @@ namespace EdgeDemo
             EdgeGame.LoadFont("SpriteFonts/mediumFont");
             EdgeGame.LoadFont("SpriteFonts/largeFont");
             MediaPlayer.IsRepeating = true;
+
+            EdgeGame.LoadTexture(TextureTools.CreateVerticalGradient(300, 300, Color.White, Color.Black), "gradient");
 
             EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
 
@@ -99,8 +101,12 @@ namespace EdgeDemo
             MathTools.outerCirclePointStep = 50;
         }
 
-        private void initializScenes()
+        private void initializeScenes()
         {
+            Scene mainScene = new Scene("main");
+            EdgeGame.addScene(mainScene);
+            Sprite sprite = new Sprite("gradient", new Vector2(500, 500));
+            mainScene.addElement(sprite);
         }
     }
 }

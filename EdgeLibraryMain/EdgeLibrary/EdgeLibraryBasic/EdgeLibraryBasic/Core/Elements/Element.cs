@@ -36,8 +36,6 @@ namespace EdgeLibrary
             IsVisible = true;
             SupportsCollision = false;
             DrawLayer = 0;
-
-            FillTexture();
         }
 
         public void clampTo(Element Element)
