@@ -27,26 +27,27 @@ namespace EdgeLibrary
         }
 
         #region GENERATING TOOLS
-        public static Texture2D CreateVerticalGradient(int width, int height, Color color1, Color color2)
+        //Currently doesn't work with any midpoint not equal to half of the height
+        public static Texture2D CreateVerticalGradient(int width, int height, float midpoint, Color color1, Color color2)
         {
             Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
             Color[] colorData = new Color[width*height];
             for (int y = 0; y < height; y++)
             {
                 Color rowColor = new Color();
-                if (y < height / 2)
+                if (y < midpoint)
                 {
-                    rowColor.R = (byte)MathTools.SpecialAverage(color1.R, color2.R, y / (height / 2f));
-                    rowColor.G = (byte)MathTools.SpecialAverage(color1.G, color2.G, y / (height / 2f));
-                    rowColor.B = (byte)MathTools.SpecialAverage(color1.B, color2.B, y / (height / 2f));
-                    rowColor.A = (byte)MathTools.SpecialAverage(color1.A, color2.A, y / (height / 2f));
+                    rowColor.R = (byte)MathTools.SpecialAverage(color1.R, color2.R, y / (midpoint));
+                    rowColor.G = (byte)MathTools.SpecialAverage(color1.G, color2.G, y / (midpoint));
+                    rowColor.B = (byte)MathTools.SpecialAverage(color1.B, color2.B, y / (midpoint));
+                    rowColor.A = (byte)MathTools.SpecialAverage(color1.A, color2.A, y / (midpoint));
                 }
                 else
                 {
-                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, ((height - y) / (height / 2f)));
-                    rowColor.G = (byte)MathTools.SpecialAverage(color2.G, color1.G, ((height - y) / (height / 2f)));
-                    rowColor.B = (byte)MathTools.SpecialAverage(color2.B, color1.B, ((height - y) / (height / 2f)));
-                    rowColor.A = (byte)MathTools.SpecialAverage(color2.A, color1.A, ((height - y) / (height / 2f)));
+                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, ((height - y) / (midpoint)));
+                    rowColor.G = (byte)MathTools.SpecialAverage(color2.G, color1.G, ((height - y) / (midpoint)));
+                    rowColor.B = (byte)MathTools.SpecialAverage(color2.B, color1.B, ((height - y) / (midpoint)));
+                    rowColor.A = (byte)MathTools.SpecialAverage(color2.A, color1.A, ((height - y) / (midpoint)));
                 }
                 for (int x = 0; x < width; x++)
                 {
