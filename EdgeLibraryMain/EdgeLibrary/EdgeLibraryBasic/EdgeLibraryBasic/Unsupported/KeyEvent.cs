@@ -17,9 +17,9 @@ namespace EdgeLibrary
         public Keys key;
         public bool pressed;
 
-        public KeyEventArgs(UpdateArgs UpdateArgs, Keys keyName, bool ispressed)
+        public KeyEventArgs(UpdateArgs updateArgs, Keys keyName, bool ispressed)
         {
-            UpdateArgs = UpdateArgs;
+            UpdateArgs = updateArgs;
             key = keyName;
             pressed = ispressed;
         }

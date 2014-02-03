@@ -99,7 +99,7 @@ namespace EdgeLibrary
             {
                 if (ShowBlankOnFinish)
                 {
-                    return TextureGenerator.Blank;
+                    return TextureTools.Blank;
                 }
                 else
                 {

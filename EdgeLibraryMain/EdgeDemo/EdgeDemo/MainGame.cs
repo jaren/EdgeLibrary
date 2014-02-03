@@ -95,8 +95,8 @@ namespace EdgeDemo
             IsMouseVisible = true;
 
             //Asteroid collision bodies EXTREMELY laggy
-            MathGenerator.circlePointStep = 50;
-            MathGenerator.outerCirclePointStep = 50;
+            MathTools.circlePointStep = 50;
+            MathTools.outerCirclePointStep = 50;
         }
 
         private void initializScenes()

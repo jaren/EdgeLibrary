@@ -13,9 +13,9 @@ namespace EdgeLibrary
         public UpdateArgs UpdateArgs;
         public int value;
 
-        public TickerEventArgs(UpdateArgs UpdateArgs, int eValue)
+        public TickerEventArgs(UpdateArgs updateArgs, int eValue)
         {
-            UpdateArgs = UpdateArgs;
+            UpdateArgs = updateArgs;
             value = eValue;
         }
     }

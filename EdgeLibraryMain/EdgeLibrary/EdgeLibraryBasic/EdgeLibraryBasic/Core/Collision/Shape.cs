@@ -54,7 +54,7 @@ namespace EdgeLibrary
             switch (shape.ShapeType)
             {
                 case ShapeTypes.circle:
-                    return (MathGenerator.DistanceBetween(CenterPosition, shape.CenterPosition) <= (Radius + ((ShapeCircle)shape).Radius));
+                    return (MathTools.DistanceBetween(CenterPosition, shape.CenterPosition) <= (Radius + ((ShapeCircle)shape).Radius));
                     break;
                 case ShapeTypes.rectangle:
                     return shape.CollidesWith(this);
@@ -65,10 +65,10 @@ namespace EdgeLibrary
 
         public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
         {
-            List<Vector2> points = MathGenerator.GetOuterCirclePoints(CenterPosition, Radius);
+            List<Vector2> points = MathTools.GetOuterCirclePoints(CenterPosition, Radius);
             foreach (Vector2 point in points)
             {
-                TextureGenerator.DrawPixelAt(spriteBatch, point, drawColor);
+                TextureTools.DrawPixelAt(spriteBatch, point, drawColor);
             }
         }
     }
@@ -93,7 +93,7 @@ namespace EdgeLibrary
                     ShapeCircle realshape = ((ShapeCircle)shape);
                     if (RectangleF.IntersectsWith(new RectangleF(realshape.CenterPosition.X - realshape.Radius, CenterPosition.Y - realshape.Radius, realshape.Radius*2, realshape.Radius*2)))
                     {
-                    List<Vector2> circlePoints = MathGenerator.GetCirclePoints(shape.CenterPosition, realshape.Radius);
+                    List<Vector2> circlePoints = MathTools.GetCirclePoints(shape.CenterPosition, realshape.Radius);
                     foreach(Vector2 point in circlePoints)
                     {
                         if (RectangleF.Contains(point.X, point.Y))
@@ -114,10 +114,10 @@ namespace EdgeLibrary
         public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
         {
             RectangleF rectangle = new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height);
-            TextureGenerator.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureGenerator.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureGenerator.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
-            TextureGenerator.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
+            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
+            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
+            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
+            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
         }
     }
 }

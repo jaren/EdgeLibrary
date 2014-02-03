@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace EdgeLibrary
 {
-    public static class TextureGenerator
+    public static class TextureTools
     {
         public static Texture2D Pixel;
         public static Texture2D Blank;

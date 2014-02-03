@@ -164,7 +164,7 @@ namespace EdgeLibrary.Unsupported
             {
                 if (ShowBlankOnFinish)
                 {
-                    return TextureGenerator.Blank;
+                    return TextureTools.Blank;
                 }
                 else
                 {

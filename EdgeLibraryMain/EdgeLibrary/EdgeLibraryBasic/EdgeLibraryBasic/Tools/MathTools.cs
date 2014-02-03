@@ -14,7 +14,7 @@ using System.Xml.Linq;
 namespace EdgeLibrary
 {
     //Holds all the calculation and simple drawing functions
-    public static class MathGenerator
+    public static class MathTools
     {
         public static void Init() { }
 

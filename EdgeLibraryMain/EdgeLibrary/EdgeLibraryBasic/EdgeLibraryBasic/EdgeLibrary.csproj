@@ -77,7 +77,7 @@
     <Compile Include="Core\Elements\TextureFont.cs" />
     <Compile Include="Core\Other\Animation\AnimationIndex.cs" />
     <Compile Include="Core\Other\Animation\XMLAnimationIndex.cs" />
-    <Compile Include="Generators\MathGenerator.cs" />
+    <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Core\Elements\Object.cs" />
     <Compile Include="Core\Other\Range.cs" />
     <Compile Include="Core\Collision\Shape.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Core\Elements\Ticker.cs" />
     <Compile Include="Core\Other\Animation\AnimationBase.cs" />
     <Compile Include="Core\Other\UpdateArgs.cs" />
-    <Compile Include="Generators\TextureGenerator.cs" />
+    <Compile Include="Tools\TextureTools.cs" />
     <Compile Include="Unsupported\SpriteSheetAnimationIndex.cs" />
     <Compile Include="Core\Elements\Menu\Button.cs" />
     <Compile Include="Core\Elements\Menu\ButtonRound.cs" />

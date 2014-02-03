@@ -49,7 +49,7 @@ namespace EdgeLibrary
 
         public void CenterX()
         {
-            Position = new Vector2(MathGenerator.CenterXString(this), Position.Y);
+            Position = new Vector2(MathTools.CenterXString(this), Position.Y);
         }
 
         public void runAction(EAction action)

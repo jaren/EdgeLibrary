@@ -41,7 +41,7 @@ namespace EdgeLibrary
                 Color = Color.White;
             }
 
-            if (MathGenerator.DistanceBetween(Position, mousePosition) <= Radius)
+            if (MathTools.DistanceBetween(Position, mousePosition) <= Radius)
             {
                 Color = onColor;
                 Texture = onTexture;

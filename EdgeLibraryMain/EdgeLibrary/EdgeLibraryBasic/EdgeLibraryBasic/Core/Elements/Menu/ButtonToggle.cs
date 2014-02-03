@@ -34,13 +34,13 @@ namespace EdgeLibrary
         public event ButtonToggleEvent MouseOver;
         public event ButtonToggleEvent MouseOff;
 
-        public ButtonToggle(Button ButtonOn, Button ButtonOff) : base(ButtonOn.Data, ButtonOn.Position, (int)ButtonOn.Width, (int)ButtonOn.Height)
+        public ButtonToggle(Button buttonOn, Button buttonOff) : base(buttonOn.Data, buttonOn.Position, (int)buttonOn.Width, (int)buttonOn.Height)
         {
             On = true;
-            ButtonOn = ButtonOn;
+            ButtonOn = buttonOn;
             ButtonOn.IsVisible = true;
             ButtonOn.IsActive = true;
-            ButtonOff = ButtonOff;
+            ButtonOff = buttonOff;
             ButtonOff.IsVisible = false;
             ButtonOff.IsActive = false;
             HasReleasedMouseClick = false;

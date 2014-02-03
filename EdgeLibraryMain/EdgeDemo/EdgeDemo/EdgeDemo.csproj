@@ -86,7 +86,7 @@
       <Project>{8300EA61-C704-4216-B16A-4F249CFF4F89}</Project>
       <Name>EdgeLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EdgeLibraryDemoContent\EdgeGameContent.contentproj">
+    <ProjectReference Include="..\EdgeDemoContent\EdgeDemoContent.contentproj">
       <Name>EdgeGameContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
       <Project>{F20DEB27-F235-4E60-833B-2BBA7E87FA81}</Project>

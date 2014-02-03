@@ -70,7 +70,7 @@ namespace EdgeLibrary
             DebugDrawColor = Color.White;
             DrawType = EdgeGameDrawTypes.Normal;
 
-            MathGenerator.Init();
+            MathTools.Init();
             ResourceData.Init();
             ContentRootDirectory = Content.RootDirectory;
         }
@@ -94,13 +94,13 @@ namespace EdgeLibrary
 
         public static void LoadTexture(string path)
         {
-            ResourceData.addTexture(MathGenerator.LastPortionOfPath(path), Content.Load<Texture2D>(path));
+            ResourceData.addTexture(MathTools.LastPortionOfPath(path), Content.Load<Texture2D>(path));
         }
 
         public static void LoadTextureFromSpritesheet(string spritesheetpath, string xmlpath)
         {
             ResourceData.addTexture(spritesheetpath, Content.Load<Texture2D>(spritesheetpath));
-            Dictionary<string, Texture2D> textures = TextureGenerator.SplitSpritesheet(spritesheetpath, xmlpath);
+            Dictionary<string, Texture2D> textures = TextureTools.SplitSpritesheet(spritesheetpath, xmlpath);
 
             foreach (KeyValuePair<string, Texture2D> texture in textures)
             {
@@ -115,7 +115,7 @@ namespace EdgeLibrary
 
         public static void LoadFont(string path)
         {
-            ResourceData.addFont(MathGenerator.LastPortionOfPath(path), Content.Load<SpriteFont>(path));
+            ResourceData.addFont(MathTools.LastPortionOfPath(path), Content.Load<SpriteFont>(path));
         }
 
         public static void LoadSong(string songPath, string songName)
@@ -125,7 +125,7 @@ namespace EdgeLibrary
 
         public static void LoadSong(string path)
         {
-            ResourceData.addSong(MathGenerator.LastPortionOfPath(path), Content.Load<Song>(path));
+            ResourceData.addSong(MathTools.LastPortionOfPath(path), Content.Load<Song>(path));
         }
 
         public static void LoadSound(string soundPath, string soundName)
@@ -135,7 +135,7 @@ namespace EdgeLibrary
 
         public static void LoadSound(string path)
         {
-            ResourceData.addSound(MathGenerator.LastPortionOfPath(path), Content.Load<SoundEffect>(path));
+            ResourceData.addSound(MathTools.LastPortionOfPath(path), Content.Load<SoundEffect>(path));
         }
 
         //Currently Unused
