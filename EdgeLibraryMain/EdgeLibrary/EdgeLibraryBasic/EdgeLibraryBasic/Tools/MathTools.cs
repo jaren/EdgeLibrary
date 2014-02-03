@@ -40,7 +40,7 @@ namespace EdgeLibrary
         }
 
         //Returns the average of the first number/second number with an "influence (percentage/100)" of number 2
-        public static int SpecialAverage(int number1, int number2, int influence)
+        public static float SpecialAverage(int number1, int number2, float influence)
         {
             return (100 * number1 + influence * 100 * number2) / (100 + influence * 100);
         }
