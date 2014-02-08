@@ -27,7 +27,7 @@ namespace EdgeLibrary
         }
 
         #region GENERATING TOOLS
-        //Currently doesn't work with any midpoint not equal to half of the height
+        /* Will not be used
         public static Texture2D CreateVerticalGradient(int width, int height, float midpoint, Color color1, Color color2)
         {
             Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
@@ -54,6 +54,42 @@ namespace EdgeLibrary
                     colorData[y*width+x] = rowColor;
                 }
             }
+            Texture.SetData<Color>(colorData);
+            return Texture;
+        }
+         */
+
+        //Incomplete
+        public static Texture2D CreateGradient(int width, int height, Color color1, Color color2, Vector2 colorEmitter1, Vector2 colorEmitter2)
+        {
+            Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
+            Color[] colorData = new Color[width * height];
+
+            Line emitterLine = new Line(colorEmitter1, colorEmitter2);
+            Line compareLine = Line.PerpendicularToAt(MathTools.MidPoint(colorEmitter1, colorEmitter2), emitterLine);
+
+            Line emitter1Line = Line.PerpendicularToAt(colorEmitter1, emitterLine);
+            Line emitter2Line = Line.PerpendicularToAt(colorEmitter2, emitterLine);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    //Checks if the current pixel is past the "halfway" mark
+                    Line passThroughLine = new Line(colorEmitter1, new Vector2(x, y));
+                    Vector2 intersection = (Vector2)passThroughLine.Intersection(compareLine);
+
+                    //NOTE: THE POINTS THAT ARE BEHIND THE TWO EMITTERS MAY BE INCLUDED IN THIS
+                    //ADD A CHECK TO SEE IF THE POINTS ARE BEHIND THE EMITTERS, THEN SET THEM TO THE EMITTER COLOR
+                    if (Vector2.Distance(colorEmitter1, new Vector2(x, y)) > Vector2.Distance(colorEmitter1, intersection))
+                    {
+
+                    }
+
+                    colorData[y * width + x] = new Color();
+                }
+            }
+
             Texture.SetData<Color>(colorData);
             return Texture;
         }

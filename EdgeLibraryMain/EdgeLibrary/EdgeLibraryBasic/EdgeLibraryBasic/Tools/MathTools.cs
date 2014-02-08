@@ -39,6 +39,14 @@ namespace EdgeLibrary
             }
         }
 
+        //Returns the midpoint of a line segment drawn from one point to the other
+        public static Vector2 MidPoint(Vector2 point1, Vector2 point2)
+        {
+            float diffX = point1.X - point2.X;
+            float diffY = point1.Y - point2.Y;
+            return new Vector2(point2.X + diffX/2, point2.Y + diffY/2);
+        }
+
         //Returns the average of the first number/second number with an "influence (percentage/100)" of number 2
         public static float SpecialAverage(int number1, int number2, float influence)
         {

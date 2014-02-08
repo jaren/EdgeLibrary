@@ -79,7 +79,7 @@ namespace EdgeDemo
             EdgeGame.LoadFont("SpriteFonts/largeFont");
             MediaPlayer.IsRepeating = true;
 
-            EdgeGame.LoadTexture(TextureTools.CreateVerticalGradient(700, 700, 350, Color.DarkGoldenrod, Color.Bisque), "gradient");
+            EdgeGame.LoadTexture(TextureTools.CreateGradient(700, 700, Color.DarkGoldenrod, Color.Bisque, new Vector2(0, 0), new Vector2(700, 700)), "gradient");
 
             EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
 
