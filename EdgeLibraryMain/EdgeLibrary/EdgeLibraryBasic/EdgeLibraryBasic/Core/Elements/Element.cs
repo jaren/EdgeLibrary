@@ -75,7 +75,7 @@ namespace EdgeLibrary
         {
             try
             {
-                spriteBatch.DrawString(font, text, Position, color, MathHelper.ToRadians(Rotation), Vector2.Zero, scale, effects, 0);
+                EdgeGame.DrawString(font, text, Position, color, MathHelper.ToRadians(Rotation), scale, Vector2.Zero, effects, 0);
             }
             catch
             {
@@ -86,7 +86,7 @@ namespace EdgeLibrary
         {
             try
             {
-            spriteBatch.Draw(texture, bounds, origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
+            EdgeGame.DrawTexture(texture, bounds, origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
             }
             catch
             {
@@ -99,11 +99,11 @@ namespace EdgeLibrary
             {
             if (origin == null)
             {
-                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
+                EdgeGame.DrawTexture(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
             }
             else
             {
-                spriteBatch.Draw(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
+                EdgeGame.DrawTexture(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
             }
             }
             catch
@@ -116,7 +116,7 @@ namespace EdgeLibrary
             try
             {
             float ratioWH = texture.Width / texture.Height;
-            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
+            EdgeGame.DrawTexture(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
             }
             catch
             {
@@ -128,7 +128,7 @@ namespace EdgeLibrary
             try
             {
             float ratioHW = texture.Height / texture.Width;
-            spriteBatch.Draw(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
+            EdgeGame.DrawTexture(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, MathHelper.ToRadians(Rotation), Vector2.Zero, effects, 0);
             }
             catch
             {

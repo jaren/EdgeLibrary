@@ -35,57 +35,57 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\fire-grayscale.png">
+    <Compile Include="Particle Textures\fire-grayscale.png">
       <Name>fire-grayscale</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\fire.png">
+    <Compile Include="Particle Textures\fire.png">
       <Name>fire</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\particles-hd.png">
+    <Compile Include="Particle Textures\particles-hd.png">
       <Name>particles-hd</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\particles.png">
+    <Compile Include="Particle Textures\particles.png">
       <Name>particles</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\smoke.png">
+    <Compile Include="Particle Textures\smoke.png">
       <Name>smoke</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\snow.png">
+    <Compile Include="Particle Textures\snow.png">
       <Name>snow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\stars-grayscale.png">
+    <Compile Include="Particle Textures\stars-grayscale.png">
       <Name>stars-grayscale</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\stars.png">
+    <Compile Include="Particle Textures\stars.png">
       <Name>stars</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\stars2-grayscale.png">
+    <Compile Include="Particle Textures\stars2-grayscale.png">
       <Name>stars2-grayscale</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\stars2.png">
+    <Compile Include="Particle Textures\stars2.png">
       <Name>stars2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteFonts\Particle Textures\stars2_mini.png">
+    <Compile Include="Particle Textures\stars2_mini.png">
       <Name>stars2_mini</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

@@ -22,15 +22,16 @@ namespace EdgeLibrary
     public static class EdgeGame
     {
         #region VARIABLES
-        public static ContentManager Content;
-        public static SpriteBatch spriteBatch;
-        public static GraphicsDeviceManager graphics;
+        private static ContentManager Content;
+        private static SpriteBatch spriteBatch;
+        private static GraphicsDeviceManager graphics;
         public static GraphicsDevice graphicsDevice;
 
         public static string ContentRootDirectory;
         public static EdgeGameDrawTypes DrawType;
         public static Color ClearColor;
         public static Color DebugDrawColor;
+        public static bool StandardXNACoordinates;
 
 
         public static Vector2 WindowSize
@@ -69,6 +70,7 @@ namespace EdgeLibrary
             ClearColor = Color.Black;
             DebugDrawColor = Color.White;
             DrawType = EdgeGameDrawTypes.Normal;
+            StandardXNACoordinates = true;
 
             MathTools.Init();
             ResourceData.Init();
@@ -234,6 +236,26 @@ namespace EdgeLibrary
         #endregion
 
         #region DRAW
+        public static void DrawTexture(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+        {
+            //Sets the coordinate system for the left bottom corner to be (0,0)
+            if (!StandardXNACoordinates)
+            {
+                destinationRectangle = new Rectangle(destinationRectangle.X, graphics.PreferredBackBufferHeight - destinationRectangle.Y, destinationRectangle.Width, -destinationRectangle.Height);
+            }
+            spriteBatch.Draw(texture, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth);
+        }
+
+        public static void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color, float rotation, Vector2 scale, Vector2 origin, SpriteEffects effects, float layerDepth)
+        {
+            //Sets the coordinate system for the left bottom corner to be (0,0)
+            if (!StandardXNACoordinates)
+            {
+                position = new Vector2(position.X, graphics.PreferredBackBufferHeight - position.Y);
+            }
+            spriteBatch.DrawString(spriteFont, text, position, color, rotation, origin, scale, effects, layerDepth);
+        }
+
         public static void Draw(GameTime gameTime)
         {
             graphicsDevice.Clear(ClearColor);

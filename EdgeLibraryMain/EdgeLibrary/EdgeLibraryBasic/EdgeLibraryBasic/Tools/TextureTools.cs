@@ -103,12 +103,12 @@ namespace EdgeLibrary
         #region DRAWING TOOLS
         public static void DrawPixelAt(SpriteBatch spriteBatch, Vector2 position, Color color)
         {
-            spriteBatch.Draw(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), color);
+            EdgeGame.DrawTexture(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0);
         }
         public static void DrawRectangleAt(SpriteBatch spriteBatch, Vector2 position, float width, float height, Color color)
         {
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
-            spriteBatch.Draw(Pixel, rectangle, color);
+            EdgeGame.DrawTexture(Pixel, rectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0);
         }
         #endregion
     }

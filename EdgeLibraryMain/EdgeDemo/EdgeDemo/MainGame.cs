@@ -91,7 +91,7 @@ namespace EdgeDemo
         {
             EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
             EdgeGame.ClearColor = Color.White ;
-            EdgeGame.playSong("spaceBossMusic");
+            //EdgeGame.playSong("spaceBossMusic");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
             IsMouseVisible = true;
