@@ -37,7 +37,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             if (IsVisible)
             {
@@ -48,20 +48,20 @@ namespace EdgeLibrary
                     switch (EdgeGame.DrawType)
                     {
                         case EdgeGameDrawTypes.Normal:
-                            element.Draw(spriteBatch, gameTime);
+                            element.Draw(gameTime);
                             break;
                         case EdgeGameDrawTypes.Debug:
                             //Debug Draw Here
                             if (element.SupportsCollision && element.CollisionBody != null)
                             {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EdgeGame.DebugDrawColor);
+                                element.CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
                             }
                             break;
                         case EdgeGameDrawTypes.Hybrid:
-                            element.Draw(spriteBatch, gameTime);
+                            element.Draw(gameTime);
                             if (element.SupportsCollision && element.CollisionBody != null)
                             {
-                                element.CollisionBody.Shape.DebugDraw(spriteBatch, EdgeGame.DebugDrawColor);
+                                element.CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
                             }
                             break;
                     }

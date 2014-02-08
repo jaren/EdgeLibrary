@@ -37,7 +37,7 @@ namespace EdgeLibrary
             return false;
         }
 
-        public virtual void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor) { }
+        public virtual void DebugDraw(Microsoft.Xna.Framework.Color drawColor) { }
     }
 
     public class ShapeCircle : Shape
@@ -63,12 +63,12 @@ namespace EdgeLibrary
             return false;
         }
 
-        public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
+        public override void DebugDraw(Microsoft.Xna.Framework.Color drawColor)
         {
             List<Vector2> points = MathTools.GetOuterCirclePoints(CenterPosition, Radius);
             foreach (Vector2 point in points)
             {
-                TextureTools.DrawPixelAt(spriteBatch, point, drawColor);
+                TextureTools.DrawPixelAt(point, drawColor);
             }
         }
     }
@@ -111,13 +111,13 @@ namespace EdgeLibrary
             return false;
         }
 
-        public override void DebugDraw(SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color drawColor)
+        public override void DebugDraw(Microsoft.Xna.Framework.Color drawColor)
         {
             RectangleF rectangle = new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height);
-            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
-            TextureTools.DrawRectangleAt(spriteBatch, new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
+            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
+            TextureTools.DrawRectangleAt(new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
+            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
+            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
         }
     }
 }

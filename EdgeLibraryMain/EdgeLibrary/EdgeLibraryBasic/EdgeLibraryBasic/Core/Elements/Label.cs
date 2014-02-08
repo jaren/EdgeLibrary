@@ -76,9 +76,9 @@ namespace EdgeLibrary
             loadFromSprite();
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
-            base.DrawStringToSpriteBatch(spriteBatch, Font, Text, Color, Rotation, Scale, spriteEffects);
+            base.DrawString(Font, Text, Color, Rotation, Scale, spriteEffects);
         }
     }
 }

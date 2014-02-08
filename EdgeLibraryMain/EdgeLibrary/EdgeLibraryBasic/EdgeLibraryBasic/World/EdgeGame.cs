@@ -256,13 +256,27 @@ namespace EdgeLibrary
             spriteBatch.DrawString(spriteFont, text, position, color, rotation, origin, scale, effects, layerDepth);
         }
 
+        //Used only for particle emitters or things that require special draw states
+        public static void EndSpriteBatch()
+        {
+            spriteBatch.End();
+        }
+        public static void BeginSpriteBatch()
+        {
+            spriteBatch.Begin();
+        }
+        public static void BeginSpriteBatch(SpriteSortMode sortMode, BlendState blendState)
+        {
+            spriteBatch.Begin(sortMode, blendState);
+        }
+
         public static void Draw(GameTime gameTime)
         {
             graphicsDevice.Clear(ClearColor);
             spriteBatch.Begin();
             if (scenes.Count != 0)
             {
-                scenes[selectedSceneIndex].Draw(spriteBatch, gameTime);
+                scenes[selectedSceneIndex].Draw(gameTime);
             }
             spriteBatch.End();
         }

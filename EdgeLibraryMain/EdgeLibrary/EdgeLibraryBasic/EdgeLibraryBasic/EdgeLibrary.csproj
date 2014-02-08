@@ -77,6 +77,7 @@
     <Compile Include="Core\Elements\TextureFont.cs" />
     <Compile Include="Core\Other\Animation\AnimationIndex.cs" />
     <Compile Include="Core\Other\Animation\XMLAnimationIndex.cs" />
+    <Compile Include="Tools\Line.cs" />
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Core\Elements\Object.cs" />
     <Compile Include="Core\Other\Range.cs" />

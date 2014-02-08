@@ -134,7 +134,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             if (IsVisible)
             {

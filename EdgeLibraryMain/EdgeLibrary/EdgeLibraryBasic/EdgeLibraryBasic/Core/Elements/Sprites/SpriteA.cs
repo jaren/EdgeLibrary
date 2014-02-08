@@ -91,23 +91,23 @@ namespace EdgeLibrary
             reloadBoundingBox();
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             Rectangle origin = Animations[selectedAnimation].getTextureBox();
 
             switch (DrawType)
             {
                 case SpriteDrawType.NoRatio:
-                    base.DrawToSpriteBatch(spriteBatch, origin, Texture, BoundingBox, Color, Rotation, spriteEffects);
+                    base.DrawTexture(origin, Texture, BoundingBox, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.KeepHeight:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Height, Color, Rotation, spriteEffects);
+                    base.DrawWithHeight(origin, Texture, Height, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.KeepWidth:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, origin, Texture, Width, Color, Rotation, spriteEffects);
+                    base.DrawWithWidth(origin, Texture, Width, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.Scaled:
-                    base.DrawToSpriteBatchWithScale(spriteBatch, origin, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
+                    base.DrawWithScale(origin, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
                     break;
             }
         }

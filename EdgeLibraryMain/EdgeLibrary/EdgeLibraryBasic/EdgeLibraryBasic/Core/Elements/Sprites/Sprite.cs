@@ -207,21 +207,21 @@ namespace EdgeLibrary
             if (ClampedToMouse) { _position.X = updateArgs.mouseState.X; _position.Y = updateArgs.mouseState.Y; reloadBoundingBox(); }
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             switch (DrawType)
             {
                 case SpriteDrawType.NoRatio:
-                    base.DrawToSpriteBatch(spriteBatch, null, Texture, BoundingBox, Color, Rotation, spriteEffects);
+                    base.DrawTexture(null, Texture, BoundingBox, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.KeepHeight:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Height, Color, Rotation, spriteEffects);
+                    base.DrawWithHeight(null, Texture, Height, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.KeepWidth:
-                    base.DrawToSpriteBatchWithHeight(spriteBatch, null, Texture, Width, Color, Rotation, spriteEffects);
+                    base.DrawWithWidth(null, Texture, Width, Color, Rotation, spriteEffects);
                     break;
                 case SpriteDrawType.Scaled:
-                    base.DrawToSpriteBatchWithScale(spriteBatch, null, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
+                    base.DrawWithScale(null, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
                     break;
             }
         }

@@ -58,20 +58,20 @@ namespace EdgeLibrary
         {
             if (IsActive) { if (ClampedToMouse) { Position = new Vector2(updateArgs.mouseState.X, updateArgs.mouseState.Y); } else if (clampedObject != null) { Position = clampedObject.Position + clampPos; } updatElement(updateArgs); }
         }
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
-            if (IsVisible) { drawElement(spriteBatch, gameTime); }
+            if (IsVisible) { drawElement(gameTime); }
         }
 
         public virtual void OnAddToLayer(Layer layer) { }
 
         public virtual void updatElement(UpdateArgs updateArgs) { }
-        public virtual void drawElement(SpriteBatch spriteBatch, GameTime gameTime) { }
+        public virtual void drawElement(GameTime gameTime) { }
 
         public virtual void UpdateCollision(List<Element> elements) { }
 
 
-        protected void DrawStringToSpriteBatch(SpriteBatch spriteBatch, SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
+        protected void DrawString(SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace EdgeLibrary
             }
         }
 
-        protected void DrawToSpriteBatch(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation, SpriteEffects effects)
+        protected void DrawTexture(Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation, SpriteEffects effects)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace EdgeLibrary
             }
         }
 
-        protected void DrawToSpriteBatchWithScale(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float scale, Color color, float Rotation, SpriteEffects effects)
+        protected void DrawWithScale(Rectangle? origin, Texture2D texture, float scale, Color color, float Rotation, SpriteEffects effects)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace EdgeLibrary
             }
         }
 
-        protected void DrawToSpriteBatchWithWidth(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float width, Color color, float Rotation, SpriteEffects effects)
+        protected void DrawWithWidth(Rectangle? origin, Texture2D texture, float width, Color color, float Rotation, SpriteEffects effects)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace EdgeLibrary
             }
         }
 
-        protected void DrawToSpriteBatchWithHeight(SpriteBatch spriteBatch, Rectangle? origin, Texture2D texture, float height, Color color, float Rotation, SpriteEffects effects)
+        protected void DrawWithHeight(Rectangle? origin, Texture2D texture, float height, Color color, float Rotation, SpriteEffects effects)
         {
             try
             {

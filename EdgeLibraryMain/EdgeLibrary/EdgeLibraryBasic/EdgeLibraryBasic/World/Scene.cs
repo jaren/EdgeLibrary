@@ -87,14 +87,14 @@ namespace EdgeLibrary
         #endregion
 
         #region DRAW
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             if (IsVisible)
             {
                 layers = layers.OrderBy(x => x.DrawLayer).ToList();
                 foreach (Layer layer in layers)
                 {
-                    layer.drawElement(spriteBatch, gameTime);
+                    layer.drawElement(gameTime);
                 }
             }
         }

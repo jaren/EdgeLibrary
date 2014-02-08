@@ -107,21 +107,21 @@ namespace EdgeLibrary
                 }
         }
 
-        public override void drawElement(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
-            spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, DrawState);
+            EdgeGame.EndSpriteBatch();
+            EdgeGame.BeginSpriteBatch(SpriteSortMode.FrontToBack, DrawState);
 
             foreach (Particle particle in particles)
             {
                 if (!particlesToRemove.Contains(particle))
                 {
-                    particle.Draw(spriteBatch, gameTime);
+                    particle.Draw(gameTime);
                 }
             }
 
-            spriteBatch.End();
-            spriteBatch.Begin();
+            EdgeGame.EndSpriteBatch();
+            EdgeGame.BeginSpriteBatch();
         }
 
         public override void updatElement(UpdateArgs updateArgs)
