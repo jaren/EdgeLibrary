@@ -46,8 +46,7 @@ namespace EdgeDemo
             capability.MoveElementTo(new Vector2(100, 100), 1);
             TextSprite textSprite = new TextSprite("SpriteFont1", "This is a TextSprite", new Vector2(300, 300), Color.Green);
 
-            BlackWhiteEffect effect = new BlackWhiteEffect();
-            EdgeGame.Effects.Add(effect);
+            EdgeGame.Effect = new BlackWhiteEffect();
         }
 
         protected override void UnloadContent() { }

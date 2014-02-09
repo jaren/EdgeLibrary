@@ -20,16 +20,17 @@ namespace EdgeLibrary
         private static GraphicsDeviceManager graphics;
         private static SpriteBatch spriteBatch;
 
+        private static bool IsDrawing;
+
         private static RenderTarget2D ScreenTarget;
 
         public static Color ClearColor;
         public static bool AutomaticallyAddElementsToGame;
-        public static Scene SceneToAddTo;
+        public static Scene SelectedScene;
 
-        public static List<Effect> Effects;
+        public static Effect Effect;
 
         public static List<Scene> Scenes { get; private set; }
-        public static string selectedScene;
 
         public static void Init(ContentManager c, GraphicsDevice gd, GraphicsDeviceManager gdm, SpriteBatch sb)
         {
@@ -37,15 +38,13 @@ namespace EdgeLibrary
             graphics = gdm;
             spriteBatch = sb;
 
-            Effects = new List<Effect>();
-
             AutomaticallyAddElementsToGame = true;
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
             Scenes = new List<Scene>();
             Scenes.Add(new Scene("Main"));
-            selectedScene = mainScene().ID;
+            SelectedScene = mainScene();
 
             ResourceManager.Init(c);
             SoundManager.Init(c);
@@ -87,8 +86,13 @@ namespace EdgeLibrary
         {
             if (AutomaticallyAddElementsToGame)
             {
-                Scene(selectedScene).AddElement(e);
+                SelectedScene.AddElement(e);
             }
+        }
+
+        public void SwitchScene(string id)
+        {
+            SelectedScene = Scene(id);
         }
 
         public static void SetWindowSize(Vector2 size)
@@ -107,7 +111,7 @@ namespace EdgeLibrary
 
             Camera.Update(gameTime);
 
-            Scene(selectedScene).Update(gameTime);
+            SelectedScene.Update(gameTime);
         }
 
         public static void Draw(GameTime gameTime)
@@ -117,29 +121,55 @@ namespace EdgeLibrary
             graphicsDevice.Viewport = new Viewport((int)Camera.Position.X - (int)WindowSize().X / 2, (int)Camera.Position.Y - (int)WindowSize().Y / 2, (int)WindowSize().X, (int)WindowSize().Y);
 
             spriteBatch.Begin();
-            Scene(selectedScene).Draw(gameTime);
+            IsDrawing = true;
+            SelectedScene.Draw(gameTime);
             spriteBatch.End();
 
             graphicsDevice.SetRenderTarget(null);
             graphicsDevice.Clear(ClearColor);
             Texture2D screen = (Texture2D)ScreenTarget;
-            for (int i = 0; i < Effects.Count; i++)
+            if (Effect != null)
             {
-                Effects[i].ApplyEffect(screen);
+                Effect.ApplyEffect(ScreenTarget);
             }
             spriteBatch.Begin();
             drawTexture(screen, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+            IsDrawing = false;
             spriteBatch.End();
+        }
+
+        //Used mainly for elements that require a special draw mode
+        public static void RestartSpriteBatch(SpriteSortMode sortMode, BlendState blendState)
+        {
+            if (IsDrawing)
+            {
+                spriteBatch.End();
+                spriteBatch.Begin(sortMode, blendState);
+            }
+        }
+        public static void RestartSpriteBatch()
+        {
+            if (IsDrawing)
+            {
+                spriteBatch.End();
+                spriteBatch.Begin();
+            }
         }
 
         public static void drawTexture(Texture2D texture, Rectangle destRect, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects spriteEffects, float layerDepth)
         {
-            spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, layerDepth);
+            if (IsDrawing)
+            {
+                spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, layerDepth);
+            }
         }
 
         public static void drawString(SpriteFont font, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, float layerDepth)
         {
-            spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
+            if (IsDrawing)
+            {
+                spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
+            }
         }
     }
 }
