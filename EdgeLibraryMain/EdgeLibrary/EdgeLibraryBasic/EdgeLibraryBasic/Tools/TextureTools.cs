@@ -39,22 +39,21 @@ namespace EdgeLibrary
             Line emitterLine = new Line(colorEmitter1, colorEmitter2);
             Line compareLine = Line.PerpendicularToAt(emitterLine, MathTools.MidPoint(colorEmitter1, colorEmitter2));
             Line colorEmitter1Line = Line.PerpendicularToAt(emitterLine, colorEmitter1);
+            Line colorEmitter2Line = Line.PerpendicularToAt(emitterLine, colorEmitter2);
 
             foreach (Vector2 point in emitterLine.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
             {
                 Line line = Line.PerpendicularToAt(emitterLine, point);
                 foreach (Vector2 linePoint in line.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
                 {
-                    //If the line is past the "halfway" mark
+                    //If the line is past the "halfway" mark - may have problems with the lines that are far on the opposite side of the colorEmitter1Line
                     if (line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)) > compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)))
                     {
-                        //UNKNOWN LERP VALUE
-                        colorData[(int)point.X + (int)point.Y * width] = Color.Lerp(color1, color2, 0f);
+                        colorData[(int)linePoint.X + (int)linePoint.Y * width] = Color.Lerp(color1, color2, ((float)line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line))) / ((float)compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line))));
                     }
                     else
                     {
-                        //UNKNOWN LERP VALUE
-                        colorData[(int)point.X + (int)point.Y * width] = Color.Lerp(color2, color1, 0f);
+                        colorData[(int)linePoint.X + (int)linePoint.Y * width] = Color.Lerp(color2, color1, ((float)line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter2Line))) / ((float)compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter2Line))));
                     }
                 }
             }

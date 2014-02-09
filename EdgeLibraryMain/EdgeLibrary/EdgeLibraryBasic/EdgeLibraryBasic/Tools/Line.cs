@@ -153,7 +153,7 @@ namespace EdgeLibrary
 
                 for (int x = rectangle.X; x < rectangle.X + rectangle.Width; x++)
                 {
-                    if (SolveY((float)x) != null)
+                    if ((SolveY((float)x) != null) && (SolveY((float)x) > rectangle.Y) && (SolveY((float)x) < rectangle.Y + rectangle.Height))
                     {
                         list.Add(new Vector2((float)x, (float)SolveY((float)x)));
                     }
