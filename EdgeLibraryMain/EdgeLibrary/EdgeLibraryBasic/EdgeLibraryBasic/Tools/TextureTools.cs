@@ -24,41 +24,12 @@ namespace EdgeLibrary
             Pixel.SetData(new Color[1] { Color.White });
             Blank = new Texture2D(EdgeGame.graphicsDevice, 1, 1);
             Blank.SetData(new Color[1] { Color.Transparent });
+
+            EdgeGame.LoadTexture(Pixel, "Pixel");
+            EdgeGame.LoadTexture(Blank, "Blank");
         }
 
         #region GENERATING TOOLS
-        /* Will not be used
-        public static Texture2D CreateVerticalGradient(int width, int height, float midpoint, Color color1, Color color2)
-        {
-            Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
-            Color[] colorData = new Color[width*height];
-            for (int y = 0; y < height; y++)
-            {
-                Color rowColor = new Color();
-                if (y < midpoint)
-                {
-                    rowColor.R = (byte)MathTools.SpecialAverage(color1.R, color2.R, y / (midpoint));
-                    rowColor.G = (byte)MathTools.SpecialAverage(color1.G, color2.G, y / (midpoint));
-                    rowColor.B = (byte)MathTools.SpecialAverage(color1.B, color2.B, y / (midpoint));
-                    rowColor.A = (byte)MathTools.SpecialAverage(color1.A, color2.A, y / (midpoint));
-                }
-                else
-                {
-                    rowColor.R = (byte)MathTools.SpecialAverage(color2.R, color1.R, ((height - y) / (midpoint)));
-                    rowColor.G = (byte)MathTools.SpecialAverage(color2.G, color1.G, ((height - y) / (midpoint)));
-                    rowColor.B = (byte)MathTools.SpecialAverage(color2.B, color1.B, ((height - y) / (midpoint)));
-                    rowColor.A = (byte)MathTools.SpecialAverage(color2.A, color1.A, ((height - y) / (midpoint)));
-                }
-                for (int x = 0; x < width; x++)
-                {
-                    colorData[y*width+x] = rowColor;
-                }
-            }
-            Texture.SetData<Color>(colorData);
-            return Texture;
-        }
-         */
-
         //Incomplete
         public static Texture2D CreateGradient(int width, int height, Color color1, Color color2, Vector2 colorEmitter1, Vector2 colorEmitter2)
         {
@@ -66,27 +37,25 @@ namespace EdgeLibrary
             Color[] colorData = new Color[width * height];
 
             Line emitterLine = new Line(colorEmitter1, colorEmitter2);
-            Line compareLine = Line.PerpendicularToAt(MathTools.MidPoint(colorEmitter1, colorEmitter2), emitterLine);
+            Line compareLine = Line.PerpendicularToAt(emitterLine, MathTools.MidPoint(colorEmitter1, colorEmitter2));
+            Line colorEmitter1Line = Line.PerpendicularToAt(emitterLine, colorEmitter1);
 
-            Line emitter1Line = Line.PerpendicularToAt(colorEmitter1, emitterLine);
-            Line emitter2Line = Line.PerpendicularToAt(colorEmitter2, emitterLine);
-
-            for (int y = 0; y < height; y++)
+            foreach (Vector2 point in emitterLine.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
             {
-                for (int x = 0; x < width; x++)
+                Line line = Line.PerpendicularToAt(emitterLine, point);
+                foreach (Vector2 linePoint in line.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
                 {
-                    //Checks if the current pixel is past the "halfway" mark
-                    Line passThroughLine = new Line(colorEmitter1, new Vector2(x, y));
-                    Vector2 intersection = (Vector2)passThroughLine.Intersection(compareLine);
-
-                    //NOTE: THE POINTS THAT ARE BEHIND THE TWO EMITTERS MAY BE INCLUDED IN THIS
-                    //ADD A CHECK TO SEE IF THE POINTS ARE BEHIND THE EMITTERS, THEN SET THEM TO THE EMITTER COLOR
-                    if (Vector2.Distance(colorEmitter1, new Vector2(x, y)) > Vector2.Distance(colorEmitter1, intersection))
+                    //If the line is past the "halfway" mark
+                    if (line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)) > compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)))
                     {
-
+                        //UNKNOWN LERP VALUE
+                        colorData[(int)point.X + (int)point.Y * width] = Color.Lerp(color1, color2, 0f);
                     }
-
-                    colorData[y * width + x] = new Color();
+                    else
+                    {
+                        //UNKNOWN LERP VALUE
+                        colorData[(int)point.X + (int)point.Y * width] = Color.Lerp(color2, color1, 0f);
+                    }
                 }
             }
 

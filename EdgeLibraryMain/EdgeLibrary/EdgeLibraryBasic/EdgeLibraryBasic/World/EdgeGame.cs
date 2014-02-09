@@ -72,8 +72,9 @@ namespace EdgeLibrary
             DrawType = EdgeGameDrawTypes.Normal;
             StandardXNACoordinates = true;
 
-            MathTools.Init();
             ResourceData.Init();
+            MathTools.Init();
+            TextureTools.Init();
             ContentRootDirectory = Content.RootDirectory;
         }
 

@@ -47,12 +47,6 @@ namespace EdgeLibrary
             return new Vector2(point2.X + diffX/2, point2.Y + diffY/2);
         }
 
-        //Returns the average of the first number/second number with an "influence (percentage/100)" of number 2
-        public static float SpecialAverage(int number1, int number2, float influence)
-        {
-            return (100 * number1 + influence * 100 * number2) / (100 + influence * 100);
-        }
-
         public static float CenterXString(Label label)
         {
             return (EdgeGame.WindowSize.X - label.Font.MeasureString(label.Text).X ) / 2;

@@ -79,7 +79,7 @@ namespace EdgeDemo
             EdgeGame.LoadFont("SpriteFonts/largeFont");
             MediaPlayer.IsRepeating = true;
 
-            EdgeGame.LoadTexture(TextureTools.CreateGradient(700, 700, Color.DarkGoldenrod, Color.Bisque, new Vector2(0, 0), new Vector2(700, 700)), "gradient");
+         //   EdgeGame.LoadTexture(TextureTools.CreateGradient(700, 700, Color.DarkGoldenrod, Color.Bisque, new Vector2(0, 0), new Vector2(700, 700)), "gradient");
 
             EdgeGame.LoadTextureFromSpritesheet("ButtonSheet", "ButtonSheet.xml");
 
@@ -90,7 +90,7 @@ namespace EdgeDemo
         private void initializeGameWindow()
         {
             EdgeGame.DrawType = EdgeGameDrawTypes.Normal;
-            EdgeGame.ClearColor = Color.White ;
+            EdgeGame.ClearColor = Color.Gray;
             //EdgeGame.playSong("spaceBossMusic");
             EdgeGame.setWindowHeight(700);
             EdgeGame.setWindowWidth(700);
@@ -105,6 +105,7 @@ namespace EdgeDemo
         {
             Scene mainScene = new Scene("main");
             EdgeGame.addScene(mainScene);
+
             Sprite sprite = new Sprite("gradient", new Vector2(350, 350));
             mainScene.addElement(sprite);
         }
