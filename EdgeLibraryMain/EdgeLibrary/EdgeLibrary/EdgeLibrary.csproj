@@ -93,12 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addons\Capabilities\CollisionCapability.cs" />
-    <Compile Include="Addons\Capabilities\SimpleMovementCapability.cs" />
+    <Compile Include="Addons\Capabilities\BasicCapabilities.cs" />
     <Compile Include="Addons\Capabilities\XMLAnimationCapability.cs" />
     <Compile Include="Addons\Effects\BlackWhiteEffect.cs" />
     <Compile Include="Addons\Effects\Effect.cs" />
     <Compile Include="Addons\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Elements\Particle\Particle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Elements\Particle\ParticleEmitter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Elements\Sprite.cs" />
     <Compile Include="Elements\TextSprite.cs" />
     <Compile Include="Elements\Ticker.cs" />
@@ -114,7 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Elements\Menu\" />
-    <Folder Include="Elements\Particle\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

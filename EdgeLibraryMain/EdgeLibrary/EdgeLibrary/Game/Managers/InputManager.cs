@@ -17,10 +17,16 @@ namespace EdgeLibrary
     public static class InputManager
     {
         private static KeyboardState keyboard;
+        public static KeyboardState previousKeyboard { get; private set; }
         private static MouseState mouse;
+
+        public static Random Random;
+
+        public static void Init() { Random = new Random(); }
 
         public static void Update()
         {
+            previousKeyboard = keyboard;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
         }

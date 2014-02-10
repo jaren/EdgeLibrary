@@ -25,6 +25,8 @@ namespace EdgeLibrary
                 colors[i].G = colorAvg;
                 colors[i].B = colorAvg;
             }
+
+            texture.SetData<Color>(colors);
         }
     }
 }
