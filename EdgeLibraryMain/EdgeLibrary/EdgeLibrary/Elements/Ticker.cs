@@ -21,7 +21,7 @@ namespace EdgeLibrary
         public delegate void TickerEventHandler();
         public event TickerEventHandler Tick;
 
-        public Ticker(double eMilliseconds) : base(true)
+        public Ticker(double eMilliseconds) : base()
         {
             MillisecondsWait = eMilliseconds;
             elapsedMilliseconds = 0;
@@ -52,18 +52,15 @@ namespace EdgeLibrary
         public int CurrentMillisecondsWait;
         protected int currentValue;
         protected double elapsedMilliseconds;
-        protected Random random;
 
         public delegate void TickerEventHandler();
         public event TickerEventHandler Tick;
 
-        public ERandomTicker(int min, int max) : base(true)
+        public ERandomTicker(int min, int max) : base()
         {
-            random = new Random();
-
             MinMilliseconds = min;
             MaxMilliseconds = max;
-            CurrentMillisecondsWait = random.Next(MinMilliseconds, MaxMilliseconds);
+            CurrentMillisecondsWait = InputManager.Random.Next(MinMilliseconds, MaxMilliseconds);
             elapsedMilliseconds = 0;
             currentValue = 0;
         }
@@ -81,7 +78,7 @@ namespace EdgeLibrary
                     Tick();
                 }
 
-                CurrentMillisecondsWait = random.Next(MinMilliseconds, MaxMilliseconds);
+                CurrentMillisecondsWait = InputManager.Random.Next(MinMilliseconds, MaxMilliseconds);
             }
         }
     }

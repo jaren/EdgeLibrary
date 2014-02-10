@@ -40,7 +40,7 @@ namespace EdgeLibrary
         public float Rotation;
         public Color Color;
 
-        public Sprite(string eTextureName, Vector2 ePosition): base(true)
+        public Sprite(string eTextureName, Vector2 ePosition, bool AutoAdd) : base(AutoAdd)
         {
             DrawType = SpriteDrawType.NoRatio;
             spriteEffects = SpriteEffects.None;
@@ -69,6 +69,8 @@ namespace EdgeLibrary
 
             reloadBoundingBox();
         }
+
+        public Sprite(string eTextureName, Vector2 ePosition) : this(eTextureName, ePosition, true) { }
 
         public Sprite(string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(eTextureName, ePosition)
         {

@@ -46,6 +46,7 @@ namespace EdgeLibrary
             Scenes.Add(new Scene("Main"));
             SelectedScene = mainScene();
 
+            InputManager.Init();
             ResourceManager.Init(c);
             SoundManager.Init(c);
             Camera.UpdateWithGame();
@@ -132,13 +133,12 @@ namespace EdgeLibrary
 
             graphicsDevice.SetRenderTarget(null);
             graphicsDevice.Clear(ClearColor);
-            Texture2D screen = (Texture2D)ScreenTarget;
             if (Effect != null)
             {
                 Effect.ApplyEffect(ScreenTarget);
             }
             spriteBatch.Begin();
-            drawTexture(screen, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
             IsDrawing = false;
             spriteBatch.End();
         }

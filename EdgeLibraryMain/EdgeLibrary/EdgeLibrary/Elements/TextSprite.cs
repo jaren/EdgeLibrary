@@ -28,7 +28,7 @@ namespace EdgeLibrary
         public float Rotation;
         public Color Color;
 
-        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : base(true)
+        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : base()
         {
             Font = ResourceManager.getFont(eFontName);
 

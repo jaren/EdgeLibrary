@@ -22,11 +22,13 @@ namespace EdgeLibrary
 
         public List<Capability> Capabilities;
 
+        public Element() : this(true) { }
+
         public Element(bool autoAdd)
         {
             Visible = true;
 
-            Capabilities = new List<Capability>();
+            Capabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability()};
 
             //Shouldn't be called for certain elements such as scenes
             if (autoAdd)
@@ -78,7 +80,7 @@ namespace EdgeLibrary
 
         protected void DrawString(SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
         {
-            EdgeGame.drawString(font, text, Position, color, MathHelper.ToRadians(Rotation), scale, Vector2.Zero, effects, LayerDepth);
+            EdgeGame.drawString(font, text, Position, color, MathHelper.ToRadians(Rotation), Vector2.Zero, scale, effects, LayerDepth);
         }
 
         protected void DrawTexture(Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation, SpriteEffects effects)

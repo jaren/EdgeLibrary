@@ -43,7 +43,7 @@ namespace EdgeDemo
             Sprite s2 = new Sprite("laserGreen", new Vector2(500, 500));
             TextSprite textSprite = new TextSprite("SpriteFont1", "This is a TextSprite", new Vector2(300, 300), Color.Green);
 
-            EdgeGame.Effect = new BlackWhiteEffect();
+            //EdgeGame.Effect = new BlackWhiteEffect();
         }
 
         protected override void UnloadContent() { }
