@@ -53,24 +53,4 @@ namespace EdgeLibrary
             HasFinished = false;
         }
     }
-
-    public class ClampCapability : Capability
-    {
-        public Element ClampElement;
-        public bool ClampToMouse;
-
-        public ClampCapability() : base("Clamp") { }
-
-        public override void Update(GameTime gameTime, Element element)
-        {
-            if (ClampToMouse == true)
-            {
-                element.Position = InputManager.MousePos();
-            }
-            else if (ClampElement != null)
-            {
-                element.Position = ClampElement.Position;
-            }
-        }
-    }
 }
