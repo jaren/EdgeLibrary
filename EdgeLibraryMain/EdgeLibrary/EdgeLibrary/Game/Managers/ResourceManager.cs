@@ -18,16 +18,27 @@ namespace EdgeLibrary
     {
         private static Dictionary<string, Texture2D> textures;
         private static Dictionary<string, SpriteFont> fonts;
+        private static GraphicsDevice graphicsDevice;
         private static ContentManager Content;
+
+        public static string ContentRootDirectory;
 
         public static void Init(ContentManager c)
         {
             Content = c;
+            ContentRootDirectory = c.RootDirectory;
             textures = new Dictionary<string, Texture2D>();
             fonts = new Dictionary<string, SpriteFont>();
         }
 
         #region LOAD
+        public static void LoadTexturesInSpritesheet(string xmlPath, string spriteSheetLocation)
+        {
+            foreach (var kvp in TextureTools.SplitSpritesheet(spriteSheetLocation, xmlPath))
+            {
+                addTexture(kvp.Key, kvp.Value);
+            }
+        }
         public static void LoadTexture(string path)
         {
             addTexture(MathTools.LastPortionOfPath(path), Content.Load<Texture2D>(path));
@@ -50,6 +61,10 @@ namespace EdgeLibrary
         #endregion
 
         #region OTHER
+        public static Texture2D textureFromString(string texturePath)
+        {
+            return Content.Load<Texture2D>(texturePath);
+        }
         public static void addTexture(string textureName, Texture2D texture)
         {
             textures.Add(textureName, texture);

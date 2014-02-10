@@ -90,7 +90,7 @@ namespace EdgeLibrary
             }
         }
 
-        public void SwitchScene(string id)
+        public static void SwitchScene(string id)
         {
             SelectedScene = Scene(id);
         }
@@ -103,6 +103,11 @@ namespace EdgeLibrary
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
             Camera.UpdateWithGame();
+        }
+
+        public static Texture2D NewTexture(int width, int height)
+        {
+            return new Texture2D(graphicsDevice, width, height);
         }
 
         public static void Update(GameTime gameTime)

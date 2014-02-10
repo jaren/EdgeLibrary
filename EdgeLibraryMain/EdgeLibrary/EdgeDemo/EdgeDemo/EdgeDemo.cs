@@ -41,9 +41,6 @@ namespace EdgeDemo
             ResourceManager.LoadFont("SpriteFont1");
             Sprite s1 = new Sprite("flatDark01", new Vector2(500, 500));
             Sprite s2 = new Sprite("laserGreen", new Vector2(500, 500));
-            s1.AddCapability(new SimpleMovementCapability());
-            SimpleMovementCapability capability = (SimpleMovementCapability)s1.Capability("SimpleMovement");
-            capability.MoveElementTo(new Vector2(100, 100), 1);
             TextSprite textSprite = new TextSprite("SpriteFont1", "This is a TextSprite", new Vector2(300, 300), Color.Green);
 
             EdgeGame.Effect = new BlackWhiteEffect();
