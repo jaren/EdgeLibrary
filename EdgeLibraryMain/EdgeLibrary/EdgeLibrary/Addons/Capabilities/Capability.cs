@@ -12,10 +12,15 @@ using System.Xml;
 
 namespace EdgeLibrary
 {
-    public class Capability
+    public abstract class Capability
     {
         public string ID;
 
-        public virtual void Update(GameTime gameTime, Element element) { }
+        public Capability(string id)
+        {
+            ID = id;
+        }
+
+        public abstract void Update(GameTime gameTime, Element element);
     }
 }

@@ -52,6 +52,18 @@ namespace EdgeLibrary
             return null;
         }
 
+        public bool HasCapability(string id)
+        {
+            foreach (Capability capability in Capabilities)
+            {
+                if (capability.ID == id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void Update(GameTime gameTime)
         {
             if (Visible) { foreach (Capability capability in Capabilities) { capability.Update(gameTime, this); } updateElement(gameTime); }
