@@ -49,5 +49,11 @@ namespace EdgeLibrary
 
             ((Sprite)element).Texture = textures[currentTexture];
         }
+
+        public override Capability NewInstance()
+        {
+            //This capability can not be included as a default capability
+            return null;
+        }
     }
 }

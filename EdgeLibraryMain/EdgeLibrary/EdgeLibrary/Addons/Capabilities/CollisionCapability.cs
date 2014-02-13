@@ -20,5 +20,10 @@ namespace EdgeLibrary
         public override void Update(GameTime gameTime, Element element)
         {
         }
+
+        public override Capability NewInstance()
+        {
+            return new CollisionCapability();
+        }
     }
 }

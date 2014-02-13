@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
+
     public class SimpleMovementCapability : Capability
     {
         public Vector2 TargetPos;
@@ -32,6 +33,11 @@ namespace EdgeLibrary
 
                 HasFinished = checkIfEnd(moveVector, element);
             }
+        }
+
+        public override Capability NewInstance()
+        {
+            return new SimpleMovementCapability();
         }
 
         private bool checkIfEnd(Vector2 moveVector, Element element)
@@ -57,20 +63,20 @@ namespace EdgeLibrary
     public class ClampCapability : Capability
     {
         public Element ClampElement;
-        public bool ClampToMouse;
 
         public ClampCapability() : base("Clamp") { }
 
         public override void Update(GameTime gameTime, Element element)
         {
-            if (ClampToMouse == true)
-            {
-                element.Position = InputManager.MousePos();
-            }
-            else if (ClampElement != null)
+            if (ClampElement != null)
             {
                 element.Position = ClampElement.Position;
             }
+        }
+
+        public override Capability NewInstance()
+        {
+            return new ClampCapability();
         }
     }
 }

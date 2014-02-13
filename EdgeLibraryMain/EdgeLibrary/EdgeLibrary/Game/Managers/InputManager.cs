@@ -21,14 +21,16 @@ namespace EdgeLibrary
         private static MouseState mouse;
 
         public static Random Random;
+        public static Element MouseElement;
 
-        public static void Init() { Random = new Random(); }
+        public static void Init() { Random = new Random(); MouseElement = new Element(false); }
 
         public static void Update()
         {
             previousKeyboard = keyboard;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
+            MouseElement.Position = MousePos();
         }
 
         public static Vector2 MousePos()

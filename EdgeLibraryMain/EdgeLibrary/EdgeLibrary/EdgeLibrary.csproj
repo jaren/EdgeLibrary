@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addons\Capabilities\AdvancedMovementCapability.cs" />
     <Compile Include="Addons\Capabilities\CollisionCapability.cs" />
     <Compile Include="Addons\Capabilities\BasicCapabilities.cs" />
     <Compile Include="Addons\Capabilities\XMLAnimationCapability.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Addons\Effects\Effect.cs" />
     <Compile Include="Addons\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Game\FPSCounter.cs" />
     <Compile Include="Elements\Particle\Particle.cs">
       <SubType>Code</SubType>
     </Compile>

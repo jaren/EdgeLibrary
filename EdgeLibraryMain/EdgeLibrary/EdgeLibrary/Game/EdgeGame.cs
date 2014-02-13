@@ -28,6 +28,8 @@ namespace EdgeLibrary
         public static bool AutomaticallyAddElementsToGame;
         public static Scene SelectedScene;
 
+        public static List<Capability> AutoIncludedCapabilities;
+
         public static Effect Effect;
 
         public static List<Scene> Scenes { get; private set; }
@@ -39,6 +41,8 @@ namespace EdgeLibrary
             spriteBatch = sb;
 
             AutomaticallyAddElementsToGame = true;
+
+            AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability(), new CollisionCapability()};
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
@@ -116,6 +120,7 @@ namespace EdgeLibrary
             InputManager.Update();
 
             Camera.Update(gameTime);
+            FPSCounter.Update(gameTime);
 
             SelectedScene.Update(gameTime);
         }
