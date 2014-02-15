@@ -58,16 +58,19 @@ namespace EdgeLibrary
             {
                 Texture = ResourceManager.getTexture(eTextureName);
             }
-            if (_width == 0)
+            if (Texture != null)
             {
-                _width = Texture.Width;
-            }
-            if (_height == 0)
-            {
-                _height = Texture.Height;
-            }
+                if (_width == 0)
+                {
+                    _width = Texture.Width;
+                }
+                if (_height == 0)
+                {
+                    _height = Texture.Height;
+                }
 
-            reloadBoundingBox();
+                reloadBoundingBox();
+            }
         }
 
         public Sprite(string eTextureName, Vector2 ePosition) : this(eTextureName, ePosition, true) { }

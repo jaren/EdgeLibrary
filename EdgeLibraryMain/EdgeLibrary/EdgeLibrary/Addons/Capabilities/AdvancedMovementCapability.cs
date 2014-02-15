@@ -35,7 +35,7 @@ namespace EdgeLibrary
                 case AdvancedMovementType.RotatingAroundPoint:
                     float dist = Vector2.Distance(element.Position, RotatingPoint);
                     float angleMeasure = (float)Math.Atan2(element.Position.Y - RotatingPoint.Y, element.Position.X - RotatingPoint.X);
-                    angleMeasure += Speed;
+                    angleMeasure += Speed/40;
                     float newDiffX = (float)Math.Cos(angleMeasure) * dist;
                     float newDiffY = (float)Math.Sin(angleMeasure) * dist;
                     element.Position = new Vector2(RotatingPoint.X + newDiffX, RotatingPoint.Y + newDiffY);
@@ -56,7 +56,7 @@ namespace EdgeLibrary
             movementType = AdvancedMovementType.None;
         }
 
-        public override Capability NewInstance()
+        public override Capability NewInstance(Element e)
         {
             return new AdvancedMovementCapability();
         }

@@ -24,6 +24,6 @@ namespace EdgeLibrary
         public abstract void Update(GameTime gameTime, Element element);
 
         //This is so each element can have a new list of capabilities, not just references to the old ones
-        public abstract Capability NewInstance();
+        public abstract Capability NewInstance(Element e);
     }
 }

@@ -16,7 +16,7 @@ namespace EdgeLibrary
     //May add more things to Scenes later on
     public class Scene : Element
     {
-        private List<Element> elements;
+        public List<Element> elements;
 
         public Scene(string id) : base(false)
         {
@@ -40,6 +40,11 @@ namespace EdgeLibrary
                 }
             }
             return false;
+        }
+
+        public bool RemoveElement(Element element)
+        {
+            return elements.Remove(element);
         }
 
         public Element Element(string id)

@@ -44,12 +44,17 @@ namespace EdgeDemo
             ResourceManager.LoadTexture("flatDark01");
             ResourceManager.LoadTexture("laserGreen");
             ResourceManager.LoadFont("SpriteFont1");
-            Sprite s1 = new Sprite("flatDark01", new Vector2(500, 500));
-            Sprite s2 = new Sprite("laserGreen", new Vector2(500, 500));
-           // s1.Capabilities.Add(new AdvancedMovementCapability());
-           // ((AdvancedMovementCapability)s1.Capability("AdvancedMovement")).RotateElementAroundPoint(new Vector2(600, 600));
+
+
+            Sprite s1 = new Sprite("flatDark01", new Vector2(0, 400));
+
+            Sprite s2 = new Sprite("laserGreen", new Vector2(700, 400));
+            ((SimpleMovementCapability)s2.Capability("SimpleMovement")).MoveElementTo(s1.Position, 1);
+            ((SimpleMovementCapability)s1.Capability("SimpleMovement")).MoveElementTo(s2.Position, 1);
+            //s2.AddCapability(new AdvancedMovementCapability());
+            //((AdvancedMovementCapability)s2.Capability("AdvancedMovement")).RotateElementAroundPoint(s1.Position);
+
             TextSprite textSprite = new TextSprite("SpriteFont1", "This is a TextSprite", new Vector2(300, 300), Color.Green);
-            //EdgeGame.Effect = new BlackWhiteEffect();
 
             FPSSprite = new TextSprite("SpriteFont1", "FPS: 0", new Vector2(10, 650), Color.White);
             MousePosSprite = new TextSprite("SpriteFont1", "MouseX: 0, MouseY: 0", new Vector2(10, 600), Color.White);

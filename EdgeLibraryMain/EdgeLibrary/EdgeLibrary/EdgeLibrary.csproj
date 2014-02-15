@@ -76,6 +76,7 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -93,13 +94,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addons\Capabilities\AdvancedMovementCapability.cs" />
-    <Compile Include="Addons\Capabilities\CollisionCapability.cs" />
     <Compile Include="Addons\Capabilities\BasicCapabilities.cs" />
     <Compile Include="Addons\Capabilities\XMLAnimationCapability.cs" />
     <Compile Include="Addons\Effects\BlackWhiteEffect.cs" />
     <Compile Include="Addons\Effects\Effect.cs" />
     <Compile Include="Addons\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Elements\Menu\Button.cs" />
+    <Compile Include="Elements\Menu\ButtonRound.cs" />
+    <Compile Include="Elements\Menu\ButtonToggle.cs" />
     <Compile Include="Game\FPSCounter.cs" />
     <Compile Include="Elements\Particle\Particle.cs">
       <SubType>Code</SubType>
@@ -120,9 +123,7 @@
     <Compile Include="Tools\MathTools.cs" />
     <Compile Include="Tools\TextureTools.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Elements\Menu\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

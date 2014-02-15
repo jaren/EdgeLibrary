@@ -21,7 +21,7 @@ namespace EdgeLibrary
         public virtual int LayerDepth { get; set; }
         public virtual Vector2 OriginPoint { get; set; }
 
-        public List<Capability> Capabilities;
+        private List<Capability> Capabilities;
 
         public Element() : this(true) { }
 
@@ -36,7 +36,7 @@ namespace EdgeLibrary
             Capabilities = new List<Capability>() {};
             foreach (Capability capability in EdgeGame.AutoIncludedCapabilities)
             {
-                Capabilities.Add(capability.NewInstance());
+                AddCapability(capability.NewInstance(this));
             }
 
             //Shouldn't be called for certain elements such as scenes
@@ -48,7 +48,10 @@ namespace EdgeLibrary
 
         public void AddCapability(Capability capability)
         {
-            Capabilities.Add(capability);
+            if (capability != null)
+            {
+                Capabilities.Add(capability);
+            }
         }
 
         public Capability Capability(string id)

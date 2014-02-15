@@ -35,7 +35,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override Capability NewInstance()
+        public override Capability NewInstance(Element e)
         {
             return new SimpleMovementCapability();
         }
@@ -74,7 +74,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override Capability NewInstance()
+        public override Capability NewInstance(Element e)
         {
             return new ClampCapability();
         }

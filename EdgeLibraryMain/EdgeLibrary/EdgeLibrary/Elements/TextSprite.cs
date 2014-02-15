@@ -58,8 +58,11 @@ namespace EdgeLibrary
 
         public void reloadBoundingBox()
         {
-            Vector2 Measured = Font.MeasureString(Text);
-            BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
+            if (Font != null)
+            {
+                Vector2 Measured = Font.MeasureString(Text);
+                BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
+            }
         }
 
         public override void drawElement(GameTime gameTime)

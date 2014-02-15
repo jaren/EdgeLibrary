@@ -42,7 +42,7 @@ namespace EdgeLibrary
 
             AutomaticallyAddElementsToGame = true;
 
-            AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability(), new CollisionCapability()};
+            AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability()};
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
@@ -168,7 +168,7 @@ namespace EdgeLibrary
 
         public static void drawTexture(Texture2D texture, Rectangle destRect, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects spriteEffects, float layerDepth)
         {
-            if (IsDrawing)
+            if (IsDrawing && texture != null)
             {
                 spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, layerDepth);
             }
@@ -176,7 +176,7 @@ namespace EdgeLibrary
 
         public static void drawString(SpriteFont font, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, float layerDepth)
         {
-            if (IsDrawing)
+            if (IsDrawing && font != null)
             {
                 spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
             }
