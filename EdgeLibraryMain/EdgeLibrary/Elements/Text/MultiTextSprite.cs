@@ -81,12 +81,16 @@ namespace EdgeLibrary
         {
             if (Font != null)
             {
+                if (!CenterText)
+                {
+                    return new Vector2(Position.X, Position.Y - Font.MeasureString(text).Y / 2 + lineDifference * index);
+                }
                 return new Vector2(Position.X - Font.MeasureString(text).X / 2, Position.Y - Font.MeasureString(text).Y / 2 + lineDifference*index);
             }
             return Position;
         }
         
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             List<string> text = splitText();
             for (int i = 0; i < text.Count; i++)

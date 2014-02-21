@@ -16,10 +16,14 @@ namespace EdgeLibrary
     {
         public SpriteFont Font { get; set; }
         public string Text { get { return _text; } set { _text = value; reloadBoundingBox(); } }
+        //WARNING: Setting this to false unaligns the collision body from what is drawn
+        public bool CenterText { get; set; }
         protected string _text;
 
         public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor) : base(id, "", ePosition)
         {
+            CenterText = true;
+
             Font = ResourceManager.getFont(eFontName);
 
             spriteEffects = SpriteEffects.None;
@@ -57,16 +61,28 @@ namespace EdgeLibrary
             }
         }
 
+        protected override void UpdateCollision()
+        {
+            if (EdgeGame.CollisionsInTextSprites)
+            {
+                base.UpdateCollision();
+            }
+        }
+
         protected Vector2 MeasuredPosition()
         {
             if (Font != null)
             {
-                return new Vector2(Position.X - Font.MeasureString(_text).X / 2, Position.Y - Font.MeasureString(_text).Y / 2);
+                if (!CenterText)
+                {
+                    return new Vector2(Position.X, Position.Y - Font.MeasureString(_text).Y / 2); 
+                }
+                    return new Vector2(Position.X - Font.MeasureString(_text).X / 2, Position.Y - Font.MeasureString(_text).Y / 2);
             }
             return Position;
         }
 
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             EdgeGame.drawString(Font, _text, MeasuredPosition(), Color, Rotation, OriginPoint, Scale, spriteEffects, LayerDepth); 
         }

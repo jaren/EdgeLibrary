@@ -80,6 +80,42 @@ namespace EdgeLibrary
             timeSinceLastEmit = TimeSpan.Zero;
         }
 
+        public void SetStartColor(Color c)
+        {
+            MinStartColor = c;
+            MaxStartColor = c;
+        }
+        public void SetFinishColor(Color c)
+        {
+            MinFinishColor = c;
+            MaxFinishColor = c;
+        }
+        public void SetVelocity(Vector2 v)
+        {
+            MinVelocity = v;
+            MaxVelocity = v;
+        }
+        public void SetSize(Vector2 s)
+        {
+            MinSize = s;
+            MaxSize = s;
+        }
+        public void SetRotation(float r)
+        {
+            MinStartRotation = r;
+            MaxStartRotation = r;
+        }
+        public void SetRotationSpeed(float r)
+        {
+            MinRotationSpeed = r;
+            MaxRotationSpeed = r;
+        }
+        public void SetLife(float l)
+        {
+            MinLife = l;
+            MaxLife = l;
+        }
+
         public void EmitSingleParticle()
         {
             Particle particle = new Particle(MathTools.RandomID("particle"), ParticleTextureName, InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
@@ -90,16 +126,16 @@ namespace EdgeLibrary
             particle.Height = InputManager.Random.Next((int)MinSize.Y, (int)MaxSize.Y);
             particle.Width = InputManager.Random.Next((int)MinSize.X, (int)MaxSize.X);
             particle.StartColor = Color.Transparent;
-            particle.StartColor.R = (byte)InputManager.Random.Next(MinStartColor.R, MaxStartColor.R);
-            particle.StartColor.G = (byte)InputManager.Random.Next(MinStartColor.G, MaxStartColor.G);
-            particle.StartColor.B = (byte)InputManager.Random.Next(MinStartColor.B, MaxStartColor.B);
-            particle.StartColor.A = (byte)InputManager.Random.Next(MinStartColor.A, MaxStartColor.A);
+            particle.StartColor.R = (byte)InputManager.Random.Next(Math.Min(MinStartColor.R, MaxStartColor.R), Math.Max(MinStartColor.R, MaxStartColor.R));
+            particle.StartColor.G = (byte)InputManager.Random.Next(Math.Min(MinStartColor.G, MaxStartColor.G), Math.Max(MinStartColor.G, MaxStartColor.G));
+            particle.StartColor.B = (byte)InputManager.Random.Next(Math.Min(MinStartColor.B, MaxStartColor.B), Math.Max(MinStartColor.B, MaxStartColor.B));
+            particle.StartColor.A = (byte)InputManager.Random.Next(Math.Min(MinStartColor.A, MaxStartColor.A), Math.Max(MinStartColor.A, MaxStartColor.A));
 
             particle.FinishColor = Color.Transparent;
-            particle.FinishColor.R = (byte)InputManager.Random.Next(MinFinishColor.R, MaxFinishColor.R);
-            particle.FinishColor.G = (byte)InputManager.Random.Next(MinFinishColor.G, MaxFinishColor.G);
-            particle.FinishColor.B = (byte)InputManager.Random.Next(MinFinishColor.B, MaxFinishColor.B);
-            particle.FinishColor.A = (byte)InputManager.Random.Next(MinFinishColor.A, MaxFinishColor.A);
+            particle.FinishColor.R = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.R, MaxFinishColor.R), Math.Max(MinFinishColor.R, MaxFinishColor.R));
+            particle.FinishColor.G = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.G, MaxFinishColor.G), Math.Max(MinFinishColor.G, MaxFinishColor.G));
+            particle.FinishColor.B = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.B, MaxFinishColor.B), Math.Max(MinFinishColor.B, MaxFinishColor.B));
+            particle.FinishColor.A = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.A, MaxFinishColor.A), Math.Max(MinFinishColor.A, MaxFinishColor.A));
 
             particles.Add(particle);
 
@@ -109,7 +145,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             EdgeGame.RestartSpriteBatch(SpriteSortMode.Deferred, DrawState);
 
@@ -124,7 +160,7 @@ namespace EdgeLibrary
             EdgeGame.RestartSpriteBatch();
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             timeSinceLastEmit += gameTime.ElapsedGameTime;
 

@@ -38,7 +38,7 @@ namespace EdgeLibrary
             animations.Remove(id);
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             base.updateElement(gameTime);
 

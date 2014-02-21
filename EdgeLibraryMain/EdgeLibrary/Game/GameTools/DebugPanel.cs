@@ -27,8 +27,10 @@ namespace EdgeLibrary
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
 
-        public DebugPanel(string fontName, Color drawColor) : base(MathTools.RandomID("debugPanel"))
+        public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
+            Position = position;
+
             MouseSprite = new TextSprite(string.Format("{0}_MouseSprite", ID), fontName, "Mouse Position: (0, 0)", Vector2.Zero, drawColor);
             AddElement(MouseSprite);
 
@@ -38,7 +40,8 @@ namespace EdgeLibrary
             ScenesSprite = new TextSprite(string.Format("{0}_ScenesSprite", ID), fontName, "Scenes (0):", Vector2.Zero, drawColor);
             AddElement(ScenesSprite);
 
-            ElementsSprite = new MultiTextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor, EdgeGame.WindowSize().X, 1);
+            ElementsSprite = new MultiTextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor, EdgeGame.WindowSize().X - 10, 1);
+            ElementsSprite.CenterText = false;
             AddElement(ElementsSprite);
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
@@ -54,20 +57,20 @@ namespace EdgeLibrary
 
         private void reloadTextSpritesPosition()
         {
-            MouseSprite.Position = new Vector2(_font.MeasureString(MouseSprite.Text).X /2 + 10, YDifference);
+            MouseSprite.Position = new Vector2(_font.MeasureString(MouseSprite.Text).X /2, YDifference);
             MouseSprite.Position += Position;
 
-            FPSSprite.Position = new Vector2(_font.MeasureString(FPSSprite.Text).X /2 + 10, YDifference * 2);
+            FPSSprite.Position = new Vector2(_font.MeasureString(FPSSprite.Text).X /2, YDifference * 2);
             FPSSprite.Position += Position;
 
-            ScenesSprite.Position = new Vector2(_font.MeasureString(ScenesSprite.Text).X / 2 + 10, YDifference * 3);
+            KeysSprite.Position = new Vector2(_font.MeasureString(KeysSprite.Text).X / 2, YDifference * 3);
+            KeysSprite.Position += Position;
+
+            ScenesSprite.Position = new Vector2(_font.MeasureString(ScenesSprite.Text).X / 2, YDifference * 4);
             ScenesSprite.Position += Position;
 
-            ElementsSprite.Position = new Vector2(_font.MeasureString(ElementsSprite.Text).X /2 + 10, YDifference * 4);
+            ElementsSprite.Position = new Vector2(0, YDifference * 5);
             ElementsSprite.Position += Position;
-
-            KeysSprite.Position = new Vector2(_font.MeasureString(KeysSprite.Text).X /2 + 10, YDifference * 5);
-            KeysSprite.Position += Position;
         }
 
         private void reloadTextSprites()
@@ -84,7 +87,7 @@ namespace EdgeLibrary
             KeysSprite.Color = _drawColor;
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             base.updateElement(gameTime);
 

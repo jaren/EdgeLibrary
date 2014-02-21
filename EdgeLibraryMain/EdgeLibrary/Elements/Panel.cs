@@ -65,7 +65,7 @@ namespace EdgeLibrary
         protected static int updateCounter = 0;
         protected static int drawCounter = 0;
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             updateCounter++;
 
@@ -76,7 +76,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             drawCounter++;
 

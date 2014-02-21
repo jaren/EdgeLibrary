@@ -87,11 +87,13 @@ namespace EdgeLibrary
         {
                 foreach (Element element in elements)
                 {
-                    try
+                    if (element is Sprite)
                     {
-                        ((Sprite)element).CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
+                        if (!(element is TextSprite) || EdgeGame.CollisionsInTextSprites)
+                        {
+                            ((Sprite)element).CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
+                        }
                     }
-                    catch { }
                 }
         }
     }

@@ -34,6 +34,8 @@ namespace EdgeLibrary
         public static GameDrawState GameDrawState;
         public static Color DebugDrawColor;
 
+        public static bool CollisionsInTextSprites;
+
         public static Color ClearColor;
         public static Scene SelectedScene;
 
@@ -46,6 +48,8 @@ namespace EdgeLibrary
             graphicsDevice = gd;
             graphics = gdm;
             spriteBatch = sb;
+
+            CollisionsInTextSprites = false;
 
             DebugDrawColor = Color.White;
 

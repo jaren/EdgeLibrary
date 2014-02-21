@@ -30,7 +30,7 @@ namespace EdgeLibrary
             Radius = radius;
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             base.UpdateSpritePortion(gameTime);
 

@@ -121,13 +121,13 @@ namespace EdgeLibrary
             BoundingBox = new Rectangle((int)_position.X - ((int)_width / 2 * (int)Scale.X), (int)_position.Y - ((int)_height / 2 * (int)Scale.Y), (int)_width * (int)Scale.X, (int)_height * (int)Scale.Y);
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             UpdateCollision();
             base.updateElement(gameTime);
         }
 
-        private void UpdateCollision()
+        protected virtual void UpdateCollision()
         {
             if (CollisionBody != null)
             {
@@ -138,23 +138,26 @@ namespace EdgeLibrary
                 {
                     if (element is Sprite)
                     {
-                        Sprite elementAsSprite = (Sprite)element;
-
-                        if (elementAsSprite != this && elementAsSprite.CollisionBody != null && (Collision != null || CollisionStart != null))
+                        if (!(element is TextSprite) || EdgeGame.CollisionsInTextSprites)
                         {
-                            if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
+                            Sprite elementAsSprite = (Sprite)element;
+
+                            if (elementAsSprite != this && elementAsSprite.CollisionBody != null && (Collision != null || CollisionStart != null))
                             {
-                                if (Collision != null) { Collision(new CollisionEventArgs(this, elementAsSprite)); }
-                                if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                                if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
                                 {
-                                    CollisionStart(new CollisionEventArgs(this, elementAsSprite));
-                                    currentlyCollidingWithIDs.Add(elementAsSprite.CollisionBody.ID);
+                                    if (Collision != null) { Collision(new CollisionEventArgs(this, elementAsSprite)); }
+                                    if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                                    {
+                                        CollisionStart(new CollisionEventArgs(this, elementAsSprite));
+                                        currentlyCollidingWithIDs.Add(elementAsSprite.CollisionBody.ID);
+                                    }
                                 }
-                            }
-                            //Checks if it's not colliding with the element, then removes it from the colliding list
-                            else if (currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
-                            {
-                                currentlyCollidingWithIDs.Remove(elementAsSprite.CollisionBody.ID);
+                                //Checks if it's not colliding with the element, then removes it from the colliding list
+                                else if (currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                                {
+                                    currentlyCollidingWithIDs.Remove(elementAsSprite.CollisionBody.ID);
+                                }
                             }
                         }
                     }
@@ -162,7 +165,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             switch (DrawType)
             {

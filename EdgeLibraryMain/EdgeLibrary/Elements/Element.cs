@@ -23,7 +23,6 @@ namespace EdgeLibrary
         public virtual Vector2 OriginPoint { get; set; }
         public virtual ClampCapability Clamp { get; set; }
         public virtual SimpleMovementCapability SimpleMovement { get; set; }
-        public virtual FollowCapability Follow { get; set; }
         public virtual PointRotationCapability PointRotation { get; set; }
 
         private List<Capability> Capabilities;
@@ -43,8 +42,6 @@ namespace EdgeLibrary
             Capabilities.Add(Clamp);
             SimpleMovement = new SimpleMovementCapability();
             Capabilities.Add(SimpleMovement);
-            Follow = new FollowCapability();
-            Capabilities.Add(Follow);
             PointRotation = new PointRotationCapability();
             Capabilities.Add(PointRotation);
 
@@ -98,8 +95,8 @@ namespace EdgeLibrary
             if (Visible) { drawElement(gameTime); }
         }
 
-        public virtual void updateElement(GameTime gameTime) { }
-        public virtual void drawElement(GameTime gameTime) { }
+        protected virtual void updateElement(GameTime gameTime) { }
+        protected virtual void drawElement(GameTime gameTime) { }
 
         protected void DrawString(SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
         {

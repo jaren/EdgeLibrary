@@ -33,7 +33,7 @@ namespace EdgeLibrary
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
             MouseSprite.Position = MousePos();
-            MouseSprite.updateElement(gameTime);
+            MouseSprite.Update(gameTime);
         }
 
         public static Keys[] KeysPressed()

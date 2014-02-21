@@ -38,7 +38,7 @@ namespace EdgeLibrary
             livedTime = TimeSpan.Zero;
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             base.updateElement(gameTime);
 

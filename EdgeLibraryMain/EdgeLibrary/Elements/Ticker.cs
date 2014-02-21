@@ -28,7 +28,7 @@ namespace EdgeLibrary
             currentValue = 0;
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds;
 
@@ -65,7 +65,7 @@ namespace EdgeLibrary
             currentValue = 0;
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds;
 

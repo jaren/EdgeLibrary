@@ -23,23 +23,39 @@ namespace EdgeLibrary
 
         public override void updateCapability(GameTime gameTime, Element element)
         {
+            Vector2 moveVector = Vector2.Zero;
             if (ConstantUpdateTarget)
             {
+                moveVector = new Vector2(ConstantTarget.Position.X - element.Position.X, ConstantTarget.Position.Y - element.Position.Y);
             }
-                Vector2 moveVector = new Vector2(TargetPos.X - element.Position.X, TargetPos.Y - element.Position.Y);
-                moveVector.Normalize();
-                element.Position += moveVector * Speed;
+            else
+            {
+                moveVector = new Vector2(TargetPos.X - element.Position.X, TargetPos.Y - element.Position.Y);
+            }
+            moveVector.Normalize();
 
-                STOPPED = checkIfEnd(moveVector, element);
+            if (!ConstantUpdateTarget)
+            {
+                STOPPED = checkIfEnd(moveVector, TargetPos, element.Position + moveVector*Speed);
+            }
+            else
+            {
+                if (checkIfEnd(moveVector, ConstantTarget.Position, element.Position + moveVector*Speed))
+                {
+                    return;
+                }
+            }
+
+            element.Position += moveVector * Speed;
         }
 
-        private bool checkIfEnd(Vector2 moveVector, Element element)
+        private bool checkIfEnd(Vector2 moveVector, Vector2 target, Vector2 position)
         {
-            if ((moveVector.X < 0) && (element.Position.X < TargetPos.X)) { return true; }
-            else if ((moveVector.X > 0) && (element.Position.X > TargetPos.X)) { return true; }
+            if ((moveVector.X < 0) && (position.X < target.X)) { return true; }
+            else if ((moveVector.X > 0) && (position.X > target.X)) { return true; }
 
-            if ((moveVector.Y < 0) && (element.Position.Y < TargetPos.Y)) { return true; }
-            else if ((moveVector.Y > 0) && (element.Position.Y > TargetPos.Y)) { return true; }
+            if ((moveVector.Y < 0) && (position.Y < target.Y)) { return true; }
+            else if ((moveVector.Y > 0) && (position.Y > target.Y)) { return true; }
 
             return false;
         }
@@ -49,31 +65,15 @@ namespace EdgeLibrary
         {
             TargetPos = target;
             Speed = speed;
+            ConstantUpdateTarget = false;
             STOPPED = false;
-        }
-    }
-
-    public class FollowCapability : Capability
-    {
-        public Element FollowElement;
-        public float Speed;
-
-        public FollowCapability() : base("Follow") { STOPPED = true; }
-
-        public override void updateCapability(GameTime gameTime, Element element)
-        {
-            if (FollowElement != null)
-            {
-                Vector2 moveVector = new Vector2(FollowElement.Position.X - element.Position.X, FollowElement.Position.Y - element.Position.Y);
-                moveVector.Normalize();
-                element.Position += moveVector * Speed;
-            }
         }
 
         public void Follow(Element target, float speed)
         {
-            FollowElement = target;
+            ConstantTarget = target;
             Speed = speed;
+            ConstantUpdateTarget = true;
             STOPPED = false;
         }
     }

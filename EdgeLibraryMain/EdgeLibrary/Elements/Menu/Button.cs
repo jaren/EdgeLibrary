@@ -97,7 +97,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             if (previousPosition != Position)
             {

@@ -48,7 +48,7 @@ namespace EdgeLibrary
             HasChangedMouseOver = false;
         }
 
-        public override void  updateElement(GameTime gameTime)
+        protected override void updateElement(GameTime gameTime)
         {
             base.updateElement(gameTime);
 
@@ -123,7 +123,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override void drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             if (On)
             {
