@@ -1,0 +1,13 @@
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture name="fire-grayscale.png" x="62" y="200" width="29" height="29"/>
+	<SubTexture name="fire.png" x="62" y="200" width="29" height="29"/>
+	<SubTexture name="particles-hd.png" x="0" y="0" width="250" height="64"/>
+	<SubTexture name="particles.png" x="0" y="66" width="125" height="32"/>
+	<SubTexture name="smoke.png" x="0" y="166" width="57" height="57"/>
+	<SubTexture name="snow.png" x="31" y="225" width="29" height="29"/>
+	<SubTexture name="stars-grayscale.png" x="0" y="225" width="29" height="29"/>
+	<SubTexture name="stars.png" x="0" y="225" width="29" height="29"/>
+	<SubTexture name="stars2-grayscale.png" x="0" y="100" width="64" height="64"/>
+	<SubTexture name="stars2.png" x="0" y="100" width="64" height="64"/>
+	<SubTexture name="stars2_mini.png" x="59" y="166" width="32" height="32"/>
+</TextureAtlas>
