@@ -15,29 +15,22 @@ namespace EdgeLibrary
     public class SimpleMovementCapability : Capability
     {
         public Vector2 TargetPos;
+        public Element ConstantTarget;
+        private bool ConstantUpdateTarget;
         public float Speed;
-        private bool HasFinished;
 
-        public SimpleMovementCapability() : base("SimpleMovement")
-        {
-            HasFinished = true;
-        }
+        public SimpleMovementCapability() : base("SimpleMovement") { STOPPED = true; ConstantUpdateTarget = false; }
 
-        public override void Update(GameTime gameTime, Element element)
+        public override void updateCapability(GameTime gameTime, Element element)
         {
-            if (!HasFinished)
+            if (ConstantUpdateTarget)
             {
+            }
                 Vector2 moveVector = new Vector2(TargetPos.X - element.Position.X, TargetPos.Y - element.Position.Y);
                 moveVector.Normalize();
                 element.Position += moveVector * Speed;
 
-                HasFinished = checkIfEnd(moveVector, element);
-            }
-        }
-
-        public override Capability NewInstance(Element e)
-        {
-            return new SimpleMovementCapability();
+                STOPPED = checkIfEnd(moveVector, element);
         }
 
         private bool checkIfEnd(Vector2 moveVector, Element element)
@@ -56,7 +49,32 @@ namespace EdgeLibrary
         {
             TargetPos = target;
             Speed = speed;
-            HasFinished = false;
+            STOPPED = false;
+        }
+    }
+
+    public class FollowCapability : Capability
+    {
+        public Element FollowElement;
+        public float Speed;
+
+        public FollowCapability() : base("Follow") { STOPPED = true; }
+
+        public override void updateCapability(GameTime gameTime, Element element)
+        {
+            if (FollowElement != null)
+            {
+                Vector2 moveVector = new Vector2(FollowElement.Position.X - element.Position.X, FollowElement.Position.Y - element.Position.Y);
+                moveVector.Normalize();
+                element.Position += moveVector * Speed;
+            }
+        }
+
+        public void Follow(Element target, float speed)
+        {
+            FollowElement = target;
+            Speed = speed;
+            STOPPED = false;
         }
     }
 
@@ -64,9 +82,9 @@ namespace EdgeLibrary
     {
         public Element ClampElement;
 
-        public ClampCapability() : base("Clamp") { }
+        public ClampCapability() : base("Clamp") { STOPPED = true; }
 
-        public override void Update(GameTime gameTime, Element element)
+        public override void updateCapability(GameTime gameTime, Element element)
         {
             if (ClampElement != null)
             {
@@ -74,9 +92,10 @@ namespace EdgeLibrary
             }
         }
 
-        public override Capability NewInstance(Element e)
+        public void ClampTo(Element e)
         {
-            return new ClampCapability();
+            ClampElement = e;
+            STOPPED = false;
         }
     }
 }

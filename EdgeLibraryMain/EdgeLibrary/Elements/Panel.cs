@@ -28,6 +28,7 @@ namespace EdgeLibrary
 
         public void AddElement(Element element)
         {
+            element.REMOVE();
             elements.Add(element);
         }
 

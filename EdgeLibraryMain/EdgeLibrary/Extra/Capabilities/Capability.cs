@@ -15,15 +15,16 @@ namespace EdgeLibrary
     public abstract class Capability
     {
         public string ID;
+        protected bool STOPPED;
 
         public Capability(string id)
         {
             ID = id;
         }
 
-        public abstract void Update(GameTime gameTime, Element element);
+        public void Stop() { STOPPED = true; }
 
-        //This is so each element can have a new list of capabilities, not just references to the old ones
-        public abstract Capability NewInstance(Element e);
+        public void Update(GameTime gameTime, Element element) { if (!STOPPED) { updateCapability(gameTime, element); } }
+        public abstract void updateCapability(GameTime gameTime, Element element);
     }
 }

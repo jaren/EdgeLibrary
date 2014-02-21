@@ -16,7 +16,7 @@ namespace EdgeLibrary
     {
         public SpriteFont Font { get; set; }
         public string Text { get { return _text; } set { _text = value; reloadBoundingBox(); } }
-        private string _text;
+        protected string _text;
 
         public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor) : base(id, "", ePosition)
         {
@@ -57,7 +57,7 @@ namespace EdgeLibrary
             }
         }
 
-        private Vector2 MeasuredPosition()
+        protected Vector2 MeasuredPosition()
         {
             if (Font != null)
             {

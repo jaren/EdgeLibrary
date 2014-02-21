@@ -93,10 +93,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Animation\AnimationIndex.cs" />
+    <Compile Include="Elements\Animation\AnimSprite.cs" />
     <Compile Include="Elements\Panel.cs" />
-    <Compile Include="Extra\Capabilities\AdvancedMovementCapability.cs" />
-    <Compile Include="Extra\Capabilities\BasicCapabilities.cs" />
-    <Compile Include="Extra\Capabilities\XMLAnimationCapability.cs" />
+    <Compile Include="Elements\Text\MultiTextSprite.cs" />
+    <Compile Include="Extra\Capabilities\Movement\AdvancedMovementCapability.cs" />
+    <Compile Include="Extra\Capabilities\Movement\BasicCapabilities.cs" />
     <Compile Include="Extra\Collision\CollisionBody.cs" />
     <Compile Include="Extra\Collision\Shape.cs" />
     <Compile Include="Extra\Effects\BlackWhiteEffect.cs" />
@@ -115,7 +117,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Elements\Sprite.cs" />
-    <Compile Include="Elements\TextSprite.cs" />
+    <Compile Include="Elements\Text\TextSprite.cs" />
     <Compile Include="Elements\Ticker.cs" />
     <Compile Include="Game\GameTools\Camera.cs" />
     <Compile Include="Game\EdgeGame.cs" />

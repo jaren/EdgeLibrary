@@ -19,40 +19,35 @@ namespace EdgeLibrary
         private SpriteFont _font;
         private Color _drawColor;
 
-        private int YDifference;
+        private float YDifference;
 
         private TextSprite MouseSprite;
         private TextSprite FPSSprite;
-        private TextSprite CurrentSceneElementsSprite;
+        private TextSprite ScenesSprite;
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
 
         public DebugPanel(string fontName, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
             MouseSprite = new TextSprite(string.Format("{0}_MouseSprite", ID), fontName, "Mouse Position: (0, 0)", Vector2.Zero, drawColor);
-            MouseSprite.REMOVE();
-            elements.Add(MouseSprite);
+            AddElement(MouseSprite);
 
             FPSSprite = new TextSprite(string.Format("{0}_FPSSprite", ID), fontName, "FPS: 0", Vector2.Zero, drawColor);
-            FPSSprite.REMOVE();
-            elements.Add(FPSSprite);
+            AddElement(FPSSprite);
 
-            CurrentSceneElementsSprite = new TextSprite(string.Format("{0}_CurrentSceneElementsSprite", ID), fontName, "Elements in current scene (0):", Vector2.Zero, drawColor);
-            CurrentSceneElementsSprite.REMOVE();
-            elements.Add(CurrentSceneElementsSprite);
+            ScenesSprite = new TextSprite(string.Format("{0}_ScenesSprite", ID), fontName, "Scenes (0):", Vector2.Zero, drawColor);
+            AddElement(ScenesSprite);
 
             ElementsSprite = new TextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor);
-            ElementsSprite.REMOVE();
-            elements.Add(ElementsSprite);
+            AddElement(ElementsSprite);
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
-            KeysSprite.REMOVE();
-            elements.Add(KeysSprite);
+            AddElement(KeysSprite);
 
             Font = ResourceManager.getFont(fontName);
             DrawColor = drawColor;
 
-            YDifference = (int)Font.MeasureString("A").Y * 2;
+            YDifference = Font.MeasureString("A").Y * 1.25f;
 
             reloadTextSpritesPosition();
         }
@@ -65,8 +60,8 @@ namespace EdgeLibrary
             FPSSprite.Position = new Vector2(_font.MeasureString(FPSSprite.Text).X /2 + 10, YDifference * 2);
             FPSSprite.Position += Position;
 
-            CurrentSceneElementsSprite.Position = new Vector2(_font.MeasureString(CurrentSceneElementsSprite.Text).X /2 + 10, YDifference * 3);
-            CurrentSceneElementsSprite.Position += Position;
+            ScenesSprite.Position = new Vector2(_font.MeasureString(ScenesSprite.Text).X / 2 + 10, YDifference * 3);
+            ScenesSprite.Position += Position;
 
             ElementsSprite.Position = new Vector2(_font.MeasureString(ElementsSprite.Text).X /2 + 10, YDifference * 4);
             ElementsSprite.Position += Position;
@@ -81,8 +76,8 @@ namespace EdgeLibrary
             MouseSprite.Color = _drawColor;
             FPSSprite.Font = _font;
             FPSSprite.Color = _drawColor;
-            CurrentSceneElementsSprite.Font = _font;
-            CurrentSceneElementsSprite.Color = _drawColor;
+            ScenesSprite.Font = _font;
+            ScenesSprite.Color = _drawColor;
             ElementsSprite.Font = _font;
             ElementsSprite.Color = _drawColor;
             KeysSprite.Font = _font;
@@ -94,16 +89,16 @@ namespace EdgeLibrary
             base.updateElement(gameTime);
 
             MouseSprite.Text = string.Format("Mouse Position: ({0}, {1})", InputManager.MousePos().X, InputManager.MousePos().Y);
-            FPSSprite.Text = string.Format("FPS: {0}", FPSCounter.AccurateFPS);
-            CurrentSceneElementsSprite.Text = string.Format("Elements in current scene ({0}):", EdgeGame.SelectedScene.elements.Count);
+            FPSSprite.Text = string.Format("FPS: {0}", FPSCounter.FPS);
+            ElementsSprite.Text = string.Format("Elements in current scene ({0}):", EdgeGame.SelectedScene.elements.Count);
             foreach (Element element in EdgeGame.SelectedScene.elements)
             {
-                CurrentSceneElementsSprite.Text += string.Format(" {0}, ", element.ID);
-            }
-            ElementsSprite.Text = string.Format("Elements in entire game ({0}):", EdgeGame.AllElements().Count);
-            foreach (Element element in EdgeGame.AllElements())
-            {
                 ElementsSprite.Text += string.Format(" {0}, ", element.ID);
+            }
+            ScenesSprite.Text = string.Format("Scenes ({0}):", EdgeGame.Scenes.Count);
+            foreach (Scene scene in EdgeGame.Scenes)
+            {
+                ScenesSprite.Text += string.Format(" {0}, ", scene.ID);
             }
             KeysSprite.Text = "Keys Pressed:";
             foreach (Keys k in InputManager.KeysPressed())

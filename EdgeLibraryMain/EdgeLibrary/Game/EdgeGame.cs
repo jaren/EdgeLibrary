@@ -67,19 +67,6 @@ namespace EdgeLibrary
             Camera.UpdateWithGame();
         }
 
-        public static List<Element> AllElements()
-        {
-            List<Element> elements = new List<Element>();
-            foreach (Scene scene in Scenes)
-            {
-                foreach(Element e in scene.elements)
-                {
-                    elements.Add(e);
-                }
-            }
-            return elements;
-        }
-
         public static Scene mainScene()
         {
             foreach (Scene Scene in Scenes)
@@ -118,11 +105,6 @@ namespace EdgeLibrary
             return new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
 
-        public static void AutoAdd(Element e)
-        {
-                SelectedScene.AddElement(e);
-        }
-
         public static void SwitchScene(string id)
         {
             SelectedScene = Scene(id);
@@ -148,7 +130,6 @@ namespace EdgeLibrary
             InputManager.Update(gameTime);
 
             Camera.Update(gameTime);
-            FPSCounter.Update(gameTime);
 
             SelectedScene.Update(gameTime);
 
@@ -171,6 +152,7 @@ namespace EdgeLibrary
 
         public static void Draw(GameTime gameTime)
         {
+            FPSCounter.Update(gameTime);
             graphicsDevice.SetRenderTarget(ScreenTarget);
             graphicsDevice.Clear(ClearColor);
             graphicsDevice.Viewport = new Viewport((int)Camera.Position.X - (int)WindowSize().X / 2, (int)Camera.Position.Y - (int)WindowSize().Y / 2, (int)WindowSize().X, (int)WindowSize().Y);

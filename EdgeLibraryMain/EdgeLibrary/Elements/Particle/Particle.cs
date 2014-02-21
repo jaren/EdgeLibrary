@@ -27,7 +27,7 @@ namespace EdgeLibrary
 
         public bool shouldRemove;
 
-        public Particle(string id, string eTextureName, float eLifeTime, Vector2 eVelocity, float eRotateSpeed, float eGrowSpeed) : base(id, eTextureName, Vector2.Zero, false)
+        public Particle(string id, string eTextureName, float eLifeTime, Vector2 eVelocity, float eRotateSpeed, float eGrowSpeed) : base(id, eTextureName, Vector2.Zero)
         {
             lifeTime = eLifeTime;
             velocity = eVelocity;

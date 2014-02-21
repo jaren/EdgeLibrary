@@ -60,7 +60,7 @@ namespace EdgeLibrary
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, bool AutoAdd) : base(id)
+        public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
             DrawType = SpriteDrawType.NoRatio;
             spriteEffects = SpriteEffects.None;
@@ -98,8 +98,6 @@ namespace EdgeLibrary
             CollisionBodyType = CollisionBody.Shape.ShapeType;
             CollisionBody.collidesWithAll = true;
         }
-
-        public Sprite(string id, string eTextureName, Vector2 ePosition) : this(id, eTextureName, ePosition, true) { }
 
         public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(id, eTextureName, ePosition)
         {

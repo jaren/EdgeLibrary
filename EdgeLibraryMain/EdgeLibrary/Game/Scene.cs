@@ -62,10 +62,14 @@ namespace EdgeLibrary
 
         public void Update(GameTime gameTime)
         {
-            foreach (Element element in elements)
+            try
             {
-                element.Update(gameTime);
+                foreach (Element element in elements)
+                {
+                    element.Update(gameTime);
+                }
             }
+            catch { }
         }
 
         public void Draw(GameTime gameTime)
