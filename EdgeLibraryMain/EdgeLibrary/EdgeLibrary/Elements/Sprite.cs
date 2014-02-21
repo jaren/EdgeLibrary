@@ -19,6 +19,18 @@ namespace EdgeLibrary
         Scaled
     }
 
+    public class CollisionEventArgs : EventArgs
+    {
+        public Sprite Sprite1;
+        public Sprite Sprite2;
+
+        public CollisionEventArgs(Sprite sprite1, Sprite sprite2)
+        {
+            Sprite1 = sprite1;
+            Sprite2 = sprite2;
+        }
+    }
+
     //Provides a base textured game object
     public class Sprite : Element
     {
@@ -27,6 +39,7 @@ namespace EdgeLibrary
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+        public virtual CollisionBody CollisionBody { get; set; }
         public Texture2D Texture { get; set; }
         public SpriteEffects spriteEffects;
         public SpriteDrawType DrawType;
@@ -39,6 +52,10 @@ namespace EdgeLibrary
         //Extra
         public float Rotation;
         public Color Color;
+        
+        public delegate void CollisionEvent(CollisionEventArgs e);
+        public event CollisionEvent CollisionStart;
+        public event CollisionEvent Collision;
 
         public Sprite(string eTextureName, Vector2 ePosition, bool AutoAdd) : base(AutoAdd)
         {
@@ -52,6 +69,8 @@ namespace EdgeLibrary
             Color = Color.White;
             Rotation = 0;
             Scale = Vector2.One;
+
+            currentlyCollidingWithIDs = new List<string>();
 
 
             if (eTextureName != null)
@@ -71,6 +90,9 @@ namespace EdgeLibrary
 
                 reloadBoundingBox();
             }
+
+            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, ID);
+            CollisionBody.collidesWithAll = true;
         }
 
         public Sprite(string eTextureName, Vector2 ePosition) : this(eTextureName, ePosition, true) { }
@@ -89,9 +111,47 @@ namespace EdgeLibrary
             Scale = eScale;
         }
 
-        public void reloadBoundingBox()
+        public virtual void reloadBoundingBox()
         {
             BoundingBox = new Rectangle((int)_position.X - ((int)_width / 2 * (int)Scale.X), (int)_position.Y - ((int)_height / 2 * (int)Scale.Y), (int)_width * (int)Scale.X, (int)_height * (int)Scale.Y);
+        }
+
+        public override void updateElement(GameTime gameTime)
+        {
+            UpdateCollision();
+            base.updateElement(gameTime);
+        }
+
+        public void UpdateCollision()
+        {
+            if (CollisionBody != null)
+            {
+                CollisionBody.Position = new Vector2(Position.X, Position.Y);
+                CollisionBody.ScaleWith(this);
+
+                foreach (Element element in EdgeGame.SelectedScene.elements)
+                {
+                    Sprite elementAsSprite = (Sprite)element;
+
+                    if (elementAsSprite != this && elementAsSprite.CollisionBody != null && (Collision != null || CollisionStart != null))
+                    {
+                        if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
+                        {
+                            if (Collision != null) { Collision(new CollisionEventArgs(this, elementAsSprite)); }
+                            if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                            {
+                                CollisionStart(new CollisionEventArgs(this, elementAsSprite));
+                                currentlyCollidingWithIDs.Add(elementAsSprite.CollisionBody.ID);
+                            }
+                        }
+                        //Checks if it's not colliding with the element, then removes it from the colliding list
+                        else if (currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                        {
+                            currentlyCollidingWithIDs.Remove(elementAsSprite.CollisionBody.ID);
+                        }
+                    }
+                }
+            }
         }
 
         public override void drawElement(GameTime gameTime)

@@ -93,12 +93,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Addons\Capabilities\AdvancedMovementCapability.cs" />
-    <Compile Include="Addons\Capabilities\BasicCapabilities.cs" />
-    <Compile Include="Addons\Capabilities\XMLAnimationCapability.cs" />
-    <Compile Include="Addons\Effects\BlackWhiteEffect.cs" />
-    <Compile Include="Addons\Effects\Effect.cs" />
-    <Compile Include="Addons\Capabilities\Capability.cs" />
+    <Compile Include="Extra\Capabilities\AdvancedMovementCapability.cs" />
+    <Compile Include="Extra\Capabilities\BasicCapabilities.cs" />
+    <Compile Include="Extra\Capabilities\XMLAnimationCapability.cs" />
+    <Compile Include="Extra\Collision\CollisionBody.cs" />
+    <Compile Include="Extra\Collision\Shape.cs" />
+    <Compile Include="Extra\Effects\BlackWhiteEffect.cs" />
+    <Compile Include="Extra\Effects\Effect.cs" />
+    <Compile Include="Extra\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\Menu\Button.cs" />
     <Compile Include="Elements\Menu\ButtonRound.cs" />

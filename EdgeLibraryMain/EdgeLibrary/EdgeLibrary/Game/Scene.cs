@@ -74,5 +74,16 @@ namespace EdgeLibrary
                 element.Draw(gameTime);
             }
         }
+
+        public void DrawDebug(GameTime gameTime)
+        {
+            if (Visible)
+            {
+                foreach (Element element in elements)
+                {
+                    ((Sprite)element).CollisionBody.CollisionShape.DebugDraw(EdgeGame.DebugDrawColor);
+                }
+            }
+        }
     }
 }

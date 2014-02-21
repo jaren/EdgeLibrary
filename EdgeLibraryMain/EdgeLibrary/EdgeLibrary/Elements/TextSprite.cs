@@ -12,31 +12,24 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Provides a base game object
-    public class TextSprite : Element
+    public class TextSprite : Sprite
     {
-        public Rectangle BoundingBox { get; set; }
-        public override Vector2 Position { get { return _position; } set { _position = value; reloadBoundingBox(); } }
-        public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
         public SpriteFont Font { get; set; }
-        public string Text { get; set; }
-        public SpriteEffects spriteEffects;
-        public float ScaledDrawScale;
-        protected Vector2 _position;
-        protected Vector2 _scale;
+        public string Text { get { return _text; } set { _text = value; reloadBoundingBox(); } }
+        private string _text;
+        public bool CenterText;
 
-        //Extra
-        public float Rotation;
-        public Color Color;
-
-        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : base()
+        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : base("", ePosition)
         {
             Font = ResourceManager.getFont(eFontName);
+
+            CenterText = true;
 
             spriteEffects = SpriteEffects.None;
             ScaledDrawScale = 1f;
             _position = ePosition;
 
-            Text = eText;
+            _text = eText;
 
             Color = eColor;
             Rotation = 0;
@@ -56,18 +49,29 @@ namespace EdgeLibrary
             Scale = eScale;
         }
 
-        public void reloadBoundingBox()
+        public override void reloadBoundingBox()
         {
             if (Font != null)
             {
-                Vector2 Measured = Font.MeasureString(Text);
+                Vector2 Measured = Font.MeasureString(_text);
                 BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
+                _width = BoundingBox.Width;
+                _height = BoundingBox.Height;
             }
+        }
+
+        public Vector2 MeasuredPosition()
+        {
+            if (CenterText && Font != null)
+            {
+                return new Vector2(Position.X - Font.MeasureString(_text).X / 2, Position.Y - Font.MeasureString(_text).Y / 2);
+            }
+            return Position;
         }
 
         public override void drawElement(GameTime gameTime)
         {
-            base.DrawString(Font, Text, Color, Rotation, Scale, spriteEffects); 
+            EdgeGame.drawString(Font, _text, MeasuredPosition(), Color, Rotation, OriginPoint, Scale, spriteEffects, LayerDepth); 
         }
     }
 }

@@ -14,6 +14,13 @@ using System.Xml.Linq;
 namespace EdgeLibrary
 {
 
+    public enum GameDrawState
+    {
+        Normal,
+        Debug,
+        Hybrid
+    }
+
     public static class EdgeGame
     {
         private static GraphicsDevice graphicsDevice;
@@ -23,6 +30,9 @@ namespace EdgeLibrary
         private static bool IsDrawing;
 
         private static RenderTarget2D ScreenTarget;
+
+        public static GameDrawState GameDrawState;
+        public static Color DebugDrawColor;
 
         public static Color ClearColor;
         public static bool AutomaticallyAddElementsToGame;
@@ -40,6 +50,8 @@ namespace EdgeLibrary
             graphics = gdm;
             spriteBatch = sb;
 
+            DebugDrawColor = Color.White;
+
             AutomaticallyAddElementsToGame = true;
 
             AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability()};
@@ -53,6 +65,8 @@ namespace EdgeLibrary
             InputManager.Init();
             ResourceManager.Init(c);
             SoundManager.Init(c);
+            TextureTools.Init();
+            MathTools.Init();
             Camera.UpdateWithGame();
         }
 
@@ -133,7 +147,21 @@ namespace EdgeLibrary
 
             spriteBatch.Begin();
             IsDrawing = true;
-            SelectedScene.Draw(gameTime);
+            switch (GameDrawState)
+            {
+                case GameDrawState.Normal:
+                    SelectedScene.Draw(gameTime);
+                    break;
+
+                case GameDrawState.Debug:
+                    SelectedScene.DrawDebug(gameTime);
+                    break;
+
+                case GameDrawState.Hybrid:
+                    SelectedScene.Draw(gameTime);
+                    SelectedScene.DrawDebug(gameTime);
+                    break;
+            }
             spriteBatch.End();
 
             graphicsDevice.SetRenderTarget(null);

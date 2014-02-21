@@ -30,6 +30,7 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
+            EdgeGame.GameDrawState = GameDrawState.Hybrid;
 
             IsMouseVisible = true;
 
@@ -54,10 +55,19 @@ namespace EdgeDemo
             //s2.AddCapability(new AdvancedMovementCapability());
             //((AdvancedMovementCapability)s2.Capability("AdvancedMovement")).RotateElementAroundPoint(s1.Position);
 
+            s1.CollisionStart += new Sprite.CollisionEvent(s1_CollisionStart);
+
             TextSprite textSprite = new TextSprite("SpriteFont1", "This is a TextSprite", new Vector2(300, 300), Color.Green);
 
-            FPSSprite = new TextSprite("SpriteFont1", "FPS: 0", new Vector2(10, 650), Color.White);
-            MousePosSprite = new TextSprite("SpriteFont1", "MouseX: 0, MouseY: 0", new Vector2(10, 600), Color.White);
+            FPSSprite = new TextSprite("SpriteFont1", "FPS: 0", new Vector2(0, 650), Color.White);
+            FPSSprite.CenterText = false;
+            MousePosSprite = new TextSprite("SpriteFont1", "MouseX: 0, MouseY: 0", new Vector2(0, 600), Color.White);
+            MousePosSprite.CenterText = false;
+        }
+
+        void s1_CollisionStart(CollisionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void UnloadContent() { }

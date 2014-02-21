@@ -21,6 +21,8 @@ namespace EdgeLibrary
         public virtual int LayerDepth { get; set; }
         public virtual Vector2 OriginPoint { get; set; }
 
+        protected List<string> currentlyCollidingWithIDs;
+
         private List<Capability> Capabilities;
 
         public Element() : this(true) { }
