@@ -62,16 +62,24 @@ namespace EdgeLibrary
             return null;
         }
 
+        protected static int updateCounter = 0;
+        protected static int drawCounter = 0;
+
         public override void updateElement(GameTime gameTime)
         {
+            updateCounter++;
+
             foreach (Element element in elements)
             {
+
                 element.Update(gameTime);
             }
         }
 
         public override void drawElement(GameTime gameTime)
         {
+            drawCounter++;
+
             foreach (Element element in elements)
             {
                 element.Draw(gameTime);

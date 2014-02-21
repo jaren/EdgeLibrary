@@ -62,14 +62,17 @@ namespace EdgeLibrary
 
         public void Update(GameTime gameTime)
         {
-            try
+
+            for (int i = 0; i < elements.Count; i++)
             {
-                foreach (Element element in elements)
+                elements[i].Update(gameTime);
+
+                if (elements[i].MarkedForRemoval)
                 {
-                    element.Update(gameTime);
+                    elements.RemoveAt(i);
+                    i--;
                 }
             }
-            catch { }
         }
 
         public void Draw(GameTime gameTime)

@@ -55,12 +55,13 @@ namespace EdgeLibrary
         public Color Color;
 
         protected List<string> currentlyCollidingWithIDs;
-        
+
         public delegate void CollisionEvent(CollisionEventArgs e);
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
+        public Sprite(string id, string eTextureName, Vector2 ePosition)
+            : base(id)
         {
             DrawType = SpriteDrawType.NoRatio;
             spriteEffects = SpriteEffects.None;
@@ -99,14 +100,16 @@ namespace EdgeLibrary
             CollisionBody.collidesWithAll = true;
         }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(id, eTextureName, ePosition)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight)
+            : this(id, eTextureName, ePosition)
         {
             _width = eWidth;
             _height = eHeight;
             reloadBoundingBox();
         }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition, eWidth, eHeight)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale)
+            : this(id, eTextureName, ePosition, eWidth, eHeight)
         {
             Color = eColor;
             Rotation = eRotation;
@@ -133,7 +136,7 @@ namespace EdgeLibrary
 
                 foreach (Element element in EdgeGame.SelectedScene.elements)
                 {
-                    try
+                    if (element is Sprite)
                     {
                         Sprite elementAsSprite = (Sprite)element;
 
@@ -155,7 +158,6 @@ namespace EdgeLibrary
                             }
                         }
                     }
-                    catch { }
                 }
             }
         }

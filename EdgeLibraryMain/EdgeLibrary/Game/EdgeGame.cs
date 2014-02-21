@@ -37,8 +37,6 @@ namespace EdgeLibrary
         public static Color ClearColor;
         public static Scene SelectedScene;
 
-        public static List<Capability> AutoIncludedCapabilities;
-
         public static Effect Effect;
 
         public static List<Scene> Scenes { get; private set; }
@@ -50,8 +48,6 @@ namespace EdgeLibrary
             spriteBatch = sb;
 
             DebugDrawColor = Color.White;
-
-            AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability()};
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
 
@@ -124,6 +120,7 @@ namespace EdgeLibrary
         {
             return new Texture2D(graphicsDevice, width, height);
         }
+
 
         public static void Update(GameTime gameTime)
         {

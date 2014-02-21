@@ -49,21 +49,22 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-//            DebugPanel debug = new DebugPanel("SmallFont", Color.White);
+            DebugPanel debug = new DebugPanel("SmallFont", Color.White);
 
-           /* Sprite s1 = new Sprite("S1", "enemyUFO", new Vector2(250, 400));
+            
+            Sprite s1 = new Sprite("SSERWEHWWEWE1", "enemyUFO", new Vector2(250, 400));
             s1.CollisionBodyType = ShapeTypes.circle;
 
-            Sprite s2 = new Sprite("S2", "meteorSmall", new Vector2(350, 400));
+            Sprite s2 = new Sprite("SASDGRGFDGWEFWRGWEEEWWE2", "meteorSmall", new Vector2(350, 400));
             s2.CollisionBodyType = ShapeTypes.circle;
             s2.AddCapability(new PointRotationCapability());
             s2.PointRotation.RotateElementAroundPoint(s1.Position);
-            TextSprite textSprite = new TextSprite("TS1", "SmallFont", "This is a TextSprite", new Vector2(300, 100), Color.Green);
-            */
+            TextSprite textSprite = new TextSprite("TS1A:LFDK:LSKDJEIFDEFED", "SmallFont", "This is a TextSprite", new Vector2(300, 100), Color.Green);
+            
 
-           // ParticleEmitter emitter = new ParticleEmitter("P1", "fire", new Vector2(500, 500));
-           // emitter.Clamp.ClampElement = InputManager.MouseSprite;
-           // emitter.EmitWait = 0;
+            ParticleEmitter emitter = new ParticleEmitter("P1", "fire", new Vector2(500, 500));
+            emitter.Clamp.ClampElement = InputManager.MouseSprite;
+            emitter.EmitWait = 0;
         }
 
         protected override void UnloadContent() { }

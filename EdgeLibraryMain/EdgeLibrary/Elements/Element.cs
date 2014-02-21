@@ -16,6 +16,7 @@ namespace EdgeLibrary
     public class Element
     {
         public virtual string ID { get; set; }
+        public virtual bool MarkedForRemoval { get; set; }
         public virtual Vector2 Position { get; set; }
         public virtual bool Visible { get; set; }
         public virtual int LayerDepth { get; set; }
@@ -53,7 +54,7 @@ namespace EdgeLibrary
 
         public void REMOVE()
         {
-            EdgeGame.RemoveElement(this);
+            MarkedForRemoval = true;
         }
 
         public void AddCapability(Capability capability)
