@@ -35,7 +35,6 @@ namespace EdgeLibrary
         public static Color DebugDrawColor;
 
         public static Color ClearColor;
-        public static bool AutomaticallyAddElementsToGame;
         public static Scene SelectedScene;
 
         public static List<Capability> AutoIncludedCapabilities;
@@ -51,8 +50,6 @@ namespace EdgeLibrary
             spriteBatch = sb;
 
             DebugDrawColor = Color.White;
-
-            AutomaticallyAddElementsToGame = true;
 
             AutoIncludedCapabilities = new List<Capability>() { new SimpleMovementCapability(), new ClampCapability()};
 
@@ -70,6 +67,18 @@ namespace EdgeLibrary
             Camera.UpdateWithGame();
         }
 
+        public static List<Element> AllElements()
+        {
+            List<Element> elements = new List<Element>();
+            foreach (Scene scene in Scenes)
+            {
+                foreach(Element e in scene.elements)
+                {
+                    elements.Add(e);
+                }
+            }
+            return elements;
+        }
 
         public static Scene mainScene()
         {
@@ -96,6 +105,14 @@ namespace EdgeLibrary
             return mainScene();
         }
 
+        public static void RemoveElement(Element e)
+        {
+            foreach (Scene scene in Scenes)
+            {
+                scene.RemoveElement(e);
+            }
+        }
+
         public static Vector2 WindowSize()
         {
             return new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
@@ -103,10 +120,7 @@ namespace EdgeLibrary
 
         public static void AutoAdd(Element e)
         {
-            if (AutomaticallyAddElementsToGame)
-            {
                 SelectedScene.AddElement(e);
-            }
         }
 
         public static void SwitchScene(string id)
@@ -137,6 +151,22 @@ namespace EdgeLibrary
             FPSCounter.Update(gameTime);
 
             SelectedScene.Update(gameTime);
+
+            //Checks if two elements have the same ID
+            List<string> IDs = new List<string>();
+            foreach (Scene scene in Scenes)
+            {
+                foreach (Element e in scene.elements)
+                {
+                    if (IDs.Contains(e.ID))
+                    {
+                        //There was a duplicate ID
+                        throw new Exception();
+                    }
+                    IDs.Add(e.ID);
+                }
+            }
+            IDs = null;
         }
 
         public static void Draw(GameTime gameTime)

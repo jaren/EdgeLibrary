@@ -14,11 +14,13 @@ namespace EdgeDemo
 {
     public class EdgeDemo : Microsoft.Xna.Framework.Game
     {
+        /// <summary>
+        /// Problems:
+        ///     -EXTREMELY laggy when adding debug panels or particle emitters
+        /// </summary>
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        TextSprite FPSSprite;
-        TextSprite MousePosSprite;
 
         public EdgeDemo()
         {
@@ -30,7 +32,7 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Debug;
+            EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = false;
 
             EdgeGame.SetWindowSize(new Vector2(700, 700));
@@ -47,23 +49,21 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
+            DebugPanel debug = new DebugPanel("SmallFont", Color.White);
 
-            Sprite s1 = new Sprite("enemyUFO", new Vector2(250, 400));
+            Sprite s1 = new Sprite("S1", "enemyUFO", new Vector2(250, 400));
             s1.CollisionBodyType = ShapeTypes.circle;
 
-            Sprite s2 = new Sprite("meteorSmall", new Vector2(350, 400));
+            Sprite s2 = new Sprite("S2", "meteorSmall", new Vector2(350, 400));
             s2.CollisionBodyType = ShapeTypes.circle;
             s2.AddCapability(new AdvancedMovementCapability());
             ((AdvancedMovementCapability)s2.Capability("AdvancedMovement")).RotateElementAroundPoint(s1.Position);
 
-            TextSprite textSprite = new TextSprite("SmallFont", "This is a TextSprite", new Vector2(300, 100), Color.Green);
+            TextSprite textSprite = new TextSprite("TS1", "SmallFont", "This is a TextSprite", new Vector2(300, 100), Color.Green);
 
-            ParticleEmitter emitter = new ParticleEmitter("fire", Vector2.Zero);
-            ((ClampCapability)emitter.Capability("Clamp")).ClampElement = InputManager.MouseSprite;
-            emitter.EmitWait = 1000;
-
-            FPSSprite = new TextSprite("SmallFont", "FPS: 0", new Vector2(400, 650), Color.White);
-            MousePosSprite = new TextSprite("SmallFont", "MouseX: 0, MouseY: 0", new Vector2(400, 600), Color.White);
+           // ParticleEmitter emitter = new ParticleEmitter("P1", "fire", Vector2.Zero);
+           // ((ClampCapability)emitter.Capability("Clamp")).ClampElement = InputManager.MouseSprite;
+           // emitter.EmitWait = 1000;
         }
 
         protected override void UnloadContent() { }
@@ -72,9 +72,6 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
-
-            FPSSprite.Text = string.Format("FPS: {0}", FPSCounter.FPS);
-            MousePosSprite.Text = string.Format("MouseX: {0}, MouseY: {1}", InputManager.MousePos().X, InputManager.MousePos().Y);
         }
 
         protected override void Draw(GameTime gameTime)

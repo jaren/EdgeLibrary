@@ -9,20 +9,21 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace EdgeLibrary
 {
-    //May add more things to Scenes later on
-    public class Scene
+    public class Panel : Element
     {
-        public List<Element> elements;
-        public string ID { get; set; }
+        protected List<Element> elements;
 
-        public Scene(string id)
+        public Panel(string id, params Element[] elementsToAdd) : base(id)
         {
-            ID = id;
             elements = new List<Element>();
+
+            foreach (Element e in elementsToAdd)
+            {
+                elements.Add(e);
+            }
         }
 
         public void AddElement(Element element)
@@ -60,7 +61,7 @@ namespace EdgeLibrary
             return null;
         }
 
-        public void Update(GameTime gameTime)
+        public override void updateElement(GameTime gameTime)
         {
             foreach (Element element in elements)
             {
@@ -68,24 +69,12 @@ namespace EdgeLibrary
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public override void drawElement(GameTime gameTime)
         {
             foreach (Element element in elements)
             {
                 element.Draw(gameTime);
             }
-        }
-
-        public void DrawDebug(GameTime gameTime)
-        {
-                foreach (Element element in elements)
-                {
-                    try
-                    {
-                        ((Sprite)element).CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
-                    }
-                    catch { }
-                }
         }
     }
 }

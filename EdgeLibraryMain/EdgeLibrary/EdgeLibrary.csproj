@@ -93,6 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elements\Panel.cs" />
     <Compile Include="Extra\Capabilities\AdvancedMovementCapability.cs" />
     <Compile Include="Extra\Capabilities\BasicCapabilities.cs" />
     <Compile Include="Extra\Capabilities\XMLAnimationCapability.cs" />
@@ -105,7 +106,8 @@
     <Compile Include="Elements\Menu\Button.cs" />
     <Compile Include="Elements\Menu\ButtonRound.cs" />
     <Compile Include="Elements\Menu\ButtonToggle.cs" />
-    <Compile Include="Game\FPSCounter.cs" />
+    <Compile Include="Game\GameTools\DebugPanel.cs" />
+    <Compile Include="Game\GameTools\FPSCounter.cs" />
     <Compile Include="Elements\Particle\Particle.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -115,7 +117,7 @@
     <Compile Include="Elements\Sprite.cs" />
     <Compile Include="Elements\TextSprite.cs" />
     <Compile Include="Elements\Ticker.cs" />
-    <Compile Include="Game\Camera.cs" />
+    <Compile Include="Game\GameTools\Camera.cs" />
     <Compile Include="Game\EdgeGame.cs" />
     <Compile Include="Game\Managers\InputManager.cs" />
     <Compile Include="Game\Managers\ResourceManager.cs" />

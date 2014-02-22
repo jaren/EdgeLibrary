@@ -18,7 +18,7 @@ namespace EdgeLibrary
         public string Text { get { return _text; } set { _text = value; reloadBoundingBox(); } }
         private string _text;
 
-        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : base("", ePosition)
+        public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor) : base(id, "", ePosition)
         {
             Font = ResourceManager.getFont(eFontName);
 
@@ -40,7 +40,7 @@ namespace EdgeLibrary
             reloadBoundingBox();
         }
 
-        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor, float eRotation, Vector2 eScale): this(eFontName, eText, ePosition, eColor)
+        public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor, float eRotation, Vector2 eScale): this(id, eFontName, eText, ePosition, eColor)
         {
             Rotation = eRotation;
             Scale = eScale;
@@ -57,7 +57,7 @@ namespace EdgeLibrary
             }
         }
 
-        public Vector2 MeasuredPosition()
+        private Vector2 MeasuredPosition()
         {
             if (Font != null)
             {

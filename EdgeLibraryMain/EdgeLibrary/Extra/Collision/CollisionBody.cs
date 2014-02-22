@@ -47,10 +47,10 @@ namespace EdgeLibrary
             switch (shapeType)
             {
                 case ShapeTypes.circle:
-                    return new CollisionBody(new ShapeCircle(sprite.Position, (sprite.Width + sprite.Height) / 4), collisionID, collidesWithIDs); //It's the average over 2, because the average of width+height is the diameter and this is the radius
+                    return new CollisionBody(new ShapeCircle(sprite.Position, (sprite.Width + sprite.Height) / 4 * ((sprite.Scale.X + sprite.Scale.Y) / 2)), collisionID, collidesWithIDs); //It's the average over 2, because the average of width+height is the diameter and this is the radius
                     break;
                 case ShapeTypes.rectangle:
-                    return new CollisionBody(new ShapeRectangle(sprite.Position, sprite.Width, sprite.Height), collisionID, collidesWithIDs);
+                    return new CollisionBody(new ShapeRectangle(sprite.Position, sprite.Width * (int)sprite.Scale.X, sprite.Height * (int)sprite.Scale.Y), collisionID, collidesWithIDs);
                     break;
             }
             return null;

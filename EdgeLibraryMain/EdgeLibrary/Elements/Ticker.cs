@@ -21,7 +21,7 @@ namespace EdgeLibrary
         public delegate void TickerEventHandler();
         public event TickerEventHandler Tick;
 
-        public Ticker(double eMilliseconds) : base()
+        public Ticker(double eMilliseconds) : base(MathTools.RandomID("ticker"))
         {
             MillisecondsWait = eMilliseconds;
             elapsedMilliseconds = 0;
@@ -56,7 +56,7 @@ namespace EdgeLibrary
         public delegate void TickerEventHandler();
         public event TickerEventHandler Tick;
 
-        public ERandomTicker(int min, int max) : base()
+        public ERandomTicker(int min, int max) : base(MathTools.RandomID("randomTicker"))
         {
             MinMilliseconds = min;
             MaxMilliseconds = max;

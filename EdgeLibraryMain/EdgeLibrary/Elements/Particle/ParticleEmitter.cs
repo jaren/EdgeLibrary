@@ -50,7 +50,7 @@ namespace EdgeLibrary
         public delegate void ParticleEventHandler(ParticleEmitter sender);
         public event ParticleEventHandler OnEmit;
 
-        public ParticleEmitter(string eTextureName, Vector2 ePosition) : base()
+        public ParticleEmitter(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
             particles = new List<Particle>();
             Position = ePosition;
@@ -82,7 +82,8 @@ namespace EdgeLibrary
 
         public void EmitSingleParticle()
         {
-            Particle particle = new Particle(ParticleTextureName, InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID("particle"), ParticleTextureName, InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
+            particle.REMOVE();
             particle.CollisionBody = null;
             particle.Position = new Vector2(InputManager.Random.Next((int)EmitArea.Left, (int)EmitArea.Right), InputManager.Random.Next((int)EmitArea.Top, (int)EmitArea.Bottom));
             particle.Rotation = InputManager.Random.Next((int)MinStartRotation, (int)MaxStartRotation);

@@ -38,16 +38,17 @@ namespace EdgeLibrary
         public virtual event ButtonEventHandler MouseOver;
         public virtual event ButtonEventHandler MouseOff;
 
-        public Button(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor) : base(eTextureName, ePosition, eWidth, eHeight)
+        public Button(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor) : base(id, eTextureName, ePosition, eWidth, eHeight)
         {
-            label = new TextSprite("", "", Vector2.Zero, Color.White);
+            label = new TextSprite(string.Format("{0}_label", id), "", "", Vector2.Zero, Color.White);
+            label.REMOVE();
             previousPosition = Position;
             onColor = eClickColor;
             offData = eTextureName;
             init();
         }
 
-        public Button(string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor, Color eColor, float eRotation, Vector2 eScale) : base(eTextureName, ePosition, eWidth, eHeight, eColor, eRotation, eScale)
+        public Button(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eClickColor, Color eColor, float eRotation, Vector2 eScale) : base(id, eTextureName, ePosition, eWidth, eHeight, eColor, eRotation, eScale)
         {
             onColor = eClickColor;
             offData = eTextureName;

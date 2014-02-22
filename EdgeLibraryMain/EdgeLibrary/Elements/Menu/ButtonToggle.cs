@@ -33,10 +33,10 @@ namespace EdgeLibrary
         public event ButtonToggleEvent MouseOver;
         public event ButtonToggleEvent MouseOff;
 
-        public ButtonToggle(Button buttonOn, Button buttonOff) : base("", buttonOn.Position, (int)buttonOn.Width, (int)buttonOn.Height)
+        public ButtonToggle(string id, Button buttonOn, Button buttonOff) : base(id, "", buttonOn.Position, (int)buttonOn.Width, (int)buttonOn.Height)
         {
-            EdgeGame.SelectedScene.RemoveElement(buttonOn);
-            EdgeGame.SelectedScene.RemoveElement(buttonOff);
+            buttonOn.REMOVE();
+            buttonOff.REMOVE();
 
             On = true;
             ButtonOn = buttonOn;

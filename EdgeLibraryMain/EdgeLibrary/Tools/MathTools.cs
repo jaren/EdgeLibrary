@@ -16,10 +16,15 @@ namespace EdgeLibrary
     //Holds all the calculation and simple drawing functions
     public static class MathTools
     {
-        public static void Init() { }
+        public static void Init()
+        {
+            givenIDs = new List<long>();
+        }
 
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
+
+        private static List<long> givenIDs;
 
         /// <summary>
         /// Retrieves a color by its name.
@@ -37,6 +42,21 @@ namespace EdgeLibrary
             {
                 return Color.Black;
             }
+        }
+
+        public static string RandomID(string starter)
+        {
+            return string.Format("{0}{1}", starter, RandomID());
+        }
+
+        public static string RandomID()
+        {
+            long id = InputManager.Random.Next(999999);
+            while (givenIDs.Contains(id))
+            {
+                id = InputManager.Random.Next(999999);
+            }
+            return Convert.ToString(id);
         }
 
         //Returns the midpoint of a line segment drawn from one point to the other

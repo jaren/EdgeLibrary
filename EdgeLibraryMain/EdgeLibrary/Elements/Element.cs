@@ -21,14 +21,12 @@ namespace EdgeLibrary
         public virtual int LayerDepth { get; set; }
         public virtual Vector2 OriginPoint { get; set; }
 
-        protected List<string> currentlyCollidingWithIDs;
-
         private List<Capability> Capabilities;
 
-        public Element() : this(true) { }
-
-        public Element(bool autoAdd)
+        public Element(string id)
         {
+            ID = id;
+
             Visible = true;
 
             //XNA Default
@@ -41,11 +39,12 @@ namespace EdgeLibrary
                 AddCapability(capability.NewInstance(this));
             }
 
-            //Shouldn't be called for certain elements such as scenes
-            if (autoAdd)
-            {
                 EdgeGame.AutoAdd(this);
-            }
+        }
+
+        public void REMOVE()
+        {
+            EdgeGame.RemoveElement(this);
         }
 
         public void AddCapability(Capability capability)
