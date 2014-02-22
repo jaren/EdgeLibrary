@@ -48,7 +48,7 @@ namespace EdgeLibrary
             AddElement(KeysSprite);
 
             Font = ResourceManager.getFont(fontName);
-            DrawColor = drawColor;
+            _drawColor = drawColor;
 
             YDifference = Font.MeasureString("A").Y * 1.25f;
 
@@ -85,6 +85,7 @@ namespace EdgeLibrary
             ElementsSprite.Color = _drawColor;
             KeysSprite.Font = _font;
             KeysSprite.Color = _drawColor;
+            KeysSprite.DrawLayer = DrawLayer;
         }
 
         protected override void updateElement(GameTime gameTime)

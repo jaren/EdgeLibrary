@@ -93,7 +93,7 @@ namespace EdgeLibrary
             if (label.Font != null)
             {
                 label.Position = Position - label.Font.MeasureString(label.Text) / 2;
-                label.LayerDepth = this.LayerDepth - 1;
+                label.DrawLayer = this.DrawLayer - 1;
             }
         }
 

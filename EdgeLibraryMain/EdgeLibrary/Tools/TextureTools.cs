@@ -30,38 +30,41 @@
 	        }
 	
 	        #region GENERATING TOOLS
-	        //Incomplete
-            /*
-	        public static Texture2D CreateGradient(int width, int height, Color color1, Color color2, Vector2 colorEmitter1, Vector2 colorEmitter2)
-	        {
-	            Texture2D Texture = new Texture2D(EdgeGame.graphicsDevice, width, height);
-	            Color[] colorData = new Color[width * height];
-	
-	            Line emitterLine = new Line(colorEmitter1, colorEmitter2);
-	            Line compareLine = Line.PerpendicularToAt(emitterLine, MathTools.MidPoint(colorEmitter1, colorEmitter2));
-	            Line colorEmitter1Line = Line.PerpendicularToAt(emitterLine, colorEmitter1);
-	            Line colorEmitter2Line = Line.PerpendicularToAt(emitterLine, colorEmitter2);
-	
-	            foreach (Vector2 point in emitterLine.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
-	            {
-	                Line line = Line.PerpendicularToAt(emitterLine, point);
-	                foreach (Vector2 linePoint in line.GetPointsWithinRectangle(new Rectangle(0, 0, width, height)))
-	                {
-	                    //If the line is past the "halfway" mark  may have problems with the lines that are far on the opposite side of the colorEmitter1Line
-	                    if (line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)) > compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line)))
-	                    {
-	                        colorData[(int)linePoint.X + (int)linePoint.Y * width] = Color.Lerp(color1, color2, ((float)line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line))) / ((float)compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter1Line))));
-	                    }
-	                    else
-	                    {
-	                        colorData[(int)linePoint.X + (int)linePoint.Y * width] = Color.Lerp(color2, color1, ((float)line.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter2Line))) / ((float)compareLine.DistanceTo((Vector2)emitterLine.Intersection(colorEmitter2Line))));
-	                    }
-	                }
-	            }
-	
-	            Texture.SetData<Color>(colorData);
-	            return Texture;
-	        }*/
+            public static Texture2D CreateCircleTexture(int radius, Color color)
+            {
+                Texture2D texture = EdgeGame.NewTexture(radius * 2, radius * 2);
+                Color[] colors = new Color[radius * radius * 4];
+
+                foreach(Vector2 point in MathTools.GetCirclePoints(new Vector2(radius, radius), radius, radius))
+                {
+                    colors[(int)(point.X + point.Y * radius * 2)] = color;
+                }
+                texture.SetData<Color>(colors);
+                return texture;
+            }
+
+            public static Texture2D CreateVerticalGradient(int width, int height, Color color1, Color color2)
+            {
+                Texture2D texture = EdgeGame.NewTexture(width, height);
+                Color[] colors = new Color[width*height];
+
+                for (int y = 0; y < height; y++ )
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        if (y < width * height / 2)
+                        {
+                            colors[x + y*width] = Color.Lerp(color1, color2, y / height / 2);
+                        }
+                        else
+                        {
+                            colors[x + y * width] = Color.Lerp(color2, color1, (height/2 - y) / height / 2);
+                        }
+                    }
+                }
+                texture.SetData<Color>(colors);
+                return texture;
+            }
 	        #endregion
 	
 	        #region SPLITTING TOOLS
@@ -108,12 +111,12 @@
 	        #region DRAWING TOOLS
 	        public static void DrawPixelAt(Vector2 position, Color color)
 	        {
-	            EdgeGame.drawTexture(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), null, color, 0f, Vector2.Zero, SpriteEffects.None, 0);
+	            EdgeGame.drawTexture(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), null, color, 0f, Vector2.Zero, SpriteEffects.None);
 	        }
 	        public static void DrawRectangleAt(Vector2 position, float width, float height, Color color)
 	        {
 	            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
-	            EdgeGame.drawTexture(Pixel, rectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None, 0);
+	            EdgeGame.drawTexture(Pixel, rectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None);
 	        }
 	        #endregion
 	    }

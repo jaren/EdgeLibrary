@@ -80,10 +80,10 @@ namespace EdgeLibrary
             return splitParts[splitParts.Length - 1];
         }
 
-        public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
+        public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius, float step)
         {
             List<Vector2> points = new List<Vector2>();
-            float actualStep = circlePointStep / radius;
+            float actualStep = step / radius;
 
             for (float currentRadius = radius; currentRadius > 0; currentRadius -= actualStep)
             {
@@ -105,6 +105,11 @@ namespace EdgeLibrary
             }
 
             return points;
+        }
+
+        public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
+        {
+            return GetCirclePoints(centerPosition, radius, circlePointStep);
         }
 
         public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)

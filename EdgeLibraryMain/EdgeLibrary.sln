@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemo", "EdgeDemo\EdgeDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemoContent", "EdgeDemo\EdgeDemoContent\EdgeDemoContent.contentproj", "{622594A5-7F8B-4BB6-B11B-0BA94833575F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePlatformer", "EdgePlatformer\EdgePlatformer.csproj", "{8C5A7086-C765-477D-912D-E2F4FC1568E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -47,6 +49,16 @@ Global
 		{622594A5-7F8B-4BB6-B11B-0BA94833575F}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{622594A5-7F8B-4BB6-B11B-0BA94833575F}.Release|x86.ActiveCfg = Release|x86
 		{622594A5-7F8B-4BB6-B11B-0BA94833575F}.Release|Xbox 360.ActiveCfg = Release|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Debug|x86.ActiveCfg = Debug|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Debug|x86.Build.0 = Debug|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Debug|Xbox 360.ActiveCfg = Debug|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Release|x86.ActiveCfg = Release|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Release|x86.Build.0 = Release|x86
+		{8C5A7086-C765-477D-912D-E2F4FC1568E0}.Release|Xbox 360.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -62,13 +62,8 @@ namespace EdgeLibrary
             return null;
         }
 
-        protected static int updateCounter = 0;
-        protected static int drawCounter = 0;
-
         protected override void updateElement(GameTime gameTime)
         {
-            updateCounter++;
-
             foreach (Element element in elements)
             {
 
@@ -78,7 +73,7 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            drawCounter++;
+            elements = elements.OrderBy(x => x.DrawLayer).ToList();
 
             foreach (Element element in elements)
             {

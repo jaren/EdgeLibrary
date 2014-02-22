@@ -77,6 +77,8 @@ namespace EdgeLibrary
 
         public void Draw(GameTime gameTime)
         {
+            elements = elements.OrderBy(X => X.DrawLayer).ToList();
+
             foreach (Element element in elements)
             {
                 element.Draw(gameTime);

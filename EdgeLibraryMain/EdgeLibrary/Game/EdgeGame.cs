@@ -184,7 +184,7 @@ namespace EdgeLibrary
                 Effect.ApplyEffect(ScreenTarget);
             }
             spriteBatch.Begin();
-            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None);
             IsDrawing = false;
             spriteBatch.End();
         }
@@ -207,19 +207,19 @@ namespace EdgeLibrary
             }
         }
 
-        public static void drawTexture(Texture2D texture, Rectangle destRect, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects spriteEffects, float layerDepth)
+        public static void drawTexture(Texture2D texture, Rectangle destRect, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects spriteEffects)
         {
             if (IsDrawing && texture != null)
             {
-                spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, layerDepth);
+                spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, 1);
             }
         }
 
-        public static void drawString(SpriteFont font, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, float layerDepth)
+        public static void drawString(SpriteFont font, string text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects)
         {
             if (IsDrawing && font != null)
             {
-                spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
+                spriteBatch.DrawString(font, text, position, color, rotation, origin, scale, spriteEffects, 1);
             }
         }
     }

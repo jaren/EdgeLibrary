@@ -19,7 +19,7 @@ namespace EdgeLibrary
         public virtual bool MarkedForRemoval { get; set; }
         public virtual Vector2 Position { get; set; }
         public virtual bool Visible { get; set; }
-        public virtual int LayerDepth { get; set; }
+        public virtual int DrawLayer { get; set; }
         public virtual Vector2 OriginPoint { get; set; }
         public virtual ClampCapability Clamp { get; set; }
         public virtual SimpleMovementCapability SimpleMovement { get; set; }
@@ -100,36 +100,36 @@ namespace EdgeLibrary
 
         protected void DrawString(SpriteFont font, string text, Color color, float Rotation, Vector2 scale, SpriteEffects effects)
         {
-            EdgeGame.drawString(font, text, Position, color, MathHelper.ToRadians(Rotation), OriginPoint, scale, effects, LayerDepth);
+            EdgeGame.drawString(font, text, Position, color, MathHelper.ToRadians(Rotation), OriginPoint, scale, effects);
         }
 
         protected void DrawTexture(Rectangle? origin, Texture2D texture, Rectangle bounds, Color color, float Rotation, SpriteEffects effects)
         {
-            EdgeGame.drawTexture(texture, bounds, origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects, LayerDepth);
+            EdgeGame.drawTexture(texture, bounds, origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects);
         }
 
         protected void DrawWithScale(Rectangle? origin, Texture2D texture, float scale, Color color, float Rotation, SpriteEffects effects)
         {
                 if (origin == null)
                 {
-                    EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects, LayerDepth);
+                    EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - texture.Width / 2 * scale), (int)(Position.Y - texture.Height / 2 * scale), (int)(texture.Width * scale), (int)(texture.Height * scale)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects);
                 }
                 else
                 {
-                    EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects, LayerDepth);
+                    EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - ((Rectangle)origin).Width / 2 * scale), (int)(Position.Y - ((Rectangle)origin).Height / 2 * scale), (int)(((Rectangle)origin).Width * scale), (int)(((Rectangle)origin).Height * scale)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects);
                 }
         }
 
         protected void DrawWithWidth(Rectangle? origin, Texture2D texture, float width, Color color, float Rotation, SpriteEffects effects)
         {
                 float ratioWH = texture.Width / texture.Height;
-                EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects, LayerDepth);
+                EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - width / 2), (int)(Position.Y - width * ratioWH / 2), (int)width, (int)(width * ratioWH)), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects);
         }
 
         protected void DrawWithHeight(Rectangle? origin, Texture2D texture, float height, Color color, float Rotation, SpriteEffects effects)
         {
                 float ratioHW = texture.Height / texture.Width;
-                EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects, LayerDepth);
+                EdgeGame.drawTexture(texture, new Rectangle((int)(Position.X - height * ratioHW / 2), (int)(Position.Y - height / 2), (int)(height * ratioHW), (int)height), origin, color, MathHelper.ToRadians(Rotation), OriginPoint, effects);
         }
     }
 }

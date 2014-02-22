@@ -95,7 +95,7 @@ namespace EdgeLibrary
             List<string> text = splitText();
             for (int i = 0; i < text.Count; i++)
             {
-                EdgeGame.drawString(Font, text[i], MeasuredPosition(text[i], i), Color, Rotation, OriginPoint, Scale, spriteEffects, LayerDepth); 
+                EdgeGame.drawString(Font, text[i], MeasuredPosition(text[i], i), Color, Rotation, OriginPoint, Scale, spriteEffects); 
             }
         }
     }

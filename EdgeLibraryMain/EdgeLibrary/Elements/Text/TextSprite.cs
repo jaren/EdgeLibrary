@@ -84,7 +84,7 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            EdgeGame.drawString(Font, _text, MeasuredPosition(), Color, Rotation, OriginPoint, Scale, spriteEffects, LayerDepth); 
+            base.DrawString(Font, Text, Color, Rotation, Scale, spriteEffects);
         }
     }
 }
