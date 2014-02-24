@@ -52,12 +52,17 @@ namespace EdgeDemo
             EdgeGame.Scenes.Add(game);
             EdgeGame.SelectedScene = game;
             sprite = new PlatformSprite("S", "Pixel", new Vector2(500, 500));
-            sprite.Style.Color = Color.Red;
+            sprite.Style.Color = Color.Black;
             sprite.Scale = new Vector2(30);
             level.AddSprite(sprite);
 
-            PlatformSprite sprite2 = new PlatformSprite("S2", "Pixel", new Vector2(300, 500));
-            sprite2.Style.Color = Color.Blue;
+            PlatformStatic bottom = new PlatformStatic("B", "Pixel", new Vector2(0, 680));
+            bottom.Style.Color = Color.DarkGray;
+            bottom.Scale = new Vector2(700, 20);
+            level.AddSprite(bottom);
+
+            PlatformCharacter sprite2 = new PlatformCharacter("S2", "Pixel", new Vector2(300, 500));
+            sprite2.Style.Color = Color.White;
             sprite2.Scale = new Vector2(40, 100);
             level.AddSprite(sprite2);
         }

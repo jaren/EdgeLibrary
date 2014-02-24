@@ -16,6 +16,8 @@ namespace EdgeLibrary.Platform
     public class PlatformLevel
     {
         public List<PlatformSprite> sprites;
+        //For text sprites, etc.
+        public List<Element> nonplatformelements;
         public string ID { get; set; }
         public Vector2 Gravity { get; set; }
 
@@ -23,6 +25,8 @@ namespace EdgeLibrary.Platform
         {
             ID = id;
             sprites = new List<PlatformSprite>();
+            nonplatformelements = new List<Element>();
+            Gravity = new Vector2(0, -9.8f);
         }
 
         public void AddSprite(PlatformSprite sprite)
@@ -30,7 +34,7 @@ namespace EdgeLibrary.Platform
             sprites.Add(sprite);
         }
 
-        public bool RemoveElement(string id)
+        public bool RemoveSprite(string id)
         {
             foreach (PlatformSprite sprite in sprites)
             {
@@ -43,12 +47,12 @@ namespace EdgeLibrary.Platform
             return false;
         }
 
-        public bool RemoveElement(PlatformSprite sprite)
+        public bool RemoveSprite(PlatformSprite sprite)
         {
             return sprites.Remove(sprite);
         }
 
-        public Element Element(string id)
+        public PlatformSprite Sprite(string id)
         {
             foreach (PlatformSprite sprite in sprites)
             {
@@ -73,6 +77,17 @@ namespace EdgeLibrary.Platform
                     i--;
                 }
             }
+
+            for (int i = 0; i < nonplatformelements.Count; i++)
+            {
+                nonplatformelements[i].Update(gameTime);
+
+                if (nonplatformelements[i].MarkedForRemoval)
+                {
+                    nonplatformelements.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public virtual void Draw(GameTime gameTime)
@@ -82,6 +97,13 @@ namespace EdgeLibrary.Platform
             foreach (PlatformSprite sprite in sprites)
             {
                 sprite.Draw(gameTime);
+            }
+
+            nonplatformelements = nonplatformelements.OrderBy(X => X.DrawLayer).ToList();
+
+            foreach (Element element in nonplatformelements)
+            {
+                element.Draw(gameTime);
             }
         }
     }

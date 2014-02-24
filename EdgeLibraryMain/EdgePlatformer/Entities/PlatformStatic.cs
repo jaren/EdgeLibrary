@@ -13,7 +13,7 @@ using EdgeLibrary;
 namespace EdgeLibrary.Platform
 {
     //A platform sprite which WILL NOT MOVE unless the position is manually changed
-    class PlatformStatic : PlatformSprite
+    public class PlatformStatic : PlatformSprite
     {
         public new event CollisionEvent Collision;
 
@@ -35,6 +35,6 @@ namespace EdgeLibrary.Platform
         }
 
         //Isn't affected by gravity
-        public override void UpdateMotion() { }
+        public override void UpdateMotion(Vector2 Gravity) { }
     }
 }

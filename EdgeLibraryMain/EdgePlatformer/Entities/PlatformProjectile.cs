@@ -13,7 +13,7 @@ using EdgeLibrary;
 namespace EdgeLibrary.Platform
 {
     //Bullets, arrows, etc.
-    class PlatformProjectile : PlatformSprite
+    public class PlatformProjectile : PlatformSprite
     {
         public PlatformProjectile() : base("", "", Vector2.Zero) { }
     }

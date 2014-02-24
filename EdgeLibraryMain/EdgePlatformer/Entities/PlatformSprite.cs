@@ -87,7 +87,7 @@ namespace EdgeLibrary.Platform
 
         public virtual void UpdateMotion(Vector2 Gravity)
         {
-            Position += Gravity;
+            Position -= Gravity;
         }
 
         public void UpdateSprite(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)

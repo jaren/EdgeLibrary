@@ -14,7 +14,7 @@ using EdgeLibrary;
 namespace EdgeLibrary.Platform
 {
     //Any "character" such as players, enemies, bosses, etc.
-    class PlatformCharacter : PlatformSprite
+    public class PlatformCharacter : PlatformSprite
     {
         public PlatformCharacter(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
 
