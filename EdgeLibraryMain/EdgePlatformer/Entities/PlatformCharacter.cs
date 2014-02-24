@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -10,10 +10,16 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using EdgeLibrary;
 
+
 namespace EdgeLibrary.Platform
 {
-    public class PlatformSprite : Sprite
+    //Any "character" such as players, enemies, bosses, etc.
+    class PlatformCharacter : PlatformSprite
     {
-        public PlatformSprite(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
+        public PlatformCharacter(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
+
+        public void Jump()
+        {
+        }
     }
 }

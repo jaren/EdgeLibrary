@@ -12,8 +12,9 @@ using EdgeLibrary;
 
 namespace EdgeLibrary.Platform
 {
-    class PlatformScene : Scene
+    //Bullets, arrows, etc.
+    class PlatformProjectile : PlatformSprite
     {
-        public PlatformScene(string id) : base(id) { }
+        public PlatformProjectile() : base("", "", Vector2.Zero) { }
     }
 }

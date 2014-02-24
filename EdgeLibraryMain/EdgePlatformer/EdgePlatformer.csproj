@@ -76,6 +76,9 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -92,9 +95,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlatformLevelHandler.cs" />
-    <Compile Include="PlatformScene.cs" />
-    <Compile Include="PlatformSprite.cs" />
+    <Compile Include="Entities\PlatformCharacter.cs" />
+    <Compile Include="Game\PlatformLevel.cs" />
+    <Compile Include="Game\PlatformLevelHandler.cs" />
+    <Compile Include="Entities\PlatformProjectile.cs" />
+    <Compile Include="Game\PlatformGame.cs" />
+    <Compile Include="Entities\PlatformSprite.cs" />
+    <Compile Include="Entities\PlatformStatic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

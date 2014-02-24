@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using EdgeLibrary;
+using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
@@ -16,6 +17,8 @@ namespace EdgeDemo
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        PlatformSprite sprite;
 
         public EdgeDemo()
         {
@@ -44,24 +47,19 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            DebugPanel debug = new DebugPanel("SmallFont", new Vector2(10, 0), Color.White);
+            PlatformLevel level = new PlatformLevel("LEVEL");
+            PlatformGame game = new PlatformGame("ID", level);
+            EdgeGame.Scenes.Add(game);
+            EdgeGame.SelectedScene = game;
+            sprite = new PlatformSprite("S", "Pixel", new Vector2(500, 500));
+            sprite.Style.Color = Color.Red;
+            sprite.Scale = new Vector2(30);
+            level.AddSprite(sprite);
 
-            Sprite s2 = new Sprite("S2", "meteorSmall", new Vector2(350, 400));
-            s2.DrawLayer = 1;
-            s2.CollisionBodyType = ShapeTypes.circle;
-            s2.Movement.FollowElement(InputManager.MouseSprite, 5);
-
-            ParticleEmitter emitter = new ParticleEmitter("E1", "fire", new Vector2(500, 500));
-            emitter.DrawLayer = s2.DrawLayer + 1;
-            emitter.MaxStartColor = Color.Brown;
-            emitter.MinStartColor = Color.RosyBrown;
-            emitter.MaxFinishColor = Color.LightGoldenrodYellow;
-            emitter.MinFinishColor = Color.Goldenrod;
-            emitter.GrowSpeed = -0.2f;
-            emitter.MinLife = 1000;
-            emitter.MaxLife = 2000;
-            emitter.Movement.ClampTo(s2);
-            emitter.EmitWait = 0;
+            PlatformSprite sprite2 = new PlatformSprite("S2", "Pixel", new Vector2(300, 500));
+            sprite2.Style.Color = Color.Blue;
+            sprite2.Scale = new Vector2(40, 100);
+            level.AddSprite(sprite2);
         }
 
         protected override void UnloadContent() { }
@@ -70,6 +68,24 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
+            int speed = 2;
+
+            if (InputManager.IsKeyDown(Keys.Left))
+            {
+                sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+            }
+            if (InputManager.IsKeyDown(Keys.Right))
+            {
+                sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+            }
+            if (InputManager.IsKeyDown(Keys.Up))
+            {
+                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
+            }
+            if (InputManager.IsKeyDown(Keys.Down))
+            {
+                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + speed);
+            }
         }
 
         protected override void Draw(GameTime gameTime)

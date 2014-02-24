@@ -120,6 +120,10 @@
       <Project>{61B65E5B-07DB-4793-8317-6EA84F951C5C}</Project>
       <Name>EdgeLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\EdgePlatformer\EdgePlatformer.csproj">
+      <Project>{8C5A7086-C765-477D-912D-E2F4FC1568E0}</Project>
+      <Name>EdgePlatformer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EdgeDemoContent\EdgeDemoContent.contentproj">
       <Name>EdgeDemoContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

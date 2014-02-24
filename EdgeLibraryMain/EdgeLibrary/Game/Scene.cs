@@ -25,12 +25,12 @@ namespace EdgeLibrary
             elements = new List<Element>();
         }
 
-        public void AddElement(Element element)
+        public virtual void AddElement(Element element)
         {
             elements.Add(element);
         }
 
-        public bool RemoveElement(string id)
+        public virtual bool RemoveElement(string id)
         {
             foreach (Element element in elements)
             {
@@ -43,12 +43,12 @@ namespace EdgeLibrary
             return false;
         }
 
-        public bool RemoveElement(Element element)
+        public virtual bool RemoveElement(Element element)
         {
             return elements.Remove(element);
         }
 
-        public Element Element(string id)
+        public virtual Element Element(string id)
         {
             foreach (Element element in elements)
             {
@@ -60,7 +60,7 @@ namespace EdgeLibrary
             return null;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
 
             for (int i = 0; i < elements.Count; i++)
@@ -75,7 +75,7 @@ namespace EdgeLibrary
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime)
         {
             elements = elements.OrderBy(X => X.DrawLayer).ToList();
 
@@ -85,7 +85,7 @@ namespace EdgeLibrary
             }
         }
 
-        public void DrawDebug(GameTime gameTime)
+        public virtual void DrawDebug(GameTime gameTime)
         {
                 foreach (Element element in elements)
                 {
