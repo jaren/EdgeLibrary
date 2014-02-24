@@ -54,8 +54,8 @@ namespace EdgeLibrary.Platform
                             Collision(this, sprite, gameTime);
                         }
 
-                        float VerticalCollision = Math.Min(BoundingBox.Bottom - sprite.BoundingBox.Top, sprite.BoundingBox.Bottom - BoundingBox.Top);
-                        float HorizontalCollision = Math.Min(BoundingBox.Left - sprite.BoundingBox.Right, sprite.BoundingBox.Left - BoundingBox.Right);
+                        float VerticalCollision = Math.Min(Math.Abs(BoundingBox.Top - sprite.BoundingBox.Bottom), Math.Abs(sprite.BoundingBox.Top - BoundingBox.Bottom));
+                        float HorizontalCollision = Math.Min(Math.Abs(BoundingBox.Left - sprite.BoundingBox.Right), Math.Abs(sprite.BoundingBox.Left - BoundingBox.Right));
                         if (VerticalCollision < HorizontalCollision)
                         {
                             //This collision box is on the bottom of the other one
