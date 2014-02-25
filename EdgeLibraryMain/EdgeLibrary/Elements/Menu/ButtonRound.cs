@@ -20,14 +20,11 @@ namespace EdgeLibrary
         public override event ButtonEventHandler MouseOver;
         public override event ButtonEventHandler MouseOff;
 
-        public ButtonRound(string id, string eTextureName, Vector2 ePosition, int radius, Color eClickColor) : base(id, eTextureName, ePosition, radius * 2, radius * 2, eClickColor)
+        public ButtonRound(string id, string eTextureName, Vector2 ePosition, int radius, Color eClickColor) : base(id, eTextureName, ePosition, eClickColor)
         {
             Radius = radius;
-        }
-
-        public ButtonRound(string id, string eTextureName, Vector2 ePosition, int radius, Color eClickColor, Color eColor, float eRotation, Vector2 eScale) : base(id, eTextureName, ePosition, radius * 2, radius * 2, eClickColor, eColor, eRotation, eScale)
-        {
-            Radius = radius;
+            _width = radius * 2;
+            _height = radius * 2;
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -38,13 +35,12 @@ namespace EdgeLibrary
 
             if (!InputManager.LeftClick())
             {
-                Color = onColor;
+                Style = OffStyle;
             }
 
             if (Vector2.Distance(Position, mousePosition) <= Radius)
             {
-                Color = onColor;
-                Texture = onTexture;
+                Style = MouseOverStyle;
 
                 ButtonEventArgs clickArgs = new ButtonEventArgs();
                 clickArgs.button = this;
@@ -62,6 +58,8 @@ namespace EdgeLibrary
 
                 if (InputManager.LeftClick())
                 {
+                    Style = OnStyle;
+
                     if (Click != null)
                     {
                         Click(clickArgs);
@@ -70,8 +68,7 @@ namespace EdgeLibrary
             }
             else
             {
-                Color = offColor;
-                Texture = offTexture;
+                Style = OffStyle;
 
                 if (!launchedMouseOff)
                 {

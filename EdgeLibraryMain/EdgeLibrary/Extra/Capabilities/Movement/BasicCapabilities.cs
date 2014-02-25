@@ -11,6 +11,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
+    /*
+    public class WaypointPathCapability : Capability
+    {
+        public List<Vector2> Waypoints;
+    }
+     */
 
     public class SimpleMovementCapability : Capability
     {

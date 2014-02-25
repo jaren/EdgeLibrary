@@ -42,7 +42,6 @@ namespace EdgeDemo
         {
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
-            ResourceManager.addTexture("gradient", TextureTools.CreateVerticalGradient((int)EdgeGame.WindowSize().X, (int)EdgeGame.WindowSize().Y, Color.Black, Color.Black));
             ResourceManager.LoadFont("SmallFont");
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
@@ -53,11 +52,14 @@ namespace EdgeDemo
             Sprite s1 = new Sprite("S1", "gradient", new Vector2(350, 350));
             s1.DrawLayer = 0;
 
+            LabelButton button = new LabelButton("BUTTON", "SmallFont", "TEXT", new Vector2(500, 500), Color.Red);
+           // ButtonToggle button2 = new ButtonToggle("2", "meteorSmall", new Vector2(500, 500), Color.Red);
+
             Sprite s2 = new Sprite("S2", "meteorSmall", new Vector2(350, 400));
             s2.DrawLayer = 1;
             s2.CollisionBodyType = ShapeTypes.circle;
             s2.AddCapability(new PointRotationCapability());
-            s2.SimpleMovement.Follow(InputManager.MouseSprite, 5);
+           // s2.SimpleMovement.Follow(InputManager.MouseSprite, 5);
 
             ParticleEmitter emitter = new ParticleEmitter("E1", "fire", new Vector2(500, 500));
             emitter.DrawLayer = s2.DrawLayer + 1;

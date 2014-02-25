@@ -8,89 +8,43 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Xml;
 
 namespace EdgeLibrary
 {
-    public class ButtonEventArgs : EventArgs
+    public class LabelButton : Button
     {
-        public Button button;
-        public Vector2 clickPosition;
-    }
+        public SpriteFont Font;
+        public string Text;
 
-    public class Button : Sprite
-    {
-        public TextSprite label;
-        public SpriteStyle OnStyle;
-        public SpriteStyle OffStyle;
-        public SpriteStyle MouseOverStyle;
-
-        private Vector2 previousPosition;
-
-        protected bool launchedMouseOver;
-        protected bool launchedMouseOff;
-
-        protected Texture2D OnTexture;
-        protected Texture2D OffTexture;
-
-        public delegate void ButtonEventHandler(ButtonEventArgs e);
         public virtual event ButtonEventHandler Click;
         public virtual event ButtonEventHandler MouseOver;
         public virtual event ButtonEventHandler MouseOff;
 
-        public Button(string id, string eTextureName, Vector2 ePosition, Color eClickColor) : base(id, eTextureName, ePosition)
+        public LabelButton(string id, string eFontName, string eText, Vector2 ePosition, Color eClickColor) : base(id, "", ePosition, eClickColor)
         {
-            OnStyle = new SpriteStyle();
-            OffStyle = new SpriteStyle();
-            MouseOverStyle = new SpriteStyle();
-            label = new TextSprite(string.Format("{0}_label", id), "", "", Vector2.Zero, Color.White);
-            label.REMOVE();
-            previousPosition = Position;
-            OnStyle.Color = eClickColor;
-            OffTexture = ResourceManager.getTexture(eTextureName);
-
-            Visible = true;
-            OffStyle.Color = Color.White;
-            launchedMouseOver = false;
-            launchedMouseOff = false;
-
-            reloadLabel();
-            
-            OffTexture = ResourceManager.getTexture(eTextureName);
-
-            Texture = OffTexture;
-
-            MouseOverStyle = OffStyle;
+            Font = ResourceManager.getFont(eFontName);
+            Text = eText;
         }
 
-        public void setClickTexture(string textureName)
-        {
-            Texture = ResourceManager.getTexture(textureName);
-        }
-
-        //Used for elements inheriting from this which need to access the sprite
-        protected void UpdateSpritePortion(GameTime gameTime)
-        {
-            base.updateElement(gameTime);
-        }
-
-        protected void reloadLabel()
-        {
-            if (label.Font != null)
+        public override void  reloadBoundingBox()
+        { 
+            if (Font != null)
             {
-                label.Position = Position - label.Font.MeasureString(label.Text) / 2;
-                label.DrawLayer = this.DrawLayer - 1;
+                Vector2 Measured = Font.MeasureString(Text);
+                BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
+                _width = BoundingBox.Width;
+                _height = BoundingBox.Height;
             }
+        }
+
+        protected override void  drawElement(GameTime gameTime)
+        {
+            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, OriginPoint, Scale, SpriteEffects.None);
         }
 
         protected override void updateElement(GameTime gameTime)
         {
-            if (previousPosition != Position)
-            {
-                reloadLabel();
-            }
-
-            base.updateElement(gameTime);
+            base.UpdateSpritePortion(gameTime);
 
             Vector2 mousePosition = InputManager.MousePos();
 
@@ -144,8 +98,6 @@ namespace EdgeLibrary
                     launchedMouseOff = true;
                 }
             }
-
-            previousPosition = Position;
         }
     }
 }

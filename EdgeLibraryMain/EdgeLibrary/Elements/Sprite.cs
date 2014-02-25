@@ -19,6 +19,24 @@ namespace EdgeLibrary
         Scaled
     }
 
+    public struct SpriteStyle
+    {
+        public SpriteEffects Effects;
+        public SpriteDrawType DrawType;
+        public float ScaledDrawScale;
+        public float Rotation;
+        public Color Color;
+
+        public SpriteStyle(SpriteEffects effects, SpriteDrawType drawType, float scaledDrawScale, float rotation, Color color)
+        {
+            Effects = effects;
+            DrawType = drawType;
+            ScaledDrawScale = scaledDrawScale;
+            Rotation = rotation;
+            Color = color;
+        }
+    }
+
     public class CollisionEventArgs : EventArgs
     {
         public Sprite Sprite1;
@@ -42,17 +60,11 @@ namespace EdgeLibrary
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get; set; }
-        public SpriteEffects spriteEffects;
-        public SpriteDrawType DrawType;
-        public float ScaledDrawScale;
+        public SpriteStyle Style;
         protected Vector2 _position;
         protected float _width;
         protected float _height;
         protected Vector2 _scale;
-
-        //Extra
-        public float Rotation;
-        public Color Color;
 
         protected List<string> currentlyCollidingWithIDs;
 
@@ -60,18 +72,13 @@ namespace EdgeLibrary
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition)
-            : base(id)
+        public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
-            DrawType = SpriteDrawType.NoRatio;
-            spriteEffects = SpriteEffects.None;
-            ScaledDrawScale = 1f;
+            Style = new SpriteStyle(SpriteEffects.None, SpriteDrawType.NoRatio, 1f, 0f, Color.White);
             _position = ePosition;
             _width = 0;
             _height = 0;
 
-            Color = Color.White;
-            Rotation = 0;
             Scale = Vector2.One;
 
             currentlyCollidingWithIDs = new List<string>();
@@ -100,19 +107,17 @@ namespace EdgeLibrary
             CollisionBody.collidesWithAll = true;
         }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight)
-            : this(id, eTextureName, ePosition)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(id, eTextureName, ePosition)
         {
             _width = eWidth;
             _height = eHeight;
             reloadBoundingBox();
         }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale)
-            : this(id, eTextureName, ePosition, eWidth, eHeight)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition, eWidth, eHeight)
         {
-            Color = eColor;
-            Rotation = eRotation;
+            Style.Color = eColor;
+            Style.Rotation = eRotation;
             Scale = eScale;
         }
 
@@ -167,19 +172,19 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            switch (DrawType)
+            switch (Style.DrawType)
             {
                 case SpriteDrawType.NoRatio:
-                    base.DrawTexture(null, Texture, BoundingBox, Color, Rotation, spriteEffects);
+                    base.DrawTexture(null, Texture, BoundingBox, Style.Color, Style.Rotation, Style.Effects);
                     break;
                 case SpriteDrawType.KeepHeight:
-                    base.DrawWithHeight(null, Texture, Height, Color, Rotation, spriteEffects);
+                    base.DrawWithHeight(null, Texture, Height, Style.Color, Style.Rotation, Style.Effects);
                     break;
                 case SpriteDrawType.KeepWidth:
-                    base.DrawWithWidth(null, Texture, Width, Color, Rotation, spriteEffects);
+                    base.DrawWithWidth(null, Texture, Width, Style.Color, Style.Rotation, Style.Effects);
                     break;
                 case SpriteDrawType.Scaled:
-                    base.DrawWithScale(null, Texture, ScaledDrawScale, Color, Rotation, spriteEffects);
+                    base.DrawWithScale(null, Texture, Style.ScaledDrawScale, Style.Color, Style.Rotation, Style.Effects);
                     break;
             }
         }

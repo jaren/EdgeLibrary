@@ -122,7 +122,7 @@ namespace EdgeLibrary
             particle.REMOVE();
             particle.CollisionBody = null;
             particle.Position = new Vector2(InputManager.Random.Next((int)EmitArea.Left, (int)EmitArea.Right), InputManager.Random.Next((int)EmitArea.Top, (int)EmitArea.Bottom));
-            particle.Rotation = InputManager.Random.Next((int)MinStartRotation, (int)MaxStartRotation);
+            particle.Style.Rotation = InputManager.Random.Next((int)MinStartRotation, (int)MaxStartRotation);
             particle.Height = InputManager.Random.Next((int)MinSize.Y, (int)MaxSize.Y);
             particle.Width = InputManager.Random.Next((int)MinSize.X, (int)MaxSize.X);
             particle.StartColor = Color.Transparent;

@@ -17,7 +17,7 @@ namespace EdgeLibrary
         public bool isOn;
     }
 
-    public class ButtonToggle : Sprite
+    public class ButtonToggle : Button
     {
         protected bool On;
 
@@ -25,24 +25,14 @@ namespace EdgeLibrary
         protected bool HasChangedMouseOver;
         protected bool HasChangedMouseOff;
 
-        public Button ButtonOn { get; set; }
-        public Button ButtonOff { get; set; }
-
         public delegate void ButtonToggleEvent(ButtonToggleEventArgs e);
         public event ButtonToggleEvent Click;
         public event ButtonToggleEvent MouseOver;
         public event ButtonToggleEvent MouseOff;
 
-        public ButtonToggle(string id, Button buttonOn, Button buttonOff) : base(id, "", buttonOn.Position, (int)buttonOn.Width, (int)buttonOn.Height)
+        public ButtonToggle(string id, string eTextureName, Vector2 ePosition, Color eClickColor) : base(id, eTextureName, ePosition, eClickColor)
         {
-            buttonOn.REMOVE();
-            buttonOff.REMOVE();
-
             On = true;
-            ButtonOn = buttonOn;
-            ButtonOn.Visible = true;
-            ButtonOff = buttonOff;
-            ButtonOff.Visible = false;
             HasReleasedMouseClick = false;
             HasChangedMouseOff = false;
             HasChangedMouseOver = false;
@@ -56,6 +46,8 @@ namespace EdgeLibrary
 
             if (BoundingBox.Contains(new Rectangle((int)InputManager.MousePos().X, (int)InputManager.MousePos().Y, 1, 1)))
             {
+                Style = MouseOverStyle;
+
                 if (InputManager.LeftClick())
                 {
                     if (HasReleasedMouseClick)
@@ -65,8 +57,7 @@ namespace EdgeLibrary
 
                         if (On)
                         {
-                            ButtonOn.Visible = false;
-                            ButtonOff.Visible = true;
+                            Style = OnStyle;
                             On = false;
                             e.isOn = On;
                             if (Click != null)
@@ -76,8 +67,7 @@ namespace EdgeLibrary
                         }
                         else
                         {
-                            ButtonOn.Visible = true;
-                            ButtonOff.Visible = false;
+                            Style = OffStyle;
                             On = true;
                         }
 
@@ -92,6 +82,15 @@ namespace EdgeLibrary
                 }
                 else
                 {
+                    if (On)
+                    {
+                        Style = OnStyle;
+                    }
+                    else
+                    {
+                        Style = OffStyle;
+                    }
+
                     if (!HasChangedMouseOver)
                     {
                         ButtonToggleEventArgs e = new ButtonToggleEventArgs();
@@ -127,19 +126,11 @@ namespace EdgeLibrary
         {
             if (On)
             {
-                Texture = ButtonOn.Texture;
-                Scale = ButtonOn.Scale;
-                Color = ButtonOn.Color;
-                Rotation = ButtonOn.Rotation;
-                spriteEffects = ButtonOn.spriteEffects;
+                Texture = OnTexture;
             }
             else
             {
-                Texture = ButtonOff.Texture;
-                Scale = ButtonOff.Scale;
-                Color = ButtonOff.Color;
-                Rotation = ButtonOff.Rotation;
-                spriteEffects = ButtonOff.spriteEffects;
+                Texture = OffTexture;
             }
 
             base.drawElement(gameTime);

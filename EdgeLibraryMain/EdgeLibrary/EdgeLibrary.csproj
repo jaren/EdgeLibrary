@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Elements\Animation\AnimationIndex.cs" />
     <Compile Include="Elements\Animation\AnimSprite.cs" />
+    <Compile Include="Elements\Menu\LabelButton.cs" />
     <Compile Include="Elements\Panel.cs" />
     <Compile Include="Elements\Text\MultiTextSprite.cs" />
     <Compile Include="Extra\Capabilities\Movement\AdvancedMovementCapability.cs" />

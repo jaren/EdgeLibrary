@@ -76,15 +76,15 @@ namespace EdgeLibrary
         private void reloadTextSprites()
         {
             MouseSprite.Font = _font;
-            MouseSprite.Color = _drawColor;
+            MouseSprite.Style.Color = _drawColor;
             FPSSprite.Font = _font;
-            FPSSprite.Color = _drawColor;
+            FPSSprite.Style.Color = _drawColor;
             ScenesSprite.Font = _font;
-            ScenesSprite.Color = _drawColor;
+            ScenesSprite.Style.Color = _drawColor;
             ElementsSprite.Font = _font;
-            ElementsSprite.Color = _drawColor;
+            ElementsSprite.Style.Color = _drawColor;
             KeysSprite.Font = _font;
-            KeysSprite.Color = _drawColor;
+            KeysSprite.Style.Color = _drawColor;
             KeysSprite.DrawLayer = DrawLayer;
         }
 

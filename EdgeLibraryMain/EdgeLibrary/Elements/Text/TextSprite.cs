@@ -26,14 +26,14 @@ namespace EdgeLibrary
 
             Font = ResourceManager.getFont(eFontName);
 
-            spriteEffects = SpriteEffects.None;
-            ScaledDrawScale = 1f;
+            Style.Effects = SpriteEffects.None;
+            Style.ScaledDrawScale = 1f;
             _position = ePosition;
 
             _text = eText;
 
-            Color = eColor;
-            Rotation = 0;
+            Style.Color = eColor;
+            Style.Rotation = 0;
             Scale = Vector2.One;
 
             if (eFontName != null)
@@ -46,7 +46,7 @@ namespace EdgeLibrary
 
         public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor, float eRotation, Vector2 eScale): this(id, eFontName, eText, ePosition, eColor)
         {
-            Rotation = eRotation;
+            Style.Rotation = eRotation;
             Scale = eScale;
         }
 
@@ -84,7 +84,7 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            base.DrawString(Font, Text, Color, Rotation, Scale, spriteEffects);
+            base.DrawString(Font, Text, Style.Color, Style.Rotation, Scale, Style.Effects);
         }
     }
 }

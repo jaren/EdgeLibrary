@@ -51,11 +51,11 @@ namespace EdgeLibrary
             else
             {
                 Position += velocity;
-                Rotation += rotateSpeed;
+                Style.Rotation += rotateSpeed;
                 Width += growSpeed;
                 Height += growSpeed;
 
-                Color = Color.Lerp(StartColor, FinishColor, (float)livedTime.TotalMilliseconds/lifeTime);
+                Style.Color = Color.Lerp(StartColor, FinishColor, (float)livedTime.TotalMilliseconds/lifeTime);
             }
         }
     }
