@@ -26,13 +26,13 @@ namespace EdgeLibrary
         protected bool HasChangedMouseOff;
 
         public delegate void ButtonToggleEvent(ButtonToggleEventArgs e);
-        public event ButtonToggleEvent Click;
-        public event ButtonToggleEvent MouseOver;
-        public event ButtonToggleEvent MouseOff;
+        public new event ButtonToggleEvent Click;
+        public new event ButtonToggleEvent MouseOver;
+        public new event ButtonToggleEvent MouseOff;
 
         public ButtonToggle(string id, string eTextureName, Vector2 ePosition, Color eClickColor) : base(id, eTextureName, ePosition, eClickColor)
         {
-            On = true;
+            On = false;
             HasReleasedMouseClick = false;
             HasChangedMouseOff = false;
             HasChangedMouseOver = false;
@@ -47,6 +47,7 @@ namespace EdgeLibrary
             if (BoundingBox.Contains(new Rectangle((int)InputManager.MousePos().X, (int)InputManager.MousePos().Y, 1, 1)))
             {
                 Style = MouseOverStyle;
+                Scale = MouseOverScale;
 
                 if (InputManager.LeftClick())
                 {
@@ -58,6 +59,7 @@ namespace EdgeLibrary
                         if (On)
                         {
                             Style = OnStyle;
+                            Scale = OnScale;
                             On = false;
                             e.isOn = On;
                             if (Click != null)
@@ -68,6 +70,7 @@ namespace EdgeLibrary
                         else
                         {
                             Style = OffStyle;
+                            Scale = OffScale;
                             On = true;
                         }
 
@@ -82,15 +85,6 @@ namespace EdgeLibrary
                 }
                 else
                 {
-                    if (On)
-                    {
-                        Style = OnStyle;
-                    }
-                    else
-                    {
-                        Style = OffStyle;
-                    }
-
                     if (!HasChangedMouseOver)
                     {
                         ButtonToggleEventArgs e = new ButtonToggleEventArgs();
@@ -107,6 +101,15 @@ namespace EdgeLibrary
             }
             else
             {
+                if (On)
+                {
+                    Style = OnStyle;
+                }
+                else
+                {
+                    Style = OffStyle;
+                }
+
                 if (!HasChangedMouseOff)
                 {
                     ButtonToggleEventArgs e = new ButtonToggleEventArgs();

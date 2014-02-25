@@ -27,7 +27,6 @@ namespace EdgeLibrary
             Font = ResourceManager.getFont(eFontName);
 
             Style.Effects = SpriteEffects.None;
-            Style.ScaledDrawScale = 1f;
             _position = ePosition;
 
             _text = eText;
@@ -84,7 +83,7 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            base.DrawString(Font, Text, Style.Color, Style.Rotation, Scale, Style.Effects);
+            EdgeGame.drawString(Font, Text, MeasuredPosition(), Style.Color, Style.Rotation, OriginPoint, Scale, Style.Effects);
         }
     }
 }

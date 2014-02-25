@@ -24,7 +24,7 @@ namespace EdgeLibrary
         public static Random Random;
         public static Sprite MouseSprite;
 
-        public static void Init() { Random = new Random(); MouseSprite = new Sprite("MouseSprite", "Pixel", Vector2.Zero); MouseSprite.Visible = true; }
+        public static void Init() { Random = new Random(); MouseSprite = new Sprite("MouseSprite", "Pixel", Vector2.Zero); MouseSprite.DrawLayer = 100;  MouseSprite.Visible = false; }
 
         public static void Update(GameTime gameTime)
         {

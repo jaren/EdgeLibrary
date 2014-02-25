@@ -24,6 +24,7 @@ namespace EdgeLibrary
         {
             Font = ResourceManager.getFont(eFontName);
             Text = eText;
+            reloadBoundingBox();
         }
 
         public override void  reloadBoundingBox()
@@ -39,7 +40,7 @@ namespace EdgeLibrary
 
         protected override void  drawElement(GameTime gameTime)
         {
-            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, OriginPoint, Scale, SpriteEffects.None);
+            EdgeGame.drawString(Font, Text, new Vector2(Position.X-Font.MeasureString(Text).X/2, Position.Y-Font.MeasureString(Text).Y / 2), Style.Color, Style.Rotation, OriginPoint, Scale, Style.Effects);
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -51,6 +52,7 @@ namespace EdgeLibrary
             if (BoundingBox.Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
             {
                 Style = MouseOverStyle;
+                Scale = MouseOverScale;
                 if (OnTexture != null)
                 {
                     Texture = OnTexture;
@@ -73,6 +75,7 @@ namespace EdgeLibrary
                 if (InputManager.LeftClick())
                 {
                     Style = OnStyle;
+                    Scale = OnScale;
 
                     if (Click != null)
                     {
@@ -83,7 +86,7 @@ namespace EdgeLibrary
             else
             {
                 Style = OffStyle;
-                Texture = OffTexture;
+                Scale = OffScale;
 
                 if (!launchedMouseOff)
                 {

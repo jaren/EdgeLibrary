@@ -33,14 +33,10 @@ namespace EdgeLibrary
 
             Vector2 mousePosition = InputManager.MousePos();
 
-            if (!InputManager.LeftClick())
-            {
-                Style = OffStyle;
-            }
-
             if (Vector2.Distance(Position, mousePosition) <= Radius)
             {
                 Style = MouseOverStyle;
+                Scale = MouseOverScale;
 
                 ButtonEventArgs clickArgs = new ButtonEventArgs();
                 clickArgs.button = this;
@@ -59,6 +55,7 @@ namespace EdgeLibrary
                 if (InputManager.LeftClick())
                 {
                     Style = OnStyle;
+                    Scale = OnScale;
 
                     if (Click != null)
                     {
@@ -69,6 +66,8 @@ namespace EdgeLibrary
             else
             {
                 Style = OffStyle;
+                Scale = OffScale;
+                Texture = OffTexture;
 
                 if (!launchedMouseOff)
                 {

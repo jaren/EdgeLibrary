@@ -24,6 +24,9 @@ namespace EdgeLibrary
         public SpriteStyle OnStyle;
         public SpriteStyle OffStyle;
         public SpriteStyle MouseOverStyle;
+        public Vector2 OnScale;
+        public Vector2 OffScale;
+        public Vector2 MouseOverScale;
 
         private Vector2 previousPosition;
 
@@ -43,11 +46,16 @@ namespace EdgeLibrary
             OnStyle = new SpriteStyle();
             OffStyle = new SpriteStyle();
             MouseOverStyle = new SpriteStyle();
+            OnScale = Vector2.One;
+            OffScale = OnScale;
+            MouseOverScale = OnScale;
+            
             label = new TextSprite(string.Format("{0}_label", id), "", "", Vector2.Zero, Color.White);
             label.REMOVE();
             previousPosition = Position;
             OnStyle.Color = eClickColor;
             OffTexture = ResourceManager.getTexture(eTextureName);
+            OnTexture = OffTexture;
 
             Visible = true;
             OffStyle.Color = Color.White;
@@ -55,8 +63,6 @@ namespace EdgeLibrary
             launchedMouseOff = false;
 
             reloadLabel();
-            
-            OffTexture = ResourceManager.getTexture(eTextureName);
 
             Texture = OffTexture;
 
@@ -97,6 +103,7 @@ namespace EdgeLibrary
             if (BoundingBox.Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
             {
                 Style = MouseOverStyle;
+                Scale = MouseOverScale;
                 if (OnTexture != null)
                 {
                     Texture = OnTexture;
@@ -119,6 +126,8 @@ namespace EdgeLibrary
                 if (InputManager.LeftClick())
                 {
                     Style = OnStyle;
+                    Texture = OnTexture;
+                    Scale = OnScale;
 
                     if (Click != null)
                     {
@@ -129,6 +138,7 @@ namespace EdgeLibrary
             else
             {
                 Style = OffStyle;
+                Scale = OffScale;
                 Texture = OffTexture;
 
                 if (!launchedMouseOff)

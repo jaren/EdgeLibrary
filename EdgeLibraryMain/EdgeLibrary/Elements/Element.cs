@@ -21,9 +21,7 @@ namespace EdgeLibrary
         public virtual bool Visible { get; set; }
         public virtual int DrawLayer { get; set; }
         public virtual Vector2 OriginPoint { get; set; }
-        public virtual ClampCapability Clamp { get; set; }
-        public virtual SimpleMovementCapability SimpleMovement { get; set; }
-        public virtual PointRotationCapability PointRotation { get; set; }
+        public virtual MovementCapability Movement { get; set; }
 
         private List<Capability> Capabilities;
 
@@ -38,12 +36,8 @@ namespace EdgeLibrary
 
             //Each element has a new list of capabilities, not just references to the old ones
             Capabilities = new List<Capability>() {};
-            Clamp = new ClampCapability();
-            Capabilities.Add(Clamp);
-            SimpleMovement = new SimpleMovementCapability();
-            Capabilities.Add(SimpleMovement);
-            PointRotation = new PointRotationCapability();
-            Capabilities.Add(PointRotation);
+            Movement = new MovementCapability();
+            Capabilities.Add(Movement);
 
             //Automatically adds the element to the game
             EdgeGame.SelectedScene.AddElement(this);

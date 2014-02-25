@@ -15,23 +15,20 @@ namespace EdgeLibrary
     {
         NoRatio,
         KeepWidth,
-        KeepHeight,
-        Scaled
+        KeepHeight
     }
 
     public struct SpriteStyle
     {
         public SpriteEffects Effects;
         public SpriteDrawType DrawType;
-        public float ScaledDrawScale;
         public float Rotation;
         public Color Color;
 
-        public SpriteStyle(SpriteEffects effects, SpriteDrawType drawType, float scaledDrawScale, float rotation, Color color)
+        public SpriteStyle(SpriteEffects effects, SpriteDrawType drawType, float rotation, Color color)
         {
             Effects = effects;
             DrawType = drawType;
-            ScaledDrawScale = scaledDrawScale;
             Rotation = rotation;
             Color = color;
         }
@@ -74,7 +71,7 @@ namespace EdgeLibrary
 
         public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
-            Style = new SpriteStyle(SpriteEffects.None, SpriteDrawType.NoRatio, 1f, 0f, Color.White);
+            Style = new SpriteStyle(SpriteEffects.None, SpriteDrawType.NoRatio, 0f, Color.White);
             _position = ePosition;
             _width = 0;
             _height = 0;
@@ -182,9 +179,6 @@ namespace EdgeLibrary
                     break;
                 case SpriteDrawType.KeepWidth:
                     base.DrawWithWidth(null, Texture, Width, Style.Color, Style.Rotation, Style.Effects);
-                    break;
-                case SpriteDrawType.Scaled:
-                    base.DrawWithScale(null, Texture, Style.ScaledDrawScale, Style.Color, Style.Rotation, Style.Effects);
                     break;
             }
         }

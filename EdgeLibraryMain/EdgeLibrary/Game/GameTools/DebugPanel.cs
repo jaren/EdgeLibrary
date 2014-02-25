@@ -29,6 +29,8 @@ namespace EdgeLibrary
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
+            DrawLayer = 100;
+
             Position = position;
 
             MouseSprite = new TextSprite(string.Format("{0}_MouseSprite", ID), fontName, "Mouse Position: (0, 0)", Vector2.Zero, drawColor);
