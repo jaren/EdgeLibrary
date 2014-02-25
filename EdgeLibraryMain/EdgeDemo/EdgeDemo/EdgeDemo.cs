@@ -33,7 +33,7 @@ namespace EdgeDemo
             EdgeGame.GameDrawState = GameDrawState.Hybrid;
             IsMouseVisible = true;
 
-            EdgeGame.SetWindowSize(new Vector2(700, 700));
+            EdgeGame.WindowSize = new Vector2(700, 700);
             EdgeGame.ClearColor = Color.Gray;
 
             base.Initialize();
@@ -48,16 +48,15 @@ namespace EdgeDemo
             ResourceManager.LoadFont("LargeFont");
 
             PlatformLevel level = new PlatformLevel("LEVEL", new Vector2(0, -9.8f));
-            PlatformGame game = new PlatformGame("ID", level);
-            EdgeGame.Scenes.Add(game);
-            EdgeGame.SelectedScene = game;
+            EdgeGame.AddScene(level);
+            EdgeGame.SelectedScene = level;
             sprite = new PlatformCharacter("S", "Pixel", new Vector2(500, 500));
             sprite.Style.Color = Color.Black;
             sprite.Scale = new Vector2(30);
             level.AddSprite(sprite);
 
             DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
-            level.nonplatformelements.Add(panel);
+            level.elements.Add(panel);
 
             level.CreateScreenBox();
 
@@ -74,7 +73,7 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
-            int speed = 10;
+            int speed = 2;
 
             if (InputManager.IsKeyDown(Keys.Left))
             {

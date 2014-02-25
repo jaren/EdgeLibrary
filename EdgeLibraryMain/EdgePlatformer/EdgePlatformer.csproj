@@ -99,7 +99,6 @@
     <Compile Include="Game\PlatformLevel.cs" />
     <Compile Include="Game\PlatformLevelHandler.cs" />
     <Compile Include="Entities\PlatformProjectile.cs" />
-    <Compile Include="Game\PlatformGame.cs" />
     <Compile Include="Entities\PlatformSprite.cs" />
     <Compile Include="Entities\PlatformStatic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

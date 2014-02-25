@@ -22,8 +22,8 @@ namespace EdgeLibrary
         {
             if (clampedElement == null)
             {
-                Position.X = EdgeGame.WindowSize().X / 2;
-                Position.Y = EdgeGame.WindowSize().Y / 2;
+                Position.X = EdgeGame.WindowSize.X / 2;
+                Position.Y = EdgeGame.WindowSize.Y / 2;
             }
         }
 

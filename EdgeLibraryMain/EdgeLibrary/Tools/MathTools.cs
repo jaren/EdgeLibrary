@@ -44,6 +44,13 @@ namespace EdgeLibrary
             }
         }
 
+        public static Vector2 DecreaseVector(Vector2 vector, float amount)
+        {
+            if (vector.X > 0)
+            {
+            }
+        }
+
         public static Rectangle ResolveNegativeRectangle(Rectangle rectangle)
         {
             if (rectangle.Width < 0)

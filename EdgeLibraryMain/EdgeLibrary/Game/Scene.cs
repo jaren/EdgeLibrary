@@ -82,7 +82,7 @@ namespace EdgeLibrary
 
             if (Background != null)
             {
-                EdgeGame.drawTexture(Background, new Rectangle(0, 0, (int)EdgeGame.WindowSize().X, (int)EdgeGame.WindowSize().Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None);
+                EdgeGame.drawTexture(Background, new Rectangle(0, 0, (int)EdgeGame.WindowSize.X, (int)EdgeGame.WindowSize.Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None);
             }
 
             foreach (Element element in elements)

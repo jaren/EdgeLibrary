@@ -41,6 +41,8 @@ namespace EdgeLibrary
 
         public static Effect Effect;
 
+        public static Vector2 WindowSize { get { return getWindowSize(); } set { SetWindowSize(value); } }
+
         public static List<Scene> Scenes { get; private set; }
 
         public static void Init(ContentManager c, GraphicsDevice gd, GraphicsDeviceManager gdm, SpriteBatch sb)
@@ -92,6 +94,30 @@ namespace EdgeLibrary
             return mainScene();
         }
 
+        public static void AddScene(Scene scene)
+        {
+            Scenes.Add(scene);
+        }
+
+        public static bool RemoveScene(string id)
+        {
+            foreach (Scene scene in Scenes)
+            {
+                if (scene.ID == id)
+                {
+                    Scenes.Remove(scene);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool RemoveScene(Scene scene)
+        {
+            return Scenes.Remove(scene);
+        }
+
+
         public static void RemoveElement(Element e)
         {
             foreach (Scene scene in Scenes)
@@ -100,7 +126,7 @@ namespace EdgeLibrary
             }
         }
 
-        public static Vector2 WindowSize()
+        private static Vector2 getWindowSize()
         {
             return new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
@@ -110,7 +136,7 @@ namespace EdgeLibrary
             SelectedScene = Scene(id);
         }
 
-        public static void SetWindowSize(Vector2 size)
+        private static void SetWindowSize(Vector2 size)
         {
             graphics.PreferredBackBufferWidth = (int)size.X;
             graphics.PreferredBackBufferHeight = (int)size.Y;
@@ -143,7 +169,6 @@ namespace EdgeLibrary
                     if (IDs.Contains(e.ID))
                     {
                         //There was a duplicate ID
-                        throw new Exception();
                     }
                     IDs.Add(e.ID);
                 }
@@ -156,7 +181,7 @@ namespace EdgeLibrary
             FPSCounter.Update(gameTime);
             graphicsDevice.SetRenderTarget(ScreenTarget);
             graphicsDevice.Clear(ClearColor);
-            graphicsDevice.Viewport = new Viewport((int)Camera.Position.X - (int)WindowSize().X / 2, (int)Camera.Position.Y - (int)WindowSize().Y / 2, (int)WindowSize().X, (int)WindowSize().Y);
+            graphicsDevice.Viewport = new Viewport((int)Camera.Position.X - (int)WindowSize.X / 2, (int)Camera.Position.Y - (int)WindowSize.Y / 2, (int)WindowSize.X, (int)WindowSize.Y);
 
             spriteBatch.Begin();
             IsDrawing = true;
@@ -184,7 +209,7 @@ namespace EdgeLibrary
                 Effect.ApplyEffect(ScreenTarget);
             }
             spriteBatch.Begin();
-            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize().X, (int)WindowSize().Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None);
+            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize.X, (int)WindowSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None);
             IsDrawing = false;
             spriteBatch.End();
         }
