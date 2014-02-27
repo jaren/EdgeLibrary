@@ -30,6 +30,43 @@
 	        }
 	
 	        #region GENERATING TOOLS
+            public static Texture2D Colorize(Texture2D texture, Color color, float factor)
+            {
+                Texture2D returnTexture = texture;
+                Color[] colorData = new Color[texture.Width * texture.Height];
+                texture.GetData<Color>(colorData);
+
+                for (int i = 0; i < colorData.Length; i++ )
+                {
+                    Color currentColor = colorData[i];
+                    byte darkness = (byte)((currentColor.R + currentColor.G + currentColor.B)/3);
+                    colorData[i] = Color.Lerp(currentColor, color, (darkness/255)*factor);
+                }
+
+                returnTexture.SetData<Color>(colorData);
+                return returnTexture;
+            }
+            public static Texture2D SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
+            {
+                Texture2D returnTexture = texture;
+                Color[] colorData = new Color[texture.Width * texture.Height];
+                texture.GetData<Color>(colorData);
+
+                Color[] innerColorData = new Color[innerTexture.Width * innerTexture.Height];
+                innerTexture.GetData<Color>(innerColorData);
+
+                Color[] colors = colorData;
+                for (int y = 0; y < (int)startPosition.Y; y++)
+                {
+                    for (int x = 0; x < (int)startPosition.X; x++)
+                    {
+                        colors[(x + (int)startPosition.X) + (y + (int)startPosition.Y) * returnTexture.Width] = innerColorData[x + y * returnTexture.Width];
+                    }
+                }
+
+                returnTexture.SetData<Color>(colorData);
+                return returnTexture;
+            }
             public static Texture2D CreateCircleTexture(int radius, Color color)
             {
                 Texture2D texture = EdgeGame.NewTexture(radius * 2, radius * 2);
