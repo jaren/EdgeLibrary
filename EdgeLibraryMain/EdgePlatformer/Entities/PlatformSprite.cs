@@ -42,14 +42,12 @@ namespace EdgeLibrary.Platform
 
         protected virtual void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
         {
-            bool collided = false;
             foreach (PlatformSprite sprite in sprites)
             {
                 if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
                 {
                     if (sprite.BoundingBox.Intersects(BoundingBox))
                     {
-                        collided = true;
                         if (Collision != null)
                         {
                             Collision(this, sprite, gameTime);
@@ -60,12 +58,25 @@ namespace EdgeLibrary.Platform
                         //If it's collided in horizontally more than vertical
                         if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
                         {
-                            //It's Position.Y MINUS collision.Width because the screen coordinates are flipped
-                            Position = new Vector2(Position.X, Position.Y - collision.Height);
+                            if (Position.Y > sprite.Position.Y)
+                            {
+                                Position = new Vector2(Position.X, Position.Y + collision.Height);
+                            }
+                            else
+                            {
+                                Position = new Vector2(Position.X, Position.Y - collision.Height);
+                            }
                         }
                         else
                         {
-                            Position = new Vector2(Position.X + collision.Width, Position.Y);
+                            if (Position.X > sprite.Position.X)
+                            {
+                                Position = new Vector2(Position.X + collision.Width, Position.Y);
+                            }
+                            else
+                            {
+                                Position = new Vector2(Position.X - collision.Width, Position.Y);
+                            }
                         }
                     }
                 }

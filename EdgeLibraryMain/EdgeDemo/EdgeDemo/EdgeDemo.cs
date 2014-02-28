@@ -48,7 +48,7 @@ namespace EdgeDemo
             ResourceManager.LoadFont("LargeFont");
 
             
-            PlatformLevel level = new PlatformLevel("LEVEL");
+            PlatformLevel level = new PlatformLevel("LEVEL", new Vector2(0, 0));
             PlatformGame game = new PlatformGame("ID", level);
             EdgeGame.Scenes.Add(game);
             EdgeGame.SelectedScene = game;
@@ -57,12 +57,9 @@ namespace EdgeDemo
             sprite.Scale = new Vector2(30);
             level.AddSprite(sprite);
 
-            PlatformStatic bottom = new PlatformStatic("B", "Pixel", new Vector2(0, 680));
-            bottom.Style.Color = Color.DarkGray;
-            bottom.Scale = new Vector2(700, 20);
-            level.AddSprite(bottom);
+            level.CreateScreenBox();
 
-            PlatformCharacter sprite2 = new PlatformCharacter("S2", "Pixel", new Vector2(300, 500));
+            PlatformStatic sprite2 = new PlatformStatic("S2", "Pixel", new Vector2(300, 500));
             sprite2.Style.Color = Color.White;
             sprite2.Scale = new Vector2(40, 100);
             level.AddSprite(sprite2);
@@ -87,7 +84,7 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Up))
             {
-                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed - 9.8f);
+                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
             }
             if (InputManager.IsKeyDown(Keys.Down))
             {
