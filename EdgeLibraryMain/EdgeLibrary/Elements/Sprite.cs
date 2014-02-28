@@ -56,7 +56,8 @@ namespace EdgeLibrary
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
-        public Texture2D Texture { get; set; }
+        public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
+        private Texture2D _texture;
         public SpriteStyle Style;
         protected Vector2 _position;
         protected float _width;
@@ -116,6 +117,16 @@ namespace EdgeLibrary
             Style.Color = eColor;
             Style.Rotation = eRotation;
             Scale = eScale;
+        }
+
+        public virtual void reloadDimensions()
+        {
+            if (Texture != null)
+            {
+                _width = Texture.Width;
+                _height = Texture.Height;
+                reloadBoundingBox();
+            }
         }
 
         public virtual void reloadBoundingBox()

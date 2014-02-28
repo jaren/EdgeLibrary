@@ -44,6 +44,21 @@ namespace EdgeLibrary
             }
         }
 
+        public static Rectangle ResolveNegativeRectangle(Rectangle rectangle)
+        {
+            if (rectangle.Width < 0)
+            {
+                rectangle.Width = Math.Abs(rectangle.Width);
+                rectangle.X -= rectangle.Width;
+            }
+            if (rectangle.Height < 0)
+            {
+                rectangle.Height = Math.Abs(rectangle.Height);
+                rectangle.Y -= rectangle.Height;
+            }
+            return rectangle;
+        }
+
         public static string RandomID(string starter)
         {
             return string.Format("{0}{1}", starter, RandomID());

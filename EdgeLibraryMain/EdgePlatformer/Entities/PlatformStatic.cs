@@ -20,7 +20,7 @@ namespace EdgeLibrary.Platform
         public PlatformStatic(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
 
         //Doesn't move in collisions
-        protected override void UpdateCollision(List<PlatformSprite> sprites, GameTime gameTime)
+        protected override void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
         {
             foreach (PlatformSprite sprite in sprites)
             {
@@ -35,6 +35,6 @@ namespace EdgeLibrary.Platform
         }
 
         //Isn't affected by gravity
-        public override void UpdateMotion(Vector2 Gravity) { }
+        public override void UpdateForces(Vector2 Gravity) { }
     }
 }

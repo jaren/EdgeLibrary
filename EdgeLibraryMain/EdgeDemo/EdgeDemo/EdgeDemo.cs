@@ -47,6 +47,7 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
+            
             PlatformLevel level = new PlatformLevel("LEVEL");
             PlatformGame game = new PlatformGame("ID", level);
             EdgeGame.Scenes.Add(game);
@@ -65,6 +66,7 @@ namespace EdgeDemo
             sprite2.Style.Color = Color.White;
             sprite2.Scale = new Vector2(40, 100);
             level.AddSprite(sprite2);
+             
         }
 
         protected override void UnloadContent() { }
@@ -85,7 +87,7 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Up))
             {
-                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
+                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed - 9.8f);
             }
             if (InputManager.IsKeyDown(Keys.Down))
             {

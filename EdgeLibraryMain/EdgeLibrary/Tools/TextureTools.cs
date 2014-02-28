@@ -40,7 +40,7 @@
                 {
                     Color currentColor = colorData[i];
                     byte darkness = (byte)((currentColor.R + currentColor.G + currentColor.B)/3);
-                    colorData[i] = Color.Lerp(currentColor, color, (darkness/255)*factor);
+                    colorData[i] = Color.Lerp(currentColor, color, ((float)darkness/255)*factor*2);
                 }
 
                 returnTexture.SetData<Color>(colorData);
@@ -51,16 +51,17 @@
                 Texture2D returnTexture = texture;
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
-
                 Color[] innerColorData = new Color[innerTexture.Width * innerTexture.Height];
                 innerTexture.GetData<Color>(innerColorData);
 
-                Color[] colors = colorData;
-                for (int y = 0; y < (int)startPosition.Y; y++)
+                for (int y = 0; y < innerTexture.Height; y++)
                 {
-                    for (int x = 0; x < (int)startPosition.X; x++)
+                    for (int x = 0; x < innerTexture.Width; x++)
                     {
-                        colors[(x + (int)startPosition.X) + (y + (int)startPosition.Y) * returnTexture.Width] = innerColorData[x + y * returnTexture.Width];
+                        if (((x + (int)startPosition.X) + (y + (int)startPosition.Y) * texture.Width) < colorData.Length)
+                        {
+                            colorData[(x + (int)startPosition.X) + (y + (int)startPosition.Y) * texture.Width] = innerColorData[x + y * innerTexture.Width];
+                        }
                     }
                 }
 
