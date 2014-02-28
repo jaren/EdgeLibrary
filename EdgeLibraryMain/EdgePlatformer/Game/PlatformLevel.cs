@@ -20,6 +20,7 @@ namespace EdgeLibrary.Platform
         public List<Element> nonplatformelements;
         public string ID { get; set; }
         public Vector2 Gravity { get; set; }
+        public Texture2D Background;
 
         public PlatformLevel(string id, Vector2 gravity)
         {
@@ -29,25 +30,46 @@ namespace EdgeLibrary.Platform
             Gravity = gravity;
         }
 
+        public static PlatformLevel LevelFromTexture(string texturePath, string id, Vector2 gravity)
+        {
+            PlatformLevel level = new PlatformLevel(id, gravity);
+
+            Texture2D texture = ResourceManager.textureFromString(texturePath);
+            Color[] colors = new Color[texture.Width*texture.Height];
+            texture.GetData<Color>(colors);
+
+            Dictionary<Rectangle, Color> levelBoxes = new Dictionary<Rectangle,Color>();
+
+            for (int i = 0; i < colors.Length; i++)
+            {
+
+            }
+            return level;
+        }
+
         public void CreateScreenBox()
         {
-            PlatformStatic top = new PlatformStatic(string.Format("{0}_topBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X/2, 1));
-            top.Scale = new Vector2(EdgeGame.WindowSize().X, 1);
+            PlatformStatic top = new PlatformStatic(string.Format("{0}_topBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X/2, -100));
+            top.Width = EdgeGame.WindowSize().X;
+            top.Height = 200;
             top.Style.Color = Color.White;
             sprites.Add(top);
 
-            PlatformStatic bottom = new PlatformStatic(string.Format("{0}_bottomBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X / 2, EdgeGame.WindowSize().Y));
-            bottom.Scale = new Vector2(EdgeGame.WindowSize().X, 1);
+            PlatformStatic bottom = new PlatformStatic(string.Format("{0}_bottomBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X / 2, EdgeGame.WindowSize().Y + 100));
+            bottom.Width = EdgeGame.WindowSize().X;
+            bottom.Height = 200;
             bottom.Style.Color = Color.White;
             sprites.Add(bottom);
 
-            PlatformStatic right = new PlatformStatic(string.Format("{0}_rightBox", ID), "Pixel", new Vector2(1, EdgeGame.WindowSize().Y/2));
-            right.Scale = new Vector2(1, EdgeGame.WindowSize().Y);
+            PlatformStatic right = new PlatformStatic(string.Format("{0}_rightBox", ID), "Pixel", new Vector2(-100, EdgeGame.WindowSize().Y/2));
+            right.Height = EdgeGame.WindowSize().Y;
+            right.Width = 200;
             right.Style.Color = Color.White;
             sprites.Add(right);
 
-            PlatformStatic left = new PlatformStatic(string.Format("{0}_leftBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X, EdgeGame.WindowSize().Y / 2));
-            left.Scale = new Vector2(1, EdgeGame.WindowSize().Y);
+            PlatformStatic left = new PlatformStatic(string.Format("{0}_leftBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize().X + 100, EdgeGame.WindowSize().Y / 2));
+            left.Height = EdgeGame.WindowSize().Y;
+            left.Width = 200;
             left.Style.Color = Color.White;
             sprites.Add(left);
         }
@@ -116,6 +138,11 @@ namespace EdgeLibrary.Platform
         public virtual void Draw(GameTime gameTime)
         {
             sprites = sprites.OrderBy(X => X.DrawLayer).ToList();
+
+            if (Background != null)
+            {
+                EdgeGame.drawTexture(Background, new Rectangle(0, 0, (int)EdgeGame.WindowSize().X, (int)EdgeGame.WindowSize().Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None);
+            }
 
             foreach (PlatformSprite sprite in sprites)
             {

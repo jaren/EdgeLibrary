@@ -18,6 +18,7 @@ namespace EdgeLibrary
     {
         public List<Element> elements;
         public string ID { get; set; }
+        public Texture2D Background;
 
         public Scene(string id)
         {
@@ -79,10 +80,16 @@ namespace EdgeLibrary
         {
             elements = elements.OrderBy(X => X.DrawLayer).ToList();
 
+            if (Background != null)
+            {
+                EdgeGame.drawTexture(Background, new Rectangle(0, 0, (int)EdgeGame.WindowSize().X, (int)EdgeGame.WindowSize().Y), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None);
+            }
+
             foreach (Element element in elements)
             {
                 element.Draw(gameTime);
             }
+
         }
 
         public virtual void DrawDebug(GameTime gameTime)

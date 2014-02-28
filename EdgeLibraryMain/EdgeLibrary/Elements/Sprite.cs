@@ -132,6 +132,8 @@ namespace EdgeLibrary
         public virtual void reloadBoundingBox()
         {
             BoundingBox = new Rectangle((int)_position.X - ((int)_width / 2 * (int)Scale.X), (int)_position.Y - ((int)_height / 2 * (int)Scale.Y), (int)_width * (int)Scale.X, (int)_height * (int)Scale.Y);
+           // OriginPoint = new Vector2(BoundingBox.Width/2, BoundingBox.Height/2);
+           // BoundingBox = new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
         }
 
         protected override void updateElement(GameTime gameTime)

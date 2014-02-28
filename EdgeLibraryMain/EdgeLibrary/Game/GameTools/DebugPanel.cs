@@ -55,6 +55,7 @@ namespace EdgeLibrary
             YDifference = Font.MeasureString("A").Y * 1.25f;
 
             reloadTextSpritesPosition();
+            reloadTextSprites();
         }
 
         private void reloadTextSpritesPosition()

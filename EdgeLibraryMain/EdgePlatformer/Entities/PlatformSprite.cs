@@ -30,6 +30,9 @@ namespace EdgeLibrary.Platform
     {
         public bool MarkedForPlatformRemoval {get; set;}
         public CollisionLayers CollisionLayers;
+        public float Acceleration;
+
+        private float fallSpeed;
 
         public new delegate void CollisionEvent(PlatformSprite sprite1, PlatformSprite sprite2, GameTime gameTime);
         public new virtual event CollisionEvent Collision;
@@ -38,10 +41,12 @@ namespace EdgeLibrary.Platform
         { 
             MarkedForRemoval = true;
             CollisionLayers = CollisionLayers.All;
+            Acceleration = 0.1f;
         }
 
         protected virtual void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
         {
+
             foreach (PlatformSprite sprite in sprites)
             {
                 if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
@@ -58,6 +63,9 @@ namespace EdgeLibrary.Platform
                         //If it's collided in horizontally more than vertical
                         if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
                         {
+                            //When collided into something, acceleration is reset
+                            fallSpeed = 0;
+
                             if (Position.Y > sprite.Position.Y)
                             {
                                 Position = new Vector2(Position.X, Position.Y + collision.Height);
@@ -85,11 +93,13 @@ namespace EdgeLibrary.Platform
 
         public virtual void UpdateForces(Vector2 Gravity)
         {
-            Position -= Gravity;
+            fallSpeed+=Acceleration/10;
+            Position -= Gravity*fallSpeed;
         }
 
-        public void UpdateSprite(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
+        public virtual void UpdateSprite(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
         {
+            base.updateElement(gameTime);
             UpdateForces(Gravity);
             UpdateCollision(sprites, Gravity, gameTime);
         }

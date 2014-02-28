@@ -18,7 +18,7 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        PlatformSprite sprite;
+        PlatformCharacter sprite;
 
         public EdgeDemo()
         {
@@ -30,7 +30,7 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Normal;
+            EdgeGame.GameDrawState = GameDrawState.Hybrid;
             IsMouseVisible = true;
 
             EdgeGame.SetWindowSize(new Vector2(700, 700));
@@ -47,15 +47,17 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            
-            PlatformLevel level = new PlatformLevel("LEVEL", new Vector2(0, 0));
+            PlatformLevel level = new PlatformLevel("LEVEL", new Vector2(0, -9.8f));
             PlatformGame game = new PlatformGame("ID", level);
             EdgeGame.Scenes.Add(game);
             EdgeGame.SelectedScene = game;
-            sprite = new PlatformSprite("S", "Pixel", new Vector2(500, 500));
+            sprite = new PlatformCharacter("S", "Pixel", new Vector2(500, 500));
             sprite.Style.Color = Color.Black;
             sprite.Scale = new Vector2(30);
             level.AddSprite(sprite);
+
+            DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
+            level.nonplatformelements.Add(panel);
 
             level.CreateScreenBox();
 
@@ -72,7 +74,7 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
-            int speed = 2;
+            int speed = 10;
 
             if (InputManager.IsKeyDown(Keys.Left))
             {
@@ -84,11 +86,15 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Up))
             {
-                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y - speed);
+                sprite.Jump();
             }
             if (InputManager.IsKeyDown(Keys.Down))
             {
                 sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + speed);
+            }
+            if (InputManager.IsKeyDown(Keys.Space))
+            {
+                sprite.Shoot(InputManager.MousePos(), 3);
             }
         }
 
