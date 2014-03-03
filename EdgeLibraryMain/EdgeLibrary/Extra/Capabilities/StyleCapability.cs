@@ -26,6 +26,9 @@ namespace EdgeLibrary
         private Vector2 rotateTarget;
         private Element activeRotateTarget;
 
+        public delegate void StyleColorEvent(StyleCapability capability, Color finishColor);
+        public event StyleColorEvent FinishedColorChange;
+
         public StyleCapability() : base("Style")
         {
             colorChanging = false;
@@ -54,6 +57,10 @@ namespace EdgeLibrary
                     if (elapsedColorChangeTime > colorChangeTime)
                     {
                         colorChanging = false;
+                        if (FinishedColorChange != null)
+                        {
+                            FinishedColorChange(this, color2);
+                        }
                     }
                     else
                     {

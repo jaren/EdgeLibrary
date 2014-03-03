@@ -55,15 +55,16 @@ namespace EdgeLibrary.Platform
         public CollisionLayers CollisionLayers;
         public float Acceleration;
         public float Deceleration;
+        public float MaxVelocity;
 
         private List<Force> forces;
 
         private float fallSpeed;
 
-        private bool collidingUp;
-        private bool collidingDown;
-        private bool collidingLeft;
-        private bool collidingRight;
+        public bool collidingUp;
+        public bool collidingDown;
+        public bool collidingLeft;
+        public bool collidingRight;
 
         public new delegate void CollisionEvent(PlatformSprite sprite1, PlatformSprite sprite2, GameTime gameTime);
         public new virtual event CollisionEvent Collision;
@@ -74,6 +75,7 @@ namespace EdgeLibrary.Platform
             CollisionLayers = CollisionLayers.All;
             Acceleration = 0.1f;
             Deceleration = 0.06f;
+            MaxVelocity = 15;
             forces = new List<Force>();
         }
 
@@ -134,8 +136,33 @@ namespace EdgeLibrary.Platform
             }
         }
 
+        public Vector2 StopMaxVector2(Vector2 vector)
+        {
+            if (vector.X > 0 && vector.X > MaxVelocity)
+            {
+                vector = new Vector2(MaxVelocity, vector.Y);
+            }
+            else if (vector.X < 0 && Math.Abs(vector.X) > MaxVelocity)
+            {
+                vector = new Vector2(-MaxVelocity, vector.Y);
+            }
+
+            if (vector.Y > 0 && vector.Y > MaxVelocity)
+            {
+                vector = new Vector2(vector.X, MaxVelocity);
+            }
+            else if (vector.Y < 0 && Math.Abs(vector.Y) > MaxVelocity)
+            {
+                vector = new Vector2(vector.X, -MaxVelocity);
+            }
+
+            return vector;
+        }
+
         public bool TryMove(Vector2 vector)
         {
+            vector = StopMaxVector2(vector);
+
             if ((vector.X < 0 && !collidingLeft) || (vector.X > 0 && !collidingRight))
             {
                 Position = new Vector2(Position.X + vector.X, Position.Y);
@@ -163,24 +190,26 @@ namespace EdgeLibrary.Platform
 
         public virtual void UpdateForces(Vector2 Gravity)
         {
+            Vector2 forceTotal = Vector2.Zero;
             for (int i = 0; i < forces.Count; i++)
             {
                 if (forces[i].ApplyForce())
                 {
-                    TryMove(forces[i].Impulse);
+                    forceTotal += forces[i].Impulse;
                 }
                 else
                 {
                     forces.Remove(forces[i]);
                     i--;
                 }
-                
             }
+            TryMove(forceTotal);
 
             if (!collidingDown)
             {
                 fallSpeed += Acceleration / 10;
-              //  Position -= Gravity * fallSpeed;
+                Vector2 vector = StopMaxVector2(Gravity * fallSpeed);
+                Position -= vector;
             }
         }
 

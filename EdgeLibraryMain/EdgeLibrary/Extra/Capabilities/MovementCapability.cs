@@ -36,6 +36,9 @@ namespace EdgeLibrary
         protected MovementType MovementType;
         public float Speed;
 
+        public delegate void MoveEvent(MovementCapability capability, Element element);
+        public event MoveEvent FinishedMove;
+
         public MovementCapability() : base("Movement") { STOPPED = true; MovementType = MovementType.None; }
 
         public override void updateCapability(GameTime gameTime, Element element)
@@ -59,6 +62,10 @@ namespace EdgeLibrary
                     moveVector.Normalize();
                     STOPPED = checkIfEnd(moveVector, MoveTarget, element.Position + moveVector*Speed);
                     element.Position += moveVector * Speed;
+                    if (STOPPED && FinishedMove != null)
+                    {
+                        FinishedMove(this, element);
+                    }
                     break;
                 case MovementType.PointRotation:
                     float dist = Vector2.Distance(element.Position, RotateTarget);

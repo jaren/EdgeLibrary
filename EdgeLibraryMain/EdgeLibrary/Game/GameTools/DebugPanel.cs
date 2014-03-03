@@ -27,6 +27,8 @@ namespace EdgeLibrary
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
 
+        public object test;
+
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
             DrawLayer = 100;
@@ -113,6 +115,17 @@ namespace EdgeLibrary
                 KeysSprite.Text += string.Format(" {0}, ", Convert.ToString(k));
             }
             reloadTextSpritesPosition();
+        }
+
+        public void AddVariable(string id, ref object variable)
+        {
+            test = p;
+            p.ToString();
+        }
+
+        public override string ToString()
+        {
+            return "I'm a debug panel!";
         }
     }
 }

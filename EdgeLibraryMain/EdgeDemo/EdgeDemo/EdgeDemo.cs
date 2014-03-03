@@ -53,19 +53,25 @@ namespace EdgeDemo
             sprite = new PlatformCharacter("S", "Pixel", new Vector2(500, 500));
             sprite.Style.Color = Color.Black;
             sprite.Scale = new Vector2(30);
-            sprite.StyleChanger.ColorChange(Color.White, Color.Black, 10000);
-            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 0);
+            sprite.StyleChanger.ColorChange(MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), 1000);
+            sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             level.AddSprite(sprite);
 
             DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
+            panel.AddVariable(ref sprite.collidingDown);
 
             level.CreateScreenBox();
 
             PlatformStatic sprite2 = new PlatformStatic("S2", "Pixel", new Vector2(300, 500));
-            sprite2.Style.Color = Color.White;
+            sprite2.Style.Color = Color.Indigo;
             sprite2.Scale = new Vector2(40, 100);
             level.AddSprite(sprite2);
              
+        }
+
+        void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)
+        {
+            sprite.StyleChanger.ColorChange(finishColor, MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), 1000);
         }
 
         protected override void UnloadContent() { }
