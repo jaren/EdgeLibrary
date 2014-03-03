@@ -57,8 +57,10 @@ namespace EdgeDemo
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             level.AddSprite(sprite);
 
+            int i = 0;
+
             DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
-            panel.AddVariable(ref sprite.collidingDown);
+            panel.AddTrackedVariable("collidingDown", ref i);
 
             level.CreateScreenBox();
 

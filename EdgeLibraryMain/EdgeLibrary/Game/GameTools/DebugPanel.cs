@@ -24,14 +24,17 @@ namespace EdgeLibrary
         private TextSprite MouseSprite;
         private TextSprite FPSSprite;
         private TextSprite ScenesSprite;
-        private TextSprite ElementsSprite;
+        private MultiTextSprite ElementsSprite;
         private TextSprite KeysSprite;
+        private MultiTextSprite VariablesSprite;
 
-        public object test;
+        private Dictionary<string, object> trackedVariables;
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
             DrawLayer = 100;
+
+            trackedVariables = new Dictionary<string, object>();
 
             Position = position;
 
@@ -50,6 +53,10 @@ namespace EdgeLibrary
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
             AddElement(KeysSprite);
+
+            VariablesSprite = new MultiTextSprite(string.Format("{0}_VariablesSprite", ID), fontName, "Tracked variables (0):", Vector2.Zero, drawColor, EdgeGame.WindowSize.X - 10, 1);
+            VariablesSprite.CenterText = false;
+            AddElement(VariablesSprite);
 
             Font = ResourceManager.getFont(fontName);
             _drawColor = drawColor;
@@ -76,6 +83,9 @@ namespace EdgeLibrary
 
             ElementsSprite.Position = new Vector2(0, YDifference * 5);
             ElementsSprite.Position += Position;
+
+            VariablesSprite.Position = new Vector2(0, YDifference * 6);
+            VariablesSprite.Position += Position;
         }
 
         private void reloadTextSprites()
@@ -91,6 +101,8 @@ namespace EdgeLibrary
             KeysSprite.Font = _font;
             KeysSprite.Style.Color = _drawColor;
             KeysSprite.DrawLayer = DrawLayer;
+            VariablesSprite.Font = _font;
+            VariablesSprite.Style.Color = _drawColor;
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -114,18 +126,34 @@ namespace EdgeLibrary
             {
                 KeysSprite.Text += string.Format(" {0}, ", Convert.ToString(k));
             }
+            VariablesSprite.Text = string.Format("Variables ({0}):", trackedVariables.Count);
+            foreach (KeyValuePair<string, object> pair in trackedVariables)
+            {
+                VariablesSprite.Text += string.Format(" {0}='{1}', ", pair.Key, pair.Value);
+            }
             reloadTextSpritesPosition();
         }
 
-        public void AddVariable(string id, ref object variable)
+        public void AddTrackedVariable(string id, ref int variable)
         {
-            test = p;
-            p.ToString();
+            trackedVariables.Add(id, variable);
         }
 
-        public override string ToString()
+        public void AddTrackedVariable(string id, ref bool variable)
         {
-            return "I'm a debug panel!";
+            trackedVariables.Add(id, variable);
         }
+
+        public void AddTrackedVariable(string id, ref float variable)
+        {
+            trackedVariables.Add(id, variable);
+        }
+
+        public void AddTrackedVariable(string id, ref string variable)
+        {
+            trackedVariables.Add(id, variable);
+        }
+
+
     }
 }

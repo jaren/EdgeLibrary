@@ -43,6 +43,11 @@ namespace EdgeLibrary
             EdgeGame.SelectedScene.AddElement(this);
         }
 
+        public override string ToString()
+        {
+            return ID;
+        }
+
         public void REMOVE()
         {
             MarkedForRemoval = true;
