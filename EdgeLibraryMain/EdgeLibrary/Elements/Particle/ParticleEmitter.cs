@@ -103,7 +103,7 @@ namespace EdgeLibrary
             MinLife = l;
             MaxLife = l;
         }
-        public void SetWidthHeight(int width, int height)
+        public void SetEmitArea(int width, int height)
         {
            _width = width;
            _height = height;

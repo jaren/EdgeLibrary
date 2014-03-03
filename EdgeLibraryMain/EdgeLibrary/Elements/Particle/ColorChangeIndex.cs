@@ -18,21 +18,41 @@ namespace EdgeLibrary
         private int index;
         private float elapsedTime;
 
-        public ColorChangeIndex(Color color) : this(color, 1000) { }
+        public ColorChangeIndex(Color color) : this(1000, color) { }
 
-        public ColorChangeIndex(Color color, float time)
+        public ColorChangeIndex(float time, params Color[] colors)
         {
             Colors = new List<Color>();
             Times = new List<float>();
             index = 0;
             elapsedTime = 0;
-            Add(color, time);
+
+            foreach (Color color in colors)
+            {
+                Add(color, time);
+            }
         }
 
         public void Clear()
         {
             Colors.Clear();
             Times.Clear();
+        }
+
+        public void Set(int index, Color color, float time)
+        {
+            Colors[index] = color;
+            Times[index] = time;
+        }
+
+        public void SetTime(int index, float time)
+        {
+            Times[index] = time;
+        }
+
+        public void SetColor(int index, Color color)
+        {
+            Colors[index] = color;
         }
 
         public void Add(Color color, float time)
@@ -53,7 +73,7 @@ namespace EdgeLibrary
 
         public static ColorChangeIndex Lerp(ColorChangeIndex index1, ColorChangeIndex index2, float value)
         {
-            ColorChangeIndex index = new ColorChangeIndex(Color.Lerp(index1.Colors[0], index2.Colors[0], value), MathHelper.Lerp(index1.Times[0], index2.Times[0], value));
+            ColorChangeIndex index = new ColorChangeIndex( MathHelper.Lerp(index1.Times[0], index2.Times[0], value), Color.Lerp(index1.Colors[0], index2.Colors[0], value));
             for (int i = 1; i < index1.Colors.Count; i++)
             {
                 index.Add(Color.Lerp(index1.Colors[i], index2.Colors[i], value), MathHelper.Lerp(index1.Times[i], index2.Times[i], value));
@@ -67,7 +87,7 @@ namespace EdgeLibrary
 
             if (elapsedTime >= Times[index])
             {
-                if (index < Colors.Count)
+                if (index < Colors.Count - 1)
                 {
                     index++;
                 }

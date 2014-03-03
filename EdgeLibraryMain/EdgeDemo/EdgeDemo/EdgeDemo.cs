@@ -22,6 +22,9 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        FakeSprite fireChanger;
+        FakeSprite smokeChanger;
+
         public EdgeDemo()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,7 +52,13 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            EdgeGame.CollisionsInTextSprites = true;
+            fireChanger = new FakeSprite();
+            fireChanger.StyleChanger.ColorChange(MathTools.RandomColor(Color.OrangeRed, Color.DarkOrange), MathTools.RandomColor(Color.OrangeRed, Color.DarkOrange), 1000);
+            fireChanger.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(fireChangerFinished);
+
+            smokeChanger = new FakeSprite();
+            smokeChanger.StyleChanger.ColorChange(MathTools.RandomColor(Color.Gray, Color.DarkGray), MathTools.RandomColor(Color.Gray, Color.DarkGray), 1000);
+            smokeChanger.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(smokeChangerFinished);
 
             EdgeGame.MainScene().Background = ResourceManager.textureFromString("Wood Background");
 
@@ -62,25 +71,42 @@ namespace EdgeDemo
             torch.Movement.ClampTo(InputManager.MouseSprite);
 
             ParticleEmitter fireEmitter = new ParticleEmitter("fire", new Vector2(400, 400));
+            fireEmitter.update += new Element.ElementUpdateEvent(fireEmitterUpdate);
 
-            fireEmitter.MinColorIndex = new ColorChangeIndex(Color.Orange, 1000);
-            fireEmitter.MinColorIndex.Add(Color.Gray, 500);
-            fireEmitter.MinColorIndex.Add(Color.Transparent, 0);
+            fireEmitter.MinColorIndex = new ColorChangeIndex(1000, Color.Orange, Color.Gray, Color.Transparent);
+            fireEmitter.MinColorIndex.SetTime(0, 1750);
+            fireEmitter.MinColorIndex.SetTime(1, 250);
+            fireEmitter.MinColorIndex.SetTime(2, 0);
 
-            fireEmitter.MaxColorIndex = new ColorChangeIndex(Color.OrangeRed, 1000);
-            fireEmitter.MaxColorIndex.Add(Color.LightGray, 500);
-            fireEmitter.MaxColorIndex.Add(Color.Transparent, 0);
+            fireEmitter.MaxColorIndex = fireEmitter.MinColorIndex;
 
-            fireEmitter.SetRotationSpeed(0.1f);
             fireEmitter.SetLife(5000);
-            fireEmitter.EmitWait = 0;
-            fireEmitter.MinVelocity = new Vector2(-0.5f, -2.5f);
-            fireEmitter.MaxVelocity = new Vector2(0.5f, -2.5f);
-            fireEmitter.MinSize = new Vector2(60);
-            fireEmitter.MaxSize = new Vector2(40);
-            fireEmitter.SetWidthHeight(0, 0);
+            fireEmitter.MinVelocity = new Vector2(-0.25f, -2.5f);
+            fireEmitter.MaxVelocity = new Vector2(0.25f, -2.5f);
+            fireEmitter.SetSize(new Vector2(60));
             fireEmitter.Movement.ClampTo(torch, new Vector2(0, -torch.Height / 2));
+            fireEmitter.SetEmitArea(0, 0);
              
+        }
+
+        void fireEmitterUpdate(Element e, GameTime g)
+        {
+            ((ParticleEmitter)e).MinColorIndex = new ColorChangeIndex(1000, fireChanger.Style.Color, smokeChanger.Style.Color, Color.Transparent);
+            ((ParticleEmitter)e).MinColorIndex.SetTime(0, 1750);
+            ((ParticleEmitter)e).MinColorIndex.SetTime(1, 250);
+            ((ParticleEmitter)e).MaxColorIndex.SetTime(2, 0);
+
+            ((ParticleEmitter)e).MaxColorIndex = ((ParticleEmitter)e).MinColorIndex;
+        }
+
+        void fireChangerFinished(StyleCapability capability, Color finishColor)
+        {
+            capability.ColorChange(finishColor, MathTools.RandomColor(Color.OrangeRed, Color.Orange), 1000);
+        }
+
+        void smokeChangerFinished(StyleCapability capability, Color finishColor)
+        {
+            capability.ColorChange(finishColor, MathTools.RandomColor(new Color(100, 100, 100), new Color(100, 100, 100)), 1000);
         }
 
         protected override void UnloadContent() { }

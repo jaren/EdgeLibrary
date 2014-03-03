@@ -14,10 +14,12 @@ namespace EdgeLibrary
     public class StyleCapability : Capability
     {
         private bool colorChanging;
+        private bool usingColorIndex;
         private bool rotating;
 
         private Color color1;
         private Color color2;
+        private ColorChangeIndex colorIndex;
         private float colorChangeTime;
         private float elapsedColorChangeTime;
 
@@ -53,18 +55,25 @@ namespace EdgeLibrary
 
                 if (colorChanging)
                 {
-                    elapsedColorChangeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                    if (elapsedColorChangeTime > colorChangeTime)
+                    if (usingColorIndex)
                     {
-                        colorChanging = false;
-                        if (FinishedColorChange != null)
-                        {
-                            FinishedColorChange(this, color2);
-                        }
+                        sprite.Style.Color = colorIndex.Update(gameTime);
                     }
                     else
                     {
-                        sprite.Style.Color = Color.Lerp(color1, color2, elapsedColorChangeTime / colorChangeTime);
+                        elapsedColorChangeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                        if (elapsedColorChangeTime > colorChangeTime)
+                        {
+                            colorChanging = false;
+                            if (FinishedColorChange != null)
+                            {
+                                FinishedColorChange(this, color2);
+                            }
+                        }
+                        else
+                        {
+                            sprite.Style.Color = Color.Lerp(color1, color2, elapsedColorChangeTime / colorChangeTime);
+                        }
                     }
                 }
                 if (rotating)
@@ -91,6 +100,14 @@ namespace EdgeLibrary
             color2 = nextColor;
             colorChangeTime = time;
             elapsedColorChangeTime = 0;
+            usingColorIndex = false;
+            colorChanging = true;
+        }
+
+        public void ColorChange(ColorChangeIndex index)
+        {
+            colorIndex = index;
+            usingColorIndex = true;
             colorChanging = true;
         }
 
