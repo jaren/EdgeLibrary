@@ -186,7 +186,6 @@ namespace EdgeLibrary.Platform
 
         public virtual void UpdatePlatform(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
         {
-            base.updateElement(gameTime);
             UpdateForces(Gravity);
             UpdateCollision(sprites, Gravity, gameTime);
         }

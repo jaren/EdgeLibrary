@@ -99,6 +99,7 @@
     <Compile Include="Elements\Panel.cs" />
     <Compile Include="Elements\Text\MultiTextSprite.cs" />
     <Compile Include="Extra\Capabilities\MovementCapability.cs" />
+    <Compile Include="Extra\Capabilities\StyleCapability.cs" />
     <Compile Include="Extra\Collision\CollisionBody.cs" />
     <Compile Include="Extra\Collision\Shape.cs" />
     <Compile Include="Extra\Effects\BlackWhiteEffect.cs" />

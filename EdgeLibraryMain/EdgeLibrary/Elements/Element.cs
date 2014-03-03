@@ -82,7 +82,14 @@ namespace EdgeLibrary
 
         public void Update(GameTime gameTime)
         {
-            if (Visible) { foreach (Capability capability in Capabilities) { capability.Update(gameTime, this); } updateElement(gameTime); }
+            if (Visible) 
+            { 
+                foreach (Capability capability in Capabilities)
+                { 
+                    capability.Update(gameTime, this); 
+                }
+                updateElement(gameTime);
+            }
         }
         public void Draw(GameTime gameTime)
         {

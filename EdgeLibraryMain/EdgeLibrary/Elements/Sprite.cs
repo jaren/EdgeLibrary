@@ -57,6 +57,7 @@ namespace EdgeLibrary
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
+        public StyleCapability StyleChanger;
         private Texture2D _texture;
         public SpriteStyle Style;
         protected Vector2 _position;
@@ -78,6 +79,9 @@ namespace EdgeLibrary
             _height = 0;
 
             Scale = Vector2.One;
+
+            StyleChanger = new StyleCapability();
+            AddCapability(StyleChanger);
 
             currentlyCollidingWithIDs = new List<string>();
 

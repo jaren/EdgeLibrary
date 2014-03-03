@@ -53,6 +53,8 @@ namespace EdgeDemo
             sprite = new PlatformCharacter("S", "Pixel", new Vector2(500, 500));
             sprite.Style.Color = Color.Black;
             sprite.Scale = new Vector2(30);
+            sprite.StyleChanger.ColorChange(Color.White, Color.Black, 10000);
+            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 0);
             level.AddSprite(sprite);
 
             DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
