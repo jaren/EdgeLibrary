@@ -46,9 +46,41 @@ namespace EdgeLibrary
 
         public static Vector2 DecreaseVector(Vector2 vector, float amount)
         {
-            if (vector.X > 0)
+            if (vector.X >= 0)
             {
+                vector = new Vector2(vector.X - amount, vector.Y);
+                if (vector.X < 0)
+                {
+                    vector = new Vector2(0, vector.Y);
+                }
             }
+            else
+            {
+                vector = new Vector2(vector.X + amount, vector.Y);
+                if (vector.X > 0)
+                {
+                    vector = new Vector2(0, vector.Y);
+                }
+            }
+
+            if (vector.Y >= 0)
+            {
+                vector = new Vector2(vector.X, vector.Y - amount);
+                if (vector.Y < 0)
+                {
+                    vector = new Vector2(vector.X, 0);
+                }
+            }
+            else
+            {
+                vector = new Vector2(vector.X, vector.Y + amount);
+                if (vector.Y > 0)
+                {
+                    vector = new Vector2(vector.X, 0);
+                }
+            }
+
+            return vector;
         }
 
         public static Rectangle ResolveNegativeRectangle(Rectangle rectangle)

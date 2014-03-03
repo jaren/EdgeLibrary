@@ -169,6 +169,7 @@ namespace EdgeLibrary
                     if (IDs.Contains(e.ID))
                     {
                         //There was a duplicate ID
+                        throw new DuplicateWaitObjectException();
                     }
                     IDs.Add(e.ID);
                 }

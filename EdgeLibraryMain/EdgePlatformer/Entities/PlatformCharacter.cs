@@ -30,15 +30,15 @@ namespace EdgeLibrary.Platform
             ProjectileToCopy = new PlatformProjectile("Pixel", this, Vector2.Zero, 0);
         }
 
-        public override void UpdateSprite(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
+        public override void UpdatePlatform(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
         {
-            base.UpdateSprite(gameTime, Gravity, sprites);
+            base.UpdatePlatform(gameTime, Gravity, sprites);
 
             TimeSinceLastShoot = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             for (int i = 0; i < Projectiles.Count; i++)
             {
-                Projectiles[i].UpdateSprite(gameTime, Gravity, sprites);
+                Projectiles[i].UpdatePlatform(gameTime, Gravity, sprites);
 
                 if (Projectiles[i].MarkedForPlatformRemoval)
                 {
@@ -46,11 +46,6 @@ namespace EdgeLibrary.Platform
                     i--;
                 }
             }
-        }
-
-        public void Jump()
-        {
-            //To be added....
         }
 
         public void Shoot(Vector2 targetPos, float speed)

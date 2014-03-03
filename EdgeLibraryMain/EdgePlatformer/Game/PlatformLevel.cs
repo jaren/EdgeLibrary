@@ -107,7 +107,7 @@ namespace EdgeLibrary.Platform
 
             for (int i = 0; i < sprites.Count; i++)
             {
-                sprites[i].UpdateSprite(gameTime, Gravity, sprites);
+                sprites[i].UpdatePlatform(gameTime, Gravity, sprites);
 
                 if (sprites[i].MarkedForPlatformRemoval)
                 {

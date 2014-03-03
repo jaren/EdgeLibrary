@@ -56,7 +56,6 @@ namespace EdgeDemo
             level.AddSprite(sprite);
 
             DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
-            level.elements.Add(panel);
 
             level.CreateScreenBox();
 
@@ -73,23 +72,23 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
-            int speed = 2;
+            float speed = 0.1f;
 
             if (InputManager.IsKeyDown(Keys.Left))
             {
-                sprite.Position = new Vector2(sprite.Position.X - speed, sprite.Position.Y);
+                sprite.ApplyImpulse(new Vector2(-speed, 0));
             }
             if (InputManager.IsKeyDown(Keys.Right))
             {
-                sprite.Position = new Vector2(sprite.Position.X + speed, sprite.Position.Y);
+                sprite.ApplyImpulse(new Vector2(speed, 0));
             }
             if (InputManager.IsKeyDown(Keys.Up))
             {
-                sprite.Jump();
+                sprite.ApplyImpulse(new Vector2(0, speed));
             }
             if (InputManager.IsKeyDown(Keys.Down))
             {
-                sprite.Position = new Vector2(sprite.Position.X, sprite.Position.Y + speed);
+                sprite.ApplyImpulse(new Vector2(0, -speed));
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
