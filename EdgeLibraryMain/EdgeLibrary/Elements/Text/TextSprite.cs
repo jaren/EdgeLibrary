@@ -20,6 +20,8 @@ namespace EdgeLibrary
         public bool CenterText { get; set; }
         protected string _text;
 
+        public TextSprite(string eFontName, string eText, Vector2 ePosition, Color eColor) : this(MathTools.RandomID(), eFontName, eText, ePosition, eColor) { }
+
         public TextSprite(string id, string eFontName, string eText, Vector2 ePosition, Color eColor) : base(id, "", ePosition)
         {
             CenterText = true;
@@ -57,6 +59,8 @@ namespace EdgeLibrary
                 BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
                 _width = BoundingBox.Width;
                 _height = BoundingBox.Height;
+
+                reloadOriginPoint();
             }
         }
 
@@ -74,9 +78,9 @@ namespace EdgeLibrary
             {
                 if (!CenterText)
                 {
-                    return new Vector2(Position.X, Position.Y - Font.MeasureString(_text).Y / 2); 
+                    return new Vector2(Position.X + OriginPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + OriginPoint.Y); 
                 }
-                    return new Vector2(Position.X - Font.MeasureString(_text).X / 2, Position.Y - Font.MeasureString(_text).Y / 2);
+                    return new Vector2(Position.X - Font.MeasureString(_text).X / 2 + OriginPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + OriginPoint.Y);
             }
             return Position;
         }

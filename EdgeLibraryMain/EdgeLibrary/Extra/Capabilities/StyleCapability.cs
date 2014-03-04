@@ -71,11 +71,11 @@ namespace EdgeLibrary
                 {
                     if (rotateToPoint)
                     {
-                        sprite.Style.Rotation = (float)Math.Atan2(sprite.Position.Y - rotateTarget.Y, sprite.Position.X - rotateTarget.X) + angleAdd;
+                        sprite.Style.Rotation = MathHelper.ToDegrees((float)Math.Atan2(sprite.Position.Y - rotateTarget.Y, sprite.Position.X - rotateTarget.X)) + angleAdd;
                     }
                     else
                     {
-                        sprite.Style.Rotation = (float)Math.Atan2(sprite.Position.Y - activeRotateTarget.Position.Y, sprite.Position.X - activeRotateTarget.Position.X) + angleAdd;
+                        sprite.Style.Rotation = MathHelper.ToDegrees((float)Math.Atan2(sprite.Position.Y - activeRotateTarget.Position.Y, sprite.Position.X - activeRotateTarget.Position.X)) + angleAdd;
                     }
                 }
             }

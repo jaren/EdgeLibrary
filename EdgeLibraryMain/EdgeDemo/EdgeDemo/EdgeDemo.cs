@@ -18,7 +18,8 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        PlatformCharacter sprite;
+        Sprite sprite;
+        ParticleEmitter emitter;
 
         public EdgeDemo()
         {
@@ -33,10 +34,19 @@ namespace EdgeDemo
             EdgeGame.GameDrawState = GameDrawState.Hybrid;
             IsMouseVisible = true;
 
+            EdgeGame.update += new EdgeGame.EdgeGameEvent(EdgeGame_update);
+
             EdgeGame.WindowSize = new Vector2(700, 700);
             EdgeGame.ClearColor = Color.Gray;
 
             base.Initialize();
+        }
+
+        void EdgeGame_update(GameTime gameTime)
+        {
+            emitter.SetStartColor(sprite.Style.Color);
+            emitter.SetFinishColor(sprite.Style.Color);
+            emitter.SetRotation(sprite.Style.Rotation);
         }
 
         protected override void LoadContent() 
@@ -47,33 +57,31 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            PlatformLevel level = new PlatformLevel("LEVEL", new Vector2(0, -9.8f));
-            EdgeGame.AddScene(level);
-            EdgeGame.SelectedScene = level;
-            sprite = new PlatformCharacter("S", "Pixel", new Vector2(500, 500));
-            sprite.Style.Color = Color.Black;
-            sprite.Scale = new Vector2(30);
-            sprite.StyleChanger.ColorChange(MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), 1000);
+            ResourceManager.addTexture("modifiedLaser", TextureTools.Colorize(ResourceManager.getTexture("laserGreen"), Color.White, 10));
+
+            EdgeGame.CollisionsInTextSprites = true;
+
+            DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
+
+            sprite = new Sprite("modifiedLaser", Vector2.One * 500);
+            sprite.CollisionBodyType = ShapeTypes.circle;
+            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 90);
+            sprite.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
-            level.AddSprite(sprite);
+            sprite.Movement.FollowElement(InputManager.MouseSprite, 3);
 
-            int i = 0;
+            TextSprite tSprite = new TextSprite("SmallFont", "Test", new Vector2(500, 500), Color.Purple);
 
-            DebugPanel panel = new DebugPanel("SmallFont", new Vector2(0), Color.Gold);
-            panel.AddTrackedVariable("collidingDown", ref i);
-
-            level.CreateScreenBox();
-
-            PlatformStatic sprite2 = new PlatformStatic("S2", "Pixel", new Vector2(300, 500));
-            sprite2.Style.Color = Color.Indigo;
-            sprite2.Scale = new Vector2(40, 100);
-            level.AddSprite(sprite2);
+            
+            emitter = new ParticleEmitter("Pixel", Vector2.Zero);
+            emitter.Movement.ClampTo(sprite);
+            emitter.SetSize(new Vector2(10, 10));
              
         }
 
         void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)
         {
-            sprite.StyleChanger.ColorChange(finishColor, MathTools.RandomColor(Color.LightBlue, Color.DarkGreen), 1000);
+            capability.ColorChange(finishColor, MathTools.RandomColor(), 1000);
         }
 
         protected override void UnloadContent() { }
@@ -82,28 +90,6 @@ namespace EdgeDemo
         {
             base.Update(gameTime);
             EdgeGame.Update(gameTime);
-            float speed = 0.1f;
-
-            if (InputManager.IsKeyDown(Keys.Left))
-            {
-                sprite.ApplyImpulse(new Vector2(-speed, 0));
-            }
-            if (InputManager.IsKeyDown(Keys.Right))
-            {
-                sprite.ApplyImpulse(new Vector2(speed, 0));
-            }
-            if (InputManager.IsKeyDown(Keys.Up))
-            {
-                sprite.ApplyImpulse(new Vector2(0, speed));
-            }
-            if (InputManager.IsKeyDown(Keys.Down))
-            {
-                sprite.ApplyImpulse(new Vector2(0, -speed));
-            }
-            if (InputManager.IsKeyDown(Keys.Space))
-            {
-                sprite.Shoot(InputManager.MousePos(), 3);
-            }
         }
 
         protected override void Draw(GameTime gameTime)

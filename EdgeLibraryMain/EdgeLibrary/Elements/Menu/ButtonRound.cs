@@ -20,6 +20,8 @@ namespace EdgeLibrary
         public override event ButtonEventHandler MouseOver;
         public override event ButtonEventHandler MouseOff;
 
+        public ButtonRound(string eTextureName, Vector2 ePosition, int radius, Color eClickColor) : this(MathTools.RandomID(), eTextureName, ePosition, radius, eClickColor) { }
+
         public ButtonRound(string id, string eTextureName, Vector2 ePosition, int radius, Color eClickColor) : base(id, eTextureName, ePosition, eClickColor)
         {
             Radius = radius;

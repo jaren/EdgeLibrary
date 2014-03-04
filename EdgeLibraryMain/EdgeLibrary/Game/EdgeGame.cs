@@ -45,6 +45,10 @@ namespace EdgeLibrary
 
         public static List<Scene> Scenes { get; private set; }
 
+        public delegate void EdgeGameEvent(GameTime gameTime);
+        public static event EdgeGameEvent update;
+        public static event EdgeGameEvent draw;
+
         public static void Init(ContentManager c, GraphicsDevice gd, GraphicsDeviceManager gdm, SpriteBatch sb)
         {
             graphicsDevice = gd;
@@ -158,6 +162,11 @@ namespace EdgeLibrary
 
             Camera.Update(gameTime);
 
+            if (update != null)
+            {
+                update(gameTime);
+            }
+
             SelectedScene.Update(gameTime);
 
             //Checks if two elements have the same ID
@@ -183,6 +192,11 @@ namespace EdgeLibrary
             graphicsDevice.SetRenderTarget(ScreenTarget);
             graphicsDevice.Clear(ClearColor);
             graphicsDevice.Viewport = new Viewport((int)Camera.Position.X - (int)WindowSize.X / 2, (int)Camera.Position.Y - (int)WindowSize.Y / 2, (int)WindowSize.X, (int)WindowSize.Y);
+
+            if (draw != null)
+            {
+                draw(gameTime);
+            }
 
             spriteBatch.Begin();
             IsDrawing = true;

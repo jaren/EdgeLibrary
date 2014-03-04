@@ -16,9 +16,8 @@ namespace EdgeLibrary
     /// An emmiter of particles.
     /// </summary>
 
-    public class ParticleEmitter : Element
+    public class ParticleEmitter : Sprite
     {
-        public Rectangle EmitArea;
         public Color MinStartColor;
         public Color MaxStartColor;
         public Color MinFinishColor;
@@ -38,8 +37,6 @@ namespace EdgeLibrary
         public BlendState DrawState;
         public int MaxParticles;
 
-        public string ParticleTextureName;
-
         protected List<Particle> particles;
         protected TimeSpan timeSinceLastEmit;
 
@@ -50,20 +47,19 @@ namespace EdgeLibrary
         public delegate void ParticleEventHandler(ParticleEmitter sender);
         public event ParticleEventHandler OnEmit;
 
-        public ParticleEmitter(string id, string eTextureName, Vector2 ePosition) : base(id)
+        public ParticleEmitter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+
+        public ParticleEmitter(string id, string eTextureName, Vector2 ePosition) : base(eTextureName, ePosition)
         {
             particles = new List<Particle>();
-            Position = ePosition;
-            ParticleTextureName = eTextureName;
 
-            EmitArea = new Rectangle((int)Position.X, (int)Position.Y, 1, 1);
             MinStartColor = Color.White;
             MaxStartColor = MinStartColor;
             MinFinishColor = MinStartColor;
             MaxFinishColor = MaxStartColor;
             MinVelocity = -Vector2.One;
             MaxVelocity = Vector2.One*2;
-            MinSize = new Vector2(ResourceManager.getTexture(ParticleTextureName).Width, ResourceManager.getTexture(ParticleTextureName).Height);
+            MinSize = new Vector2(Texture.Width, Texture.Height);
             MaxSize = MinSize;
             GrowSpeed = 0;
             MinStartRotation = 0;
@@ -115,13 +111,20 @@ namespace EdgeLibrary
             MinLife = l;
             MaxLife = l;
         }
+        public void SetWidthHeight(int width, int height)
+        {
+           _width = width;
+           _height = height;
+           reloadBoundingBox();
+        }
 
         public void EmitSingleParticle()
         {
-            Particle particle = new Particle(MathTools.RandomID("particle"), ParticleTextureName, InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
+            particle.Texture = Texture;
             particle.CollisionBody = null;
-            particle.Position = new Vector2(InputManager.Random.Next((int)EmitArea.Left, (int)EmitArea.Right), InputManager.Random.Next((int)EmitArea.Top, (int)EmitArea.Bottom));
+            particle.Position = new Vector2(InputManager.Random.Next(BoundingBox.Left, BoundingBox.Right), InputManager.Random.Next(BoundingBox.Top, BoundingBox.Bottom));
             particle.Style.Rotation = InputManager.Random.Next((int)MinStartRotation, (int)MaxStartRotation);
             particle.Height = InputManager.Random.Next((int)MinSize.Y, (int)MaxSize.Y);
             particle.Width = InputManager.Random.Next((int)MinSize.X, (int)MaxSize.X);
@@ -169,8 +172,6 @@ namespace EdgeLibrary
                 timeSinceLastEmit = new TimeSpan(0);
                 EmitSingleParticle();
             }
-
-            EmitArea = new Rectangle((int)Position.X - EmitArea.Width/2, (int)Position.Y - EmitArea.Height/2, EmitArea.Width, EmitArea.Height);
 
             foreach (Particle particle in particles)
             {

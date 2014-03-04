@@ -19,6 +19,8 @@ namespace EdgeLibrary
         private float _lineDifferenceFactor;
         private float lineDifference;
 
+        public MultiTextSprite(string fontName, string text, Vector2 position, Color color) : base(fontName, text, position, color) { }
+
         public MultiTextSprite(string id, string fontName, string text, Vector2 position, Color color) : base(id, fontName, text, position, color)
         {
             MaxWidth = 300;
@@ -33,7 +35,6 @@ namespace EdgeLibrary
             reloadLineDifference();
         }
 
-        //Work in Progress
         private List<string> splitText()
         {
             List<string> list = new List<string>();
@@ -45,8 +46,11 @@ namespace EdgeLibrary
                 {
                     charsToRemove++;
                 }
-                list.Add(lastLine.Remove(lastLine.Length - charsToRemove));
-                lastLine = lastLine.Remove(0, lastLine.Length - charsToRemove);
+                if (charsToRemove != 0)
+                {
+                    list.Add(lastLine.Remove(lastLine.Length - charsToRemove));
+                    lastLine = lastLine.Remove(0, lastLine.Length - charsToRemove);
+                }
             }
             list.Add(lastLine);
             return list;
@@ -60,7 +64,7 @@ namespace EdgeLibrary
         public override void reloadBoundingBox()
         {
             if (Font != null && MaxWidth > 0)
-            {
+             {
                 Vector2 Measured = Vector2.Zero;
                 int maxX = 0;
                 foreach (string s in splitText())
@@ -74,6 +78,8 @@ namespace EdgeLibrary
                 BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
                 _width = BoundingBox.Width;
                 _height = BoundingBox.Height;
+
+                reloadOriginPoint();
             }
         }
 

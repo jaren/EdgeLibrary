@@ -20,6 +20,8 @@ namespace EdgeLibrary
         public virtual event ButtonEventHandler MouseOver;
         public virtual event ButtonEventHandler MouseOff;
 
+        public LabelButton(string eFontName, string eText, Vector2 ePosition, Color eClickColor) : this(MathTools.RandomID(), eFontName, eText, ePosition, eClickColor) { }
+
         public LabelButton(string id, string eFontName, string eText, Vector2 ePosition, Color eClickColor) : base(id, "", ePosition, eClickColor)
         {
             Font = ResourceManager.getFont(eFontName);

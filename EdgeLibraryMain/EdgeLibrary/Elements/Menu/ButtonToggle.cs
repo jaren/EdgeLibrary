@@ -30,6 +30,8 @@ namespace EdgeLibrary
         public new event ButtonToggleEvent MouseOver;
         public new event ButtonToggleEvent MouseOff;
 
+        public ButtonToggle(string eTextureName, Vector2 ePosition, Color eClickColor) : this(MathTools.RandomID(), eTextureName, ePosition, eClickColor) { }
+
         public ButtonToggle(string id, string eTextureName, Vector2 ePosition, Color eClickColor) : base(id, eTextureName, ePosition, eClickColor)
         {
             On = false;

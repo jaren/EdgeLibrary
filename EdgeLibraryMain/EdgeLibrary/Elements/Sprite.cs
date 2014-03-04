@@ -71,6 +71,8 @@ namespace EdgeLibrary
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
+        public Sprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+
         public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
             Style = new SpriteStyle(SpriteEffects.None, SpriteDrawType.NoRatio, 0f, Color.White);
@@ -136,8 +138,13 @@ namespace EdgeLibrary
         public virtual void reloadBoundingBox()
         {
             BoundingBox = new Rectangle((int)_position.X - ((int)_width / 2 * (int)Scale.X), (int)_position.Y - ((int)_height / 2 * (int)Scale.Y), (int)_width * (int)Scale.X, (int)_height * (int)Scale.Y);
-           // OriginPoint = new Vector2(BoundingBox.Width/2, BoundingBox.Height/2);
-           // BoundingBox = new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
+            reloadOriginPoint();
+        }
+
+        protected void reloadOriginPoint()
+        {
+            OriginPoint = new Vector2(BoundingBox.Width / 2, BoundingBox.Height / 2);
+            BoundingBox = new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
         }
 
         protected override void updateElement(GameTime gameTime)
