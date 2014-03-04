@@ -100,7 +100,7 @@ namespace EdgeLibrary
                     {
                         if (!(element is TextSprite) || EdgeGame.CollisionsInTextSprites)
                         {
-                            ((Sprite)element).CollisionBody.Shape.DebugDraw(EdgeGame.DebugDrawColor);
+                            ((Sprite)element).DebugDraw(EdgeGame.DebugDrawColor);
                         }
                     }
                 }

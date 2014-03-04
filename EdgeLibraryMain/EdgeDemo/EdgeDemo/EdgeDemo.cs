@@ -31,7 +31,7 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Hybrid;
+            EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = true;
 
             EdgeGame.update += new EdgeGame.EdgeGameEvent(EdgeGame_update);
@@ -57,15 +57,15 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            ResourceManager.addTexture("modifiedLaser", TextureTools.Colorize(ResourceManager.getTexture("laserGreen"), Color.White, 10));
+            ResourceManager.addTexture("modified", TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 0));
 
             EdgeGame.CollisionsInTextSprites = true;
 
             DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
 
-            sprite = new Sprite("modifiedLaser", Vector2.One * 500);
+            sprite = new Sprite("modified", Vector2.One * 500);
             sprite.CollisionBodyType = ShapeTypes.circle;
-            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 90);
+            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 270);
             sprite.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             sprite.Movement.FollowElement(InputManager.MouseSprite, 3);
@@ -76,6 +76,7 @@ namespace EdgeDemo
             emitter = new ParticleEmitter("Pixel", Vector2.Zero);
             emitter.Movement.ClampTo(sprite);
             emitter.SetSize(new Vector2(10, 10));
+            emitter.SetWidthHeight(10, 10);
              
         }
 

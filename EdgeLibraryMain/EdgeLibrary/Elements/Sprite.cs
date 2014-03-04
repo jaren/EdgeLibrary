@@ -206,5 +206,10 @@ namespace EdgeLibrary
                     break;
             }
         }
+
+        public virtual void DebugDraw(Color color)
+        {
+            CollisionBody.Shape.DebugDraw(color);
+        }
     }
 }
