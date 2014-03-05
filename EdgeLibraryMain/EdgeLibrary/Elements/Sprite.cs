@@ -54,6 +54,7 @@ namespace EdgeLibrary
         public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
         public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+        public Effect TextureEffect;
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
@@ -193,6 +194,11 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
+            if (TextureEffect != null)
+            {
+                TextureEffect.ApplyEffect(Texture);
+            }
+
             switch (Style.DrawType)
             {
                 case SpriteDrawType.NoRatio:

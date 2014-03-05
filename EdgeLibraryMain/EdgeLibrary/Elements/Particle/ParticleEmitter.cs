@@ -199,5 +199,10 @@ namespace EdgeLibrary
                 particles.RemoveAt(0);
             }
         }
+
+        public override void DebugDraw(Color color)
+        {
+            TextureTools.DrawHollowRectangleAt(BoundingBox, color, 1);
+        }
     }
 }

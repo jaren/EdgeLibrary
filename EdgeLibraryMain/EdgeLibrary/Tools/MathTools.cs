@@ -44,6 +44,15 @@ namespace EdgeLibrary
             }
         }
 
+        public static Color AddToColor(Color color, byte number)
+        {
+            color.R = (byte)(color.R + number);
+            color.G = (byte)(color.G + number);
+            color.B = (byte)(color.B + number);
+            color.A = (byte)(color.A + number);
+            return color;
+        }
+
         public static Color RandomColor()
         {
             return RandomColor(Color.White, Color.Black);

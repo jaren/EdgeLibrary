@@ -156,6 +156,13 @@
 	            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
 	            EdgeGame.drawTexture(Pixel, rectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None);
 	        }
+            public static void DrawHollowRectangleAt(Rectangle rectangle, Color color, int width)
+            {
+                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), width, rectangle.Height, color);
+                TextureTools.DrawRectangleAt(new Vector2(rectangle.Right, rectangle.Top), width, rectangle.Height, color);
+                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, width, color);
+                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, width, color);
+            }
 	        #endregion
 	    }
 	}

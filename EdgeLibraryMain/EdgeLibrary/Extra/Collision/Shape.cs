@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.Drawing;
 using System.Xml;
 
 namespace EdgeLibrary
@@ -65,7 +64,7 @@ namespace EdgeLibrary
             return false;
         }
 
-        public override void DebugDraw(Microsoft.Xna.Framework.Color drawColor)
+        public override void DebugDraw(Color drawColor)
         {
             foreach (Vector2 point in MathTools.GetOuterCirclePoints(CenterPosition, _radius))
             {
@@ -105,19 +104,16 @@ namespace EdgeLibrary
                     return (cornerDistance_sq <= (((ShapeCircle)shape).Radius * ((ShapeCircle)shape).Radius));
                     break;
                 case ShapeTypes.rectangle:
-                    return new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height).IntersectsWith(new RectangleF(shape.CenterPosition.X - ((ShapeRectangle)shape).Width / 2, shape.CenterPosition.Y + ((ShapeRectangle)shape).Height / 2, ((ShapeRectangle)shape).Width, ((ShapeRectangle)shape).Height));
+                    return new Rectangle((int)CenterPosition.X - (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height).Intersects(new Rectangle((int)shape.CenterPosition.X - (int)((ShapeRectangle)shape).Width / 2, (int)shape.CenterPosition.Y + (int)((ShapeRectangle)shape).Height / 2, (int)((ShapeRectangle)shape).Width, (int)((ShapeRectangle)shape).Height));
                     break;
             }
             return false;
         }
 
-        public override void DebugDraw(Microsoft.Xna.Framework.Color drawColor)
+        public override void DebugDraw(Color drawColor)
         {
-            RectangleF rectangle = new RectangleF(CenterPosition.X - Width / 2, CenterPosition.Y - Height / 2, Width, Height);
-            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureTools.DrawRectangleAt(new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, drawColor);
-            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, drawColor);
-            TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, drawColor);
+            Rectangle rectangle = new Rectangle((int)CenterPosition.X - (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
+            TextureTools.DrawHollowRectangleAt(rectangle, drawColor, 1);
         }
     }
 }

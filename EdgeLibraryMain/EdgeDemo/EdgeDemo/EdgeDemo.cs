@@ -31,7 +31,7 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Normal;
+            EdgeGame.GameDrawState = GameDrawState.Hybrid;
             IsMouseVisible = true;
 
             EdgeGame.update += new EdgeGame.EdgeGameEvent(EdgeGame_update);
@@ -57,7 +57,7 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            ResourceManager.addTexture("modified", TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 0));
+            ResourceManager.addTexture("modified", TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 10));
 
             EdgeGame.CollisionsInTextSprites = true;
 
@@ -65,8 +65,9 @@ namespace EdgeDemo
 
             sprite = new Sprite("modified", Vector2.One * 500);
             sprite.CollisionBodyType = ShapeTypes.circle;
+            sprite.TextureEffect = new ShadeEffect(ShadeTypes.Left, 0, 255);
             sprite.StyleChanger.Rotate(InputManager.MouseSprite, 270);
-            sprite.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
+         //   sprite.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             sprite.Movement.FollowElement(InputManager.MouseSprite, 3);
 
