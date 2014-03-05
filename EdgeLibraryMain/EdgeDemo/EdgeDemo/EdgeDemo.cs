@@ -13,13 +13,17 @@ using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
+    /// <summary>
+    /// TODO:
+    /// -Change all the Draw calls to the new version!
+    /// </summary>
+
     public class EdgeDemo : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Sprite sprite;
-        ParticleEmitter emitter;
+        FakeSprite colorChanger;
 
         public EdgeDemo()
         {
@@ -34,19 +38,10 @@ namespace EdgeDemo
             EdgeGame.GameDrawState = GameDrawState.Hybrid;
             IsMouseVisible = true;
 
-            EdgeGame.update += new EdgeGame.EdgeGameEvent(EdgeGame_update);
-
-            EdgeGame.WindowSize = new Vector2(700, 700);
+            EdgeGame.WindowSize = new Vector2(800, 800);
             EdgeGame.ClearColor = Color.Gray;
 
             base.Initialize();
-        }
-
-        void EdgeGame_update(GameTime gameTime)
-        {
-            emitter.SetStartColor(sprite.Style.Color);
-            emitter.SetFinishColor(sprite.Style.Color);
-            emitter.SetRotation(sprite.Style.Rotation);
         }
 
         protected override void LoadContent() 
@@ -63,22 +58,28 @@ namespace EdgeDemo
 
             DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
 
-            sprite = new Sprite("modified", Vector2.One * 500);
-            sprite.CollisionBodyType = ShapeTypes.circle;
-            sprite.TextureEffect = new ShadeEffect(ShadeTypes.Left, 0, 255);
-            sprite.StyleChanger.Rotate(InputManager.MouseSprite, 270);
-         //   sprite.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
-            sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
-            sprite.Movement.FollowElement(InputManager.MouseSprite, 3);
+            colorChanger = new FakeSprite();
+            colorChanger.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
+            colorChanger.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
 
             TextSprite tSprite = new TextSprite("SmallFont", "Test", new Vector2(500, 500), Color.Purple);
 
+            Sprite sprite = new Sprite("player", Vector2.One * 300);
             
-            emitter = new ParticleEmitter("Pixel", Vector2.Zero);
-            emitter.Movement.ClampTo(sprite);
+            ParticleEmitter emitter = new ParticleEmitter("Pixel", Vector2.One * 400);
+            emitter.update += new Element.ElementUpdateEvent(emitterUpdate);
+            emitter.SetRotationSpeed(10);
+            emitter.SetLife(10000);
+            emitter.EmitWait = 99999999;
             emitter.SetSize(new Vector2(10, 10));
             emitter.SetWidthHeight(10, 10);
+            emitter.EmitSingleParticle();
              
+        }
+
+        void emitterUpdate(Element e, GameTime gameTime)
+        {
+            ((ParticleEmitter)e).SetStartColor(colorChanger.Style.Color);
         }
 
         void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)

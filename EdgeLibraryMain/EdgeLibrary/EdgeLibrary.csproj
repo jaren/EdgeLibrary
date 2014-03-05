@@ -110,6 +110,7 @@
     <Compile Include="Elements\Menu\ButtonRound.cs" />
     <Compile Include="Elements\Menu\ButtonToggle.cs" />
     <Compile Include="Extra\Effects\ShadeEffect.cs" />
+    <Compile Include="Elements\FakeSprite.cs" />
     <Compile Include="Game\GameTools\DebugPanel.cs" />
     <Compile Include="Game\GameTools\FPSCounter.cs" />
     <Compile Include="Elements\Particle\Particle.cs">

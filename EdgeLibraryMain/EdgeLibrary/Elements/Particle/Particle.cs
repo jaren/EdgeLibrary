@@ -17,17 +17,18 @@ namespace EdgeLibrary
     {
         protected TimeSpan livedTime;
 
-        protected float lifeTime;
-        protected Vector2 velocity;
-        protected float rotateSpeed;
-        protected float growSpeed;
+        public float lifeTime;
+        public Vector2 velocity;
+        public float rotateSpeed;
+        public float growSpeed;
 
         public Color StartColor;
         public Color FinishColor;
 
         public bool shouldRemove;
 
-        public Particle(string id, string eTextureName, float eLifeTime, Vector2 eVelocity, float eRotateSpeed, float eGrowSpeed) : base(id, eTextureName, Vector2.Zero)
+        public Particle(string id, string eTextureName, float eLifeTime, Vector2 eVelocity, float eRotateSpeed, float eGrowSpeed)
+            : base(id, eTextureName, Vector2.Zero)
         {
             lifeTime = eLifeTime;
             velocity = eVelocity;
@@ -44,6 +45,10 @@ namespace EdgeLibrary
 
             livedTime += gameTime.ElapsedGameTime;
 
+            if (OriginPoint.X > Math.Abs(Width) || OriginPoint.Y > Math.Abs(Height))
+            {
+            }
+
             if (livedTime.TotalMilliseconds >= lifeTime)
             {
                 shouldRemove = true;
@@ -55,8 +60,13 @@ namespace EdgeLibrary
                 Width += growSpeed;
                 Height += growSpeed;
 
-                Style.Color = Color.Lerp(StartColor, FinishColor, (float)livedTime.TotalMilliseconds/lifeTime);
+                Style.Color = Color.Lerp(StartColor, FinishColor, (float)livedTime.TotalMilliseconds / lifeTime);
             }
+        }
+
+        protected override void drawElement(GameTime gameTime)
+        {
+            base.drawElement(gameTime);
         }
     }
 }

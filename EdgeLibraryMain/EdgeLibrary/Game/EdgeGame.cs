@@ -45,9 +45,9 @@ namespace EdgeLibrary
 
         public static List<Scene> Scenes { get; private set; }
 
-        public delegate void EdgeGameEvent(GameTime gameTime);
-        public static event EdgeGameEvent update;
-        public static event EdgeGameEvent draw;
+        public delegate void UpdateEvent(GameTime gameTime);
+        public static event UpdateEvent update;
+        public static event UpdateEvent draw;
 
         public static void Init(ContentManager c, GraphicsDevice gd, GraphicsDeviceManager gdm, SpriteBatch sb)
         {
@@ -224,7 +224,7 @@ namespace EdgeLibrary
                 Effect.ApplyEffect(ScreenTarget);
             }
             spriteBatch.Begin();
-            drawTexture(ScreenTarget, new Rectangle(0, 0, (int)WindowSize.X, (int)WindowSize.Y), null, Color.White, 0, Vector2.Zero, SpriteEffects.None);
+            drawTexture(ScreenTarget, Vector2.Zero, null, Color.White, new Vector2(WindowSize.X/ScreenTarget.Width, WindowSize.Y/ScreenTarget.Height), 0, Vector2.Zero, SpriteEffects.None);
             IsDrawing = false;
             spriteBatch.End();
         }
@@ -247,11 +247,11 @@ namespace EdgeLibrary
             }
         }
 
-        public static void drawTexture(Texture2D texture, Rectangle destRect, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects spriteEffects)
+        public static void drawTexture(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, Vector2 scale, float rotation, Vector2 origin, SpriteEffects spriteEffects)
         {
             if (IsDrawing && texture != null)
             {
-                spriteBatch.Draw(texture, destRect, sourceRectangle, color, rotation, origin, spriteEffects, 1);
+                spriteBatch.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, spriteEffects, 0);
             }
         }
 

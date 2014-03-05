@@ -68,7 +68,7 @@ namespace EdgeLibrary
             MaxRotationSpeed = MinRotationSpeed;
             MinLife = 1000;
             MaxLife = MinLife;
-            EmitWait = 100;
+            EmitWait = 0;
             MaxParticles = 10000;
 
             particlesToRemove = new List<Particle>();
@@ -122,6 +122,14 @@ namespace EdgeLibrary
         {
             Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
+            if (InputManager.Random.Next(1, 3) == 2)
+            {
+                particle.velocity += new Vector2((float)InputManager.Random.NextDouble());
+            }
+            else
+            {
+                particle.velocity -= new Vector2((float)InputManager.Random.NextDouble());
+            }
             particle.Texture = Texture;
             particle.CollisionBody = null;
             particle.Position = new Vector2(InputManager.Random.Next(BoundingBox.Left, BoundingBox.Right), InputManager.Random.Next(BoundingBox.Top, BoundingBox.Bottom));

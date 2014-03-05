@@ -39,7 +39,7 @@ namespace EdgeLibrary
         {
             List<string> list = new List<string>();
             string lastLine = _text;
-            while (Font.MeasureString(lastLine).X > MaxWidth)
+            while (Font.MeasureString(lastLine).X >= MaxWidth)
             {
                 int charsToRemove = 0;
                 while(Font.MeasureString(lastLine.Remove(lastLine.Length - 1 - charsToRemove)).X > MaxWidth)
@@ -51,6 +51,7 @@ namespace EdgeLibrary
                     list.Add(lastLine.Remove(lastLine.Length - charsToRemove));
                     lastLine = lastLine.Remove(0, lastLine.Length - charsToRemove);
                 }
+                else { break; }
             }
             list.Add(lastLine);
             return list;

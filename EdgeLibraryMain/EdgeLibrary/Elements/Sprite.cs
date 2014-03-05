@@ -145,7 +145,7 @@ namespace EdgeLibrary
         protected void reloadOriginPoint()
         {
             OriginPoint = new Vector2(BoundingBox.Width / 2, BoundingBox.Height / 2);
-            BoundingBox = new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
+
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -192,6 +192,13 @@ namespace EdgeLibrary
             }
         }
 
+        
+        public Rectangle getNewBoundingBox()
+        {
+            return new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
+        }
+         
+
         protected override void drawElement(GameTime gameTime)
         {
             if (TextureEffect != null)
@@ -202,7 +209,7 @@ namespace EdgeLibrary
             switch (Style.DrawType)
             {
                 case SpriteDrawType.NoRatio:
-                    base.DrawTexture(null, Texture, BoundingBox, Style.Color, Style.Rotation, Style.Effects);
+                    base.DrawTexture(null, Texture, getNewBoundingBox(), Style.Color, Style.Rotation, Style.Effects);
                     break;
                 case SpriteDrawType.KeepHeight:
                     base.DrawWithHeight(null, Texture, Height, Style.Color, Style.Rotation, Style.Effects);
