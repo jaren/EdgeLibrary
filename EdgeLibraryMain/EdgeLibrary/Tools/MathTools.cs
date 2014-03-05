@@ -44,6 +44,9 @@ namespace EdgeLibrary
             }
         }
 
+        /// <summary>
+        /// Uniformly adds the specified value to the alpha, red, green, and blue components of the specified color.
+        /// </summary>
         public static Color AddToColor(Color color, byte number)
         {
             color.R = (byte)(color.R + number);
@@ -53,16 +56,29 @@ namespace EdgeLibrary
             return color;
         }
 
+        /// <summary>
+        /// Generates a color with random alpha, red, green, and blue channel values.
+        /// </summary>
         public static Color RandomColor()
         {
-            return RandomColor(Color.White, Color.Black);
+            return RandomColor(Color.Black, Color.White);
         }
 
+        /// <summary>
+        /// Generates a random color bounded by the ARGB values of each color.
+        /// </summary>
+        /// <remarks>
+        /// "min" and "max" really mean nothing in this case, as Math.Min and Math.Max are used in the function.
+        /// </remarks>
         public static Color RandomColor(Color min, Color max)
         {
             return new Color(InputManager.Random.Next(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.Random.Next(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.Random.Next(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.Random.Next(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
         }
 
+        /// <summary>
+        /// Subtracts the specified amount from each component of the specified vector.
+        /// Guarantees the sign of vector components (positive or negative) will remain the same after decrease.
+        /// </summary>
         public static Vector2 DecreaseVector(Vector2 vector, float amount)
         {
             if (vector.X >= 0)
@@ -106,12 +122,14 @@ namespace EdgeLibrary
         {
             if (rectangle.Width < 0)
             {
-                rectangle.Width = Math.Abs(rectangle.Width);
+                // If value is negative use primitive int multiply, don't bother with absolute value
+                rectangle.Width *= -1;
                 rectangle.X -= rectangle.Width;
             }
             if (rectangle.Height < 0)
             {
-                rectangle.Height = Math.Abs(rectangle.Height);
+                // If value is negative use primitive int multiply, don't bother with absolute value
+                rectangle.Height *= -1;
                 rectangle.Y -= rectangle.Height;
             }
             return rectangle;
@@ -124,6 +142,7 @@ namespace EdgeLibrary
 
         public static string RandomID()
         {
+            // TODO: 999999 is a magic number
             long id = InputManager.Random.Next(999999);
             while (givenIDs.Contains(id))
             {
@@ -132,7 +151,9 @@ namespace EdgeLibrary
             return Convert.ToString(id);
         }
 
-        //Returns the midpoint of a line segment drawn from one point to the other
+        /// <summary>
+        /// Returns the midpoint of a line segment drawn from one point to the other.
+        /// </summary>
         public static Vector2 MidPoint(Vector2 point1, Vector2 point2)
         {
             float diffX = point1.X - point2.X;
@@ -152,6 +173,9 @@ namespace EdgeLibrary
             string[] splitParts = path.Split('/');
             return splitParts[splitParts.Length - 1];
         }
+
+
+        #region Circle rendering functions (Split into separate class maybe)
 
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius, float step)
         {
@@ -208,5 +232,7 @@ namespace EdgeLibrary
 
             return points;
         }
+        
+        #endregion
     }
 }
