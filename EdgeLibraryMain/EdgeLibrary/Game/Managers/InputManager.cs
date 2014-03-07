@@ -76,7 +76,7 @@ namespace EdgeLibrary
         }
         public static int RandomInt(int min, int max)
         {
-            return random.Next(min, max);
+            return random.Next(Math.Min(min, max), Math.Max(min, max));
         }
         public static int RandomInt(int max)
         {

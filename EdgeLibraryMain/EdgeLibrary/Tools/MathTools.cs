@@ -44,15 +44,25 @@ namespace EdgeLibrary
             }
         }
 
+        public static Color ColorFromHex(string hexString)
+        {
+            if (!hexString.Contains('#'))
+            {
+                hexString = "#" + hexString;
+            }
+            System.Drawing.Color color = System.Drawing.ColorTranslator.FromHtml(hexString);
+            return new Color(color.R, color.G, color.B, color.A);
+        }
+
         /// <summary>
         /// Uniformly adds the specified value to the alpha, red, green, and blue components of the specified color.
         /// </summary>
-        public static Color AddToColor(Color color, byte number)
+        public static Color AddToColor(Color color, int number)
         {
-            color.R = (byte)(color.R + number);
-            color.G = (byte)(color.G + number);
-            color.B = (byte)(color.B + number);
-            color.A = (byte)(color.A + number);
+            color.R = color.R + number >= 0 ? color.R + number >= 256 ? (byte)255 : (byte)(color.R + number) : (byte)0;
+            color.G = color.G + number >= 0 ? color.G + number >= 256 ? (byte)255 : (byte)(color.G + number) : (byte)0;
+            color.B = color.B + number >= 0 ? color.B + number >= 256 ? (byte)255 : (byte)(color.B + number) : (byte)0;
+            color.A = color.A + number >= 0 ? color.A + number >= 256 ? (byte)255 : (byte)(color.A + number) : (byte)0;
             return color;
         }
 
@@ -73,6 +83,14 @@ namespace EdgeLibrary
         public static Color RandomColor(Color min, Color max)
         {
             return new Color(InputManager.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
+        }
+        public static Color RandomGrayscaleColor(Color min, Color max)
+        {
+            //Finds the average of the colors' values, in case they're not grayscale
+            byte random = (byte)InputManager.RandomInt(Math.Min((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3), Math.Max((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3));
+
+            //Creates a new color with that grayscale and a random alpha
+            return new Color(random, random, random, (min.A + max.A)/2);
         }
 
         /// <summary>

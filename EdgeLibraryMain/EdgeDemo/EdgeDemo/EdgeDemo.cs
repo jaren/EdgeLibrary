@@ -22,8 +22,6 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        FakeSprite colorChanger;
-
         public EdgeDemo()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,11 +32,11 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Hybrid;
+            EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = true;
 
-            EdgeGame.WindowSize = new Vector2(800, 800);
-            EdgeGame.ClearColor = Color.Gray;
+            EdgeGame.WindowSize = new Vector2(1000);
+            EdgeGame.ClearColor = Color.White;
 
             base.Initialize();
         }
@@ -51,41 +49,38 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 10);
-
             EdgeGame.CollisionsInTextSprites = true;
+
+            EdgeGame.MainScene().Background = ResourceManager.textureFromString("Wood Background");
 
             DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
 
-            colorChanger = new FakeSprite();
-            colorChanger.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
-            colorChanger.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
+            Sprite torch = new Sprite("Pixel", new Vector2(400, 450));
+            torch.Style.Color = MathTools.ColorFromHex("1A0805");
+            torch.Width = 20;
+            torch.Height = 100;
+            torch.Movement.ClampTo(InputManager.MouseSprite);
 
-            //TextSprite tSprite = new TextSprite("SmallFont", "Test", new Vector2(500, 500), Color.Purple);
+            ParticleEmitter fireEmitter = new ParticleEmitter("fire", new Vector2(400, 400));
 
-            //Sprite sprite = new Sprite("player", Vector2.One * 300);
-            
-            ParticleEmitter emitter = new ParticleEmitter("Pixel", Vector2.One * 400);
-            //emitter.BlendState = BlendState.AlphaBlend;
-            emitter.update += new Element.ElementUpdateEvent(emitterUpdate);
-            emitter.SetRotationSpeed(100f);
-            emitter.SetLife(10000);
-            emitter.EmitWait = 0;
-            emitter.SetSize(new Vector2(1));
-            emitter.GrowSpeed = 1;
-            emitter.SetWidthHeight(10, 10);
+            fireEmitter.MinColorIndex = new ColorChangeIndex(Color.Orange, 1000);
+            fireEmitter.MinColorIndex.Add(Color.Gray, 500);
+            fireEmitter.MinColorIndex.Add(Color.Transparent, 0);
+
+            fireEmitter.MaxColorIndex = new ColorChangeIndex(Color.OrangeRed, 1000);
+            fireEmitter.MaxColorIndex.Add(Color.LightGray, 500);
+            fireEmitter.MaxColorIndex.Add(Color.Transparent, 0);
+
+            fireEmitter.SetRotationSpeed(0.1f);
+            fireEmitter.SetLife(5000);
+            fireEmitter.EmitWait = 0;
+            fireEmitter.MinVelocity = new Vector2(-0.5f, -2.5f);
+            fireEmitter.MaxVelocity = new Vector2(0.5f, -2.5f);
+            fireEmitter.MinSize = new Vector2(60);
+            fireEmitter.MaxSize = new Vector2(40);
+            fireEmitter.SetWidthHeight(0, 0);
+            fireEmitter.Movement.ClampTo(torch, new Vector2(0, -torch.Height / 2));
              
-        }
-
-        void emitterUpdate(Element e, GameTime gameTime)
-        {
-            ((ParticleEmitter)e).SetStartColor(colorChanger.Style.Color);
-            ((ParticleEmitter)e).SetFinishColor(colorChanger.Style.Color);
-        }
-
-        void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)
-        {
-            capability.ColorChange(finishColor, MathTools.RandomColor(), 1000);
         }
 
         protected override void UnloadContent() { }

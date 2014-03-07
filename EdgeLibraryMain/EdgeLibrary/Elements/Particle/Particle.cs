@@ -22,8 +22,7 @@ namespace EdgeLibrary
         public float rotateSpeed;
         public float growSpeed;
 
-        public Color StartColor;
-        public Color FinishColor;
+        public ColorChangeIndex ColorIndex;
 
         public bool shouldRemove;
 
@@ -54,7 +53,7 @@ namespace EdgeLibrary
                 Width += growSpeed;
                 Height += growSpeed;
 
-                Style.Color = Color.Lerp(StartColor, FinishColor, (float)livedTime.TotalMilliseconds / lifeTime);
+                Style.Color = ColorIndex.Update(gameTime);
             }
         }
 

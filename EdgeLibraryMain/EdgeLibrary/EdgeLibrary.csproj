@@ -97,6 +97,7 @@
     <Compile Include="Elements\Animation\AnimSprite.cs" />
     <Compile Include="Elements\Menu\LabelButton.cs" />
     <Compile Include="Elements\Panel.cs" />
+    <Compile Include="Elements\Particle\ColorChangeIndex.cs" />
     <Compile Include="Extra\Capabilities\MovementCapability.cs" />
     <Compile Include="Extra\Capabilities\StyleCapability.cs" />
     <Compile Include="Extra\Collision\CollisionBody.cs" />

@@ -32,6 +32,7 @@ namespace EdgeLibrary
         protected Vector2 MoveTarget;
         protected Element FollowTarget;
         protected Element ClampTarget;
+        protected Vector2 ClampDifference;
         protected Vector2 RotateTarget;
         protected MovementType MovementType;
         public float Speed;
@@ -47,7 +48,7 @@ namespace EdgeLibrary
             switch (MovementType)
             {
                 case MovementType.Clamp:
-                    element.Position = ClampTarget.Position;
+                    element.Position = ClampTarget.Position + ClampDifference;
                     break;
                 case MovementType.Follow:
                     moveVector = new Vector2(FollowTarget.Position.X - element.Position.X, FollowTarget.Position.Y - element.Position.Y);
@@ -109,6 +110,15 @@ namespace EdgeLibrary
         public void ClampTo(Element target)
         {
             ClampTarget = target;
+            ClampDifference = Vector2.Zero;
+            MovementType = MovementType.Clamp;
+            STOPPED = false;
+        }
+
+        public void ClampTo(Element target, Vector2 difference)
+        {
+            ClampTarget = target;
+            ClampDifference = difference;
             MovementType = MovementType.Clamp;
             STOPPED = false;
         }

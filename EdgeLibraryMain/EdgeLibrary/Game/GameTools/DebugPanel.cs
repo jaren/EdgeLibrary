@@ -95,22 +95,39 @@ namespace EdgeLibrary
             base.updateElement(gameTime);
 
             MouseSprite.Text = string.Format("Mouse Position: ({0}, {1})", InputManager.MousePosition.X, InputManager.MousePosition.Y);
+
             FPSSprite.Text = string.Format("FPS: {0}", FPSCounter.FPS);
+
             ElementsSprite.Text = string.Format("Elements in current scene ({0}):", EdgeGame.SelectedScene.elements.Count);
             foreach (Element element in EdgeGame.SelectedScene.elements)
             {
                 ElementsSprite.Text += string.Format(" {0}, ", element.ID);
             }
+            if (ElementsSprite.Text.Contains(','))
+            {
+                ElementsSprite.Text = ElementsSprite.Text.Remove(ElementsSprite.Text.Length - 2);
+            }
+
             ScenesSprite.Text = string.Format("Scenes ({0}):", EdgeGame.Scenes.Count);
             foreach (Scene scene in EdgeGame.Scenes)
             {
                 ScenesSprite.Text += string.Format(" {0}, ", scene.ID);
             }
+            if (ScenesSprite.Text.Contains(','))
+            {
+                ScenesSprite.Text = ScenesSprite.Text.Remove(ScenesSprite.Text.Length - 2);
+            }
+
             KeysSprite.Text = "Keys Pressed:";
             foreach (Keys k in InputManager.KeysPressed())
             {
                 KeysSprite.Text += string.Format(" {0}, ", Convert.ToString(k));
             }
+            if (KeysSprite.Text.Contains(','))
+            {
+                KeysSprite.Text = KeysSprite.Text.Remove(KeysSprite.Text.Length - 2);
+            }
+
             reloadTextSpritesPosition();
         }
     }

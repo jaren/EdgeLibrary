@@ -18,10 +18,8 @@ namespace EdgeLibrary
 
     public class ParticleEmitter : Sprite
     {
-        public Color MinStartColor;
-        public Color MaxStartColor;
-        public Color MinFinishColor;
-        public Color MaxFinishColor;
+        public ColorChangeIndex MinColorIndex;
+        public ColorChangeIndex MaxColorIndex;
         public Vector2 MinVelocity;
         public Vector2 MaxVelocity;
         public Vector2 MinSize;
@@ -52,13 +50,14 @@ namespace EdgeLibrary
         {
             particles = new List<Particle>();
 
-            MinStartColor = Color.White;
-            MaxStartColor = MinStartColor;
-            MinFinishColor = MinStartColor;
-            MaxFinishColor = MaxStartColor;
+            MinColorIndex = new ColorChangeIndex(Color.White);
+            MaxColorIndex = MinColorIndex;
             MinVelocity = -Vector2.One;
             MaxVelocity = Vector2.One*2;
-            MinSize = new Vector2(Texture.Width, Texture.Height);
+            if (Texture != null)
+            {
+                MinSize = new Vector2(Texture.Width, Texture.Height);
+            }
             MaxSize = MinSize;
             GrowSpeed = 0;
             MinStartRotation = 0;
@@ -74,15 +73,10 @@ namespace EdgeLibrary
             timeSinceLastEmit = TimeSpan.Zero;
         }
 
-        public void SetStartColor(Color c)
+        public void SetColor(Color color)
         {
-            MinStartColor = c;
-            MaxStartColor = c;
-        }
-        public void SetFinishColor(Color c)
-        {
-            MinFinishColor = c;
-            MaxFinishColor = c;
+            MinColorIndex = new ColorChangeIndex(color);
+            MaxColorIndex = MinColorIndex;
         }
         public void SetVelocity(Vector2 v)
         {
@@ -137,8 +131,7 @@ namespace EdgeLibrary
             particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
             particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y);
             particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X);
-            particle.StartColor = Color.Lerp(MinStartColor, MaxStartColor, (float)InputManager.RandomDouble());
-            particle.FinishColor = Color.Lerp(MinFinishColor, MaxFinishColor, (float)InputManager.RandomDouble());
+            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, (float)InputManager.RandomDouble());
 
             particles.Add(particle);
 

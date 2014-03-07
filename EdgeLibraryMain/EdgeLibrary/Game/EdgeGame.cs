@@ -63,7 +63,7 @@ namespace EdgeLibrary
 
             Scenes = new List<Scene>();
             Scenes.Add(new Scene("Main"));
-            SelectedScene = mainScene();
+            SelectedScene = MainScene();
 
             ResourceManager.Init(c);
             SoundManager.Init(c);
@@ -73,7 +73,7 @@ namespace EdgeLibrary
             Camera.UpdateWithGame();
         }
 
-        public static Scene mainScene()
+        public static Scene MainScene()
         {
             foreach (Scene Scene in Scenes)
             {
@@ -95,7 +95,7 @@ namespace EdgeLibrary
                     return Scene;
                 }
             }
-            return mainScene();
+            return MainScene();
         }
 
         public static void AddScene(Scene scene)
