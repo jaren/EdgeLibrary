@@ -18,13 +18,13 @@ namespace EdgeLibrary
     {
         public static void Init()
         {
-            givenIDs = new List<long>();
+            givenIDs = new List<int>();
         }
 
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
 
-        private static List<long> givenIDs;
+        private static List<int> givenIDs;
 
         /// <summary>
         /// Retrieves a color by its name.
@@ -142,11 +142,10 @@ namespace EdgeLibrary
 
         public static string RandomID()
         {
-            // TODO: 999999 is a magic number
-            long id = InputManager.Random.Next(999999);
+            int id = InputManager.RandomInt(int.MaxValue);
             while (givenIDs.Contains(id))
             {
-                id = InputManager.Random.Next(999999);
+                id = InputManager.RandomInt(int.MaxValue);
             }
             return Convert.ToString(id);
         }
