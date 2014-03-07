@@ -124,10 +124,10 @@ namespace EdgeLibrary
 
         public static string RandomID()
         {
-            long id = InputManager.RandomInt(999999);
+            long id = InputManager.Random.Next(999999);
             while (givenIDs.Contains(id))
             {
-                id = InputManager.RandomInt(999999);
+                id = InputManager.Random.Next(999999);
             }
             return Convert.ToString(id);
         }
