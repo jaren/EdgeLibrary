@@ -27,11 +27,9 @@ namespace EdgeLibrary
 
         public bool shouldRemove;
 
-        public Particle(string id, string eTextureName, float eLifeTime, Vector2 eVelocity, float eRotateSpeed, float eGrowSpeed)
-            : base(id, eTextureName, Vector2.Zero)
+        public Particle(string id, string eTextureName, float eLifeTime, float eRotateSpeed, float eGrowSpeed) : base(id, eTextureName, Vector2.Zero)
         {
             lifeTime = eLifeTime;
-            velocity = eVelocity;
             rotateSpeed = eRotateSpeed;
             growSpeed = eGrowSpeed;
 
@@ -45,10 +43,6 @@ namespace EdgeLibrary
 
             livedTime += gameTime.ElapsedGameTime;
 
-            if (OriginPoint.X > Math.Abs(Width) || OriginPoint.Y > Math.Abs(Height))
-            {
-            }
-
             if (livedTime.TotalMilliseconds >= lifeTime)
             {
                 shouldRemove = true;
@@ -56,7 +50,7 @@ namespace EdgeLibrary
             else
             {
                 Position += velocity;
-                Style.Rotation += rotateSpeed;
+                Style.Rotation += rotateSpeed/10;
                 Width += growSpeed;
                 Height += growSpeed;
 

@@ -30,7 +30,15 @@
 	        }
 	
 	        #region GENERATING TOOLS
-            public static Texture2D Colorize(Texture2D texture, Color color, float factor)
+            public static Texture2D Copy(Texture2D texture)
+            {
+                Color[] colors = new Color[texture.Width * texture.Height];
+                texture.GetData<Color>(colors);
+                Texture2D returnTexture = EdgeGame.NewTexture(texture.Width, texture.Height);
+                returnTexture.SetData<Color>(colors);
+                return returnTexture;
+            }
+            public static void Colorize(Texture2D texture, Color color, float factor)
             {
                 Texture2D returnTexture = texture;
                 Color[] colorData = new Color[texture.Width * texture.Height];
@@ -44,7 +52,6 @@
                 }
 
                 returnTexture.SetData<Color>(colorData);
-                return returnTexture;
             }
             public static Texture2D SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
             {
@@ -149,19 +156,19 @@
 	        #region DRAWING TOOLS
 	        public static void DrawPixelAt(Vector2 position, Color color)
 	        {
-	            EdgeGame.drawTexture(Pixel, new Rectangle((int)position.X, (int)position.Y, 1, 1), null, color, 0f, Vector2.Zero, SpriteEffects.None);
+                EdgeGame.drawTexture(Pixel, position, null, color, Vector2.One, 0, new Vector2(0.5f), SpriteEffects.None);
 	        }
-	        public static void DrawRectangleAt(Vector2 position, float width, float height, Color color)
+	        public static void DrawFilledRectangleAt(Vector2 position, float width, float height, Color color)
 	        {
 	            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y, (int)width, (int)height);
-	            EdgeGame.drawTexture(Pixel, rectangle, null, color, 0f, Vector2.Zero, SpriteEffects.None);
+                EdgeGame.drawTexture(Pixel, position, null, color, new Vector2(width, height), 0, Vector2.Zero, SpriteEffects.None);
 	        }
             public static void DrawHollowRectangleAt(Rectangle rectangle, Color color, int width)
             {
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), width, rectangle.Height, color);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Right, rectangle.Top), width, rectangle.Height, color);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, width, color);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, width, color);
+                TextureTools.DrawFilledRectangleAt(new Vector2(rectangle.Left, rectangle.Top), width, rectangle.Height, color);
+                TextureTools.DrawFilledRectangleAt(new Vector2(rectangle.Right, rectangle.Top), width, rectangle.Height, color);
+                TextureTools.DrawFilledRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, width, color);
+                TextureTools.DrawFilledRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, width, color);
             }
 	        #endregion
 	    }

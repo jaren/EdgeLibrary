@@ -60,7 +60,7 @@ namespace EdgeLibrary
 
         public static Color RandomColor(Color min, Color max)
         {
-            return new Color(InputManager.Random.Next(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.Random.Next(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.Random.Next(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.Random.Next(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
+            return new Color(InputManager.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
         }
 
         public static Vector2 DecreaseVector(Vector2 vector, float amount)
@@ -124,10 +124,10 @@ namespace EdgeLibrary
 
         public static string RandomID()
         {
-            long id = InputManager.Random.Next(999999);
+            long id = InputManager.RandomInt(999999);
             while (givenIDs.Contains(id))
             {
-                id = InputManager.Random.Next(999999);
+                id = InputManager.RandomInt(999999);
             }
             return Convert.ToString(id);
         }

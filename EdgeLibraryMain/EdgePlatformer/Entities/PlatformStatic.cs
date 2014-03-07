@@ -24,7 +24,7 @@ namespace EdgeLibrary.Platform
         {
             foreach (PlatformSprite sprite in sprites)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && sprite.BoundingBox.Intersects(BoundingBox))
+                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && true) //TOCHANGE
                 {
                         if (Collision != null)
                         {

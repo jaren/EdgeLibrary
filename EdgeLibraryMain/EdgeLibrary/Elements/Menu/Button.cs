@@ -100,9 +100,9 @@ namespace EdgeLibrary
 
             base.updateElement(gameTime);
 
-            Vector2 mousePosition = InputManager.MousePos();
+            Vector2 mousePosition = InputManager.MousePosition;
 
-            if (BoundingBox.Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
+            if (GetBoundingBox().Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
             {
                 Style = MouseOverStyle;
                 Scale = MouseOverScale;

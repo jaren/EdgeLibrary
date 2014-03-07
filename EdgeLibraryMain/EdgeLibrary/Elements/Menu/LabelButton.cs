@@ -26,32 +26,53 @@ namespace EdgeLibrary
         {
             Font = ResourceManager.getFont(eFontName);
             Text = eText;
-            reloadBoundingBox();
+            reloadDimensions();
         }
 
-        public override void  reloadBoundingBox()
-        { 
+        public override void reloadDimensions()
+        {
             if (Font != null)
             {
                 Vector2 Measured = Font.MeasureString(Text);
-                BoundingBox = new Rectangle((int)(Position.X - Measured.X / 2), (int)(Position.Y - Measured.Y / 2), (int)Measured.X, (int)Measured.Y);
-                _width = BoundingBox.Width;
-                _height = BoundingBox.Height;
+
+                _width = Measured.X;
+                _height = Measured.Y;
+
+                reloadOriginPoint();
+            }
+        }
+
+        protected override void reloadOriginPoint()
+        {
+            if (Font != null)
+            {
+                Vector2 Measured = Font.MeasureString(Text);
+                originPoint = new Vector2(Measured.X / 2, Measured.Y / 2);
+            }
+        }
+
+        protected override void reloadActualScale()
+        {
+            if (Font != null)
+            {
+                Vector2 measured = Font.MeasureString(Text);
+                actualScale = new Vector2(_width / measured.X, _height / measured.Y);
+                actualScale *= Scale;
             }
         }
 
         protected override void  drawElement(GameTime gameTime)
         {
-            EdgeGame.drawString(Font, Text, new Vector2(Position.X-Font.MeasureString(Text).X/2, Position.Y-Font.MeasureString(Text).Y / 2), Style.Color, Style.Rotation, OriginPoint, Scale, Style.Effects);
+            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, originPoint, actualScale, Style.Effects);
         }
 
         protected override void updateElement(GameTime gameTime)
         {
             base.UpdateSpritePortion(gameTime);
 
-            Vector2 mousePosition = InputManager.MousePos();
+            Vector2 mousePosition = InputManager.MousePosition;
 
-            if (BoundingBox.Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
+            if (GetBoundingBox().Contains(new Point((int)InputManager.MousePosition.X, (int)InputManager.MousePosition.Y)))
             {
                 Style = MouseOverStyle;
                 Scale = MouseOverScale;

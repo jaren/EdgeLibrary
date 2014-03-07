@@ -11,26 +11,26 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public enum SpriteDrawType
-    {
-        NoRatio,
-        KeepWidth,
-        KeepHeight
-    }
-
     public struct SpriteStyle
     {
         public SpriteEffects Effects;
-        public SpriteDrawType DrawType;
-        public float Rotation;
+        public float Rotation { get { return _rotation; } set { _rotation = value; reloadRotation(); } }
+        private float _rotation;
         public Color Color;
 
-        public SpriteStyle(SpriteEffects effects, SpriteDrawType drawType, float rotation, Color color)
+        public SpriteStyle(SpriteEffects effects, float rotation, Color color)
         {
             Effects = effects;
-            DrawType = drawType;
-            Rotation = rotation;
+            _rotation = rotation;
             Color = color;
+        }
+
+        private void reloadRotation()
+        {
+            if (_rotation > 360)
+            {
+                _rotation %= 360;
+            }
         }
     }
 
@@ -49,22 +49,23 @@ namespace EdgeLibrary
     //Provides a base textured game object
     public class Sprite : Element
     {
-        public Rectangle BoundingBox { get; set; }
-        public override Vector2 Position { get { return _position; } set { _position = value; reloadBoundingBox(); } }
-        public float Width { get { return _width; } set { _width = value; reloadBoundingBox(); } }
-        public float Height { get { return _height; } set { _height = value; reloadBoundingBox(); } }
-        public Vector2 Scale { get { return _scale; } set { _scale = value; reloadBoundingBox(); } }
+
+        public override Vector2 Position { get; set; }
+        public float Width { get { return _width; } set { _width = value; reloadOriginPoint(); } }
+        public float Height { get { return _height; } set { _height = value; reloadOriginPoint(); } }
+        public Vector2 Scale { get { return _scale; } set { _scale = value; reloadActualScale(); } }
         public Effect TextureEffect;
+        protected Vector2 originPoint { get; set; }
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
         public StyleCapability StyleChanger;
         private Texture2D _texture;
         public SpriteStyle Style;
-        protected Vector2 _position;
+        protected Vector2 actualScale;
+        protected Vector2 _scale;
         protected float _width;
         protected float _height;
-        protected Vector2 _scale;
 
         protected List<string> currentlyCollidingWithIDs;
 
@@ -76,8 +77,8 @@ namespace EdgeLibrary
 
         public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
-            Style = new SpriteStyle(SpriteEffects.None, SpriteDrawType.NoRatio, 0f, Color.White);
-            _position = ePosition;
+            Style = new SpriteStyle(SpriteEffects.None, 0f, Color.White);
+            Position = ePosition;
             _width = 0;
             _height = 0;
 
@@ -104,7 +105,7 @@ namespace EdgeLibrary
                     _height = Texture.Height;
                 }
 
-                reloadBoundingBox();
+                reloadOriginPoint();
             }
 
             CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, ID);
@@ -116,7 +117,7 @@ namespace EdgeLibrary
         {
             _width = eWidth;
             _height = eHeight;
-            reloadBoundingBox();
+            reloadDimensions();
         }
 
         public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition, eWidth, eHeight)
@@ -126,26 +127,37 @@ namespace EdgeLibrary
             Scale = eScale;
         }
 
+        public virtual Rectangle GetBoundingBox()
+        {
+            return new Rectangle((int)(Position.X - _width / 2), (int)(Position.Y - _height / 2), (int)_width, (int)_height);
+        }
+
         public virtual void reloadDimensions()
         {
             if (Texture != null)
             {
                 _width = Texture.Width;
                 _height = Texture.Height;
-                reloadBoundingBox();
+                reloadOriginPoint();
             }
         }
 
-        public virtual void reloadBoundingBox()
+        protected virtual void reloadOriginPoint()
         {
-            BoundingBox = new Rectangle((int)_position.X - ((int)_width / 2 * (int)Scale.X), (int)_position.Y - ((int)_height / 2 * (int)Scale.Y), (int)_width * (int)Scale.X, (int)_height * (int)Scale.Y);
-            reloadOriginPoint();
+            if (Texture != null)
+            {
+                originPoint = new Vector2(Texture.Width / 2f, Texture.Height / 2f);
+                reloadActualScale();
+            }
         }
 
-        protected void reloadOriginPoint()
+        protected virtual void reloadActualScale()
         {
-            OriginPoint = new Vector2(BoundingBox.Width / 2, BoundingBox.Height / 2);
-
+            if (Texture != null)
+            {
+                actualScale = new Vector2(_width / Texture.Width, _height / Texture.Height);
+                actualScale *= Scale;
+            }
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -192,13 +204,6 @@ namespace EdgeLibrary
             }
         }
 
-        
-        public Rectangle getNewBoundingBox()
-        {
-            return new Rectangle(BoundingBox.X + (int)OriginPoint.X, BoundingBox.Y + (int)OriginPoint.Y, BoundingBox.Width, BoundingBox.Height);
-        }
-         
-
         protected override void drawElement(GameTime gameTime)
         {
             if (TextureEffect != null)
@@ -206,18 +211,7 @@ namespace EdgeLibrary
                 TextureEffect.ApplyEffect(Texture);
             }
 
-            switch (Style.DrawType)
-            {
-                case SpriteDrawType.NoRatio:
-                    base.DrawTexture(null, Texture, getNewBoundingBox(), Style.Color, Style.Rotation, Style.Effects);
-                    break;
-                case SpriteDrawType.KeepHeight:
-                    base.DrawWithHeight(null, Texture, Height, Style.Color, Style.Rotation, Style.Effects);
-                    break;
-                case SpriteDrawType.KeepWidth:
-                    base.DrawWithWidth(null, Texture, Width, Style.Color, Style.Rotation, Style.Effects);
-                    break;
-            }
+            EdgeGame.drawTexture(Texture, Position, null, Style.Color, actualScale, Style.Rotation, originPoint, Style.Effects);
         }
 
         public virtual void DebugDraw(Color color)

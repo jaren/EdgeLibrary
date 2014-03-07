@@ -136,11 +136,7 @@ namespace EdgeLibrary.Platform
         {
             foreach (PlatformSprite sprite in sprites)
             {
-                Rectangle rectangle = sprite.BoundingBox;
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), 1, rectangle.Height, EdgeGame.DebugDrawColor);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Right, rectangle.Top), 1, rectangle.Height, EdgeGame.DebugDrawColor);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Top), rectangle.Width, 1, EdgeGame.DebugDrawColor);
-                TextureTools.DrawRectangleAt(new Vector2(rectangle.Left, rectangle.Bottom), rectangle.Width, 1, EdgeGame.DebugDrawColor);
+                sprite.DebugDraw(EdgeGame.DebugDrawColor);
             }
         }
     }

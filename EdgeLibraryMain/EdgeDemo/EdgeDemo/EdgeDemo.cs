@@ -13,13 +13,12 @@ using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
-    /// <summary>
-    /// TODO:
-    /// -Change all the Draw calls to the new version!
-    /// </summary>
-
     public class EdgeDemo : Microsoft.Xna.Framework.Game
     {
+        /// <summary>
+        /// Replace all of the "TOCHANGE" in the platform library with collision checks
+        /// </summary>
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -52,7 +51,7 @@ namespace EdgeDemo
             ResourceManager.LoadFont("MediumFont");
             ResourceManager.LoadFont("LargeFont");
 
-            ResourceManager.addTexture("modified", TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 10));
+            TextureTools.Colorize(ResourceManager.getTexture("player"), Color.White, 10);
 
             EdgeGame.CollisionsInTextSprites = true;
 
@@ -62,24 +61,26 @@ namespace EdgeDemo
             colorChanger.StyleChanger.ColorChange(MathTools.RandomColor(), MathTools.RandomColor(), 1000);
             colorChanger.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
 
-            TextSprite tSprite = new TextSprite("SmallFont", "Test", new Vector2(500, 500), Color.Purple);
+            //TextSprite tSprite = new TextSprite("SmallFont", "Test", new Vector2(500, 500), Color.Purple);
 
-            Sprite sprite = new Sprite("player", Vector2.One * 300);
+            //Sprite sprite = new Sprite("player", Vector2.One * 300);
             
             ParticleEmitter emitter = new ParticleEmitter("Pixel", Vector2.One * 400);
+            //emitter.BlendState = BlendState.AlphaBlend;
             emitter.update += new Element.ElementUpdateEvent(emitterUpdate);
-            emitter.SetRotationSpeed(10);
+            emitter.SetRotationSpeed(100f);
             emitter.SetLife(10000);
-            emitter.EmitWait = 99999999;
-            emitter.SetSize(new Vector2(10, 10));
+            emitter.EmitWait = 0;
+            emitter.SetSize(new Vector2(1));
+            emitter.GrowSpeed = 1;
             emitter.SetWidthHeight(10, 10);
-            emitter.EmitSingleParticle();
              
         }
 
         void emitterUpdate(Element e, GameTime gameTime)
         {
             ((ParticleEmitter)e).SetStartColor(colorChanger.Style.Color);
+            ((ParticleEmitter)e).SetFinishColor(colorChanger.Style.Color);
         }
 
         void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)

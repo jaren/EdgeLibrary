@@ -21,10 +21,12 @@ namespace EdgeLibrary
         private static MouseState mouse;
         private static MouseState previousMouse;
 
-        public static Random Random;
+        private static Random random;
+        private static int previousGiven;
         public static Sprite MouseSprite;
+        public static Vector2 MousePosition;
 
-        public static void Init() { Random = new Random(); MouseSprite = new Sprite("MouseSprite", "Pixel", Vector2.Zero); MouseSprite.DrawLayer = 100;  MouseSprite.Visible = false; }
+        public static void Init() { random = new Random(); MouseSprite = new Sprite("MouseSprite", "Pixel", Vector2.Zero); MouseSprite.DrawLayer = 100; MouseSprite.Visible = false; previousGiven = 0; }
 
         public static void Update(GameTime gameTime)
         {
@@ -32,8 +34,72 @@ namespace EdgeLibrary
             previousMouse = mouse;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
-            MouseSprite.Position = MousePos();
+            MouseSprite.Position = getMousePos();
+            MousePosition = getMousePos();
             MouseSprite.Update(gameTime);
+        }
+
+        //Used for Vector2, etc. when two random numbers need to be generated at the same time
+        public static int AccurateRandomInt(int min, int max)
+        {
+            //Checks if previous call was the same as this one
+           if(previousGiven == RandomInt(min, max))
+           {
+               //Chooses whether to check for a lower or higher number first
+               if (RandomInt(1, 3) == 2)
+               {
+                   //Checks if lower or higher number is possible
+                   if (previousGiven + 1 >= min && previousGiven + 1 <= max)
+                   {
+                       return previousGiven += 1;
+                   }
+                   else if (previousGiven - 1 >= min && previousGiven - 1 <= max)
+                   {
+                       return previousGiven -= 1;
+                   }
+               }
+               else
+               {
+                   //Checks if lower or higher number is possible
+                   if (previousGiven - 1 >= min && previousGiven - 1 <= max)
+                   {
+                       return previousGiven -= 1;
+                   }
+                   else if (previousGiven + 1 >= min && previousGiven + 1 <= max)
+                   {
+                       return previousGiven += 1;
+                   }
+               }
+           }
+           previousGiven = RandomInt(min, max);
+           return previousGiven;
+        }
+        public static int RandomInt(int min, int max)
+        {
+            return random.Next(min, max);
+        }
+        public static int RandomInt(int max)
+        {
+            return random.Next(max);
+        }
+        public static int RandomInt()
+        {
+            return random.Next();
+        }
+        public static float RandomFloat(float min, float max)
+        {
+            if (min + 1 > max)
+            {
+                return (float)MathHelper.Lerp(min, max, 0.5f);
+            }
+            else
+            {
+                return RandomInt((int)min, (int)max - 1) + (float)RandomDouble();
+            }
+        }
+        public static double RandomDouble()
+        {
+            return random.NextDouble();
         }
 
         public static Keys[] KeysPressed()
@@ -41,7 +107,7 @@ namespace EdgeLibrary
             return keyboard.GetPressedKeys();
         }
 
-        public static Vector2 MousePos()
+        private static Vector2 getMousePos()
         {
             return new Vector2(mouse.X, mouse.Y);
         }

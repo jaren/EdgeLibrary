@@ -60,7 +60,7 @@ namespace EdgeLibrary
         {
             MinMilliseconds = min;
             MaxMilliseconds = max;
-            CurrentMillisecondsWait = InputManager.Random.Next(MinMilliseconds, MaxMilliseconds);
+            CurrentMillisecondsWait = InputManager.RandomInt(MinMilliseconds, MaxMilliseconds);
             elapsedMilliseconds = 0;
             currentValue = 0;
         }
@@ -78,7 +78,7 @@ namespace EdgeLibrary
                     Tick();
                 }
 
-                CurrentMillisecondsWait = InputManager.Random.Next(MinMilliseconds, MaxMilliseconds);
+                CurrentMillisecondsWait = InputManager.RandomInt(MinMilliseconds, MaxMilliseconds);
             }
         }
     }

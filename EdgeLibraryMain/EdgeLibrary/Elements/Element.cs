@@ -20,7 +20,7 @@ namespace EdgeLibrary
         public virtual Vector2 Position { get; set; }
         public virtual bool Visible { get; set; }
         public virtual int DrawLayer { get; set; }
-        public virtual Vector2 OriginPoint { get; set; }
+        public virtual BlendState BlendState { get; set; }
         public virtual MovementCapability Movement { get; set; }
 
         private List<Capability> Capabilities;
@@ -34,9 +34,7 @@ namespace EdgeLibrary
             ID = id;
 
             Visible = true;
-
-            //XNA Default
-            OriginPoint = Vector2.Zero;
+            BlendState = BlendState.AlphaBlend; 
 
             //Each element has a new list of capabilities, not just references to the old ones
             Capabilities = new List<Capability>() {};
@@ -104,7 +102,25 @@ namespace EdgeLibrary
         }
         public void Draw(GameTime gameTime)
         {
-            if (Visible) { drawElement(gameTime); if (draw != null) { draw(this, gameTime); } }
+            if (Visible) 
+            { 
+                if (BlendState != BlendState.AlphaBlend)
+                {
+                    EdgeGame.RestartSpriteBatch(SpriteSortMode.Deferred, BlendState);
+                }
+                
+                drawElement(gameTime);
+                
+                if (BlendState != BlendState.AlphaBlend)
+                {
+                    EdgeGame.RestartSpriteBatch();
+                }
+                
+                if (draw != null)
+                {
+                    draw(this, gameTime);
+                }
+            }
         }
 
         protected virtual void updateElement(GameTime gameTime) { }

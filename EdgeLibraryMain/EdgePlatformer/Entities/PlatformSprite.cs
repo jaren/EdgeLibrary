@@ -90,14 +90,14 @@ namespace EdgeLibrary.Platform
             {
                 if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
                 {
-                    if (sprite.BoundingBox.Intersects(BoundingBox))
+                    if (true) //TOCHANGE
                     {
                         if (Collision != null)
                         {
                             Collision(this, sprite, gameTime);
                         }
 
-                        Rectangle collision = Rectangle.Intersect(BoundingBox, sprite.BoundingBox);
+                        Rectangle collision = Rectangle.Intersect(new Rectangle(), new Rectangle()); //TOCHANGE
 
                         //If it's collided in horizontally more than vertical
                         if (Math.Abs(collision.Width) > Math.Abs(collision.Height))

@@ -33,7 +33,7 @@ namespace EdgeLibrary
         {
             base.UpdateSpritePortion(gameTime);
 
-            Vector2 mousePosition = InputManager.MousePos();
+            Vector2 mousePosition = InputManager.MousePosition;
 
             if (Vector2.Distance(Position, mousePosition) <= Radius)
             {

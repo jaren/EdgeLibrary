@@ -34,7 +34,6 @@ namespace EdgeLibrary
         public float MaxLife;
         public float MinLife;
         public float EmitWait;
-        public BlendState DrawState;
         public int MaxParticles;
 
         protected List<Particle> particles;
@@ -72,7 +71,6 @@ namespace EdgeLibrary
             MaxParticles = 10000;
 
             particlesToRemove = new List<Particle>();
-            DrawState = BlendState.Additive;
             timeSinceLastEmit = TimeSpan.Zero;
         }
 
@@ -115,38 +113,32 @@ namespace EdgeLibrary
         {
            _width = width;
            _height = height;
-           reloadBoundingBox();
         }
 
         public void EmitSingleParticle()
         {
-            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.Random.Next((int)MinLife, (int)MaxLife), new Vector2(InputManager.Random.Next((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.Random.Next((int)MinVelocity.Y, (int)MaxVelocity.Y)), InputManager.Random.Next((int)MinRotationSpeed, (int)MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
-            if (InputManager.Random.Next(1, 3) == 2)
+
+            //It sets the velocity Y in a separate line to prevent the X and Y from being the same "random" number
+            particle.velocity = new Vector2(InputManager.AccurateRandomInt((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.AccurateRandomInt((int)MinVelocity.Y, (int)MaxVelocity.Y));
+
+            if (InputManager.RandomInt(1, 3) == 2)
             {
-                particle.velocity += new Vector2((float)InputManager.Random.NextDouble());
+                particle.velocity += new Vector2((float)InputManager.RandomDouble());
             }
             else
             {
-                particle.velocity -= new Vector2((float)InputManager.Random.NextDouble());
+                particle.velocity -= new Vector2((float)InputManager.RandomDouble());
             }
             particle.Texture = Texture;
             particle.CollisionBody = null;
-            particle.Position = new Vector2(InputManager.Random.Next(BoundingBox.Left, BoundingBox.Right), InputManager.Random.Next(BoundingBox.Top, BoundingBox.Bottom));
-            particle.Style.Rotation = InputManager.Random.Next((int)MinStartRotation, (int)MaxStartRotation);
-            particle.Height = InputManager.Random.Next((int)MinSize.Y, (int)MaxSize.Y);
-            particle.Width = InputManager.Random.Next((int)MinSize.X, (int)MaxSize.X);
-            particle.StartColor = Color.Transparent;
-            particle.StartColor.R = (byte)InputManager.Random.Next(Math.Min(MinStartColor.R, MaxStartColor.R), Math.Max(MinStartColor.R, MaxStartColor.R));
-            particle.StartColor.G = (byte)InputManager.Random.Next(Math.Min(MinStartColor.G, MaxStartColor.G), Math.Max(MinStartColor.G, MaxStartColor.G));
-            particle.StartColor.B = (byte)InputManager.Random.Next(Math.Min(MinStartColor.B, MaxStartColor.B), Math.Max(MinStartColor.B, MaxStartColor.B));
-            particle.StartColor.A = (byte)InputManager.Random.Next(Math.Min(MinStartColor.A, MaxStartColor.A), Math.Max(MinStartColor.A, MaxStartColor.A));
-
-            particle.FinishColor = Color.Transparent;
-            particle.FinishColor.R = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.R, MaxFinishColor.R), Math.Max(MinFinishColor.R, MaxFinishColor.R));
-            particle.FinishColor.G = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.G, MaxFinishColor.G), Math.Max(MinFinishColor.G, MaxFinishColor.G));
-            particle.FinishColor.B = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.B, MaxFinishColor.B), Math.Max(MinFinishColor.B, MaxFinishColor.B));
-            particle.FinishColor.A = (byte)InputManager.Random.Next(Math.Min(MinFinishColor.A, MaxFinishColor.A), Math.Max(MinFinishColor.A, MaxFinishColor.A));
+            particle.Position = new Vector2(InputManager.RandomInt((int)(Position.X - Width / 2), (int)(Position.X + Width / 2)), InputManager.RandomInt((int)(Position.Y - Height / 2), (int)(Position.Y + Height / 2)));
+            particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
+            particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y);
+            particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X);
+            particle.StartColor = Color.Lerp(MinStartColor, MaxStartColor, (float)InputManager.RandomDouble());
+            particle.FinishColor = Color.Lerp(MinFinishColor, MaxFinishColor, (float)InputManager.RandomDouble());
 
             particles.Add(particle);
 
@@ -158,8 +150,6 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            EdgeGame.RestartSpriteBatch(SpriteSortMode.Deferred, DrawState);
-
             foreach (Particle particle in particles)
             {
                 if (!particlesToRemove.Contains(particle))
@@ -167,8 +157,6 @@ namespace EdgeLibrary
                     particle.Draw(gameTime);
                 }
             }
-            
-            EdgeGame.RestartSpriteBatch();
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -210,7 +198,7 @@ namespace EdgeLibrary
 
         public override void DebugDraw(Color color)
         {
-            TextureTools.DrawHollowRectangleAt(BoundingBox, color, 1);
+            TextureTools.DrawHollowRectangleAt(GetBoundingBox(), color, 1);
         }
     }
 }

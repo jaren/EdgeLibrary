@@ -24,17 +24,12 @@ namespace EdgeLibrary
         private TextSprite MouseSprite;
         private TextSprite FPSSprite;
         private TextSprite ScenesSprite;
-        private MultiTextSprite ElementsSprite;
+        private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
-        private MultiTextSprite VariablesSprite;
-
-        private Dictionary<string, object> trackedVariables;
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
-            DrawLayer = 100;
-
-            trackedVariables = new Dictionary<string, object>();
+            DrawLayer = 100;;
 
             Position = position;
 
@@ -47,16 +42,11 @@ namespace EdgeLibrary
             ScenesSprite = new TextSprite(string.Format("{0}_ScenesSprite", ID), fontName, "Scenes (0):", Vector2.Zero, drawColor);
             AddElement(ScenesSprite);
 
-            ElementsSprite = new MultiTextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor, EdgeGame.WindowSize.X - 10, 1);
-            ElementsSprite.CenterText = false;
+            ElementsSprite = new TextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor);
             AddElement(ElementsSprite);
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
             AddElement(KeysSprite);
-
-            VariablesSprite = new MultiTextSprite(string.Format("{0}_VariablesSprite", ID), fontName, "Tracked variables (0):", Vector2.Zero, drawColor, EdgeGame.WindowSize.X - 10, 1);
-            VariablesSprite.CenterText = false;
-            AddElement(VariablesSprite);
 
             Font = ResourceManager.getFont(fontName);
             _drawColor = drawColor;
@@ -81,11 +71,8 @@ namespace EdgeLibrary
             ScenesSprite.Position = new Vector2(_font.MeasureString(ScenesSprite.Text).X / 2, YDifference * 4);
             ScenesSprite.Position += Position;
 
-            ElementsSprite.Position = new Vector2(0, YDifference * 5);
+            ElementsSprite.Position = new Vector2(_font.MeasureString(ElementsSprite.Text).X / 2, YDifference * 5);
             ElementsSprite.Position += Position;
-
-            VariablesSprite.Position = new Vector2(0, YDifference * 6);
-            VariablesSprite.Position += Position;
         }
 
         private void reloadTextSprites()
@@ -101,15 +88,13 @@ namespace EdgeLibrary
             KeysSprite.Font = _font;
             KeysSprite.Style.Color = _drawColor;
             KeysSprite.DrawLayer = DrawLayer;
-            VariablesSprite.Font = _font;
-            VariablesSprite.Style.Color = _drawColor;
         }
 
         protected override void updateElement(GameTime gameTime)
         {
             base.updateElement(gameTime);
 
-            MouseSprite.Text = string.Format("Mouse Position: ({0}, {1})", InputManager.MousePos().X, InputManager.MousePos().Y);
+            MouseSprite.Text = string.Format("Mouse Position: ({0}, {1})", InputManager.MousePosition.X, InputManager.MousePosition.Y);
             FPSSprite.Text = string.Format("FPS: {0}", FPSCounter.FPS);
             ElementsSprite.Text = string.Format("Elements in current scene ({0}):", EdgeGame.SelectedScene.elements.Count);
             foreach (Element element in EdgeGame.SelectedScene.elements)
@@ -126,34 +111,7 @@ namespace EdgeLibrary
             {
                 KeysSprite.Text += string.Format(" {0}, ", Convert.ToString(k));
             }
-            VariablesSprite.Text = string.Format("Variables ({0}):", trackedVariables.Count);
-            foreach (KeyValuePair<string, object> pair in trackedVariables)
-            {
-                VariablesSprite.Text += string.Format(" {0}='{1}', ", pair.Key, pair.Value);
-            }
             reloadTextSpritesPosition();
         }
-
-        public void AddTrackedVariable(string id, ref int variable)
-        {
-            trackedVariables.Add(id, variable);
-        }
-
-        public void AddTrackedVariable(string id, ref bool variable)
-        {
-            trackedVariables.Add(id, variable);
-        }
-
-        public void AddTrackedVariable(string id, ref float variable)
-        {
-            trackedVariables.Add(id, variable);
-        }
-
-        public void AddTrackedVariable(string id, ref string variable)
-        {
-            trackedVariables.Add(id, variable);
-        }
-
-
     }
 }

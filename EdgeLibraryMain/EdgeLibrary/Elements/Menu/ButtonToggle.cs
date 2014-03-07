@@ -46,7 +46,7 @@ namespace EdgeLibrary
 
             if (!InputManager.LeftClick()) { HasReleasedMouseClick = true; }
 
-            if (BoundingBox.Contains(new Rectangle((int)InputManager.MousePos().X, (int)InputManager.MousePos().Y, 1, 1)))
+            if (GetBoundingBox().Contains(new Rectangle((int)InputManager.MousePosition.X, (int)InputManager.MousePosition.Y, 1, 1)))
             {
                 Style = MouseOverStyle;
                 Scale = MouseOverScale;
