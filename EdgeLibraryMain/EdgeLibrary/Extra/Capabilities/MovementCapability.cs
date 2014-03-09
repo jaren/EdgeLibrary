@@ -21,6 +21,7 @@ namespace EdgeLibrary
     public enum MovementType
     {
         Move,
+        MoveVelocity,
         Follow,
         PointRotation,
         Clamp,
@@ -30,6 +31,7 @@ namespace EdgeLibrary
     public class MovementCapability : Capability
     {
         protected Vector2 MoveTarget;
+        protected Vector2 MoveVelocity;
         protected Element FollowTarget;
         protected Element ClampTarget;
         protected Vector2 ClampDifference;
@@ -68,6 +70,9 @@ namespace EdgeLibrary
                         FinishedMove(this, element);
                     }
                     break;
+                case MovementType.MoveVelocity:
+                    element.Position += MoveVelocity * Speed;
+                    break;
                 case MovementType.PointRotation:
                     float dist = Vector2.Distance(element.Position, RotateTarget);
                     float angleMeasure = (float)Math.Atan2(element.Position.Y - RotateTarget.Y, element.Position.X - RotateTarget.X);
@@ -98,6 +103,15 @@ namespace EdgeLibrary
             MovementType = MovementType.Move;
             STOPPED = false;
         }
+
+        public void MoveBy(Vector2 target, float speed)
+        {
+            MoveVelocity = target;
+            Speed = speed;
+            MovementType = MovementType.MoveVelocity;
+            STOPPED = false;
+        }
+
 
         public void FollowElement(Element target, float speed)
         {

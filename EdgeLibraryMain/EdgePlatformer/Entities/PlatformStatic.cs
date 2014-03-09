@@ -17,6 +17,7 @@ namespace EdgeLibrary.Platform
     {
         public new event CollisionEvent Collision;
 
+        public PlatformStatic(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
         public PlatformStatic(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
 
         //Doesn't move in collisions
@@ -24,7 +25,7 @@ namespace EdgeLibrary.Platform
         {
             foreach (PlatformSprite sprite in sprites)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && true) //TOCHANGE
+                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && GetBoundingBox().Intersects(sprite.GetBoundingBox()))
                 {
                         if (Collision != null)
                         {

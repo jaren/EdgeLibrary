@@ -35,7 +35,7 @@ namespace EdgeLibrary.Platform
 
             for (int i = 0; i < colors.Length; i++)
             {
-
+                //Unfinished
             }
             return level;
         }
@@ -104,7 +104,6 @@ namespace EdgeLibrary.Platform
 
         public override void Update(GameTime gameTime)
         {
-
             for (int i = 0; i < sprites.Count; i++)
             {
                 sprites[i].UpdatePlatform(gameTime, Gravity, sprites);

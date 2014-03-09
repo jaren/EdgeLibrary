@@ -28,7 +28,7 @@ namespace EdgeLibrary.Platform
     //The base for all platform sprites
     public class PlatformSprite : Sprite
     {
-        private struct Force
+        protected struct Force
         {
             public Vector2 Impulse;
             public float Deceleration;
@@ -57,17 +57,19 @@ namespace EdgeLibrary.Platform
         public float Deceleration;
         public float MaxVelocity;
 
-        private List<Force> forces;
+        protected List<Force> forces;
 
-        private float fallSpeed;
+        protected float fallSpeed;
 
         public bool collidingUp;
         public bool collidingDown;
         public bool collidingLeft;
         public bool collidingRight;
 
-        public new delegate void CollisionEvent(PlatformSprite sprite1, PlatformSprite sprite2, GameTime gameTime);
+        public new delegate void CollisionEvent(PlatformSprite sender, PlatformSprite sprite2, GameTime gameTime);
         public new virtual event CollisionEvent Collision;
+
+        public PlatformSprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
 
         public PlatformSprite(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition)
         { 
@@ -77,6 +79,11 @@ namespace EdgeLibrary.Platform
             Deceleration = 0.06f;
             MaxVelocity = 15;
             forces = new List<Force>();
+
+            if (EdgeGame.SelectedScene is PlatformLevel)
+            {
+                ((PlatformLevel)EdgeGame.SelectedScene).AddSprite(this);
+            }
         }
 
         protected virtual void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
@@ -90,14 +97,14 @@ namespace EdgeLibrary.Platform
             {
                 if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
                 {
-                    if (true) //TOCHANGE
+                    if (GetBoundingBox().Intersects(sprite.GetBoundingBox()))
                     {
                         if (Collision != null)
                         {
                             Collision(this, sprite, gameTime);
                         }
 
-                        Rectangle collision = Rectangle.Intersect(new Rectangle(), new Rectangle()); //TOCHANGE
+                        Rectangle collision = Rectangle.Intersect(GetBoundingBox(), sprite.GetBoundingBox());
 
                         //If it's collided in horizontally more than vertical
                         if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
@@ -157,6 +164,11 @@ namespace EdgeLibrary.Platform
             }
 
             return vector;
+        }
+
+        public void REMOVEplatform()
+        {
+            MarkedForPlatformRemoval = true;
         }
 
         public bool TryMove(Vector2 vector)

@@ -20,25 +20,56 @@ namespace EdgeLibrary.Platform
         public float Speed { get { return _speed; } set { _speed = value; reloadMovement(); } }
         private float _speed;
         public bool removeOnHit;
+        public bool RemoveFromCharacter;
+        PlatformCharacter c;
+
+        public new event CollisionEvent Collision;
 
         public PlatformProjectile(string eTextureName, PlatformCharacter character, Vector2 targetPos, float speed) : base(MathTools.RandomID(character.ID + "_projectile"), eTextureName,  Vector2.Zero)
         {
+            c = character;
             CollisionLayers = character.CollisionLayers;
+            Position = character.Position;
             removeOnHit = true;
-            Target = targetPos;
-            Speed = speed;
+            _speed = speed;
+            _target = targetPos;
+            reloadMovement();
 
-            Collision += new CollisionEvent(PlatformProjectile_Collision);
+            RemoveFromCharacter = false;
         }
 
         public void reloadMovement()
         {
-            Movement.MoveTo(_target, Speed);
+            Vector2 force = _target - Position;
+            force.Normalize();
+            Movement.MoveBy(force, _speed);
         }
 
-        private void PlatformProjectile_Collision(PlatformSprite sprite1, PlatformSprite sprite2, GameTime gameTime)
+        protected override void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
         {
-            MarkedForPlatformRemoval = true;
+            collidingUp = false;
+            collidingDown = false;
+            collidingLeft = false;
+            collidingRight = false;
+
+            foreach (PlatformSprite sprite in sprites)
+            {
+                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && sprite != c)
+                {
+                    if (GetBoundingBox().Intersects(sprite.GetBoundingBox()))
+                    {
+                        if (Collision != null)
+                        {
+                            Collision(this, sprite, gameTime);
+                        }
+
+                        if (removeOnHit)
+                        {
+                            RemoveFromCharacter = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }

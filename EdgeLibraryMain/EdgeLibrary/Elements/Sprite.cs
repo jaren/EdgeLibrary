@@ -129,7 +129,7 @@ namespace EdgeLibrary
 
         public virtual Rectangle GetBoundingBox()
         {
-            return new Rectangle((int)(Position.X - _width / 2), (int)(Position.Y - _height / 2), (int)_width, (int)_height);
+            return new Rectangle((int)(Position.X - _width / 2 * _scale.X), (int)(Position.Y - _height / 2 * _scale.Y), (int)(_width * _scale.X), (int)(_height*_scale.Y));
         }
 
         public virtual void reloadDimensions()
