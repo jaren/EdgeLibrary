@@ -119,6 +119,16 @@ namespace EdgeLibrary
             rotating = true;
         }
 
+        public void RotateSpriteTowards(Sprite sprite, Vector2 target, float addAngle)
+        {
+            sprite.Style.Rotation = MathHelper.ToDegrees((float)Math.Atan2(sprite.Position.Y - target.Y, sprite.Position.X - target.X)) + angleAdd;
+        }
+
+        public void RotateSpriteTowards(Sprite sprite, Element target, float addAngle)
+        {
+            sprite.Style.Rotation = MathHelper.ToDegrees((float)Math.Atan2(sprite.Position.Y - target.Position.Y, sprite.Position.X - target.Position.X)) + angleAdd;
+        }
+
         public void Rotate(Element target, float addAngle)
         {
             angleAdd = addAngle;

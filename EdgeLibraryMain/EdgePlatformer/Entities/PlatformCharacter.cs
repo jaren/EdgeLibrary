@@ -17,11 +17,14 @@ namespace EdgeLibrary.Platform
     public class PlatformCharacter : PlatformSprite
     {
         public List<PlatformProjectile> Projectiles;
-        public string ProjectileTexture;
+        public string ProjectileTexture { get { return _projectileTexture; } set { _projectileTexture = value; reloadProjectileDimensions(); } }
+        private string _projectileTexture;
         public Vector2 ProjectileScale;
         public float ProjectileWidth;
         public float ProjectileHeight;
         public SpriteStyle ProjectileStyle;
+        public float ProjectileRotationAdd;
+        public float ProjectileSpeed;
         public float ShootDelay;
         private float TimeSinceLastShoot;
 
@@ -40,6 +43,7 @@ namespace EdgeLibrary.Platform
             ProjectileWidth = 1;
             ProjectileHeight = 1;
             ProjectileStyle = new SpriteStyle(SpriteEffects.None, 0, Color.White);
+            ProjectileSpeed = 1;
         }
 
         public override void UpdatePlatform(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
@@ -60,13 +64,22 @@ namespace EdgeLibrary.Platform
             }
         }
 
-        protected override void  drawElement(GameTime gameTime)
+        protected override void drawElement(GameTime gameTime)
         {
             base.drawElement(gameTime);
 
             foreach (PlatformProjectile projectile in Projectiles)
             {
                 projectile.Draw(gameTime);
+            }
+        }
+
+        private void reloadProjectileDimensions()
+        {
+            if (ResourceManager.getTexture(_projectileTexture) != null)
+            {
+                ProjectileWidth = ResourceManager.getTexture(_projectileTexture).Width;
+                ProjectileHeight = ResourceManager.getTexture(_projectileTexture).Height;
             }
         }
 
@@ -134,11 +147,13 @@ namespace EdgeLibrary.Platform
                 TimeSinceLastShoot = 0;
                 PlatformProjectile projectile = new PlatformProjectile("", this, targetPos, speed);
                 projectile.MarkedForPlatformRemoval = true;
-                projectile.Texture = ResourceManager.getTexture(ProjectileTexture);
+                projectile.Speed = ProjectileSpeed;
+                projectile.Texture = ResourceManager.getTexture(_projectileTexture);
                 projectile.Style = ProjectileStyle;
                 projectile.Scale = ProjectileScale;
                 projectile.Width = ProjectileWidth;
                 projectile.Height = ProjectileHeight;
+                projectile.StyleChanger.RotateSpriteTowards(projectile, targetPos, ProjectileRotationAdd);
                 Projectiles.Add(projectile);
             }
         }

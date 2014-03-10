@@ -23,7 +23,7 @@ namespace EdgeLibrary
         public virtual BlendState BlendState { get; set; }
         public virtual MovementCapability Movement { get; set; }
 
-        private List<Capability> Capabilities;
+        protected List<Capability> Capabilities;
 
         public delegate void ElementUpdateEvent(Element e, GameTime gameTime);
         public ElementUpdateEvent update;

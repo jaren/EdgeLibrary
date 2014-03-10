@@ -34,9 +34,9 @@ namespace EdgeDemo
             sprite.ShootDelay = 100;
             sprite.Scale = new Vector2(50);
 
-            sprite.ProjectileTexture = "meteorSmall";
-            sprite.ProjectileWidth = 2;
-            sprite.ProjectileHeight = 2;
+            sprite.ProjectileTexture = "laserGreen";
+            sprite.ProjectileRotationAdd = 90;
+            sprite.ProjectileSpeed = 8;
         }
 
         void updateSprite(Element e, GameTime gameTime)

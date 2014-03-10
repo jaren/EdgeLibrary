@@ -229,6 +229,11 @@ namespace EdgeLibrary.Platform
         {
             UpdateForces(Gravity);
             UpdateCollision(sprites, Gravity, gameTime);
+
+            foreach (Capability capability in Capabilities)
+            {
+                capability.Update(gameTime, this);
+            }
         }
     }
 }
