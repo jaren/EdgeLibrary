@@ -27,21 +27,21 @@ namespace EdgeDemo
 
             DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
 
-            PlatformCharacter sprite = new PlatformCharacter("Pixel", new Vector2(200));
+            PlatformSprite sprite = new PlatformSprite("Pixel", new Vector2(200));
             sprite.StyleChanger.ColorChange(MathTools.RandomGrayscaleColor(Color.White, Color.Black), MathTools.RandomGrayscaleColor(Color.White, Color.Black), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             sprite.update += new Element.ElementUpdateEvent(updateSprite);
-            sprite.ShootDelay = 100;
+            //sprite.ShootDelay = 100;
             sprite.Scale = new Vector2(50);
 
-            sprite.ProjectileTexture = "laserGreen";
-            sprite.ProjectileRotationAdd = 90;
-            sprite.ProjectileSpeed = 8;
+            //sprite.ProjectileTexture = "laserGreen";
+            //sprite.ProjectileRotationAdd = 90;
+            //sprite.ProjectileSpeed = 8;
         }
 
         void updateSprite(Element e, GameTime gameTime)
         {
-            PlatformCharacter sprite = (PlatformCharacter)e;
+            PlatformSprite sprite = (PlatformSprite)e;
             float speed = 2;
             float decel = 1.99f;
 
@@ -63,7 +63,7 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
-                sprite.Shoot(InputManager.MousePosition, 1);
+                //sprite.Shoot(InputManager.MousePosition, 1);
             }
         }
 
@@ -87,7 +87,7 @@ namespace EdgeDemo
             EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = true;
 
-            EdgeGame.WindowSize = new Vector2(700);
+            EdgeGame.WindowSize = new Vector2(1300, 700);
             EdgeGame.ClearColor = Color.White;
 
             base.Initialize();

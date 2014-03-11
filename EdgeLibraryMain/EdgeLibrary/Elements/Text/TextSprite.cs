@@ -82,11 +82,11 @@ namespace EdgeLibrary
         }
 
 
-        protected override void UpdateCollision()
+        protected override void UpdateCollision(GameTime gameTime)
         {
             if (EdgeGame.CollisionsInTextSprites)
             {
-                base.UpdateCollision();
+                base.UpdateCollision(gameTime);
             }
         }
 

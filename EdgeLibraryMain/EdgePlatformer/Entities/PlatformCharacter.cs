@@ -46,15 +46,15 @@ namespace EdgeLibrary.Platform
             ProjectileSpeed = 1;
         }
 
-        public override void UpdatePlatform(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
+        protected override void updateElement(GameTime gameTime)
         {
-            base.UpdatePlatform(gameTime, Gravity, sprites);
+            base.updateElement(gameTime);
 
             TimeSinceLastShoot += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             for (int i = 0; i < Projectiles.Count; i++)
             {
-                Projectiles[i].UpdatePlatform(gameTime, Gravity, sprites);
+                Projectiles[i].Update(gameTime);
 
                 if (Projectiles[i].RemoveFromCharacter)
                 {
@@ -83,56 +83,58 @@ namespace EdgeLibrary.Platform
             }
         }
 
-        protected override void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
+        protected override void UpdateCollision(GameTime gameTime)
         {
-            collidingUp = false;
-            collidingDown = false;
-            collidingLeft = false;
-            collidingRight = false;
+            collidingXGreater = false;
+            collidingXLower = false;
+            collidingYGreater = false;
+            collidingYLower = false;
 
-            foreach (PlatformSprite sprite in sprites)
+            foreach (Element element in EdgeGame.SelectedScene.elements)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
+                if (element is PlatformSprite)
                 {
-                    if (GetBoundingBox().Intersects(sprite.GetBoundingBox()) && !Projectiles.Contains(sprite))
+                    PlatformSprite sprite = (PlatformSprite)element;
+                    if (CollisionBody != null && sprite.CollisionBody != null && sprite != this)
                     {
-                        if (Collision != null)
+                        if (CollisionBody.CheckForCollide(sprite.CollisionBody) && !Projectiles.Contains(sprite))
                         {
-                            Collision(this, sprite, gameTime);
-                        }
-
-                        Rectangle collision = Rectangle.Intersect(GetBoundingBox(), sprite.GetBoundingBox());
-
-                        //If it's collided in horizontally more than vertical
-                        if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
-                        {
-                            //When collided into something, acceleration is reset
-                            fallSpeed = 0;
-
-
-                            //The Y collisions are flipped because the screen coordinates are flipped
-                            if (Position.Y > sprite.Position.Y)
+                            if (Collision != null)
                             {
-                                Position = new Vector2(Position.X, Position.Y + collision.Height);
-                                collidingDown = true;
+                                Collision(this, sprite, gameTime);
+                            }
+
+                            Rectangle collision = CollisionBody.Intersect(CollisionBody, sprite.CollisionBody);
+
+                            //If it's collided in horizontally more than vertical
+                            if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
+                            {
+                                //When collided into something, acceleration is reset
+                                fallSpeed = 0;
+
+                                if (Position.Y > sprite.Position.Y)
+                                {
+                                    Position = new Vector2(Position.X, Position.Y + collision.Height);
+                                    collidingYGreater = true;
+                                }
+                                else
+                                {
+                                    Position = new Vector2(Position.X, Position.Y - collision.Height);
+                                    collidingYLower = true;
+                                }
                             }
                             else
                             {
-                                Position = new Vector2(Position.X, Position.Y - collision.Height);
-                                collidingUp = true;
-                            }
-                        }
-                        else
-                        {
-                            if (Position.X > sprite.Position.X)
-                            {
-                                Position = new Vector2(Position.X + collision.Width, Position.Y);
-                                collidingLeft = true;
-                            }
-                            else
-                            {
-                                Position = new Vector2(Position.X - collision.Width, Position.Y);
-                                collidingRight = true;
+                                if (Position.X > sprite.Position.X)
+                                {
+                                    Position = new Vector2(Position.X + collision.Width, Position.Y);
+                                    collidingXGreater = true;
+                                }
+                                else
+                                {
+                                    Position = new Vector2(Position.X - collision.Width, Position.Y);
+                                    collidingXLower = true;
+                                }
                             }
                         }
                     }
@@ -146,7 +148,7 @@ namespace EdgeLibrary.Platform
             {
                 TimeSinceLastShoot = 0;
                 PlatformProjectile projectile = new PlatformProjectile("", this, targetPos, speed);
-                projectile.MarkedForPlatformRemoval = true;
+                projectile.MarkedForRemoval = true;
                 projectile.Speed = ProjectileSpeed;
                 projectile.Texture = ResourceManager.getTexture(_projectileTexture);
                 projectile.Style = ProjectileStyle;
