@@ -28,7 +28,7 @@ namespace EdgeLibrary.Platform
     //The base for all platform sprites
     public class PlatformSprite : Sprite
     {
-        protected struct Force
+        protected class Force
         {
             public Vector2 Impulse;
             public float Deceleration;

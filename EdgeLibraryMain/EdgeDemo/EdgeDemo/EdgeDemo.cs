@@ -20,7 +20,7 @@ namespace EdgeDemo
 
         public void initEdgeGame()
         {
-            PlatformLevel level = new PlatformLevel("level", new Vector2(0, 0f));
+            PlatformLevel level = new PlatformLevel("level", new Vector2(0, -5));
             EdgeGame.SelectedScene = level;
             level.Background = ResourceManager.textureFromString("Wood Background");
             level.CreateScreenBox();
@@ -39,11 +39,12 @@ namespace EdgeDemo
             sprite.ProjectileSpeed = 8;
         }
 
+
         void updateSprite(Element e, GameTime gameTime)
         {
             PlatformCharacter sprite = (PlatformCharacter)e;
             float speed = 2;
-            float decel = 1.99f;
+            float decel = 0.25f;
 
             if (InputManager.IsKeyDown(Keys.Left))
             {
@@ -55,15 +56,15 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Down))
             {
-                sprite.ApplyImpulse(new Vector2(0, speed), decel);
+                sprite.ApplyImpulse(new Vector2(0, -speed), decel);
             }
             if (InputManager.IsKeyDown(Keys.Up))
             {
-                sprite.ApplyImpulse(new Vector2(0, -speed), decel);
+                sprite.ApplyImpulse(new Vector2(0, speed), decel);
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
-                sprite.Shoot(InputManager.MousePosition, 1);
+                sprite.Shoot(InputManager.MousePosition, 0.01f);
             }
         }
 

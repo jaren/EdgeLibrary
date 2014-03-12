@@ -26,10 +26,11 @@ namespace EdgeLibrary
         private TextSprite ScenesSprite;
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
+        private LabelButton EndButton;
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
         {
-            DrawLayer = 100;;
+            DrawLayer = 100;
 
             Position = position;
 
@@ -48,6 +49,9 @@ namespace EdgeLibrary
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
             AddElement(KeysSprite);
 
+            EndButton = new LabelButton(fontName, "CLICK THIS TO END", Vector2.Zero, drawColor);
+            EndButton.Click += new Button.ButtonEventHandler(EndButton_Click);
+
             Font = ResourceManager.getFont(fontName);
             _drawColor = drawColor;
 
@@ -55,6 +59,12 @@ namespace EdgeLibrary
 
             reloadTextSpritesPosition();
             reloadTextSprites();
+        }
+
+        void EndButton_Click(ButtonEventArgs e)
+        {
+            //Closed program
+            throw new InvalidProgramException();
         }
 
         private void reloadTextSpritesPosition()
@@ -73,6 +83,9 @@ namespace EdgeLibrary
 
             ElementsSprite.Position = new Vector2(_font.MeasureString(ElementsSprite.Text).X / 2, YDifference * 5);
             ElementsSprite.Position += Position;
+
+            EndButton.Position = new Vector2(_font.MeasureString(EndButton.Text).X / 2, YDifference * 6);
+            EndButton.Position += Position;
         }
 
         private void reloadTextSprites()
@@ -87,7 +100,8 @@ namespace EdgeLibrary
             ElementsSprite.Style.Color = _drawColor;
             KeysSprite.Font = _font;
             KeysSprite.Style.Color = _drawColor;
-            KeysSprite.DrawLayer = DrawLayer;
+            EndButton.Font = _font;
+            EndButton.OffStyle.Color = _drawColor;
         }
 
         protected override void updateElement(GameTime gameTime)
