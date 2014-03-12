@@ -21,18 +21,18 @@ namespace EdgeLibrary.Platform
         private float _speed;
         public bool removeOnHit;
         public bool RemoveFromCharacter;
-        PlatformCharacter c;
+        public string characterID;
 
         public new event CollisionEvent Collision;
 
         public PlatformProjectile(string eTextureName, PlatformCharacter character, Vector2 targetPos, float speed) : base(MathTools.RandomID(character.ID + "_projectile"), eTextureName,  Vector2.Zero)
         {
-            c = character;
-            CollisionLayers = character.CollisionLayers;
+            CollisionBody.CollisionLayers = character.CollisionBody.CollisionLayers;
             Position = character.Position;
             removeOnHit = true;
             _speed = speed;
             _target = targetPos;
+            characterID = character.ID;
             reloadMovement();
 
             RemoveFromCharacter = false;
@@ -45,27 +45,26 @@ namespace EdgeLibrary.Platform
             Movement.MoveBy(force, _speed);
         }
 
-        protected override void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
+        protected override void UpdateCollision(GameTime gameTime)
         {
-            collidingUp = false;
-            collidingDown = false;
-            collidingLeft = false;
-            collidingRight = false;
-
-            foreach (PlatformSprite sprite in sprites)
+            foreach (Element element in EdgeGame.SelectedScene.elements)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && sprite != c)
+                if (element is PlatformSprite)
                 {
-                    if (GetBoundingBox().Intersects(sprite.GetBoundingBox()))
+                    PlatformSprite sprite = (PlatformSprite)element;
+                    if (sprite != this && sprite.ID != characterID)
                     {
-                        if (Collision != null)
+                        if (CollisionBody.CheckForCollide(sprite.CollisionBody) && !(sprite is PlatformProjectile && ((PlatformProjectile)sprite).characterID == characterID))
                         {
-                            Collision(this, sprite, gameTime);
-                        }
+                            if (Collision != null)
+                            {
+                                Collision(this, sprite, gameTime);
+                            }
 
-                        if (removeOnHit)
-                        {
-                            RemoveFromCharacter = true;
+                            if (removeOnHit)
+                            {
+                                RemoveFromCharacter = true;
+                            }
                         }
                     }
                 }

@@ -21,21 +21,25 @@ namespace EdgeLibrary.Platform
         public PlatformStatic(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) { }
 
         //Doesn't move in collisions
-        protected override void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
+        protected override void UpdateCollision(GameTime gameTime)
         {
-            foreach (PlatformSprite sprite in sprites)
+            foreach (Element element in EdgeGame.SelectedScene.elements)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this && GetBoundingBox().Intersects(sprite.GetBoundingBox()))
+                if (element is PlatformSprite)
                 {
+                    PlatformSprite sprite = (PlatformSprite)element;
+                    if (sprite != this && CollisionBody != null && sprite.CollisionBody != null && CollisionBody.CheckForCollide(sprite.CollisionBody))
+                    {
                         if (Collision != null)
                         {
                             Collision(this, sprite, gameTime);
                         }
+                    }
                 }
             }
         }
 
-        //Isn't affected by gravity
-        public override void UpdateForces(Vector2 Gravity) { }
+        //Isn't affected by any forces
+        public override void UpdateForces() { }
     }
 }

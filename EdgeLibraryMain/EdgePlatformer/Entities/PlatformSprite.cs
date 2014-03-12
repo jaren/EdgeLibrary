@@ -12,19 +12,6 @@ using EdgeLibrary;
 
 namespace EdgeLibrary.Platform
 {
-    [Flags]
-    public enum CollisionLayers : byte
-    {
-        A = 1,
-        B = 2,
-        C = 4,
-        D = 8,
-        E = 16,
-        F = 32,
-        G = 64,
-        All = 127
-    }
-
     //The base for all platform sprites
     public class PlatformSprite : Sprite
     {
@@ -51,8 +38,7 @@ namespace EdgeLibrary.Platform
             }
         }
 
-        public bool MarkedForPlatformRemoval {get; set;}
-        public CollisionLayers CollisionLayers;
+        public Vector2 gravity;
         public float Acceleration;
         public float Deceleration;
         public float MaxVelocity;
@@ -61,81 +47,75 @@ namespace EdgeLibrary.Platform
 
         protected float fallSpeed;
 
-        public bool collidingUp;
-        public bool collidingDown;
-        public bool collidingLeft;
-        public bool collidingRight;
+        public bool collidingXGreater; //Colliding left
+        public bool collidingXLower; //Colliding right
+        public bool collidingYGreater; //Colliding on the bottom (appears as top)
+        public bool collidingYLower; //Colliding on the top (appears as bottom)
 
-        public new delegate void CollisionEvent(PlatformSprite sender, PlatformSprite sprite2, GameTime gameTime);
         public new virtual event CollisionEvent Collision;
 
         public PlatformSprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
 
         public PlatformSprite(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition)
-        { 
-            MarkedForRemoval = true;
-            CollisionLayers = CollisionLayers.All;
+        {
             Acceleration = 0.1f;
             Deceleration = 0.06f;
             MaxVelocity = 15;
             forces = new List<Force>();
-
-            if (EdgeGame.SelectedScene is PlatformLevel)
-            {
-                ((PlatformLevel)EdgeGame.SelectedScene).AddSprite(this);
-            }
         }
 
-        protected virtual void UpdateCollision(List<PlatformSprite> sprites, Vector2 Gravity, GameTime gameTime)
+        protected override void UpdateCollision(GameTime gameTime)
         {
-            collidingUp = false;
-            collidingDown = false;
-            collidingLeft = false;
-            collidingRight = false;
+            collidingXGreater = false;
+            collidingXLower = false;
+            collidingYGreater = false;
+            collidingYLower = false;
 
-            foreach (PlatformSprite sprite in sprites)
+            foreach (Element element in EdgeGame.SelectedScene.elements)
             {
-                if ((sprite.CollisionLayers & CollisionLayers) != 0 && sprite != this)
+                if (element is PlatformSprite)
                 {
-                    if (GetBoundingBox().Intersects(sprite.GetBoundingBox()))
+                    PlatformSprite sprite = (PlatformSprite)element;
+                    if (CollisionBody != null && sprite.CollisionBody != null && sprite != this)
                     {
-                        if (Collision != null)
+                        if (CollisionBody.CheckForCollide(sprite.CollisionBody))
                         {
-                            Collision(this, sprite, gameTime);
-                        }
-
-                        Rectangle collision = Rectangle.Intersect(GetBoundingBox(), sprite.GetBoundingBox());
-
-                        //If it's collided in horizontally more than vertical
-                        if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
-                        {
-                            //When collided into something, acceleration is reset
-                            fallSpeed = 0;
-
-
-                            //The Y collisions are flipped because the screen coordinates are flipped
-                            if (Position.Y > sprite.Position.Y)
+                            if (Collision != null)
                             {
-                                Position = new Vector2(Position.X, Position.Y + collision.Height);
-                                collidingDown = true;
+                                Collision(this, sprite, gameTime);
+                            }
+
+                            Rectangle collision = CollisionBody.Intersect(CollisionBody, sprite.CollisionBody);
+
+                            //If it's collided in horizontally more than vertical
+                            if (Math.Abs(collision.Width) > Math.Abs(collision.Height))
+                            {
+                                //When collided into something, acceleration is reset
+                                fallSpeed = 0;
+
+                                if (Position.Y > sprite.Position.Y)
+                                {
+                                    Position = new Vector2(Position.X, Position.Y + collision.Height);
+                                    collidingYGreater = true;
+                                }
+                                else
+                                {
+                                    Position = new Vector2(Position.X, Position.Y - collision.Height);
+                                    collidingYLower = true;
+                                }
                             }
                             else
                             {
-                                Position = new Vector2(Position.X, Position.Y - collision.Height);
-                                collidingUp = true;
-                            }
-                        }
-                        else
-                        {
-                            if (Position.X > sprite.Position.X)
-                            {
-                                Position = new Vector2(Position.X + collision.Width, Position.Y);
-                                collidingLeft = true;
-                            }
-                            else
-                            {
-                                Position = new Vector2(Position.X - collision.Width, Position.Y);
-                                collidingRight = true;
+                                if (Position.X > sprite.Position.X)
+                                {
+                                    Position = new Vector2(Position.X + collision.Width, Position.Y);
+                                    collidingXGreater = true;
+                                }
+                                else
+                                {
+                                    Position = new Vector2(Position.X - collision.Width, Position.Y);
+                                    collidingXLower = true;
+                                }
                             }
                         }
                     }
@@ -166,25 +146,19 @@ namespace EdgeLibrary.Platform
             return vector;
         }
 
-        public void REMOVEplatform()
-        {
-            MarkedForPlatformRemoval = true;
-        }
-
         public bool TryMove(Vector2 vector)
         {
             vector = StopMaxVector2(vector);
 
-            if ((vector.X < 0 && !collidingLeft) || (vector.X > 0 && !collidingRight))
+            if ((vector.X < 0 && !collidingXGreater) || (vector.X > 0 && !collidingXLower))
             {
                 Position = new Vector2(Position.X + vector.X, Position.Y);
                 return true;
             }
 
-            if ((vector.Y < 0 && !collidingDown) || (vector.Y > 0 && !collidingUp))
+            if ((vector.Y < 0 && !collidingYGreater) || (vector.Y > 0 && !collidingYLower))
             {
-                //It subtracts from the Y because the screen coordinates are flipped
-                Position = new Vector2(Position.X, Position.Y - vector.Y);
+                Position = new Vector2(Position.X, Position.Y + vector.Y);
                 return true;
             }
             return false;
@@ -200,7 +174,7 @@ namespace EdgeLibrary.Platform
             ApplyImpulse(impulse, Deceleration);
         }
 
-        public virtual void UpdateForces(Vector2 Gravity)
+        public virtual void UpdateForces()
         {
             Vector2 forceTotal = Vector2.Zero;
             for (int i = 0; i < forces.Count; i++)
@@ -217,23 +191,18 @@ namespace EdgeLibrary.Platform
             }
             TryMove(forceTotal);
 
-            if (!collidingDown)
+            if (!collidingYGreater)
             {
                 fallSpeed += Acceleration / 10;
-                Vector2 vector = StopMaxVector2(Gravity * fallSpeed);
+                Vector2 vector = StopMaxVector2(gravity * fallSpeed);
                 Position -= vector;
             }
         }
 
-        public virtual void UpdatePlatform(GameTime gameTime, Vector2 Gravity, List<PlatformSprite> sprites)
+        protected override void updateElement(GameTime gameTime)
         {
-            UpdateForces(Gravity);
-            UpdateCollision(sprites, Gravity, gameTime);
-
-            foreach (Capability capability in Capabilities)
-            {
-                capability.Update(gameTime, this);
-            }
+            UpdateForces();
+            UpdateCollision(gameTime);
         }
     }
 }

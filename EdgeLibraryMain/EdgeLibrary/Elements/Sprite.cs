@@ -34,18 +34,6 @@ namespace EdgeLibrary
         }
     }
 
-    public class CollisionEventArgs : EventArgs
-    {
-        public Sprite Sprite1;
-        public Sprite Sprite2;
-
-        public CollisionEventArgs(Sprite sprite1, Sprite sprite2)
-        {
-            Sprite1 = sprite1;
-            Sprite2 = sprite2;
-        }
-    }
-
     //Provides a base textured game object
     public class Sprite : Element
     {
@@ -69,7 +57,7 @@ namespace EdgeLibrary
 
         protected List<string> currentlyCollidingWithIDs;
 
-        public delegate void CollisionEvent(CollisionEventArgs e);
+        public delegate void CollisionEvent(Sprite sender, Sprite sprite2, GameTime gameTime);
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
@@ -77,6 +65,8 @@ namespace EdgeLibrary
 
         public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
+            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, CollisionLayers.All);
+
             Style = new SpriteStyle(SpriteEffects.None, 0f, Color.White);
             Position = ePosition;
             _width = 0;
@@ -108,9 +98,8 @@ namespace EdgeLibrary
                 reloadOriginPoint();
             }
 
-            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, ID);
+            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, CollisionLayers.All);
             CollisionBodyType = CollisionBody.Shape.ShapeType;
-            CollisionBody.collidesWithAll = true;
         }
 
         public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(id, eTextureName, ePosition)
@@ -162,11 +151,11 @@ namespace EdgeLibrary
 
         protected override void updateElement(GameTime gameTime)
         {
-            UpdateCollision();
+            UpdateCollision(gameTime);
             base.updateElement(gameTime);
         }
 
-        protected virtual void UpdateCollision()
+        protected virtual void UpdateCollision(GameTime gameTime)
         {
             if (CollisionBody != null)
             {
@@ -185,17 +174,17 @@ namespace EdgeLibrary
                             {
                                 if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
                                 {
-                                    if (Collision != null) { Collision(new CollisionEventArgs(this, elementAsSprite)); }
-                                    if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                                    if (Collision != null) { Collision(this, elementAsSprite, gameTime); }
+                                    if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                     {
-                                        CollisionStart(new CollisionEventArgs(this, elementAsSprite));
-                                        currentlyCollidingWithIDs.Add(elementAsSprite.CollisionBody.ID);
+                                        CollisionStart(this, elementAsSprite, gameTime);
+                                        currentlyCollidingWithIDs.Add(elementAsSprite.ID);
                                     }
                                 }
                                 //Checks if it's not colliding with the element, then removes it from the colliding list
-                                else if (currentlyCollidingWithIDs.Contains(elementAsSprite.CollisionBody.ID))
+                                else if (currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                 {
-                                    currentlyCollidingWithIDs.Remove(elementAsSprite.CollisionBody.ID);
+                                    currentlyCollidingWithIDs.Remove(elementAsSprite.ID);
                                 }
                             }
                         }

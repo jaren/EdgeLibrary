@@ -30,6 +30,11 @@ namespace EdgeLibrary
             ShapeType = shapeType;
         }
 
+        public virtual Rectangle AsRectangle()
+        {
+            return Rectangle.Empty;
+        }
+
         //Check for collision here
         public virtual bool CollidesWith(Shape shape)
         {
@@ -50,6 +55,12 @@ namespace EdgeLibrary
         {
             _radius = radius;
         }
+
+        public override Rectangle AsRectangle()
+        {
+            return new Rectangle((int)CenterPosition.X - (int)_radius, (int)CenterPosition.Y - (int)_radius, (int)_radius * 2, (int)_radius * 2);
+        }
+
         public override bool CollidesWith(Shape shape)
         {
             switch (shape.ShapeType)
@@ -108,6 +119,11 @@ namespace EdgeLibrary
                     break;
             }
             return false;
+        }
+
+        public override Rectangle AsRectangle()
+        {
+            return new Rectangle((int)CenterPosition.X - (int)Width/2, (int)CenterPosition.Y - (int)Height/2, (int)Width, (int)Height);
         }
 
         public override void DebugDraw(Color drawColor)

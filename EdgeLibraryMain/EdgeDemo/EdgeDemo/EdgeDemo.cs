@@ -88,7 +88,7 @@ namespace EdgeDemo
             EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = true;
 
-            EdgeGame.WindowSize = new Vector2(700);
+            EdgeGame.WindowSize = new Vector2(1300, 700);
             EdgeGame.ClearColor = Color.White;
 
             base.Initialize();
