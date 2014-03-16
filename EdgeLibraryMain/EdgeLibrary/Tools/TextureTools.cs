@@ -13,6 +13,56 @@
 	
 	namespace EdgeLibrary
 	{
+        public class TextureEditParams
+        {
+            public byte MinDarkness;
+            public byte MaxDarkness;
+
+            public bool UseColor;
+            public Color MaxColor { get { return _maxColor; } set { _maxColor = value; UseColor = true; } }
+            private Color _maxColor;
+            public Color MinColor { get { return _minColor; } set { _minColor = value; UseColor = true; } }
+            private Color _minColor;
+
+            public bool UseArea;
+            public Rectangle Area { get { return _area; } set { _area = value; UseArea = true; } }
+            private Rectangle _area;
+
+            public TextureEditParams()
+            {
+                MinDarkness = 0;
+                MaxDarkness = 255;
+                UseColor = false;
+                MinColor = Color.White;
+                MaxColor = MinColor;
+                UseArea = false;
+            }
+        }
+
+        public class TextureChangeParams
+        {
+            public bool UseColor;
+            public Color MaxColor { get { return _maxColor; } set { _maxColor = value; UseColor = true; } }
+            private Color _maxColor;
+            public Color MinColor { get { return _minColor; } set { _minColor = value; UseColor = true; } }
+            private Color _minColor;
+
+            public int Add;
+
+            public Color ColorizeColor;
+            public float ColorizeValue;
+
+            public TextureChangeParams()
+            {
+                UseColor = false;
+                MinColor = Color.White;
+                MaxColor = MinColor;
+                Add = 0;
+                ColorizeColor = Color.White;
+                ColorizeValue = 0;
+            }
+        }
+
 	    public static class TextureTools
 	    {
 	        public static Texture2D Pixel;
@@ -40,7 +90,6 @@
             }
             public static void Colorize(Texture2D texture, Color color, float factor)
             {
-                Texture2D returnTexture = texture;
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
 
@@ -51,11 +100,10 @@
                     colorData[i] = Color.Lerp(currentColor, color, ((float)darkness/255)*factor*2);
                 }
 
-                returnTexture.SetData<Color>(colorData);
+                texture.SetData<Color>(colorData);
             }
-            public static Texture2D SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
+            public static void SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
             {
-                Texture2D returnTexture = texture;
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
                 Color[] innerColorData = new Color[innerTexture.Width * innerTexture.Height];
@@ -72,43 +120,7 @@
                     }
                 }
 
-                returnTexture.SetData<Color>(colorData);
-                return returnTexture;
-            }
-            public static Texture2D CreateCircleTexture(int radius, Color color)
-            {
-                Texture2D texture = EdgeGame.NewTexture(radius * 2, radius * 2);
-                Color[] colors = new Color[radius * radius * 4];
-
-                foreach(Vector2 point in MathTools.GetCirclePoints(new Vector2(radius, radius), radius, radius))
-                {
-                    colors[(int)(point.X + point.Y * radius * 2)] = color;
-                }
-                texture.SetData<Color>(colors);
-                return texture;
-            }
-
-            public static Texture2D CreateVerticalGradient(int width, int height, Color color1, Color color2)
-            {
-                Texture2D texture = EdgeGame.NewTexture(width, height);
-                Color[] colors = new Color[width*height];
-
-                for (int y = 0; y < height; y++ )
-                {
-                    for (int x = 0; x < width; x++)
-                    {
-                        if (y < width * height / 2)
-                        {
-                            colors[x + y*width] = Color.Lerp(color1, color2, y / height / 2);
-                        }
-                        else
-                        {
-                            colors[x + y * width] = Color.Lerp(color2, color1, (height/2 - y) / height / 2);
-                        }
-                    }
-                }
-                texture.SetData<Color>(colors);
-                return texture;
+                texture.SetData<Color>(colorData);
             }
 	        #endregion
 	
@@ -152,9 +164,46 @@
 	            return textures;
 	        }
 	        #endregion
-	
-	        #region DRAWING TOOLS
-	        public static void DrawPixelAt(Vector2 position, Color color)
+
+            #region EXTRA EDITING
+            public static void EditTexture(Texture2D texture, TextureEditParams editParams, TextureChangeParams changeParams)
+            {
+                editParams.Area = MathTools.ResolveNegativeRectangle(editParams.Area);
+
+                Color[] colors = new Color[texture.Width * texture.Height];
+                texture.GetData<Color>(colors);
+
+                for (int i = 0; i < colors.Length; i++)
+                {
+                    //Checks if it's inside the rectangle
+                    if ((editParams.UseArea == false || (i > editParams.Area.Left + editParams.Area.Top * texture.Width && i < editParams.Area.Right + editParams.Area.Bottom * texture.Width))
+                    {
+                        //Checks if it matches the darkness
+                        if ((colors[i].R + colors[i].G + colors[i].B) / 3 >= editParams.MinDarkness && (colors[i].R + colors[i].G + colors[i].B) / 3 <= editParams.MaxDarkness)
+                        {
+                            //Checks if it matches the min/max color
+                            if ((colors[i].R >= editParams.MinColor.R && colors[i].R <= editParams.MaxColor.R) && (colors[i].G >= editParams.MinColor.G && colors[i].G <= editParams.MaxColor.G) && (colors[i].B >= editParams.MinColor.B && colors[i].B <= editParams.MaxColor.B))
+                            {
+                                if (changeParams.UseColor)
+                                {
+                                    colors[i] = Color.Lerp(changeParams.MinColor, changeParams.MaxColor, InputManager.RandomFloat(0, 1));
+                                }
+
+                                colors[i] = MathTools.AddToColor(colors[i], changeParams.Add);
+
+                                byte darkness = (byte)((colors[i].R + colors[i].G + colors[i].B)/3);
+                                colors[i] = Color.Lerp(colors[i], changeParams.ColorizeColor, ((float)darkness/255)*changeParams.ColorizeValue*2);
+                            }
+                        }
+                    }
+                }
+
+                texture.SetData<Color>(colors);
+            }
+            #endregion
+
+            #region DRAWING TOOLS
+            public static void DrawPixelAt(Vector2 position, Color color)
 	        {
                 EdgeGame.drawTexture(Pixel, position, null, color, Vector2.One, 0, new Vector2(0.5f), SpriteEffects.None);
 	        }

@@ -27,7 +27,7 @@ namespace EdgeDemo
 
             DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
 
-            PlatformSprite sprite = new PlatformSprite("Pixel", new Vector2(200));
+            PlatformCharacter sprite = new PlatformCharacter("Pixel", new Vector2(200));
             sprite.StyleChanger.ColorChange(MathTools.RandomGrayscaleColor(Color.White, Color.Black), MathTools.RandomGrayscaleColor(Color.White, Color.Black), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             sprite.update += new Element.ElementUpdateEvent(updateSprite);
@@ -42,25 +42,25 @@ namespace EdgeDemo
 
         void updateSprite(Element e, GameTime gameTime)
         {
-            PlatformSprite sprite = (PlatformSprite)e;
+            PlatformCharacter sprite = (PlatformCharacter)e;
             float speed = 2;
-            float decel = 0.25f;
+            float decel = 0.025f;
 
-            if (InputManager.IsKeyDown(Keys.Left))
+            if (InputManager.IsKeyDown(Keys.A))
             {
                 sprite.ApplyImpulse(new Vector2(-speed, 0), decel);
             }
-            if (InputManager.IsKeyDown(Keys.Right))
+            if (InputManager.IsKeyDown(Keys.D))
             {
                 sprite.ApplyImpulse(new Vector2(speed, 0), decel);
             }
-            if (InputManager.IsKeyDown(Keys.Down))
-            {
-                sprite.ApplyImpulse(new Vector2(0, -speed), decel);
-            }
-            if (InputManager.IsKeyDown(Keys.Up))
+            if (InputManager.IsKeyDown(Keys.S))
             {
                 sprite.ApplyImpulse(new Vector2(0, speed), decel);
+            }
+            if (InputManager.IsKeyDown(Keys.W))
+            {
+                sprite.ApplyImpulse(new Vector2(0, -speed), decel);
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
