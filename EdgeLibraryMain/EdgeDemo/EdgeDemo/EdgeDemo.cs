@@ -31,12 +31,12 @@ namespace EdgeDemo
             sprite.StyleChanger.ColorChange(MathTools.RandomGrayscaleColor(Color.White, Color.Black), MathTools.RandomGrayscaleColor(Color.White, Color.Black), 1000);
             sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
             sprite.update += new Element.ElementUpdateEvent(updateSprite);
-            //sprite.ShootDelay = 100;
+            sprite.ShootDelay = 100;
             sprite.Scale = new Vector2(50);
 
-            //sprite.ProjectileTexture = "laserGreen";
-            //sprite.ProjectileRotationAdd = 90;
-            //sprite.ProjectileSpeed = 8;
+            sprite.ProjectileTexture = "laserGreen";
+            sprite.ProjectileRotationAdd = 90;
+            sprite.ProjectileSpeed = 8;
         }
 
 
@@ -64,11 +64,7 @@ namespace EdgeDemo
             }
             if (InputManager.IsKeyDown(Keys.Space))
             {
-<<<<<<< HEAD
                 sprite.Shoot(InputManager.MousePosition, 0.01f);
-=======
-                //sprite.Shoot(InputManager.MousePosition, 1);
->>>>>>> d9e15fd3678233d930b3a5bb2d1f322dec2efa2f
             }
         }
 
