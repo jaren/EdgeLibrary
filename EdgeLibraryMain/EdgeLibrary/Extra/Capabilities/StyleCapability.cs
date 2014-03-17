@@ -65,6 +65,9 @@ namespace EdgeLibrary
                         if (elapsedColorChangeTime > colorChangeTime)
                         {
                             colorChanging = false;
+
+                            sprite.Style.Color = Color.Lerp(color1, color2, 1);
+
                             if (FinishedColorChange != null)
                             {
                                 FinishedColorChange(this, color2);

@@ -18,59 +18,48 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        TextSprite platformLabel;
+        Sprite platformSprite;
+
+        float speed = 15;
+
         public void initEdgeGame()
         {
-            PlatformLevel level = new PlatformLevel("level", new Vector2(0, -5));
-            EdgeGame.SelectedScene = level;
-            level.Background = ResourceManager.textureFromString("Wood Background");
-            level.CreateScreenBox();
+            EdgeGame.ClearColor = new Color(20, 20, 20);
+            TextSprite Header = new TextSprite("LargeFont", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
-            DebugPanel panel = new DebugPanel("SmallFont", Vector2.Zero, Color.Goldenrod);
+            float buttonY = 400;
+            float buttonXDiff = 300;
 
-            PlatformCharacter sprite = new PlatformCharacter("Pixel", new Vector2(200));
-            sprite.StyleChanger.ColorChange(MathTools.RandomGrayscaleColor(Color.White, Color.Black), MathTools.RandomGrayscaleColor(Color.White, Color.Black), 1000);
-            sprite.StyleChanger.FinishedColorChange += new StyleCapability.StyleColorEvent(StyleChanger_FinishedColorChange);
-            sprite.update += new Element.ElementUpdateEvent(updateSprite);
-            sprite.ShootDelay = 100;
-            sprite.Scale = new Vector2(50);
+            Button PlatformButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X/2, buttonY), Color.Transparent);
+            PlatformButton.OffStyle.Color = Color.Transparent;
+            PlatformButton.MouseOverStyle.Color = Color.Transparent;
+            PlatformButton.DrawLayer = -1;
+            PlatformButton.OffScale = new Vector2(buttonXDiff, EdgeGame.WindowSize.Y - 200);
+            PlatformButton.MouseOverScale = PlatformButton.OffScale;
+            PlatformButton.OnScale = PlatformButton.OffScale;
+            PlatformButton.MouseOver += new Button.ButtonEventHandler(PlatformButton_MouseOver);
+            PlatformButton.MouseOff += new Button.ButtonEventHandler(PlatformButton_MouseOff);
 
-            sprite.ProjectileTexture = "laserGreen";
-            sprite.ProjectileRotationAdd = 90;
-            sprite.ProjectileSpeed = 8;
+            platformLabel = new TextSprite("LargeFont", "Platform", PlatformButton.Position, Color.White);
+
+            EdgeGame.update += new EdgeGame.UpdateEvent(EdgeGame_update);
         }
 
-
-        void updateSprite(Element e, GameTime gameTime)
+        void EdgeGame_update(GameTime gameTime)
         {
-            PlatformCharacter sprite = (PlatformCharacter)e;
-            float speed = 2;
-            float decel = 0.025f;
-
-            if (InputManager.IsKeyDown(Keys.A))
-            {
-                sprite.ApplyImpulse(new Vector2(-speed, 0), decel);
-            }
-            if (InputManager.IsKeyDown(Keys.D))
-            {
-                sprite.ApplyImpulse(new Vector2(speed, 0), decel);
-            }
-            if (InputManager.IsKeyDown(Keys.S))
-            {
-                sprite.ApplyImpulse(new Vector2(0, speed), decel);
-            }
-            if (InputManager.IsKeyDown(Keys.W))
-            {
-                sprite.ApplyImpulse(new Vector2(0, -speed), decel);
-            }
-            if (InputManager.IsKeyDown(Keys.Space))
-            {
-                sprite.Shoot(InputManager.MousePosition, 0.01f);
-            }
         }
 
-        void StyleChanger_FinishedColorChange(StyleCapability capability, Color finishColor)
+        void PlatformButton_MouseOff(ButtonEventArgs e)
         {
-            capability.ColorChange(finishColor, MathTools.RandomGrayscaleColor(Color.White, Color.Black), 1000);
+            platformLabel.Movement.MoveTo(new Vector2(platformLabel.Position.X, 400), speed);
+            platformLabel.StyleChanger.ColorChange(platformLabel.Style.Color, Color.White, 500);
+        }
+
+        void PlatformButton_MouseOver(ButtonEventArgs e)
+        {
+            platformLabel.Movement.MoveTo(new Vector2(platformLabel.Position.X, EdgeGame.WindowSize.Y), speed);
+            platformLabel.StyleChanger.ColorChange(platformLabel.Style.Color, Color.Transparent, 500);
         }
 
         #region UNUSED

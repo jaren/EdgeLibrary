@@ -62,7 +62,10 @@ namespace EdgeLibrary
                     break;
                 case MovementType.Move:
                     moveVector = new Vector2(MoveTarget.X - element.Position.X, MoveTarget.Y - element.Position.Y);
-                    moveVector.Normalize();
+                    if (moveVector != Vector2.Zero)
+                    {
+                        moveVector.Normalize();
+                    }
                     STOPPED = checkIfEnd(moveVector, MoveTarget, element.Position + moveVector*Speed);
                     element.Position += moveVector * Speed;
                     if (STOPPED && FinishedMove != null)

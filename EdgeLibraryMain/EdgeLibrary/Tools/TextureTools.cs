@@ -176,7 +176,7 @@
                 for (int i = 0; i < colors.Length; i++)
                 {
                     //Checks if it's inside the rectangle
-                    if ((editParams.UseArea == false || (i > editParams.Area.Left + editParams.Area.Top * texture.Width && i < editParams.Area.Right + editParams.Area.Bottom * texture.Width))
+                    if ((editParams.UseArea == false || (i > editParams.Area.Left + editParams.Area.Top * texture.Width && i < editParams.Area.Right + editParams.Area.Bottom * texture.Width)))
                     {
                         //Checks if it matches the darkness
                         if ((colors[i].R + colors[i].G + colors[i].B) / 3 >= editParams.MinDarkness && (colors[i].R + colors[i].G + colors[i].B) / 3 <= editParams.MaxDarkness)
