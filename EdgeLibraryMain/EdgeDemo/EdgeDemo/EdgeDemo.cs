@@ -26,9 +26,30 @@ namespace EdgeDemo
         {
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
-            ResourceManager.LoadFont("SmallFont");
-            ResourceManager.LoadFont("MediumFont");
-            ResourceManager.LoadFont("LargeFont");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-20");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-30");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-40");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-50");
+            ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-60");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-10");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-20");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-30");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-40");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-50");
+            ResourceManager.LoadFont("Fonts/Courier New/CourierNew-60");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-10");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-20");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-30");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-40");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-50");
+            ResourceManager.LoadFont("Fonts/Georgia/Georgia-60");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-10");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-20");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-30");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-40");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-50");
+            ResourceManager.LoadFont("Fonts/Impact/Impact-60");
         }
 
         public void initEdgeGame()
@@ -39,11 +60,11 @@ namespace EdgeDemo
             EdgeGame.WindowSize = new Vector2(1300, 700);
 
             EdgeGame.ClearColor = new Color(20, 20, 20);
-            TextSprite Header = new TextSprite("LargeFont", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
+            TextSprite Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
             Vector2[] buttonPositions = new Vector2[1] { new Vector2(200, 150) };
 
-            LabelButton PlatformButton = new LabelButton("MediumFont", "Platform Demo", buttonPositions[0], Color.OrangeRed);
+            LabelButton PlatformButton = new LabelButton("Impact-30", "Platform Demo", buttonPositions[0], Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Orange;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
             PlatformButton.DrawLayer = -1;
