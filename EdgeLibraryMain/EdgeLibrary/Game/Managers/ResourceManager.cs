@@ -63,7 +63,7 @@ namespace EdgeLibrary
         #region OTHER
         public static Texture2D textureFromString(string texturePath)
         {
-            return Content.Load<Texture2D>(texturePath);
+                return Content.Load<Texture2D>(texturePath);
         }
         public static void addTexture(string textureName, Texture2D texture)
         {

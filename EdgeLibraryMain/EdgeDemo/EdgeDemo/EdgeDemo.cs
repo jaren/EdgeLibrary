@@ -65,31 +65,35 @@ namespace EdgeDemo
             Vector2[] buttonPositions = new Vector2[1] { new Vector2(200, 150) };
 
             LabelButton PlatformButton = new LabelButton("Impact-30", "Platform Demo", buttonPositions[0], Color.OrangeRed);
-            PlatformButton.OffStyle.Color = Color.Orange;
+            PlatformButton.OffStyle.Color = Color.Gray;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
             PlatformButton.DrawLayer = -1;
             PlatformButton.MouseOver += new Button.ButtonEventHandler(platform_mouseOver);
             PlatformButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
             PlatformButton.Click += new Button.ButtonEventHandler(platform_click);
 
+            MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize / 2);
             emitter_toNormal();
         }
 
         private void emitter_toNormal()
         {
-            MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize/2);
-            MasterEmitter.SetSize(new Vector2(15), new Vector2(100));
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetSize(new Vector2(150), new Vector2(300));
+            MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.SetLife(3000);
-            ColorChangeIndex index = new ColorChangeIndex(700, Color.Blue, Color.Green, Color.Transparent);
+            MasterEmitter.EmitWait = 0;
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.CadetBlue, Color.Blue, Color.SteelBlue, Color.Transparent);
             MasterEmitter.SetColor(index);
         }
 
         private void emitter_toPlatform()
         {
-            MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize / 2);
-            MasterEmitter.SetSize(new Vector2(15), new Vector2(100));
+            MasterEmitter.Texture = ResourceManager.getTexture("smoke");
+            MasterEmitter.SetSize(new Vector2(100), new Vector2(200));
+            MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.SetLife(3000);
