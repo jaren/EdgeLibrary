@@ -18,49 +18,67 @@ namespace EdgeDemo
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        TextSprite platformLabel;
-        Sprite platformSprite;
+        ParticleEmitter MasterEmitter;
 
-        float speed = 15;
+        float speed = 10;
+
+        protected override void LoadContent()
+        {
+            ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
+            ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
+            ResourceManager.LoadFont("SmallFont");
+            ResourceManager.LoadFont("MediumFont");
+            ResourceManager.LoadFont("LargeFont");
+        }
 
         public void initEdgeGame()
         {
+            EdgeGame.GameDrawState = GameDrawState.Normal;
+            IsMouseVisible = true;
+
+            EdgeGame.WindowSize = new Vector2(1300, 700);
+
             EdgeGame.ClearColor = new Color(20, 20, 20);
             TextSprite Header = new TextSprite("LargeFont", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
-            float buttonY = 400;
-            float buttonXDiff = 300;
+            Vector2[] buttonPositions = new Vector2[1] { new Vector2(200, 150) };
 
-            Button PlatformButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X/2, buttonY), Color.Transparent);
-            PlatformButton.OffStyle.Color = Color.Transparent;
-            PlatformButton.MouseOverStyle.Color = Color.Transparent;
+            LabelButton PlatformButton = new LabelButton("MediumFont", "Platform Demo", buttonPositions[0], Color.OrangeRed);
+            PlatformButton.OffStyle.Color = Color.Orange;
+            PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
             PlatformButton.DrawLayer = -1;
-            PlatformButton.OffScale = new Vector2(buttonXDiff, EdgeGame.WindowSize.Y - 200);
-            PlatformButton.MouseOverScale = PlatformButton.OffScale;
-            PlatformButton.OnScale = PlatformButton.OffScale;
-            PlatformButton.MouseOver += new Button.ButtonEventHandler(PlatformButton_MouseOver);
-            PlatformButton.MouseOff += new Button.ButtonEventHandler(PlatformButton_MouseOff);
+            PlatformButton.MouseOver += new Button.ButtonEventHandler(platform_mouseOver);
+            PlatformButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
+            PlatformButton.Click += new Button.ButtonEventHandler(platform_click);
 
-            platformLabel = new TextSprite("LargeFont", "Platform", PlatformButton.Position, Color.White);
-
-            EdgeGame.update += new EdgeGame.UpdateEvent(EdgeGame_update);
+            emitter_toNormal();
         }
 
-        void EdgeGame_update(GameTime gameTime)
+        private void emitter_toNormal()
         {
+            MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize/2);
+            MasterEmitter.SetSize(new Vector2(15), new Vector2(100));
+            MasterEmitter.SetRotationSpeed(-8, 8);
+            MasterEmitter.BlendState = BlendState.Additive;
+            MasterEmitter.SetLife(3000);
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.Blue, Color.Green, Color.Transparent);
+            MasterEmitter.SetColor(index);
         }
 
-        void PlatformButton_MouseOff(ButtonEventArgs e)
+        private void emitter_toPlatform()
         {
-            platformLabel.Movement.MoveTo(new Vector2(platformLabel.Position.X, 400), speed);
-            platformLabel.StyleChanger.ColorChange(platformLabel.Style.Color, Color.White, 500);
+            MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize / 2);
+            MasterEmitter.SetSize(new Vector2(15), new Vector2(100));
+            MasterEmitter.SetRotationSpeed(-8, 8);
+            MasterEmitter.BlendState = BlendState.Additive;
+            MasterEmitter.SetLife(3000);
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.Crimson, Color.OrangeRed, Color.Transparent);
+            MasterEmitter.SetColor(index);
         }
 
-        void PlatformButton_MouseOver(ButtonEventArgs e)
-        {
-            platformLabel.Movement.MoveTo(new Vector2(platformLabel.Position.X, EdgeGame.WindowSize.Y), speed);
-            platformLabel.StyleChanger.ColorChange(platformLabel.Style.Color, Color.Transparent, 500);
-        }
+        private void platform_click(ButtonEventArgs e) { EdgeGame.AddScene(new PlatformDemo()); EdgeGame.SwitchScene("PlatformDemo"); }
+        private void platform_mouseOver(ButtonEventArgs e) { emitter_toPlatform(); } 
+        private void buttonMouseOff(ButtonEventArgs e) { emitter_toNormal(); } 
 
         #region UNUSED
 
@@ -74,24 +92,8 @@ namespace EdgeDemo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             EdgeGame.Init(Content, GraphicsDevice, graphics, spriteBatch);
-            EdgeGame.GameDrawState = GameDrawState.Normal;
-            IsMouseVisible = true;
-
-            EdgeGame.WindowSize = new Vector2(1300, 700);
-            EdgeGame.ClearColor = Color.White;
-
             base.Initialize();
-
             initEdgeGame();
-        }
-
-        protected override void LoadContent()
-        {
-            ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
-            ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
-            ResourceManager.LoadFont("SmallFont");
-            ResourceManager.LoadFont("MediumFont");
-            ResourceManager.LoadFont("LargeFont");
         }
 
         protected override void UnloadContent() { }

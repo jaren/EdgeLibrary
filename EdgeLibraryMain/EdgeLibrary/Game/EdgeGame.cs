@@ -37,7 +37,7 @@ namespace EdgeLibrary
         public static bool CollisionsInTextSprites;
 
         public static Color ClearColor;
-        public static Scene SelectedScene;
+        public static Scene SelectedScene { get; private set; }
 
         public static Effect Effect;
 
@@ -90,7 +90,7 @@ namespace EdgeLibrary
         {
             foreach (Scene Scene in Scenes)
             {
-                if (Scene.ID == "Main")
+                if (Scene.ID == ID)
                 {
                     return Scene;
                 }
@@ -138,6 +138,17 @@ namespace EdgeLibrary
         public static void SwitchScene(string id)
         {
             SelectedScene = Scene(id);
+        }
+
+        public static void SwitchScene(string id, Transition transition)
+        {
+            SelectedScene = Scene(id);
+            //TODO: Add transitions
+        }
+
+        public static void SwitchScene(Scene scene)
+        {
+            SelectedScene = scene;
         }
 
         private static void SetWindowSize(Vector2 size)

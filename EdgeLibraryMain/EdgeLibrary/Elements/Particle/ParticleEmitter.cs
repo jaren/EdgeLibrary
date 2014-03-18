@@ -33,6 +33,7 @@ namespace EdgeLibrary
         public float MinLife;
         public float EmitWait;
         public int MaxParticles;
+        public bool SquareParticles;
 
         protected List<Particle> particles;
         protected TimeSpan timeSinceLastEmit;
@@ -49,6 +50,8 @@ namespace EdgeLibrary
         public ParticleEmitter(string id, string eTextureName, Vector2 ePosition) : base(eTextureName, ePosition)
         {
             particles = new List<Particle>();
+
+            SquareParticles = true;
 
             MinColorIndex = new ColorChangeIndex(Color.White);
             MaxColorIndex = MinColorIndex;
@@ -78,30 +81,70 @@ namespace EdgeLibrary
             MinColorIndex = new ColorChangeIndex(color);
             MaxColorIndex = MinColorIndex;
         }
+        public void SetColor(ColorChangeIndex color)
+        {
+            MinColorIndex = color;
+            MaxColorIndex = MinColorIndex;
+        }
+        public void SetColor(Color color, Color color2)
+        {
+            MinColorIndex = new ColorChangeIndex(color);
+            MaxColorIndex = new ColorChangeIndex(color2);
+        }
+        public void SetColor(ColorChangeIndex color, ColorChangeIndex color2)
+        {
+            MinColorIndex = color;
+            MaxColorIndex = color2;
+        }
         public void SetVelocity(Vector2 v)
         {
             MinVelocity = v;
             MaxVelocity = v;
+        }
+        public void SetVelocity(Vector2 v, Vector2 v2)
+        {
+            MinVelocity = v;
+            MaxVelocity = v2;
         }
         public void SetSize(Vector2 s)
         {
             MinSize = s;
             MaxSize = s;
         }
+        public void SetSize(Vector2 s, Vector2 s2)
+        {
+            MinSize = s;
+            MaxSize = s2;
+        }
         public void SetRotation(float r)
         {
             MinStartRotation = r;
             MaxStartRotation = r;
+        }
+        public void SetRotation(float r, float r2)
+        {
+            MinStartRotation = r;
+            MaxStartRotation = r2;
         }
         public void SetRotationSpeed(float r)
         {
             MinRotationSpeed = r;
             MaxRotationSpeed = r;
         }
+        public void SetRotationSpeed(float r, float r2)
+        {
+            MinRotationSpeed = r;
+            MaxRotationSpeed = r2;
+        }
         public void SetLife(float l)
         {
             MinLife = l;
             MaxLife = l;
+        }
+        public void SetLife(float l, float l2)
+        {
+            MinLife = l;
+            MaxLife = l2;
         }
         public void SetEmitArea(int width, int height)
         {
@@ -109,9 +152,14 @@ namespace EdgeLibrary
            _height = height;
         }
 
+        public void ClearParticles()
+        {
+            particles.Clear();
+        }
+
         public void EmitSingleParticle()
         {
-            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed)/10, GrowSpeed);
             particle.REMOVE();
 
             //It sets the velocity Y in a separate line to prevent the X and Y from being the same "random" number
@@ -131,6 +179,10 @@ namespace EdgeLibrary
             particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
             particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y);
             particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X);
+            if (SquareParticles)
+            {
+                particle.Width = particle.Height;
+            }
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, (float)InputManager.RandomDouble());
 
             particles.Add(particle);

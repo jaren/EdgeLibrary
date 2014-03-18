@@ -82,6 +82,20 @@ namespace EdgeLibrary
             base.updateElement(gameTime);
         }
 
+        public void SetStyle(SpriteStyle style)
+        {
+            OnStyle = style;
+            OffStyle = style;
+            MouseOverStyle = style;
+        }
+
+        public void SetScale(Vector2 scale)
+        {
+            OnScale = scale;
+            OffScale = scale;
+            MouseOverScale = scale;
+        }
+
         protected void reloadLabel()
         {
             if (label.Font != null)
