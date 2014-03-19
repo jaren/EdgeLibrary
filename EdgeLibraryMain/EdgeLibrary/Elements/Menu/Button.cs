@@ -51,6 +51,8 @@ namespace EdgeLibrary
             OnScale = Vector2.One;
             OffScale = OnScale;
             MouseOverScale = OnScale;
+
+            CollisionBodyType = ShapeTypes.rectangle;
             
             label = new TextSprite(string.Format("{0}_label", id), "", "", Vector2.Zero, Color.White);
             label.REMOVE();
@@ -116,7 +118,7 @@ namespace EdgeLibrary
 
             Vector2 mousePosition = InputManager.MousePosition;
 
-            if (GetBoundingBox().Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
+            if (CollisionBody.Shape.CollidesWith(new ShapeRectangle(new Vector2((int)mousePosition.X, (int)mousePosition.Y), 1, 1)))
             {
                 Style = MouseOverStyle;
                 Scale = MouseOverScale;

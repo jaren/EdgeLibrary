@@ -67,7 +67,7 @@ namespace EdgeLibrary
             if (Font != null)
             {
                 Vector2 Measured = Font.MeasureString(_text);
-                originPoint = new Vector2(Measured.X / 2, Measured.Y / 2);
+                OriginPoint = new Vector2(Measured.X / 2, Measured.Y / 2);
             }
         }
 
@@ -97,9 +97,9 @@ namespace EdgeLibrary
             {
                 if (!CenterText)
                 {
-                    return new Vector2(Position.X + originPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + originPoint.Y); 
+                    return new Vector2(Position.X + OriginPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + OriginPoint.Y); 
                 }
-                    return new Vector2(Position.X - Font.MeasureString(_text).X / 2 + originPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + originPoint.Y);
+                    return new Vector2(Position.X - Font.MeasureString(_text).X / 2 + OriginPoint.X, Position.Y - Font.MeasureString(_text).Y / 2 + OriginPoint.Y);
             }
             return Position;
         }
@@ -107,7 +107,7 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, originPoint, Scale, Style.Effects);
+            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, OriginPoint, Scale, Style.Effects);
         }
     }
 }

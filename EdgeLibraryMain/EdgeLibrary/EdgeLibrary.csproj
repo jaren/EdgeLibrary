@@ -108,7 +108,6 @@
     <Compile Include="Elements\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\Menu\Button.cs" />
-    <Compile Include="Elements\Menu\ButtonRound.cs" />
     <Compile Include="Elements\Menu\ButtonToggle.cs" />
     <Compile Include="Extra\Effects\ShadeEffect.cs" />
     <Compile Include="Elements\Sprite\FakeSprite.cs" />

@@ -42,7 +42,7 @@ namespace EdgeLibrary
         protected List<Particle> particlesToRemove;
         protected const int maxParticlesToRemove = 30;
 
-        public delegate void ParticleEventHandler(ParticleEmitter sender);
+        public delegate void ParticleEventHandler(ParticleEmitter sender, Particle particle, GameTime gameTime);
         public event ParticleEventHandler OnEmit;
 
         public ParticleEmitter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
@@ -157,12 +157,11 @@ namespace EdgeLibrary
             particles.Clear();
         }
 
-        public void EmitSingleParticle()
+        public void EmitSingleParticle(GameTime gameTime)
         {
             Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed)/10, GrowSpeed);
             particle.REMOVE();
 
-            //It sets the velocity Y in a separate line to prevent the X and Y from being the same "random" number
             particle.velocity = new Vector2(InputManager.AccurateRandomInt((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.AccurateRandomInt((int)MinVelocity.Y, (int)MaxVelocity.Y));
 
             if (InputManager.RandomInt(1, 3) == 2)
@@ -177,8 +176,8 @@ namespace EdgeLibrary
             particle.CollisionBody = null;
             particle.Position = new Vector2(InputManager.RandomInt((int)(Position.X - Width / 2), (int)(Position.X + Width / 2)), InputManager.RandomInt((int)(Position.Y - Height / 2), (int)(Position.Y + Height / 2)));
             particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
-            particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y);
-            particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X);
+            particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y)*Scale.X;
+            particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X)*Scale.Y;
             if (SquareParticles)
             {
                 particle.Width = particle.Height;
@@ -189,7 +188,7 @@ namespace EdgeLibrary
 
             if (OnEmit != null)
             {
-                OnEmit(this);
+                OnEmit(this, particle, gameTime);
             }
         }
 
@@ -211,7 +210,7 @@ namespace EdgeLibrary
             if (timeSinceLastEmit.TotalMilliseconds >= EmitWait)
             {
                 timeSinceLastEmit = new TimeSpan(0);
-                EmitSingleParticle();
+                EmitSingleParticle(gameTime);
             }
 
             foreach (Particle particle in particles)

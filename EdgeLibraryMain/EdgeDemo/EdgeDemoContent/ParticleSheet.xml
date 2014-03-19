@@ -1,13 +1,9 @@
-<TextureAtlas imagePath="sheet">
-	<SubTexture name="fire-grayscale" x="62" y="200" width="29" height="29"/>
-	<SubTexture name="fire" x="62" y="200" width="29" height="29"/>
-	<SubTexture name="particles-hd" x="0" y="0" width="250" height="64"/>
-	<SubTexture name="particles" x="0" y="66" width="125" height="32"/>
-	<SubTexture name="smoke" x="0" y="166" width="57" height="57"/>
-	<SubTexture name="snow" x="31" y="225" width="29" height="29"/>
-	<SubTexture name="stars-grayscale" x="0" y="225" width="29" height="29"/>
-	<SubTexture name="stars" x="0" y="225" width="29" height="29"/>
-	<SubTexture name="stars2-grayscale" x="0" y="100" width="64" height="64"/>
-	<SubTexture name="stars2" x="0" y="100" width="64" height="64"/>
-	<SubTexture name="stars2_mini" x="59" y="166" width="32" height="32"/>
+<TextureAtlas imagePath="sheet.png">
+	<SubTexture name="fire" x="120" y="62" width="29" height="29"/>
+	<SubTexture name="flash" x="0" y="124" width="109" height="114"/>
+	<SubTexture name="plasma" x="0" y="0" width="118" height="122"/>
+	<SubTexture name="smoke" x="111" y="190" width="57" height="57"/>
+	<SubTexture name="snow" x="120" y="0" width="29" height="29"/>
+	<SubTexture name="stars" x="120" y="31" width="29" height="29"/>
+	<SubTexture name="stars2" x="111" y="124" width="64" height="64"/>
 </TextureAtlas>

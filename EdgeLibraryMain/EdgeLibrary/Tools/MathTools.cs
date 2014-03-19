@@ -84,6 +84,10 @@ namespace EdgeLibrary
         {
             return new Color(InputManager.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
         }
+        public static Color RandomGrayscaleColor()
+        {
+            return RandomGrayscaleColor(Color.White, Color.Black);
+        }
         public static Color RandomGrayscaleColor(Color min, Color max)
         {
             //Finds the average of the colors' values, in case they're not grayscale
