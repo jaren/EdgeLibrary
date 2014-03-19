@@ -62,59 +62,43 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
-            Vector2[] buttonPositions = new Vector2[2] { new Vector2(200, 150), new Vector2(1100, 150) };
+            Vector2[] buttonPositions = new Vector2[2] { new Vector2(300, 300), new Vector2(1000, 300) };
 
-            LabelButton PlatformButton = new LabelButton("Impact-30", "Platform Demo", buttonPositions[0], Color.OrangeRed);
+            LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", buttonPositions[0], Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Gray;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
-            PlatformButton.DrawLayer = -1;
             PlatformButton.MouseOver += new Button.ButtonEventHandler(platform_mouseOver);
             PlatformButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
             PlatformButton.Click += new Button.ButtonEventHandler(platform_click);
 
-            LabelButton CollisionButton = new LabelButton("Impact-30", "Collision Demo", buttonPositions[1], Color.Aquamarine);
-            CollisionButton.OffStyle.Color = Color.Gray;
-            CollisionButton.MouseOverStyle.Color = Color.Aquamarine;
-            CollisionButton.DrawLayer = -1;
-            CollisionButton.MouseOver += new Button.ButtonEventHandler(collision_mouseOver);
-            CollisionButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
-            CollisionButton.Click += new Button.ButtonEventHandler(collision_click);
+            LabelButton GameButton = new LabelButton("Georgia-50", "Game Demo", buttonPositions[1], Color.Aquamarine);
+            GameButton.OffStyle.Color = Color.Gray;
+            GameButton.MouseOverStyle.Color = Color.Aquamarine;
+            GameButton.MouseOver += new Button.ButtonEventHandler(game_mouseOver);
+            GameButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
+            GameButton.Click += new Button.ButtonEventHandler(game_click);
 
             MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize / 2);
-            MasterEmitter.tick += new Element.ElementUpdateEvent(emitterTick);
-            MasterEmitter.OnEmit += new ParticleEmitter.ParticleEventHandler(MasterEmitter_OnEmit);
+            MasterEmitter.DrawLayer = -1;
             MasterEmitter.tickFrames = 100;
             emitter_toNormal();
-        }
-
-        void MasterEmitter_OnEmit(ParticleEmitter sender, Particle particle, GameTime gameTime)
-        {
-            if (Header.Style.Color == Color.CadetBlue)
-            {
-                particle.StyleChanger.RotateSpriteTowards(particle, sender, 0);
-                particle.Movement.RotateAround(sender.Position, 1);
-            }
-        }
-
-        private void emitterTick(Element e, GameTime gameTime)
-        {
         }
 
         private void emitter_toNormal()
         {
             Header.Style.Color = Color.White;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
             MasterEmitter.SetSize(new Vector2(50), new Vector2(100));
-            MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
-            MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
+            MasterEmitter.GrowSpeed = 1;
+            MasterEmitter.SetRotationSpeed(0);
+            MasterEmitter.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
             MasterEmitter.SetLife(3000);
-            MasterEmitter.SetEmitArea(0, 0);
-            MasterEmitter.EmitWait = 0;
-            ColorChangeIndex index = new ColorChangeIndex(700, Color.CadetBlue, Color.Blue, Color.SteelBlue, Color.Transparent);
+            MasterEmitter.SetEmitArea(1300, 700);
+            MasterEmitter.EmitWait = 10;
+            ColorChangeIndex index = new ColorChangeIndex(500, Color.Purple, Color.Green, Color.DarkGoldenrod, Color.Red, Color.Turquoise, Color.Blue, Color.Transparent);
             MasterEmitter.SetColor(index);
-            MasterEmitter.ClearParticles();
         }
 
         private void emitter_toPlatform()
@@ -130,30 +114,27 @@ namespace EdgeDemo
             MasterEmitter.SetEmitArea(0, 0);
             ColorChangeIndex index = new ColorChangeIndex(700, Color.Crimson, Color.OrangeRed, Color.Transparent);
             MasterEmitter.SetColor(index);
-            MasterEmitter.ClearParticles();
         }
 
-        private void emitter_toCollision()
+        private void emitter_toGame()
         {
             Header.Style.Color = Color.CadetBlue;
-            MasterEmitter.Position = EdgeGame.WindowSize/2;
-            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
-            MasterEmitter.SetSize(new Vector2(70), new Vector2(100));
-            MasterEmitter.SetVelocity(new Vector2(0), new Vector2(0));
-            MasterEmitter.SetRotationSpeed(10);
+            MasterEmitter.Position = EdgeGame.WindowSize / 2;
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetSize(new Vector2(100), new Vector2(200));
+            MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
+            MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
-            MasterEmitter.EmitWait = 100;
-            MasterEmitter.SetEmitArea(300, 300);
             MasterEmitter.SetLife(3000);
-            ColorChangeIndex index = new ColorChangeIndex(700, Color.Aquamarine, Color.LightBlue, Color.Transparent);
+            MasterEmitter.SetEmitArea(0, 0);
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.Blue, Color.CadetBlue, Color.Transparent);
             MasterEmitter.SetColor(index);
-            MasterEmitter.ClearParticles();
         }
 
         private void platform_click(ButtonEventArgs e) { EdgeGame.AddScene(new PlatformDemo()); EdgeGame.SwitchScene("PlatformDemo"); }
         private void platform_mouseOver(ButtonEventArgs e) { emitter_toPlatform(); }
-        private void collision_click(ButtonEventArgs e) { EdgeGame.AddScene(new CollisionDemo()); EdgeGame.SwitchScene("CollisionDemo"); }
-        private void collision_mouseOver(ButtonEventArgs e) { emitter_toCollision(); } 
+        private void game_click(ButtonEventArgs e) { EdgeGame.AddScene(new GameDemo()); EdgeGame.SwitchScene("GameDemo"); }
+        private void game_mouseOver(ButtonEventArgs e) { emitter_toGame(); } 
         private void buttonMouseOff(ButtonEventArgs e) { emitter_toNormal(); } 
 
         #region UNUSED

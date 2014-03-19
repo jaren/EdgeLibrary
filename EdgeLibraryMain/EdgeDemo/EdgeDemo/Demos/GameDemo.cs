@@ -13,9 +13,9 @@ using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
-    public class CollisionDemo : Scene
+    public class GameDemo : Scene
     {
-        public CollisionDemo() : base("CollisionDemo")
+        public GameDemo() : base("GameDemo")
         {
                
         }

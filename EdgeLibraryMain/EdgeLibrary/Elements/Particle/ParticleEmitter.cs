@@ -164,13 +164,16 @@ namespace EdgeLibrary
 
             particle.velocity = new Vector2(InputManager.AccurateRandomInt((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.AccurateRandomInt((int)MinVelocity.Y, (int)MaxVelocity.Y));
 
-            if (InputManager.RandomInt(1, 3) == 2)
+            if (MinVelocity != Vector2.Zero || MaxVelocity != Vector2.Zero)
             {
-                particle.velocity += new Vector2((float)InputManager.RandomDouble());
-            }
-            else
-            {
-                particle.velocity -= new Vector2((float)InputManager.RandomDouble());
+                if (InputManager.RandomInt(1, 3) == 2)
+                {
+                    particle.velocity += new Vector2((float)InputManager.RandomDouble());
+                }
+                else
+                {
+                    particle.velocity -= new Vector2((float)InputManager.RandomDouble());
+                }
             }
             particle.Texture = Texture;
             particle.CollisionBody = null;

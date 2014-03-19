@@ -108,7 +108,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demos\CollisionDemo.cs" />
+    <Compile Include="Demos\GameDemo.cs" />
     <Compile Include="Demos\PlatformDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
