@@ -111,27 +111,18 @@ namespace EdgeLibrary
 
         public void EmitSingleParticle()
         {
-            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID("particle"), "", RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
 
-            //It sets the velocity Y in a separate line to prevent the X and Y from being the same "random" number
-            particle.velocity = new Vector2(InputManager.AccurateRandomInt((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.AccurateRandomInt((int)MinVelocity.Y, (int)MaxVelocity.Y));
+            particle.velocity = new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X), RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y));
 
-            if (InputManager.RandomInt(1, 3) == 2)
-            {
-                particle.velocity += new Vector2((float)InputManager.RandomDouble());
-            }
-            else
-            {
-                particle.velocity -= new Vector2((float)InputManager.RandomDouble());
-            }
             particle.Texture = Texture;
             particle.CollisionBody = null;
-            particle.Position = new Vector2(InputManager.RandomInt((int)(Position.X - Width / 2), (int)(Position.X + Width / 2)), InputManager.RandomInt((int)(Position.Y - Height / 2), (int)(Position.Y + Height / 2)));
-            particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
-            particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y);
-            particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X);
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, (float)InputManager.RandomDouble());
+            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - Width / 2, Position.X + Width / 2), RandomTools.RandomFloat(Position.Y - Height / 2, Position.Y + Height / 2));
+            particle.Style.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
+            particle.Height = RandomTools.RandomFloat(MinSize.Y, MaxSize.Y);
+            particle.Width = RandomTools.RandomFloat(MinSize.X, MaxSize.X);
+            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
 
             particles.Add(particle);
 

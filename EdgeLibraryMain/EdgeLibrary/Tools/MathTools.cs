@@ -82,12 +82,12 @@ namespace EdgeLibrary
         /// </remarks>
         public static Color RandomColor(Color min, Color max)
         {
-            return new Color(InputManager.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), InputManager.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), InputManager.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), InputManager.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
+            return new Color(RandomTools.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), RandomTools.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), RandomTools.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), RandomTools.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
         }
         public static Color RandomGrayscaleColor(Color min, Color max)
         {
             //Finds the average of the colors' values, in case they're not grayscale
-            byte random = (byte)InputManager.RandomInt(Math.Min((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3), Math.Max((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3));
+            byte random = (byte)RandomTools.RandomInt(Math.Min((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3), Math.Max((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3));
 
             //Creates a new color with that grayscale and a random alpha
             return new Color(random, random, random, (min.A + max.A)/2);
@@ -160,10 +160,10 @@ namespace EdgeLibrary
 
         public static string RandomID()
         {
-            int id = InputManager.RandomInt(int.MaxValue);
+            int id = RandomTools.RandomInt(int.MaxValue);
             while (givenIDs.Contains(id))
             {
-                id = InputManager.RandomInt(int.MaxValue);
+                id = RandomTools.RandomInt(int.MaxValue);
             }
             return Convert.ToString(id);
         }

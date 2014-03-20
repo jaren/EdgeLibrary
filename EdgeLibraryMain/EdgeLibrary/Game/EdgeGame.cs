@@ -69,6 +69,7 @@ namespace EdgeLibrary
             SoundManager.Init(c);
             TextureTools.Init();
             MathTools.Init();
+            RandomTools.Init();
             InputManager.Init();
             Camera.UpdateWithGame();
         }

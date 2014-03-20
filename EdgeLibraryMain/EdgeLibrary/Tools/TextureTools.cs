@@ -186,7 +186,7 @@
                             {
                                 if (changeParams.UseColor)
                                 {
-                                    colors[i] = Color.Lerp(changeParams.MinColor, changeParams.MaxColor, InputManager.RandomFloat(0, 1));
+                                    colors[i] = Color.Lerp(changeParams.MinColor, changeParams.MaxColor, RandomTools.RandomFloat(0, 1));
                                 }
 
                                 colors[i] = MathTools.AddToColor(colors[i], changeParams.Add);

@@ -131,6 +131,7 @@
     <Compile Include="Game\Managers\SoundManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\MathTools.cs" />
+    <Compile Include="Tools\RandomTools.cs" />
     <Compile Include="Tools\TextureTools.cs" />
   </ItemGroup>
   <ItemGroup />
