@@ -159,7 +159,6 @@ namespace EdgeLibrary
 
         public void EmitSingleParticle(GameTime gameTime)
         {
-<<<<<<< HEAD
             Particle particle = new Particle(MathTools.RandomID("particle"), "", RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
 
@@ -172,35 +171,13 @@ namespace EdgeLibrary
             particle.Height = RandomTools.RandomFloat(MinSize.Y, MaxSize.Y);
             particle.Width = RandomTools.RandomFloat(MinSize.X, MaxSize.X);
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
-=======
-            Particle particle = new Particle(MathTools.RandomID("particle"), "", InputManager.RandomFloat(MinLife, MaxLife), InputManager.RandomFloat(MinRotationSpeed, MaxRotationSpeed)/10, GrowSpeed);
             particle.REMOVE();
 
-            particle.velocity = new Vector2(InputManager.AccurateRandomInt((int)MinVelocity.X, (int)MaxVelocity.X), InputManager.AccurateRandomInt((int)MinVelocity.Y, (int)MaxVelocity.Y));
-
-            if (MinVelocity != Vector2.Zero || MaxVelocity != Vector2.Zero)
-            {
-                if (InputManager.RandomInt(1, 3) == 2)
-                {
-                    particle.velocity += new Vector2((float)InputManager.RandomDouble());
-                }
-                else
-                {
-                    particle.velocity -= new Vector2((float)InputManager.RandomDouble());
-                }
-            }
-            particle.Texture = Texture;
-            particle.CollisionBody = null;
-            particle.Position = new Vector2(InputManager.RandomInt((int)(Position.X - Width / 2), (int)(Position.X + Width / 2)), InputManager.RandomInt((int)(Position.Y - Height / 2), (int)(Position.Y + Height / 2)));
-            particle.Style.Rotation = InputManager.RandomInt((int)MinStartRotation, (int)MaxStartRotation);
-            particle.Height = InputManager.RandomInt((int)MinSize.Y, (int)MaxSize.Y)*Scale.X;
-            particle.Width = InputManager.RandomInt((int)MinSize.X, (int)MaxSize.X)*Scale.Y;
             if (SquareParticles)
             {
                 particle.Width = particle.Height;
             }
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, (float)InputManager.RandomDouble());
->>>>>>> a60eeceeafd7fabd6d29c33d0781b58a402a5efe
+            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
 
             particles.Add(particle);
 

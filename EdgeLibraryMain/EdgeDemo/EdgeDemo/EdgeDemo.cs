@@ -80,7 +80,6 @@ namespace EdgeDemo
 
             MasterEmitter = new ParticleEmitter("fire", EdgeGame.WindowSize / 2);
             MasterEmitter.DrawLayer = -1;
-            MasterEmitter.tickFrames = 100;
             emitter_toNormal();
         }
 
