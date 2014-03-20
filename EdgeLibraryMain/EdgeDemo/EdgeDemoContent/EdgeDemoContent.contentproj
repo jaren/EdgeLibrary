@@ -70,23 +70,125 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Compile Include="SmallFont.spritefont">
-      <Name>SmallFont</Name>
+    <Compile Include="Fonts\Comic Sans\ComicSans-10.spritefont">
+      <Name>ComicSans-10</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="LargeFont.spritefont">
-      <Name>LargeFont</Name>
+    <Compile Include="Fonts\Comic Sans\ComicSans-20.spritefont">
+      <Name>ComicSans-20</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MediumFont.spritefont">
-      <Name>MediumFont</Name>
+    <Compile Include="Fonts\Comic Sans\ComicSans-30.spritefont">
+      <Name>ComicSans-30</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Comic Sans\ComicSans-40.spritefont">
+      <Name>ComicSans-40</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Comic Sans\ComicSans-50.spritefont">
+      <Name>ComicSans-50</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Comic Sans\ComicSans-60.spritefont">
+      <Name>ComicSans-60</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-10.spritefont">
+      <Name>CourierNew-10</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-20.spritefont">
+      <Name>CourierNew-20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-30.spritefont">
+      <Name>CourierNew-30</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-40.spritefont">
+      <Name>CourierNew-40</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-50.spritefont">
+      <Name>CourierNew-50</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Courier New\CourierNew-60.spritefont">
+      <Name>CourierNew-60</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-10.spritefont">
+      <Name>Georgia-10</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-20.spritefont">
+      <Name>Georgia-20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-30.spritefont">
+      <Name>Georgia-30</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-40.spritefont">
+      <Name>Georgia-40</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-50.spritefont">
+      <Name>Georgia-50</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Georgia\Georgia-60.spritefont">
+      <Name>Georgia-60</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-10.spritefont">
+      <Name>Impact-10</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-20.spritefont">
+      <Name>Impact-20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-30.spritefont">
+      <Name>Impact-30</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-40.spritefont">
+      <Name>Impact-40</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-50.spritefont">
+      <Name>Impact-50</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+    <Compile Include="Fonts\Impact\Impact-60.spritefont">
+      <Name>Impact-60</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

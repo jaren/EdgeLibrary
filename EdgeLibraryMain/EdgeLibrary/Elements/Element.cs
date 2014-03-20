@@ -28,6 +28,10 @@ namespace EdgeLibrary
         public delegate void ElementUpdateEvent(Element e, GameTime gameTime);
         public ElementUpdateEvent update;
         public ElementUpdateEvent draw;
+        public ElementUpdateEvent tick;
+
+        public int tickFrames;
+        private int passedFrames;
 
         public Element(string id)
         {
@@ -40,6 +44,9 @@ namespace EdgeLibrary
             Capabilities = new List<Capability>() {};
             Movement = new MovementCapability();
             Capabilities.Add(Movement);
+
+            tickFrames = int.MaxValue;
+            passedFrames = 0;
 
             //Automatically adds the element to the game
             EdgeGame.SelectedScene.AddElement(this);
@@ -95,9 +102,12 @@ namespace EdgeLibrary
                 { 
                     capability.Update(gameTime, this); 
                 }
+
                 updateElement(gameTime);
 
                 if (update != null) { update(this, gameTime); }
+                passedFrames++;
+                if (passedFrames >= tickFrames && tick != null) { passedFrames = 0; tick(this, gameTime); }
             }
         }
         public void Draw(GameTime gameTime)

@@ -47,7 +47,7 @@ namespace EdgeLibrary
             if (Font != null)
             {
                 Vector2 Measured = Font.MeasureString(Text);
-                originPoint = new Vector2(Measured.X / 2, Measured.Y / 2);
+                OriginPoint = new Vector2(Measured.X / 2, Measured.Y / 2);
             }
         }
 
@@ -63,7 +63,7 @@ namespace EdgeLibrary
 
         protected override void  drawElement(GameTime gameTime)
         {
-            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, originPoint, actualScale, Style.Effects);
+            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, OriginPoint, actualScale, Style.Effects);
         }
 
         protected override void updateElement(GameTime gameTime)

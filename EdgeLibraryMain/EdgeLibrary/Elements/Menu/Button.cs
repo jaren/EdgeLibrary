@@ -51,6 +51,8 @@ namespace EdgeLibrary
             OnScale = Vector2.One;
             OffScale = OnScale;
             MouseOverScale = OnScale;
+
+            CollisionBodyType = ShapeTypes.rectangle;
             
             label = new TextSprite(string.Format("{0}_label", id), "", "", Vector2.Zero, Color.White);
             label.REMOVE();
@@ -82,6 +84,20 @@ namespace EdgeLibrary
             base.updateElement(gameTime);
         }
 
+        public void SetStyle(SpriteStyle style)
+        {
+            OnStyle = style;
+            OffStyle = style;
+            MouseOverStyle = style;
+        }
+
+        public void SetScale(Vector2 scale)
+        {
+            OnScale = scale;
+            OffScale = scale;
+            MouseOverScale = scale;
+        }
+
         protected void reloadLabel()
         {
             if (label.Font != null)
@@ -102,7 +118,7 @@ namespace EdgeLibrary
 
             Vector2 mousePosition = InputManager.MousePosition;
 
-            if (GetBoundingBox().Contains(new Rectangle((int)mousePosition.X, (int)mousePosition.Y, 1, 1)))
+            if (CollisionBody.Shape.CollidesWith(new ShapeRectangle(new Vector2((int)mousePosition.X, (int)mousePosition.Y), 1, 1)))
             {
                 Style = MouseOverStyle;
                 Scale = MouseOverScale;

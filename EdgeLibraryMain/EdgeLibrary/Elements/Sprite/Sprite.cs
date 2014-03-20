@@ -43,7 +43,7 @@ namespace EdgeLibrary
         public float Height { get { return _height; } set { _height = value; reloadOriginPoint(); } }
         public Vector2 Scale { get { return _scale; } set { _scale = value; reloadActualScale(); } }
         public Effect TextureEffect;
-        protected Vector2 originPoint { get; set; }
+        public Vector2 OriginPoint { get; set; }
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
@@ -135,7 +135,7 @@ namespace EdgeLibrary
         {
             if (Texture != null)
             {
-                originPoint = new Vector2(Texture.Width / 2f, Texture.Height / 2f);
+                OriginPoint = new Vector2(Texture.Width / 2f, Texture.Height / 2f);
                 reloadActualScale();
             }
         }
@@ -200,7 +200,7 @@ namespace EdgeLibrary
                 TextureEffect.ApplyEffect(Texture);
             }
 
-            EdgeGame.drawTexture(Texture, Position, null, Style.Color, actualScale, Style.Rotation, originPoint, Style.Effects);
+            EdgeGame.drawTexture(Texture, Position, null, Style.Color, actualScale, Style.Rotation, OriginPoint, Style.Effects);
         }
 
         public virtual void DebugDraw(Color color)
