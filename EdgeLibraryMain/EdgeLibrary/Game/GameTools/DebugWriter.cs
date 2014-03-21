@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.IO;
 
 namespace EdgeLibrary
@@ -12,7 +18,9 @@ namespace EdgeLibrary
 
         public static void Init(string writePath)
         {
-            streamWriter = new StreamWriter(writePath);
+            string path = writePath + "/" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "_" + DateTime.Now.Hour + "." + DateTime.Now.Minute + "." + DateTime.Now.Second + ".txt";
+            streamWriter = new StreamWriter(path);
+
             streamWriter.WriteLine("Logs for:" + DateTime.Now.ToString());
             streamWriter.WriteLine();
         }

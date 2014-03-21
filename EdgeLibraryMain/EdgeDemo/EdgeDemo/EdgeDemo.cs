@@ -29,7 +29,7 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
-            EdgeGame.DebugWriterPath = @"C:/Users/JarenMendelsohn/Desktop/EdgeLogs.txt";
+            EdgeGame.DebugWriterPath = @"C:/Users/JarenMendelsohn/Desktop";
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
