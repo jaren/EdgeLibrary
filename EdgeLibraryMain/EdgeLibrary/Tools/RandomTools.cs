@@ -24,18 +24,22 @@ namespace EdgeLibrary
 
         public static int RandomInt(int min, int max)
         {
+            random = new Random(random.Next());
             return random.Next(Math.Min(min, max), Math.Max(min, max));
         }
         public static int RandomInt(int max)
         {
+            random = new Random(random.Next());
             return random.Next(max);
         }
         public static int RandomInt()
         {
+            random = new Random(random.Next());
             return random.Next();
         }
         public static float RandomFloat(float min, float max)
         {
+            random = new Random(random.Next());
             if (min + 1 > max)
             {
                 return (float)MathHelper.Lerp(min, max, (float)random.NextDouble());
@@ -47,6 +51,7 @@ namespace EdgeLibrary
         }
         public static float RandomFloat()
         {
+            random = new Random(random.Next());
             return RandomFloat(0, 1);
         }
     }

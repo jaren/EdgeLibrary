@@ -20,6 +20,19 @@ namespace EdgeLibrary
 
         public ColorChangeIndex(Color color) : this(1000, color) { }
 
+        public ColorChangeIndex(params KeyValuePair<Color, float>[] pairs)
+        {
+            Colors = new List<Color>();
+            Times = new List<float>();
+            index = 0;
+            elapsedTime = 0;
+
+            foreach (KeyValuePair<Color, float> pair in pairs)
+            {
+                Add(pair.Key, pair.Value);
+            }
+        }
+
         public ColorChangeIndex(float time, params Color[] colors)
         {
             Colors = new List<Color>();
@@ -32,7 +45,7 @@ namespace EdgeLibrary
                 Add(color, time);
             }
         }
-
+        
         public void Clear()
         {
             Colors.Clear();
