@@ -34,8 +34,8 @@ namespace EdgeLibrary
         public float EmitWait;
         public int MaxParticles;
         public bool SquareParticles;
-        public int EmitWidth;
-        public int EmitHeight;
+        public float EmitWidth;
+        public float EmitHeight;
 
         protected List<Particle> particles;
         protected TimeSpan timeSinceLastEmit;
@@ -145,10 +145,15 @@ namespace EdgeLibrary
             MinLife = l;
             MaxLife = l2;
         }
-        public void SetEmitArea(int width, int height)
+        public void SetEmitArea(float width, float height)
         {
-           EmitWait = width;
+            EmitWidth = width;
            EmitHeight = height;
+        }
+        public void SetEmitArea(Vector2 value)
+        {
+            EmitWidth = value.X;
+            EmitHeight = value.Y;
         }
 
         public void ClearParticles()
@@ -165,7 +170,7 @@ namespace EdgeLibrary
 
             particle.Texture = Texture;
             particle.CollisionBody = null;
-            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - EmitWait / 2, Position.X + EmitWait / 2), RandomTools.RandomFloat(Position.Y - EmitHeight / 2, Position.Y + EmitHeight / 2));
+            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - EmitWidth / 2f, Position.X + EmitWidth / 2f), RandomTools.RandomFloat(Position.Y - EmitHeight / 2f, Position.Y + EmitHeight / 2f));
             particle.Style.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
             particle.Scale = new Vector2(RandomTools.RandomFloat(MinScale.X, MaxScale.X), RandomTools.RandomFloat(MinScale.Y, MaxScale.Y));
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
@@ -235,7 +240,7 @@ namespace EdgeLibrary
 
         public override void DebugDraw(Color color)
         {
-            TextureTools.DrawHollowRectangleAt(new Rectangle((int)(Position.X - EmitWidth/2), (int)Position.Y - EmitHeight/2, EmitWidth, EmitHeight), color, 1);
+            TextureTools.DrawHollowRectangleAt(new Rectangle((int)(Position.X - EmitWidth/2), (int)(Position.Y - EmitHeight/2), (int)EmitWidth, (int)EmitHeight), color, 1);
         }
     }
 }

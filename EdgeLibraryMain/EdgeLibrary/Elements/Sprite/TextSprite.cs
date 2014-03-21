@@ -52,7 +52,7 @@ namespace EdgeLibrary
         {
             if (Font != null && _text != null)
             {
-                if (!_xnaDefaultOrigin)
+                if (_centerAsOrigin)
                 {
                     Vector2 Measured = Font.MeasureString(_text);
                     OriginPoint = new Vector2(Measured.X / 2f, Measured.Y / 2f);

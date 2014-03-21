@@ -34,23 +34,23 @@ namespace EdgeLibrary
             Position = position;
 
             MouseSprite = new TextSprite(string.Format("{0}_MouseSprite", ID), fontName, "Mouse Position: (0, 0)", Vector2.Zero, drawColor);
-            MouseSprite.XNADefaultOrigin = true;
+            MouseSprite.CenterAsOrigin = false;
             AddElement(MouseSprite);
 
             FPSSprite = new TextSprite(string.Format("{0}_FPSSprite", ID), fontName, "FPS: 0", Vector2.Zero, drawColor);
-            FPSSprite.XNADefaultOrigin = true;
+            FPSSprite.CenterAsOrigin = false;
             AddElement(FPSSprite);
 
             ScenesSprite = new TextSprite(string.Format("{0}_ScenesSprite", ID), fontName, "Scenes (0):", Vector2.Zero, drawColor);
-            ScenesSprite.XNADefaultOrigin = true;
+            ScenesSprite.CenterAsOrigin = false;
             AddElement(ScenesSprite);
 
             ElementsSprite = new TextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor);
-            ElementsSprite.XNADefaultOrigin = true;
+            ElementsSprite.CenterAsOrigin = false;
             AddElement(ElementsSprite);
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
-            KeysSprite.XNADefaultOrigin = true;
+            KeysSprite.CenterAsOrigin = false;
             AddElement(KeysSprite);
 
             Font = ResourceManager.getFont(fontName);

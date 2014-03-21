@@ -13,6 +13,14 @@ using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
+    /// <summary>
+    /// TODO:
+    /// -Change MathTools.RandomID so that there is not a finite number of IDs - right now, the game will "time out" after the number of particles reaches int.MaxValue
+    /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
+    /// -Improve the RandomTools class to be more "random"
+    /// -Make a better way of creating color indexes, like new ColorIndex({Color.Red, 1000}, {Color.Blue, 500})
+    /// </summary>
+
     public class EdgeDemo : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
@@ -62,18 +70,16 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
-            DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
+            //DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
 
-            Vector2[] buttonPositions = new Vector2[2] { new Vector2(300, 300), new Vector2(1000, 300) };
-
-            LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", buttonPositions[0], Color.OrangeRed);
+            LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", new Vector2(300, 300), Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Gray;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
             PlatformButton.MouseOver += new Button.ButtonEventHandler(platform_mouseOver);
             PlatformButton.MouseOff += new Button.ButtonEventHandler(buttonMouseOff);
             PlatformButton.Click += new Button.ButtonEventHandler(platform_click);
 
-            LabelButton GameButton = new LabelButton("Georgia-50", "Game Demo", buttonPositions[1], Color.Aquamarine);
+            LabelButton GameButton = new LabelButton("Georgia-50", "Game Demo", new Vector2(1000, 300), Color.Aquamarine);
             GameButton.OffStyle.Color = Color.Gray;
             GameButton.MouseOverStyle.Color = Color.Aquamarine;
             GameButton.MouseOver += new Button.ButtonEventHandler(game_mouseOver);
@@ -89,15 +95,15 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.White;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
-            MasterEmitter.SetScale(new Vector2(50), new Vector2(100));
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetScale(new Vector2(10), new Vector2(12));
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.GrowSpeed = 1;
             MasterEmitter.SetRotationSpeed(0);
             MasterEmitter.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
             MasterEmitter.SetLife(3000);
-            MasterEmitter.SetEmitArea(0, 0);
-            MasterEmitter.EmitWait = 10;
+            MasterEmitter.EmitWait = 300;
+            MasterEmitter.SetEmitArea(EdgeGame.WindowSize);
             ColorChangeIndex index = new ColorChangeIndex(500, Color.Purple, Color.Green, Color.DarkGoldenrod, Color.Red, Color.Turquoise, Color.Blue, Color.Transparent);
             MasterEmitter.SetColor(index);
         }
@@ -106,12 +112,13 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.Orange;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
-            MasterEmitter.SetScale(new Vector2(100), new Vector2(200));
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetScale(new Vector2(5), new Vector2(7));
             MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.SetLife(3000);
+            MasterEmitter.EmitWait = 0;
             MasterEmitter.SetEmitArea(0, 0);
             ColorChangeIndex index = new ColorChangeIndex(700, Color.Crimson, Color.OrangeRed, Color.Transparent);
             MasterEmitter.SetColor(index);
@@ -121,12 +128,13 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.CadetBlue;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
-            MasterEmitter.SetScale(new Vector2(100), new Vector2(200));
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetScale(new Vector2(5), new Vector2(7));
             MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.SetLife(3000);
+            MasterEmitter.EmitWait = 0;
             MasterEmitter.SetEmitArea(0, 0);
             ColorChangeIndex index = new ColorChangeIndex(700, Color.Blue, Color.CadetBlue, Color.Transparent);
             MasterEmitter.SetColor(index);

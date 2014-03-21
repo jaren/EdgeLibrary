@@ -45,8 +45,8 @@ namespace EdgeLibrary
         public Effect TextureEffect;
         public Vector2 OriginPoint { get; set; }
         //If set to true, origin will be top left; if not, origin will be center
-        public bool XNADefaultOrigin { get { return _xnaDefaultOrigin; } set { _xnaDefaultOrigin = value; reloadOriginPoint(); } }
-        protected bool _xnaDefaultOrigin;
+        public bool CenterAsOrigin { get { return _centerAsOrigin; } set { _centerAsOrigin = value; reloadOriginPoint(); } }
+        protected bool _centerAsOrigin;
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
         public Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
@@ -70,7 +70,7 @@ namespace EdgeLibrary
 
             Scale = Vector2.One;
 
-            _xnaDefaultOrigin = false;
+            _centerAsOrigin = true;
 
             StyleChanger = new StyleCapability();
             AddCapability(StyleChanger);
@@ -113,7 +113,7 @@ namespace EdgeLibrary
         {
             if (Texture != null)
             {
-                if (!_xnaDefaultOrigin)
+                if (_centerAsOrigin)
                 {
                     OriginPoint = new Vector2(Width / 2f, Height / 2f);
                 }
@@ -135,13 +135,13 @@ namespace EdgeLibrary
             if (CollisionBody != null)
             {
                 CollisionBody.ScaleWith(this);
-                if (!_xnaDefaultOrigin)
+                if (_centerAsOrigin)
                 {
                     CollisionBody.Position = new Vector2(Position.X, Position.Y);
                 }
                 else
                 {
-                    CollisionBody.Position = new Vector2(Position.X + Width/2, Position.Y + Height/2);
+                    CollisionBody.Position = new Vector2(Position.X + Width / 2, Position.Y + Height / 2);
                 }
 
                 foreach (Element element in EdgeGame.SelectedScene.elements)
