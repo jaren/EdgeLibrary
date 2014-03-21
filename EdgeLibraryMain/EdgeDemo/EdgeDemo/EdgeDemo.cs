@@ -17,6 +17,7 @@ namespace EdgeDemo
     /// TODO:
     /// -Change MathTools.RandomID so that there is not a finite number of IDs - right now, the game will "time out" after the number of particles reaches int.MaxValue
     /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
+    /// -Implement DebugWriter
     /// </summary>
 
     public class EdgeDemo : Microsoft.Xna.Framework.Game
