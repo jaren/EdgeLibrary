@@ -37,7 +37,6 @@ namespace EdgeLibrary
     //Provides a base textured game object
     public class Sprite : Element
     {
-
         public override Vector2 Position { get; set; }
         public virtual float Width { get { return Texture == null ? 0 : Texture.Width; } protected set { } }
         public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } protected set { } }
@@ -62,7 +61,7 @@ namespace EdgeLibrary
 
         public Sprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(typeof(Sprite)), eTextureName, ePosition) { }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, bool autoAdd) : base(id, autoAdd)
         {
 
             Style = new SpriteStyle(SpriteEffects.None, 0f, Color.White);
@@ -86,6 +85,8 @@ namespace EdgeLibrary
             }
             reloadOriginPoint();
         }
+
+        public Sprite(string id, string eTextureName, Vector2 ePosition) : this(id, eTextureName, ePosition, true) { }
 
         public Sprite(string id, string eTextureName, Vector2 ePosition, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition)
         {
@@ -154,7 +155,7 @@ namespace EdgeLibrary
                             {
                                 if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
                                 {
-                                    if (Collision != null) { Collision(this, elementAsSprite, gameTime); }
+                                    if (Collision != null) { Collision(this, elementAsSprite, gameTime); DebugWriter.LogEvent("Collision", "    {", "       Sprite 1:" + ID, "      Sprite 2:" + elementAsSprite.ID, "      GameTime: " + gameTime, "  }"); }
                                     if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                     {
                                         CollisionStart(this, elementAsSprite, gameTime);

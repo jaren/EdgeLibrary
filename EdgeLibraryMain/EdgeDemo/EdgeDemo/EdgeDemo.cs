@@ -17,7 +17,6 @@ namespace EdgeDemo
     /// TODO:
     /// -Change MathTools.RandomID so that there is not a finite number of IDs - right now, the game will "time out" after the number of particles reaches int.MaxValue
     /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
-    /// -Implement DebugWriter
     /// </summary>
 
     public class EdgeDemo : Microsoft.Xna.Framework.Game
@@ -30,6 +29,7 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
+            EdgeGame.DebugWriterPath = @"C:/Users/JarenMendelsohn/Desktop/EdgeLogs.txt";
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
@@ -60,14 +60,14 @@ namespace EdgeDemo
 
         public void initEdgeGame()
         {
-            EdgeGame.GameDrawState = GameDrawState.Hybrid;
+            EdgeGame.GameDrawState = GameDrawState.Normal;
             IsMouseVisible = true;
 
             EdgeGame.WindowSize = new Vector2(1300, 700);
 
             EdgeGame.ClearColor = new Color(20, 20, 20);
 
-            Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
+            Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X / 2, 50), Color.White);
 
             //DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
 
@@ -142,8 +142,8 @@ namespace EdgeDemo
         private void platform_click(ButtonEventArgs e) { EdgeGame.AddScene(new PlatformDemo()); EdgeGame.SwitchScene("PlatformDemo"); }
         private void platform_mouseOver(ButtonEventArgs e) { emitter_toPlatform(); }
         private void game_click(ButtonEventArgs e) { EdgeGame.AddScene(new GameDemo()); EdgeGame.SwitchScene("GameDemo"); }
-        private void game_mouseOver(ButtonEventArgs e) { emitter_toGame(); } 
-        private void buttonMouseOff(ButtonEventArgs e) { emitter_toNormal(); } 
+        private void game_mouseOver(ButtonEventArgs e) { emitter_toGame(); }
+        private void buttonMouseOff(ButtonEventArgs e) { emitter_toNormal(); }
 
         #region UNUSED
 

@@ -164,6 +164,8 @@ namespace EdgeLibrary
         public void EmitSingleParticle(GameTime gameTime)
         {
             Particle particle = new Particle(MathTools.RandomID(typeof(Particle)), "", RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
+            
+            //Should be unnecessary, but in case it was added anyways...
             particle.REMOVE();
 
             particle.velocity = new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X), RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y));

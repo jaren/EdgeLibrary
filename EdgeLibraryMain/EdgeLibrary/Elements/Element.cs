@@ -33,7 +33,9 @@ namespace EdgeLibrary
         public int tickFrames;
         private int passedFrames;
 
-        public Element(string id)
+        public Element(string id) : this(id, true) { }
+
+        public Element(string id, bool autoAdd)
         {
             ID = id;
 
@@ -48,8 +50,11 @@ namespace EdgeLibrary
             tickFrames = int.MaxValue;
             passedFrames = 0;
 
-            //Automatically adds the element to the game
-            EdgeGame.SelectedScene.AddElement(this);
+            if (autoAdd)
+            {
+                //Automatically adds the element to the game
+                EdgeGame.SelectedScene.AddElement(this);
+            }
         }
 
         public override string ToString()

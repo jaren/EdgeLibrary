@@ -68,11 +68,13 @@ namespace EdgeLibrary
         public static void addTexture(string textureName, Texture2D texture)
         {
             textures.Add(textureName, texture);
+            DebugWriter.LogAddNSP("Texture { Name:" + textureName + " }");
         }
 
         public static void addFont(string fontName, SpriteFont font)
         {
             fonts.Add(fontName, font);
+            DebugWriter.LogAddNSP("Font { Name:" + fontName + " }");
         }
 
         public static Texture2D getTexture(string textureName)

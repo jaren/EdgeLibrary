@@ -13,7 +13,6 @@ using System.Xml.Linq;
 
 namespace EdgeLibrary
 {
-    //May add more things to Scenes later on
     public class Scene
     {
         public List<Element> elements;
@@ -29,6 +28,7 @@ namespace EdgeLibrary
         public virtual void AddElement(Element element)
         {
             elements.Add(element);
+            DebugWriter.LogAdd("Element", "       ID: " + element.ID, "        Type: " + element.GetType());
         }
 
         public virtual bool RemoveElement(string id)

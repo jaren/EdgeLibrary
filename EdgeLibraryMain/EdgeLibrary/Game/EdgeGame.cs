@@ -27,9 +27,14 @@ namespace EdgeLibrary
         private static GraphicsDeviceManager graphics;
         private static SpriteBatch spriteBatch;
 
+        public static float GameTimeTickRate = 10;
+        private static double gameTimeElapsedTick = 0;
+
         private static bool IsDrawing;
 
         private static RenderTarget2D ScreenTarget;
+
+        public static string DebugWriterPath { get { return string.Empty; } set { DebugWriter.Init(value); } }
 
         public static GameDrawState GameDrawState;
         public static Color DebugDrawColor;
@@ -67,7 +72,6 @@ namespace EdgeLibrary
             MathTools.Init();
             RandomTools.Init();
             InputManager.Init();
-          //  DebugWriter.Init("");
             Camera.UpdateWithGame();
         }
 
@@ -99,6 +103,7 @@ namespace EdgeLibrary
         public static void AddScene(Scene scene)
         {
             Scenes.Add(scene);
+            DebugWriter.LogAdd("Scene", "       ID:" + scene.ID);
         }
 
         public static bool RemoveScene(string id)
@@ -116,16 +121,26 @@ namespace EdgeLibrary
 
         public static bool RemoveScene(Scene scene)
         {
-            return Scenes.Remove(scene);
+            if (Scenes.Remove(scene))
+            {
+                DebugWriter.LogRemove("Scene", "ID: " + scene.ID);
+            }
+            return false;
         }
 
 
-        public static void RemoveElement(Element e)
+        public static bool RemoveElement(Element e)
         {
+            bool removed = false;
             foreach (Scene scene in Scenes)
             {
-                scene.RemoveElement(e);
+                if (scene.RemoveElement(e))
+                {
+                    removed = true;
+                    DebugWriter.LogRemove("Element", "ID: " + e.ID, "Type: " + e.GetType());
+                }
             }
+            return removed;
         }
 
         private static Vector2 getWindowSize()
@@ -187,6 +202,18 @@ namespace EdgeLibrary
                 }
             }
             IDs = null;
+
+            gameTimeElapsedTick += gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (gameTimeElapsedTick >= GameTimeTickRate)
+            {
+                DebugWriter.LogEvent("Game Running... running for " + gameTime.TotalGameTime.ToString());
+                gameTimeElapsedTick = 0;
+            }
+
+            if (gameTime.IsRunningSlowly)
+            {
+                DebugWriter.LogError("The game is running slowly. FPS:" + FPSCounter.FPS);
+            }
         }
 
         public static void Draw(GameTime gameTime)
