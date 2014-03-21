@@ -62,6 +62,8 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X/2, 50), Color.White);
 
+            DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
+
             Vector2[] buttonPositions = new Vector2[2] { new Vector2(300, 300), new Vector2(1000, 300) };
 
             LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", buttonPositions[0], Color.OrangeRed);
@@ -87,14 +89,14 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.White;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("fire");
-            MasterEmitter.SetSize(new Vector2(50), new Vector2(100));
+            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
+            MasterEmitter.SetScale(new Vector2(50), new Vector2(100));
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.GrowSpeed = 1;
             MasterEmitter.SetRotationSpeed(0);
             MasterEmitter.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
             MasterEmitter.SetLife(3000);
-            MasterEmitter.SetEmitArea(1300, 700);
+            MasterEmitter.SetEmitArea(0, 0);
             MasterEmitter.EmitWait = 10;
             ColorChangeIndex index = new ColorChangeIndex(500, Color.Purple, Color.Green, Color.DarkGoldenrod, Color.Red, Color.Turquoise, Color.Blue, Color.Transparent);
             MasterEmitter.SetColor(index);
@@ -104,8 +106,8 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.Orange;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("fire");
-            MasterEmitter.SetSize(new Vector2(100), new Vector2(200));
+            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
+            MasterEmitter.SetScale(new Vector2(100), new Vector2(200));
             MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;
@@ -119,8 +121,8 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.CadetBlue;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("fire");
-            MasterEmitter.SetSize(new Vector2(100), new Vector2(200));
+            MasterEmitter.Texture = ResourceManager.getTexture("Pixel");
+            MasterEmitter.SetScale(new Vector2(100), new Vector2(200));
             MasterEmitter.SetVelocity(new Vector2(-5), new Vector2(5));
             MasterEmitter.SetRotationSpeed(-8, 8);
             MasterEmitter.BlendState = BlendState.Additive;

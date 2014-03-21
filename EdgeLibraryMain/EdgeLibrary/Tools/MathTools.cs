@@ -18,13 +18,13 @@ namespace EdgeLibrary
     {
         public static void Init()
         {
-            givenIDs = new List<int>();
+            lastGivenID = 0;
         }
 
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
 
-        private static List<int> givenIDs;
+        private static int lastGivenID;
 
         /// <summary>
         /// Retrieves a color by its name.
@@ -157,19 +157,11 @@ namespace EdgeLibrary
             return rectangle;
         }
 
-        public static string RandomID(string starter)
+        public static string RandomID(Type type)
         {
-            return string.Format("{0}{1}", starter, RandomID());
-        }
-
-        public static string RandomID()
-        {
-            int id = RandomTools.RandomInt(int.MaxValue);
-            while (givenIDs.Contains(id))
-            {
-                id = RandomTools.RandomInt(int.MaxValue);
-            }
-            return Convert.ToString(id);
+            lastGivenID++;
+            string shortenedType = LastPortionOfPath(type.ToString(), '.');
+            return string.Format("{0}#{1}", shortenedType, lastGivenID);
         }
 
         /// <summary>
@@ -192,6 +184,12 @@ namespace EdgeLibrary
         public static string LastPortionOfPath(string path)
         {
             string[] splitParts = path.Split('/');
+            return splitParts[splitParts.Length - 1];
+        }
+
+        public static string LastPortionOfPath(string path, char splitter)
+        {
+            string[] splitParts = path.Split(splitter);
             return splitParts[splitParts.Length - 1];
         }
 

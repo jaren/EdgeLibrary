@@ -17,11 +17,8 @@ namespace EdgeLibrary.Platform
     public class PlatformCharacter : PlatformSprite
     {
         public List<PlatformProjectile> Projectiles;
-        public string ProjectileTexture { get { return _projectileTexture; } set { _projectileTexture = value; reloadProjectileDimensions(); } }
-        private string _projectileTexture;
+        public string ProjectileTexture;
         public Vector2 ProjectileScale;
-        public float ProjectileWidth;
-        public float ProjectileHeight;
         public SpriteStyle ProjectileStyle;
         public float ProjectileRotationAdd;
         public float ProjectileSpeed;
@@ -30,7 +27,7 @@ namespace EdgeLibrary.Platform
 
         public new event CollisionEvent Collision;
 
-        public PlatformCharacter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+        public PlatformCharacter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(typeof(PlatformCharacter)), eTextureName, ePosition) { }
 
         public PlatformCharacter(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition) 
         {
@@ -40,8 +37,6 @@ namespace EdgeLibrary.Platform
 
             ProjectileTexture = "";
             ProjectileScale = Vector2.One;
-            ProjectileWidth = 1;
-            ProjectileHeight = 1;
             ProjectileStyle = new SpriteStyle(SpriteEffects.None, 0, Color.White);
             ProjectileSpeed = 1;
         }
@@ -71,15 +66,6 @@ namespace EdgeLibrary.Platform
             foreach (PlatformProjectile projectile in Projectiles)
             {
                 projectile.Draw(gameTime);
-            }
-        }
-
-        private void reloadProjectileDimensions()
-        {
-            if (ResourceManager.getTexture(_projectileTexture) != null)
-            {
-                ProjectileWidth = ResourceManager.getTexture(_projectileTexture).Width;
-                ProjectileHeight = ResourceManager.getTexture(_projectileTexture).Height;
             }
         }
 
@@ -150,11 +136,9 @@ namespace EdgeLibrary.Platform
                 PlatformProjectile projectile = new PlatformProjectile("", this, targetPos, speed);
                 projectile.MarkedForRemoval = true;
                 projectile.Speed = ProjectileSpeed;
-                projectile.Texture = ResourceManager.getTexture(_projectileTexture);
+                projectile.Texture = ResourceManager.getTexture(ProjectileTexture);
                 projectile.Style = ProjectileStyle;
                 projectile.Scale = ProjectileScale;
-                projectile.Width = ProjectileWidth;
-                projectile.Height = ProjectileHeight;
                 projectile.StyleChanger.RotateSpriteTowards(projectile, targetPos, ProjectileRotationAdd);
                 Projectiles.Add(projectile);
             }

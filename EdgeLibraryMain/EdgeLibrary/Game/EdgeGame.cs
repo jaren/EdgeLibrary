@@ -34,8 +34,6 @@ namespace EdgeLibrary
         public static GameDrawState GameDrawState;
         public static Color DebugDrawColor;
 
-        public static bool CollisionsInTextSprites;
-
         public static Color ClearColor;
         public static Scene SelectedScene { get; private set; }
 
@@ -55,8 +53,6 @@ namespace EdgeLibrary
             graphics = gdm;
             spriteBatch = sb;
 
-            CollisionsInTextSprites = false;
-
             DebugDrawColor = Color.White;
 
             ScreenTarget = new RenderTarget2D(graphicsDevice, graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight, false, graphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24);
@@ -71,6 +67,7 @@ namespace EdgeLibrary
             MathTools.Init();
             RandomTools.Init();
             InputManager.Init();
+          //  DebugWriter.Init("");
             Camera.UpdateWithGame();
         }
 
@@ -139,12 +136,6 @@ namespace EdgeLibrary
         public static void SwitchScene(string id)
         {
             SelectedScene = Scene(id);
-        }
-
-        public static void SwitchScene(string id, Transition transition)
-        {
-            SelectedScene = Scene(id);
-            //TODO: Add transitions
         }
 
         public static void SwitchScene(Scene scene)
@@ -231,10 +222,6 @@ namespace EdgeLibrary
 
             graphicsDevice.SetRenderTarget(null);
             graphicsDevice.Clear(ClearColor);
-            if (Effect != null)
-            {
-                Effect.ApplyEffect(ScreenTarget);
-            }
             spriteBatch.Begin();
             drawTexture(ScreenTarget, Vector2.Zero, null, Color.White, new Vector2(WindowSize.X/ScreenTarget.Width, WindowSize.Y/ScreenTarget.Height), 0, Vector2.Zero, SpriteEffects.None);
             IsDrawing = false;

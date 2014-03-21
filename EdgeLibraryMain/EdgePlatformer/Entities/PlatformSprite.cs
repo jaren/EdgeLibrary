@@ -54,7 +54,7 @@ namespace EdgeLibrary.Platform
 
         public new virtual event CollisionEvent Collision;
 
-        public PlatformSprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+        public PlatformSprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(typeof(PlatformSprite)), eTextureName, ePosition) { }
 
         public PlatformSprite(string id, string eTextureName, Vector2 ePosition) : base(id, eTextureName, ePosition)
         {

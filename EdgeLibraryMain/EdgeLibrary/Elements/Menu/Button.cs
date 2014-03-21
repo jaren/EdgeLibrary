@@ -41,7 +41,7 @@ namespace EdgeLibrary
         public virtual event ButtonEventHandler MouseOver;
         public virtual event ButtonEventHandler MouseOff;
 
-        public Button(string eTextureName, Vector2 ePosition, Color eClickColor) : this(MathTools.RandomID(), eTextureName, ePosition, eClickColor) { }
+        public Button(string eTextureName, Vector2 ePosition, Color eClickColor) : this(MathTools.RandomID(typeof(Button)), eTextureName, ePosition, eClickColor) { }
 
         public Button(string id, string eTextureName, Vector2 ePosition, Color eClickColor) : base(id, eTextureName, ePosition)
         {

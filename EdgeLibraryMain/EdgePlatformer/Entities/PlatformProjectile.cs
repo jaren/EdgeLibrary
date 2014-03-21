@@ -25,7 +25,7 @@ namespace EdgeLibrary.Platform
 
         public new event CollisionEvent Collision;
 
-        public PlatformProjectile(string eTextureName, PlatformCharacter character, Vector2 targetPos, float speed) : base(MathTools.RandomID(character.ID + "_projectile"), eTextureName,  Vector2.Zero)
+        public PlatformProjectile(string eTextureName, PlatformCharacter character, Vector2 targetPos, float speed) : base(character.ID + MathTools.RandomID(typeof(PlatformProjectile)), eTextureName,  Vector2.Zero)
         {
             CollisionBody.CollisionLayers = character.CollisionBody.CollisionLayers;
             Position = character.Position;

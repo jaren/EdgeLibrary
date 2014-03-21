@@ -39,21 +39,20 @@ namespace EdgeLibrary
     {
 
         public override Vector2 Position { get; set; }
-        public float Width { get { return _width; } set { _width = value; reloadOriginPoint(); } }
-        public float Height { get { return _height; } set { _height = value; reloadOriginPoint(); } }
-        public Vector2 Scale { get { return _scale; } set { _scale = value; reloadActualScale(); } }
+        public virtual float Width { get { return Texture == null ? 0 : Texture.Width; } protected set { } }
+        public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } protected set { } }
+        public Vector2 Scale { get; set; }
         public Effect TextureEffect;
         public Vector2 OriginPoint { get; set; }
+        //If set to true, origin will be top left; if not, origin will be center
+        public bool XNADefaultOrigin { get { return _xnaDefaultOrigin; } set { _xnaDefaultOrigin = value; reloadOriginPoint(); } }
+        protected bool _xnaDefaultOrigin;
         public virtual CollisionBody CollisionBody { get; set; }
         public virtual ShapeTypes CollisionBodyType { get; set; }
-        public Texture2D Texture { get { return _texture; } set { _texture = value; reloadDimensions(); } }
+        public Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
+        protected Texture2D _texture;
         public StyleCapability StyleChanger;
-        private Texture2D _texture;
         public SpriteStyle Style;
-        protected Vector2 actualScale;
-        protected Vector2 _scale;
-        protected float _width;
-        protected float _height;
 
         protected List<string> currentlyCollidingWithIDs;
 
@@ -61,91 +60,67 @@ namespace EdgeLibrary
         public event CollisionEvent CollisionStart;
         public event CollisionEvent Collision;
 
-        public Sprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+        public Sprite(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(typeof(Sprite)), eTextureName, ePosition) { }
 
         public Sprite(string id, string eTextureName, Vector2 ePosition) : base(id)
         {
-            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, CollisionLayers.All);
 
             Style = new SpriteStyle(SpriteEffects.None, 0f, Color.White);
             Position = ePosition;
-            _width = 0;
-            _height = 0;
 
             Scale = Vector2.One;
+
+            _xnaDefaultOrigin = false;
 
             StyleChanger = new StyleCapability();
             AddCapability(StyleChanger);
 
             currentlyCollidingWithIDs = new List<string>();
 
+            CollisionBodyType = ShapeTypes.rectangle;
+            CollisionBody = CollisionBody.BodyWithSprite(this, CollisionLayers.All);
 
             if (eTextureName != null)
             {
                 Texture = ResourceManager.getTexture(eTextureName);
             }
-            if (Texture != null)
-            {
-                if (_width == 0)
-                {
-                    _width = Texture.Width;
-                }
-                if (_height == 0)
-                {
-                    _height = Texture.Height;
-                }
-
-                reloadOriginPoint();
-            }
-
-            CollisionBody = CollisionBody.BodyWithSprite(ShapeTypes.rectangle, this, CollisionLayers.All);
-            CollisionBodyType = CollisionBody.Shape.ShapeType;
+            reloadOriginPoint();
         }
 
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight) : this(id, eTextureName, ePosition)
-        {
-            _width = eWidth;
-            _height = eHeight;
-            reloadDimensions();
-        }
-
-        public Sprite(string id, string eTextureName, Vector2 ePosition, int eWidth, int eHeight, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition, eWidth, eHeight)
+        public Sprite(string id, string eTextureName, Vector2 ePosition, Color eColor, float eRotation, Vector2 eScale) : this(id, eTextureName, ePosition)
         {
             Style.Color = eColor;
             Style.Rotation = eRotation;
             Scale = eScale;
         }
 
-        public virtual Rectangle GetBoundingBox()
+        public virtual void InitializeCollision()
         {
-            return new Rectangle((int)(Position.X - _width / 2 * _scale.X), (int)(Position.Y - _height / 2 * _scale.Y), (int)(_width * _scale.X), (int)(_height*_scale.Y));
+            CollisionBody = CollisionBody.BodyWithSprite(this, CollisionLayers.All);
+        }
+        public virtual void InitializeCollision(ShapeTypes shapeType, CollisionLayers layers)
+        {
+            CollisionBodyType = shapeType;
+            CollisionBody = CollisionBody.BodyWithSprite(this, layers);
         }
 
-        public virtual void reloadDimensions()
+        public virtual Rectangle GetBoundingBox()
         {
-            if (Texture != null)
-            {
-                _width = Texture.Width;
-                _height = Texture.Height;
-                reloadOriginPoint();
-            }
+            return new Rectangle((int)(Position.X - Width / 2 * Scale.X), (int)(Position.Y - Height / 2 * Scale.Y), (int)(Width * Scale.X), (int)(Height * Scale.Y));
         }
 
         protected virtual void reloadOriginPoint()
         {
             if (Texture != null)
             {
-                OriginPoint = new Vector2(Texture.Width / 2f, Texture.Height / 2f);
-                reloadActualScale();
-            }
-        }
-
-        protected virtual void reloadActualScale()
-        {
-            if (Texture != null)
-            {
-                actualScale = new Vector2(_width / Texture.Width, _height / Texture.Height);
-                actualScale *= Scale;
+                if (!_xnaDefaultOrigin)
+                {
+                    OriginPoint = new Vector2(Width / 2f, Height / 2f);
+                }
+                else
+                {
+                    OriginPoint = Vector2.Zero;
+                }
             }
         }
 
@@ -159,15 +134,20 @@ namespace EdgeLibrary
         {
             if (CollisionBody != null)
             {
-                CollisionBody.Position = new Vector2(Position.X, Position.Y);
-                CollisionBody.ScaleWith(this, CollisionBodyType);
+                CollisionBody.ScaleWith(this);
+                if (!_xnaDefaultOrigin)
+                {
+                    CollisionBody.Position = new Vector2(Position.X, Position.Y);
+                }
+                else
+                {
+                    CollisionBody.Position = new Vector2(Position.X + Width/2, Position.Y + Height/2);
+                }
 
                 foreach (Element element in EdgeGame.SelectedScene.elements)
                 {
                     if (element is Sprite)
                     {
-                        if (!(element is TextSprite) || EdgeGame.CollisionsInTextSprites)
-                        {
                             Sprite elementAsSprite = (Sprite)element;
 
                             if (elementAsSprite != this && elementAsSprite.CollisionBody != null && (Collision != null || CollisionStart != null))
@@ -187,7 +167,6 @@ namespace EdgeLibrary
                                     currentlyCollidingWithIDs.Remove(elementAsSprite.ID);
                                 }
                             }
-                        }
                     }
                 }
             }
@@ -195,17 +174,15 @@ namespace EdgeLibrary
 
         protected override void drawElement(GameTime gameTime)
         {
-            if (TextureEffect != null)
-            {
-                TextureEffect.ApplyEffect(Texture);
-            }
-
-            EdgeGame.drawTexture(Texture, Position, null, Style.Color, actualScale, Style.Rotation, OriginPoint, Style.Effects);
+            EdgeGame.drawTexture(Texture, Position, null, Style.Color, Scale, Style.Rotation, OriginPoint, Style.Effects);
         }
 
         public virtual void DebugDraw(Color color)
         {
-            CollisionBody.Shape.DebugDraw(color);
+            if (CollisionBody != null)
+            {
+                CollisionBody.Shape.DebugDraw(color);
+            }
         }
     }
 }

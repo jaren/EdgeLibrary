@@ -27,25 +27,30 @@ namespace EdgeLibrary
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
 
-        public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID("debugPanel"))
+        public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID(typeof(DebugPanel)))
         {
             DrawLayer = 100;
 
             Position = position;
 
             MouseSprite = new TextSprite(string.Format("{0}_MouseSprite", ID), fontName, "Mouse Position: (0, 0)", Vector2.Zero, drawColor);
+            MouseSprite.XNADefaultOrigin = true;
             AddElement(MouseSprite);
 
             FPSSprite = new TextSprite(string.Format("{0}_FPSSprite", ID), fontName, "FPS: 0", Vector2.Zero, drawColor);
+            FPSSprite.XNADefaultOrigin = true;
             AddElement(FPSSprite);
 
             ScenesSprite = new TextSprite(string.Format("{0}_ScenesSprite", ID), fontName, "Scenes (0):", Vector2.Zero, drawColor);
+            ScenesSprite.XNADefaultOrigin = true;
             AddElement(ScenesSprite);
 
             ElementsSprite = new TextSprite(string.Format("{0}_ElementsSprite", ID), fontName, "Elements in entire game (0):", Vector2.Zero, drawColor);
+            ElementsSprite.XNADefaultOrigin = true;
             AddElement(ElementsSprite);
 
             KeysSprite = new TextSprite(string.Format("{0}_KeysSprite", ID), fontName, "Keys Pressed: NONE", Vector2.Zero, drawColor);
+            KeysSprite.XNADefaultOrigin = true;
             AddElement(KeysSprite);
 
             Font = ResourceManager.getFont(fontName);
@@ -59,19 +64,19 @@ namespace EdgeLibrary
 
         private void reloadTextSpritesPosition()
         {
-            MouseSprite.Position = new Vector2(_font.MeasureString(MouseSprite.Text).X /2, YDifference);
+            MouseSprite.Position = new Vector2(0, 0);
             MouseSprite.Position += Position;
 
-            FPSSprite.Position = new Vector2(_font.MeasureString(FPSSprite.Text).X /2, YDifference * 2);
+            FPSSprite.Position = new Vector2(0, YDifference);
             FPSSprite.Position += Position;
 
-            KeysSprite.Position = new Vector2(_font.MeasureString(KeysSprite.Text).X / 2, YDifference * 3);
+            KeysSprite.Position = new Vector2(0, YDifference * 2);
             KeysSprite.Position += Position;
 
-            ScenesSprite.Position = new Vector2(_font.MeasureString(ScenesSprite.Text).X / 2, YDifference * 4);
+            ScenesSprite.Position = new Vector2(0, YDifference * 3);
             ScenesSprite.Position += Position;
 
-            ElementsSprite.Position = new Vector2(_font.MeasureString(ElementsSprite.Text).X / 2, YDifference * 5);
+            ElementsSprite.Position = new Vector2(0, YDifference * 4);
             ElementsSprite.Position += Position;
         }
 

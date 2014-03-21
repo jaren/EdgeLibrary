@@ -22,8 +22,8 @@ namespace EdgeLibrary
         public ColorChangeIndex MaxColorIndex;
         public Vector2 MinVelocity;
         public Vector2 MaxVelocity;
-        public Vector2 MinSize;
-        public Vector2 MaxSize;
+        public Vector2 MinScale;
+        public Vector2 MaxScale;
         public float GrowSpeed;
         public float MaxStartRotation;
         public float MinStartRotation;
@@ -34,6 +34,8 @@ namespace EdgeLibrary
         public float EmitWait;
         public int MaxParticles;
         public bool SquareParticles;
+        public int EmitWidth;
+        public int EmitHeight;
 
         protected List<Particle> particles;
         protected TimeSpan timeSinceLastEmit;
@@ -45,7 +47,7 @@ namespace EdgeLibrary
         public delegate void ParticleEventHandler(ParticleEmitter sender, Particle particle, GameTime gameTime);
         public event ParticleEventHandler OnEmit;
 
-        public ParticleEmitter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(), eTextureName, ePosition) { }
+        public ParticleEmitter(string eTextureName, Vector2 ePosition) : this(MathTools.RandomID(typeof(ParticleEmitter)), eTextureName, ePosition) { }
 
         public ParticleEmitter(string id, string eTextureName, Vector2 ePosition) : base(eTextureName, ePosition)
         {
@@ -57,11 +59,8 @@ namespace EdgeLibrary
             MaxColorIndex = MinColorIndex;
             MinVelocity = -Vector2.One;
             MaxVelocity = Vector2.One*2;
-            if (Texture != null)
-            {
-                MinSize = new Vector2(Texture.Width, Texture.Height);
-            }
-            MaxSize = MinSize;
+            MinScale = Vector2.One;
+            MaxScale = MinScale;
             GrowSpeed = 0;
             MinStartRotation = 0;
             MaxStartRotation = MinStartRotation;
@@ -106,15 +105,15 @@ namespace EdgeLibrary
             MinVelocity = v;
             MaxVelocity = v2;
         }
-        public void SetSize(Vector2 s)
+        public void SetScale(Vector2 s)
         {
-            MinSize = s;
-            MaxSize = s;
+            MinScale = s;
+            MaxScale = s;
         }
-        public void SetSize(Vector2 s, Vector2 s2)
+        public void SetScale(Vector2 s, Vector2 s2)
         {
-            MinSize = s;
-            MaxSize = s2;
+            MinScale = s;
+            MaxScale = s2;
         }
         public void SetRotation(float r)
         {
@@ -148,8 +147,8 @@ namespace EdgeLibrary
         }
         public void SetEmitArea(int width, int height)
         {
-           _width = width;
-           _height = height;
+           EmitWait = width;
+           EmitHeight = height;
         }
 
         public void ClearParticles()
@@ -159,23 +158,22 @@ namespace EdgeLibrary
 
         public void EmitSingleParticle(GameTime gameTime)
         {
-            Particle particle = new Particle(MathTools.RandomID("particle"), "", RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
+            Particle particle = new Particle(MathTools.RandomID(typeof(Particle)), "", RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
             particle.REMOVE();
 
             particle.velocity = new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X), RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y));
 
             particle.Texture = Texture;
             particle.CollisionBody = null;
-            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - Width / 2, Position.X + Width / 2), RandomTools.RandomFloat(Position.Y - Height / 2, Position.Y + Height / 2));
+            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - EmitWait / 2, Position.X + EmitWait / 2), RandomTools.RandomFloat(Position.Y - EmitHeight / 2, Position.Y + EmitHeight / 2));
             particle.Style.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
-            particle.Height = RandomTools.RandomFloat(MinSize.Y, MaxSize.Y);
-            particle.Width = RandomTools.RandomFloat(MinSize.X, MaxSize.X);
+            particle.Scale = new Vector2(RandomTools.RandomFloat(MinScale.X, MaxScale.X), RandomTools.RandomFloat(MinScale.Y, MaxScale.Y));
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
             particle.REMOVE();
 
             if (SquareParticles)
             {
-                particle.Width = particle.Height;
+                particle.Scale = new Vector2(particle.Scale.X, particle.Scale.X);
             }
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
 
@@ -237,7 +235,7 @@ namespace EdgeLibrary
 
         public override void DebugDraw(Color color)
         {
-            TextureTools.DrawHollowRectangleAt(GetBoundingBox(), color, 1);
+            TextureTools.DrawHollowRectangleAt(new Rectangle((int)(Position.X - EmitWidth/2), (int)Position.Y - EmitHeight/2, EmitWidth, EmitHeight), color, 1);
         }
     }
 }

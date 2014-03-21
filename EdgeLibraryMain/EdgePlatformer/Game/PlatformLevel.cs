@@ -54,26 +54,22 @@ namespace EdgeLibrary.Platform
         public void CreateScreenBox()
         {
             PlatformStatic top = new PlatformStatic(string.Format("{0}_topBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize.X/2, -100));
-            top.Width = EdgeGame.WindowSize.X;
-            top.Height = 200;
+            top.Scale = new Vector2(EdgeGame.WindowSize.X, 200);
             top.Style.Color = Color.White;
             elements.Add(top);
 
             PlatformStatic bottom = new PlatformStatic(string.Format("{0}_bottomBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y + 100));
-            bottom.Width = EdgeGame.WindowSize.X;
-            bottom.Height = 200;
+            bottom.Scale = new Vector2(EdgeGame.WindowSize.X, 200);
             bottom.Style.Color = Color.White;
             elements.Add(bottom);
 
             PlatformStatic right = new PlatformStatic(string.Format("{0}_rightBox", ID), "Pixel", new Vector2(-100, EdgeGame.WindowSize.Y/2));
-            right.Height = EdgeGame.WindowSize.Y;
-            right.Width = 200;
+            right.Scale = new Vector2(EdgeGame.WindowSize.X, 200);
             right.Style.Color = Color.White;
             elements.Add(right);
 
             PlatformStatic left = new PlatformStatic(string.Format("{0}_leftBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize.X + 100, EdgeGame.WindowSize.Y / 2));
-            left.Height = EdgeGame.WindowSize.Y;
-            left.Width = 200;
+            left.Scale = new Vector2(EdgeGame.WindowSize.X, 200);
             left.Style.Color = Color.White;
             elements.Add(left);
         }

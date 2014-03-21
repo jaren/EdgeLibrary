@@ -48,9 +48,9 @@ namespace EdgeLibrary
             return Rectangle.Intersect(body1.Shape.AsRectangle(), body2.Shape.AsRectangle());
         }
 
-        public static CollisionBody BodyWithSprite(ShapeTypes shapeType, Sprite sprite, CollisionLayers layers)
+        public static CollisionBody BodyWithSprite(Sprite sprite, CollisionLayers layers)
         {
-            switch (shapeType)
+            switch (sprite.CollisionBodyType)
             {
                 case ShapeTypes.circle:
                     return new CollisionBody(new ShapeCircle(sprite.Position, (sprite.Width + sprite.Height) / 4 * ((sprite.Scale.X + sprite.Scale.Y) / 2)), layers); //It's the average over 2, because the average of width+height is the diameter and this is the radius
@@ -62,9 +62,9 @@ namespace EdgeLibrary
             return null;
         }
 
-        public void ScaleWith(Sprite sprite, ShapeTypes shapeType)
+        public void ScaleWith(Sprite sprite)
         {
-            Shape = BodyWithSprite(shapeType, sprite, CollisionLayers).Shape;
+            Shape = BodyWithSprite(sprite, CollisionLayers).Shape;
         }
 
         public bool CheckForCollide(CollisionBody body)
