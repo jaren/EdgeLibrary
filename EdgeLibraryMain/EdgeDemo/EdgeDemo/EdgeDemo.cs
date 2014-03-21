@@ -15,8 +15,8 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Change MathTools.RandomID so that there is not a finite number of IDs - right now, the game will "time out" after the number of particles reaches int.MaxValue
     /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
+    /// -When called for the first time, AccelerateIndexes is somewhat glitchy
     /// </summary>
 
     public class EdgeDemo : Microsoft.Xna.Framework.Game
@@ -29,7 +29,7 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
-            EdgeGame.DebugWriterPath = @"C:/Users/JarenMendelsohn/Desktop";
+            EdgeGame.DebugWriterPath = @"C:\Users\JarenMendelsohn\Documents\GitHub\EdgeLibrary\Logs";
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
@@ -69,7 +69,7 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X / 2, 50), Color.White);
 
-            //DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
+            DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
 
             LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", new Vector2(300, 300), Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Gray;
@@ -94,21 +94,26 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.White;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("fire");
-            MasterEmitter.SetScale(new Vector2(10), new Vector2(12));
+            MasterEmitter.Texture = ResourceManager.getTexture("plasma");
+            MasterEmitter.SetScale(new Vector2(12), new Vector2(15));
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.GrowSpeed = 1;
             MasterEmitter.SetRotationSpeed(0);
             MasterEmitter.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
             MasterEmitter.SetLife(3000);
-            MasterEmitter.EmitWait = 300;
+            MasterEmitter.EmitWait = 400;
             MasterEmitter.SetEmitArea(EdgeGame.WindowSize);
-            ColorChangeIndex index = new ColorChangeIndex(500, Color.Purple, Color.Green, Color.DarkGoldenrod, Color.Red, Color.Turquoise, Color.Blue, Color.Transparent);
+            for (int i = 0; i < 2; i++)
+            {
+                MasterEmitter.EmitSingleParticle(new GameTime());
+            }
+            ColorChangeIndex index = new ColorChangeIndex(500, Color.Yellow, Color.Blue, Color.Orange, Color.BlueViolet, Color.Transparent);
             MasterEmitter.SetColor(index);
         }
 
         private void emitter_toPlatform()
         {
+            MasterEmitter.AccelerateIndexes(0.5f);
             Header.Style.Color = Color.Orange;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
             MasterEmitter.Texture = ResourceManager.getTexture("fire");
@@ -125,6 +130,7 @@ namespace EdgeDemo
 
         private void emitter_toGame()
         {
+            MasterEmitter.AccelerateIndexes(0.5f);
             Header.Style.Color = Color.CadetBlue;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
             MasterEmitter.Texture = ResourceManager.getTexture("fire");

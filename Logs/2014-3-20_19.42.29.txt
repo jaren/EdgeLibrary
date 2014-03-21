@@ -1,0 +1,1528 @@
+Logs for:3/20/2014 7:42:29 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+
+> Game Running... running for 00:00:00
+
+> Game Running... running for 00:00:00.0166667
+
+> Game Running... running for 00:00:00.0333334
+
+> Game Running... running for 00:00:00.0500001
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.0666668
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.0833335
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1000002
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1166669
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1333336
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1500003
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1666670
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1833337
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2000004
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2166671
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2333338
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2500005
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2666672
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2833339
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3000006
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3166673
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3333340
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3500007
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3666674
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3833341
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4000008
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4166675
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4333342
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4500009
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4666676
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4833343
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5000010
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5166677
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5333344
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5500011
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5666678
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.5833345
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6000012
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6166679
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6333346
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6500013
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6666680
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.6833347
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.7000014
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.7166681
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.7333348
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.7500015
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.7666682
+
+> Game Running... running for 00:00:00.7833349
+
+> Game Running... running for 00:00:00.8000016
+
+> Game Running... running for 00:00:00.8166683
+
+> Game Running... running for 00:00:00.8333350
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.8500017
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.8666684
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.8833351
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.9000018
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.9166685
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.9333352
+
+> Game Running... running for 00:00:00.9500019
+
+> Game Running... running for 00:00:00.9666686
+
+> Game Running... running for 00:00:00.9833353
+
+> Game Running... running for 00:00:01.0000020
+
+> Game Running... running for 00:00:01.0166687
+
+> Game Running... running for 00:00:01.0333354
+
+> Game Running... running for 00:00:01.0500021
+
+> Game Running... running for 00:00:01.0666688
+
+> Game Running... running for 00:00:01.0833355
+
+> Game Running... running for 00:00:01.1000022
+
+> Game Running... running for 00:00:01.1166689
+
+> Game Running... running for 00:00:01.1333356
+
+> Game Running... running for 00:00:01.1500023
+
+> Game Running... running for 00:00:01.1666690
+
+> Game Running... running for 00:00:01.1833357
+
+> Game Running... running for 00:00:01.2000024
+
+> Game Running... running for 00:00:01.2166691
+
+> Game Running... running for 00:00:01.2333358
+
+> Game Running... running for 00:00:01.2500025
+
+> Game Running... running for 00:00:01.2666692
+
+> Game Running... running for 00:00:01.2833359
+
+> Game Running... running for 00:00:01.3000026
+
+> Game Running... running for 00:00:01.3166693
+
+> Game Running... running for 00:00:01.3333360
+
+> Game Running... running for 00:00:01.3500027
+
+> Game Running... running for 00:00:01.3666694
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.3833361
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4000028
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4166695
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4333362
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4500029
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4666696
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.4833363
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5000030
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5166697
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5333364
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5500031
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5666698
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.5833365
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6000032
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6166699
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6333366
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6500033
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6666700
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.6833367
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7000034
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7166701
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7333368
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7500035
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7666702
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.7833369
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8000036
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8166703
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8333370
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8500037
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8666704
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.8833371
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9000038
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9166705
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9333372
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9500039
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9666706
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:01.9833373
+
+##########################################
+!!! The game is running slowly. FPS:51 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0000040
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0166707
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0333374
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0500041
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0666708
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.0833375
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1000042
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1166709
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1333376
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1500043
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1666710
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.1833377
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2000044
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2166711
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2333378
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2500045
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2666712
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.2833379
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3000046
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3166713
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3333380
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3500047
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3666714
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.3833381
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4000048
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4166715
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4333382
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4500049
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4666716
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.4833383
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5000050
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5166717
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5333384
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5500051
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5666718
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.5833385
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6000052
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6166719
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6333386
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6500053
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6666720
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.6833387
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7000054
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7166721
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7333388
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7500055
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7666722
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.7833389
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8000056
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8166723
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8333390
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8500057
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8666724
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.8833391
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9000058
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9166725
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9333392
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9500059
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9666726
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:02.9833393
+
+##########################################
+!!! The game is running slowly. FPS:54 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0000060
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0166727
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0333394
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0500061
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0666728
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.0833395
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1000062
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1166729
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1333396
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1500063
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1666730
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.1833397
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2000064
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2166731
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2333398
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2500065
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2666732
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.2833399
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.3000066
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.3166733
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.3333400
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.3500067
+
+> Game Running... running for 00:00:03.3666734
+
+> Game Running... running for 00:00:03.3833401
+
+> Game Running... running for 00:00:03.4000068
+
+> Game Running... running for 00:00:03.4166735
+
+> Game Running... running for 00:00:03.4333402
+
+> Game Running... running for 00:00:03.4500069
+
+> Game Running... running for 00:00:03.4666736
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.4833403
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5000070
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5166737
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5333404
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5500071
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5666738
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.5833405
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.6000072
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.6166739
+
+> Game Running... running for 00:00:03.6333406
+
+> Game Running... running for 00:00:03.6500073
+
+> Game Running... running for 00:00:03.6666740
+
+> Game Running... running for 00:00:03.6833407
+
+> Game Running... running for 00:00:03.7000074
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.7166741
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.7333408
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.7500075
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.7666742
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.7833409
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.8000076
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.8166743
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.8333410
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.8500077
+
+> Game Running... running for 00:00:03.8666744
+
+> Game Running... running for 00:00:03.8833411
+
+> Game Running... running for 00:00:03.9000078
+
+> Game Running... running for 00:00:03.9166745
+
+> Game Running... running for 00:00:03.9333412
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.9500079
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.9666746
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:03.9833413
+
+##########################################
+!!! The game is running slowly. FPS:50 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0000080
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0166747
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0333414
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0500081
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0666748
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.0833415
+
+> Game Running... running for 00:00:04.1000082
+
+> Game Running... running for 00:00:04.1166749
+
+> Game Running... running for 00:00:04.1333416
+
+> Game Running... running for 00:00:04.1500083
+
+> Game Running... running for 00:00:04.1666750
+
+> Game Running... running for 00:00:04.1833417
+
+> Game Running... running for 00:00:04.2000084
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.2166751
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.2333418
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.2500085
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.2666752
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.2833419
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.3000086
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.3166753
+
+> Game Running... running for 00:00:04.3333420
+
+> Game Running... running for 00:00:04.3500087
+
+> Game Running... running for 00:00:04.3666754
+
+> Game Running... running for 00:00:04.3833421
+
+> Game Running... running for 00:00:04.4000088
+
+> Game Running... running for 00:00:04.4166755
+
+> Game Running... running for 00:00:04.4333422
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.4500089
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.4666756
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.4833423
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.5000090
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.5166757
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.5333424
+
+##########################################
+!!! The game is running slowly. FPS:56 !!!
+##########################################
+
+> Game Running... running for 00:00:04.5500091
+
+##########################################
+!!! The game is running slowly. FPS:56 !

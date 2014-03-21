@@ -13,9 +13,9 @@ namespace EdgeLibrary
 {
     public struct ColorChangeIndex
     {
-        private List<Color> Colors;
-        private List<float> Times;
-        private int index;
+        public List<Color> Colors;
+        public List<float> Times;
+        public int index;
         private float elapsedTime;
 
         public ColorChangeIndex(Color color) : this(1000, color) { }

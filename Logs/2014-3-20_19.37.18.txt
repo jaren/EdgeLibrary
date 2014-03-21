@@ -1,0 +1,3307 @@
+Logs for:3/20/2014 7:37:18 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+
+> Game Running... running for 00:00:00
+
+> Game Running... running for 00:00:00.0166667
+
+> Game Running... running for 00:00:00.0333334
+
+> Game Running... running for 00:00:00.0500001
+
+> Game Running... running for 00:00:00.0666668
+
+> Game Running... running for 00:00:00.0833335
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1000002
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1166669
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1333336
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Button Mouse Over
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.1500003
+>    }
+
+> Game Running... running for 00:00:00.1500003
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.1666670
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.1833337
+>    }
+
+> Game Running... running for 00:00:00.1833337
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2000004
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2166671
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2333338
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2500005
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2666672
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.2833339
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3000006
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3166673
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3333340
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3500007
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3666674
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.3833341
+
+#########################################
+!!! The game is running slowly. FPS:0 !!!
+#########################################
+
+> Game Running... running for 00:00:00.4000008
+
+> Game Running... running for 00:00:00.4166675
+
+> Game Running... running for 00:00:00.4333342
+
+> Game Running... running for 00:00:00.4500009
+
+> Game Running... running for 00:00:00.4666676
+
+> Game Running... running for 00:00:00.4833343
+
+> Game Running... running for 00:00:00.5000010
+
+> Game Running... running for 00:00:00.5166677
+
+> Game Running... running for 00:00:00.5333344
+
+> Game Running... running for 00:00:00.5500011
+
+> Game Running... running for 00:00:00.5666678
+
+> Game Running... running for 00:00:00.5833345
+
+> Game Running... running for 00:00:00.6000012
+
+> Game Running... running for 00:00:00.6166679
+
+> Game Running... running for 00:00:00.6333346
+
+> Game Running... running for 00:00:00.6500013
+
+> Game Running... running for 00:00:00.6666680
+
+> Game Running... running for 00:00:00.6833347
+
+> Game Running... running for 00:00:00.7000014
+
+> Button Mouse Over
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.7166681
+>    }
+
+> Game Running... running for 00:00:00.7166681
+
+> Game Running... running for 00:00:00.7333348
+
+> Game Running... running for 00:00:00.7500015
+
+> Game Running... running for 00:00:00.7666682
+
+> Game Running... running for 00:00:00.7833349
+
+> Game Running... running for 00:00:00.8000016
+
+> Game Running... running for 00:00:00.8166683
+
+> Game Running... running for 00:00:00.8333350
+
+> Game Running... running for 00:00:00.8500017
+
+> Game Running... running for 00:00:00.8666684
+
+> Game Running... running for 00:00:00.8833351
+
+> Game Running... running for 00:00:00.9000018
+
+> Game Running... running for 00:00:00.9166685
+
+> Game Running... running for 00:00:00.9333352
+
+> Game Running... running for 00:00:00.9500019
+
+> Game Running... running for 00:00:00.9666686
+
+> Game Running... running for 00:00:00.9833353
+
+> Game Running... running for 00:00:01.0000020
+
+> Game Running... running for 00:00:01.0166687
+
+> Game Running... running for 00:00:01.0333354
+
+> Game Running... running for 00:00:01.0500021
+
+> Game Running... running for 00:00:01.0666688
+
+> Game Running... running for 00:00:01.0833355
+
+> Game Running... running for 00:00:01.1000022
+
+> Game Running... running for 00:00:01.1166689
+
+> Game Running... running for 00:00:01.1333356
+
+> Game Running... running for 00:00:01.1500023
+
+> Game Running... running for 00:00:01.1666690
+
+> Game Running... running for 00:00:01.1833357
+
+> Game Running... running for 00:00:01.2000024
+
+> Game Running... running for 00:00:01.2166691
+
+> Game Running... running for 00:00:01.2333358
+
+> Game Running... running for 00:00:01.2500025
+
+> Game Running... running for 00:00:01.2666692
+
+> Game Running... running for 00:00:01.2833359
+
+> Game Running... running for 00:00:01.3000026
+
+> Game Running... running for 00:00:01.3166693
+
+> Game Running... running for 00:00:01.3333360
+
+> Game Running... running for 00:00:01.3500027
+
+> Game Running... running for 00:00:01.3666694
+
+> Game Running... running for 00:00:01.3833361
+
+> Game Running... running for 00:00:01.4000028
+
+> Game Running... running for 00:00:01.4166695
+
+> Game Running... running for 00:00:01.4333362
+
+> Game Running... running for 00:00:01.4500029
+
+> Game Running... running for 00:00:01.4666696
+
+> Game Running... running for 00:00:01.4833363
+
+> Game Running... running for 00:00:01.5000030
+
+> Game Running... running for 00:00:01.5166697
+
+> Game Running... running for 00:00:01.5333364
+
+> Game Running... running for 00:00:01.5500031
+
+> Game Running... running for 00:00:01.5666698
+
+> Game Running... running for 00:00:01.5833365
+
+> Game Running... running for 00:00:01.6000032
+
+> Game Running... running for 00:00:01.6166699
+
+> Game Running... running for 00:00:01.6333366
+
+> Game Running... running for 00:00:01.6500033
+
+> Game Running... running for 00:00:01.6666700
+
+> Game Running... running for 00:00:01.6833367
+
+> Game Running... running for 00:00:01.7000034
+
+> Game Running... running for 00:00:01.7166701
+
+> Game Running... running for 00:00:01.7333368
+
+> Game Running... running for 00:00:01.7500035
+
+> Game Running... running for 00:00:01.7666702
+
+> Game Running... running for 00:00:01.7833369
+
+> Game Running... running for 00:00:01.8000036
+
+> Game Running... running for 00:00:01.8166703
+
+> Game Running... running for 00:00:01.8333370
+
+> Game Running... running for 00:00:01.8500037
+
+> Game Running... running for 00:00:01.8666704
+
+> Game Running... running for 00:00:01.8833371
+
+> Game Running... running for 00:00:01.9000038
+
+> Game Running... running for 00:00:01.9166705
+
+> Game Running... running for 00:00:01.9333372
+
+> Game Running... running for 00:00:01.9500039
+
+> Game Running... running for 00:00:01.9666706
+
+> Game Running... running for 00:00:01.9833373
+
+> Game Running... running for 00:00:02.0000040
+
+> Game Running... running for 00:00:02.0166707
+
+> Game Running... running for 00:00:02.0333374
+
+> Game Running... running for 00:00:02.0500041
+
+> Game Running... running for 00:00:02.0666708
+
+> Game Running... running for 00:00:02.0833375
+
+> Game Running... running for 00:00:02.1000042
+
+> Game Running... running for 00:00:02.1166709
+
+> Game Running... running for 00:00:02.1333376
+
+> Game Running... running for 00:00:02.1500043
+
+> Game Running... running for 00:00:02.1666710
+
+> Game Running... running for 00:00:02.1833377
+
+> Game Running... running for 00:00:02.2000044
+
+> Game Running... running for 00:00:02.2166711
+
+> Game Running... running for 00:00:02.2333378
+
+> Game Running... running for 00:00:02.2500045
+
+> Game Running... running for 00:00:02.2666712
+
+> Game Running... running for 00:00:02.2833379
+
+> Game Running... running for 00:00:02.3000046
+
+> Game Running... running for 00:00:02.3166713
+
+> Game Running... running for 00:00:02.3333380
+
+> Game Running... running for 00:00:02.3500047
+
+> Game Running... running for 00:00:02.3666714
+
+> Game Running... running for 00:00:02.3833381
+
+> Game Running... running for 00:00:02.4000048
+
+> Game Running... running for 00:00:02.4166715
+
+> Game Running... running for 00:00:02.4333382
+
+> Game Running... running for 00:00:02.4500049
+
+> Game Running... running for 00:00:02.4666716
+
+> Game Running... running for 00:00:02.4833383
+
+> Game Running... running for 00:00:02.5000050
+
+> Game Running... running for 00:00:02.5166717
+
+> Game Running... running for 00:00:02.5333384
+
+> Game Running... running for 00:00:02.5500051
+
+> Game Running... running for 00:00:02.5666718
+
+> Game Running... running for 00:00:02.5833385
+
+> Game Running... running for 00:00:02.6000052
+
+> Game Running... running for 00:00:02.6166719
+
+> Game Running... running for 00:00:02.6333386
+
+> Game Running... running for 00:00:02.6500053
+
+> Game Running... running for 00:00:02.6666720
+
+> Game Running... running for 00:00:02.6833387
+
+> Game Running... running for 00:00:02.7000054
+
+> Game Running... running for 00:00:02.7166721
+
+> Game Running... running for 00:00:02.7333388
+
+> Game Running... running for 00:00:02.7500055
+
+> Game Running... running for 00:00:02.7666722
+
+> Game Running... running for 00:00:02.7833389
+
+> Game Running... running for 00:00:02.8000056
+
+> Game Running... running for 00:00:02.8166723
+
+> Game Running... running for 00:00:02.8333390
+
+> Game Running... running for 00:00:02.8500057
+
+> Game Running... running for 00:00:02.8666724
+
+> Game Running... running for 00:00:02.8833391
+
+> Game Running... running for 00:00:02.9000058
+
+> Game Running... running for 00:00:02.9166725
+
+> Game Running... running for 00:00:02.9333392
+
+> Game Running... running for 00:00:02.9500059
+
+> Game Running... running for 00:00:02.9666726
+
+> Game Running... running for 00:00:02.9833393
+
+> Game Running... running for 00:00:03.0000060
+
+> Game Running... running for 00:00:03.0166727
+
+> Game Running... running for 00:00:03.0333394
+
+> Game Running... running for 00:00:03.0500061
+
+> Game Running... running for 00:00:03.0666728
+
+> Game Running... running for 00:00:03.0833395
+
+> Game Running... running for 00:00:03.1000062
+
+> Game Running... running for 00:00:03.1166729
+
+> Game Running... running for 00:00:03.1333396
+
+> Game Running... running for 00:00:03.1500063
+
+> Game Running... running for 00:00:03.1666730
+
+> Game Running... running for 00:00:03.1833397
+
+> Game Running... running for 00:00:03.2000064
+
+> Game Running... running for 00:00:03.2166731
+
+> Game Running... running for 00:00:03.2333398
+
+> Game Running... running for 00:00:03.2500065
+
+> Game Running... running for 00:00:03.2666732
+
+> Game Running... running for 00:00:03.2833399
+
+> Game Running... running for 00:00:03.3000066
+
+> Game Running... running for 00:00:03.3166733
+
+> Game Running... running for 00:00:03.3333400
+
+> Game Running... running for 00:00:03.3500067
+
+> Game Running... running for 00:00:03.3666734
+
+> Game Running... running for 00:00:03.3833401
+
+> Game Running... running for 00:00:03.4000068
+
+> Game Running... running for 00:00:03.4166735
+
+> Game Running... running for 00:00:03.4333402
+
+> Game Running... running for 00:00:03.4500069
+
+> Game Running... running for 00:00:03.4666736
+
+> Game Running... running for 00:00:03.4833403
+
+> Game Running... running for 00:00:03.5000070
+
+> Game Running... running for 00:00:03.5166737
+
+> Game Running... running for 00:00:03.5333404
+
+> Game Running... running for 00:00:03.5500071
+
+> Game Running... running for 00:00:03.5666738
+
+> Game Running... running for 00:00:03.5833405
+
+> Game Running... running for 00:00:03.6000072
+
+> Game Running... running for 00:00:03.6166739
+
+> Game Running... running for 00:00:03.6333406
+
+> Game Running... running for 00:00:03.6500073
+
+> Game Running... running for 00:00:03.6666740
+
+> Game Running... running for 00:00:03.6833407
+
+> Game Running... running for 00:00:03.7000074
+
+> Game Running... running for 00:00:03.7166741
+
+> Game Running... running for 00:00:03.7333408
+
+> Game Running... running for 00:00:03.7500075
+
+> Game Running... running for 00:00:03.7666742
+
+> Game Running... running for 00:00:03.7833409
+
+> Game Running... running for 00:00:03.8000076
+
+> Game Running... running for 00:00:03.8166743
+
+> Game Running... running for 00:00:03.8333410
+
+> Game Running... running for 00:00:03.8500077
+
+> Game Running... running for 00:00:03.8666744
+
+> Game Running... running for 00:00:03.8833411
+
+> Game Running... running for 00:00:03.9000078
+
+> Game Running... running for 00:00:03.9166745
+
+> Game Running... running for 00:00:03.9333412
+
+> Game Running... running for 00:00:03.9500079
+
+> Game Running... running for 00:00:03.9666746
+
+> Game Running... running for 00:00:03.9833413
+
+> Game Running... running for 00:00:04.0000080
+
+> Game Running... running for 00:00:04.0166747
+
+> Game Running... running for 00:00:04.0333414
+
+> Game Running... running for 00:00:04.0500081
+
+> Game Running... running for 00:00:04.0666748
+
+> Game Running... running for 00:00:04.0833415
+
+> Game Running... running for 00:00:04.1000082
+
+> Game Running... running for 00:00:04.1166749
+
+> Game Running... running for 00:00:04.1333416
+
+> Game Running... running for 00:00:04.1500083
+
+> Game Running... running for 00:00:04.1666750
+
+> Game Running... running for 00:00:04.1833417
+
+> Game Running... running for 00:00:04.2000084
+
+> Game Running... running for 00:00:04.2166751
+
+> Game Running... running for 00:00:04.2333418
+
+> Game Running... running for 00:00:04.2500085
+
+> Game Running... running for 00:00:04.2666752
+
+> Game Running... running for 00:00:04.2833419
+
+> Game Running... running for 00:00:04.3000086
+
+> Game Running... running for 00:00:04.3166753
+
+> Game Running... running for 00:00:04.3333420
+
+> Game Running... running for 00:00:04.3500087
+
+> Game Running... running for 00:00:04.3666754
+
+> Game Running... running for 00:00:04.3833421
+
+> Game Running... running for 00:00:04.4000088
+
+> Game Running... running for 00:00:04.4166755
+
+> Game Running... running for 00:00:04.4333422
+
+> Game Running... running for 00:00:04.4500089
+
+> Game Running... running for 00:00:04.4666756
+
+> Game Running... running for 00:00:04.4833423
+
+> Game Running... running for 00:00:04.5000090
+
+> Game Running... running for 00:00:04.5166757
+
+> Game Running... running for 00:00:04.5333424
+
+> Game Running... running for 00:00:04.5500091
+
+> Game Running... running for 00:00:04.5666758
+
+> Game Running... running for 00:00:04.5833425
+
+> Game Running... running for 00:00:04.6000092
+
+> Game Running... running for 00:00:04.6166759
+
+> Game Running... running for 00:00:04.6333426
+
+> Game Running... running for 00:00:04.6500093
+
+> Game Running... running for 00:00:04.6666760
+
+> Game Running... running for 00:00:04.6833427
+
+> Game Running... running for 00:00:04.7000094
+
+> Game Running... running for 00:00:04.7166761
+
+> Game Running... running for 00:00:04.7333428
+
+> Game Running... running for 00:00:04.7500095
+
+> Game Running... running for 00:00:04.7666762
+
+> Game Running... running for 00:00:04.7833429
+
+> Game Running... running for 00:00:04.8000096
+
+> Game Running... running for 00:00:04.8166763
+
+> Game Running... running for 00:00:04.8333430
+
+> Game Running... running for 00:00:04.8500097
+
+> Game Running... running for 00:00:04.8666764
+
+> Game Running... running for 00:00:04.8833431
+
+> Game Running... running for 00:00:04.9000098
+
+> Game Running... running for 00:00:04.9166765
+
+> Game Running... running for 00:00:04.9333432
+
+> Game Running... running for 00:00:04.9500099
+
+> Game Running... running for 00:00:04.9666766
+
+> Game Running... running for 00:00:04.9833433
+
+> Game Running... running for 00:00:05.0000100
+
+> Game Running... running for 00:00:05.0166767
+
+> Game Running... running for 00:00:05.0333434
+
+> Game Running... running for 00:00:05.0500101
+
+> Game Running... running for 00:00:05.0666768
+
+> Game Running... running for 00:00:05.0833435
+
+> Game Running... running for 00:00:05.1000102
+
+> Game Running... running for 00:00:05.1166769
+
+> Game Running... running for 00:00:05.1333436
+
+> Game Running... running for 00:00:05.1500103
+
+> Game Running... running for 00:00:05.1666770
+
+> Game Running... running for 00:00:05.1833437
+
+> Game Running... running for 00:00:05.2000104
+
+> Game Running... running for 00:00:05.2166771
+
+> Game Running... running for 00:00:05.2333438
+
+> Game Running... running for 00:00:05.2500105
+
+> Game Running... running for 00:00:05.2666772
+
+> Game Running... running for 00:00:05.2833439
+
+> Game Running... running for 00:00:05.3000106
+
+> Game Running... running for 00:00:05.3166773
+
+> Game Running... running for 00:00:05.3333440
+
+> Game Running... running for 00:00:05.3500107
+
+> Game Running... running for 00:00:05.3666774
+
+> Game Running... running for 00:00:05.3833441
+
+> Game Running... running for 00:00:05.4000108
+
+> Game Running... running for 00:00:05.4166775
+
+> Game Running... running for 00:00:05.4333442
+
+> Game Running... running for 00:00:05.4500109
+
+> Game Running... running for 00:00:05.4666776
+
+> Game Running... running for 00:00:05.4833443
+
+> Game Running... running for 00:00:05.5000110
+
+> Game Running... running for 00:00:05.5166777
+
+> Game Running... running for 00:00:05.5333444
+
+> Game Running... running for 00:00:05.5500111
+
+> Game Running... running for 00:00:05.5666778
+
+> Game Running... running for 00:00:05.5833445
+
+> Game Running... running for 00:00:05.6000112
+
+> Game Running... running for 00:00:05.6166779
+
+> Game Running... running for 00:00:05.6333446
+
+> Game Running... running for 00:00:05.6500113
+
+> Game Running... running for 00:00:05.6666780
+
+> Game Running... running for 00:00:05.6833447
+
+> Game Running... running for 00:00:05.7000114
+
+> Game Running... running for 00:00:05.7166781
+
+> Game Running... running for 00:00:05.7333448
+
+> Game Running... running for 00:00:05.7500115
+
+> Game Running... running for 00:00:05.7666782
+
+> Game Running... running for 00:00:05.7833449
+
+> Game Running... running for 00:00:05.8000116
+
+> Game Running... running for 00:00:05.8166783
+
+> Game Running... running for 00:00:05.8333450
+
+> Game Running... running for 00:00:05.8500117
+
+> Game Running... running for 00:00:05.8666784
+
+> Game Running... running for 00:00:05.8833451
+
+> Game Running... running for 00:00:05.9000118
+
+> Game Running... running for 00:00:05.9166785
+
+> Game Running... running for 00:00:05.9333452
+
+> Game Running... running for 00:00:05.9500119
+
+> Game Running... running for 00:00:05.9666786
+
+> Game Running... running for 00:00:05.9833453
+
+> Game Running... running for 00:00:06.0000120
+
+> Game Running... running for 00:00:06.0166787
+
+> Game Running... running for 00:00:06.0333454
+
+> Game Running... running for 00:00:06.0500121
+
+> Game Running... running for 00:00:06.0666788
+
+> Game Running... running for 00:00:06.0833455
+
+> Game Running... running for 00:00:06.1000122
+
+> Game Running... running for 00:00:06.1166789
+
+> Game Running... running for 00:00:06.1333456
+
+> Game Running... running for 00:00:06.1500123
+
+> Game Running... running for 00:00:06.1666790
+
+> Game Running... running for 00:00:06.1833457
+
+> Game Running... running for 00:00:06.2000124
+
+> Game Running... running for 00:00:06.2166791
+
+> Game Running... running for 00:00:06.2333458
+
+> Game Running... running for 00:00:06.2500125
+
+> Game Running... running for 00:00:06.2666792
+
+> Game Running... running for 00:00:06.2833459
+
+> Game Running... running for 00:00:06.3000126
+
+> Game Running... running for 00:00:06.3166793
+
+> Game Running... running for 00:00:06.3333460
+
+> Game Running... running for 00:00:06.3500127
+
+> Game Running... running for 00:00:06.3666794
+
+> Game Running... running for 00:00:06.3833461
+
+> Game Running... running for 00:00:06.4000128
+
+> Game Running... running for 00:00:06.4166795
+
+> Game Running... running for 00:00:06.4333462
+
+> Game Running... running for 00:00:06.4500129
+
+> Game Running... running for 00:00:06.4666796
+
+> Game Running... running for 00:00:06.4833463
+
+> Game Running... running for 00:00:06.5000130
+
+> Game Running... running for 00:00:06.5166797
+
+> Game Running... running for 00:00:06.5333464
+
+> Game Running... running for 00:00:06.5500131
+
+> Game Running... running for 00:00:06.5666798
+
+> Game Running... running for 00:00:06.5833465
+
+> Game Running... running for 00:00:06.6000132
+
+> Game Running... running for 00:00:06.6166799
+
+> Game Running... running for 00:00:06.6333466
+
+> Game Running... running for 00:00:06.6500133
+
+> Game Running... running for 00:00:06.6666800
+
+> Game Running... running for 00:00:06.6833467
+
+> Game Running... running for 00:00:06.7000134
+
+> Game Running... running for 00:00:06.7166801
+
+> Game Running... running for 00:00:06.7333468
+
+> Game Running... running for 00:00:06.7500135
+
+> Game Running... running for 00:00:06.7666802
+
+> Game Running... running for 00:00:06.7833469
+
+> Game Running... running for 00:00:06.8000136
+
+> Game Running... running for 00:00:06.8166803
+
+> Game Running... running for 00:00:06.8333470
+
+> Game Running... running for 00:00:06.8500137
+
+> Game Running... running for 00:00:06.8666804
+
+> Game Running... running for 00:00:06.8833471
+
+> Game Running... running for 00:00:06.9000138
+
+> Game Running... running for 00:00:06.9166805
+
+> Game Running... running for 00:00:06.9333472
+
+> Game Running... running for 00:00:06.9500139
+
+> Game Running... running for 00:00:06.9666806
+
+> Game Running... running for 00:00:06.9833473
+
+> Game Running... running for 00:00:07.0000140
+
+> Game Running... running for 00:00:07.0166807
+
+> Game Running... running for 00:00:07.0333474
+
+> Game Running... running for 00:00:07.0500141
+
+> Game Running... running for 00:00:07.0666808
+
+> Game Running... running for 00:00:07.0833475
+
+> Game Running... running for 00:00:07.1000142
+
+> Game Running... running for 00:00:07.1166809
+
+> Game Running... running for 00:00:07.1333476
+
+> Game Running... running for 00:00:07.1500143
+
+> Game Running... running for 00:00:07.1666810
+
+> Game Running... running for 00:00:07.1833477
+
+> Game Running... running for 00:00:07.2000144
+
+> Game Running... running for 00:00:07.2166811
+
+> Game Running... running for 00:00:07.2333478
+
+> Game Running... running for 00:00:07.2500145
+
+> Game Running... running for 00:00:07.2666812
+
+> Game Running... running for 00:00:07.2833479
+
+> Game Running... running for 00:00:07.3000146
+
+> Game Running... running for 00:00:07.3166813
+
+> Game Running... running for 00:00:07.3333480
+
+> Game Running... running for 00:00:07.3500147
+
+> Game Running... running for 00:00:07.3666814
+
+> Game Running... running for 00:00:07.3833481
+
+> Game Running... running for 00:00:07.4000148
+
+> Game Running... running for 00:00:07.4166815
+
+> Game Running... running for 00:00:07.4333482
+
+> Game Running... running for 00:00:07.4500149
+
+> Game Running... running for 00:00:07.4666816
+
+> Game Running... running for 00:00:07.4833483
+
+> Game Running... running for 00:00:07.5000150
+
+> Game Running... running for 00:00:07.5166817
+
+> Game Running... running for 00:00:07.5333484
+
+> Game Running... running for 00:00:07.5500151
+
+> Game Running... running for 00:00:07.5666818
+
+> Game Running... running for 00:00:07.5833485
+
+> Game Running... running for 00:00:07.6000152
+
+> Game Running... running for 00:00:07.6166819
+
+> Game Running... running for 00:00:07.6333486
+
+> Game Running... running for 00:00:07.6500153
+
+> Game Running... running for 00:00:07.6666820
+
+> Game Running... running for 00:00:07.6833487
+
+> Game Running... running for 00:00:07.7000154
+
+> Game Running... running for 00:00:07.7166821
+
+> Game Running... running for 00:00:07.7333488
+
+> Game Running... running for 00:00:07.7500155
+
+> Game Running... running for 00:00:07.7666822
+
+> Game Running... running for 00:00:07.7833489
+
+> Game Running... running for 00:00:07.8000156
+
+> Game Running... running for 00:00:07.8166823
+
+> Game Running... running for 00:00:07.8333490
+
+> Game Running... running for 00:00:07.8500157
+
+> Game Running... running for 00:00:07.8666824
+
+> Game Running... running for 00:00:07.8833491
+
+> Game Running... running for 00:00:07.9000158
+
+> Game Running... running for 00:00:07.9166825
+
+> Game Running... running for 00:00:07.9333492
+
+> Game Running... running for 00:00:07.9500159
+
+> Game Running... running for 00:00:07.9666826
+
+> Game Running... running for 00:00:07.9833493
+
+> Game Running... running for 00:00:08.0000160
+
+> Game Running... running for 00:00:08.0166827
+
+> Game Running... running for 00:00:08.0333494
+
+> Game Running... running for 00:00:08.0500161
+
+> Game Running... running for 00:00:08.0666828
+
+> Game Running... running for 00:00:08.0833495
+
+> Game Running... running for 00:00:08.1000162
+
+> Game Running... running for 00:00:08.1166829
+
+> Game Running... running for 00:00:08.1333496
+
+> Game Running... running for 00:00:08.1500163
+
+> Game Running... running for 00:00:08.1666830
+
+> Game Running... running for 00:00:08.1833497
+
+> Game Running... running for 00:00:08.2000164
+
+> Game Running... running for 00:00:08.2166831
+
+> Game Running... running for 00:00:08.2333498
+
+> Game Running... running for 00:00:08.2500165
+
+> Game Running... running for 00:00:08.2666832
+
+> Game Running... running for 00:00:08.2833499
+
+> Game Running... running for 00:00:08.3000166
+
+> Game Running... running for 00:00:08.3166833
+
+> Game Running... running for 00:00:08.3333500
+
+> Game Running... running for 00:00:08.3500167
+
+> Game Running... running for 00:00:08.3666834
+
+> Game Running... running for 00:00:08.3833501
+
+> Game Running... running for 00:00:08.4000168
+
+> Game Running... running for 00:00:08.4166835
+
+> Game Running... running for 00:00:08.4333502
+
+> Game Running... running for 00:00:08.4500169
+
+> Game Running... running for 00:00:08.4666836
+
+> Game Running... running for 00:00:08.4833503
+
+> Game Running... running for 00:00:08.5000170
+
+> Game Running... running for 00:00:08.5166837
+
+> Game Running... running for 00:00:08.5333504
+
+> Game Running... running for 00:00:08.5500171
+
+> Game Running... running for 00:00:08.5666838
+
+> Game Running... running for 00:00:08.5833505
+
+> Game Running... running for 00:00:08.6000172
+
+> Game Running... running for 00:00:08.6166839
+
+> Game Running... running for 00:00:08.6333506
+
+> Game Running... running for 00:00:08.6500173
+
+> Game Running... running for 00:00:08.6666840
+
+> Game Running... running for 00:00:08.6833507
+
+> Game Running... running for 00:00:08.7000174
+
+> Game Running... running for 00:00:08.7166841
+
+> Game Running... running for 00:00:08.7333508
+
+> Game Running... running for 00:00:08.7500175
+
+> Game Running... running for 00:00:08.7666842
+
+> Game Running... running for 00:00:08.7833509
+
+> Game Running... running for 00:00:08.8000176
+
+> Game Running... running for 00:00:08.8166843
+
+> Game Running... running for 00:00:08.8333510
+
+> Game Running... running for 00:00:08.8500177
+
+> Game Running... running for 00:00:08.8666844
+
+> Game Running... running for 00:00:08.8833511
+
+> Game Running... running for 00:00:08.9000178
+
+> Game Running... running for 00:00:08.9166845
+
+> Game Running... running for 00:00:08.9333512
+
+> Game Running... running for 00:00:08.9500179
+
+> Game Running... running for 00:00:08.9666846
+
+> Game Running... running for 00:00:08.9833513
+
+> Game Running... running for 00:00:09.0000180
+
+> Game Running... running for 00:00:09.0166847
+
+> Game Running... running for 00:00:09.0333514
+
+> Game Running... running for 00:00:09.0500181
+
+> Game Running... running for 00:00:09.0666848
+
+> Game Running... running for 00:00:09.0833515
+
+> Game Running... running for 00:00:09.1000182
+
+> Game Running... running for 00:00:09.1166849
+
+> Game Running... running for 00:00:09.1333516
+
+> Game Running... running for 00:00:09.1500183
+
+> Game Running... running for 00:00:09.1666850
+
+> Game Running... running for 00:00:09.1833517
+
+> Game Running... running for 00:00:09.2000184
+
+> Game Running... running for 00:00:09.2166851
+
+> Game Running... running for 00:00:09.2333518
+
+> Game Running... running for 00:00:09.2500185
+
+> Game Running... running for 00:00:09.2666852
+
+> Game Running... running for 00:00:09.2833519
+
+> Game Running... running for 00:00:09.3000186
+
+> Game Running... running for 00:00:09.3166853
+
+> Game Running... running for 00:00:09.3333520
+
+> Game Running... running for 00:00:09.3500187
+
+> Game Running... running for 00:00:09.3666854
+
+> Game Running... running for 00:00:09.3833521
+
+> Game Running... running for 00:00:09.4000188
+
+> Game Running... running for 00:00:09.4166855
+
+> Game Running... running for 00:00:09.4333522
+
+> Game Running... running for 00:00:09.4500189
+
+> Game Running... running for 00:00:09.4666856
+
+> Game Running... running for 00:00:09.4833523
+
+> Game Running... running for 00:00:09.5000190
+
+> Game Running... running for 00:00:09.5166857
+
+> Game Running... running for 00:00:09.5333524
+
+> Game Running... running for 00:00:09.5500191
+
+> Game Running... running for 00:00:09.5666858
+
+> Game Running... running for 00:00:09.5833525
+
+> Game Running... running for 00:00:09.6000192
+
+> Game Running... running for 00:00:09.6166859
+
+> Game Running... running for 00:00:09.6333526
+
+> Game Running... running for 00:00:09.6500193
+
+> Game Running... running for 00:00:09.6666860
+
+> Game Running... running for 00:00:09.6833527
+
+> Game Running... running for 00:00:09.7000194
+
+> Game Running... running for 00:00:09.7166861
+
+> Game Running... running for 00:00:09.7333528
+
+> Game Running... running for 00:00:09.7500195
+
+> Game Running... running for 00:00:09.7666862
+
+> Game Running... running for 00:00:09.7833529
+
+> Game Running... running for 00:00:09.8000196
+
+> Game Running... running for 00:00:09.8166863
+
+> Game Running... running for 00:00:09.8333530
+
+> Game Running... running for 00:00:09.8500197
+
+> Game Running... running for 00:00:09.8666864
+
+> Game Running... running for 00:00:09.8833531
+
+> Game Running... running for 00:00:09.9000198
+
+> Game Running... running for 00:00:09.9166865
+
+> Game Running... running for 00:00:09.9333532
+
+> Game Running... running for 00:00:09.9500199
+
+> Game Running... running for 00:00:09.9666866
+
+> Game Running... running for 00:00:09.9833533
+
+> Game Running... running for 00:00:10.0000200
+
+> Game Running... running for 00:00:10.0166867
+
+> Game Running... running for 00:00:10.0333534
+
+> Game Running... running for 00:00:10.0500201
+
+> Game Running... running for 00:00:10.0666868
+
+> Game Running... running for 00:00:10.0833535
+
+> Game Running... running for 00:00:10.1000202
+
+> Game Running... running for 00:00:10.1166869
+
+> Game Running... running for 00:00:10.1333536
+
+> Game Running... running for 00:00:10.1500203
+
+> Game Running... running for 00:00:10.1666870
+
+> Game Running... running for 00:00:10.1833537
+
+> Game Running... running for 00:00:10.2000204
+
+> Game Running... running for 00:00:10.2166871
+
+> Game Running... running for 00:00:10.2333538
+
+> Game Running... running for 00:00:10.2500205
+
+> Game Running... running for 00:00:10.2666872
+
+> Game Running... running for 00:00:10.2833539
+
+> Game Running... running for 00:00:10.3000206
+
+> Game Running... running for 00:00:10.3166873
+
+> Game Running... running for 00:00:10.3333540
+
+> Game Running... running for 00:00:10.3500207
+
+> Game Running... running for 00:00:10.3666874
+
+> Game Running... running for 00:00:10.3833541
+
+> Game Running... running for 00:00:10.4000208
+
+> Game Running... running for 00:00:10.4166875
+
+> Game Running... running for 00:00:10.4333542
+
+> Game Running... running for 00:00:10.4500209
+
+> Game Running... running for 00:00:10.4666876
+
+> Game Running... running for 00:00:10.4833543
+
+> Game Running... running for 00:00:10.5000210
+
+> Game Running... running for 00:00:10.5166877
+
+> Game Running... running for 00:00:10.5333544
+
+> Game Running... running for 00:00:10.5500211
+
+> Game Running... running for 00:00:10.5666878
+
+> Game Running... running for 00:00:10.5833545
+
+> Game Running... running for 00:00:10.6000212
+
+> Game Running... running for 00:00:10.6166879
+
+> Game Running... running for 00:00:10.6333546
+
+> Game Running... running for 00:00:10.6500213
+
+> Game Running... running for 00:00:10.6666880
+
+> Game Running... running for 00:00:10.6833547
+
+> Game Running... running for 00:00:10.7000214
+
+> Game Running... running for 00:00:10.7166881
+
+> Game Running... running for 00:00:10.7333548
+
+> Game Running... running for 00:00:10.7500215
+
+> Game Running... running for 00:00:10.7666882
+
+> Game Running... running for 00:00:10.7833549
+
+> Game Running... running for 00:00:10.8000216
+
+> Game Running... running for 00:00:10.8166883
+
+> Game Running... running for 00:00:10.8333550
+
+> Game Running... running for 00:00:10.8500217
+
+> Game Running... running for 00:00:10.8666884
+
+> Game Running... running for 00:00:10.8833551
+
+> Game Running... running for 00:00:10.9000218
+
+> Game Running... running for 00:00:10.9166885
+
+> Game Running... running for 00:00:10.9333552
+
+> Game Running... running for 00:00:10.9500219
+
+> Game Running... running for 00:00:10.9666886
+
+> Game Running... running for 00:00:10.9833553
+
+> Game Running... running for 00:00:11.0000220
+
+> Game Running... running for 00:00:11.0166887
+
+> Game Running... running for 00:00:11.0333554
+
+> Game Running... running for 00:00:11.0500221
+
+> Game Running... running for 00:00:11.0666888
+
+> Game Running... running for 00:00:11.0833555
+
+> Game Running... running for 00:00:11.1000222
+
+> Game Running... running for 00:00:11.1166889
+
+> Game Running... running for 00:00:11.1333556
+
+> Game Running... running for 00:00:11.1500223
+
+> Game Running... running for 00:00:11.1666890
+
+> Game Running... running for 00:00:11.1833557
+
+> Game Running... running for 00:00:11.2000224
+
+> Game Running... running for 00:00:11.2166891
+
+> Game Running... running for 00:00:11.2333558
+
+> Game Running... running for 00:00:11.2500225
+
+> Game Running... running for 00:00:11.2666892
+
+> Game Running... running for 00:00:11.2833559
+
+> Game Running... running for 00:00:11.3000226
+
+> Game Running... running for 00:00:11.3166893
+
+> Game Running... running for 00:00:11.3333560
+
+> Game Running... running for 00:00:11.3500227
+
+> Game Running... running for 00:00:11.3666894
+
+> Game Running... running for 00:00:11.3833561
+
+> Game Running... running for 00:00:11.4000228
+
+> Game Running... running for 00:00:11.4166895
+
+> Game Running... running for 00:00:11.4333562
+
+> Game Running... running for 00:00:11.4500229
+
+> Game Running... running for 00:00:11.4666896
+
+> Game Running... running for 00:00:11.4833563
+
+> Game Running... running for 00:00:11.5000230
+
+> Game Running... running for 00:00:11.5166897
+
+> Game Running... running for 00:00:11.5333564
+
+> Game Running... running for 00:00:11.5500231
+
+> Game Running... running for 00:00:11.5666898
+
+> Game Running... running for 00:00:11.5833565
+
+> Game Running... running for 00:00:11.6000232
+
+> Game Running... running for 00:00:11.6166899
+
+> Game Running... running for 00:00:11.6333566
+
+> Game Running... running for 00:00:11.6500233
+
+> Game Running... running for 00:00:11.6666900
+
+> Game Running... running for 00:00:11.6833567
+
+> Game Running... running for 00:00:11.7000234
+
+> Game Running... running for 00:00:11.7166901
+
+> Game Running... running for 00:00:11.7333568
+
+> Game Running... running for 00:00:11.7500235
+
+> Game Running... running for 00:00:11.7666902
+
+> Game Running... running for 00:00:11.7833569
+
+> Game Running... running for 00:00:11.8000236
+
+> Game Running... running for 00:00:11.8166903
+
+> Game Running... running for 00:00:11.8333570
+
+> Game Running... running for 00:00:11.8500237
+
+> Game Running... running for 00:00:11.8666904
+
+> Game Running... running for 00:00:11.8833571
+
+> Game Running... running for 00:00:11.9000238
+
+> Game Running... running for 00:00:11.9166905
+
+> Game Running... running for 00:00:11.9333572
+
+> Game Running... running for 00:00:11.9500239
+
+> Game Running... running for 00:00:11.9666906
+
+> Game Running... running for 00:00:11.9833573
+
+> Game Running... running for 00:00:12.0000240
+
+> Game Running... running for 00:00:12.0166907
+
+> Game Running... running for 00:00:12.0333574
+
+> Game Running... running for 00:00:12.0500241
+
+> Game Running... running for 00:00:12.0666908
+
+> Game Running... running for 00:00:12.0833575
+
+> Game Running... running for 00:00:12.1000242
+
+> Game Running... running for 00:00:12.1166909
+
+> Game Running... running for 00:00:12.1333576
+
+> Game Running... running for 00:00:12.1500243
+
+> Game Running... running for 00:00:12.1666910
+
+> Game Running... running for 00:00:12.1833577
+
+> Game Running... running for 00:00:12.2000244
+
+> Game Running... running for 00:00:12.2166911
+
+> Game Running... running for 00:00:12.2333578
+
+> Game Running... running for 00:00:12.2500245
+
+> Game Running... running for 00:00:12.2666912
+
+> Game Running... running for 00:00:12.2833579
+
+> Game Running... running for 00:00:12.3000246
+
+> Game Running... running for 00:00:12.3166913
+
+> Game Running... running for 00:00:12.3333580
+
+> Game Running... running for 00:00:12.3500247
+
+> Game Running... running for 00:00:12.3666914
+
+> Game Running... running for 00:00:12.3833581
+
+> Game Running... running for 00:00:12.4000248
+
+> Game Running... running for 00:00:12.4166915
+
+> Game Running... running for 00:00:12.4333582
+
+> Game Running... running for 00:00:12.4500249
+
+> Game Running... running for 00:00:12.4666916
+
+> Game Running... running for 00:00:12.4833583
+
+> Game Running... running for 00:00:12.5000250
+
+> Game Running... running for 00:00:12.5166917
+
+> Game Running... running for 00:00:12.5333584
+
+> Game Running... running for 00:00:12.5500251
+
+> Game Running... running for 00:00:12.5666918
+
+> Game Running... running for 00:00:12.5833585
+
+> Game Running... running for 00:00:12.6000252
+
+> Game Running... running for 00:00:12.6166919
+
+> Game Running... running for 00:00:12.6333586
+
+> Game Running... running for 00:00:12.6500253
+
+> Game Running... running for 00:00:12.6666920
+
+> Game Running... running for 00:00:12.6833587
+
+> Game Running... running for 00:00:12.7000254
+
+> Game Running... running for 00:00:12.7166921
+
+> Game Running... running for 00:00:12.7333588
+
+> Game Running... running for 00:00:12.7500255
+
+> Game Running... running for 00:00:12.7666922
+
+> Game Running... running for 00:00:12.7833589
+
+> Game Running... running for 00:00:12.8000256
+
+> Game Running... running for 00:00:12.8166923
+
+> Game Running... running for 00:00:12.8333590
+
+> Game Running... running for 00:00:12.8500257
+
+> Game Running... running for 00:00:12.8666924
+
+> Game Running... running for 00:00:12.8833591
+
+> Game Running... running for 00:00:12.9000258
+
+> Game Running... running for 00:00:12.9166925
+
+> Game Running... running for 00:00:12.9333592
+
+> Game Running... running for 00:00:12.9500259
+
+> Game Running... running for 00:00:12.9666926
+
+> Game Running... running for 00:00:12.9833593
+
+> Game Running... running for 00:00:13.0000260
+
+> Game Running... running for 00:00:13.0166927
+
+> Game Running... running for 00:00:13.0333594
+
+> Game Running... running for 00:00:13.0500261
+
+> Game Running... running for 00:00:13.0666928
+
+> Game Running... running for 00:00:13.0833595
+
+> Game Running... running for 00:00:13.1000262
+
+> Game Running... running for 00:00:13.1166929
+
+> Game Running... running for 00:00:13.1333596
+
+> Game Running... running for 00:00:13.1500263
+
+> Game Running... running for 00:00:13.1666930
+
+> Game Running... running for 00:00:13.1833597
+
+> Game Running... running for 00:00:13.2000264
+
+> Game Running... running for 00:00:13.2166931
+
+> Game Running... running for 00:00:13.2333598
+
+> Game Running... running for 00:00:13.2500265
+
+> Game Running... running for 00:00:13.2666932
+
+> Game Running... running for 00:00:13.2833599
+
+> Game Running... running for 00:00:13.3000266
+
+> Game Running... running for 00:00:13.3166933
+
+> Game Running... running for 00:00:13.3333600
+
+> Game Running... running for 00:00:13.3500267
+
+> Game Running... running for 00:00:13.3666934
+
+> Game Running... running for 00:00:13.3833601
+
+> Game Running... running for 00:00:13.4000268
+
+> Game Running... running for 00:00:13.4166935
+
+> Game Running... running for 00:00:13.4333602
+
+> Game Running... running for 00:00:13.4500269
+
+> Game Running... running for 00:00:13.4666936
+
+> Game Running... running for 00:00:13.4833603
+
+> Game Running... running for 00:00:13.5000270
+
+> Game Running... running for 00:00:13.5166937
+
+> Game Running... running for 00:00:13.5333604
+
+> Game Running... running for 00:00:13.5500271
+
+> Game Running... running for 00:00:13.5666938
+
+> Game Running... running for 00:00:13.5833605
+
+> Game Running... running for 00:00:13.6000272
+
+> Game Running... running for 00:00:13.6166939
+
+> Game Running... running for 00:00:13.6333606
+
+> Game Running... running for 00:00:13.6500273
+
+> Game Running... running for 00:00:13.6666940
+
+> Game Running... running for 00:00:13.6833607
+
+> Game Running... running for 00:00:13.7000274
+
+> Game Running... running for 00:00:13.7166941
+
+> Game Running... running for 00:00:13.7333608
+
+> Game Running... running for 00:00:13.7500275
+
+> Game Running... running for 00:00:13.7666942
+
+> Game Running... running for 00:00:13.7833609
+
+> Game Running... running for 00:00:13.8000276
+
+> Game Running... running for 00:00:13.8166943
+
+> Game Running... running for 00:00:13.8333610
+
+> Game Running... running for 00:00:13.8500277
+
+> Game Running... running for 00:00:13.8666944
+
+> Game Running... running for 00:00:13.8833611
+
+> Game Running... running for 00:00:13.9000278
+
+> Game Running... running for 00:00:13.9166945
+
+> Game Running... running for 00:00:13.9333612
+
+> Game Running... running for 00:00:13.9500279
+
+> Game Running... running for 00:00:13.9666946
+
+> Game Running... running for 00:00:13.9833613
+
+> Game Running... running for 00:00:14.0000280
+
+> Game Running... running for 00:00:14.0166947
+
+> Game Running... running for 00:00:14.0333614
+
+> Game Running... running for 00:00:14.0500281
+
+> Game Running... running for 00:00:14.0666948
+
+> Game Running... running for 00:00:14.0833615
+
+> Game Running... running for 00:00:14.1000282
+
+> Game Running... running for 00:00:14.1166949
+
+> Game Running... running for 00:00:14.1333616
+
+> Game Running... running for 00:00:14.1500283
+
+> Game Running... running for 00:00:14.1666950
+
+> Game Running... running for 00:00:14.1833617
+
+> Game Running... running for 00:00:14.2000284
+
+> Game Running... running for 00:00:14.2166951
+
+> Game Running... running for 00:00:14.2333618
+
+> Game Running... running for 00:00:14.2500285
+
+> Game Running... running for 00:00:14.2666952
+
+> Game Running... running for 00:00:14.2833619
+
+> Game Running... running for 00:00:14.3000286
+
+> Game Running... running for 00:00:14.3166953
+
+> Game Running... running for 00:00:14.3333620
+
+> Game Running... running for 00:00:14.3500287
+
+> Game Running... running for 00:00:14.3666954
+
+> Game Running... running for 00:00:14.3833621
+
+> Game Running... running for 00:00:14.4000288
+
+> Game Running... running for 00:00:14.4166955
+
+> Game Running... running for 00:00:14.4333622
+
+> Game Running... running for 00:00:14.4500289
+
+> Game Running... running for 00:00:14.4666956
+
+> Game Running... running for 00:00:14.4833623
+
+> Game Running... running for 00:00:14.5000290
+
+> Game Running... running for 00:00:14.5166957
+
+> Game Running... running for 00:00:14.5333624
+
+> Game Running... running for 00:00:14.5500291
+
+> Game Running... running for 00:00:14.5666958
+
+> Game Running... running for 00:00:14.5833625
+
+> Game Running... running for 00:00:14.6000292
+
+> Game Running... running for 00:00:14.6166959
+
+> Game Running... running for 00:00:14.6333626
+
+> Game Running... running for 00:00:14.6500293
+
+> Game Running... running for 00:00:14.6666960
+
+> Game Running... running for 00:00:14.6833627
+
+> Game Running... running for 00:00:14.7000294
+
+> Game Running... running for 00:00:14.7166961
+
+> Game Running... running for 00:00:14.7333628
+
+> Game Running... running for 00:00:14.7500295
+
+> Game Running... running for 00:00:14.7666962
+
+> Game Running... running for 00:00:14.7833629
+
+> Game Running... running for 00:00:14.8000296
+
+> Game Running... running for 00:00:14.8166963
+
+> Game Running... running for 00:00:14.8333630
+
+> Game Running... running for 00:00:14.8500297
+
+> Game Running... running for 00:00:14.8666964
+
+> Game Running... running for 00:00:14.8833631
+
+> Game Running... running for 00:00:14.9000298
+
+> Game Running... running for 00:00:14.9166965
+
+> Game Running... running for 00:00:14.9333632
+
+> Game Running... running for 00:00:14.9500299
+
+> Game Running... running for 00:00:14.9666966
+
+> Game Running... running for 00:00:14.9833633
+
+> Game Running... running for 00:00:15.0000300
+
+> Game Running... running for 00:00:15.0166967
+
+> Game Running... running for 00:00:15.0333634
+
+> Game Running... running for 00:00:15.0500301
+
+> Game Running... running for 00:00:15.0666968
+
+> Game Running... running for 00:00:15.0833635
+
+> Game Running... running for 00:00:15.1000302
+
+> Game Running... running for 00:00:15.1166969
+
+> Game Running... running for 00:00:15.1333636
+
+> Game Running... running for 00:00:15.1500303
+
+> Game Running... running for 00:00:15.1666970
+
+> Game Running... running for 00:00:15.1833637
+
+> Game Running... running for 00:00:15.2000304
+
+> Game Running... running for 00:00:15.2166971
+
+> Game Running... running for 00:00:15.2333638
+
+> Game Running... running for 00:00:15.2500305
+
+> Game Running... running for 00:00:15.2666972
+
+> Game Running... running for 00:00:15.2833639
+
+> Game Running... running for 00:00:15.3000306
+
+> Game Running... running for 00:00:15.3166973
+
+> Game Running... running for 00:00:15.3333640
+
+> Game Running... running for 00:00:15.3500307
+
+> Game Running... running for 00:00:15.3666974
+
+> Game Running... running for 00:00:15.3833641
+
+> Game Running... running for 00:00:15.4000308
+
+> Game Running... running for 00:00:15.4166975
+
+> Game Running... running for 00:00:15.4333642
+
+> Game Running... running for 00:00:15.4500309
+
+> Game Running... running for 00:00:15.4666976
+
+> Game Running... running for 00:00:15.4833643
+
+> Game Running... running for 00:00:15.5000310
+
+> Game Running... running for 00:00:15.5166977
+
+> Game Running... running for 00:00:15.5333644
+
+> Game Running... running for 00:00:15.5500311
+
+> Game Running... running for 00:00:15.5666978
+
+> Game Running... running for 00:00:15.5833645
+
+> Game Running... running for 00:00:15.6000312
+
+> Game Running... running for 00:00:15.6166979
+
+> Game Running... running for 00:00:15.6333646
+
+> Game Running... running for 00:00:15.6500313
+
+> Game Running... running for 00:00:15.6666980
+
+> Game Running... running for 00:00:15.6833647
+
+> Game Running... running for 00:00:15.7000314
+
+> Game Running... running for 00:00:15.7166981
+
+> Game Running... running for 00:00:15.7333648
+
+> Game Running... running for 00:00:15.7500315
+
+> Game Running... running for 00:00:15.7666982
+
+> Game Running... running for 00:00:15.7833649
+
+> Game Running... running for 00:00:15.8000316
+
+> Game Running... running for 00:00:15.8166983
+
+> Game Running... running for 00:00:15.8333650
+
+> Game Running... running for 00:00:15.8500317
+
+> Game Running... running for 00:00:15.8666984
+
+> Game Running... running for 00:00:15.8833651
+
+> Game Running... running for 00:00:15.9000318
+
+> Game Running... running for 00:00:15.9166985
+
+> Game Running... running for 00:00:15.9333652
+
+> Game Running... running for 00:00:15.9500319
+
+> Game Running... running for 00:00:15.9666986
+
+> Game Running... running for 00:00:15.9833653
+
+> Game Running... running for 00:00:16.0000320
+
+> Game Running... running for 00:00:16.0166987
+
+> Game Running... running for 00:00:16.0333654
+
+> Game Running... running for 00:00:16.0500321
+
+> Game Running... running for 00:00:16.0666988
+
+> Game Running... running for 00:00:16.0833655
+
+> Game Running... running for 00:00:16.1000322
+
+> Game Running... running for 00:00:16.1166989
+
+> Game Running... running for 00:00:16.1333656
+
+> Game Running... running for 00:00:16.1500323
+
+> Game Running... running for 00:00:16.1666990
+
+> Game Running... running for 00:00:16.1833657
+
+> Game Running... running for 00:00:16.2000324
+
+> Game Running... running for 00:00:16.2166991
+
+> Game Running... running for 00:00:16.2333658
+
+> Game Running... running for 00:00:16.2500325
+
+> Game Running... running for 00:00:16.2666992
+
+> Game Running... running for 00:00:16.2833659
+
+> Game Running... running for 00:00:16.3000326
+
+> Game Running... running for 00:00:16.3166993
+
+> Game Running... running for 00:00:16.3333660
+
+> Game Running... running for 00:00:16.3500327
+
+> Game Running... running for 00:00:16.3666994
+
+> Game Running... running for 00:00:16.3833661
+
+> Game Running... running for 00:00:16.4000328
+
+> Game Running... running for 00:00:16.4166995
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:16.4333662
+>    }
+
+> Game Running... running for 00:00:16.4333662
+
+> Game Running... running for 00:00:16.4500329
+
+> Game Running... running for 00:00:16.4666996
+
+> Game Running... running for 00:00:16.4833663
+
+> Game Running... running for 00:00:16.5000330
+
+> Game Running... running for 00:00:16.5166997
+
+> Game Running... running for 00:00:16.5333664
+
+> Game Running... running for 00:00:16.5500331
+
+> Game Running... running for 00:00:16.5666998
+
+> Game Running... running for 00:00:16.5833665
+
+> Game Running... running for 00:00:16.6000332
+
+> Game Running... running for 00:00:16.6166999
+
+> Game Running... running for 00:00:16.6333666
+
+> Game Running... running for 00:00:16.6500333
+
+> Game Running... running for 00:00:16.6667000
+
+> Game Running... running for 00:00:16.6833667
+
+> Game Running... running for 00:00:16.7000334
+
+> Game Running... running for 00:00:16.7167001
+
+> Game Running... running for 00:00:16.7333668
+
+> Game Running... running for 00:00:16.7500335
+
+> Game Running... running for 00:00:16.7667002
+
+> Game Running... running for 00:00:16.7833669
+
+> Game Running... running for 00:00:16.8000336
+
+> Game Running... running for 00:00:16.8167003
+
+> Game Running... running for 00:00:16.8333670
+
+> Game Running... running for 00:00:16.8500337
+
+> Game Running... running for 00:00:16.8667004
+
+> Game Running... running for 00:00:16.8833671
+
+> Game Running... running for 00:00:16.9000338
+
+> Game Running... running for 00:00:16.9167005
+
+> Game Running... running for 00:00:16.9333672
+
+> Game Running... running for 00:00:16.9500339
+
+> Game Running... running for 00:00:16.9667006
+
+> Game Running... running for 00:00:16.9833673
+
+> Game Running... running for 00:00:17.0000340
+
+> Game Running... running for 00:00:17.0167007
+
+> Game Running... running for 00:00:17.0333674
+
+> Game Running... running for 00:00:17.0500341
+
+> Game Running... running for 00:00:17.0667008
+
+> Game Running... running for 00:00:17.0833675
+
+> Game Running... running for 00:00:17.1000342
+
+> Game Running... running for 00:00:17.1167009
+
+> Game Running... running for 00:00:17.1333676
+
+> Game Running... running for 00:00:17.1500343
+
+> Game Running... running for 00:00:17.1667010
+
+> Game Running... running for 00:00:17.1833677
+
+> Game Running... running for 00:00:17.2000344
+
+> Game Running... running for 00:00:17.2167011
+
+> Game Running... running for 00:00:17.2333678
+
+> Game Running... running for 00:00:17.2500345
+
+> Game Running... running for 00:00:17.2667012
+
+> Game Running... running for 00:00:17.2833679
+
+> Game Running... running for 00:00:17.3000346
+
+> Game Running... running for 00:00:17.3167013
+
+> Game Running... running for 00:00:17.3333680
+
+> Game Running... running for 00:00:17.3500347
+
+> Game Running... running for 00:00:17.3667014
+
+> Game Running... running for 00:00:17.3833681
+
+> Game Running... running for 00:00:17.4000348
+
+> Game Running... running for 00:00:17.4167015
+
+> Game Running... running for 00:00:17.4333682
+
+> Game Running... running for 00:00:17.4500349
+
+> Game Running... running for 00:00:17.4667016
+
+> Game Running... running for 00:00:17.4833683
+
+> Game Running... running for 00:00:17.5000350
+
+> Game Running... running for 00:00:17.5167017
+
+> Game Running... running for 00:00:17.5333684
+
+> Game Running... running for 00:00:17.5500351
+
+> Game Running... running for 00:00:17.5667018
+
+> Game Running... running for 00:00:17.5833685
+
+> Game Running... running for 00:00:17.6000352
+
+> Game Running... running for 00:00:17.6167019
+
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:17.6333686
+>    }
+
+> Game Running... running for 00:00:17.6333686
+
+> Game Running... running for 00:00:17.6500353
+
+> Game Running... running for 00:00:17.6667020
+
+> Game Running... running for 00:00:17.6833687
+
+> Game Running... running for 00:00:17.7000354
+
+> Game Running... running for 00:00:17.7167021
+
+> Game Running... running for 00:00:17.7333688
+
+> Game Running... running for 00:00:17.7500355
+
+> Game Running... running for 00:00:17.7667022
+
+> Game Running... running for 00:00:17.7833689
+
+> Game Running... running for 00:00:17.8000356
+
+> Game Running... running for 00:00:17.8167023
+
+> Game Running... running for 00:00:17.8333690
+
+> Game Running... running for 00:00:17.8500357
+
+> Game Running... running for 00:00:17.8667024
+
+> Game Running... running for 00:00:17.8833691
+
+> Game Running... running for 00:00:17.9000358
+
+> Game Running... running for 00:00:17.9167025
+
+> Game Running... running for 00:00:17.9333692
+
+> Game Running... running for 00:00:17.9500359
+
+> Game Running... running for 00:00:17.9667026
+
+> Game Running... running for 00:00:17.9833693
+
+> Game Running... running for 00:00:18.0000360
+
+> Game Running... running for 00:00:18.0167027
+
+> Game Running... running for 00:00:18.0333694
+
+> Game Running... running for 00:00:18.0500361
+
+> Game Running... running for 00:00:18.0667028
+
+> Game Running... running for 00:00:18.0833695
+
+> Game Running... running for 00:00:18.1000362
+
+> Game Running... running for 00:00:18.1167029
+
+> Game Running... running for 00:00:18.1333696
+
+> Game Running... running for 00:00:18.1500363
+
+> Game Running... running for 00:00:18.1667030
+
+> Game Running... running for 00:00:18.1833697
+
+> Game Running... running for 00:00:18.2000364
+
+> Game Running... running for 00:00:18.2167031
+
+> Game Running... running for 00:00:18.2333698
+
+> Game Running... running for 00:00:18.2500365
+
+> Game Running... running for 00:00:18.2667032
+
+> Game Running... running for 00:00:18.2833699
+
+> Game Running... running for 00:00:18.3000366
+
+> Game Running... running for 00:00:18.3167033
+
+> Game Running... running for 00:00:18.3333700
+
+> Game Running... running for 00:00:18.3500367
+
+> Game Running... running for 00:00:18.3667034
+
+> Game Running... running for 00:00:18.3833701
+
+> Game Running... running for 00:00:18.4000368
+
+> Game Running... running for 00:00:18.4167035
+
+> Game Running... running for 00:00:18.4333702
+
+> Game Running... running for 00:00:18.4500369
+
+> Game Running... running for 00:00:18.4667036
+
+> Game Running... running for 00:00:18.4833703
+
+> Game Running... running for 00:00:18.5000370
+
+> Game Running... running for 00:00:18.5167037
+
+> Game Running... running for 00:00:18.5333704
+
+> Game Running... running for 00:00:18.5500371
+
+> Game Running... running for 00:00:18.5667038
+
+> Game Running... running for 00:00:18.5833705
+
+> Game Running... running for 00:00:18.6000372
+
+> Game Running... running for 00:00:18.6167039
+
+> Game Running... running for 00:00:18.6333706
+
+> Game Running... running for 00:00:18.6500373
+
+> Game Running... running for 00:00:18.6667040
+
+> Game Running... running for 00:00:18.6833707
+
+> Game Running... running for 00:00:18.7000374
+
+> Game Running... running for 00:00:18.7167041
+
+> Game Running... running for 00:00:18.7333708
+
+> Game Running... running for 00:00:18.7500375
+
+> Game Running... running for 00:00:18.7667042
+
+> Game Running... running for 00:00:18.7833709
+
+> Game Running... running for 00:00:18.8000376
+
+> Game Running... running for 00:00:18.8167043
+
+> Game Running... running for 00:00:18.8333710
+
+> Game Running... running for 00:00:18.8500377
+
+> Game Running... running for 00:00:18.8667044
+
+> Game Running... running for 00:00:18.8833711
+
+> Game Running... running for 00:00:18.9000378
+
+> Game Running... running for 00:00:18.9167045
+
+> Game Running... running for 00:00:18.9333712
+
+> Game Running... running for 00:00:18.9500379
+
+> Game Running... running for 00:00:18.9667046
+
+> Game Running... running for 00:00:18.9833713
+
+> Game Running... running for 00:00:19.0000380
+
+> Game Running... running for 00:00:19.0167047
+
+> Game Running... running for 00:00:19.0333714
+
+> Game Running... running for 00:00:19.0500381
+
+> Game Running... running for 00:00:19.0667048
+
+> Game Running... running for 00:00:19.0833715
+
+> Game Running... running for 00:00:19.1000382
+
+> Game Running... running for 00:00:19.1167049
+
+> Game Running... running for 00:00:19.1333716
+
+> Game Running... running for 00:00:19.1500383
+
+> Game Running... running for 00:00:19.1667050
+
+> Game Running... running for 00:00:19.1833717
+
+> Game Running... running for 00:00:19.2000384
+
+> Game Running... running for 00:00:19.2167051
+
+> Game Running... running for 00:00:19.2333718
+
+> Game Running... running for 00:00:19.2500385
+
+> Game Running... running for 00:00:19.2667052
+
+> Game Running... running for 00:00:19.2833719
+
+> Game Running... running for 00:00:19.3000386
+
+> Game Running... running for 00:00:19.3167053
+
+> Game Running... running for 00:00:19.3333720
+
+> Game Running... running for 00:00:19.3500387
+
+> Game Running... running for 00:00:19.3667054
+
+> Game Running... running for 00:00:19.3833721
+
+> Game Running... running for 00:00:19.4000388
+
+> Game Running... running for 00:00:19.4167055
+
+> Game Running... running for 00:00:19.4333722
+
+> Game Running... running for 00:00:19.4500389
+
+> Game Running... running for 00:00:19.4667056
+
+> Game Running... running for 00:00:19.4833723
+
+> Game Running... running for 00:00:19.5000390
+
+> Game Running... running for 00:00:19.5167057
+
+> Game Running... running for 00:00:19.5333724
+
+> Game Running... running for 00:00:19.5500391
+
+> Game Running... running for 00:00:19.5667058
+
+> Game Running... running for 00:00:19.5833725
+
+> Game Running... running for 00:00:19.6000392
+
+> Game Running... running for 00:00:19.6167059
+
+> Game Running... running for 00:00:19.6333726
+
+> Game Running... running for 00:00:19.6500393
+
+> Game Running... running for 00:00:19.6667060
+
+> Game Running... running for 00:00:19.6833727
+
+> Game Running... running for 00:00:19.7000394
+
+> Game Running... running for 00:00:19.7167061
+
+> Game Running... running for 00:00:19.7333728
+
+> Game Running... running for 00:00:19.7500395
+
+> Game Running... running for 00:00:19.7667062
+
+> Game Running... running for 00:00:19.7833729
+
+> Game Running... running for 00:00:19.8000396
+
+> Game Running... running for 00:00:19.8167063
+
+> Game Running... running for 00:00:19.8333730
+
+> Game Running... running for 00:00:19.8500397
+
+> Game Running... running for 00:00:19.8667064
+
+> Game Running... running for 00:00:19.8833731
+
+> Game Running... running for 00:00:19.9000398
+
+> Game Running... running for 00:00:19.9167065
+
+> Game Running... running for 00:00:19.9333732
+
+> Game Running... running for 00:00:19.9500399
+
+> Game Running... running for 00:00:19.9667066
+
+> Game Running... running for 00:00:19.9833733
+
+> Game Running... running for 00:00:20.0000400
+
+> Game Running... running for 00:00:20.0167067
+
+> Game Running... running for 00:00:20.0333734
+
+> Game Running... running for 00:00:20.0500401
+
+> Game Running... running for 00:00:20.0667068
+
+> Game Running... running for 00:00:20.0833735
+
+> Game Running... running for 00:00:20.1000402
+
+> Game Running... running for 00:00:20.1167069
+
+> Game Running... running for 00:00:20.1333736
+
+> Game Running... running for 00:00:20.1500403
+
+> Game Running... running for 00:00:20.1667070
+
+> Game Running... running for 00:00:20.1833737
+
+> Game Running... running for 00:00:20.2000404
+
+> Game Running... running for 00:00:20.2167071
+
+> Game Running... running for 00:00:20.2333738
+
+> Game Running... running for 00:00:20.2500405
+
+> Game Running... running for 00:00:20.2667072
+
+> Game Running... running for 00:00:20.2833739
+
+> Game Running... running for 00:00:20.3000406
+
+> Game Running... running for 00:00:20.3167073
+
+> Game Running... running for 00:00:20.3333740
+
+> Game Running... running for 00:00:20.3500407
+
+> Game Running... running for 00:00:20.3667074
+
+> Game Running... running for 00:00:20.3833741
+
+> Game Running... running for 00:00:20.4000408
+
+> Game Running... running for 00:00:20.4167075
+
+> Game Running... running for 00:00:20.4333742
+
+> Game Running... running for 00:00:20.4500409
+
+> Game Running... running for 00:00:20.4667076
+
+> Game Running... running for 00:00:20.4833743
+
+> Game Running... running for 00:00:20.5000410
+
+> Game Running... running for 00:00:20.5167077
+
+> Game Running... running for 00:00:20.5333744
+
+> Game Running... running for 00:00:20.5500411
+
+> Game Running... running for 00:00:20.5667078
+
+> Game Running... running for 00:00:20.5833745
+
+> Game Running... running for 00:00:20.6000412
+
+> Game Running... running for 00:00:20.6167079
+
+> Game Running... running for 00:00:20.6333746
+
+> Game Running... running for 00:00:20.6500413
+
+> Game Running... running for 00:00:20.6667080
+
+> Game Running... running for 00:00:20.6833747
+
+> Game Running... running for 00:00:20.7000414
+
+> Game Running... running for 00:00:20.7167081
+
+> Game Running... running for 00:00:20.7333748
+
+> Game Running... running for 00:00:20.7500415
+
+> Game Running... running for 00:00:20.7667082
+
+> Game Running... running for 00:00:20.7833749
+
+> Game Running... running for 00:00:20.8000416
+
+> Game Running... running for 00:00:20.8167083
+
+> Game Running... running for 00:00:20.8333750
+
+> Game Running... running for 00:00:20.8500417
+
+> Game Running... running for 00:00:20.8667084
+
+> Game Running... running for 00:00:20.8833751
+
+> Game Running... running for 00:00:20.9000418
+
+> Game Running... running for 00:00:20.9167085
+
+> Game Running... running for 00:00:20.9333752
+
+> Game Running... running for 00:00:20.9500419
+
+> Game Running... running for 00:00:20.9667086
+
+> Game Running... running for 00:00:20.9833753
+
+> Game Running... running for 00:00:21.0000420
+
+> Game Running... running for 00:00:21.0167087
+
+> Game Running... running for 00:00:21.0333754
+
+> Game Running... running for 00:00:21.0500421
+
+> Game Running... running for 00:00:21.0667088
+
+> Game Running... running for 00:00:21.0833755
+
+> Game Running... running for 00:00:21.1000422
+
+> Game Running... running for 00:00:21.1167089
+
+> Game Running... running for 00:00:21.1333756
+
+> Game Running... running for 00:00:21.1500423
+
+> Game Running... running for 00:00:21.1667090
+
+> Game Running... running for 00:00:21.1833757
+
+> Game Running... running for 00:00:21.2000424
+
+> Game Running... running for 00:00:21.2167091
+
+> Game Running... running for 00:00:21.2333758
+
+> Game Running... running for 00:00:21.2500425
+
+> Game Running... running for 00:00:21.2667092
+
+> Game Running... running for 00:00:21.2833759
+
+> Game Running... running for 00:00:21.3000426
+
+> Game Running... running for 00:00:21.3167093
+
+> Game Running... running for 00:00:21.3333760
+
+> Game Running... running for 00:00:21.3500427
+
+> Game Running... running for 00:00:21.3667094
+
+> Game Running... running for 00:00:21.3833761
+
+> Game Running... running for 00:00:21.4000428
+
+> Game Running... running for 00:00:21.4167095
+
+> Game Running... running for 00:00:21.4333762
+
+> Game Running... running for 00:00:21.4500429
+
+> Game Running... running for 00:00:21.4667096
+
+> Game Running... running for 00:00:21.4833763
+
+> Game Running... running for 00:00:21.5000430
+
+> Game Running... running for 00:00:21.5167097
+
+> Game Running... running for 00:00:21.5333764
+
+> Game Running... running for 00:00:21.5500431
+
+> Game Running... running for 00:00:21.5667098
+
+> Game Running... running for 00:00:21.5833765
+
+> Game Running... running for 00:00:21.6000432
+
+> Game Running... running for 00:00:21.6167099
+
+> Game Running... running for 00:00:21.6333766
+
+> Game Running... running for 00:00:21.6500433
+
+> Game Running... running for 00:00:21.6667100
+
+> Game Running... running for 00:00:21.6833767
+
+> Game Running... running for 00:00:21.7000434
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:21.7167101
+>    }
+
+> Game Running... running for 00:00:21.7167101
+
+> Game Running... running for 00:00:21.7333768
+
+> Game Running... running for 00:00:21.7500435
+
+> Game Running... running for 00:00:21.7667102
+
+> Game Running... running for 00:00:21.7833769
+
+> Game Running... running for 00:00:21.8000436
+
+> Game Running... running for 00:00:21.8167103
+
+> Game Running... running for 00:00:21.8333770
+
+> Game Running... running for 00:00:21.8500437
+
+> Game Running... running for 00:00:21.8667104
+
+> Game Running... running for 00:00:21.8833771
+
+> Game Running... running for 00:00:21.9000438
+
+> Game Running... running for 00:00:21.9167105
+
+> Game Running... running for 00:00:21.9333772
+
+> Game Running... running for 00:00:21.9500439
+
+> Game Running... running for 00:00:21.9667106
+
+> Game Running... running for 00:00:21.9833773
+
+> Game Running... running for 00:00:22.0000440
+
+> Game Running... running for 00:00:22.0167107
+
+> Game Running... running for 00:00:22.0333774
+
+> Game Running... running for 00:00:22.0500441
+
+> Game Running... running for 00:00:22.0667108
+
+> Game Running... running for 00:00:22.0833775
+
+> Game Running... running for 00:00:22.1000442
+
+> Game Running... running for 00:00:22.1167109
+
+> Game Running... running for 00:00:22.1333776
+
+> Game Running... running for 00:00:22.1500443
+
+> Game Running... running for 00:00:22.1667110
+
+> Game Running... running for 00:00:22.1833777
+
+> Game Running... running for 00:00:22.2000444
+
+> Game Running... running for 00:00:22.2167111
+
+> Game Running... running for 00:00:22.2333778
+
+> Game Running... running for 00:00:22.2500445
+
+> Game Running... running for 00:00:22.2667112
+
+> Game Running... running for 00:00:22.2833779
+
+> Game Running... running for 00:00:22.3000446
+
+> Game Running... running for 00:00:22.3167113
+
+> Game Running... running for 00:00:22.3333780
+
+> Game Running... running for 00:00:22.3500447
+
+> Game Running... running for 00:00:22.3667114
+
+> Game Running... running for 00:00:22.3833781
+
+> Game Running... running for 00:00:22.4000448
+
+> Game Running... running for 00:00:22.4167115
+
+> Game Running... running for 00:00:22.4333782
+
+> Game Running... running for 00:00:22.4500449
+
+> Game Running... running for 00:00:22.4667116
+
+> Game Running... running for 00:00:22.4833783
+
+> Game Running... running for 00:00:22.5000450
+
+> Game Running... running for 00:00:22.5167117
+
+> Game Running... running for 00:00:22.5333784
+
+> Game Running... running for 00:00:22.5500451
+
+> Game Running... running for 00:00:22.5667118
+
+> Game Running... running for 00:00:22.5833785
+
+> Game Running... running for 00:00:22.6000452
+
+> Game Running... running for 00:00:22.6167119
+
+> Game Running... running for 00:00:22.6333786
+
+> Game Running... running for 00:00:22.6500453
+
+> Game Running... running for 00:00:22.6667120
+
+> Game Running... running for 00:00:22.6833787
+
+> Game Running... running for 00:00:22.7000454
+
+> Game Running... running for 00:00:22.7167121
+
+> Game Running... running for 00:00:22.7333788
+
+> Game Running... running for 00:00:22.7500455
+
+> Game Running... running for 00:00:22.7667122
+
+> Game Running... running for 00:00:22.7833789
+
+> Game Running... running for 00:00:22.8000456
+
+> Game Running... running for 00:00:22.8167123
+
+> Game Running... running for 00:00:22.8333790
+
+> Game Running... running for 00:00:22.8500457
+
+> Game Running... running for 00:00:22.8667124
+
+> Game Running... running for 00:00:22.8833791
+
+> Game Running... running for 00:00:22.9000458
+
+> Game Running... running for 00:00:22.9167125
+
+> Game Running... running for 00:00:22.9333792
+
+> Game Running... running for 00:00:22.9500459
+
+> Game Running... running for 00:00:22.9667126
+
+> Game Running... running for 00:00:22.9833793
+
+> Game Running... running for 00:00:23.0000460
+
+> Game Running... running for 00:00:23.0167127
+
+> Game Running... running for 00:00:23.0333794
+
+> Game Running... running for 00:00:23.0500461
+
+> Game Running... running for 00:00:23.0667128
+
+> Game Running... running for 00:00:23.0833795
+
+> Game Running... running for 00:00:23.1000462
+
+> Game Running... running for 00:00:23.1167129
+
+> Game Running... running for 00:00:23.1333796
+
+> Game Running... running for 00:00:23.1500463
+
+> Game Running... running for 00:00:23.1667130
+
+> Game Running... running for 00:00:23.1833797
+
+> Game Running... running for 00:00:23.2000464
+
+> Game Running... running for 00:00:23.2167131
+
+> Game Running... running for 00:00:23.2333798
+
+> Game Running... running for 00:00:23.2500465
+
+> Game Running... running for 00:00:23.2667132
+
+> Game Running... running for 00:00:23.2833799
+
+> Game Running... running for 00:00:23.3000466
+
+> Game Running... running for 00:00:23.3167133
+
+> Game Running... running for 00:00:23.3333800
+
+> Game Running... running for 00:00:23.3500467
+
+> Game Running... running for 00:00:23.3667134
+
+> Game Running... running for 00:00:23.3833801
+
+> Game Running... running for 00:00:23.4000468
+
+> Game Running... running for 00:00:23.4167135
+
+> Game Running... running for 00:00:23.4333802
+
+> Game Running... running for 00:00:23.4500469
+
+> Game Running... running for 00:00:23.4667136
+
+> Game Running... running for 00:00:23.4833803
+
+> Game Running... running for 00:00:23.5000470
+
+> Game Running... running for 00:00:23.5167137
+
+> Game Running... running for 00:00:23.5333804
+
+> Game Running... running for 00:00:23.5500471
+
+> Game Running... running for 00:00:23.5667138
+
+> Game Running... running for 00:00:23.5833805
+
+> Game Running... running for 00:00:23.6000472
+
+> Game Running... running for 00:00:23.6167139
+
+> Game Running... running for 00:00:23.6333806
+
+> Game Running... running for 00:00:23.6500473
+
+> Game Running... running for 00:00:23.6667140
+
+> Game Running... running for 00:00:23.6833807
+
+> Game Running... running for 00:00:23.7000474
+
+> Game Running... running for 00:00:23.7167141
+
+> Game Running... running for 00:00:23.7333808
+
+> Game Running... running for 00:00:23.7500475
+
+> Game Running... running for 00:00:23.7667142
+
+> Game Running... running for 00:00:23.7833809
+
+> Game Running... running for 00:00:23.8000476
+
+> Game Running... running for 00:00:23.8167143
+
+> Game Running... running for 00:00:23.8333810
+
+> Game Running... running for 00:00:23.8500477
+
+> Game Running... running for 00:00:23.8667144
+
+> Game Running... running for 00:00:23.8833811
+
+> Game Running... running for 00:00:23.9000478
+
+> Game Running... running for 00:00:23.9167145
+
+> Game Running... running for 00:00:23.9333812
+
+> Game Running... running for 00:00:23.9500479
+
+> Game Running... running for 00:00:23.9667146
+
+> Game Running... running for 00:00:23.9833813
+
+> Game Running... running for 00:00:24.0000480
+
+> Game Running... running for 00:00:24.0167147
+
+> Game Running... running for 00:00:24.0333814
+
+> Game Running... running for 00:00:24.0500481
+
+> Game Running... running for 00:00:24.0667148
+
+> Game Running... running for 00:00:24.0833815
+
+> Game Running... running for 00:00:24.1000482
+
+> Game Running... running for 00:00:24.1167149
+
+> Game Running... running for 00:00:24.1333816
+
+> Game Running... running for 00:00:24.1500483
+
+> Game Running... running for 00:00:24.1667150
+
+> Game Running... running for 00:00:24.1833817
+
+> Game Running... running for 00:00:24.2000484
+
+> Game Running... running for 00:00:24.2167151
+
+> Game Running... running for 00:00:24.2333818
+
+> Game Running... running for 00:00:24.2500485
+
+> Game Running... running for 00:00:24.2667152
+
+> Game Running... running for 00:00:24.2833819
+
+> Game Running... running for 00:00:24.3000486
+
+> Game Running... running for 00:00:24.3167153
+
+> Game Running... running for 00:00:24.3333820
+
+> Game Running... running for 00:00:24.3500487
+
+> Game Running... running for 00:00:24.3667154
+
+> Game Running... running for 00:00:24.3833821
+
+> Game Running... running for 00:00:24.4000488
+
+> Game Running... running for 00:00:24.4167155
+
+> Game Running... running for 00:00:24.4333822
+
+> Game Running... running for 00:00:24.4500489
+
+> Game Running... running for 00:00:24.4667156
+
+> Game Running... running for 00:00:24.4833823
+
+> Game Running... running for 00:00:24.5000490
+
+> Game Running... running for 00:00:24.5167157
+
+> Game Running... running for 00:00:24.5333824
+
+> Game Running... running for 00:00:24.5500491
+
+> Game Running... running for 00:00:24.5667158
+
+> Game Running... running for 00:00:24.5833825
+
+> Game Running... running for 00:00:24.6000492
+
+> Game Running... running for 00:00:24.6167159
+
+> Game Running... running for 00:00:24.6333826
+
+> Game Running... running for 00:00:24.6500493
+
+> Game Running... running for 00:00:24.6667160
+
+> Game Running... running for 00:00:24.6833827
+
+> Game Running... running for 00:00:24.7000494
+
+> Game Running... running for 00:00:24.7167161
+
+> Game Running... running for 00:00:24.7333828
+
+> Button Mouse Over
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:24.7500495
+>    }
+
+> Game Running... running for 00:00:24.7500495
+
+> Game Running... running for 00:00:24.7667162
+
+> Game Running... running for 00:00:24.7833829
+
+> Game Running... running for 00:00:24.8000496
+
+> Game Running... running for 00:00:24.8167163
+
+> Game Running... running for 00:00:24.8333830
+
+> Game Running... running for 00:00:24.8500497
+
+> Game Running... running for 00:00:24.8667164
+
+> Game Running... running for 00:00:24.8833831
+
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:24.9000498
+>    }
+
+> Game Running... running for 00:00:24.9000498
+
+> Game Running... running for 00:00:24.9167165
+
+> Game Running... running for 00:00:24.9333832
+
+> Game Running... running for 00:00:24.9500499
+
+> Game Running... running for 00:00:24.9667166
+
+> Game Running... running for 00:00:24.9833833
+
+> Game Running... running for 00:00:25.0000500
+
+> Game Running... running for 00:00:25.0167167
+
+> Game Running... running for 00:00:25.0333834
+
+> Game Running... running for 00:00:25.0500501
+
+> Game Running... running for 00:00:25.0667168
+
+> Game Running... running for 00:00:25.0833835
+
+> Game Running... running for 00:00:25.1000502
+
+> Game Running... running for 00:00:25.1167169
+
+> Game Running... running for 00:00:25.1333836
+
+> Game Running... running for 00:00:25.1500503
+
+> Game Running... running for 00:00:25.1667170
+
+> Game Running... running for 00:00:25.1833837
+
+> Game Running... running for 00:00:25.2000504
+
+> Game Running... running for 00:00:25.2167171
+
+> Game Running... running for 00:00:25.2333838
+
+> Game Running... running for 00:00:25.2500505
+
+> Game

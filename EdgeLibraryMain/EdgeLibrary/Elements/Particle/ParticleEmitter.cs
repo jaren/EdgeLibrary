@@ -192,6 +192,18 @@ namespace EdgeLibrary
             }
         }
 
+        //Can be used for "clearing" the particles, but with a less dramatic effect than clearing them all at once
+        public void AccelerateIndexes(float factor)
+        {
+            foreach (Particle particle in particles)
+            {
+                for (int i = 0; i < particle.ColorIndex.Times.Count; i++)
+                {
+                    particle.ColorIndex.Times[i] = particle.ColorIndex.Times[i] * factor;
+                }
+            }
+        }
+
         protected override void drawElement(GameTime gameTime)
         {
             foreach (Particle particle in particles)
