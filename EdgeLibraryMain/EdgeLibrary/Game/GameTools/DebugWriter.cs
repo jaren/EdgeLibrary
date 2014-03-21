@@ -88,27 +88,6 @@ namespace EdgeLibrary
             }
         }
 
-        public static void LogAddNSP(string text, params string[] properties)
-        {
-            if (streamWriter != null)
-            {
-                streamWriter.WriteLine("+ " + text);
-                if (properties.Length > 0)
-                {
-                    streamWriter.WriteLine("+    {");
-                }
-                foreach (string property in properties)
-                {
-                    streamWriter.WriteLine("+        " + property);
-                }
-                if (properties.Length > 0)
-                {
-                    streamWriter.WriteLine("+    }");
-                }
-            }
-        }
-
-
         public static void LogRemove(string text, params string[] properties)
         {
             if (streamWriter != null)
