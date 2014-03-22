@@ -51,6 +51,15 @@ namespace EdgeLibrary.Platform
             return level;
         }
 
+        public override void AddElement(Element element)
+        {
+            if (element is PlatformSprite)
+            {
+                ((PlatformSprite)element).gravity = _gravity;
+            }
+            elements.Add(element);
+        }
+
         public void CreateScreenBox()
         {
             PlatformStatic top = new PlatformStatic(string.Format("{0}_topBox", ID), "Pixel", new Vector2(EdgeGame.WindowSize.X/2, -100));

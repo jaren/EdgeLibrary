@@ -16,8 +16,9 @@ namespace EdgeDemo
     public class PlatformDemo : PlatformLevel
     {
         PlatformStatic box;
+        PlatformCharacter character;
 
-        public PlatformDemo() : base("PlatformDemo", new Vector2(0, 5))
+        public PlatformDemo() : base("PlatformDemo", new Vector2(0, -5))
         {
             ResourceManager.LoadTexture("Wood Background");
             Background = ResourceManager.textureFromString("Wood Background");
@@ -29,6 +30,10 @@ namespace EdgeDemo
             box = new PlatformStatic("Pixel", new Vector2(500, 400));
             box.Scale = new Vector2(200, 50);
             box.Style.Color = Color.White;
+
+            character = new PlatformCharacter("Pixel", new Vector2(550, 100));
+            character.Scale = new Vector2(50, 50);
+            character.Style.Color = Color.White;
         }
     }
 }
