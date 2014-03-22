@@ -1,4 +1,4 @@
-Logs for:3/22/2014 2:29:49 PM
+Logs for:3/22/2014 3:27:13 PM
 
 + Texture { Name:enemyShip }
 
@@ -149,7 +149,7 @@ Logs for:3/22/2014 2:29:49 PM
 >    {
 >        Button: LabelButton#2
 >        Button Type: EdgeLibrary.LabelButton
->        GameTime: 00:00:00.2833339
+>        GameTime: 00:00:00.5833345
 >    }
 <><><><><><><><><><><><>
 
@@ -250,7 +250,7 @@ Logs for:3/22/2014 2:29:49 PM
 >    {
 >        Button: LabelButton#2
 >        Button Type: EdgeLibrary.LabelButton
->        GameTime: 00:00:00.4500009
+>        GameTime: 00:00:00.7166681
 >    }
 <><><><><><><><><><>
 
@@ -266,153 +266,9 @@ Logs for:3/22/2014 2:29:49 PM
 > Game Running... running for 00:00:02.9833393
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.8166743
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.8333410
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.8500077
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.8666744
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.8833411
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9000078
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9166745
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9333412
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9500079
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9666746
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:03.9833413
->    }
-<><><><><><><><>
-
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:03.9833413
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:04.0000080
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:04.0166747
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:04.0333414
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:04.0500081
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformStatic#18
->        Sprite 2:PlatformCharacter#19
->        GameTime:00:00:04.0666748
->    }
-<><><><><><><><>
 
 <><><><><><><><>
 > Collision
@@ -669,17 +525,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
->        GameTime:00:00:04.5333424
->    }
-<><><><><><><><>
-
-<><><><><><><><>
-> Collision
->    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.5500091
 >    }
 <><><><><><><><>
@@ -687,8 +534,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.5666758
 >    }
 <><><><><><><><>
@@ -696,8 +543,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.5833425
 >    }
 <><><><><><><><>
@@ -705,8 +552,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6000092
 >    }
 <><><><><><><><>
@@ -714,8 +561,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6166759
 >    }
 <><><><><><><><>
@@ -723,8 +570,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6333426
 >    }
 <><><><><><><><>
@@ -732,8 +579,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6500093
 >    }
 <><><><><><><><>
@@ -741,8 +588,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6666760
 >    }
 <><><><><><><><>
@@ -750,8 +597,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.6833427
 >    }
 <><><><><><><><>
@@ -759,8 +606,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7000094
 >    }
 <><><><><><><><>
@@ -768,8 +615,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7166761
 >    }
 <><><><><><><><>
@@ -777,8 +624,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7333428
 >    }
 <><><><><><><><>
@@ -786,8 +633,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7500095
 >    }
 <><><><><><><><>
@@ -795,8 +642,8 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7666762
 >    }
 <><><><><><><><>
@@ -804,9 +651,18 @@ Logs for:3/22/2014 2:29:49 PM
 <><><><><><><><>
 > Collision
 >    {
->        Sprite 1:PlatformCharacter#19
->        Sprite 2:PlatformStatic#18
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
 >        GameTime:00:00:04.7833429
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#18
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:04.8000096
 >    }
 <><><><><><><><>
 
@@ -1579,4 +1435,835 @@ Logs for:3/22/2014 2:29:49 PM
 >    {
 >        Sprite 1:PlatformCharacter#19
 >        Sprite 2:PlatformStatic#18
->        GameTime:00:00
+>        GameTime:00:00:06.2000124
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.2166791
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.2333458
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.2500125
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.2666792
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.2833459
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3000126
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3166793
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3333460
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3500127
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3666794
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.3833461
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.4000128
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.4166795
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.4333462
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.4500129
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformStatic#18
+>        GameTime:00:00:06.4666796
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:06.9833473
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:07.9833493
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.3666834
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.3833501
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4000168
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4166835
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4333502
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4500169
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4666836
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.4833503
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5000170
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5166837
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5333504
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5500171
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5666838
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.5833505
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6000172
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6166839
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6333506
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6500173
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6666840
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.6833507
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7000174
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7166841
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7333508
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7500175
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7666842
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.7833509
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8000176
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8166843
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8333510
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8500177
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8666844
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.8833511
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9000178
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9166845
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9333512
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9500179
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9666846
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:08.9833513
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:08.9833513
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0000180
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0166847
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0333514
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0500181
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0666848
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.0833515
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1000182
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1166849
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1333516
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1500183
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1666850
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.1833517
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2000184
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2166851
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2333518
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2500185
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2666852
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.2833519
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3000186
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3166853
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3333520
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3500187
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3666854
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformDemo_bottomBox
+>        Sprite 2:PlatformCharacter#19
+>        GameTime:00:00:09.3833521
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.3833521
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4000188
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4166855
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4333522
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4500189
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4666856
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.4833523
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.5000190
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.5166857
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.5333524
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.5500191
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        GameTime:00:00:09.5666858
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#19
+>        Sprite 2:PlatformDemo_bottomBox
+>        G

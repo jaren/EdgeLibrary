@@ -96,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\PlatformCharacter.cs" />
-    <Compile Include="Game\PlatformLevel.cs" />
+    <Compile Include="PlatformLevel.cs" />
     <Compile Include="Entities\PlatformProjectile.cs" />
     <Compile Include="Entities\PlatformSprite.cs" />
     <Compile Include="Entities\PlatformStatic.cs" />

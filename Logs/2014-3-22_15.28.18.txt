@@ -1,0 +1,413 @@
+Logs for:3/22/2014 3:28:18 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.4666676
+>    }
+<><><><><><><><><><><><>
+
++ Texture { Name:Wood Background }
+
++ Scene
++    {
++        ID:PlatformDemo
++    }
+
+<><><><><><><><><><>
+> Switch Scene
+>    {
+>        ID:PlatformDemo
+>    }
+<><><><><><><><><><>
+
++ Element
++    {
++               ID: DebugPanel#18
++                Type: EdgeLibrary.DebugPanel
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_MouseSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_FPSSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_ScenesSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_ElementsSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_KeysSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#18_CommandSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: PlatformDemo_topBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_bottomBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_rightBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_leftBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformStatic#19
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformCharacter#20
++                Type: EdgeLibrary.Platform.PlatformCharacter
++    }
+
+<><><><><><><><><><>
+> Button Click
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.6333346
+>    }
+<><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.9833353
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.9833373
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.9833393
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.9833413
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0000080
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0166747
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0333414
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0500081
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0666748
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.0833415
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1000082
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1166749
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1333416
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1500083
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1666750
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.1833417
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.2000084
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.2166751
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>        GameTime:00:00:04.2333418
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#19
+>        Sprite 2:PlatformCharacter#20
+>      

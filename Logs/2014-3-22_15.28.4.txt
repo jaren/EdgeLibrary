@@ -1,0 +1,609 @@
+Logs for:3/22/2014 3:28:04 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.6166679
+>    }
+<><><><><><><><><><><><>
+
++ Texture { Name:Wood Background }
+
++ Scene
++    {
++        ID:PlatformDemo
++    }
+
+<><><><><><><><><><>
+> Switch Scene
+>    {
+>        ID:PlatformDemo
+>    }
+<><><><><><><><><><>
+
++ Element
++    {
++               ID: DebugPanel#20
++                Type: EdgeLibrary.DebugPanel
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_MouseSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_FPSSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_ScenesSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_ElementsSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_KeysSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: DebugPanel#20_CommandSprite
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: PlatformDemo_topBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_bottomBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_rightBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_leftBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformStatic#21
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformCharacter#22
++                Type: EdgeLibrary.Platform.PlatformCharacter
++    }
+
+<><><><><><><><><><>
+> Button Click
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.8000016
+>    }
+<><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.9833353
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.9833373
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.9833393
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.9833413
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.1666750
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.1833417
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2000084
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2166751
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2333418
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2500085
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2666752
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.2833419
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3000086
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3166753
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3333420
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3500087
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3666754
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.3833421
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4000088
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4166755
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4333422
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4500089
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4666756
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.4833423
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5000090
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5166757
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5333424
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5500091
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5666758
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.5833425
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6000092
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6166759
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6333426
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6500093
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6666760
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.6833427
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.7000094
+>    }
+<><><><><><><><>
+
+##########################################
+!!! The game is running slowly. FPS:60 !!!
+##########################################
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.7166761
+>    }
+<><><><><><><><>
+
+##########################################
+!!! The game is running slowly. FPS:60 !!!
+##########################################
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.7333428
+>    }
+<><><><><><><><>
+
+##########################################
+!!! The game is running slowly. FPS:60 !!!
+##########################################
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#21
+>        Sprite 2:PlatformCharacter#22
+>        GameTime:00:00:04.7500095
+>    }
+<><><><><><><><>
+
+#####################################
