@@ -57,7 +57,7 @@ namespace EdgeLibrary.Platform
             {
                 ((PlatformSprite)element).gravity = _gravity;
             }
-            elements.Add(element);
+            base.AddElement(element);
         }
 
         public void CreateScreenBox()

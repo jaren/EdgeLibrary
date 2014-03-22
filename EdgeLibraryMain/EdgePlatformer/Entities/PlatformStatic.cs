@@ -44,6 +44,7 @@ namespace EdgeLibrary.Platform
                         {
                             Collision(this, sprite, gameTime);
                         }
+                        DebugLogger.LogEvent("Collision", "Sprite 1:" + ID, "Sprite 2:" + sprite.ID, "GameTime:" + gameTime.TotalGameTime.ToString());
                     }
                 }
             }

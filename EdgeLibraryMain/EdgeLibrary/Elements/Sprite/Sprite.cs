@@ -155,7 +155,8 @@ namespace EdgeLibrary
                             {
                                 if (CollisionBody.CheckForCollide(elementAsSprite.CollisionBody))
                                 {
-                                    if (Collision != null) { Collision(this, elementAsSprite, gameTime); DebugLogger.LogEvent("Collision", "    {", "       Sprite 1:" + ID, "      Sprite 2:" + elementAsSprite.ID, "      GameTime: " + gameTime, "  }"); }
+                                    DebugLogger.LogEvent("Collision", "Sprite 1:" + ID, "Sprite 2:" + elementAsSprite.ID, "GameTime:" + gameTime); 
+                                    if (Collision != null) { Collision(this, elementAsSprite, gameTime); }
                                     if (CollisionStart != null && !currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                     {
                                         CollisionStart(this, elementAsSprite, gameTime);

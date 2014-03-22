@@ -1,0 +1,953 @@
+Logs for:3/22/2014 2:19:11 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.0833335
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.1833337
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.2833339
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.3833341
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.4000008
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.4833343
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.5833345
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
++ Texture { Name:Wood Background }
+
++ Scene
++    {
++        ID:PlatformDemo
++    }
+
+<><><><><><><><><><>
+> Switch Scene
+>    {
+>        ID:PlatformDemo
+>    }
+<><><><><><><><><><>
+
++ Element
++    {
++               ID: PlatformDemo_topBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_bottomBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_rightBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformDemo_leftBox
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformStatic#24
++                Type: EdgeLibrary.Platform.PlatformStatic
++    }
+
++ Element
++    {
++               ID: PlatformCharacter#25
++                Type: EdgeLibrary.Platform.PlatformCharacter
++    }
+
+<><><><><><><><><><>
+> Button Click
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.6666680
+>    }
+<><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.6833347
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.7833349
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.8833351
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.9833353
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.0833355
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.1833357
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.2833359
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.3833361
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.4833363
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.5833365
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.6833367
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.7833369
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.8833371
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.9833373
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.0833375
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.1833377
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.2833379
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.3833381
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.4833383
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformStatic#24
+>        Sprite 2:PlatformCharacter#25
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.5833385
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.6833387
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.7833389
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.8833391
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.9833393
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.0833395
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.1833397
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><>
+> Collision
+>    {
+>        Sprite 1:PlatformCharacter#25
+>        Sprite 2:PlatformStatic#24
+>        GameTime:Microsoft.Xna.Framework.GameTime
+>    }
+<><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.2833399
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.3833401
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.4833403
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.5833405
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><

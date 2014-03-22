@@ -27,7 +27,7 @@ namespace EdgeLibrary
         private static GraphicsDeviceManager graphics;
         private static SpriteBatch spriteBatch;
 
-        public static float GameTimeTickRate = 10;
+        public static float GameTimeTickRate = 100;
         private static double gameTimeElapsedTick = 0;
 
         private static bool IsDrawing;
@@ -103,7 +103,7 @@ namespace EdgeLibrary
         public static void AddScene(Scene scene)
         {
             Scenes.Add(scene);
-            DebugLogger.LogAdd("Scene", "       ID:" + scene.ID);
+            DebugLogger.LogAdd("Scene", "ID:" + scene.ID);
         }
 
         public static bool RemoveScene(string id)
@@ -150,12 +150,13 @@ namespace EdgeLibrary
 
         public static void SwitchScene(string id)
         {
-            SelectedScene = Scene(id);
+            SwitchScene(Scene(id));
         }
 
         public static void SwitchScene(Scene scene)
         {
             SelectedScene = scene;
+            DebugLogger.LogEvent("Switch Scene", "ID:" + scene.ID);
         }
 
         private static void SetWindowSize(Vector2 size)
