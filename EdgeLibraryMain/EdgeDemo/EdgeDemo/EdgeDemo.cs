@@ -28,7 +28,7 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
-            EdgeGame.DebugLoggerPath = @"C:\Users\JarenMendelsohn\Documents\GitHub\EdgeLibrary\Logs";
+            EdgeGame.DebugLoggerPath = @"C:\Users\Jaren\Documents\GitHub\EdgeLibrary\Logs";
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
@@ -68,8 +68,6 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X / 2, 50), Color.White);
 
-            DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.Goldenrod);
-
             LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", new Vector2(300, 300), Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Gray;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
@@ -93,19 +91,15 @@ namespace EdgeDemo
         {
             Header.Style.Color = Color.White;
             MasterEmitter.Position = EdgeGame.WindowSize / 2;
-            MasterEmitter.Texture = ResourceManager.getTexture("plasma");
-            MasterEmitter.SetScale(new Vector2(12), new Vector2(15));
+            MasterEmitter.Texture = ResourceManager.getTexture("fire");
+            MasterEmitter.SetScale(new Vector2(10), new Vector2(12));
             MasterEmitter.BlendState = BlendState.Additive;
             MasterEmitter.GrowSpeed = 1;
             MasterEmitter.SetRotationSpeed(0);
-            MasterEmitter.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
+            MasterEmitter.SetVelocity(new Vector2(-0.3f), new Vector2(0.3f));
             MasterEmitter.SetLife(3000);
-            MasterEmitter.EmitWait = 400;
+            MasterEmitter.EmitWait = 200;
             MasterEmitter.SetEmitArea(EdgeGame.WindowSize);
-            for (int i = 0; i < 2; i++)
-            {
-                MasterEmitter.EmitSingleParticle(new GameTime());
-            }
             ColorChangeIndex index = new ColorChangeIndex(500, Color.Yellow, Color.Blue, Color.Orange, Color.BlueViolet, Color.Transparent);
             MasterEmitter.SetColor(index);
         }

@@ -19,12 +19,16 @@ namespace EdgeDemo
 
         public PlatformDemo() : base("PlatformDemo", new Vector2(0, 5))
         {
+            ResourceManager.LoadTexture("Wood Background");
+            Background = ResourceManager.textureFromString("Wood Background");
         }
 
         public void Init()
         {
             CreateScreenBox();
-            box = new PlatformStatic("Pixel", new Vector2());
+            box = new PlatformStatic("Pixel", new Vector2(500, 400));
+            box.Scale = new Vector2(200, 50);
+            box.Style.Color = Color.White;
         }
     }
 }
