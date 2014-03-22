@@ -144,7 +144,7 @@ namespace EdgeDemo
             MasterEmitter.SetColor(index);
         }
 
-        private void platform_click(ButtonEventArgs e) { EdgeGame.AddScene(new PlatformDemo()); EdgeGame.SwitchScene("PlatformDemo"); }
+        private void platform_click(ButtonEventArgs e) { PlatformDemo demo = new PlatformDemo(); EdgeGame.AddScene(demo); EdgeGame.SwitchScene(demo); demo.Init(); }
         private void platform_mouseOver(ButtonEventArgs e) { emitter_toPlatform(); }
         private void game_click(ButtonEventArgs e) { EdgeGame.AddScene(new GameDemo()); EdgeGame.SwitchScene("GameDemo"); }
         private void game_mouseOver(ButtonEventArgs e) { emitter_toGame(); }

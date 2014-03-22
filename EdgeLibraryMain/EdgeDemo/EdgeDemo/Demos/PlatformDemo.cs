@@ -19,12 +19,12 @@ namespace EdgeDemo
 
         public PlatformDemo() : base("PlatformDemo", new Vector2(0, 5))
         {
+        }
+
+        public void Init()
+        {
             CreateScreenBox();
-
-            DebugPanel panel = new DebugPanel("CourierNew-30", Vector2.Zero, Color.White);
-
-            box = new PlatformStatic("Pixel", new Vector2(600, 400));
-            box.Scale = new Vector2(200, 50);
+            box = new PlatformStatic("Pixel", new Vector2());
         }
     }
 }
