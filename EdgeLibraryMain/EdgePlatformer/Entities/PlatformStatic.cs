@@ -23,6 +23,16 @@ namespace EdgeLibrary.Platform
         //Doesn't move in collisions
         protected override void UpdateCollision(GameTime gameTime)
         {
+            CollisionBody.ScaleWith(this);
+            if (_centerAsOrigin)
+            {
+                CollisionBody.Position = new Vector2(Position.X, Position.Y);
+            }
+            else
+            {
+                CollisionBody.Position = new Vector2(Position.X + Width / 2, Position.Y + Height / 2);
+            }
+
             foreach (Element element in EdgeGame.SelectedScene.elements)
             {
                 if (element is PlatformSprite)

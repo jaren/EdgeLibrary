@@ -60,7 +60,8 @@ namespace EdgeDemo
 
         public void initEdgeGame()
         {
-            EdgeGame.GameDrawState = GameDrawState.Normal;
+            EdgeGame.GameDrawState = GameDrawState.Hybrid;
+            EdgeGame.DebugDrawColor = Color.Purple;
             IsMouseVisible = true;
 
             EdgeGame.WindowSize = new Vector2(1300, 700);
