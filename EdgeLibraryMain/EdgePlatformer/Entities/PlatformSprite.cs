@@ -106,12 +106,12 @@ namespace EdgeLibrary.Platform
 
                                 if (Position.Y > sprite.Position.Y)
                                 {
-                                    Position = new Vector2(Position.X, Position.Y + collision.Height);
+                                    Position = new Vector2(Position.X, Position.Y - collision.Height);
                                     collidingYGreater = true;
                                 }
                                 else
                                 {
-                                    Position = new Vector2(Position.X, Position.Y - collision.Height);
+                                    Position = new Vector2(Position.X, Position.Y + collision.Height);
                                     collidingYLower = true;
                                 }
                             }
