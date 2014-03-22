@@ -16,7 +16,6 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
-    /// -When called for the first time, AccelerateIndexes is somewhat glitchy
     /// </summary>
 
     public class EdgeDemo : Microsoft.Xna.Framework.Game
@@ -29,7 +28,7 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
-            EdgeGame.DebugLoggerPath = @"C:\Users\Jaren\Documents\GitHub\EdgeLibrary\Logs";
+            EdgeGame.DebugLoggerPath = @"C:\Users\JarenMendelsohn\Documents\GitHub\EdgeLibrary\Logs";
             ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");

@@ -160,8 +160,7 @@ namespace EdgeLibrary
         public static string RandomID(Type type)
         {
             lastGivenID++;
-            string shortenedType = LastPortionOfPath(type.ToString(), '.');
-            return string.Format("{0}#{1}", shortenedType, lastGivenID);
+            return string.Format("{0}#{1}", type.Name, lastGivenID);
         }
 
         /// <summary>

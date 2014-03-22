@@ -13,10 +13,18 @@ using EdgeLibrary.Platform;
 
 namespace EdgeDemo
 {
-    public class PlatformDemo : Scene
+    public class PlatformDemo : PlatformLevel
     {
-        public PlatformDemo() : base("PlatformDemo")
+        PlatformStatic box;
+
+        public PlatformDemo() : base("PlatformDemo", new Vector2(0, 5))
         {
+            CreateScreenBox();
+
+            DebugPanel panel = new DebugPanel("CourierNew-30", Vector2.Zero, Color.White);
+
+            box = new PlatformStatic("Pixel", new Vector2(600, 400));
+            box.Scale = new Vector2(200, 50);
         }
     }
 }
