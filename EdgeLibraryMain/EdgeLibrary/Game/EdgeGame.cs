@@ -27,7 +27,7 @@ namespace EdgeLibrary
         private static GraphicsDeviceManager graphics;
         private static SpriteBatch spriteBatch;
 
-        public static float GameTimeTickRate = 100;
+        public static float GameTimeTickRate = 1000;
         private static double gameTimeElapsedTick = 0;
 
         private static bool IsDrawing;

@@ -18,7 +18,7 @@ namespace EdgeDemo
         PlatformStatic box;
         PlatformCharacter character;
 
-        public PlatformDemo() : base("PlatformDemo", new Vector2(0, -5))
+        public PlatformDemo() : base("PlatformDemo", new Vector2(0, -1))
         {
             ResourceManager.LoadTexture("Wood Background");
             Background = ResourceManager.textureFromString("Wood Background");
@@ -26,6 +26,8 @@ namespace EdgeDemo
 
         public void Init()
         {
+            DebugPanel panel = new DebugPanel("CourierNew-10", Vector2.Zero, Color.White);
+
             CreateScreenBox();
             box = new PlatformStatic("Pixel", new Vector2(500, 400));
             box.Scale = new Vector2(200, 50);
