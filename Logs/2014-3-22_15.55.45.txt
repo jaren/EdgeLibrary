@@ -1,0 +1,514 @@
+Logs for:3/22/2014 3:55:45 PM
+
++ Texture { Name:enemyShip }
+
++ Texture { Name:enemyUFO }
+
++ Texture { Name:laserGreen }
+
++ Texture { Name:laserGreenShot }
+
++ Texture { Name:laserRed }
+
++ Texture { Name:laserRedShot }
+
++ Texture { Name:life }
+
++ Texture { Name:meteorBig }
+
++ Texture { Name:meteorSmall }
+
++ Texture { Name:player }
+
++ Texture { Name:playerDamaged }
+
++ Texture { Name:playerLeft }
+
++ Texture { Name:playerRight }
+
++ Texture { Name:shield }
+
++ Texture { Name:fire }
+
++ Texture { Name:flash }
+
++ Texture { Name:plasma }
+
++ Texture { Name:smoke }
+
++ Texture { Name:snow }
+
++ Texture { Name:stars }
+
++ Texture { Name:stars2 }
+
++ Font { Name:ComicSans-10 }
+
++ Font { Name:ComicSans-20 }
+
++ Font { Name:ComicSans-30 }
+
++ Font { Name:ComicSans-40 }
+
++ Font { Name:ComicSans-50 }
+
++ Font { Name:ComicSans-60 }
+
++ Font { Name:CourierNew-10 }
+
++ Font { Name:CourierNew-20 }
+
++ Font { Name:CourierNew-30 }
+
++ Font { Name:CourierNew-40 }
+
++ Font { Name:CourierNew-50 }
+
++ Font { Name:CourierNew-60 }
+
++ Font { Name:Georgia-10 }
+
++ Font { Name:Georgia-20 }
+
++ Font { Name:Georgia-30 }
+
++ Font { Name:Georgia-40 }
+
++ Font { Name:Georgia-50 }
+
++ Font { Name:Georgia-60 }
+
++ Font { Name:Impact-10 }
+
++ Font { Name:Impact-20 }
+
++ Font { Name:Impact-30 }
+
++ Font { Name:Impact-40 }
+
++ Font { Name:Impact-50 }
+
++ Font { Name:Impact-60 }
+
++ Element
++    {
++               ID: TextSprite#1
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#2
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#2_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: LabelButton#3
++                Type: EdgeLibrary.LabelButton
++    }
+
++ Element
++    {
++               ID: LabelButton#3_label
++                Type: EdgeLibrary.TextSprite
++    }
+
++ Element
++    {
++               ID: Sprite#5
++                Type: EdgeLibrary.ParticleEmitter
++    }
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.2833339
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.7333348
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:00.9833353
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:01.1333356
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:01.9833373
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:02.4500049
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:02.9833393
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:03.1000062
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:03.3333400
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:03.9833413
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:04.0166747
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:04.2666752
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:04.9833433
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:05.9833453
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:06.9833473
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:07.9833493
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:08.9833513
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:09.9833533
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:10.8333550
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:10.9833553
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:11.9833573
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:12.9833593
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:13.9833613
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:14.9833633
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:15.9833653
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:16.9833673
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:17.9833693
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:18.9833713
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:19.9333732
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:19.9833733
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:20.9833753
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:21.8500437
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:21.9833773
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:22.4167115
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:22.9833793
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:23.4167135
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:23.6333806
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:23.9833813
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#3
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:24.2000484
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:24.9833833
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:25.9833853
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:26.4500529
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:26.9833873
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:27.0000540
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:27.2500545
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:27.6000552
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:27.9167225
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:27.9833893
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:28.2000564
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:28.9833913
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:29.0167247
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:29.8333930
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Over
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:29.8833931
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:29.9833933
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:30.9833953
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:31.9833973
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:32.9833993
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:33.9834013
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:34.9834033
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:35.4167375
+>    }
+<><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><>
+> Game Running... running for 00:00:35.9834053
+<><><><><><><><>

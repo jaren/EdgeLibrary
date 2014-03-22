@@ -101,13 +101,13 @@
     <Compile Include="Elements\Particle\ColorChangeIndex.cs" />
     <Compile Include="Elements\Capabilities\MovementCapability.cs" />
     <Compile Include="Elements\Capabilities\StyleCapability.cs" />
-    <Compile Include="Elements\Sprite\Collision\CollisionBody.cs" />
-    <Compile Include="Elements\Sprite\Collision\Shape.cs" />
+    <Compile Include="Elements\Particle\Sprite\Collision\CollisionBody.cs" />
+    <Compile Include="Elements\Particle\Sprite\Collision\Shape.cs" />
     <Compile Include="Elements\Capabilities\Capability.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\Menu\Button.cs" />
     <Compile Include="Elements\Menu\ButtonToggle.cs" />
-    <Compile Include="Elements\Sprite\FakeSprite.cs" />
+    <Compile Include="Elements\Particle\Sprite\FakeSprite.cs" />
     <Compile Include="Game\GameTools\DebugPanel.cs" />
     <Compile Include="Game\GameTools\DebugLogger.cs" />
     <Compile Include="Game\GameTools\FPSCounter.cs" />
@@ -117,8 +117,8 @@
     <Compile Include="Elements\Particle\ParticleEmitter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Elements\Sprite\Sprite.cs" />
-    <Compile Include="Elements\Sprite\TextSprite.cs" />
+    <Compile Include="Elements\Particle\Sprite\Sprite.cs" />
+    <Compile Include="Elements\Particle\Sprite\TextSprite.cs" />
     <Compile Include="Elements\Ticker.cs" />
     <Compile Include="Game\GameTools\Camera.cs" />
     <Compile Include="Game\EdgeGame.cs" />

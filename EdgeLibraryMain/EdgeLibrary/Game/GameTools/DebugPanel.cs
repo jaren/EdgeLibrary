@@ -26,7 +26,9 @@ namespace EdgeLibrary
         private TextSprite ScenesSprite;
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
-        private TextSprite CommandSprite;
+        private List<TextSprite> CommandSprites;
+        public int CommandsToDisplay { get { return _commandsToDisplay; } set { _commandsToDisplay = value; reloadCommands(); } }
+        private int _commandsToDisplay;
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID(typeof(DebugPanel)))
         {
@@ -54,10 +56,6 @@ namespace EdgeLibrary
             KeysSprite.CenterAsOrigin = false;
             AddElement(KeysSprite);
 
-            CommandSprite = new TextSprite(string.Format("{0}_CommandSprite", ID), fontName, "last Log:", Vector2.Zero, drawColor);
-            CommandSprite.CenterAsOrigin = false;
-            AddElement(CommandSprite);
-
             Font = ResourceManager.getFont(fontName);
             _drawColor = drawColor;
 
@@ -65,6 +63,18 @@ namespace EdgeLibrary
 
             reloadTextSpritesPosition();
             reloadTextSprites();
+        }
+
+        private void reloadCommands()
+        {
+            CommandSprites.Clear();
+            for (int i = 0; i < _commandsToDisplay; i++)
+            {
+                TextSprite CommandSprite = new TextSprite(string.Format("{0}_CommandSprite{1}", ID, i), "", "last Log:", Vector2.Zero, _drawColor);
+                CommandSprite.Font = _font;
+                CommandSprite.CenterAsOrigin = false;
+                CommandSprites.Add(CommandSprite);
+            }
         }
 
         private void reloadTextSpritesPosition()
@@ -84,8 +94,7 @@ namespace EdgeLibrary
             ElementsSprite.Position = new Vector2(0, YDifference * 4);
             ElementsSprite.Position += Position;
 
-            CommandSprite.Position = new Vector2(0, YDifference * 5);
-            CommandSprite.Position += Position;
+
         }
 
         private void reloadTextSprites()

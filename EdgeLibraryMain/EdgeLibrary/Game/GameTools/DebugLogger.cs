@@ -15,7 +15,7 @@ namespace EdgeLibrary
     public static class DebugLogger
     {
         private static StreamWriter streamWriter;
-        public static string LastLogged = "";
+        public static List<string> Logs;
 
         public static void Init(string writePath)
         {
@@ -24,17 +24,20 @@ namespace EdgeLibrary
 
             streamWriter.WriteLine("Logs for:" + DateTime.Now.ToString());
             streamWriter.WriteLine();
+
+            Logs = new List<string>();
         }
 
         public static void Log(string text, params string[] properties)
         {
-            LastLogged = text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
@@ -57,13 +60,14 @@ namespace EdgeLibrary
 
         public static void LogEvent(string text, params string[] properties)
         {
-            LastLogged = "> " + text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
@@ -96,13 +100,14 @@ namespace EdgeLibrary
 
         public static void LogAdd(string text, params string[] properties)
         {
-            LastLogged = "+ " + text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
@@ -125,13 +130,14 @@ namespace EdgeLibrary
 
         public static void LogRemove(string text, params string[] properties)
         {
-            LastLogged = "- " + text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
@@ -154,13 +160,14 @@ namespace EdgeLibrary
 
         public static void LogWarning(string text, params string[] properties)
         {
-            LastLogged = "! " + text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
@@ -183,13 +190,14 @@ namespace EdgeLibrary
 
         public static void LogError(string text, params string[] properties)
         {
-            LastLogged = "# " + text + " { ";
+            string log = text + " { ";
             foreach (string property in properties)
             {
-                LastLogged += property + ", ";
+                log += property + ", ";
             }
-            LastLogged.Remove(LastLogged.Length - 1);
-            LastLogged += " }";
+            log.Remove(log.Length - 1);
+            log += " }";
+            Logs.Add(log);
 
             if (streamWriter != null)
             {
