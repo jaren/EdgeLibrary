@@ -109,7 +109,7 @@
     <Compile Include="Elements\Menu\ButtonToggle.cs" />
     <Compile Include="Elements\Sprite\FakeSprite.cs" />
     <Compile Include="Game\GameTools\DebugPanel.cs" />
-    <Compile Include="Game\GameTools\DebugWriter.cs" />
+    <Compile Include="Game\GameTools\DebugLogger.cs" />
     <Compile Include="Game\GameTools\FPSCounter.cs" />
     <Compile Include="Elements\Particle\Particle.cs">
       <SubType>Code</SubType>

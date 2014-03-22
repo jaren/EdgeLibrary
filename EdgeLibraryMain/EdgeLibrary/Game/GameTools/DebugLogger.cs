@@ -12,7 +12,7 @@ using System.IO;
 
 namespace EdgeLibrary
 {
-    public static class DebugWriter
+    public static class DebugLogger
     {
         private static StreamWriter streamWriter;
 
@@ -50,6 +50,11 @@ namespace EdgeLibrary
         {
             if (streamWriter != null)
             {
+                for (int i = 0; i < text.Length/2 + 4; i++)
+                {
+                    streamWriter.Write("<>");
+                }
+                streamWriter.WriteLine();
                 streamWriter.WriteLine("> " + text);
                 if (properties.Length > 0)
                 {
@@ -63,6 +68,11 @@ namespace EdgeLibrary
                 {
                     streamWriter.WriteLine(">    }");
                 }
+                for (int i = 0; i < text.Length/2 + 4; i++)
+                {
+                    streamWriter.Write("<>");
+                }
+                streamWriter.WriteLine();
                 streamWriter.WriteLine();
             }
         }

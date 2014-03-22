@@ -34,7 +34,7 @@ namespace EdgeLibrary
 
         private static RenderTarget2D ScreenTarget;
 
-        public static string DebugWriterPath { get { return string.Empty; } set { DebugWriter.Init(value); } }
+        public static string DebugLoggerPath { get { return string.Empty; } set { DebugLogger.Init(value); } }
 
         public static GameDrawState GameDrawState;
         public static Color DebugDrawColor;
@@ -103,7 +103,7 @@ namespace EdgeLibrary
         public static void AddScene(Scene scene)
         {
             Scenes.Add(scene);
-            DebugWriter.LogAdd("Scene", "       ID:" + scene.ID);
+            DebugLogger.LogAdd("Scene", "       ID:" + scene.ID);
         }
 
         public static bool RemoveScene(string id)
@@ -123,7 +123,7 @@ namespace EdgeLibrary
         {
             if (Scenes.Remove(scene))
             {
-                DebugWriter.LogRemove("Scene", "ID: " + scene.ID);
+                DebugLogger.LogRemove("Scene", "ID: " + scene.ID);
             }
             return false;
         }
@@ -137,7 +137,7 @@ namespace EdgeLibrary
                 if (scene.RemoveElement(e))
                 {
                     removed = true;
-                    DebugWriter.LogRemove("Element", "ID: " + e.ID, "Type: " + e.GetType());
+                    DebugLogger.LogRemove("Element", "ID: " + e.ID, "Type: " + e.GetType());
                 }
             }
             return removed;
@@ -206,13 +206,13 @@ namespace EdgeLibrary
             gameTimeElapsedTick += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (gameTimeElapsedTick >= GameTimeTickRate)
             {
-                DebugWriter.LogEvent("Game Running... running for " + gameTime.TotalGameTime.ToString());
+                DebugLogger.LogEvent("Game Running... running for " + gameTime.TotalGameTime.ToString());
                 gameTimeElapsedTick = 0;
             }
 
             if (gameTime.IsRunningSlowly)
             {
-                DebugWriter.LogError("The game is running slowly. FPS:" + FPSCounter.FPS);
+                DebugLogger.LogError("The game is running slowly. FPS:" + FPSCounter.FPS);
             }
         }
 

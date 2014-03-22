@@ -28,7 +28,7 @@ namespace EdgeLibrary
         public virtual void AddElement(Element element)
         {
             elements.Add(element);
-            DebugWriter.LogAdd("Element", "       ID: " + element.ID, "        Type: " + element.GetType());
+            DebugLogger.LogAdd("Element", "       ID: " + element.ID, "        Type: " + element.GetType());
         }
 
         public virtual bool RemoveElement(string id)

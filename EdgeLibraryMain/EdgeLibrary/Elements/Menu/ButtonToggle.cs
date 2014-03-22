@@ -67,7 +67,7 @@ namespace EdgeLibrary
                             if (Click != null)
                             {
                                 Click(e);
-                                DebugWriter.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                                DebugLogger.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                             }
                         }
                         else
@@ -81,7 +81,7 @@ namespace EdgeLibrary
                         if (Click != null)
                         {
                             Click(e);
-                            DebugWriter.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                            DebugLogger.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                         }
 
                         HasReleasedMouseClick = false;
@@ -97,7 +97,7 @@ namespace EdgeLibrary
                         if (MouseOver != null)
                         {
                             MouseOver(e);
-                            DebugWriter.LogEvent("Button Mouse Over", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                            DebugLogger.LogEvent("Button Mouse Over", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                         }
                         HasChangedMouseOff = false;
                         HasChangedMouseOver = true;
@@ -123,7 +123,7 @@ namespace EdgeLibrary
                     if (MouseOff != null)
                     {
                         MouseOff(e);
-                        DebugWriter.LogEvent("Button Mouse Off", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                        DebugLogger.LogEvent("Button Mouse Off", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                     }
                     HasChangedMouseOff = true;
                     HasChangedMouseOver = false;

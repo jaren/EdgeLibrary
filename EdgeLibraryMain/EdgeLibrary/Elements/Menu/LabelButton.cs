@@ -79,7 +79,7 @@ namespace EdgeLibrary
                     if (MouseOver != null)
                     {
                         MouseOver(clickArgs);
-                        DebugWriter.LogEvent("Button Mouse Over", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                        DebugLogger.LogEvent("Button Mouse Over", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                     }
                     launchedMouseOver = true;
                     launchedMouseOff = false;
@@ -93,7 +93,7 @@ namespace EdgeLibrary
                     if (Click != null)
                     {
                         Click(clickArgs);
-                        DebugWriter.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                        DebugLogger.LogEvent("Button Click", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                     }
                 }
             }
@@ -110,7 +110,7 @@ namespace EdgeLibrary
                     if (MouseOff != null)
                     {
                         MouseOff(clickArgs);
-                        DebugWriter.LogEvent("Button Mouse Off", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
+                        DebugLogger.LogEvent("Button Mouse Off", "Button: " + ID, "Button Type: " + GetType(), "GameTime: " + gameTime.TotalGameTime.ToString());
                     }
                     launchedMouseOver = false;
                     launchedMouseOff = true;
