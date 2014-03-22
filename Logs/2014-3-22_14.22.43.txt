@@ -1,4 +1,4 @@
-Logs for:3/22/2014 2:17:21 PM
+Logs for:3/22/2014 2:22:43 PM
 
 + Texture { Name:enemyShip }
 
@@ -127,7 +127,7 @@ Logs for:3/22/2014 2:17:21 PM
 +    }
 
 <><><><><><><><><><><><>
-> Button Mouse Off
+> Button Mouse Over
 >    {
 >        Button: LabelButton#2
 >        Button Type: EdgeLibrary.LabelButton
@@ -147,6 +147,15 @@ Logs for:3/22/2014 2:17:21 PM
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:00.0833335
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:00.1500003
+>    }
+<><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:00.1833337
@@ -225,65 +234,6 @@ Logs for:3/22/2014 2:17:21 PM
 > Game Running... running for 00:00:01.7833369
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 
-+ Texture { Name:Wood Background }
-
-+ Scene
-+    {
-+        ID:PlatformDemo
-+    }
-
-<><><><><><><><><><>
-> Switch Scene
->    {
->        ID:PlatformDemo
->    }
-<><><><><><><><><><>
-
-+ Element
-+    {
-+               ID: PlatformDemo_topBox
-+                Type: EdgeLibrary.Platform.PlatformStatic
-+    }
-
-+ Element
-+    {
-+               ID: PlatformDemo_bottomBox
-+                Type: EdgeLibrary.Platform.PlatformStatic
-+    }
-
-+ Element
-+    {
-+               ID: PlatformDemo_rightBox
-+                Type: EdgeLibrary.Platform.PlatformStatic
-+    }
-
-+ Element
-+    {
-+               ID: PlatformDemo_leftBox
-+                Type: EdgeLibrary.Platform.PlatformStatic
-+    }
-
-+ Element
-+    {
-+               ID: PlatformStatic#86
-+                Type: EdgeLibrary.Platform.PlatformStatic
-+    }
-
-+ Element
-+    {
-+               ID: PlatformCharacter#87
-+                Type: EdgeLibrary.Platform.PlatformCharacter
-+    }
-
-<><><><><><><><><><>
-> Button Click
->    {
->        Button: LabelButton#2
->        Button Type: EdgeLibrary.LabelButton
->        GameTime: 00:00:01.8166703
->    }
-<><><><><><><><><><>
-
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:01.8833371
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
@@ -303,6 +253,15 @@ Logs for:3/22/2014 2:17:21 PM
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:02.2833379
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><>
+> Button Mouse Off
+>    {
+>        Button: LabelButton#2
+>        Button Type: EdgeLibrary.LabelButton
+>        GameTime: 00:00:02.3333380
+>    }
+<><><><><><><><><><><><>
 
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 > Game Running... running for 00:00:02.3833381
@@ -340,36 +299,4 @@ Logs for:3/22/2014 2:17:21 PM
 > Game Running... running for 00:00:03.1833397
 <><><><><><><><><><><><><><><><><><><><><><><><><><>
 
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.2833399
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.3833401
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.4833403
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.5833405
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.6833407
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.7833409
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.8833411
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-> Game Running... running for 00:00:03.9833413
-<><><><><><><><><><><><><><><><><><><><><><><><><><>
-
-<><><><><><><><><><><><><><><><><><
+<><><><><><><><

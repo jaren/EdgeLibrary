@@ -15,6 +15,7 @@ namespace EdgeLibrary
     public static class DebugLogger
     {
         private static StreamWriter streamWriter;
+        public static string LastLogged = "";
 
         public static void Init(string writePath)
         {
@@ -27,6 +28,14 @@ namespace EdgeLibrary
 
         public static void Log(string text, params string[] properties)
         {
+            LastLogged = text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 streamWriter.WriteLine(text);
@@ -48,6 +57,14 @@ namespace EdgeLibrary
 
         public static void LogEvent(string text, params string[] properties)
         {
+            LastLogged = "> " + text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 for (int i = 0; i < text.Length/2 + 4; i++)
@@ -79,6 +96,14 @@ namespace EdgeLibrary
 
         public static void LogAdd(string text, params string[] properties)
         {
+            LastLogged = "+ " + text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 streamWriter.WriteLine("+ " + text);
@@ -100,6 +125,14 @@ namespace EdgeLibrary
 
         public static void LogRemove(string text, params string[] properties)
         {
+            LastLogged = "- " + text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 streamWriter.WriteLine("- " + text);
@@ -121,6 +154,14 @@ namespace EdgeLibrary
 
         public static void LogWarning(string text, params string[] properties)
         {
+            LastLogged = "! " + text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 streamWriter.WriteLine("! " + text);
@@ -142,6 +183,14 @@ namespace EdgeLibrary
 
         public static void LogError(string text, params string[] properties)
         {
+            LastLogged = "# " + text + " { ";
+            foreach (string property in properties)
+            {
+                LastLogged += property + ", ";
+            }
+            LastLogged.Remove(LastLogged.Length - 1);
+            LastLogged += " }";
+
             if (streamWriter != null)
             {
                 for (int i = 0; i < text.Length + 8; i++)
