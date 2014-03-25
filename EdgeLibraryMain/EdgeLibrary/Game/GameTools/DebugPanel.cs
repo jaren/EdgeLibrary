@@ -26,9 +26,6 @@ namespace EdgeLibrary
         private TextSprite ScenesSprite;
         private TextSprite ElementsSprite;
         private TextSprite KeysSprite;
-        private List<TextSprite> CommandSprites;
-        public int CommandsToDisplay { get { return _commandsToDisplay; } set { _commandsToDisplay = value; reloadCommands(); } }
-        private int _commandsToDisplay;
 
         public DebugPanel(string fontName, Vector2 position, Color drawColor) : base(MathTools.RandomID(typeof(DebugPanel)))
         {
@@ -65,18 +62,6 @@ namespace EdgeLibrary
             reloadTextSprites();
         }
 
-        private void reloadCommands()
-        {
-            CommandSprites.Clear();
-            for (int i = 0; i < _commandsToDisplay; i++)
-            {
-                TextSprite CommandSprite = new TextSprite(string.Format("{0}_CommandSprite{1}", ID, i), "", "last Log:", Vector2.Zero, _drawColor);
-                CommandSprite.Font = _font;
-                CommandSprite.CenterAsOrigin = false;
-                CommandSprites.Add(CommandSprite);
-            }
-        }
-
         private void reloadTextSpritesPosition()
         {
             MouseSprite.Position = new Vector2(0, 0);
@@ -109,8 +94,6 @@ namespace EdgeLibrary
             ElementsSprite.Style.Color = _drawColor;
             KeysSprite.Font = _font;
             KeysSprite.Style.Color = _drawColor;
-            CommandSprite.Font = _font;
-            CommandSprite.Style.Color = _drawColor;
         }
 
         protected override void updateElement(GameTime gameTime)
@@ -150,8 +133,6 @@ namespace EdgeLibrary
             {
                 KeysSprite.Text = KeysSprite.Text.Remove(KeysSprite.Text.Length - 2);
             }
-
-            CommandSprite.Text = "Last Log: " + DebugLogger.LastLogged;
 
             if ((InputManager.IsKeyDown(Keys.LeftShift) || InputManager.IsKeyDown(Keys.RightShift)) && InputManager.IsKeyDown(Keys.F1))
             {

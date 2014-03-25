@@ -68,6 +68,7 @@ namespace EdgeLibrary
 
             ResourceManager.Init(c);
             SoundManager.Init(c);
+            DebugLogger.Init("");
             TextureTools.Init();
             MathTools.Init();
             RandomTools.Init();

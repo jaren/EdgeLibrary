@@ -70,6 +70,8 @@ namespace EdgeDemo
 
             Header = new TextSprite("Impact-60", "EdgeDemo", new Vector2(EdgeGame.WindowSize.X / 2, 50), Color.White);
 
+            LoggerPanel panel = new LoggerPanel("Impact-10", Color.Goldenrod, Vector2.Zero);
+
             LabelButton PlatformButton = new LabelButton("Georgia-50", "Platform Demo", new Vector2(300, 300), Color.OrangeRed);
             PlatformButton.OffStyle.Color = Color.Gray;
             PlatformButton.MouseOverStyle.Color = Color.OrangeRed;
