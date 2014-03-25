@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Xml;
 using System.Xml.Linq;
+using System.Text;
 
 namespace EdgeLibrary
 {
@@ -68,7 +69,10 @@ namespace EdgeLibrary
 
             ResourceManager.Init(c);
             SoundManager.Init(c);
-            DebugLogger.Init("");
+            StringBuilder path = new StringBuilder(Environment.CurrentDirectory);
+            path.Remove(path.Length - 47, 47);
+            path.Append("Logs");
+            DebugLogger.Init(path.ToString());
             TextureTools.Init();
             MathTools.Init();
             RandomTools.Init();

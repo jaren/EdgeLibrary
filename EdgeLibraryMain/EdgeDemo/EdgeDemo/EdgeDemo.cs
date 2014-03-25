@@ -29,8 +29,6 @@ namespace EdgeDemo
 
         protected override void LoadContent()
         {
-            EdgeGame.DebugLoggerPath = @"C:\Users\Jaren\Documents\GitHub\EdgeLibrary\Logs";
-            ResourceManager.LoadTexturesInSpritesheet("SpaceSheet.xml", "SpaceSheet");
             ResourceManager.LoadTexturesInSpritesheet("ParticleSheet.xml", "ParticleSheet");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-10");
             ResourceManager.LoadFont("Fonts/Comic Sans/ComicSans-20");
