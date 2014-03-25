@@ -15,7 +15,12 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Improve physics engine for platform sprites
+    /// -Add documentation for everything
+    /// -Improve customizability
+    /// -Clean up code
+    /// 
+    /// Issues:
+    /// _Platform sprite physics is not completely accurate
     /// -For some reason, collision bodies don't register correctly for not Centered Origin buttons, even though it draws correctly
     /// </summary>
 
