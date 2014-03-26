@@ -16,14 +16,14 @@ namespace EdgeLibrary
     public static class FPSCounter
     {
         public static int FPS;
-        public static float AccurateFPS;
+        public static int AccurateFPS;
 
         private static int frames;
         private static double milliseconds;
 
         public static void Update(GameTime gameTime)
         {
-            AccurateFPS = 1000 / (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            AccurateFPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
 
             milliseconds += gameTime.ElapsedGameTime.TotalMilliseconds;
             frames++;

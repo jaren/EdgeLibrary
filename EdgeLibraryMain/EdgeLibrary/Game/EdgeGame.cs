@@ -212,13 +212,8 @@ namespace EdgeLibrary
             gameTimeElapsedTick += gameTime.ElapsedGameTime.TotalMilliseconds;
             if (gameTimeElapsedTick >= GameTimeTickRate)
             {
-                DebugLogger.LogEvent("Game Running... running for " + gameTime.TotalGameTime.ToString());
+                DebugLogger.LogEvent("Game Running", "Time:" + gameTime.TotalGameTime.ToString(), "FPS:" + FPSCounter.AccurateFPS);
                 gameTimeElapsedTick = 0;
-            }
-
-            if (gameTime.IsRunningSlowly)
-            {
-                DebugLogger.LogError("The game is running slowly. FPS:" + FPSCounter.FPS);
             }
         }
 

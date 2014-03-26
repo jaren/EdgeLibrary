@@ -246,7 +246,7 @@ namespace EdgeLibrary
 
         public LoggerPanel(string fontName, Color drawColor, Vector2 position) : base(MathTools.RandomID(typeof(LoggerPanel)))
         {
-            _commandsToDisplay = 5;
+            _commandsToDisplay = 25;
             CommandSprites = new List<TextSprite>();
             Font = ResourceManager.getFont(fontName);
             DrawColor = drawColor;
