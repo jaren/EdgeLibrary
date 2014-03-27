@@ -1,19 +1,27 @@
 using System;
+using EdgeLibrary;
 
 namespace EdgeDemo
 {
 #if WINDOWS || XBOX
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         static void Main(string[] args)
         {
-            using (EdgeDemo game = new EdgeDemo())
+            using (EdgeGame game = new EdgeGame())
             {
+                game.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
+                game.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
                 game.Run();
             }
+        }
+
+        static void game_OnLoadContent(EdgeGame game)
+        {
+        }
+
+        static void game_OnInit(EdgeGame game)
+        {
         }
     }
 #endif

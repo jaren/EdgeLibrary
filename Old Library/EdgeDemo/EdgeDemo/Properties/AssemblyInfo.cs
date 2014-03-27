@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EdgeLibrary-New")]
-[assembly: AssemblyProduct("EdgeLibrary-New")]
+[assembly: AssemblyTitle("EdgeDemo")]
+[assembly: AssemblyProduct("EdgeDemo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
-[assembly: Guid("e8f162ae-5bab-4add-8814-28b1e6e39e9d")]
+[assembly: Guid("9d59133c-cca4-4144-bf1a-ff286b2464b7")]
 
 // Version information for an assembly consists of the following four values:
 //

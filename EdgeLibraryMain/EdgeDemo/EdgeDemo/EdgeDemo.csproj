@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{24B13883-6821-4509-A08C-C201F3534E5C}</ProjectGuid>
+    <ProjectGuid>{2A3B045B-6616-42FD-B285-AACE6062E4B3}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -14,7 +14,7 @@
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>HiDef</XnaProfile>
-    <XnaCrossPlatformGroupID>a5e970a0-1828-43df-9aef-5dbd4a4dd1da</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>ef3b3566-c32e-4fa8-b705-bfe73b1c59ca</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
@@ -46,7 +46,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -108,11 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demos\GameDemo.cs" />
-    <Compile Include="Demos\PlatformDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="EdgeDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -120,12 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibrary\EdgeLibrary.csproj">
-      <Project>{61B65E5B-07DB-4793-8317-6EA84F951C5C}</Project>
+      <Project>{AD485453-05E0-4714-8630-BCC909D9106D}</Project>
       <Name>EdgeLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\EdgePlatformer\EdgePlatformer.csproj">
-      <Project>{8C5A7086-C765-477D-912D-E2F4FC1568E0}</Project>
-      <Name>EdgePlatformer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EdgeDemoContent\EdgeDemoContent.contentproj">
       <Name>EdgeDemoContent</Name>
