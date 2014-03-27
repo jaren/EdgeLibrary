@@ -13,26 +13,30 @@ namespace EdgeLibrary
 {
     public class EdgeGame : Game
     {
-        GraphicsDeviceManager Graphics;
-        SpriteBatch SpriteBatch;
+        private SpriteBatch SpriteBatch;
+        private GraphicsDeviceManager Graphics;
 
-        ContentLoader Resources;
-        SceneHandler SceneHandler;
+        public ContentLoader Resources;
+        public SoundLoader Sounds;
+        public SceneHandler SceneHandler;
+
+        public Color ClearColor = Color.DarkKhaki;
 
         public delegate void EdgeGameEvent(EdgeGame game);
         public event EdgeGameEvent OnInit = delegate { };
         public event EdgeGameEvent OnLoadContent = delegate { };
         public event EdgeGameEvent OnUnloadContent = delegate { };
-        public event EdgeGameEvent OnUpdate = delegate { };
-        public event EdgeGameEvent OnDraw = delegate { };
+        public delegate void EdgeGameUpdateEvent(GameTime gameTime, EdgeGame game);
+        public event EdgeGameUpdateEvent OnUpdate = delegate { };
+        public event EdgeGameUpdateEvent OnDraw = delegate { };
 
         public EdgeGame()
         {
-            Graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-
-            Resources = new ContentLoader();
+            Resources = new ContentLoader(Content);
+            Sounds = new SoundLoader(Content);
             SceneHandler = new SceneHandler();
+
+            Graphics = new GraphicsDeviceManager(this);
         }
 
         protected override void Initialize()
@@ -45,24 +49,27 @@ namespace EdgeLibrary
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             OnLoadContent(this);
+            base.LoadContent();
         }
 
         protected override void UnloadContent()
         {
             OnUnloadContent(this);
+            base.UnloadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            OnUpdate(this);
+            OnUpdate(gameTime, this);
+            SceneHandler.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            OnDraw(this);
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            OnDraw(gameTime, this);
+            GraphicsDevice.Clear(ClearColor);
+            SceneHandler.Draw(gameTime, SpriteBatch);
             base.Draw(gameTime);
         }
     }

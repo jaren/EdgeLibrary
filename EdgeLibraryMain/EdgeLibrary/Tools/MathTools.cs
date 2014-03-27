@@ -13,15 +13,8 @@ namespace EdgeLibrary
 {
     public static class MathTools
     {  
-        public static void Init()
-        {
-            lastGivenID = 0;
-        }
-
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
-
-        private static int lastGivenID;
 
         /// <summary>
         /// Retrieves a color by its name.

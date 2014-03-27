@@ -4,6 +4,12 @@ using EdgeLibrary;
 namespace EdgeDemo
 {
 #if WINDOWS || XBOX
+
+    /// <summary>
+    /// TODO:
+    /// -Resolve all "TOINCLUDE"
+    /// </summary>
+
     static class Program
     {
         static void Main(string[] args)

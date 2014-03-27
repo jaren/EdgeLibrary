@@ -65,20 +65,6 @@
 
 	    public static class TextureTools
 	    {
-	        public static Texture2D Pixel;
-	        public static Texture2D Blank;
-	
-	        public static void Init()
-	        {
-                Pixel = EdgeGame.NewTexture(1, 1);
-	            Pixel.SetData(new Color[1] { Color.White });
-                Blank = EdgeGame.NewTexture(1, 1);
-	            Blank.SetData(new Color[1] { Color.Transparent });
-	
-	            ResourceManager.addTexture("Pixel", Pixel);
-                ResourceManager.addTexture("Blank", Blank);
-	        }
-	
 	        #region GENERATING TOOLS
             public static Texture2D Copy(Texture2D texture)
             {
