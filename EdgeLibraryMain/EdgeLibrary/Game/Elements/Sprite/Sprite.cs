@@ -14,8 +14,8 @@ namespace EdgeLibrary
     public class Sprite : Element
     {
         //Gets the texture size of the sprite
-        public virtual float Width { get { return Texture == null ? 0 : Texture.Width; } protected set { } }
-        public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } protected set { } }
+        public virtual float Width { get { return Texture == null ? 0 : Texture.Width; } }
+        public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } }
 
         //Sets the scale with a Vector2
         public Vector2 Scale { get; set; }
@@ -79,6 +79,7 @@ namespace EdgeLibrary
             SpriteEffects = effects;
         }
 
+        //Initializes the collision body with this sprite
         public virtual void InitializeCollision()
         {
             CollisionBody = CollisionBody.BodyWithSprite(this, CollisionLayers.All);
@@ -89,11 +90,13 @@ namespace EdgeLibrary
             CollisionBody = CollisionBody.BodyWithSprite(this, layers);
         }
 
+        //Gets the bounding box of this sprite
         public virtual Rectangle GetBoundingBox()
         {
             return new Rectangle((int)(Position.X - Width / 2 * Scale.X), (int)(Position.Y - Height / 2 * Scale.Y), (int)(Width * Scale.X), (int)(Height * Scale.Y));
         }
 
+        //Reloads origin point based on texture
         protected virtual void reloadOriginPoint()
         {
             if (Texture != null)

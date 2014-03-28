@@ -98,6 +98,7 @@
     <Compile Include="Game\Elements\Miscellaneous\Ticker.cs" />
     <Compile Include="Game\Elements\Sprite\Collision\CollisionBody.cs" />
     <Compile Include="Game\Elements\Sprite\Collision\Shape.cs" />
+    <Compile Include="Game\Elements\Sprite\TextSprite.cs" />
     <Compile Include="Game\Loaders\ContentLoader.cs" />
     <Compile Include="Game\EdgeGame.cs" />
     <Compile Include="Game\Scene.cs" />

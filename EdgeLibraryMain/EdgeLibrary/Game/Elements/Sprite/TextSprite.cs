@@ -11,32 +11,40 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //A sprite which, instead of drawing a texture, displays text
+    //A "label"
     public class TextSprite : Sprite
     {
+        //The font to display on the screen
         public SpriteFont Font { get { return _font; } set { _font = value; reloadOriginPoint(); } }
         private SpriteFont _font;
-        public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text).X; } protected set { } }
-        public override float Height { get { return Font == null ? 0 : Font.MeasureString(Text).Y; } protected set { } }
+
+        //The width/height of the measured text
+        public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text).X; } }
+        public override float Height { get { return Font == null ? 0 : Font.MeasureString(Text).Y; } }
+
+        //The text to display on the screen
         public string Text { get { return _text; } set { _text = value; reloadOriginPoint(); } }
         protected string _text;
 
-        public TextSprite(string id, string eFontName, string text, Vector2 ePosition, Color eColor) : base(id, "", ePosition)
+        public TextSprite(string fontName, string text, Vector2 position) : base("", position)
         {
-            Font = ResourceManager.getFont(eFontName);
-
             _text = text;
 
-            Style.Color = eColor;
-            Style.Rotation = 0;
-            Scale = Vector2.One;
-
-            if (eFontName != null)
+            //Finds the font from the current game's resources
+            if (fontName != null)
             {
-                Font = ResourceManager.getFont(eFontName);
+                Font = EdgeGame.GetCurrentGame().Resources.GetFont(fontName);
             }
         }
 
+        public TextSprite(string fontName, string text, Vector2 position, Color color, Vector2 scale, float rotation = 0) : this(fontName, text, position)
+        {
+            Color = color;
+            Rotation = rotation;
+            Scale = scale;
+        }
+
+        //Reloads the origin point based on font and text
         protected override void reloadOriginPoint()
         {
             if (Font != null && _text != null)
@@ -53,9 +61,10 @@ namespace EdgeLibrary
             }
         }
 
-        protected override void drawElement(GameTime gameTime)
+        //Draws the textsprite to the spritebatch
+        protected override void  DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            EdgeGame.drawString(Font, Text, Position, Style.Color, Style.Rotation, OriginPoint, Scale, Style.Effects);
+            spriteBatch.DrawString(_font, _text, Position, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
         }
     }
 }

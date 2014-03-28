@@ -39,6 +39,9 @@ namespace EdgeDemo
 
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
             sprite.AddToGame();
+
+            TextSprite textSprite = new TextSprite("ComicSans-40", "This is a text sprite", new Vector2(300, 500));
+            textSprite.AddToGame();
         }
 
         static void game_OnLoadContent(EdgeGame game)
