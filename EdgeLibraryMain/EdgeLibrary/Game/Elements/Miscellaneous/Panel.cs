@@ -9,25 +9,58 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+
 namespace EdgeLibrary
 {
-    public class Scene
+    //A container for elements
+    public class Panel : Element
     {
-        public string ID { get; protected set; }
-
-        private List<Element> Elements;
+        protected List<Element> Elements;
 
         //Used to check if two elements have the same ID
         private List<string> elementIDs;
 
-        public Scene(string id)
+        public Panel(string id, params Element[] elementsToAdd)
         {
-            ID = id;
-
             Elements = new List<Element>();
+
+            foreach (Element e in elementsToAdd)
+            {
+                Elements.Add(e);
+            }
         }
 
-        public void Update(GameTime gameTime)
+        //Adds an element
+        public void AddElement(Element element)
+        {
+            Elements.Add(element);
+        }
+
+        //Removes an element
+        public bool RemoveElement(Element element)
+        {
+            return Elements.Remove(element);
+        }
+        public bool RemoveElement(string id)
+        {
+            return RemoveElement(GetElement(id));
+        }
+
+        //Gets an element by ID
+        public Element GetElement(string id)
+        {
+            foreach (Element element in Elements)
+            {
+                if (element.ID == id)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        //Updates all the elements in the list
+        protected override void UpdateObject(GameTime gameTime)
         {
             foreach (Element element in Elements)
             {
@@ -56,7 +89,7 @@ namespace EdgeLibrary
             }
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void  DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //Orders the elements by their draw layer
             Elements = Elements.OrderBy(x => x.DrawLayer).ToList();
@@ -64,17 +97,6 @@ namespace EdgeLibrary
             foreach (Element element in Elements)
             {
                 element.Draw(gameTime, spriteBatch);
-            }
-        }
-
-        public void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            foreach (Element element in Elements)
-            {
-                if (element is Sprite)
-                {
-                    ((Sprite)element).DebugDraw(gameTime, spriteBatch);
-                }
             }
         }
     }

@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Elements\Element.cs" />
+    <Compile Include="Game\Elements\Miscellaneous\Panel.cs" />
     <Compile Include="Game\Elements\Miscellaneous\Ticker.cs" />
     <Compile Include="Game\Loaders\ContentLoader.cs" />
     <Compile Include="Game\EdgeGame.cs" />
