@@ -11,66 +11,104 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
+    //The type of drawing the game will use
+    public enum DrawState
+    {
+        //Normal game drawing
+        Normal,
+        //Draws only collision bodies
+        Debug,
+        //Draws collision bodies and normal game drawing
+        Hybrid
+    }
+
+    //The main game type
     public class EdgeGame : Game
     {
+        //Game drawing
         private SpriteBatch SpriteBatch;
         private GraphicsDeviceManager Graphics;
 
+        //Game components
         public ContentLoader Resources;
         public SoundLoader Sounds;
         public SceneHandler SceneHandler;
 
-        public Color ClearColor = Color.DarkKhaki;
+        //The color the graphicsdevice will clear each frame
+        public Color ClearColor = MathTools.ColorFromHex("#020721");
+        //The color that debug draw will color in
+        public static Color DebugDrawColor = Color.White;
 
+        public DrawState DrawState = DrawState.Normal;
+
+        //Gets/Sets the graphics preferred buffer size
+        public Vector2 WindowSize { get { return new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight); } set { Graphics.PreferredBackBufferWidth = (int)value.X; Graphics.PreferredBackBufferHeight = (int)value.Y; Graphics.ApplyChanges(); } }
+
+        //The events for changing the game initialization outside of the game
         public delegate void EdgeGameEvent(EdgeGame game);
         public event EdgeGameEvent OnInit = delegate { };
         public event EdgeGameEvent OnLoadContent = delegate { };
         public event EdgeGameEvent OnUnloadContent = delegate { };
+
+        //The events for changing the game update outside of the game
         public delegate void EdgeGameUpdateEvent(GameTime gameTime, EdgeGame game);
         public event EdgeGameUpdateEvent OnUpdate = delegate { };
         public event EdgeGameUpdateEvent OnDraw = delegate { };
 
-        public EdgeGame()
+        /// <summary>
+        /// Creates a new game with the given scene ID
+        /// </summary>
+        /// <param name="sceneID">The ID of the original scene</param>
+        public EdgeGame(string sceneID)
         {
+            Content.RootDirectory = "Content";
             Resources = new ContentLoader(Content);
             Sounds = new SoundLoader(Content);
-            SceneHandler = new SceneHandler();
+            SceneHandler = new SceneHandler(sceneID);
 
             Graphics = new GraphicsDeviceManager(this);
-        }
 
+            IsMouseVisible = true;
+        }
+        public EdgeGame() : this("Main") { }
+
+        //Initializes the game
         protected override void Initialize()
         {
-            OnInit(this);
             base.Initialize();
+            OnInit(this);
         }
 
+        //Loads all the game content
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            OnLoadContent(this);
             base.LoadContent();
+            OnLoadContent(this);
         }
 
+        //Unloads all the game content
         protected override void UnloadContent()
         {
             OnUnloadContent(this);
             base.UnloadContent();
         }
 
+        //Updates the game
         protected override void Update(GameTime gameTime)
         {
-            OnUpdate(gameTime, this);
             SceneHandler.Update(gameTime);
             base.Update(gameTime);
+            OnUpdate(gameTime, this);
         }
 
+        //Draws the game
         protected override void Draw(GameTime gameTime)
         {
-            OnDraw(gameTime, this);
             GraphicsDevice.Clear(ClearColor);
-            SceneHandler.Draw(gameTime, SpriteBatch);
+            SceneHandler.Draw(gameTime, SpriteBatch, DrawState);
             base.Draw(gameTime);
+            OnDraw(gameTime, this);
         }
     }
 }

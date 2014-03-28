@@ -11,20 +11,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public class SceneHandler
+    public class Sprite : Element
     {
-        private List<Scene> Scenes;
-
-        public SceneHandler()
-        {
-            Scenes = new List<Scene>();
-        }
-
-        public void Update(GameTime gameTime)
+        public Sprite() : base()
         {
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch SpriteBatch)
+        protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+        }
+
+        protected override void UpdateObject(GameTime gameTime)
+        {
+        }
+
+        public virtual void DebugDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
         }
     }

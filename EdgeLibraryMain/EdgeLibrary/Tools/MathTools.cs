@@ -16,6 +16,22 @@ namespace EdgeLibrary
         public static float circlePointStep = 8;
         public static float outerCirclePointStep = 1;
 
+        private static Dictionary<Type, int> GivenIDs = new Dictionary<Type, int>();
+
+        /// <summary>
+        /// Generates a random ID based on the element's type and the number of previously given IDs of that type
+        /// </summary>
+        public static string GenerateID(Element element)
+        {
+            //If no other elements of this type exist, then create an index for it
+            if (GivenIDs[element.GetType()] == null)
+            {
+                GivenIDs.Add(element.GetType(), 0);
+            }
+            GivenIDs[element.GetType()]++;
+            return element.GetType().ToString() + GivenIDs[element.GetType()].ToString();
+        }
+
         /// <summary>
         /// Retrieves a color by its name.
         /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
@@ -34,6 +50,9 @@ namespace EdgeLibrary
             }
         }
 
+        /// <summary>
+        /// Gets a color from a hex string
+        /// </summary>
         public static Color ColorFromHex(string hexString)
         {
             if (!hexString.Contains('#'))
@@ -74,17 +93,13 @@ namespace EdgeLibrary
         {
             return new Color(RandomTools.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), RandomTools.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), RandomTools.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), RandomTools.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
         }
-        public static Color RandomGrayscaleColor()
+        /// <summary>
+        /// Generates a random color which may not be between the ARGB values of each color because it adds the same random number to the R, G, B, and A
+        /// </summary>
+        public static Color RandomUniformColor(Color min, Color max)
         {
-            return RandomGrayscaleColor(Color.White, Color.Black);
-        }
-        public static Color RandomGrayscaleColor(Color min, Color max)
-        {
-            //Finds the average of the colors' values, in case they're not grayscale
-            byte random = (byte)RandomTools.RandomInt(Math.Min((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3), Math.Max((min.R + min.G + min.B) / 3, (max.R + max.G + max.B) / 3));
-
-            //Creates a new color with that grayscale and a random alpha
-            return new Color(random, random, random, (min.A + max.A)/2);
+            int random = RandomTools.RandomInt(((max.R - min.R) + (max.G - min.G) + (max.B - min.G)) / 3);
+            return new Color(min.R + random, min.G + random, min.B + random, min.A + random);
         }
 
         /// <summary>
@@ -130,6 +145,9 @@ namespace EdgeLibrary
             return vector;
         }
 
+        /// <summary>
+        /// Flips the rectangle if its width and height are negative
+        /// </summary>
         public static Rectangle ResolveNegativeRectangle(Rectangle rectangle)
         {
             if (rectangle.Width < 0)
@@ -160,16 +178,15 @@ namespace EdgeLibrary
         //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
         public static string LastPortionOfPath(string path)
         {
-            string[] splitParts = path.Split('/');
-            return splitParts[splitParts.Length - 1];
+            return LastPortionOfPath(path, '/');
         }
-
         public static string LastPortionOfPath(string path, char splitter)
         {
             string[] splitParts = path.Split(splitter);
             return splitParts[splitParts.Length - 1];
         }
 
+        //Returns all the points of the given circle
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius, float step)
         {
             List<Vector2> points = new List<Vector2>();
@@ -196,16 +213,16 @@ namespace EdgeLibrary
 
             return points;
         }
-
         public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
         {
             return GetCirclePoints(centerPosition, radius, circlePointStep);
         }
 
-        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)
+        //Returns all the points on the outside of the given circle
+        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius, float step)
         {
             List<Vector2> points = new List<Vector2>();
-            float actualStep = outerCirclePointStep / radius;
+            float actualStep = step / radius;
 
             for (float x = centerPosition.X - radius; x <= centerPosition.X + radius; x += actualStep)
             {
@@ -224,6 +241,10 @@ namespace EdgeLibrary
             }
 
             return points;
+        }
+        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)
+        {
+            return GetOuterCirclePoints(centerPosition, radius, outerCirclePointStep);
         }
     }
 }
