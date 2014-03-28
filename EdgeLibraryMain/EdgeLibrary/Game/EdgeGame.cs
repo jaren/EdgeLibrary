@@ -25,17 +25,13 @@ namespace EdgeLibrary
     //The main game type
     public class EdgeGame : Game
     {
-        //Game drawing
+        //Game components
         private SpriteBatch SpriteBatch;
         private GraphicsDeviceManager Graphics;
-
-        //Game components
-        public ContentLoader Resources;
-        public SoundLoader Sounds;
         public SceneHandler SceneHandler;
 
         //Gets the current running game
-        private static EdgeGame Instance;
+        public static EdgeGame Instance { get; private set; }
 
         //Gets the FPS
         public int FPS;
@@ -69,8 +65,6 @@ namespace EdgeLibrary
         public EdgeGame(string sceneID)
         {
             Content.RootDirectory = "Content";
-            Resources = new ContentLoader(Content);
-            Sounds = new SoundLoader(Content);
             SceneHandler = new SceneHandler(sceneID);
 
             Graphics = new GraphicsDeviceManager(this);
@@ -82,7 +76,6 @@ namespace EdgeLibrary
         //Initializes the game
         protected override void Initialize()
         {
-            Input.Init();
             base.Initialize();
             OnInit(this);
         }
@@ -91,7 +84,9 @@ namespace EdgeLibrary
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            Resources.LoadBasicTextures(GraphicsDevice);
+            Resources.Init(Content);
+            Sounds.Init(Content);
+            Input.Init();
 
             base.LoadContent();
             OnLoadContent(this);
@@ -136,23 +131,7 @@ namespace EdgeLibrary
         //Creates a new Texture2D from the graphics device
         public static Texture2D CreateNewTexture(int width, int height)
         {
-            return new Texture2D(GetCurrentGame().GraphicsDevice, width, height);
-        }
-
-        //Returns the current running EdgeGame
-        public static EdgeGame GetCurrentGame()
-        {
-            return Instance;
-        }
-        //returns the current scene in the running EdgeGame
-        public static Scene GetCurrentScene()
-        {
-            return Instance.SceneHandler.GetCurrentScene();
-        }
-        //returns the current resources in the running EdgeGame
-        public static ContentLoader GetCurrentResources()
-        {
-            return Instance.Resources;
+            return new Texture2D(Instance.GraphicsDevice, width, height);
         }
     }
 }

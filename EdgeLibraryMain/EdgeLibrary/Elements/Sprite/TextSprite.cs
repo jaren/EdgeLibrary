@@ -36,7 +36,7 @@ namespace EdgeLibrary
             //Finds the font from the current game's resources
             if (fontName != null)
             {
-                Font = EdgeGame.GetCurrentResources().GetFont(fontName);
+                Font = Resources.GetFont(fontName);
             }
         }
 

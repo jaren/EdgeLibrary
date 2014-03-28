@@ -90,7 +90,7 @@ namespace EdgeLibrary
         {
             foreach (Vector2 point in MathTools.GetOuterCirclePoints(CenterPosition, _radius))
             {
-                spriteBatch.Draw(EdgeGame.GetCurrentResources().GetTexture("Pixel"), new Rectangle((int)point.X, (int)point.Y, 1, 1), color);
+                spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle((int)point.X, (int)point.Y, 1, 1), color);
             }
         }
     }
@@ -144,10 +144,10 @@ namespace EdgeLibrary
         {
             Rectangle rectangle = new Rectangle((int)CenterPosition.X - (int)Width / 2, (int)CenterPosition.Y - (int)Height / 2, (int)Width, (int)Height);
             //Draws a box around where the rectangle is
-            spriteBatch.Draw(EdgeGame.GetCurrentResources().GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, 1, rectangle.Height), color);
-            spriteBatch.Draw(EdgeGame.GetCurrentResources().GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Right, 1, rectangle.Height), color);
-            spriteBatch.Draw(EdgeGame.GetCurrentResources().GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, rectangle.Width, 1), color);
-            spriteBatch.Draw(EdgeGame.GetCurrentResources().GetTexture("Pixel"), new Rectangle(rectangle.Bottom, rectangle.Left, rectangle.Width, 1), color);
+            spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, 1, rectangle.Height), color);
+            spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Right, 1, rectangle.Height), color);
+            spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, rectangle.Width, 1), color);
+            spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Bottom, rectangle.Left, rectangle.Width, 1), color);
         }
     }
 }

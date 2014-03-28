@@ -94,7 +94,7 @@ namespace EdgeLibrary
         {
             if (Background != null)
             {
-                spriteBatch.Draw(Background, new Rectangle(0, 0, (int)EdgeGame.GetCurrentGame().WindowSize.X, (int)EdgeGame.GetCurrentGame().WindowSize.Y), Color.White);
+                spriteBatch.Draw(Background, new Rectangle(0, 0, (int)EdgeGame.Instance.WindowSize.X, (int)EdgeGame.Instance.WindowSize.Y), Color.White);
             }
 
             //Orders the elements by their draw layer

@@ -23,6 +23,7 @@ namespace EdgeLibrary
         public Panel(string id, params Element[] elementsToAdd)
         {
             Elements = new List<Element>();
+            elementIDs = new List<string>();
 
             foreach (Element e in elementsToAdd)
             {

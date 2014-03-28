@@ -12,70 +12,70 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     /// <summary>
-    /// Stores all the Sounds/music and plays them
+    /// Stores all the SoundEffects/music and plays them
     /// </summary>
-    public class SoundLoader
+    public static class Sounds
     {
-        private Dictionary<string, SoundEffect> Sounds;
-        private Dictionary<string, Song> Songs;
-        private ContentManager Content;
+        private static Dictionary<string, SoundEffect> SoundEffects;
+        private static Dictionary<string, Song> Songs;
+        private static ContentManager Content;
 
-        public bool IsRepeating { get { return MediaPlayer.IsRepeating; } set { MediaPlayer.IsRepeating = value; } }
-        public bool IsMuted { get { return MediaPlayer.IsMuted; } set { MediaPlayer.IsMuted = value; } }
-        public float Volume { get { return MediaPlayer.Volume; } set { MediaPlayer.Volume = value; } }
-        public bool IsShuffled { get { return MediaPlayer.IsShuffled; } set { MediaPlayer.IsShuffled = value; } }
+        public static bool IsRepeating { get { return MediaPlayer.IsRepeating; } set { MediaPlayer.IsRepeating = value; } }
+        public static bool IsMuted { get { return MediaPlayer.IsMuted; } set { MediaPlayer.IsMuted = value; } }
+        public static float Volume { get { return MediaPlayer.Volume; } set { MediaPlayer.Volume = value; } }
+        public static bool IsShuffled { get { return MediaPlayer.IsShuffled; } set { MediaPlayer.IsShuffled = value; } }
 
-        public SoundLoader(ContentManager c)
+        public static void Init(ContentManager c)
         {
-            Sounds = new Dictionary<string, SoundEffect>();
+            SoundEffects = new Dictionary<string, SoundEffect>();
             Songs = new Dictionary<string, Song>();
 
             Content = c;
         }
 
-        public void LoadSound(string path)
+        public static void LoadSound(string path)
         {
             addSound(MathTools.LastPortionOfPath(path), Content.Load<SoundEffect>(path));
         }
 
-        public void LoadSound(string path, string name)
+        public static void LoadSound(string path, string name)
         {
             addSound(name, Content.Load<SoundEffect>(path));
         }
 
-        public void LoadSong(string path)
+        public static void LoadSong(string path)
         {
             addSong(MathTools.LastPortionOfPath(path), Content.Load<Song>(path));
         }
 
-        public void LoadSong(string path, string name)
+        public static void LoadSong(string path, string name)
         {
             addSong(name, Content.Load<Song>(path));
         }
 
 
-        public void addSound(string soundName, SoundEffect sound)
+        public static void addSound(string soundName, SoundEffect sound)
         {
-            Sounds.Add(soundName, sound);
+            SoundEffects.Add(soundName, sound);
         }
 
-        public void addSong(string songName, Song song)
+        public static void addSong(string songName, Song song)
         {
             Songs.Add(songName, song);
         }
 
-        public void playSong(string songName)
+        public static void playSong(string songName)
         {
             MediaPlayer.Play(getSong(songName));
         }
 
-        public void playSound(string soundName)
+        public static void playSound(string soundName)
         {
             getSound(soundName).Play();
         }
 
 
-        public Song getSong(string songName)
+        public static Song getSong(string songName)
         {
             foreach (var song in Songs)
             {
@@ -87,9 +87,9 @@ namespace EdgeLibrary
             return null;
         }
 
-        public SoundEffect getSound(string soundName)
+        public static SoundEffect getSound(string soundName)
         {
-            foreach (var sound in Sounds)
+            foreach (var sound in SoundEffects)
             {
                 if (sound.Key == soundName)
                 {

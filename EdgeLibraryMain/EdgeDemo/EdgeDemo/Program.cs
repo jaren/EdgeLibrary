@@ -14,6 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Make modifiers easier to use - automatically add all subclasses to Sprites as variables (used like Sprite.Movement), if possible
     /// -Add a physics engine
     /// -Add a camera
     /// -Add a new debug logger
@@ -53,31 +54,31 @@ namespace EdgeDemo
 
         static void game_OnLoadContent(EdgeGame game)
         {
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-10");
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-20");
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-30");
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-40");
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-50");
-            game.Resources.LoadFont("Fonts/Comic Sans/ComicSans-60");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-10");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-20");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-30");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-40");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-50");
-            game.Resources.LoadFont("Fonts/Courier New/CourierNew-60");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-10");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-20");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-30");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-40");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-50");
-            game.Resources.LoadFont("Fonts/Georgia/Georgia-60");
-            game.Resources.LoadFont("Fonts/Impact/Impact-10");
-            game.Resources.LoadFont("Fonts/Impact/Impact-20");
-            game.Resources.LoadFont("Fonts/Impact/Impact-30");
-            game.Resources.LoadFont("Fonts/Impact/Impact-40");
-            game.Resources.LoadFont("Fonts/Impact/Impact-50");
-            game.Resources.LoadFont("Fonts/Impact/Impact-60");
-            game.Resources.LoadTexture("enemyShip");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-10");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-20");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-30");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-40");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-50");
+            Resources.LoadFont("Fonts/Comic Sans/ComicSans-60");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-10");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-20");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-30");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-40");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-50");
+            Resources.LoadFont("Fonts/Courier New/CourierNew-60");
+            Resources.LoadFont("Fonts/Georgia/Georgia-10");
+            Resources.LoadFont("Fonts/Georgia/Georgia-20");
+            Resources.LoadFont("Fonts/Georgia/Georgia-30");
+            Resources.LoadFont("Fonts/Georgia/Georgia-40");
+            Resources.LoadFont("Fonts/Georgia/Georgia-50");
+            Resources.LoadFont("Fonts/Georgia/Georgia-60");
+            Resources.LoadFont("Fonts/Impact/Impact-10");
+            Resources.LoadFont("Fonts/Impact/Impact-20");
+            Resources.LoadFont("Fonts/Impact/Impact-30");
+            Resources.LoadFont("Fonts/Impact/Impact-40");
+            Resources.LoadFont("Fonts/Impact/Impact-50");
+            Resources.LoadFont("Fonts/Impact/Impact-60");
+            Resources.LoadTexture("enemyShip");
         }
 
     }

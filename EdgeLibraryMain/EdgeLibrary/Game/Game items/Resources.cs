@@ -12,26 +12,34 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     /// <summary>
-    /// Stores all the textures and fonts for an EdgeGame
+    /// Stores all the textures and fonts - this is global
     /// </summary>
-    public class ContentLoader
+    public static class Resources
     {
-        private Dictionary<string, Texture2D> Textures;
-        private Dictionary<string, SpriteFont> Fonts;
-        private ContentManager Content;
+        private static Dictionary<string, Texture2D> Textures;
+        private static Dictionary<string, SpriteFont> Fonts;
+        private static ContentManager Content;
 
-        public string ContentRootDirectory { get { return Content.RootDirectory; } set { } }
+        public static string ContentRootDirectory { get { return Content.RootDirectory; } set { } }
 
-        public ContentLoader(ContentManager c)
+        public static void Init(ContentManager c)
         {
             Content = c;
             Textures = new Dictionary<string, Texture2D>();
             Fonts = new Dictionary<string, SpriteFont>();
+
+            Texture2D pixel = new Texture2D(EdgeGame.Instance.GraphicsDevice, 1, 1);
+            pixel.SetData<Color>(new Color[]{Color.White});
+            addTexture("Pixel", pixel);
+
+            Texture2D blank = new Texture2D(EdgeGame.Instance.GraphicsDevice, 1, 1);
+            blank.SetData<Color>(new Color[] { Color.Transparent });
+            addTexture("Blank", blank);
         }
 
         #region LOAD
         //Loads all the textures in a spritesheet
-        public void LoadTexturesInSpritesheet(string xmlPath, string spriteSheetLocation)
+        public static void LoadTexturesInSpritesheet(string xmlPath, string spriteSheetLocation)
         {
             foreach (var kvp in TextureTools.SplitSpritesheet(spriteSheetLocation, xmlPath))
             {
@@ -39,62 +47,49 @@ namespace EdgeLibrary
             }
         }
         //Loads a texture
-        public void LoadTexture(string path)
+        public static void LoadTexture(string path)
         {
             addTexture(MathTools.LastPortionOfPath(path), Content.Load<Texture2D>(path));
         }
-        public void LoadTexture(string path, string name)
+        public static void LoadTexture(string path, string name)
         {
             addTexture(name, Content.Load<Texture2D>(path));
         }
 
         //Loads a font
-        public void LoadFont(string path)
+        public static void LoadFont(string path)
         {
             addFont(MathTools.LastPortionOfPath(path), Content.Load<SpriteFont>(path));
         }
-        public void LoadFont(string path, string name)
+        public static void LoadFont(string path, string name)
         {
             addFont(name, Content.Load<SpriteFont>(path));
-        }
-
-
-        //Loads basic textures like Pixel, Blank, etc.
-        public void LoadBasicTextures(GraphicsDevice GraphicsDevice)
-        {
-            Texture2D pixel = new Texture2D(GraphicsDevice, 1, 1);
-            pixel.SetData<Color>(new Color[] { Color.White });
-            Textures.Add("Pixel", pixel);
-
-            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1);
-            blank.SetData<Color>(new Color[] { Color.Transparent });
-            Textures.Add("Blank", blank);
         }
         #endregion
 
         #region OTHER
         //Gets a texture from Content.Load() with the given path
-        public Texture2D TextureFromString(string texturePath)
+        public static Texture2D TextureFromString(string texturePath)
         {
             return Content.Load<Texture2D>(texturePath);
         }
         //Gets a font from Content.Load() with the given path
-        public SpriteFont FontFromString(string fontPath)
+        public static SpriteFont FontFromString(string fontPath)
         {
             return Content.Load<SpriteFont>(fontPath);
         }
         //Adds an already-generated texture to the index
-        public void addTexture(string textureName, Texture2D texture)
+        public static void addTexture(string textureName, Texture2D texture)
         {
             Textures.Add(textureName, texture);
         }
         //Adds an already-generated font to the index
-        public void addFont(string fontName, SpriteFont font)
+        public static void addFont(string fontName, SpriteFont font)
         {
             Fonts.Add(fontName, font);
         }
 
-        public Texture2D GetTexture(string textureName)
+        public static Texture2D GetTexture(string textureName)
         {
             foreach (var texture in Textures)
             {
@@ -105,7 +100,7 @@ namespace EdgeLibrary
             }
             return null;
         }
-        public SpriteFont GetFont(string fontName)
+        public static SpriteFont GetFont(string fontName)
         {
             foreach (var font in Fonts)
             {

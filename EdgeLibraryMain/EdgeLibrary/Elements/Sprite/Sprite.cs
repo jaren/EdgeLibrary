@@ -84,7 +84,7 @@ namespace EdgeLibrary
 
             if (textureName != null)
             {
-                Texture = EdgeGame.GetCurrentResources().GetTexture(textureName);
+                Texture = Resources.GetTexture(textureName);
             }
             reloadOriginPoint();
         }

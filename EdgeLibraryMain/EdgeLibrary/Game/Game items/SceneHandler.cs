@@ -14,6 +14,7 @@ namespace EdgeLibrary
     public class SceneHandler
     {
         public List<Scene> Scenes { get; protected set; }
+        public Scene CurrentScene { get { return selectedScene; } }
         private Scene selectedScene;
         public Color DebugDrawColor;
 
@@ -22,12 +23,6 @@ namespace EdgeLibrary
             Scenes = new List<Scene>();
             selectedScene = new Scene(sceneID);
             Scenes.Add(selectedScene);
-        }
-
-        //Gets the current scene
-        public Scene GetCurrentScene()
-        {
-            return selectedScene;
         }
 
         //Adds a scene

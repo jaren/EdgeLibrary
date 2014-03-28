@@ -85,7 +85,7 @@ namespace EdgeLibrary
             {
                 Color[] colors = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colors);
-                Texture2D returnTexture = new Texture2D(EdgeGame.GetCurrentGame().GraphicsDevice, texture.Width, texture.Height);
+                Texture2D returnTexture = new Texture2D(EdgeGame.Instance.GraphicsDevice, texture.Width, texture.Height);
                 returnTexture.SetData<Color>(colors);
                 return returnTexture;
             }
@@ -152,7 +152,7 @@ namespace EdgeLibrary
             public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
             {
                 Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
-                string completePath = string.Format("{0}\\{1}", EdgeGame.GetCurrentResources().ContentRootDirectory, XMLPath);
+                string completePath = string.Format("{0}\\{1}", Resources.ContentRootDirectory, XMLPath);
                 XDocument textureResourceData = XDocument.Load(completePath);
 
                 foreach (XElement element in textureResourceData.Root.Elements())
@@ -165,7 +165,7 @@ namespace EdgeLibrary
             }
             public static Dictionary<string, Texture2D> SplitSpritesheet(string spriteSheetTexture, string XMLPath)
             {
-                return SplitSpritesheet(EdgeGame.GetCurrentResources().TextureFromString(spriteSheetTexture), XMLPath);
+                return SplitSpritesheet(Resources.TextureFromString(spriteSheetTexture), XMLPath);
             }
             #endregion
 
