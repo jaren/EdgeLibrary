@@ -133,6 +133,12 @@ namespace EdgeLibrary
             base.Run();
         }
 
+        //Creates a new Texture2D from the graphics device
+        public static Texture2D CreateNewTexture(int width, int height)
+        {
+            return new Texture2D(GetCurrentGame().GraphicsDevice, width, height);
+        }
+
         //Returns the current running EdgeGame
         public static EdgeGame GetCurrentGame()
         {

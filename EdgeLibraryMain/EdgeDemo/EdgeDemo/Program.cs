@@ -14,9 +14,9 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Resolve all "TOINCLUDE"
     /// -Add a physics engine
     /// -Add a camera
+    /// -Add a new debug logger
     /// </summary>
 
     /// <summary>
@@ -37,14 +37,18 @@ namespace EdgeDemo
 
         static void game_OnInit(EdgeGame game)
         {
-            game.WindowSize = new Vector2(700);
+            game.WindowSize = new Vector2(1000);
             game.ClearColor = MathTools.ColorFromHex("#051047");
 
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
+            sprite.Movement.MoveTo(Vector2.Zero, 1);
             sprite.AddToGame();
 
             DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
             debug.AddToGame();
+
+            ParticleEmitter emitter = new ParticleEmitter("Pixel", new Vector2(400, 400));
+            emitter.AddToGame();
         }
 
         static void game_OnLoadContent(EdgeGame game)

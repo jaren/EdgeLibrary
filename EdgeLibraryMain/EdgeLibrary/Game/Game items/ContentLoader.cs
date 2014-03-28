@@ -20,6 +20,8 @@ namespace EdgeLibrary
         private Dictionary<string, SpriteFont> Fonts;
         private ContentManager Content;
 
+        public string ContentRootDirectory { get { return Content.RootDirectory; } set { } }
+
         public ContentLoader(ContentManager c)
         {
             Content = c;
@@ -28,7 +30,7 @@ namespace EdgeLibrary
         }
 
         #region LOAD
-        /* TOINCLUDE
+        //Loads all the textures in a spritesheet
         public void LoadTexturesInSpritesheet(string xmlPath, string spriteSheetLocation)
         {
             foreach (var kvp in TextureTools.SplitSpritesheet(spriteSheetLocation, xmlPath))
@@ -36,7 +38,6 @@ namespace EdgeLibrary
                 addTexture(kvp.Key, kvp.Value);
             }
         }
-         */
         //Loads a texture
         public void LoadTexture(string path)
         {
