@@ -34,13 +34,18 @@ namespace EdgeLibrary
         public SoundLoader Sounds;
         public SceneHandler SceneHandler;
 
+        //Gets the current running game
         private static EdgeGame Instance;
+
+        //Gets the FPS
+        public int FPS;
 
         //The color the graphicsdevice will clear each frame
         public Color ClearColor = Color.Black;
         //The color that debug draw will color in
         public Color DebugDrawColor { get { return SceneHandler.DebugDrawColor; } set { SceneHandler.DebugDrawColor = value; } }
 
+        //The draw state which the game will draw
         public DrawState DrawState = DrawState.Normal;
 
         //Gets/Sets the graphics preferred buffer size
@@ -104,6 +109,9 @@ namespace EdgeLibrary
         {
             SceneHandler.Update(gameTime);
             Input.Update(gameTime);
+
+            FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
+
             base.Update(gameTime);
             OnUpdate(gameTime, this);
         }
@@ -125,9 +133,20 @@ namespace EdgeLibrary
             base.Run();
         }
 
+        //Returns the current running EdgeGame
         public static EdgeGame GetCurrentGame()
         {
             return Instance;
+        }
+        //returns the current scene in the running EdgeGame
+        public static Scene GetCurrentScene()
+        {
+            return Instance.SceneHandler.GetCurrentScene();
+        }
+        //returns the current resources in the running EdgeGame
+        public static ContentLoader GetCurrentResources()
+        {
+            return Instance.Resources;
         }
     }
 }

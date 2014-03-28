@@ -99,12 +99,13 @@
     <Compile Include="Game\Elements\Sprite\Collision\CollisionBody.cs" />
     <Compile Include="Game\Elements\Sprite\Collision\Shape.cs" />
     <Compile Include="Game\Elements\Sprite\TextSprite.cs" />
-    <Compile Include="Game\Loaders\ContentLoader.cs" />
+    <Compile Include="Game\Game items\ContentLoader.cs" />
     <Compile Include="Game\EdgeGame.cs" />
-    <Compile Include="Game\Loaders\Input.cs" />
+    <Compile Include="Game\Game items\Tools\DebugText.cs" />
+    <Compile Include="Game\Game items\Tools\Input.cs" />
     <Compile Include="Game\Scene.cs" />
-    <Compile Include="Game\Loaders\SceneHandler.cs" />
-    <Compile Include="Game\Loaders\SoundLoader.cs" />
+    <Compile Include="Game\Game items\SceneHandler.cs" />
+    <Compile Include="Game\Game items\SoundLoader.cs" />
     <Compile Include="Game\Elements\Sprite\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\MathTools.cs" />

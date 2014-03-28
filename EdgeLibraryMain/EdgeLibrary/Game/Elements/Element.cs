@@ -14,7 +14,7 @@ namespace EdgeLibrary
     //Base for all "game elements" - stuff that needs to be updated or drawn
     public class Element
     {
-        //Used to identify the element, there can only be one of each ID per game
+        //Used to identify the element, there can only be one of each ID per scene
         public string ID { get; set; }
 
         //If set to true, the element will be removed the next frame
@@ -70,7 +70,7 @@ namespace EdgeLibrary
         //Adds the element to the game, basically a shortcut for EdgeGame.GetCurrentGame().SceneHandler.GetCurrentScene().AddElement(element)
         public void AddToGame()
         {
-            EdgeGame.GetCurrentGame().SceneHandler.GetCurrentScene().AddElement(this);
+            EdgeGame.GetCurrentScene().AddElement(this);
         }
 
         //Prepares the element for drawing

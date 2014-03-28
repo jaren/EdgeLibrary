@@ -13,9 +13,14 @@ namespace EdgeLibrary
 {
     public class Scene
     {
+        //Used to identify the scene
         public string ID { get; protected set; }
 
-        private List<Element> Elements;
+        //The elements in the current scene
+        public List<Element> Elements { get; protected set; }
+
+        //The image to display on the background of the screen
+        public Texture2D Background;
 
         //Used to check if two elements have the same ID
         private List<string> elementIDs;
@@ -87,6 +92,11 @@ namespace EdgeLibrary
         //Draws all of the elements in the scene
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            if (Background != null)
+            {
+                spriteBatch.Draw(Background, new Rectangle(0, 0, (int)EdgeGame.GetCurrentGame().WindowSize.X, (int)EdgeGame.GetCurrentGame().WindowSize.Y), Color.White);
+            }
+
             //Orders the elements by their draw layer
             Elements = Elements.OrderBy(x => x.DrawLayer).ToList();
 

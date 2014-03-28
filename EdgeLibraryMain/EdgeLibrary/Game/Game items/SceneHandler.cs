@@ -13,7 +13,7 @@ namespace EdgeLibrary
 {
     public class SceneHandler
     {
-        private List<Scene> Scenes;
+        public List<Scene> Scenes { get; protected set; }
         private Scene selectedScene;
         public Color DebugDrawColor;
 

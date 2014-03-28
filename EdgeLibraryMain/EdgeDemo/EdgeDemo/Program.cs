@@ -16,6 +16,7 @@ namespace EdgeDemo
     /// TODO:
     /// -Resolve all "TOINCLUDE"
     /// -Add a physics engine
+    /// -Add a camera
     /// </summary>
 
     /// <summary>
@@ -42,9 +43,8 @@ namespace EdgeDemo
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
             sprite.AddToGame();
 
-            TextSprite textSprite = new TextSprite("ComicSans-50", "Apple \n Pear \n Banana \n Orange \n", new Vector2(0, 200));
-            textSprite.CenterAsOrigin = false;
-            textSprite.AddToGame();
+            DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
+            debug.AddToGame();
         }
 
         static void game_OnLoadContent(EdgeGame game)
