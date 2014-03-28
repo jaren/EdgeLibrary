@@ -34,10 +34,12 @@ namespace EdgeLibrary
         public SoundLoader Sounds;
         public SceneHandler SceneHandler;
 
+        private static EdgeGame Instance;
+
         //The color the graphicsdevice will clear each frame
         public Color ClearColor = MathTools.ColorFromHex("#020721");
         //The color that debug draw will color in
-        public static Color DebugDrawColor = Color.White;
+        public Color DebugDrawColor { get { return SceneHandler.DebugDrawColor; } set { SceneHandler.DebugDrawColor = value; } }
 
         public DrawState DrawState = DrawState.Normal;
 
@@ -83,6 +85,8 @@ namespace EdgeLibrary
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
+            Resources.LoadBasicTextures(GraphicsDevice);
+
             base.LoadContent();
             OnLoadContent(this);
         }
@@ -109,6 +113,18 @@ namespace EdgeLibrary
             SceneHandler.Draw(gameTime, SpriteBatch, DrawState);
             base.Draw(gameTime);
             OnDraw(gameTime, this);
+        }
+
+        //Starts the game
+        public new void Run()
+        {
+            Instance = this;
+            base.Run();
+        }
+
+        public static EdgeGame GetCurrentGame()
+        {
+            return Instance;
         }
     }
 }

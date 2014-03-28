@@ -21,7 +21,7 @@ namespace EdgeLibrary
         public bool toRemove { get; protected set; }
 
         //Location of the element
-        public Vector2 Position { get; set; }
+        public virtual Vector2 Position { get; set; }
 
         //Which blend state to use when drawing the element
         public BlendState BlendState { get; set; }

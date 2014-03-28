@@ -15,6 +15,7 @@ namespace EdgeLibrary
     {
         private List<Scene> Scenes;
         private Scene selectedScene;
+        public Color DebugDrawColor;
 
         public SceneHandler(string sceneID)
         {
@@ -88,11 +89,11 @@ namespace EdgeLibrary
                     selectedScene.Draw(gameTime, spriteBatch);
                     break;
                 case DrawState.Debug:
-                    selectedScene.DrawDebug(gameTime, spriteBatch);
+                    selectedScene.DrawDebug(gameTime, spriteBatch, DebugDrawColor);
                     break;
                 case DrawState.Hybrid:
                     selectedScene.Draw(gameTime, spriteBatch);
-                    selectedScene.DrawDebug(gameTime, spriteBatch);
+                    selectedScene.DrawDebug(gameTime, spriteBatch, DebugDrawColor);
                     break;
             }
         }

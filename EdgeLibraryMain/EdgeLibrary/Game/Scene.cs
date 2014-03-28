@@ -25,6 +25,8 @@ namespace EdgeLibrary
             ID = id;
 
             Elements = new List<Element>();
+
+            elementIDs = new List<string>();
         }
 
         public void Update(GameTime gameTime)
@@ -32,6 +34,12 @@ namespace EdgeLibrary
             foreach (Element element in Elements)
             {
                 element.Update(gameTime);
+
+                //If the element is a sprite, then update the collision
+                if (element is Sprite)
+                {
+                    ((Sprite)element).UpdateCollision(gameTime, Elements);
+                }
             }
 
             //Checks if two elements have the same ID
@@ -67,13 +75,13 @@ namespace EdgeLibrary
             }
         }
 
-        public void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch)
+        public void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
             foreach (Element element in Elements)
             {
                 if (element is Sprite)
                 {
-                    ((Sprite)element).DebugDraw(gameTime, spriteBatch);
+                    ((Sprite)element).DrawDebug(gameTime, spriteBatch, color);
                 }
             }
         }
