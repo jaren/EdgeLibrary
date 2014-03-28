@@ -15,6 +15,7 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Resolve all "TOINCLUDE"
+    /// -Add a physics engine
     /// </summary>
 
     /// <summary>
@@ -40,7 +41,8 @@ namespace EdgeDemo
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
             sprite.AddToGame();
 
-            TextSprite textSprite = new TextSprite("ComicSans-40", "This is a text sprite", new Vector2(300, 500));
+            TextSprite textSprite = new TextSprite("ComicSans-50", "Apple \n Pear \n Banana \n Orange \n", new Vector2(300, 200));
+            textSprite.CenterAsOrigin = false;
             textSprite.AddToGame();
         }
 

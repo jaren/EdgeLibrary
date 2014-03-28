@@ -18,13 +18,16 @@ namespace EdgeLibrary
         public SpriteFont Font { get { return _font; } set { _font = value; reloadOriginPoint(); } }
         private SpriteFont _font;
 
-        //The width/height of the measured text
+        //The width/height of the measured text - the Height must be generated in a different way because the line breaks cause it to be generated incorrectly
         public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text).X; } }
-        public override float Height { get { return Font == null ? 0 : Font.MeasureString(Text).Y; } }
+        public override float Height { get { return Font == null ? 0 : Font.MeasureString(_text.Split("\n".ToArray())[0]).Y; } }
 
         //The text to display on the screen
         public string Text { get { return _text; } set { _text = value; reloadOriginPoint(); } }
         protected string _text;
+        protected string[] textLines;
+        protected Vector2[] textLinesOriginPoints;
+        protected float yLineDifference;
 
         public TextSprite(string fontName, string text, Vector2 position) : base("", position)
         {
@@ -49,10 +52,24 @@ namespace EdgeLibrary
         {
             if (Font != null && _text != null)
             {
+                textLines = _text.Split("\n".ToArray());
+                yLineDifference = _font.MeasureString(_text.Split("\n".ToArray())[0]).Y;
+                textLinesOriginPoints = new Vector2[textLines.Length];
+                for (int i = 0; i < textLines.Length; i++)
+                {
+                    if (_centerAsOrigin)
+                    {
+                        textLinesOriginPoints[i] = _font.MeasureString(textLines[i]) / 2;
+                    }
+                    else
+                    {
+                        textLinesOriginPoints[i] = Vector2.Zero;
+                    }
+                }
+
                 if (_centerAsOrigin)
                 {
-                    Vector2 Measured = Font.MeasureString(_text);
-                    OriginPoint = new Vector2(Measured.X / 2f, Measured.Y / 2f);
+                    OriginPoint = _font.MeasureString(_text)/2;
                 }
                 else
                 {
@@ -64,7 +81,10 @@ namespace EdgeLibrary
         //Draws the textsprite to the spritebatch
         protected override void  DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(_font, _text, Position, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
+            for (int i = 0; i < textLines.Length; i++ )
+            {
+                spriteBatch.DrawString(_font, textLines[i], Position + new Vector2(0, yLineDifference* i), Color, Rotation, textLinesOriginPoints[i], Scale, SpriteEffects, 0);
+            }
         }
     }
 }
