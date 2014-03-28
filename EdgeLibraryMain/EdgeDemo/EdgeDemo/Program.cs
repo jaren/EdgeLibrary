@@ -37,11 +37,12 @@ namespace EdgeDemo
         static void game_OnInit(EdgeGame game)
         {
             game.WindowSize = new Vector2(700);
+            game.ClearColor = MathTools.ColorFromHex("#051047");
 
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
             sprite.AddToGame();
 
-            TextSprite textSprite = new TextSprite("ComicSans-50", "Apple \n Pear \n Banana \n Orange \n", new Vector2(300, 200));
+            TextSprite textSprite = new TextSprite("ComicSans-50", "Apple \n Pear \n Banana \n Orange \n", new Vector2(0, 200));
             textSprite.CenterAsOrigin = false;
             textSprite.AddToGame();
         }

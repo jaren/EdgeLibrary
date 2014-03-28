@@ -48,6 +48,12 @@ namespace EdgeLibrary
         public event CollisionEvent OnCollideStart = delegate { };
         public event CollisionEvent OnCollide = delegate { };
 
+        //Gives a button functionality to sprites
+        public delegate void ButtonEvent(Sprite sender, Vector2 mousePosition, GameTime gameTime);
+        public event ButtonEvent OnClick = delegate { };
+        public event ButtonEvent OnMouseOver = delegate { };
+        public event ButtonEvent OnMouseOff = delegate { };
+
         public Sprite(string textureName, Vector2 position)
         {
             Position = position;
@@ -128,6 +134,27 @@ namespace EdgeLibrary
                 else
                 {
                     CollisionBody.Position = new Vector2(Position.X + Width / 2, Position.Y + Height / 2);
+                }
+
+                //Checking if this sprite collides with the mouse
+                if (CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.MousePosition, 1, 1))))
+                {
+                    //The mouse just clicked this sprite
+                    if (Input.JustLeftClicked())
+                    {
+                        OnClick(this, Input.MousePosition, gameTime);
+                    }
+
+                    //The mouse just moved over this sprite
+                    if (!CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
+                    {
+                        OnMouseOver(this, Input.MousePosition, gameTime);
+                    }
+                }
+                //If it hasn't collided, then check if it just moved off
+                else if (CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
+                {
+                    OnMouseOff(this, Input.MousePosition, gameTime);
                 }
 
                 //Loops through all the elements and checks if they're colliding

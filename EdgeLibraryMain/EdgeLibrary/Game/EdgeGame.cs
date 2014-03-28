@@ -37,7 +37,7 @@ namespace EdgeLibrary
         private static EdgeGame Instance;
 
         //The color the graphicsdevice will clear each frame
-        public Color ClearColor = MathTools.ColorFromHex("#020721");
+        public Color ClearColor = Color.Black;
         //The color that debug draw will color in
         public Color DebugDrawColor { get { return SceneHandler.DebugDrawColor; } set { SceneHandler.DebugDrawColor = value; } }
 
@@ -77,6 +77,7 @@ namespace EdgeLibrary
         //Initializes the game
         protected override void Initialize()
         {
+            Input.Init();
             base.Initialize();
             OnInit(this);
         }
@@ -102,6 +103,7 @@ namespace EdgeLibrary
         protected override void Update(GameTime gameTime)
         {
             SceneHandler.Update(gameTime);
+            Input.Update(gameTime);
             base.Update(gameTime);
             OnUpdate(gameTime, this);
         }
@@ -111,6 +113,7 @@ namespace EdgeLibrary
         {
             GraphicsDevice.Clear(ClearColor);
             SceneHandler.Draw(gameTime, SpriteBatch, DrawState);
+            Input.Draw(gameTime, SpriteBatch);
             base.Draw(gameTime);
             OnDraw(gameTime, this);
         }

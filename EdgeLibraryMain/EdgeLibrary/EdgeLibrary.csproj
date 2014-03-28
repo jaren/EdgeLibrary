@@ -101,6 +101,7 @@
     <Compile Include="Game\Elements\Sprite\TextSprite.cs" />
     <Compile Include="Game\Loaders\ContentLoader.cs" />
     <Compile Include="Game\EdgeGame.cs" />
+    <Compile Include="Game\Loaders\Input.cs" />
     <Compile Include="Game\Scene.cs" />
     <Compile Include="Game\Loaders\SceneHandler.cs" />
     <Compile Include="Game\Loaders\SoundLoader.cs" />
