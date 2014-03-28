@@ -24,7 +24,7 @@ namespace EdgeLibrary
         public static string GenerateID(Element element)
         {
             //If no other elements of this type exist, then create an index for it
-            if (GivenIDs[element.GetType()] == null)
+            if (!GivenIDs.ContainsKey(element.GetType()))
             {
                 GivenIDs.Add(element.GetType(), 0);
             }

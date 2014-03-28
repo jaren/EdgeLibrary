@@ -29,6 +29,26 @@ namespace EdgeLibrary
             elementIDs = new List<string>();
         }
 
+        //Adds an element
+        public void AddElement(Element element)
+        {
+            Elements.Add(element);
+        }
+
+        //Gets the element with the given ID
+        public Element GetElement(string id)
+        {
+            foreach (Element element in Elements)
+            {
+                if (element.ID == id)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
+
+        //Updates all of the elements in the scene
         public void Update(GameTime gameTime)
         {
             foreach (Element element in Elements)
@@ -64,6 +84,7 @@ namespace EdgeLibrary
             }
         }
 
+        //Draws all of the elements in the scene
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             //Orders the elements by their draw layer
@@ -75,6 +96,7 @@ namespace EdgeLibrary
             }
         }
 
+        //Draws all the collision bodies of the elements in the scene
         public void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
             foreach (Element element in Elements)

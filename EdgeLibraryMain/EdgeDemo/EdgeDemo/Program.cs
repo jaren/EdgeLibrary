@@ -1,20 +1,33 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using EdgeLibrary;
 
 namespace EdgeDemo
 {
-#if WINDOWS || XBOX
-
     /// <summary>
     /// TODO:
     /// -Resolve all "TOINCLUDE"
     /// </summary>
 
+    /// <summary>
+    /// A demo of EdgeLibrary
+    /// </summary>
+    #if WINDOWS || XBOX
     static class Program
     {
+        static EdgeGame game;
+
         static void Main(string[] args)
         {
-            EdgeGame game = new EdgeGame();
+            game = new EdgeGame();
             game.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
             game.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
             game.Run();
@@ -22,6 +35,10 @@ namespace EdgeDemo
 
         static void game_OnInit(EdgeGame game)
         {
+            game.WindowSize = new Vector2(700);
+
+            Sprite sprite = new Sprite("enemyShip", new Vector2(400));
+            sprite.AddToGame();
         }
 
         static void game_OnLoadContent(EdgeGame game)
@@ -50,9 +67,10 @@ namespace EdgeDemo
             game.Resources.LoadFont("Fonts/Impact/Impact-40");
             game.Resources.LoadFont("Fonts/Impact/Impact-50");
             game.Resources.LoadFont("Fonts/Impact/Impact-60");
+            game.Resources.LoadTexture("enemyShip");
         }
 
     }
-#endif
+    #endif
 }
 

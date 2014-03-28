@@ -52,7 +52,11 @@ namespace EdgeLibrary
         {
             Position = position;
 
+            //Sets the default visual effects
             Scale = Vector2.One;
+            Color = Color.White;
+            Rotation = 0f;
+            SpriteEffects = SpriteEffects.None;
 
             _centerAsOrigin = true;
 

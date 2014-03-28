@@ -83,6 +83,8 @@ namespace EdgeLibrary
         //Draws the selected scene based on draw state
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, DrawState drawState)
         {
+            spriteBatch.Begin();
+
             switch (drawState)
             {
                 case DrawState.Normal:
@@ -96,6 +98,8 @@ namespace EdgeLibrary
                     selectedScene.DrawDebug(gameTime, spriteBatch, DebugDrawColor);
                     break;
             }
+
+            spriteBatch.End();
         }
     }
 }

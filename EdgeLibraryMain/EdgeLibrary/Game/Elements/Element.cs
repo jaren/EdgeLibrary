@@ -67,6 +67,12 @@ namespace EdgeLibrary
             }
         }
 
+        //Adds the element to the game, basically a shortcut for EdgeGame.GetCurrentGame().SceneHandler.GetCurrentScene().AddElement(element)
+        public void AddToGame()
+        {
+            EdgeGame.GetCurrentGame().SceneHandler.GetCurrentScene().AddElement(this);
+        }
+
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
