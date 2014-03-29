@@ -44,9 +44,7 @@ namespace EdgeLibrary
         protected List<string> currentlyCollidingWithIDs;
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
-        public List<Modifier> Modifiers;
-        public MovementModifier Movement;
-        public AppearanceModifier Appearance;
+        public Dictionary<string, Modifier> Modifiers { get; protected set; }
 
         //Used for collisions
         public delegate void CollisionEvent(Sprite sender, Sprite collided, GameTime gameTime);
@@ -71,12 +69,7 @@ namespace EdgeLibrary
 
             _centerAsOrigin = true;
 
-            Modifiers = new List<Modifier>();
-            Movement = new MovementModifier();
-            Modifiers.Add(Movement);
-            Appearance = new AppearanceModifier();
-            Modifiers.Add(Appearance);
-
+            Modifiers = new Dictionary<string, Modifier>();
             currentlyCollidingWithIDs = new List<string>();
 
             CollisionBodyType = ShapeTypes.rectangle;
@@ -132,35 +125,22 @@ namespace EdgeLibrary
         //Updates the modifiers
         protected override void UpdateObject(GameTime gameTime)
         {
-            foreach (Modifier modifier in Modifiers)
+            foreach (KeyValuePair<string, Modifier> modifier in Modifiers)
             {
-                modifier.Update(this, gameTime);
+                modifier.Value.Update(this, gameTime);
             }
         }
         
         //Adds a modifier
         public void AddModifier(Modifier modifier)
         {
-            Modifiers.Add(modifier);
+            Modifiers.Add(modifier.ID, modifier);
         }
 
         //Removes a modifier
         public bool RemoveModifier(string id)
         {
-            return Modifiers.Remove(GetModifier(id));
-        }
-
-        //Gets a modifier
-        public Modifier GetModifier(string id)
-        {
-            foreach (Modifier modifier in Modifiers)
-            {
-                if (modifier.ID == id)
-                {
-                    return modifier;
-                }
-            }
-            return null;
+            return Modifiers.Remove(id);
         }
 
         //Checks if this is colliding with any other sprite

@@ -15,6 +15,7 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Make modifiers easier to use - automatically add all subclasses to Sprites as variables (used like Sprite.Movement), if possible
+    /// if not, then add all subclasses of Modifier to sprites automatically
     /// -Add a physics engine
     /// -Add a camera
     /// </summary>
@@ -41,7 +42,8 @@ namespace EdgeDemo
             game.ClearColor = MathTools.ColorFromHex("#051047");
 
             Sprite sprite = new Sprite("enemyShip", new Vector2(400));
-            sprite.Movement.MoveTo(Vector2.Zero, 1);
+            sprite.AddModifier(new MovementModifier());
+            ((MovementModifier)sprite.Modifiers["Movement"]).MoveTo(Vector2.Zero, 1);
             sprite.AddToGame();
 
             DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
