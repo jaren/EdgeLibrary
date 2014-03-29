@@ -37,7 +37,19 @@ namespace EdgeLibrary
         //Adds an element
         public void AddElement(Element element)
         {
+            DebugLogger.LogAdd(element.GetType().Name + " Added", "ID: " + element.ID);
             Elements.Add(element);
+        }
+
+        //Removes an element
+        public bool RemoveElement(Element element)
+        {
+            DebugLogger.LogRemove(element.GetType().Name + " Removed", "ID: " + element.ID);
+            return Elements.Remove(element);
+        }
+        public bool RemoveElement(string element)
+        {
+            return RemoveElement(GetElement(element));
         }
 
         //Gets the element with the given ID

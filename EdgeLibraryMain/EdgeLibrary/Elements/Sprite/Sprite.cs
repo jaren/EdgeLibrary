@@ -187,18 +187,21 @@ namespace EdgeLibrary
                     //The mouse just clicked this sprite
                     if (Input.JustLeftClicked())
                     {
+                        DebugLogger.LogEvent(GetType().Name + " Clicked", "ID: " + ID, "Mouse Location: " + Input.MousePosition.ToString(), "GameTime: " + gameTime.TotalGameTime.ToString()); 
                         OnClick(this, Input.MousePosition, gameTime);
                     }
 
                     //The mouse just moved over this sprite
                     if (!CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
                     {
+                        DebugLogger.LogEvent(GetType().Name + " Moused Over", "ID: " + ID, "Mouse Location: " + Input.MousePosition.ToString(), "GameTime: " + gameTime.TotalGameTime.ToString()); 
                         OnMouseOver(this, Input.MousePosition, gameTime);
                     }
                 }
                 //If it hasn't collided, then check if it just moved off
                 else if (CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
                 {
+                    DebugLogger.LogEvent(GetType().Name + " Moused Off", "ID: " + ID, "Mouse Location: " + Input.MousePosition.ToString(), "GameTime: " + gameTime.TotalGameTime.ToString()); 
                     OnMouseOff(this, Input.MousePosition, gameTime);
                 }
 
@@ -216,6 +219,7 @@ namespace EdgeLibrary
                                 OnCollide(this, elementAsSprite, gameTime);
                                 if (!currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                 {
+                                    DebugLogger.LogEvent(MathTools.LastPortionOfPath(GetType().ToString(), '.') + " Collided", "ID: " + ID, "Other sprite type: " + elementAsSprite.GetType().Name, "Other sprite ID: " + elementAsSprite.ID, "GameTime: " + gameTime.TotalGameTime.ToString()); 
                                     OnCollideStart(this, elementAsSprite, gameTime);
                                     currentlyCollidingWithIDs.Add(elementAsSprite.ID);
                                 }

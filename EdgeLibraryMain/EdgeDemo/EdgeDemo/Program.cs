@@ -17,7 +17,6 @@ namespace EdgeDemo
     /// -Make modifiers easier to use - automatically add all subclasses to Sprites as variables (used like Sprite.Movement), if possible
     /// -Add a physics engine
     /// -Add a camera
-    /// -Add a new debug logger
     /// </summary>
 
     /// <summary>

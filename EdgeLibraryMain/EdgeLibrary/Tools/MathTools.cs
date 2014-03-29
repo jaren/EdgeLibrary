@@ -29,7 +29,7 @@ namespace EdgeLibrary
                 GivenIDs.Add(element.GetType(), 0);
             }
             GivenIDs[element.GetType()]++;
-            return element.GetType().ToString() + GivenIDs[element.GetType()].ToString();
+            return element.GetType().Name + GivenIDs[element.GetType()].ToString();
         }
 
         /// <summary>

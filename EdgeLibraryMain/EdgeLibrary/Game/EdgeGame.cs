@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace EdgeLibrary
 {
@@ -76,8 +77,10 @@ namespace EdgeLibrary
         //Initializes the game
         protected override void Initialize()
         {
+            DebugLogger.Init();
             base.Initialize();
             OnInit(this);
+            DebugLogger.Log('~', "EdgeGame Successfully Initialized");
         }
 
         //Loads all the game content
@@ -90,13 +93,15 @@ namespace EdgeLibrary
 
             base.LoadContent();
             OnLoadContent(this);
+            DebugLogger.Log('~', "EdgeGame Successfully Loaded Content"); 
         }
 
         //Unloads all the game content
         protected override void UnloadContent()
         {
-            OnUnloadContent(this);
             base.UnloadContent();
+            OnUnloadContent(this);
+            DebugLogger.Log('~', "EdgeGame Successfully Unloaded Content"); 
         }
 
         //Updates the game

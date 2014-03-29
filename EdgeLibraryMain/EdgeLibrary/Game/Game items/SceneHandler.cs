@@ -28,6 +28,7 @@ namespace EdgeLibrary
         //Adds a scene
         public void AddScene(Scene scene)
         {
+            DebugLogger.LogAdd("Scene Added", "ID: " + scene.ID);
             Scenes.Add(scene);
         }
 
@@ -62,6 +63,7 @@ namespace EdgeLibrary
         //Deletes a specific scene
         public bool RemoveScene(Scene scene)
         {
+            DebugLogger.LogRemove("Scene Removed", "ID: " + scene.ID);
             return Scenes.Remove(scene);
         }
         public bool RemoveScene(string id)
