@@ -37,7 +37,7 @@ namespace EdgeDemo
         static void game_OnInit(EdgeGame game)
         {
             game.ClearColor = Color.Black;
-            game.Camera.Position = new Vector2(600);
+            game.Camera.Position = new Vector2(500);
 
             DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
             debug.AddToGame();

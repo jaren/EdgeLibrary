@@ -20,6 +20,9 @@ namespace EdgeLibrary
         //If set to true, the element will be removed the next frame
         public bool toRemove { get; protected set; }
 
+        //If set to false, the element will not move with the camera
+        public bool FollowsCamera { get; set; }
+
         //Location of the element
         public virtual Vector2 Position { get; set; }
 
@@ -42,6 +45,7 @@ namespace EdgeLibrary
             ID = MathTools.GenerateID(this);
 
             Visible = true;
+            FollowsCamera = true;
             BlendState = BlendState.AlphaBlend;
         }
 
@@ -78,18 +82,34 @@ namespace EdgeLibrary
         {
             if (Visible)
             {
-                if (BlendState != BlendState.AlphaBlend)
+                if (!FollowsCamera)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState);
+                }
+                else
+                {
+                    if (BlendState != BlendState.AlphaBlend)
+                    {
+                        spriteBatch.End();
+                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                    }
                 }
 
                 DrawObject(gameTime, spriteBatch);
 
-                if (BlendState != BlendState.AlphaBlend)
+                if (!FollowsCamera)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                }
+                else
+                {
+                    if (BlendState != BlendState.AlphaBlend)
+                    {
+                        spriteBatch.End();
+                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                    }
                 }
 
                 OnDraw(this, gameTime);
