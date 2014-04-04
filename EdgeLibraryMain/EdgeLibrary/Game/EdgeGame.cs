@@ -31,6 +31,9 @@ namespace EdgeLibrary
         private GraphicsDeviceManager Graphics;
         public SceneHandler SceneHandler;
 
+        //Used for drawing the game
+        public Camera Camera;
+
         //Gets the current running game
         public static EdgeGame Instance { get; private set; }
 
@@ -46,7 +49,21 @@ namespace EdgeLibrary
         public DrawState DrawState = DrawState.Normal;
 
         //Gets/Sets the graphics preferred buffer size
-        public Vector2 WindowSize { get { return new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight); } set { Graphics.PreferredBackBufferWidth = (int)value.X; Graphics.PreferredBackBufferHeight = (int)value.Y; Graphics.ApplyChanges(); } }
+        public Vector2 WindowSize
+        { 
+            get 
+            { 
+                return new Vector2(Graphics.PreferredBackBufferWidth, Graphics.PreferredBackBufferHeight);
+            }
+            set 
+            { 
+                Graphics.PreferredBackBufferWidth = (int)value.X;
+                Graphics.PreferredBackBufferHeight = (int)value.Y;
+                Graphics.ApplyChanges();
+
+                Camera = new Camera(WindowSize / 2, GraphicsDevice);
+            }
+        }
 
         //The events for changing the game initialization outside of the game
         public delegate void EdgeGameEvent(EdgeGame game);
@@ -86,7 +103,9 @@ namespace EdgeLibrary
         //Loads all the game content
         protected override void LoadContent()
         {
+            Camera = new Camera(WindowSize / 2, GraphicsDevice);
             SpriteBatch = new SpriteBatch(GraphicsDevice);
+
             Resources.Init(Content);
             Sounds.Init(Content);
             Input.Init();
@@ -119,9 +138,16 @@ namespace EdgeLibrary
         //Draws the game
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(Camera.Target);
+
             GraphicsDevice.Clear(ClearColor);
             SceneHandler.Draw(gameTime, SpriteBatch, DrawState);
             Input.Draw(gameTime, SpriteBatch);
+
+            GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(ClearColor);
+            Camera.Draw(SpriteBatch);
+
             base.Draw(gameTime);
             OnDraw(gameTime, this);
         }

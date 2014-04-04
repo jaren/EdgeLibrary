@@ -96,6 +96,7 @@
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\Miscellaneous\Panel.cs" />
     <Compile Include="Elements\Miscellaneous\Ticker.cs" />
+    <Compile Include="Game\Camera.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Elements\Particle\Particle.cs" />
     <Compile Include="Elements\Particle\ParticleEmitter.cs" />

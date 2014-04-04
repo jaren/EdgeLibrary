@@ -16,7 +16,7 @@ namespace EdgeDemo
     /// TODO:
     /// -Add Scene Transitions
     /// -Add a physics engine
-    /// -Add a camera
+    /// -Make the camera able to draw things outside of the screen
     /// </summary>
 
     /// <summary>
