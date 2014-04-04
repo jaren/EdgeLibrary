@@ -45,6 +45,8 @@ namespace EdgeLibrary
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
         public Dictionary<string, Modifier> Modifiers { get; protected set; }
+        public MovementModifier MovementModifier;
+        public AppearanceModifier AppearanceModifier;
 
         //Used for collisions
         public delegate void CollisionEvent(Sprite sender, Sprite collided, GameTime gameTime);
@@ -70,6 +72,11 @@ namespace EdgeLibrary
             _centerAsOrigin = true;
 
             Modifiers = new Dictionary<string, Modifier>();
+            MovementModifier = new MovementModifier();
+            AddModifier(MovementModifier);
+            AppearanceModifier = new AppearanceModifier();
+            AddModifier(AppearanceModifier);
+
             currentlyCollidingWithIDs = new List<string>();
 
             CollisionBodyType = ShapeTypes.rectangle;

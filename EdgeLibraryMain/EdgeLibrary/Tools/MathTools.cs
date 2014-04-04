@@ -31,6 +31,16 @@ namespace EdgeLibrary
             GivenIDs[element.GetType()]++;
             return element.GetType().Name + GivenIDs[element.GetType()].ToString();
         }
+        public static string GenerateID(Type t)
+        {
+            //If no other objects of this type exist, then create an index for it
+            if (!GivenIDs.ContainsKey(t))
+            {
+                GivenIDs.Add(t, 0);
+            }
+            GivenIDs[t]++;
+            return t.Name + GivenIDs[t].ToString();
+        }
 
         /// <summary>
         /// Retrieves a color by its name.

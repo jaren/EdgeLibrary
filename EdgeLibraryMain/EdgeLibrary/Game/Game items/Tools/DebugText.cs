@@ -19,7 +19,7 @@ namespace EdgeLibrary
         {
             _text = "Mouse Position: (" + Input.MousePosition.X.ToString() + ", " + Input.MousePosition.Y.ToString() + ")\n";
             _text += "FPS: " + EdgeGame.Instance.FPS.ToString();
-            _text += "Elements in current scene (" + EdgeGame.Instance.SceneHandler.CurrentScene.Elements.Count.ToString() + "): ";
+            _text += "\nElements in current scene (" + EdgeGame.Instance.SceneHandler.CurrentScene.Elements.Count.ToString() + "): ";
             foreach (Element element in EdgeGame.Instance.SceneHandler.CurrentScene.Elements)
             {
                 _text += element.ID + ", ";
@@ -37,6 +37,7 @@ namespace EdgeLibrary
             {
                 _text.Remove(_text.Length - 2);
             }
+            reloadOriginPoint();
             base.UpdateObject(gameTime);
         }
     }

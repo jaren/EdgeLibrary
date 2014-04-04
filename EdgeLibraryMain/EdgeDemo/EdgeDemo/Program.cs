@@ -14,8 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Make modifiers easier to use - automatically add all subclasses to Sprites as variables (used like Sprite.Movement), if possible
-    /// if not, then add all subclasses of Modifier to sprites automatically
+    /// -Add Scene Transitions
     /// -Add a physics engine
     /// -Add a camera
     /// </summary>
@@ -38,23 +37,28 @@ namespace EdgeDemo
 
         static void game_OnInit(EdgeGame game)
         {
-            game.WindowSize = new Vector2(1000);
-            game.ClearColor = MathTools.ColorFromHex("#051047");
-
-            Sprite sprite = new Sprite("enemyShip", new Vector2(400));
-            sprite.AddModifier(new MovementModifier());
-            ((MovementModifier)sprite.Modifiers["Movement"]).MoveTo(Vector2.Zero, 1);
-            sprite.AddToGame();
+            game.ClearColor = Color.Black;
 
             DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
             debug.AddToGame();
 
             ParticleEmitter emitter = new ParticleEmitter("Pixel", new Vector2(400, 400));
+            emitter.Position = game.WindowSize / 2;
+            emitter.SetScale(new Vector2(50), new Vector2(70));
+            emitter.SetVelocity(new Vector2(-5), new Vector2(5));
+            emitter.BlendState = BlendState.AlphaBlend;
+            emitter.SetLife(3000);
+            emitter.EmitWait = 0;
+            emitter.SetEmitArea(0, 0);
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent);
+            emitter.SetColor(index);
             emitter.AddToGame();
         }
 
         static void game_OnLoadContent(EdgeGame game)
         {
+            game.WindowSize = new Vector2(1000);
+
             Resources.LoadFont("Fonts/Comic Sans/ComicSans-10");
             Resources.LoadFont("Fonts/Comic Sans/ComicSans-20");
             Resources.LoadFont("Fonts/Comic Sans/ComicSans-30");
@@ -79,7 +83,8 @@ namespace EdgeDemo
             Resources.LoadFont("Fonts/Impact/Impact-40");
             Resources.LoadFont("Fonts/Impact/Impact-50");
             Resources.LoadFont("Fonts/Impact/Impact-60");
-            Resources.LoadTexture("enemyShip");
+            Resources.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
+            Resources.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
         }
 
     }

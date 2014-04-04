@@ -47,6 +47,35 @@ namespace EdgeLibrary
                 Colorize(returnTexture, color, factor);
                 return returnTexture;
             }
+            //Flips a texture - vertical: if true, flips vertically; if not, flips horizontally
+            public static void Flip(Texture2D texture, bool vertical)
+            {
+                Color[] colorData = new Color[texture.Width * texture.Height];
+                texture.GetData<Color>(colorData);
+                Color[] newColorData = new Color[texture.Width * texture.Height];
+                for (int x = 0; x < texture.Width; x++)
+                {
+                    for (int y = 0; y < texture.Height; y++)
+                    {
+                        if (vertical)
+                        {
+                            newColorData[x + y * texture.Width] = colorData[x + (texture.Height - y) * texture.Width];
+                        }
+                        else
+                        {
+                            newColorData[x + y * texture.Width] = colorData[(texture.Width - x) + y * texture.Width];
+                        }
+                    }
+                }
+                texture.SetData<Color>(newColorData);
+            }
+            //The same as Flip, but doesn't modify the original texture and instead returns a modified copy
+            public static Texture2D GetAsFlipped(Texture2D texture, bool vertical)
+            {
+                Texture2D returnTexture = Copy(texture);
+                Flip(returnTexture, vertical);
+                return returnTexture;
+            }
             //Sets the inner rectangle portion of a Texture2D
             public static void SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
             {
@@ -102,7 +131,7 @@ namespace EdgeLibrary
             public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
             {
                 Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
-                string completePath = string.Format("{0}\\{1}", Resources.ContentRootDirectory, XMLPath);
+                string completePath = string.Format("{0}\\{1}.xml", Resources.ContentRootDirectory, XMLPath);
                 XDocument textureResourceData = XDocument.Load(completePath);
 
                 foreach (XElement element in textureResourceData.Root.Elements())
