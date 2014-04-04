@@ -141,8 +141,11 @@ namespace EdgeLibrary
             GraphicsDevice.SetRenderTarget(Camera.Target);
 
             GraphicsDevice.Clear(ClearColor);
+
+            SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, Camera.GetTransform());
             SceneHandler.Draw(gameTime, SpriteBatch, DrawState);
             Input.Draw(gameTime, SpriteBatch);
+            SpriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
             GraphicsDevice.Clear(ClearColor);

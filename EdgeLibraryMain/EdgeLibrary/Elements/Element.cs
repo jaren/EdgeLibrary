@@ -81,7 +81,7 @@ namespace EdgeLibrary
                 if (BlendState != BlendState.AlphaBlend)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState);
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
                 }
 
                 DrawObject(gameTime, spriteBatch);
@@ -89,7 +89,7 @@ namespace EdgeLibrary
                 if (BlendState != BlendState.AlphaBlend)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Deferred, BlendState);
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
                 }
 
                 OnDraw(this, gameTime);

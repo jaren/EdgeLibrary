@@ -16,7 +16,6 @@ namespace EdgeDemo
     /// TODO:
     /// -Add Scene Transitions
     /// -Add a physics engine
-    /// -Make the camera able to draw things outside of the screen
     /// </summary>
 
     /// <summary>
@@ -38,19 +37,20 @@ namespace EdgeDemo
         static void game_OnInit(EdgeGame game)
         {
             game.ClearColor = Color.Black;
+            game.Camera.Position = new Vector2(600);
 
             DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
             debug.AddToGame();
 
-            ParticleEmitter emitter = new ParticleEmitter("Pixel", new Vector2(400, 400));
+            ParticleEmitter emitter = new ParticleEmitter("fire", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
-            emitter.SetScale(new Vector2(50), new Vector2(70));
+            emitter.SetScale(new Vector2(5), new Vector2(7));
             emitter.SetVelocity(new Vector2(-5), new Vector2(5));
-            emitter.BlendState = BlendState.AlphaBlend;
-            emitter.SetLife(3000);
+            emitter.BlendState = BlendState.Additive;
+            emitter.SetLife(5000);
             emitter.EmitWait = 0;
             emitter.SetEmitArea(0, 0);
-            ColorChangeIndex index = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent);
+            ColorChangeIndex index = new ColorChangeIndex(700, Color.White, Color.Orange, Color.Purple, Color.Orange, Color.Purple, Color.Transparent);
             emitter.SetColor(index);
             emitter.AddToGame();
         }
