@@ -24,6 +24,7 @@ namespace EdgeLibrary
         public static Sprite MouseSprite;
         public static Vector2 MousePosition { get { return new Vector2(mouse.X, mouse.Y); } set { } }
         public static Vector2 PreviousMousePosition { get { return new Vector2(previousMouse.X, previousMouse.Y); } set { } }
+        public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
 
         public static void Init() 
         {

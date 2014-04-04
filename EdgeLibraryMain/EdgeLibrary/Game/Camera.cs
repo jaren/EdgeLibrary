@@ -19,7 +19,7 @@ namespace EdgeLibrary
         public float Scale;
         public float Rotation;
         public RenderTarget2D Target;
-        private Vector2 TargetOriginPoint;
+        private Vector2 HalfScreenSize;
 
         //Used for clamping the camera position/rotation/scale to the element
         private Element clampedElement;
@@ -39,9 +39,15 @@ namespace EdgeLibrary
         //Returns the spritebatch transformation used with this camera
         public Matrix GetTransform()
         {
+            //Creates the transform matrix
             Matrix matrix = Matrix.Identity
-                * Matrix.CreateTranslation(Position.X - TargetOriginPoint.X, Position.Y - TargetOriginPoint.Y, 0)
-                * Matrix.CreateRotationZ(Rotation)
+                //Adds the position
+                * Matrix.CreateTranslation(-Position.X, -Position.Y, 0)
+                //Adds the rotation
+                * Matrix.CreateRotationZ(MathHelper.ToRadians(Rotation))
+                //Adds the origin
+                * Matrix.CreateTranslation(HalfScreenSize.X * Scale, HalfScreenSize.Y * Scale, 0)
+                //Adds the scale
                 * Matrix.CreateScale(new Vector3(Scale));
             return matrix;
         }
@@ -50,7 +56,7 @@ namespace EdgeLibrary
         public void ReloadSize(GraphicsDevice graphicsDevice)
         {
             Target = new RenderTarget2D(graphicsDevice, (int)graphicsDevice.PresentationParameters.BackBufferWidth, (int)graphicsDevice.PresentationParameters.BackBufferHeight);
-            TargetOriginPoint = new Vector2(Target.Width, Target.Height) / 2;
+            HalfScreenSize = new Vector2(Target.Width, Target.Height) / 2;
         }
 
         //Updates the position/rotation/scale with the clamped element
@@ -69,7 +75,7 @@ namespace EdgeLibrary
         {
             //Draws the render target to the middle of the screen with the rotation and scale
             spriteBatch.Begin();
-            spriteBatch.Draw(Target, TargetOriginPoint, null, Color.White, MathHelper.ToRadians(Rotation), TargetOriginPoint, Scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(Target, Vector2.Zero, Color.White);
             spriteBatch.End();
         }
         

@@ -80,8 +80,11 @@ namespace EdgeLibrary
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            //If it's visible, then draw
             if (Visible)
             {
+                //If it doesn't follow the camera, then restart the spritebatch without the transformations and with the BlendState
+                //If it does, then restart the spritebatch with the BlendState if it's necessary
                 if (!FollowsCamera)
                 {
                     spriteBatch.End();
@@ -96,20 +99,14 @@ namespace EdgeLibrary
                     }
                 }
 
+                //Draws the element
                 DrawObject(gameTime, spriteBatch);
 
-                if (!FollowsCamera)
+                //Restart the spritebatch if it's necessary
+                if (BlendState != BlendState.AlphaBlend || !FollowsCamera)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                }
-                else
-                {
-                    if (BlendState != BlendState.AlphaBlend)
-                    {
-                        spriteBatch.End();
-                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
-                    }
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
                 }
 
                 OnDraw(this, gameTime);

@@ -14,8 +14,12 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Add Scene Transitions
     /// -Add a physics engine
+    /// -Make camera scaling based off center, not top left
+    /// 
+    /// Optional TODO:
+    /// -Add the ability to render a scene to a RenderTarget2D
+    /// -Add scene transitions
     /// </summary>
 
     /// <summary>
@@ -39,8 +43,10 @@ namespace EdgeDemo
             game.ClearColor = Color.Black;
             game.Camera.Position = new Vector2(500);
 
-            DebugText debug = new DebugText("ComicSans-10", Vector2.Zero);
-            debug.AddToGame();
+            TextSprite Info1 = new TextSprite("ComicSans-30", "This is a demo of EdgeLibrary.\nUse the WASD keys to pan the camera.\nUse the mouse wheel to zoom in and out.", new Vector2(10));
+            Info1.Color = Color.Goldenrod;
+            Info1.CenterAsOrigin = false;
+            Info1.AddToGame();
 
             ParticleEmitter emitter = new ParticleEmitter("fire", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
@@ -53,6 +59,30 @@ namespace EdgeDemo
             ColorChangeIndex index = new ColorChangeIndex(700, Color.White, Color.Orange, Color.Purple, Color.Orange, Color.Purple, Color.Transparent);
             emitter.SetColor(index);
             emitter.AddToGame();
+
+            game.OnUpdate += new EdgeGame.EdgeGameUpdateEvent(game_OnUpdate);
+        }
+
+        static void game_OnUpdate(GameTime gameTime, EdgeGame game)
+        {
+            int speed = 4;
+            if (Input.IsKeyDown(Keys.W))
+            {
+                game.Camera.Position += new Vector2(0, -speed);
+            }
+            if (Input.IsKeyDown(Keys.A))
+            {
+                game.Camera.Position += new Vector2(-speed, 0);
+            }
+            if (Input.IsKeyDown(Keys.S))
+            {
+                game.Camera.Position += new Vector2(0, speed);
+            }
+            if (Input.IsKeyDown(Keys.D))
+            {
+                game.Camera.Position += new Vector2(speed, 0);
+            }
+            game.Camera.Scale = Input.MouseWheelValue/1500f + 1;
         }
 
         static void game_OnLoadContent(EdgeGame game)
