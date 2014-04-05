@@ -44,14 +44,11 @@ namespace EdgeLibrary
         }
 
         //Updates all the actions in the list at once and automatically removes them
-        public override void UpdateAction(GameTime gameTime, Sprite sprite)
+        protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            //Sets toRemove to be false in case it's going to be repeated
-            toRemove = false;
-
             foreach (AAction action in Actions)
             {
-                action.UpdateAction(gameTime, sprite);
+                action.Update(gameTime, sprite);
             }
 
             for (int i = 0; i < Actions.Count; i++)

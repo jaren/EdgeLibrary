@@ -14,8 +14,13 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Add more actions
     /// -Add a physics engine
+    /// -Add more actions
+    ///     -Point rotation
+    ///     -Rotate towards
+    ///     -Run a function
+    ///     -Change color
+    ///     -Wait (used in sequences)
     /// 
     /// Optional TODO:
     /// -Add the ability to render a scene to a RenderTarget2D

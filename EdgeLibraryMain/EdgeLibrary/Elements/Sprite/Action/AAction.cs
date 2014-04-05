@@ -16,8 +16,15 @@ namespace EdgeLibrary
     {
         public bool toRemove = false;
 
+        public void Update(GameTime gameTime, Sprite sprite)
+        {
+            //In case this action will be repeated - if it wasn't removed after updating, then it should be removed
+            toRemove = false;
+            UpdateAction(gameTime, sprite);
+        }
+
         //Used to update the action
-        public abstract void UpdateAction(GameTime gameTime, Sprite sprite);
+        protected abstract void UpdateAction(GameTime gameTime, Sprite sprite);
 
         //Returns a copy of the action so that multiple sprites don't share the same action
         public abstract AAction Copy();

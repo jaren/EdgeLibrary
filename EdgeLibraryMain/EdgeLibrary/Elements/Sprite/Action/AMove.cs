@@ -42,11 +42,8 @@ namespace EdgeLibrary
         }
 
         //Moves the sprite by the speed towards the target position, checks if it should end and automatically removes it
-        public override void UpdateAction(GameTime gameTime, Sprite sprite)
+        protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            //Sets toRemove to be false in case it's going to be repeated
-            toRemove = false;
-
             //Calculates what the sprite should move by
             Vector2 moveVector = TargetPosition - sprite.Position;
 

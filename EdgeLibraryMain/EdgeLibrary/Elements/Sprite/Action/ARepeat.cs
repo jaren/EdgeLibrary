@@ -36,14 +36,11 @@ namespace EdgeLibrary
         }
 
         //Updates the specific action
-        public override void UpdateAction(GameTime gameTime, Sprite sprite)
+        protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            //Sets toRemove to be false in case it's going to be repeated
-            toRemove = false;
-
             loopedTimes++;
 
-            Action.UpdateAction(gameTime, sprite);
+            Action.Update(gameTime, sprite);
 
             if (loopedTimes >= LoopTimes && !RepeatForever)
             {
