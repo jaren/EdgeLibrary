@@ -128,6 +128,7 @@ namespace EdgeLibrary
         {
             SceneHandler.Update(gameTime);
             Input.Update(gameTime);
+            Camera.Update(gameTime);
 
             FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
 

@@ -83,7 +83,7 @@ namespace EdgeLibrary
         {
             for (int i = 0; i < textLines.Length; i++)
             {
-                spriteBatch.DrawString(_font, textLines[i], Position + new Vector2(0, yLineDifference * i), Color, Rotation, textLinesOriginPoints[i], Scale, SpriteEffects, 0);
+                spriteBatch.DrawString(_font, textLines[i], Position + new Vector2(0, yLineDifference * i), Color, MathHelper.ToRadians(Rotation), textLinesOriginPoints[i], Scale, SpriteEffects, 0);
             }
         }
     }

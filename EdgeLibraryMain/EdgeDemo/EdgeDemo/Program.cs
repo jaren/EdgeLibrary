@@ -15,7 +15,6 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Add a physics engine
-    /// -Make camera scaling based off center, not top left
     /// 
     /// Optional TODO:
     /// -Add the ability to render a scene to a RenderTarget2D
@@ -43,6 +42,10 @@ namespace EdgeDemo
             game.ClearColor = Color.Black;
             game.Camera.Position = new Vector2(500);
 
+            Sprite sprite = new Sprite("player", Vector2.Zero);
+            sprite.AddToGame();
+            game.Camera.ClampTo(sprite);
+
             TextSprite Info1 = new TextSprite("ComicSans-30", "This is a demo of EdgeLibrary.\nUse the WASD keys to pan the camera.\nUse the mouse wheel to zoom in and out.", new Vector2(10));
             Info1.Color = Color.Goldenrod;
             Info1.CenterAsOrigin = false;
@@ -60,29 +63,43 @@ namespace EdgeDemo
             emitter.SetColor(index);
             emitter.AddToGame();
 
-            game.OnUpdate += new EdgeGame.EdgeGameUpdateEvent(game_OnUpdate);
+            sprite.OnUpdate += new Element.ElementUpdateEvent(game_OnUpdate);
         }
 
-        static void game_OnUpdate(GameTime gameTime, EdgeGame game)
+        static void game_OnUpdate(Element element, GameTime gameTime)
         {
-            int speed = 4;
-            if (Input.IsKeyDown(Keys.W))
-            {
-                game.Camera.Position += new Vector2(0, -speed);
-            }
+            int speed = 10;
             if (Input.IsKeyDown(Keys.A))
             {
-                game.Camera.Position += new Vector2(-speed, 0);
-            }
-            if (Input.IsKeyDown(Keys.S))
-            {
-                game.Camera.Position += new Vector2(0, speed);
+                element.Position += new Vector2(-speed, 0);
+                ((Sprite)element).Texture = Resources.GetTexture("playerLeft");
             }
             if (Input.IsKeyDown(Keys.D))
             {
-                game.Camera.Position += new Vector2(speed, 0);
+                element.Position += new Vector2(speed, 0);
+                ((Sprite)element).Texture = Resources.GetTexture("playerRight");
             }
-            game.Camera.Scale = Input.MouseWheelValue/1500f + 1;
+            if ((Input.IsKeyUp(Keys.A) && Input.IsKeyUp(Keys.D)) || (Input.IsKeyDown(Keys.A) && Input.IsKeyDown(Keys.D)))
+            {
+                ((Sprite)element).Texture = Resources.GetTexture("player");
+            }
+
+            if (Input.IsKeyDown(Keys.W))
+            {
+                element.Position += new Vector2(0, -speed);
+            }
+            if (Input.IsKeyDown(Keys.S))
+            {
+                element.Position += new Vector2(0, speed);
+            }
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                ((Sprite)element).Rotation += -speed / 10f;
+            }
+            if (Input.IsKeyDown(Keys.E))
+            {
+                ((Sprite)element).Rotation += speed / 10f;
+            }
         }
 
         static void game_OnLoadContent(EdgeGame game)

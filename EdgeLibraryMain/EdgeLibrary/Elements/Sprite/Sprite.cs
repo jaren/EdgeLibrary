@@ -225,7 +225,7 @@ namespace EdgeLibrary
         //Draws to the spritebatch
         protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
+            spriteBatch.Draw(_texture, Position, null, Color, MathHelper.ToRadians(Rotation), OriginPoint, Scale, SpriteEffects, 0);
         }
 
         //Draws the area of the collision body

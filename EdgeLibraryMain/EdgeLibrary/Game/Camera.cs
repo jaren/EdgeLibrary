@@ -16,22 +16,26 @@ namespace EdgeLibrary
     {
         //The camera data
         public Vector2 Position;
-        public float Scale;
+        public float Scale { get { return _scale; } set { _scale = value; if (!SupportsZeroScale && _scale <= 0) { _scale = 0.1f; } } }
+        private float _scale;
         public float Rotation;
+
+        //If set to true, then the camera will accept values of 0 and under for the scale
+        public bool SupportsZeroScale;
+
         public RenderTarget2D Target;
         private Vector2 HalfScreenSize;
 
         //Used for clamping the camera position/rotation/scale to the element
         private Element clampedElement;
-        private bool keepPosition;
-        private bool keepRotation;
-        private bool keepScale;
 
         public Camera(Vector2 position, GraphicsDevice graphicsDevice)
         {
             Position = position;
             Scale = 1;
             Rotation = 0f;
+
+            SupportsZeroScale = false;
 
             ReloadSize(graphicsDevice);
         }
@@ -45,10 +49,10 @@ namespace EdgeLibrary
                 * Matrix.CreateTranslation(-Position.X, -Position.Y, 0)
                 //Adds the rotation
                 * Matrix.CreateRotationZ(MathHelper.ToRadians(Rotation))
-                //Adds the origin
-                * Matrix.CreateTranslation(HalfScreenSize.X * Scale, HalfScreenSize.Y * Scale, 0)
                 //Adds the scale
-                * Matrix.CreateScale(new Vector3(Scale));
+                * Matrix.CreateScale(new Vector3(Scale))
+                //Adds the origin
+                * Matrix.CreateTranslation(HalfScreenSize.X * Scale, HalfScreenSize.Y * Scale, 0);
             return matrix;
         }
 
@@ -64,9 +68,7 @@ namespace EdgeLibrary
         {
             if (clampedElement != null)
             {
-                if (keepPosition) { Position = clampedElement.Position; }
-                if (keepRotation && clampedElement is Sprite) { Rotation = ((Sprite)clampedElement).Rotation; }
-                if (keepScale && clampedElement is Sprite) { Scale = (((Sprite)clampedElement).Scale.X + ((Sprite)clampedElement).Scale.X)/2f; }
+                Position = clampedElement.Position;
             }
         }
 
@@ -80,12 +82,9 @@ namespace EdgeLibrary
         }
         
         //Clamps to an element
-        public void ClampTo(Element element, bool clampRotation = false, bool clampScale = false, bool clampPosition = true)
+        public void ClampTo(Element element)
         {
             clampedElement = element;
-            keepRotation = clampRotation;
-            keepScale = clampScale;
-            keepPosition = clampPosition;
         }
 
         //Unclamps from the element
