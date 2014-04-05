@@ -21,15 +21,18 @@ namespace EdgeLibrary
         public List<float> Times;
         public int index;
         private float elapsedTime;
+        public bool HasFinished { get; private set; }
 
         public ColorChangeIndex(Color color) : this(1000, color) { }
 
-        public ColorChangeIndex(params KeyValuePair<Color, float>[] pairs)
+        public ColorChangeIndex(params KeyValuePair<Color, float>[] pairs) : this()
         {
             Colors = new List<Color>();
             Times = new List<float>();
             index = 0;
             elapsedTime = 0;
+
+            HasFinished = false;
 
             foreach (KeyValuePair<Color, float> pair in pairs)
             {
@@ -37,12 +40,14 @@ namespace EdgeLibrary
             }
         }
 
-        public ColorChangeIndex(float time, params Color[] colors)
+        public ColorChangeIndex(float time, params Color[] colors) : this()
         {
             Colors = new List<Color>();
             Times = new List<float>();
             index = 0;
             elapsedTime = 0;
+
+            HasFinished = false;
 
             foreach (Color color in colors)
             {
@@ -122,7 +127,12 @@ namespace EdgeLibrary
 
             if (index >= Colors.Count - 1)
             {
-                return Color.Lerp(Colors[index], Colors[index], elapsedTime / Times[index]);
+                HasFinished = true;
+                return Colors[index];
+            }
+            else
+            {
+                HasFinished = false;
             }
             return Color.Lerp(Colors[index], Colors[index + 1], elapsedTime / Times[index]);
         }

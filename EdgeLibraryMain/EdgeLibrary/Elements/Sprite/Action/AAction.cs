@@ -14,12 +14,16 @@ namespace EdgeLibrary
     //Provides the base for all Actions - sprite changers
     public abstract class AAction
     {
-        public bool toRemove = false;
+        public bool toRemove { get; private set; }
+
+        public delegate void ActionEvent(AAction action, GameTime gameTime, Sprite sprite);
+        public event ActionEvent OnFinish = delegate { };
 
         public void Update(GameTime gameTime, Sprite sprite)
         {
             //In case this action will be repeated - if it wasn't removed after updating, then it should be removed
             toRemove = false;
+
             UpdateAction(gameTime, sprite);
         }
 
@@ -30,6 +34,8 @@ namespace EdgeLibrary
         public abstract AAction Copy();
         
         //Marks the action for removal from the sprite's action list
+        //OnFinish is NOT called if Stop is not passed in GameTime and Sprite
         public void Stop() { toRemove = true; }
+        protected void Stop(GameTime gameTime, Sprite sprite) { toRemove = true; OnFinish(this, gameTime, sprite); }
     }
 }

@@ -11,30 +11,27 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public class AWait : AAction
+    //Runs a function
+    public class ARun : AAction
     {
-        public float WaitTime;
-        private float elapsedTime;
+        public delegate void ARunEvent(Sprite sprite, GameTime gameTime);
+        public ARunEvent OnRun = delegate { };
 
-        public AWait(float waitTime)
+        public ARun(ARunEvent runEvent)
         {
-            WaitTime = waitTime;
-            elapsedTime = 0;
+            OnRun += runEvent;
         }
 
+        //Called once then is removed
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            if (elapsedTime >= WaitTime)
-            {
-                Stop(gameTime, sprite);
-            }
+            OnRun(sprite, gameTime);
+            Stop(gameTime, sprite);
         }
 
         public override AAction Copy()
         {
-            return new AWait(WaitTime);
+            return new ARun(OnRun);
         }
     }
 }

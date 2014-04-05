@@ -97,9 +97,13 @@
     <Compile Include="Elements\Miscellaneous\Panel.cs" />
     <Compile Include="Elements\Miscellaneous\Ticker.cs" />
     <Compile Include="Elements\Sprite\Action\AAction.cs" />
+    <Compile Include="Elements\Sprite\Action\AColorChange.cs" />
+    <Compile Include="Elements\Sprite\Action\AFollow.cs" />
     <Compile Include="Elements\Sprite\Action\AMove.cs" />
     <Compile Include="Elements\Sprite\Action\AQuickSequence.cs" />
     <Compile Include="Elements\Sprite\Action\ARepeat.cs" />
+    <Compile Include="Elements\Sprite\Action\ARotate.cs" />
+    <Compile Include="Elements\Sprite\Action\ARun.cs" />
     <Compile Include="Elements\Sprite\Action\ASequence.cs" />
     <Compile Include="Elements\Sprite\Action\AWait.cs" />
     <Compile Include="Game\Camera.cs" />

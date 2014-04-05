@@ -11,22 +11,23 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public class AWait : AAction
+    //Changes the color of a sprite using a ColorChangeIndex
+    public class AColorChange : AAction
     {
-        public float WaitTime;
-        private float elapsedTime;
+        public ColorChangeIndex Index;
 
-        public AWait(float waitTime)
+        public AColorChange(Color start, Color finish, float time) : this(new ColorChangeIndex(time, start, finish)) {}
+        public AColorChange(ColorChangeIndex index)
         {
-            WaitTime = waitTime;
-            elapsedTime = 0;
+            Index = index;
         }
 
+        //Changes the sprite's color based on the color change index
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            sprite.Color = Index.Update(gameTime);
 
-            if (elapsedTime >= WaitTime)
+            if (Index.HasFinished)
             {
                 Stop(gameTime, sprite);
             }
@@ -34,7 +35,7 @@ namespace EdgeLibrary
 
         public override AAction Copy()
         {
-            return new AWait(WaitTime);
+            return new AColorChange(Index);
         }
     }
 }

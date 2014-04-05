@@ -60,7 +60,7 @@ namespace EdgeLibrary
 
                     if (Actions.Count == 0)
                     {
-                        toRemove = true;
+                        Stop(gameTime, sprite);
                     }
                 }
             }

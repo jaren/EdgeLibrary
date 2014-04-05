@@ -11,41 +11,23 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //Moves a sprite to a certain position at a certian speed
-    public class AMove : AAction
+    //Moves a sprite to a certain sprite at a certian speed
+    public class AFollow : AAction
     {
-        public Vector2 TargetPosition;
+        public Sprite Target;
         public float Speed;
 
-        public AMove(Vector2 targetPosition, float speed)
+        public AFollow(Sprite target, float speed)
         {
-            TargetPosition = targetPosition;
+            Target = target;
             Speed = speed;
         }
 
-        //Creates a waypoint movement path
-        public static ASequence CreateMoveSequence(float speed, params Vector2[] targetPositions)
-        {
-            List<Vector2> vectors = new List<Vector2>(targetPositions);
-            return CreateMoveSequence(speed, vectors);
-        }
-        public static ASequence CreateMoveSequence(float speed, List<Vector2> targetPositions)
-        {
-            List<AAction> moves = new List<AAction>();
-
-            foreach (Vector2 vector in targetPositions)
-            {
-                moves.Add(new AMove(vector, speed));
-            }
-
-            return new ASequence(moves);
-        }
-
-        //Moves the sprite by the speed towards the target position, checks if it should end and automatically removes it
+        //Moves the sprite by the speed towards the target, checks if it should end and automatically removes it
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
             //Calculates what the sprite should move by
-            Vector2 moveVector = TargetPosition - sprite.Position;
+            Vector2 moveVector = Target.Position - sprite.Position;
 
             //If the moveVector is Vector2.Zero, then normalizing it will result in NaN, and checkIfEnd will return false
             //To fix this, if moveVector is Vector2.Zero, then toRemove will be set to true (Sprite's position is the Target Position)
@@ -54,12 +36,7 @@ namespace EdgeLibrary
                 moveVector.Normalize();
                 moveVector *= Speed;
 
-                if (checkIfEnd(moveVector, TargetPosition, sprite.Position)) { Stop(gameTime, sprite); }
-                sprite.Position += moveVector;
-            }
-            else
-            {
-                Stop(gameTime, sprite);
+                if (!checkIfEnd(moveVector, Target.Position, sprite.Position)) { sprite.Position += moveVector; }
             }
         }
 
@@ -80,11 +57,9 @@ namespace EdgeLibrary
             return false;
         }
 
-
-        //Returns an AMove copy
         public override AAction Copy()
         {
-            return new AMove(TargetPosition, Speed);
+            return new AFollow(Target, Speed);
         }
     }
 }

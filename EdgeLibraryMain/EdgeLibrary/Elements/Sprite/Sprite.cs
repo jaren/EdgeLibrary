@@ -128,7 +128,7 @@ namespace EdgeLibrary
         {
             foreach (AAction action in Actions)
             {
-                action.UpdateAction(gameTime, this);
+                action.Update(gameTime, this);
             }
 
             for (int i = 0; i < Actions.Count; i++)

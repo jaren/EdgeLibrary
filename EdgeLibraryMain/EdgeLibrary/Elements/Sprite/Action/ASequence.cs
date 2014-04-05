@@ -72,7 +72,7 @@ namespace EdgeLibrary
                 if (CurrentIndex > Actions.Count - 1)
                 {
                     CurrentIndex = 0;
-                    toRemove = true;
+                    Stop(gameTime, sprite);
                 }
 
                 OnActionTransition(this, Actions[CurrentIndex], sprite, gameTime);

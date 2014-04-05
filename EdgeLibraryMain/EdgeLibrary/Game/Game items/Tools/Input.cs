@@ -22,8 +22,10 @@ namespace EdgeLibrary
         private static MouseState previousMouse;
 
         public static Sprite MouseSprite;
-        public static Vector2 MousePosition { get { return new Vector2(mouse.X, mouse.Y); } set { } }
-        public static Vector2 PreviousMousePosition { get { return new Vector2(previousMouse.X, previousMouse.Y); } set { } }
+        //Returns the mouse position with camera transformations
+        public static Vector2 MousePosition { get { return new Vector2(mouse.X, mouse.Y) + EdgeGame.Instance.Camera.Position - EdgeGame.Instance.WindowSize/2; } set { } }
+        //Returns the previous mouse position with CURRENT camera transformations
+        public static Vector2 PreviousMousePosition { get { return new Vector2(previousMouse.X, previousMouse.Y) + EdgeGame.Instance.Camera.Position - EdgeGame.Instance.WindowSize / 2; } set { } }
         public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
 
         public static void Init() 
@@ -40,7 +42,7 @@ namespace EdgeLibrary
             previousMouse = mouse;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
-            MouseSprite.Position = getMousePos();
+            MouseSprite.Position = MousePosition;
             MouseSprite.Update(gameTime);
         }
 
@@ -49,11 +51,6 @@ namespace EdgeLibrary
         public static Keys[] KeysPressed()
         {
             return keyboard.GetPressedKeys();
-        }
-
-        private static Vector2 getMousePos()
-        {
-            return new Vector2(mouse.X, mouse.Y);
         }
 
         public static bool KeyJustPressed(Keys k)

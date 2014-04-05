@@ -44,7 +44,7 @@ namespace EdgeLibrary
 
             if (loopedTimes >= LoopTimes && !RepeatForever)
             {
-                toRemove = true;
+                Stop(gameTime, sprite);
             }
         }
 
