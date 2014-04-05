@@ -144,7 +144,9 @@ namespace EdgeLibrary
         //Adds an action
         public void AddAction(AAction action)
         {
-            Actions.Add(action);
+            //Makes a copy so two sprites don't have the same action
+            AAction copy = action.Copy();
+            Actions.Add(copy);
         }
 
         //Removes an action

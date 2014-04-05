@@ -14,7 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Implement actions
+    /// -Add more actions
     /// -Add a physics engine
     /// 
     /// Optional TODO:
