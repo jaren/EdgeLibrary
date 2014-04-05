@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemo", "EdgeDemo\EdgeDemo\EdgeDemo.csproj", "{2A3B045B-6616-42FD-B285-AACE6062E4B3}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "EdgeDemoContent", "EdgeDemo\EdgeDemoContent\EdgeDemoContent.contentproj", "{91DEBBCD-5FFE-4073-BD8F-1F8CC8E01E65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemoContent", "EdgeDemo\EdgeDemoContent\EdgeDemoContent.contentproj", "{91DEBBCD-5FFE-4073-BD8F-1F8CC8E01E65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibrary", "EdgeLibrary\EdgeLibrary.csproj", "{AD485453-05E0-4714-8630-BCC909D9106D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePhysics", "EdgePhysics\EdgePhysics.csproj", "{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Debug|x86.Build.0 = Debug|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.ActiveCfg = Release|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.Build.0 = Release|x86
+		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Debug|x86.ActiveCfg = Debug|x86
+		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Debug|x86.Build.0 = Debug|x86
+		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Release|x86.ActiveCfg = Release|x86
+		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

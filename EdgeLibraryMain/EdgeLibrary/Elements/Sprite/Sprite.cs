@@ -44,9 +44,7 @@ namespace EdgeLibrary
         protected List<string> currentlyCollidingWithIDs;
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
-        public Dictionary<string, Modifier> Modifiers { get; protected set; }
-        public MovementModifier MovementModifier;
-        public AppearanceModifier AppearanceModifier;
+        protected List<AAction> Actions;
 
         //Used for collisions
         public delegate void CollisionEvent(Sprite sender, Sprite collided, GameTime gameTime);
@@ -71,11 +69,7 @@ namespace EdgeLibrary
 
             _centerAsOrigin = true;
 
-            Modifiers = new Dictionary<string, Modifier>();
-            MovementModifier = new MovementModifier();
-            AddModifier(MovementModifier);
-            AppearanceModifier = new AppearanceModifier();
-            AddModifier(AppearanceModifier);
+            Actions = new List<AAction>();
 
             currentlyCollidingWithIDs = new List<string>();
 
@@ -132,22 +126,31 @@ namespace EdgeLibrary
         //Updates the modifiers
         protected override void UpdateObject(GameTime gameTime)
         {
-            foreach (KeyValuePair<string, Modifier> modifier in Modifiers)
+            foreach (AAction action in Actions)
             {
-                modifier.Value.Update(this, gameTime);
+                action.UpdateAction(gameTime, this);
+            }
+
+            for (int i = 0; i < Actions.Count; i++)
+            {
+                if (Actions[i].toRemove)
+                {
+                    Actions.RemoveAt(i);
+                    i--;
+                }
             }
         }
-        
-        //Adds a modifier
-        public void AddModifier(Modifier modifier)
+
+        //Adds an action
+        public void AddAction(AAction action)
         {
-            Modifiers.Add(modifier.ID, modifier);
+            Actions.Add(action);
         }
 
-        //Removes a modifier
-        public bool RemoveModifier(string id)
+        //Removes an action
+        public void RemoveAction(int index)
         {
-            return Modifiers.Remove(id);
+            Actions.RemoveAt(index);
         }
 
         //Checks if this is colliding with any other sprite

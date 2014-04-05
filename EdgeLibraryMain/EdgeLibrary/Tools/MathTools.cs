@@ -61,6 +61,14 @@ namespace EdgeLibrary
         }
 
         /// <summary>
+        /// Sets a vector's values to be positive
+        /// </summary>
+        public static Vector2 AbsVector(Vector2 vector)
+        {
+            return new Vector2(Math.Abs(vector.X), Math.Abs(vector.Y));
+        }
+
+        /// <summary>
         /// Gets a color from a hex string
         /// </summary>
         public static Color ColorFromHex(string hexString)
@@ -162,14 +170,12 @@ namespace EdgeLibrary
         {
             if (rectangle.Width < 0)
             {
-                // If value is negative use primitive int multiply, don't bother with absolute value
-                rectangle.Width *= -1;
+                rectangle.Width = Math.Abs(rectangle.Width);
                 rectangle.X -= rectangle.Width;
             }
             if (rectangle.Height < 0)
             {
-                // If value is negative use primitive int multiply, don't bother with absolute value
-                rectangle.Height *= -1;
+                rectangle.Height = Math.Abs(rectangle.Height);
                 rectangle.Y -= rectangle.Height;
             }
             return rectangle;

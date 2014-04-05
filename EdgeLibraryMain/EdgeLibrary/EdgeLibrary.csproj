@@ -96,6 +96,11 @@
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\Miscellaneous\Panel.cs" />
     <Compile Include="Elements\Miscellaneous\Ticker.cs" />
+    <Compile Include="Elements\Sprite\Action\AColorChange.cs" />
+    <Compile Include="Elements\Sprite\Action\AAction.cs" />
+    <Compile Include="Elements\Sprite\Action\AFollow.cs" />
+    <Compile Include="Elements\Sprite\Action\AMove.cs" />
+    <Compile Include="Elements\Sprite\Action\ASequence.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Elements\Particle\Particle.cs" />
@@ -104,7 +109,6 @@
     <Compile Include="Elements\Sprite\Animation\AnimSprite.cs" />
     <Compile Include="Elements\Sprite\Collision\CollisionBody.cs" />
     <Compile Include="Elements\Sprite\Collision\Shape.cs" />
-    <Compile Include="Elements\Sprite\Modifier.cs" />
     <Compile Include="Elements\Sprite\TextSprite.cs" />
     <Compile Include="Game\Game items\Resources.cs" />
     <Compile Include="Game\EdgeGame.cs" />

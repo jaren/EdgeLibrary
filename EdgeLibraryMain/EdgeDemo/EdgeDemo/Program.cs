@@ -14,6 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Implement actions
     /// -Add a physics engine
     /// 
     /// Optional TODO:
@@ -40,9 +41,8 @@ namespace EdgeDemo
         static void game_OnInit(EdgeGame game)
         {
             game.ClearColor = Color.Black;
-            game.Camera.Position = new Vector2(500);
 
-            Sprite sprite = new Sprite("player", Vector2.Zero);
+            Sprite sprite = new Sprite("player", Vector2.One * 500);
             sprite.AddToGame();
             game.Camera.ClampTo(sprite);
 
