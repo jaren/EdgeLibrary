@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemoContent", "EdgeDemo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibrary", "EdgeLibrary\EdgeLibrary.csproj", "{AD485453-05E0-4714-8630-BCC909D9106D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePhysics", "EdgePhysics\EdgePhysics.csproj", "{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgePhysics", "EdgePhysics\EdgePhysics.csproj", "{80A16A0A-14EC-4A9C-8F32-6DACB8519230}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Debug|x86.Build.0 = Debug|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.ActiveCfg = Release|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.Build.0 = Release|x86
-		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Debug|x86.ActiveCfg = Debug|x86
-		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Debug|x86.Build.0 = Debug|x86
-		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Release|x86.ActiveCfg = Release|x86
-		{ECF0F191-FB83-4861-B69B-EA08BFF87CDC}.Release|x86.Build.0 = Release|x86
+		{80A16A0A-14EC-4A9C-8F32-6DACB8519230}.Debug|x86.ActiveCfg = Debug|x86
+		{80A16A0A-14EC-4A9C-8F32-6DACB8519230}.Debug|x86.Build.0 = Debug|x86
+		{80A16A0A-14EC-4A9C-8F32-6DACB8519230}.Release|x86.ActiveCfg = Release|x86
+		{80A16A0A-14EC-4A9C-8F32-6DACB8519230}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
