@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Rotates a sprite towards another one
-    public class ARotate : AAction
+    public class ARotate : Action
     {
         public Sprite Target;
         //The higher this is, the faster the sprite will rotate
@@ -60,7 +60,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return new ARotate(Target, Speed, AdditionalAngle);
         }

@@ -24,7 +24,7 @@ namespace EdgePhysics
                 B = b;
             }
 
-            public override bool Equals(BodyPair pair)
+            public bool Equals(BodyPair pair)
             {
                 return ((A==pair.A && B==pair.B) || (A==pair.B && B==pair.A));
             }

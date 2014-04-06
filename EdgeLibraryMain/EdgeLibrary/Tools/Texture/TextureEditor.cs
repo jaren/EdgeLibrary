@@ -36,7 +36,7 @@ namespace EdgeLibrary
         //Applies the texture editor to a certain texture but doesn't modify it and returns the new texture
         public Texture2D GetApplied(Texture2D texture)
         {
-            Texture2D returnTexture = TextureTools.Copy(texture);
+            Texture2D returnTexture = TextureTools.Clone(texture);
             ApplyTo(returnTexture);
             return returnTexture;
         }

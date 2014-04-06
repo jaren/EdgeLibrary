@@ -12,27 +12,27 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Holds a list of actions and runs them all
-    public class AQuickSequence : AAction
+    public class AQuickSequence : Action
     {
-        public List<AAction> Actions;
+        public List<Action> Actions;
 
         public AQuickSequence()
         {
-            Actions = new List<AAction>();
+            Actions = new List<Action>();
         }
 
-        public AQuickSequence(List<AAction> actions)
+        public AQuickSequence(List<Action> actions)
         {
-            Actions = new List<AAction>(actions);
+            Actions = new List<Action>(actions);
         }
 
-        public AQuickSequence(params AAction[] actions)
+        public AQuickSequence(params Action[] actions)
         {
-            Actions = new List<AAction>(actions);
+            Actions = new List<Action>(actions);
         }
 
         //Adds an action to the list
-        public void AddAction(AAction action)
+        public void AddAction(Action action)
         {
             Actions.Add(action);
         }
@@ -46,7 +46,7 @@ namespace EdgeLibrary
         //Updates all the actions in the list at once and automatically removes them
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            foreach (AAction action in Actions)
+            foreach (Action action in Actions)
             {
                 action.Update(gameTime, sprite);
             }
@@ -66,8 +66,8 @@ namespace EdgeLibrary
             }
         }
 
-        //Returns a new AAction
-        public override AAction Copy()
+        //Returns a new Action
+        public override Action Clone()
         {
             return new AQuickSequence(Actions);
         }

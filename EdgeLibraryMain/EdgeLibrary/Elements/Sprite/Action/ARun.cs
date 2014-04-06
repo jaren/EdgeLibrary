@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Runs a function
-    public class ARun : AAction
+    public class ARun : Action
     {
         public delegate void ARunEvent(Sprite sprite, GameTime gameTime);
         public ARunEvent OnRun = delegate { };
@@ -29,7 +29,7 @@ namespace EdgeLibrary
             Stop(gameTime, sprite);
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return new ARun(OnRun);
         }

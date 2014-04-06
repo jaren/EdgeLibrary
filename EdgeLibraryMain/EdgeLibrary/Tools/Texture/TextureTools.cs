@@ -16,8 +16,8 @@ namespace EdgeLibrary
         public static class TextureTools
         {
             #region GENERATING TOOLS
-            //Makes a copy of a Texture2D
-            public static Texture2D Copy(Texture2D texture)
+            //Makes a Clone of a Texture2D
+            public static Texture2D Clone(Texture2D texture)
             {
                 Color[] colors = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colors);
@@ -40,10 +40,10 @@ namespace EdgeLibrary
 
                 texture.SetData<Color>(colorData);
             }
-            //The same as Colorize, but doesn't modify the original texture and instead returns a modified copy
+            //The same as Colorize, but doesn't modify the original texture and instead returns a modified Clone
             public static Texture2D GetAsColorized(Texture2D texture, Color color, float factor)
             {
-                Texture2D returnTexture = Copy(texture);
+                Texture2D returnTexture = Clone(texture);
                 Colorize(returnTexture, color, factor);
                 return returnTexture;
             }
@@ -69,10 +69,10 @@ namespace EdgeLibrary
                 }
                 texture.SetData<Color>(newColorData);
             }
-            //The same as Flip, but doesn't modify the original texture and instead returns a modified copy
+            //The same as Flip, but doesn't modify the original texture and instead returns a modified Clone
             public static Texture2D GetAsFlipped(Texture2D texture, bool vertical)
             {
-                Texture2D returnTexture = Copy(texture);
+                Texture2D returnTexture = Clone(texture);
                 Flip(returnTexture, vertical);
                 return returnTexture;
             }
@@ -97,10 +97,10 @@ namespace EdgeLibrary
 
                 texture.SetData<Color>(colorData);
             }
-            //The same as SetInnerTexture, but doesn't modify the original texture and instead returns a modified copy
+            //The same as SetInnerTexture, but doesn't modify the original texture and instead returns a modified Clone
             public static Texture2D GetAsSetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
             {
-                Texture2D returnTexture = Copy(texture);
+                Texture2D returnTexture = Clone(texture);
                 SetInnerTexture(returnTexture, innerTexture, startPosition);
                 return returnTexture;
             }

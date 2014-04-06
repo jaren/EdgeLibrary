@@ -12,44 +12,44 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Holds a list of actions and runs them one at a time - the next one doesn't start until the previous one has finished
-    public class ASequence : AAction
+    public class ASequence : Action
     {
         //Called when the next action is looped through
-        public delegate void ASequenceEvent(ASequence sequence, AAction currentAction, Sprite sprite, GameTime gameTime);
+        public delegate void ASequenceEvent(ASequence sequence, Action currentAction, Sprite sprite, GameTime gameTime);
         public event ASequenceEvent OnActionTransition = delegate { };
 
-        public List<AAction> Actions;
+        public List<Action> Actions;
         public int CurrentIndex;
 
         public ASequence()
         {
-            Actions = new List<AAction>();
+            Actions = new List<Action>();
         }
 
-        public ASequence(List<AAction> actions)
+        public ASequence(List<Action> actions)
         {
-            Actions = new List<AAction>(actions);
+            Actions = new List<Action>(actions);
         }
 
-        public ASequence(params AAction[] actions)
+        public ASequence(params Action[] actions)
         {
-            Actions = new List<AAction>(actions);
+            Actions = new List<Action>(actions);
         }
 
         //Adds an action to the end of the list
-        public void AddActionLast(AAction action)
+        public void AddActionLast(Action action)
         {
             Actions.Add(action);
         }
 
         //Adds an action to the beginning of list
-        public void AddActionFirst(AAction action)
+        public void AddActionFirst(Action action)
         {
             Actions.Insert(0, action);
         }
 
         //Adds an action to the list at an index
-        public void AddAction(int index, AAction action)
+        public void AddAction(int index, Action action)
         {
             Actions.Insert(index, action);
         }
@@ -79,8 +79,8 @@ namespace EdgeLibrary
             }
         }
 
-        //Returns a new AAction
-        public override AAction Copy()
+        //Returns a new Action
+        public override Action Clone()
         {
             return new ASequence(Actions);
         }

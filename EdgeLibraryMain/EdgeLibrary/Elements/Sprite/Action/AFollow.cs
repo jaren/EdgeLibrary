@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Moves a sprite to a certain sprite at a certian speed
-    public class AFollow : AAction
+    public class AFollow : Action
     {
         public Sprite Target;
         public float Speed;
@@ -57,7 +57,7 @@ namespace EdgeLibrary
             return false;
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return new AFollow(Target, Speed);
         }

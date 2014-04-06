@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public class AWait : AAction
+    public class AWait : Action
     {
         public float WaitTime;
         private float elapsedTime;
@@ -32,7 +32,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return new AWait(WaitTime);
         }

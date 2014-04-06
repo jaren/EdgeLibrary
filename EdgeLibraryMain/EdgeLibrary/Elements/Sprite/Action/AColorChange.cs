@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Changes the color of a sprite using a ColorChangeIndex
-    public class AColorChange : AAction
+    public class AColorChange : Action
     {
         public ColorChangeIndex Index;
 
@@ -33,7 +33,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return new AColorChange(Index);
         }

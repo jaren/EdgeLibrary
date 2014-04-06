@@ -19,6 +19,7 @@ namespace EdgePhysics
 
         public bool Check(Body A, Body B)
         {
+            return true;
         }
 
         public void Resolve(Body A, Body B)

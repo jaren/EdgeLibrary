@@ -12,14 +12,14 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Repeats an action for a specific number of times - or forever
-    public class ARepeat : AAction
+    public class ARepeat : Action
     {
-        public AAction Action;
+        public Action Action;
         public int LoopTimes;
         public bool RepeatForever;
         private int loopedTimes;
 
-        public ARepeat(AAction action)
+        public ARepeat(Action action)
         {
             Action = action;
             LoopTimes = 0;
@@ -27,7 +27,7 @@ namespace EdgeLibrary
             loopedTimes = 0;
         }
 
-        public ARepeat(int loopTimes, AAction action)
+        public ARepeat(int loopTimes, Action action)
         {
             Action = action;
             LoopTimes = loopTimes;
@@ -48,7 +48,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override AAction Copy()
+        public override Action Clone()
         {
             return RepeatForever ? new ARepeat(Action) : new ARepeat(LoopTimes, Action);
         }

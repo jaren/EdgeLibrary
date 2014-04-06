@@ -12,11 +12,11 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Provides the base for all Actions - sprite changers
-    public abstract class AAction
+    public abstract class Action
     {
         public bool toRemove { get; private set; }
 
-        public delegate void ActionEvent(AAction action, GameTime gameTime, Sprite sprite);
+        public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
         public event ActionEvent OnFinish = delegate { };
 
         public void Update(GameTime gameTime, Sprite sprite)
@@ -30,8 +30,8 @@ namespace EdgeLibrary
         //Used to update the action
         protected abstract void UpdateAction(GameTime gameTime, Sprite sprite);
 
-        //Returns a copy of the action so that multiple sprites don't share the same action
-        public abstract AAction Copy();
+        //Returns a Clone of the action so that multiple sprites don't share the same action
+        public abstract Action Clone();
         
         //Marks the action for removal from the sprite's action list
         //OnFinish is NOT called if Stop is not passed in GameTime and Sprite

@@ -44,7 +44,7 @@ namespace EdgeLibrary
         protected List<string> currentlyCollidingWithIDs;
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
-        protected List<AAction> Actions;
+        protected List<Action> Actions;
 
         //Used for collisions
         public delegate void CollisionEvent(Sprite sender, Sprite collided, GameTime gameTime);
@@ -69,7 +69,7 @@ namespace EdgeLibrary
 
             _centerAsOrigin = true;
 
-            Actions = new List<AAction>();
+            Actions = new List<Action>();
 
             currentlyCollidingWithIDs = new List<string>();
 
@@ -126,7 +126,7 @@ namespace EdgeLibrary
         //Updates the modifiers
         protected override void UpdateObject(GameTime gameTime)
         {
-            foreach (AAction action in Actions)
+            foreach (Action action in Actions)
             {
                 action.Update(gameTime, this);
             }
@@ -142,11 +142,11 @@ namespace EdgeLibrary
         }
 
         //Adds an action
-        public void AddAction(AAction action)
+        public void AddAction(Action action)
         {
-            //Makes a copy so two sprites don't have the same action
-            AAction copy = action.Copy();
-            Actions.Add(copy);
+            //Makes a Clone so two sprites don't have the same action
+            Action Clone = action.Clone();
+            Actions.Add(Clone);
         }
 
         //Removes an action

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Moves a sprite to a certain position at a certian speed
-    public class AMove : AAction
+    public class AMove : Action
     {
         public Vector2 TargetPosition;
         public float Speed;
@@ -31,7 +31,7 @@ namespace EdgeLibrary
         }
         public static ASequence CreateMoveSequence(float speed, List<Vector2> targetPositions)
         {
-            List<AAction> moves = new List<AAction>();
+            List<Action> moves = new List<Action>();
 
             foreach (Vector2 vector in targetPositions)
             {
@@ -81,8 +81,8 @@ namespace EdgeLibrary
         }
 
 
-        //Returns an AMove copy
-        public override AAction Copy()
+        //Returns an AMove Clone
+        public override Action Clone()
         {
             return new AMove(TargetPosition, Speed);
         }
