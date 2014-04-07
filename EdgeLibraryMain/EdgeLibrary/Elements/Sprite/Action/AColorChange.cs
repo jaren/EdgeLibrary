@@ -17,7 +17,13 @@ namespace EdgeLibrary
         public ColorChangeIndex Index;
 
         public AColorChange(Color start, Color finish, float time) : this(new ColorChangeIndex(time, start, finish)) {}
-        public AColorChange(ColorChangeIndex index)
+        public AColorChange(ColorChangeIndex index) : base()
+        {
+            Index = index;
+        }
+        
+        public AColorChange(string ID, Color start, Color finish, float time) : this(ID, new ColorChangeIndex(time, start, finish)) {}
+        public AColorChange(string ID, ColorChangeIndex index) : base(ID)
         {
             Index = index;
         }
