@@ -14,6 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Add SubElement methods in Element and check for duplicate SubElement IDs
     /// -Add a physics engine
     /// -Mouse position is affected by camera rotation / scale
     /// 
