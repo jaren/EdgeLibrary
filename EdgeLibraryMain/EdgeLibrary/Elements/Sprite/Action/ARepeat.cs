@@ -19,7 +19,7 @@ namespace EdgeLibrary
         public bool RepeatForever;
         private int loopedTimes;
 
-        public ARepeat(Action action)
+        public ARepeat(Action action) : base()
         {
             Action = action;
             LoopTimes = 0;
@@ -27,7 +27,23 @@ namespace EdgeLibrary
             loopedTimes = 0;
         }
 
-        public ARepeat(int loopTimes, Action action)
+        public ARepeat(int loopTimes, Action action) : base()
+        {
+            Action = action;
+            LoopTimes = loopTimes;
+            RepeatForever = false;
+            loopedTimes = 0;
+        }
+        
+        public ARepeat(string ID, Action action) : base(ID)
+        {
+            Action = action;
+            LoopTimes = 0;
+            RepeatForever = true;
+            loopedTimes = 0;
+        }
+
+        public ARepeat(string ID, int loopTimes, Action action) : base(ID)
         {
             Action = action;
             LoopTimes = loopTimes;
