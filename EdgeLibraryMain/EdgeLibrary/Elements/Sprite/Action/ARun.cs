@@ -17,7 +17,12 @@ namespace EdgeLibrary
         public delegate void ARunEvent(Sprite sprite, GameTime gameTime);
         public ARunEvent OnRun = delegate { };
 
-        public ARun(ARunEvent runEvent)
+        public ARun(ARunEvent runEvent) : base()
+        {
+            OnRun += runEvent;
+        }
+        
+        public ARun(string ID, ARunEvent runEvent) : base(ID)
         {
             OnRun += runEvent;
         }
@@ -31,7 +36,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new ARun(OnRun);
+            return new ARun(ID, OnRun);
         }
     }
 }
