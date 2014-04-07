@@ -66,7 +66,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return RepeatForever ? new ARepeat(Action) : new ARepeat(LoopTimes, Action);
+            return RepeatForever ? new ARepeat(ID, Action) : new ARepeat(ID, LoopTimes, Action);
         }
     }
 }
