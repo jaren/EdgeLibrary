@@ -41,7 +41,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AColorChange(Index);
+            return new AColorChange(ID, Index);
         }
     }
 }
