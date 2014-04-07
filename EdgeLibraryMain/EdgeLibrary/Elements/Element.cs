@@ -118,7 +118,7 @@ namespace EdgeLibrary
         }
         public bool RemoveSubElement(string ID)
         {
-            return SubElements.Remove(GetElement(ID));
+            return SubElements.Remove(GetSubElement(ID));
         }
         public Element GetSubElement(string ID)
         {

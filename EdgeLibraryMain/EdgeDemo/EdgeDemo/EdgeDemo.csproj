@@ -113,7 +113,6 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
-    <Content Include="ParticleSheet.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibrary\EdgeLibrary.csproj">

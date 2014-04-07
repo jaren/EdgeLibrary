@@ -21,25 +21,15 @@ namespace EdgeLibrary
         /// <summary>
         /// Generates a random ID based on the element's type and the number of previously given IDs of that type
         /// </summary>
-        public static string GenerateID(Element element)
+        public static string GenerateID(object obj)
         {
             //If no other elements of this type exist, then create an index for it
-            if (!GivenIDs.ContainsKey(element.GetType()))
+            if (!GivenIDs.ContainsKey(obj.GetType()))
             {
-                GivenIDs.Add(element.GetType(), 0);
+                GivenIDs.Add(obj.GetType(), 0);
             }
-            GivenIDs[element.GetType()]++;
-            return element.GetType().Name + GivenIDs[element.GetType()].ToString();
-        }
-        public static string GenerateID(Type t)
-        {
-            //If no other objects of this type exist, then create an index for it
-            if (!GivenIDs.ContainsKey(t))
-            {
-                GivenIDs.Add(t, 0);
-            }
-            GivenIDs[t]++;
-            return t.Name + GivenIDs[t].ToString();
+            GivenIDs[obj.GetType()]++;
+            return obj.GetType().Name + GivenIDs[obj.GetType()].ToString();
         }
 
         /// <summary>

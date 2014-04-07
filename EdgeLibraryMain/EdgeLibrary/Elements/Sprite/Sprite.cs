@@ -146,7 +146,7 @@ namespace EdgeLibrary
         {
             foreach(Action action in Actions)
             {
-                if (Action.ID == id)
+                if (action.ID == id)
                 {
                     return action;
                 }

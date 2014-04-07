@@ -53,7 +53,7 @@ namespace EdgeDemo
             Debug.FollowsCamera = false;
             Debug.AddToGame();
 
-            ParticleEmitter emitter = new ParticleEmitter("fire", new Vector2(400, 400));
+            ParticleEmitter emitter = new ParticleEmitter("Fire", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
             emitter.SetScale(new Vector2(5), new Vector2(7));
             emitter.SetVelocity(new Vector2(-5), new Vector2(5));
@@ -101,6 +101,7 @@ namespace EdgeDemo
             Resources.LoadFont("Fonts/Impact/Impact-50");
             Resources.LoadFont("Fonts/Impact/Impact-60");
             Resources.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
+            Resources.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             Resources.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
         }
 

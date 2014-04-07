@@ -171,8 +171,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ParticleSheet.xml">
-      <Name>ParticleSheet</Name>
+    <Compile Include="ButtonSheet.png">
+      <Name>ButtonSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="ButtonSheet.xml">
+      <Name>ButtonSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -182,6 +187,12 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Content Include="ParticleSheet.xml">
+      <Name>ParticleSheet</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SpaceSheet.xml">
       <Name>SpaceSheet</Name>
       <Importer>XmlImporter</Importer>
