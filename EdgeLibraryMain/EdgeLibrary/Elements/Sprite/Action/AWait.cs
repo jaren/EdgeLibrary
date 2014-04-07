@@ -16,7 +16,13 @@ namespace EdgeLibrary
         public float WaitTime;
         private float elapsedTime;
 
-        public AWait(float waitTime)
+        public AWait(float waitTime) : base()
+        {
+            WaitTime = waitTime;
+            elapsedTime = 0;
+        }
+        
+        public AWait(string ID, float waitTime) : base(ID)
         {
             WaitTime = waitTime;
             elapsedTime = 0;
@@ -34,7 +40,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AWait(WaitTime);
+            return new AWait(ID, WaitTime);
         }
     }
 }
