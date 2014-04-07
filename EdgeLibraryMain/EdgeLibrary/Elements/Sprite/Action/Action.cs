@@ -15,16 +15,31 @@ namespace EdgeLibrary
     public abstract class Action
     {
         public bool toRemove { get; private set; }
+        public string ID;
+        public bool Paused;
 
         public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
         public event ActionEvent OnFinish = delegate { };
+        
+        public Action()
+        {
+            ID = MathTools.GenerateID(this));
+        }
+        
+        public Action(string id)
+        {
+            ID = id;
+        }
 
         public void Update(GameTime gameTime, Sprite sprite)
         {
-            //In case this action will be repeated - if it wasn't removed after updating, then it should be removed
-            toRemove = false;
+            if (!Paused)
+            {
+                //In case this action will be repeated - if it wasn't removed after updating, then it should be removed
+                toRemove = false;
 
-            UpdateAction(gameTime, sprite);
+                UpdateAction(gameTime, sprite);
+            }
         }
 
         //Used to update the action
