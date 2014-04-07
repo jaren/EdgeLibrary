@@ -116,6 +116,21 @@ namespace EdgeLibrary
         {
             return SubElements.Remove(element);
         }
+        public bool RemoveSubElement(string ID)
+        {
+            return SubElements.Remove(GetElement(ID));
+        }
+        public Element GetSubElement(string ID)
+        {
+            foreach(Element element in SubElements)
+            {
+                if (element.ID == ID)
+                {
+                    return element;
+                }
+            }
+            return null;
+        }
 
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
