@@ -23,7 +23,16 @@ namespace EdgeLibrary
 
         public ARotate(Sprite target) : this(target, 0) { }
         public ARotate(Sprite target, float additionalAngle) : this(target, 360, additionalAngle) {}
-        public ARotate(Sprite target, float speed, float additionalAngle)
+        public ARotate(Sprite target, float speed, float additionalAngle) : base()
+        {
+            Target = target;
+            Speed = speed;
+            AdditionalAngle = additionalAngle;
+        }
+        
+        public ARotate(string ID, Sprite target) : this(ID, target, 0) { }
+        public ARotate(string ID, Sprite target, float additionalAngle) : this(ID, target, 360, additionalAngle) {}
+        public ARotate(string ID, Sprite target, float speed, float additionalAngle) : base(ID)
         {
             Target = target;
             Speed = speed;
@@ -62,7 +71,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new ARotate(Target, Speed, AdditionalAngle);
+            return new ARotate(ID, Target, Speed, AdditionalAngle);
         }
     }
 }
