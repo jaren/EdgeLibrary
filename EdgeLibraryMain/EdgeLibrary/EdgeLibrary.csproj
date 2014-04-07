@@ -106,6 +106,7 @@
     <Compile Include="Elements\Sprite\Action\ARun.cs" />
     <Compile Include="Elements\Sprite\Action\ASequence.cs" />
     <Compile Include="Elements\Sprite\Action\AWait.cs" />
+    <Compile Include="Elements\Sprite\EmitterSprite.cs" />
     <Compile Include="Game\Camera.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Elements\Particle\Particle.cs" />

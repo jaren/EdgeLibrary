@@ -43,6 +43,22 @@ namespace EdgeLibrary
         }
 
         /// <summary>
+        /// Cross product of vectors
+        /// </summary>
+        public static float CrossProduct(Vector2 a, Vector2 b)
+        {
+            return (a.X * b.Y) - (a.Y * b.X);
+        }
+
+        /// <summary>
+        /// Dot product of vectors
+        /// </summary>
+        public static float DotProduct(Vector2 a, Vector2 b)
+        {
+            return (a.X * b.X) + (a.Y * b.Y);
+        }
+
+        /// <summary>
         /// Retrieves a color by its name.
         /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
         /// If the color is known at compile time, a static property on the <see cref="Color"/> class should be used instead.

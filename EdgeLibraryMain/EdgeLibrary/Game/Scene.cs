@@ -51,6 +51,10 @@ namespace EdgeLibrary
         {
             return RemoveElement(GetElement(element));
         }
+        public void RemoveElement(int index)
+        {
+            Elements.RemoveAt(index);
+        }
 
         //Gets the element with the given ID
         public Element GetElement(string id)

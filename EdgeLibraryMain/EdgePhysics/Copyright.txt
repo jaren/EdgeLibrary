@@ -1,8 +1,8 @@
 ﻿This project was based on a tutorial by Randy Gaul
 
-#region CloneRIGHT
+#region Copyright
 License:
-Cloneright (c) 2013 Randy Gaul http://RandyGaul.net
+    Copyright (c) 2013 Randy Gaul http://RandyGaul.net
 
     This software is provided 'as-is', without any express or implied
     warranty. In no event will the authors be held liable for any damages

@@ -44,14 +44,14 @@ namespace EdgeDemo
 
             Sprite sprite = new Sprite("player", Vector2.One * 500);
             sprite.AddToGame();
-            sprite.AddAction(new AFollow(Input.MouseSprite, 4));
             sprite.AddAction(new ARotate(Input.MouseSprite, 90));
+            sprite.AddAction(new AFollow(Input.MouseSprite, 7));
+            sprite.OnUpdate += new Element.ElementUpdateEvent(updateSprite);
             game.Camera.ClampTo(sprite);
 
-            TextSprite Info1 = new TextSprite("ComicSans-30", "This is a demo of EdgeLibrary.\nUse the WASD keys to pan the camera.\nUse the mouse wheel to zoom in and out.", new Vector2(10));
-            Info1.Color = Color.Goldenrod;
-            Info1.CenterAsOrigin = false;
-            Info1.AddToGame();
+            DebugText Debug = new DebugText("ComicSans-10", Vector2.Zero);
+            Debug.FollowsCamera = false;
+            Debug.AddToGame();
 
             ParticleEmitter emitter = new ParticleEmitter("fire", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
@@ -64,6 +64,12 @@ namespace EdgeDemo
             ColorChangeIndex index = new ColorChangeIndex(700, Color.White, Color.Orange, Color.Purple, Color.Orange, Color.Purple, Color.Transparent);
             emitter.SetColor(index);
             emitter.AddToGame();
+        }
+
+        static void updateSprite(Element element, GameTime gameTime)
+        {
+            ((Sprite)element).RemoveAction(1);
+            ((Sprite)element).AddAction(new AFollow(Input.MouseSprite, Vector2.Distance(Input.MousePosition, element.Position)/10));
         }
 
         static void game_OnLoadContent(EdgeGame game)

@@ -70,6 +70,10 @@ namespace EdgeLibrary
         {
             return Scenes.Remove(GetScene(id));
         }
+        public void RemoveScene(int index)
+        {
+            Scenes.RemoveAt(index);
+        }
 
         //Updates the selected scene
         public void Update(GameTime gameTime)
