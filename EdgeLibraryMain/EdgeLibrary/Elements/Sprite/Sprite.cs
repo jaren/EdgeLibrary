@@ -140,6 +140,19 @@ namespace EdgeLibrary
                 }
             }
         }
+        
+        //Gets an actino
+        public Action GetAction(string id)
+        {
+            foreach(Action action in Actions)
+            {
+                if (Action.ID == id)
+                {
+                    return action;
+                }
+            }
+            return null;
+        }
 
         //Adds an action
         public void AddAction(Action action)
