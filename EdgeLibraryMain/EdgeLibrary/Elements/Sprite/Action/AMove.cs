@@ -17,7 +17,13 @@ namespace EdgeLibrary
         public Vector2 TargetPosition;
         public float Speed;
 
-        public AMove(Vector2 targetPosition, float speed)
+        public AMove(Vector2 targetPosition, float speed) : base()
+        {
+            TargetPosition = targetPosition;
+            Speed = speed;
+        }
+        
+        public AMove(string ID, Vector2 targetPosition, float speed) : base(ID)
         {
             TargetPosition = targetPosition;
             Speed = speed;
@@ -84,7 +90,7 @@ namespace EdgeLibrary
         //Returns an AMove Clone
         public override Action Clone()
         {
-            return new AMove(TargetPosition, Speed);
+            return new AMove(ID, TargetPosition, Speed);
         }
     }
 }
