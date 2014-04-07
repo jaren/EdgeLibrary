@@ -16,17 +16,32 @@ namespace EdgeLibrary
     {
         public List<Action> Actions;
 
-        public AQuickSequence()
+        public AQuickSequence() : base()
         {
             Actions = new List<Action>();
         }
 
-        public AQuickSequence(List<Action> actions)
+        public AQuickSequence(List<Action> actions) : base()
         {
             Actions = new List<Action>(actions);
         }
 
-        public AQuickSequence(params Action[] actions)
+        public AQuickSequence(params Action[] actions) : base()
+        {
+            Actions = new List<Action>(actions);
+        }
+        
+        public AQuickSequence(string ID) : base(ID)
+        {
+            Actions = new List<Action>();
+        }
+
+        public AQuickSequence(string ID, List<Action> actions) : base(ID)
+        {
+            Actions = new List<Action>(actions);
+        }
+
+        public AQuickSequence(string ID, params Action[] actions) : base(ID)
         {
             Actions = new List<Action>(actions);
         }
@@ -46,30 +61,17 @@ namespace EdgeLibrary
         //Updates all the actions in the list at once and automatically removes them
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
+            //Updates the actions even if they should be removed - used for repetition
             foreach (Action action in Actions)
             {
                 action.Update(gameTime, sprite);
-            }
-
-            for (int i = 0; i < Actions.Count; i++)
-            {
-                if (Actions[i].toRemove)
-                {
-                    Actions.RemoveAt(i);
-                    i--;
-
-                    if (Actions.Count == 0)
-                    {
-                        Stop(gameTime, sprite);
-                    }
-                }
             }
         }
 
         //Returns a new Action
         public override Action Clone()
         {
-            return new AQuickSequence(Actions);
+            return new AQuickSequence(ID, Actions);
         }
     }
 }
