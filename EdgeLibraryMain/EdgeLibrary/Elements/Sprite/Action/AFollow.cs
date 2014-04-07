@@ -17,7 +17,13 @@ namespace EdgeLibrary
         public Sprite Target;
         public float Speed;
 
-        public AFollow(Sprite target, float speed)
+        public AFollow(Sprite target, float speed) : base()
+        {
+            Target = target;
+            Speed = speed;
+        }
+        
+        public AFollow(string ID, Sprite target, float speed) : base(ID)
         {
             Target = target;
             Speed = speed;
@@ -59,7 +65,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AFollow(Target, Speed);
+            return new AFollow(ID, Target, Speed);
         }
     }
 }
