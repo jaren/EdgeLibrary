@@ -26,6 +26,7 @@ namespace EdgeLibrary
         //A list of elements this "contains"
         //No AddSubElement/RemoveSubElement methods exist because subclasses of element should add them
         protected List<Element> SubElements { get; set; }
+        protected List<string> subElementIDs { get; set; }
 
         //Location of the element
         public virtual Vector2 Position { get; set; }
@@ -53,6 +54,7 @@ namespace EdgeLibrary
             BlendState = BlendState.AlphaBlend;
             
             SubElements = new List<Element>();
+            subElementIDs = new List<string>();
         }
 
         //Override of object.ToString() to return ID
@@ -72,10 +74,17 @@ namespace EdgeLibrary
         {
             if (Visible)
             {
-                //Updates the sub elements
+                //Updates the sub elements and checks for duplicate IDs
+                subElementIDs.Clear();
                 foreach(Element element in SubElements)
                 {
                     element.Update(gameTime);
+                    
+                    if (subElementIDs.Contains(element.ID))
+                    {
+                        throw new Exception("Duplicate SubElement ID: " + element.ID);
+                    }
+                    subElementIDs.Add(element.ID);
                 }
                 
                 for (int i = 0; i < SubElements.Count; i++)
