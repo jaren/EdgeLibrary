@@ -106,6 +106,16 @@ namespace EdgeLibrary
         {
             EdgeGame.Instance.SceneHandler.CurrentScene.AddElement(this);
         }
+        
+        //Various methods for adding/removing/getting SubElements
+        public void AddSubElement(Element element)
+        {
+            SubElements.Add(element);
+        }
+        public bool RemoveSubElement(Element element)
+        {
+            return SubElements.Remove(element);
+        }
 
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
