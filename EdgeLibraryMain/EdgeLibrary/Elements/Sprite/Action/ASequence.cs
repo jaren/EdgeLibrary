@@ -21,17 +21,32 @@ namespace EdgeLibrary
         public List<Action> Actions;
         public int CurrentIndex;
 
-        public ASequence()
+        public ASequence() : base()
         {
             Actions = new List<Action>();
         }
 
-        public ASequence(List<Action> actions)
+        public ASequence(List<Action> actions) : base()
         {
             Actions = new List<Action>(actions);
         }
 
-        public ASequence(params Action[] actions)
+        public ASequence(params Action[] actions) : base()
+        {
+            Actions = new List<Action>(actions);
+        }
+        
+        public ASequence(string ID) : base(ID)
+        {
+            Actions = new List<Action>();
+        }
+
+        public ASequence(string ID, List<Action> actions) : base(ID)
+        {
+            Actions = new List<Action>(actions);
+        }
+
+        public ASequence(string ID, params Action[] actions) : base(ID)
         {
             Actions = new List<Action>(actions);
         }
@@ -82,7 +97,7 @@ namespace EdgeLibrary
         //Returns a new Action
         public override Action Clone()
         {
-            return new ASequence(Actions);
+            return new ASequence(ID, Actions);
         }
     }
 }
