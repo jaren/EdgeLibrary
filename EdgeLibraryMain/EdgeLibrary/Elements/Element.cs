@@ -22,6 +22,10 @@ namespace EdgeLibrary
 
         //If set to false, the element will not move with the camera
         public bool FollowsCamera { get; set; }
+        
+        //A list of elements this "contains"
+        //No AddSubElement/RemoveSubElement methods exist because subclasses of element should add them
+        protected List<Element> SubElements { get; set; }
 
         //Location of the element
         public virtual Vector2 Position { get; set; }
@@ -47,6 +51,8 @@ namespace EdgeLibrary
             Visible = true;
             FollowsCamera = true;
             BlendState = BlendState.AlphaBlend;
+            
+            SubElements = new List<Element>();
         }
 
         //Override of object.ToString() to return ID
@@ -66,6 +72,21 @@ namespace EdgeLibrary
         {
             if (Visible)
             {
+                //Updates the sub elements
+                foreach(Element element in SubElements)
+                {
+                    element.Update(gameTime);
+                }
+                
+                for (int i = 0; i < SubElements.Count; i++)
+                {
+                    if (SubElements[i].toRemove)
+                    {
+                        SubElements.RemoveAt(i);
+                        i--;
+                    }
+                }
+                
                 UpdateObject(gameTime);
                 OnUpdate(this, gameTime);
             }
@@ -97,6 +118,12 @@ namespace EdgeLibrary
                         spriteBatch.End();
                         spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
                     }
+                }
+                
+                //Draws the sub elements
+                foreach(Element element in SubElements)
+                {
+                    element.Update(gameTime);
                 }
 
                 //Draws the element
