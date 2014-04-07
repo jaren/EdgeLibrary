@@ -99,7 +99,7 @@ namespace EdgeLibrary
             {
                 if (Elements[i].toRemove == true)
                 {
-                    Elements.Remove(Elements[i]);
+                    Elements.RemoveAt(i);
                     i--;
                 }
             }
