@@ -91,9 +91,8 @@ namespace EdgePhysics
             Inertia = 0;
         }
 
-        public void SetRotation(float degrees)
+        public void SetRotation(float radians)
         {
-            float radians = MathHelper.ToRadians(degrees);
             Rotation = radians;
             Shape.SetRotation(radians);
         }

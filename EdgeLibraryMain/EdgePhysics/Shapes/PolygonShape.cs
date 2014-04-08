@@ -22,6 +22,7 @@ namespace EdgePhysics
         public override void SetMassInertia(PhysicsBody body, float density)
         {
             Vector2 centroid = Vector2.Zero;
+            float inertia = 0;
             float area = 0;
 
             for (int vertexNumber = 0; vertexNumber < VertexCount; vertexNumber++)
@@ -35,6 +36,10 @@ namespace EdgePhysics
                 area += triangleArea;
 
                 centroid += triangleArea / 3f * (v1 + v2);
+
+                float IFactor1 = v1.X * v1.X + v2.X * v2.X + v1.X * v2.X;
+                float IFactor2 = v1.Y * v1.Y + v2.Y * v2.Y + v1.Y * v2.Y;
+                inertia += (Cross / 12f) * (IFactor1 + IFactor2);
             }
 
             centroid *= area;
@@ -45,6 +50,7 @@ namespace EdgePhysics
             }
 
             body.Mass = density * area;
+            body.Inertia = density * inertia;
         }
 
         public override void Draw(SpriteBatch spriteBatch, Color color)
@@ -52,9 +58,9 @@ namespace EdgePhysics
             base.Draw(spriteBatch, color);
         }
 
-        public override void SetRotation(float degrees)
+        public override void SetRotation(float radians)
         {
-            Matrix.Set(MathHelper.ToRadians(degrees));
+            Matrix.Set(radians);
         }
 
         public void SetBox()

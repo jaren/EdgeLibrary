@@ -47,7 +47,7 @@ namespace EdgePhysics
         public virtual Shape Clone() { return null; }
         public virtual void SetMassInertia(PhysicsBody body, float density) { }
         public virtual void Draw(SpriteBatch spriteBatch, Color color) { }
-        public virtual void SetRotation(float degrees) { }
+        public virtual void SetRotation(float radians) { }
         public virtual ShapeType GetShapeType() { return ShapeType.Null; }
     }
 }

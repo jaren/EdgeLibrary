@@ -21,7 +21,7 @@ namespace EdgePhysics
             body.Inertia = body.Mass*Radius * Radius;
         }
 
-        public override void SetRotation(float degrees)
+        public override void SetRotation(float radians)
         {
             //Circles don't have rotation
         }
