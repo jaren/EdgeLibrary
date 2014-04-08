@@ -36,10 +36,10 @@ namespace EdgePhysics
         public Vector2 Position;
         public Vector2 Velocity;
 
-        public float Mass { get { return Shape.GetMass(Density); } set { } }
+        public float Mass;
         public float InvMass { get { return Mass != 0 ? 1 / Mass : 0; } set { if (value != 0) { Mass = 1 / value; } else { Mass = 0; } } }
 
-        public float Inertia { get { return Shape.GetInertia(Density); } set { } }
+        public float Inertia;
         public float InvInertia { get { return Inertia != 0 ? 1 / Inertia : 0; } set { if (value != 0) { Inertia = 1 / value; } else { Inertia = 0; } } }
 
         public float AngularVelocity;
@@ -71,6 +71,7 @@ namespace EdgePhysics
             StaticFriction = 0.5f;
             DynamicFriction = 0.3f;
             Restitution = 0.2f;
+            Shape.SetMassInertia(this, 1);
         }
 
         public void ApplyForce(Vector2 force)

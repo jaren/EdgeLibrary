@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace EdgePhysics
 {
@@ -12,20 +14,21 @@ namespace EdgePhysics
             Radius = radius;
         }
 
-        public override float GetMass(float density)
+        public override void SetMassInertia(PhysicsBody body, float density)
         {
             //Area of the circle (PI * r^2) multiplied by density
-            return (float)Math.PI * Radius * Radius * density;
-        }
-
-        public override float GetInertia(float density)
-        {
-            return GetMass(density) * Radius * Radius;
+            body.Mass = (float)Math.PI * Radius * Radius * density;
+            body.Inertia = body.Mass*Radius * Radius;
         }
 
         public override void SetRotation(float degrees)
         {
             //Circles don't have rotation
+        }
+
+        public override void Draw(SpriteBatch spriteBatch, Color color)
+        {
+            base.Draw(spriteBatch, color);
         }
 
         public override Shape Clone()
