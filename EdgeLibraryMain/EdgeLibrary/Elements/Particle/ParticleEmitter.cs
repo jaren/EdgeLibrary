@@ -38,7 +38,7 @@ namespace EdgeLibrary
         public float MaxLife;
         public float MinLife;
         //How long the emitter waits before emitting a particle
-        public float EmitWait;
+        public double EmitWait;
         //The maximum number of particles that can exist at once
         public int MaxParticles;
         //Generates particles with the same width and height
@@ -48,7 +48,7 @@ namespace EdgeLibrary
         public float EmitHeight;
 
         protected List<Particle> particles;
-        protected TimeSpan timeSinceLastEmit;
+        protected double timeSinceLastEmit;
 
         //To stop garbage collection every single time
         protected List<Particle> particlesToRemove;
@@ -81,7 +81,7 @@ namespace EdgeLibrary
             MaxParticles = 10000;
 
             particlesToRemove = new List<Particle>();
-            timeSinceLastEmit = TimeSpan.Zero;
+            timeSinceLastEmit = 0;
         }
 
         //Sets the minimum and maximum color
@@ -217,12 +217,12 @@ namespace EdgeLibrary
         //Updates all the particles in the emitter
         protected override void UpdateObject(GameTime gameTime)
         {
-            timeSinceLastEmit += gameTime.ElapsedGameTime;
+            timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             //If the elapsed time is greater than the EmitWait, emit a particle
-            if (timeSinceLastEmit.TotalMilliseconds >= EmitWait)
+            if (timeSinceLastEmit >= EmitWait && particles.Count < MaxParticles)
             {
-                timeSinceLastEmit = new TimeSpan(0);
+                timeSinceLastEmit = 0;
                 EmitSingleParticle(gameTime);
             }
 
@@ -249,11 +249,8 @@ namespace EdgeLibrary
                 particlesToRemove.Clear();
             }
 
-            //Deletes particles until the number is less than the Maximum number of particles
-            while (particles.Count > MaxParticles)
-            {
-                particles.RemoveAt(0);
-            }
+
+            base.UpdateObject(gameTime);
         }
 
         public override void  DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)

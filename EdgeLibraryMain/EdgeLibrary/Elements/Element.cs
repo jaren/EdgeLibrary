@@ -132,6 +132,14 @@ namespace EdgeLibrary
             return null;
         }
 
+        public bool CheckOffScreen()
+        {
+            Vector2 ScreenSize = EdgeGame.Instance.WindowSize;
+            Vector2 TopLeft = EdgeGame.Instance.Camera.Position - ScreenSize/2;
+            //      Less than "zero"            Greater than screen size                     Less than "zero"               Greater than screen size
+            return ((Position.X < TopLeft.X) || (Position.X > TopLeft.X + ScreenSize.X)) || ((Position.Y < TopLeft.Y) || (Position.Y > TopLeft.Y + ScreenSize.Y));
+        }
+
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -157,7 +165,7 @@ namespace EdgeLibrary
                 //Draws the sub elements
                 foreach(Element element in SubElements)
                 {
-                    element.Update(gameTime);
+                    element.Draw(gameTime, spriteBatch);
                 }
 
                 //Draws the element

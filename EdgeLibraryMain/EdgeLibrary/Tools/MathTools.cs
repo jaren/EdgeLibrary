@@ -49,6 +49,14 @@ namespace EdgeLibrary
         }
 
         /// <summary>
+        /// Returns the rotation for a sprite
+        /// </summary>
+        public static float RotateTowards(Vector2 elementPos, Vector2 targetPos)
+        {
+            return MathHelper.ToDegrees((float)Math.Atan2(targetPos.Y - elementPos.Y, targetPos.X - elementPos.X));
+        }
+
+        /// <summary>
         /// Retrieves a color by its name.
         /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
         /// If the color is known at compile time, a static property on the <see cref="Color"/> class should be used instead.

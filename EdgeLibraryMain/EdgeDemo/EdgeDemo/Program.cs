@@ -16,6 +16,7 @@ namespace EdgeDemo
     /// TODO:
     /// -Add a physics engine
     /// -Mouse position is affected by camera rotation / scale
+    /// -Fix FPS Counter
     /// 
     /// Optional TODO:
     /// -Add the ability to render a scene to a RenderTarget2D
@@ -42,10 +43,11 @@ namespace EdgeDemo
         {
             game.ClearColor = Color.Black;
 
-            Sprite sprite = new Sprite("player", Vector2.One * 500);
+            Sprite sprite = new Sprite("player", Vector2.Zero);
+            sprite.DrawLayer = 100;
             sprite.AddToGame();
-            sprite.AddAction(new ARotate(Input.MouseSprite, 90));
-            sprite.AddAction(new AFollow(Input.MouseSprite, 7));
+            sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, 90));
+            sprite.AddAction(new AFollow("Follow", Input.MouseSprite, 7));
             sprite.OnUpdate += new Element.ElementUpdateEvent(updateSprite);
             game.Camera.ClampTo(sprite);
 
@@ -53,23 +55,56 @@ namespace EdgeDemo
             Debug.FollowsCamera = false;
             Debug.AddToGame();
 
-            ParticleEmitter emitter = new ParticleEmitter("Fire", new Vector2(400, 400));
+            TextSprite ts = new TextSprite("ComicSans-10", "How to play the game:\n-Play the game\n-Play the game", Vector2.One);
+            ts.AddToGame();
+
+            ParticleEmitter emitter = new ParticleEmitter("Plasma", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
-            emitter.SetScale(new Vector2(5), new Vector2(7));
+            emitter.SetScale(new Vector2(2), new Vector2(3));
             emitter.SetVelocity(new Vector2(-5), new Vector2(5));
-            emitter.BlendState = BlendState.Additive;
-            emitter.SetLife(5000);
-            emitter.EmitWait = 0;
-            emitter.SetEmitArea(0, 0);
-            ColorChangeIndex index = new ColorChangeIndex(700, Color.White, Color.Orange, Color.Purple, Color.Orange, Color.Purple, Color.Transparent);
+            emitter.BlendState = BlendState.AlphaBlend;
+            emitter.SetLife(3000);
+            emitter.EmitWait = 10;
+            emitter.SetRotationSpeed(-10, 10);
+            emitter.GrowSpeed = 0;
+            emitter.MaxParticles = 300;
+            emitter.SetEmitArea(2000, 2000);
+            ColorChangeIndex index = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent);
             emitter.SetColor(index);
+            emitter.AddAction(new AClamp(sprite));
             emitter.AddToGame();
         }
 
+        static double elapsed = 0;
+        static double toElapse = 10;
+        static float bulletspeed = 40;
         static void updateSprite(Element element, GameTime gameTime)
         {
-            ((Sprite)element).RemoveAction(1);
-            ((Sprite)element).AddAction(new AFollow(Input.MouseSprite, Vector2.Distance(Input.MousePosition, element.Position)/10));
+            elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Vector2.Distance(Input.MousePosition, element.Position)/30;
+
+            ((Sprite)element).GetAction("Follow").Paused = !Input.IsKeyDown(Keys.Space);
+
+            if (Input.IsLeftClicking() && elapsed >= toElapse)
+            {
+                elapsed = 0;
+                Sprite sprite = new Sprite("laserGreen", element.Position);
+                sprite.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
+                sprite.Rotation = MathTools.RotateTowards(sprite.Position, Input.MousePosition) + 90;
+                Vector2 MoveVector = Input.MousePosition - sprite.Position;
+                MoveVector.Normalize();
+                sprite.AddAction(new AMove(MoveVector * bulletspeed));
+                element.AddSubElement(sprite);
+            }
+        }
+
+        static void updateProjectile(Element element, GameTime gameTime)
+        {
+            if (element.CheckOffScreen())
+            {
+                element.Remove();
+            }
         }
 
         static void game_OnLoadContent(EdgeGame game)

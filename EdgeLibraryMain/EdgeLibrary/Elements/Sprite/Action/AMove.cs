@@ -11,86 +11,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //Moves a sprite to a certain position at a certian speed
+    //Adds a vector to a sprite's position
     public class AMove : Action
     {
-        public Vector2 TargetPosition;
-        public float Speed;
+        public Vector2 MoveVector;
 
-        public AMove(Vector2 targetPosition, float speed) : base()
+        public AMove(Vector2 moveVector) : base()
         {
-            TargetPosition = targetPosition;
-            Speed = speed;
-        }
-        
-        public AMove(string ID, Vector2 targetPosition, float speed) : base(ID)
-        {
-            TargetPosition = targetPosition;
-            Speed = speed;
+            MoveVector = moveVector;
         }
 
-        //Creates a waypoint movement path
-        public static ASequence CreateMoveSequence(float speed, params Vector2[] targetPositions)
+        public AMove(string ID, Vector2 moveVector) : base(ID)
         {
-            List<Vector2> vectors = new List<Vector2>(targetPositions);
-            return CreateMoveSequence(speed, vectors);
-        }
-        public static ASequence CreateMoveSequence(float speed, List<Vector2> targetPositions)
-        {
-            List<Action> moves = new List<Action>();
-
-            foreach (Vector2 vector in targetPositions)
-            {
-                moves.Add(new AMove(vector, speed));
-            }
-
-            return new ASequence(moves);
+            MoveVector = moveVector;
         }
 
-        //Moves the sprite by the speed towards the target position, checks if it should end and automatically removes it
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            //Calculates what the sprite should move by
-            Vector2 moveVector = TargetPosition - sprite.Position;
-
-            //If the moveVector is Vector2.Zero, then normalizing it will result in NaN, and checkIfEnd will return false
-            //To fix this, if moveVector is Vector2.Zero, then toRemove will be set to true (Sprite's position is the Target Position)
-            if (moveVector != Vector2.Zero)
-            {
-                moveVector.Normalize();
-                moveVector *= Speed;
-
-                if (checkIfEnd(moveVector, TargetPosition, sprite.Position)) { Stop(gameTime, sprite); }
-                sprite.Position += moveVector;
-            }
-            else
-            {
-                Stop(gameTime, sprite);
-            }
+            sprite.Position += MoveVector;
         }
 
-        //Checks if movement should stop
-        //Move vector - the vector which the sprite has moved by
-        //Target - the end position
-        //Position - the sprite's current position
-        private bool checkIfEnd(Vector2 moveVector, Vector2 target, Vector2 position)
-        {
-            position += moveVector;
-
-            if ((moveVector.X < 0) && (position.X < target.X)) { return true; }
-            else if ((moveVector.X > 0) && (position.X > target.X)) { return true; }
-
-            if ((moveVector.Y < 0) && (position.Y < target.Y)) { return true; }
-            else if ((moveVector.Y > 0) && (position.Y > target.Y)) { return true; }
-
-            return false;
-        }
-
-
-        //Returns an AMove Clone
         public override Action Clone()
         {
-            return new AMove(ID, TargetPosition, Speed);
+            return new AMove(ID, MoveVector);
         }
     }
 }

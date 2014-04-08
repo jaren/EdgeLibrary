@@ -93,12 +93,12 @@ namespace EdgeLibrary
             return keyboard.IsKeyUp(k);
         }
 
-        public static bool LeftClick()
+        public static bool IsLeftClicking()
         {
             return mouse.LeftButton == ButtonState.Pressed;
         }
 
-        public static bool RightClick()
+        public static bool IsRightClicking()
         {
             return mouse.RightButton == ButtonState.Pressed;
         }

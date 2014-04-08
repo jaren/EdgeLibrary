@@ -11,67 +11,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //Rotates a sprite towards another one
+    //Adds a specific number of degrees to a sprite's rotation
     public class ARotate : Action
     {
-        public Sprite Target;
-        //The higher this is, the faster the sprite will rotate
         public float Speed;
 
-        //The number of degrees to add to the sprite's rotation after rotating towards the target sprite
-        public float AdditionalAngle;
-
-        public ARotate(Sprite target) : this(target, 0) { }
-        public ARotate(Sprite target, float additionalAngle) : this(target, 360, additionalAngle) {}
-        public ARotate(Sprite target, float speed, float additionalAngle) : base()
+        public ARotate(float degrees) : base()
         {
-            Target = target;
-            Speed = speed;
-            AdditionalAngle = additionalAngle;
-        }
-        
-        public ARotate(string ID, Sprite target) : this(ID, target, 0) { }
-        public ARotate(string ID, Sprite target, float additionalAngle) : this(ID, target, 360, additionalAngle) {}
-        public ARotate(string ID, Sprite target, float speed, float additionalAngle) : base(ID)
-        {
-            Target = target;
-            Speed = speed;
-            AdditionalAngle = additionalAngle;
+            Speed = degrees;
         }
 
-        //Calculates rotation
+        public ARotate(string ID, float degrees) : base(ID)
+        {
+            Speed = degrees;
+        }
+
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            float targetRotation = MathHelper.ToDegrees((float)Math.Atan2(Target.Position.Y - sprite.Position.Y, Target.Position.X - sprite.Position.X)) + AdditionalAngle;
-
-            //Adds the speed to the sprite's rotation if it won't be more/less than the target rotation
-            if (sprite.Rotation < targetRotation)
-            {
-                if (sprite.Rotation + Math.Abs(Speed) > targetRotation)
-                {
-                    sprite.Rotation = targetRotation;
-                }
-                else
-                {
-                    sprite.Rotation += Math.Abs(Speed);
-                }
-            }
-            else if (sprite.Rotation > targetRotation)
-            {
-                if (sprite.Rotation - Math.Abs(Speed) < targetRotation)
-                {
-                    sprite.Rotation = targetRotation;
-                }
-                else
-                {
-                    sprite.Rotation -= Math.Abs(Speed);
-                }
-            }
+            sprite.Rotation += Speed;
         }
 
         public override Action Clone()
         {
-            return new ARotate(ID, Target, Speed, AdditionalAngle);
+            return new ARotate(ID, Speed);
         }
     }
 }

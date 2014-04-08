@@ -49,7 +49,7 @@ namespace EdgeLibrary
             else
             {
                 Position += Velocity;
-                Rotation += RotateSpeed / 10;
+                Rotation += RotateSpeed / 10f;
                 Scale += new Vector2(GrowSpeed/Width, GrowSpeed/Height);
 
                 Color = ColorIndex.Update(gameTime);
