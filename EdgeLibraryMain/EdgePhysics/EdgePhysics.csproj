@@ -92,7 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mat2.cs" />
+    <Compile Include="PhysicsMatrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Body.cs" />
     <Compile Include="Shapes\CircleShape.cs" />
