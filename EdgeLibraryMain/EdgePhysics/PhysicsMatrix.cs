@@ -61,7 +61,7 @@ namespace EdgePhysics
             return new PhysicsMatrix(M00, M10, M01, M11);
         }
 
-        public static Vector2 operator *(Vector2 vector, PhysicsMatrix matrix)
+        public static Vector2 operator *(PhysicsMatrix matrix, Vector2 vector)
         {
             return new Vector2(matrix.M00 * vector.X + matrix.M01 * vector.Y, matrix.M10 * vector.X + matrix.M11 * vector.Y);
         }

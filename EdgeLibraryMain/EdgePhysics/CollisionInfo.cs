@@ -28,6 +28,8 @@ namespace EdgePhysics
         {
             BodyA = a;
             BodyB = b;
+
+            Contacts = new Vector2[2];
         }
 
         public void Init()
