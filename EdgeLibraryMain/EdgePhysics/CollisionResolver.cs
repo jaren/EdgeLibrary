@@ -149,6 +149,88 @@ namespace EdgePhysics
             PolygonShape A = (PolygonShape)a.Shape;
             PolygonShape B = (PolygonShape)b.Shape;
 
+          info.ContactNumber = 0;
+
+          int faceA;
+          float penetrationA = FindAxisLeastPenetration( ref faceA, A, a.Position, B, b.Position);
+          if(penetrationA >= 0) { return; }
+
+          int faceB;
+          float penetrationB = FindAxisLeastPenetration( ref faceB, B, b.Position, A, a.Position);
+          if(penetrationB >= 0) { return; }
+
+          int referenceIndex;
+          bool flip;
+
+          PolygonShape RefPoly;
+          PolygonShape IncPoly;
+
+          if(BiasGreaterThan( penetrationA, penetrationB ))
+          {
+            RefPoly = A;
+            IncPoly = B;
+            referenceIndex = faceA;
+            flip = false;
+          }
+
+          else
+          {
+            RefPoly = B;
+            IncPoly = A;
+            referenceIndex = faceB;
+            flip = true;
+          }
+
+          Vector2[] incidentFace = new Vector2[2];
+          FindIncidentFace( ref incidentFace, RefPoly, IncPoly, IncPoly == A ? a.Position : b.Position, referenceIndex );
+
+          Vector2 v1 = RefPoly.Vertices[referenceIndex];
+          referenceIndex = referenceIndex + 1 == RefPoly.Vertices.Count ? 0 : referenceIndex + 1;
+          Vector2 v2 = RefPoly.Vertices[referenceIndex];
+
+          v1 = RefPoly.Matrix * v1 + (RefPoly == A ? a.Position : b.Position);
+          v2 = RefPoly.Matrix * v2 + (RefPoly == A ? a.Position : b.Position);
+
+          Vector2 sidePlaneNormal = (v2 - v1);
+          sidePlaneNormal.Normalize( );
+
+          Vector2 refFaceNormal( sidePlaneNormal.Y, -sidePlaneNormal.X );
+
+          float refC = MathTools.DotProduct( refFaceNormal, v1 );
+          float negSide = -MathTools.DotProduct( sidePlaneNormal, v1 );
+          float posSide =  MathTools.DotProduct( sidePlaneNormal, v2 );
+
+          if(Clip( -sidePlaneNormal, negSide, ref incidentFace ) < 2) { return; }
+
+          if(Clip(  sidePlaneNormal, posSide, ref incidentFace ) < 2) { return; }
+
+          info.Normal = flip ? -refFaceNormal : refFaceNormal;
+
+          int cp = 0;
+          float separation = MathTools.DotProduct( refFaceNormal, incidentFace[0] ) - refC;
+          if(separation <= 0.0f)
+          {
+            info.Contacts[cp] = incidentFace[0];
+            info.Depth = -separation;
+            ++cp;
+          }
+          else
+          {
+            info.Depth = 0;
+          }
+
+          separation = MathTools.DotProduct( refFaceNormal, incidentFace[1] ) - refC;
+          if(separation <= 0.0f)
+          {
+            info.Contacts[cp] = incidentFace[1];
+
+            info.Depth += -separation;
+            ++cp;
+
+            info.Depth /= (float)cp;
+          }
+
+          info.ContactNumber = cp;
         }
 
         public static float FindAxisLeastPenetration(ref int faceIndex, PolygonShape a, Vector2 aPosition, PolygonShape b, Vector2 bPosition)
