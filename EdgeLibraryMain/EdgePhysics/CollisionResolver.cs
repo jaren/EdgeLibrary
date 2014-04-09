@@ -150,5 +150,86 @@ namespace EdgePhysics
             PolygonShape B = (PolygonShape)b.Shape;
 
         }
+
+        public static float FindAxisLeastPenetration(ref int faceIndex, PolygonShape a, Vector2 aPosition, PolygonShape b, Vector2 bPosition)
+        {
+            float bestDistance = -float.MaxValue;
+            int bestIndex = 0;
+
+            for (int i = 0; i < a.Vertices.Count; ++i)
+            {
+                Vector2 n = a.Normals[i];
+                Vector2 nw = a.Matrix * n;
+
+                PhysicsMatrix buT = b.Matrix.Transpose();
+                n = buT * nw;
+
+                Vector2 s = b.GetSupport(-n);
+
+                Vector2 v = a.Vertices[i];
+                v = a.Matrix * v + aPosition;
+                v -= bPosition;
+                v = buT * v;
+
+                float d = MathTools.DotProduct(n, s - v);
+
+                if (d > bestDistance)
+                {
+                    bestDistance = d;
+                    bestIndex = i;
+                }
+            }
+
+            faceIndex = bestIndex;
+            return bestDistance;
+        }
+
+        public static void FindIncidentFace(ref Vector2[] vector, PolygonShape refPoly, PolygonShape incPoly, Vector2 incPolyPosition, int referenceIndex)
+        {
+            Vector2 referenceNormal = refPoly.Normals[referenceIndex];
+
+            referenceNormal = refPoly.Matrix * referenceNormal;
+            referenceNormal = incPoly.Matrix.Transpose() * referenceNormal;
+
+            int incidentFace = 0;
+            float minDot = float.MaxValue;
+            for (int i = 0; i < incPoly.Vertices.Count; ++i)
+            {
+                float dot = MathTools.DotProduct(referenceNormal, incPoly.Normals[i]);
+                if (dot < minDot)
+                {
+                    minDot = dot;
+                    incidentFace = i;
+                }
+            }
+
+            vector[0] = incPoly.Matrix * incPoly.Vertices[incidentFace] + incPolyPosition;
+            incidentFace = incidentFace + 1 >= incPoly.Vertices.Count ? 0 : incidentFace + 1;
+            vector[1] = incPoly.Matrix * incPoly.Vertices[incidentFace] + incPolyPosition;
+        }
+
+        public static int Clip(Vector2 n, float c, ref Vector2[] face)
+        {
+            int sp = 0;
+            Vector2[] outVector = face;
+
+          float d1 = MathTools.DotProduct(n, face[0]) - c;
+          float d2 = MathTools.DotProduct(n, face[1]) - c;
+
+          if(d1 <= 0.0f) outVector[sp++] = face[0];
+          if(d2 <= 0.0f) outVector[sp++] = face[1];
+  
+          if(d1 * d2 < 0.0f) 
+          {
+            float alpha = d1 / (d1 - d2);
+            outVector[sp] = face[0] + alpha * (face[1] - face[0]);
+            ++sp;
+          }
+
+          face[0] = outVector[0];
+          face[1] = outVector[1];
+
+          return sp;
+        }
     }
 }
