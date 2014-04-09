@@ -58,14 +58,14 @@ namespace EdgeDemo
             TextSprite ts = new TextSprite("ComicSans-10", "How to play the game:\n-Play the game\n-Play the game", Vector2.One);
             ts.AddToGame();
 
-            ParticleEmitter emitter = new ParticleEmitter("Plasma", new Vector2(400, 400));
+            ParticleEmitter emitter = new ParticleEmitter("Stars", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
-            emitter.SetScale(new Vector2(2), new Vector2(3));
-            emitter.SetVelocity(new Vector2(-5), new Vector2(5));
+            emitter.SetScale(new Vector2(0.5f), new Vector2(1));
+            emitter.SetVelocity(new Vector2(-1), new Vector2(1));
             emitter.BlendState = BlendState.AlphaBlend;
             emitter.SetLife(3000);
-            emitter.EmitWait = 10;
-            emitter.SetRotationSpeed(-10, 10);
+            emitter.EmitWait = 0;
+            emitter.SetRotationSpeed(-1, 1);
             emitter.GrowSpeed = 0;
             emitter.MaxParticles = 300;
             emitter.SetEmitArea(2000, 2000);
