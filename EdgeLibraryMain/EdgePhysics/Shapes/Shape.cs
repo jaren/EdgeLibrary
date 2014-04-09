@@ -13,7 +13,7 @@ namespace EdgePhysics
 {
     public enum ShapeType
     {
-        Circle, Polygon, Count, Null
+        Circle, Polygon
     }
 
     public class Shape
@@ -22,13 +22,13 @@ namespace EdgePhysics
         public float Radius;
 
         //For polygon
-        public Mat2 Matrix;
+        public PhysicsMatrix Matrix;
 
         public virtual void Init() { } //Possibly remove
         public virtual Shape Clone() { return null; }
         public virtual void SetMassInertia(PhysicsBody body, float density) { }
         public virtual void Draw(SpriteBatch spriteBatch, Color color) { }
         public virtual void SetRotation(float radians) { }
-        public virtual ShapeType GetShapeType() { return ShapeType.Null; }
+        public virtual ShapeType GetShapeType() { throw new Exception("ShapeType not defined."); }
     }
 }

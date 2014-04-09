@@ -39,6 +39,14 @@ namespace EdgeLibrary
         {
             return (a.X * b.Y) - (a.Y * b.X);
         }
+        public static Vector2 CrossProduct(Vector2 vector, float cross)
+        {
+            return new Vector2(cross * vector.Y, -cross * vector.X);
+        }
+        public static Vector2 CrossProduct(float cross, Vector2 vector)
+        {
+            return new Vector2(-cross * vector.Y, cross * vector.X);
+        }
 
         /// <summary>
         /// Dot product of vectors
