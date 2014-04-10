@@ -23,7 +23,7 @@ namespace EdgeLibrary
         
         public Action()
         {
-            ID = MathTools.GenerateID(this);
+            ID = this.GenerateID();
         }
         
         public Action(string id)

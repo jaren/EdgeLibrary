@@ -43,7 +43,7 @@ namespace EdgePhysics
                 Vector2 radiusA = Contacts[i] - BodyA.Position;
                 Vector2 radiusB = Contacts[i] - BodyB.Position;
 
-                Vector2 relativeVelocity = BodyB.Velocity + MathTools.CrossProduct(BodyB.AngularVelocity, radiusB) - BodyA.Velocity - MathTools.CrossProduct(BodyA.AngularVelocity, radiusA);
+                Vector2 relativeVelocity = BodyB.Velocity + BodyB.AngularVelocity.CrossProduct(radiusB) - BodyA.Velocity - BodyA.AngularVelocity.CrossProduct(radiusA);
 
                 if (relativeVelocity.LengthSquared() < PhysicsWorld.Gravity.LengthSquared()) { MixedRestitution = 0; }
             }
@@ -67,15 +67,15 @@ namespace EdgePhysics
                 Vector2 radiusA = Contacts[i] - BodyA.Position;
                 Vector2 radiusB = Contacts[i] - BodyB.Position;
 
-                Vector2 relativeVelocity = BodyB.Velocity + MathTools.CrossProduct(BodyB.AngularVelocity, radiusB) - BodyA.Velocity - MathTools.CrossProduct(BodyA.AngularVelocity, radiusA);
+                Vector2 relativeVelocity = BodyB.Velocity + BodyB.AngularVelocity.CrossProduct(radiusB) - BodyA.Velocity - BodyA.AngularVelocity.CrossProduct(radiusA);
 
-                float contactVelocity = MathTools.DotProduct(relativeVelocity, Normal);
+                float contactVelocity = relativeVelocity.CrossProduct(Normal);
 
                 //Do not resolve if velocities are separating
                 if (contactVelocity > 0) { return; }
 
-                float radiusACross = MathTools.CrossProduct(radiusA, Normal);
-                float radiusBCross = MathTools.CrossProduct(radiusB, Normal);
+                float radiusACross = radiusA.CrossProduct(Normal);
+                float radiusBCross = radiusB.CrossProduct(Normal);
                 float invMassSum = BodyA.InvMass + BodyB.InvMass + (radiusACross * radiusACross * BodyA.InvInertia) + (radiusBCross * radiusBCross * BodyB.InvInertia);
 
                 float scalar = -(1 + MixedRestitution) * contactVelocity;
@@ -86,12 +86,12 @@ namespace EdgePhysics
                 BodyA.ApplyImpulse(impulse, radiusA);
                 BodyB.ApplyImpulse(impulse, radiusB);
 
-                relativeVelocity = BodyB.Velocity + MathTools.CrossProduct(BodyB.AngularVelocity, radiusB) - BodyA.Velocity - MathTools.CrossProduct(BodyA.AngularVelocity, radiusA);
+                relativeVelocity = BodyB.Velocity + BodyB.AngularVelocity.CrossProduct(radiusB) - BodyA.Velocity - BodyA.AngularVelocity.CrossProduct(radiusA);
 
-                Vector2 t = relativeVelocity - (Normal * MathTools.DotProduct(relativeVelocity, Normal));
+                Vector2 t = relativeVelocity - (Normal * relativeVelocity.DotProduct(Normal));
                 t.Normalize();
 
-                float scalarT = -MathTools.DotProduct(relativeVelocity, t);
+                float scalarT = -relativeVelocity.DotProduct(t);
                 scalarT /= invMassSum;
                 scalarT /= (float)ContactNumber;
 

@@ -224,7 +224,7 @@ namespace EdgeLibrary
                                 OnCollide(this, elementAsSprite, gameTime);
                                 if (!currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                 {
-                                    DebugLogger.LogEvent(MathTools.LastPortionOfPath(GetType().ToString(), '.') + " Collided", "ID: " + ID, "Other sprite type: " + elementAsSprite.GetType().Name, "Other sprite ID: " + elementAsSprite.ID, "GameTime: " + gameTime.TotalGameTime.ToString()); 
+                                    DebugLogger.LogEvent(GetType().ToString().LastPortionOfPath('.') + " Collided", "ID: " + ID, "Other sprite type: " + elementAsSprite.GetType().Name, "Other sprite ID: " + elementAsSprite.ID, "GameTime: " + gameTime.TotalGameTime.ToString()); 
                                     OnCollideStart(this, elementAsSprite, gameTime);
                                     currentlyCollidingWithIDs.Add(elementAsSprite.ID);
                                 }

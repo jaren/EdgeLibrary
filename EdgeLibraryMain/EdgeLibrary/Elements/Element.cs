@@ -47,7 +47,7 @@ namespace EdgeLibrary
 
         public Element()
         {
-            ID = MathTools.GenerateID(this);
+            ID = this.GenerateID();
 
             Visible = true;
             FollowsCamera = true;

@@ -78,7 +78,7 @@ namespace EdgePhysics
             int faceNormal = 0;
             for (int i = 0; i < B.Vertices.Count; i++)
             {
-                float s = MathTools.DotProduct(B.Normals[i], center - B.Vertices[i]);
+                float s = B.Normals[i].DotProduct(center - B.Vertices[i]);
 
                 if (s > A.Radius) { return; }
 
@@ -98,8 +98,8 @@ namespace EdgePhysics
                 return;
             }
 
-            float dot1 = MathTools.DotProduct(center - v1, v2 - v1);
-            float dot2 = MathTools.DotProduct(center - v2, v1 - v2);
+            float dot1 = (center - v1).DotProduct(v2 - v1);
+            float dot2 = (center - v2).DotProduct(v1 - v2);
             info.Depth = A.Radius- separation;
 
             if (dot1 <= 0.0f)
@@ -129,7 +129,7 @@ namespace EdgePhysics
             else
             {
                 Vector2 n = B.Normals[faceNormal];
-                if (MathTools.DotProduct(center - v1, n) > A.Radius) { return; }
+                if ((center - v1).DotProduct(n) > A.Radius) { return; }
 
                 n = B.Matrix * n;
                 info.Normal = -n;
@@ -151,11 +151,11 @@ namespace EdgePhysics
 
           info.ContactNumber = 0;
 
-          int faceA;
+          int faceA = 0;
           float penetrationA = FindAxisLeastPenetration( ref faceA, A, a.Position, B, b.Position);
           if(penetrationA >= 0) { return; }
 
-          int faceB;
+          int faceB = 0;
           float penetrationB = FindAxisLeastPenetration( ref faceB, B, b.Position, A, a.Position);
           if(penetrationB >= 0) { return; }
 
@@ -194,11 +194,11 @@ namespace EdgePhysics
           Vector2 sidePlaneNormal = (v2 - v1);
           sidePlaneNormal.Normalize( );
 
-          Vector2 refFaceNormal( sidePlaneNormal.Y, -sidePlaneNormal.X );
+          Vector2 refFaceNormal = new Vector2( sidePlaneNormal.Y, -sidePlaneNormal.X );
 
-          float refC = MathTools.DotProduct( refFaceNormal, v1 );
-          float negSide = -MathTools.DotProduct( sidePlaneNormal, v1 );
-          float posSide =  MathTools.DotProduct( sidePlaneNormal, v2 );
+          float refC = refFaceNormal.DotProduct(v1);
+          float negSide = -sidePlaneNormal.DotProduct(v1);
+          float posSide = refFaceNormal.DotProduct(v2);
 
           if(Clip( -sidePlaneNormal, negSide, ref incidentFace ) < 2) { return; }
 
@@ -207,7 +207,7 @@ namespace EdgePhysics
           info.Normal = flip ? -refFaceNormal : refFaceNormal;
 
           int cp = 0;
-          float separation = MathTools.DotProduct( refFaceNormal, incidentFace[0] ) - refC;
+          float separation = refFaceNormal.DotProduct(incidentFace[0]) - refC;
           if(separation <= 0.0f)
           {
             info.Contacts[cp] = incidentFace[0];
@@ -219,7 +219,7 @@ namespace EdgePhysics
             info.Depth = 0;
           }
 
-          separation = MathTools.DotProduct( refFaceNormal, incidentFace[1] ) - refC;
+          separation = refFaceNormal.DotProduct(incidentFace[1]) -refC;
           if(separation <= 0.0f)
           {
             info.Contacts[cp] = incidentFace[1];
@@ -231,6 +231,13 @@ namespace EdgePhysics
           }
 
           info.ContactNumber = cp;
+        }
+
+        public static bool BiasGreaterThan(float a, float b)
+        {
+            float biasRelative = 0.95f;
+            float biasAbsolute = 0.01f;
+            return a >= b * biasRelative + a * biasAbsolute;
         }
 
         public static float FindAxisLeastPenetration(ref int faceIndex, PolygonShape a, Vector2 aPosition, PolygonShape b, Vector2 bPosition)
@@ -253,7 +260,7 @@ namespace EdgePhysics
                 v -= bPosition;
                 v = buT * v;
 
-                float d = MathTools.DotProduct(n, s - v);
+                float d = n.DotProduct(s - v); ;
 
                 if (d > bestDistance)
                 {
@@ -277,7 +284,7 @@ namespace EdgePhysics
             float minDot = float.MaxValue;
             for (int i = 0; i < incPoly.Vertices.Count; ++i)
             {
-                float dot = MathTools.DotProduct(referenceNormal, incPoly.Normals[i]);
+                float dot = referenceNormal.DotProduct(incPoly.Normals[i]);
                 if (dot < minDot)
                 {
                     minDot = dot;
@@ -295,8 +302,8 @@ namespace EdgePhysics
             int sp = 0;
             Vector2[] outVector = face;
 
-          float d1 = MathTools.DotProduct(n, face[0]) - c;
-          float d2 = MathTools.DotProduct(n, face[1]) - c;
+          float d1 = n.DotProduct(face[0]) - c;
+          float d2 = n.DotProduct(face[1]) - c;
 
           if(d1 <= 0.0f) outVector[sp++] = face[0];
           if(d2 <= 0.0f) outVector[sp++] = face[1];

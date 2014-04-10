@@ -63,7 +63,7 @@ namespace EdgePhysics
         public void ApplyImpulse(Vector2 impulse, Vector2 contact)
         {
             Velocity += InvMass * impulse;
-            AngularVelocity += InvInertia * MathTools.CrossProduct(contact, impulse);
+            AngularVelocity += InvInertia * contact.CrossProduct(impulse);
         }
 
         public void SetStatic()

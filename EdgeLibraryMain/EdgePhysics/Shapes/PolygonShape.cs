@@ -30,7 +30,7 @@ namespace EdgePhysics
                 int vertexNumber2 = vertexNumber + 1 < Vertices.Count ? vertexNumber + 1: 0;
                 Vector2 v2 = Vertices[vertexNumber2];
 
-                float Cross = MathTools.CrossProduct(v1, v2);
+                float Cross = v1.CrossProduct(v2);
                 float triangleArea = Cross / 2f;
                 area += triangleArea;
 
@@ -139,7 +139,7 @@ namespace EdgePhysics
                     // to the output hull
                     Vector2 e1 = vertices[nextHullIndex] - vertices[hull[outCount]];
                     Vector2 e2 = vertices[i] - vertices[hull[outCount]];
-                    float Crossed = MathTools.CrossProduct(e1, e2);
+                    float Crossed = e1.CrossProduct(e2);
 
                     // Cross product is zero then e vectors are on same line
                     // therefor want to record vertex farthest along that line
@@ -189,7 +189,7 @@ namespace EdgePhysics
 
             foreach (Vector2 vertex in Vertices)
             {
-                float projection = MathTools.DotProduct(vertex, direction);
+                float projection = vertex.DotProduct(direction);
 
                 if (projection > bestProjection)
                 {

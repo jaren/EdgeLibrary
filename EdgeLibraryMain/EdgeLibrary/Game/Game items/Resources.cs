@@ -41,7 +41,7 @@ namespace EdgeLibrary
         //Loads all the textures in a spritesheet
         public static void LoadTexturesInSpritesheet(string xmlPath, string spriteSheetLocation)
         {
-            foreach (var kvp in TextureTools.SplitSpritesheet(spriteSheetLocation, xmlPath))
+            foreach (var kvp in TextureGeneratorTools.SplitSpritesheet(spriteSheetLocation, xmlPath))
             {
                 addTexture(kvp.Key, kvp.Value);
             }
@@ -49,7 +49,7 @@ namespace EdgeLibrary
         //Loads a texture
         public static void LoadTexture(string path)
         {
-            addTexture(MathTools.LastPortionOfPath(path), Content.Load<Texture2D>(path));
+            addTexture(path.LastPortionOfPath(), Content.Load<Texture2D>(path));
         }
         public static void LoadTexture(string path, string name)
         {
@@ -59,7 +59,7 @@ namespace EdgeLibrary
         //Loads a font
         public static void LoadFont(string path)
         {
-            addFont(MathTools.LastPortionOfPath(path), Content.Load<SpriteFont>(path));
+            addFont(path.LastPortionOfPath(), Content.Load<SpriteFont>(path));
         }
         public static void LoadFont(string path, string name)
         {

@@ -88,7 +88,7 @@ namespace EdgeLibrary
         //Draws a circle using generated points
         public override void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
-            foreach (Vector2 point in MathTools.GetOuterCirclePoints(CenterPosition, _radius))
+            foreach (Vector2 point in TextureGeneratorTools.GetOuterCirclePoints(CenterPosition, _radius))
             {
                 spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle((int)point.X, (int)point.Y, 1, 1), color);
             }

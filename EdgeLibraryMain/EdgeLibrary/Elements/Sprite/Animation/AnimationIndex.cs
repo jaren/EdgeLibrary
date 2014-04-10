@@ -37,7 +37,7 @@ namespace EdgeLibrary
         public static AnimationIndex FromXMLSpriteSheet(string xmlPath, string texturePath, int switchTime)
         {
             AnimationIndex index = new AnimationIndex(switchTime);
-            foreach (var kvp in TextureTools.SplitSpritesheet(texturePath, xmlPath))
+            foreach (var kvp in TextureGeneratorTools.SplitSpritesheet(texturePath, xmlPath))
             {
                 index.textures.Add(kvp.Value);
             }

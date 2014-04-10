@@ -35,7 +35,7 @@ namespace EdgeLibrary
 
         public static void LoadSound(string path)
         {
-            addSound(MathTools.LastPortionOfPath(path), Content.Load<SoundEffect>(path));
+            addSound(path.LastPortionOfPath(), Content.Load<SoundEffect>(path));
         }
 
         public static void LoadSound(string path, string name)
@@ -45,7 +45,7 @@ namespace EdgeLibrary
 
         public static void LoadSong(string path)
         {
-            addSong(MathTools.LastPortionOfPath(path), Content.Load<Song>(path));
+            addSong(path.LastPortionOfPath(), Content.Load<Song>(path));
         }
 
         public static void LoadSong(string path, string name)

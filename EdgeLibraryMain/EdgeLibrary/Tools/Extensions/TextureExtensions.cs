@@ -12,12 +12,12 @@ using System.Xml.Linq;
 
 namespace EdgeLibrary
 {
-    //Provides many tools for editing textures and colors
-        public static class TextureTools
+    //Provides many extensions for editing textures
+        public static class TextureExtensions
         {
             #region GENERATING TOOLS
             //Makes a Clone of a Texture2D
-            public static Texture2D Clone(Texture2D texture)
+            public static Texture2D Clone(this Texture2D texture)
             {
                 Color[] colors = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colors);
@@ -26,7 +26,7 @@ namespace EdgeLibrary
                 return returnTexture;
             }
             //Colorizes a Texture using a color and a float of the amount to apply that color
-            public static void Colorize(Texture2D texture, Color color, float factor)
+            public static void Colorize(this Texture2D texture, Color color, float factor)
             {
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
@@ -40,15 +40,8 @@ namespace EdgeLibrary
 
                 texture.SetData<Color>(colorData);
             }
-            //The same as Colorize, but doesn't modify the original texture and instead returns a modified Clone
-            public static Texture2D GetAsColorized(Texture2D texture, Color color, float factor)
-            {
-                Texture2D returnTexture = Clone(texture);
-                Colorize(returnTexture, color, factor);
-                return returnTexture;
-            }
             //Flips a texture - vertical: if true, flips vertically; if not, flips horizontally
-            public static void Flip(Texture2D texture, bool vertical)
+            public static void Flip(this Texture2D texture, bool vertical)
             {
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
@@ -69,16 +62,10 @@ namespace EdgeLibrary
                 }
                 texture.SetData<Color>(newColorData);
             }
-            //The same as Flip, but doesn't modify the original texture and instead returns a modified Clone
-            public static Texture2D GetAsFlipped(Texture2D texture, bool vertical)
-            {
-                Texture2D returnTexture = Clone(texture);
-                Flip(returnTexture, vertical);
-                return returnTexture;
-            }
             //Sets the inner rectangle portion of a Texture2D
-            public static void SetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
+            public static void SetInnerTexture(this Texture2D texture, Texture2D innerTexture, Vector2 middlePosition)
             {
+                Vector2 startPosition = middlePosition - new Vector2(innerTexture.Width, innerTexture.Height);
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
                 Color[] innerColorData = new Color[innerTexture.Width * innerTexture.Height];
@@ -97,18 +84,11 @@ namespace EdgeLibrary
 
                 texture.SetData<Color>(colorData);
             }
-            //The same as SetInnerTexture, but doesn't modify the original texture and instead returns a modified Clone
-            public static Texture2D GetAsSetInnerTexture(Texture2D texture, Texture2D innerTexture, Vector2 startPosition)
-            {
-                Texture2D returnTexture = Clone(texture);
-                SetInnerTexture(returnTexture, innerTexture, startPosition);
-                return returnTexture;
-            }
             #endregion
 
             #region SPLITTING TOOLS
             //Gets an inner rectangle portion of a Texture2D
-            public static Texture2D GetInnerTexture(Texture2D texture, Rectangle rectangle)
+            public static Texture2D GetInnerTexture(this Texture2D texture, Rectangle rectangle)
             {
                 Texture2D returnTexture = EdgeGame.CreateNewTexture(rectangle.Width, rectangle.Height);
                 Color[] colorData = new Color[texture.Width * texture.Height];
@@ -128,7 +108,7 @@ namespace EdgeLibrary
             }
 
             //Splits a spritesheet using an xml document and a texture
-            public static Dictionary<string, Texture2D> SplitSpritesheet(Texture2D spriteSheetTexture, string XMLPath)
+            public static Dictionary<string, Texture2D> SplitSpritesheet(this Texture2D spriteSheetTexture, string XMLPath)
             {
                 Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
                 string completePath = string.Format("{0}\\{1}.xml", Resources.ContentRootDirectory, XMLPath);
@@ -141,10 +121,6 @@ namespace EdgeLibrary
                 }
 
                 return textures;
-            }
-            public static Dictionary<string, Texture2D> SplitSpritesheet(string spriteSheetTexture, string XMLPath)
-            {
-                return SplitSpritesheet(Resources.TextureFromString(spriteSheetTexture), XMLPath);
             }
             #endregion
         }

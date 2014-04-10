@@ -11,17 +11,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    public static class MathTools
+    public static class MathExtensions
     {  
-        public static float circlePointStep = 8;
-        public static float outerCirclePointStep = 1;
-
         private static Dictionary<Type, int> GivenIDs = new Dictionary<Type, int>();
 
         /// <summary>
         /// Generates a random ID based on the element's type and the number of previously given IDs of that type
         /// </summary>
-        public static string GenerateID(object obj)
+        public static string GenerateID(this object obj)
         {
             //If no other elements of this type exist, then create an index for it
             if (!GivenIDs.ContainsKey(obj.GetType()))
@@ -35,15 +32,15 @@ namespace EdgeLibrary
         /// <summary>
         /// Cross product of vectors
         /// </summary>
-        public static float CrossProduct(Vector2 a, Vector2 b)
+        public static float CrossProduct(this Vector2 a, Vector2 b)
         {
             return (a.X * b.Y) - (a.Y * b.X);
         }
-        public static Vector2 CrossProduct(Vector2 vector, float cross)
+        public static Vector2 CrossProduct(this Vector2 vector, float cross)
         {
             return new Vector2(cross * vector.Y, -cross * vector.X);
         }
-        public static Vector2 CrossProduct(float cross, Vector2 vector)
+        public static Vector2 CrossProduct(this float cross, Vector2 vector)
         {
             return new Vector2(-cross * vector.Y, cross * vector.X);
         }
@@ -51,7 +48,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Dot product of vectors
         /// </summary>
-        public static float DotProduct(Vector2 a, Vector2 b)
+        public static float DotProduct(this Vector2 a, Vector2 b)
         {
             return (a.X * b.X) + (a.Y * b.Y);
         }
@@ -59,9 +56,17 @@ namespace EdgeLibrary
         /// <summary>
         /// Returns the rotation for a sprite
         /// </summary>
-        public static float RotateTowards(Vector2 elementPos, Vector2 targetPos)
+        public static float GetRotationTowards(this Vector2 elementPos, Vector2 targetPos)
         {
             return MathHelper.ToDegrees((float)Math.Atan2(targetPos.Y - elementPos.Y, targetPos.X - elementPos.X));
+        }
+
+        /// <summary>
+        /// Returns the position a certain distance relative to another at an angle
+        /// </summary>
+        public static Vector2 GetRelativePosition(this Vector2 target, float distance, float degrees)
+        {
+            return new Vector2((float)Math.Cos(MathHelper.ToRadians(degrees)) * distance + target.X, (float)Math.Sin(MathHelper.ToRadians(degrees)) * distance + target.Y);
         }
 
         /// <summary>
@@ -69,7 +74,7 @@ namespace EdgeLibrary
         /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
         /// If the color is known at compile time, a static property on the <see cref="Color"/> class should be used instead.
         /// </summary>
-        public static Color ColorFromString(string colorString)
+        public static Color ToColor(this string colorString)
         {
             var typeProperty = typeof(Color).GetProperty(colorString);
             if (typeProperty != null)
@@ -85,7 +90,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Sets a vector's values to be positive
         /// </summary>
-        public static Vector2 AbsVector(Vector2 vector)
+        public static Vector2 Abs(this Vector2 vector)
         {
             return new Vector2(Math.Abs(vector.X), Math.Abs(vector.Y));
         }
@@ -93,7 +98,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Gets a color from a hex string
         /// </summary>
-        public static Color ColorFromHex(string hexString)
+        public static Color ToHex(this string hexString)
         {
             if (!hexString.Contains('#'))
             {
@@ -106,7 +111,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Uniformly adds the specified value to the alpha, red, green, and blue components of the specified color.
         /// </summary>
-        public static Color AddToColor(Color color, int number)
+        public static Color Add(this Color color, int number)
         {
             color.R = color.R + number >= 0 ? color.R + number >= 256 ? (byte)255 : (byte)(color.R + number) : (byte)0;
             color.G = color.G + number >= 0 ? color.G + number >= 256 ? (byte)255 : (byte)(color.G + number) : (byte)0;
@@ -116,37 +121,10 @@ namespace EdgeLibrary
         }
 
         /// <summary>
-        /// Generates a color with random alpha, red, green, and blue channel values.
-        /// </summary>
-        public static Color RandomColor()
-        {
-            return RandomColor(Color.Black, Color.White);
-        }
-
-        /// <summary>
-        /// Generates a random color bounded by the ARGB values of each color.
-        /// </summary>
-        /// <remarks>
-        /// "min" and "max" really mean nothing in this case, as Math.Min and Math.Max are used in the function.
-        /// </remarks>
-        public static Color RandomColor(Color min, Color max)
-        {
-            return new Color(RandomTools.RandomInt(Math.Min(min.R, max.R), Math.Max(min.R, max.R)), RandomTools.RandomInt(Math.Min(min.G, max.G), Math.Max(min.G, max.G)), RandomTools.RandomInt(Math.Min(min.B, max.B), Math.Max(min.B, max.B)), RandomTools.RandomInt(Math.Min(min.A, max.A), Math.Max(min.A, max.A)));
-        }
-        /// <summary>
-        /// Generates a random color which may not be between the ARGB values of each color because it adds the same random number to the R, G, B, and A
-        /// </summary>
-        public static Color RandomUniformColor(Color min, Color max)
-        {
-            int random = RandomTools.RandomInt(((max.R - min.R) + (max.G - min.G) + (max.B - min.G)) / 3);
-            return new Color(min.R + random, min.G + random, min.B + random, min.A + random);
-        }
-
-        /// <summary>
         /// Subtracts the specified amount from each component of the specified vector.
         /// Guarantees the sign of vector components (positive or negative) will remain the same after decrease.
         /// </summary>
-        public static Vector2 DecreaseVector(Vector2 vector, float amount)
+        public static Vector2 Decrease(this Vector2 vector, float amount)
         {
             if (vector.X >= 0)
             {
@@ -188,7 +166,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Flips the rectangle if its width and height are negative
         /// </summary>
-        public static Rectangle ResolveNegativeRectangle(Rectangle rectangle)
+        public static Rectangle ResolveNegative(this Rectangle rectangle)
         {
             if (rectangle.Width < 0)
             {
@@ -206,7 +184,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Returns the midpoint of a line segment drawn from one point to the other.
         /// </summary>
-        public static Vector2 MidPoint(Vector2 point1, Vector2 point2)
+        public static Vector2 MidPoint(this Vector2 point1, Vector2 point2)
         {
             float diffX = point1.X - point2.X;
             float diffY = point1.Y - point2.Y;
@@ -214,75 +192,14 @@ namespace EdgeLibrary
         }
 
         //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
-        public static string LastPortionOfPath(string path)
+        public static string LastPortionOfPath(this string path)
         {
             return LastPortionOfPath(path, '/');
         }
-        public static string LastPortionOfPath(string path, char splitter)
+        public static string LastPortionOfPath(this string path, char splitter)
         {
             string[] splitParts = path.Split(splitter);
             return splitParts[splitParts.Length - 1];
-        }
-
-        //Returns all the points of the given circle
-        public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius, float step)
-        {
-            List<Vector2> points = new List<Vector2>();
-            float actualStep = step / radius;
-
-            for (float currentRadius = radius; currentRadius > 0; currentRadius -= actualStep)
-            {
-                for (float x = centerPosition.X - currentRadius; x <= centerPosition.X + currentRadius; x += actualStep)
-                {
-                    /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
-                                             (x-centerX)^2 + (y-centerY)^2 = r^2
-                                             y = SqRt(r^2 - (x-centerX)^2) + centerY  */
-
-                    //First point's y coordinate - bottom half
-                    float y = (float)(Math.Sqrt(Math.Pow(currentRadius, 2) - Math.Pow(x - centerPosition.X, 2)) + centerPosition.Y);
-
-                    //Second point's y coordinate - top half
-                    float y1 = -(y - centerPosition.Y) + centerPosition.Y;
-
-                    points.Add(new Vector2(x, y));
-                    points.Add(new Vector2(x, y1));
-                }
-            }
-
-            return points;
-        }
-        public static List<Vector2> GetCirclePoints(Vector2 centerPosition, float radius)
-        {
-            return GetCirclePoints(centerPosition, radius, circlePointStep);
-        }
-
-        //Returns all the points on the outside of the given circle
-        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius, float step)
-        {
-            List<Vector2> points = new List<Vector2>();
-            float actualStep = step / radius;
-
-            for (float x = centerPosition.X - radius; x <= centerPosition.X + radius; x += actualStep)
-            {
-                /* Solve for y based on: x^2 + y^2 = r^2 at center 0, 0
-                                         (x-centerX)^2 + (y-centerY)^2 = r^2
-                                         y = SqRt(r^2 - (x-centerX)^2) + centerY  */
-
-                //First point's y coordinate - bottom half
-                float y = (float)(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(x - centerPosition.X, 2)) + centerPosition.Y);
-
-                //Second point's y coordinate - top half
-                float y1 = -(y - centerPosition.Y) + centerPosition.Y;
-
-                points.Add(new Vector2(x, y));
-                points.Add(new Vector2(x, y1));
-            }
-
-            return points;
-        }
-        public static List<Vector2> GetOuterCirclePoints(Vector2 centerPosition, float radius)
-        {
-            return GetOuterCirclePoints(centerPosition, radius, outerCirclePointStep);
         }
     }
 }

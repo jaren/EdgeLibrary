@@ -14,6 +14,7 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Add an abstract method Clone in Element
     /// -Add a physics engine
     /// -Mouse position is affected by camera rotation / scale
     /// -Fix FPS Counter
@@ -55,9 +56,6 @@ namespace EdgeDemo
             Debug.FollowsCamera = false;
             Debug.AddToGame();
 
-            TextSprite ts = new TextSprite("ComicSans-10", "How to play the game:\n-Play the game\n-Play the game", Vector2.One);
-            ts.AddToGame();
-
             ParticleEmitter emitter = new ParticleEmitter("Stars", new Vector2(400, 400));
             emitter.Position = game.WindowSize / 2;
             emitter.SetScale(new Vector2(0.5f), new Vector2(1));
@@ -76,26 +74,36 @@ namespace EdgeDemo
         }
 
         static double elapsed = 0;
-        static double toElapse = 10;
-        static float bulletspeed = 40;
+        static double toElapse = 200;
+        static float bulletspeed = 20;
+        static float maxPlayerSpeed = 15;
         static void updateSprite(Element element, GameTime gameTime)
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Vector2.Distance(Input.MousePosition, element.Position)/30;
+            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Vector2.Distance(Input.MousePosition, element.Position)/20;
+            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Math.Min(((AFollow)((Sprite)element).GetAction("Follow")).Speed, maxPlayerSpeed);
 
             ((Sprite)element).GetAction("Follow").Paused = !Input.IsKeyDown(Keys.Space);
 
             if (Input.IsLeftClicking() && elapsed >= toElapse)
             {
                 elapsed = 0;
-                Sprite sprite = new Sprite("laserGreen", element.Position);
+                Sprite sprite = new Sprite("laserGreen", element.Position.GetRelativePosition(40, ((Sprite)element).Rotation - 180));
                 sprite.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
-                sprite.Rotation = MathTools.RotateTowards(sprite.Position, Input.MousePosition) + 90;
-                Vector2 MoveVector = Input.MousePosition - sprite.Position;
+                sprite.Rotation = ((Sprite)element).Rotation;
+                Vector2 MoveVector = Input.MousePosition.GetRelativePosition(40, ((Sprite)element).Rotation - 180) - sprite.Position;
                 MoveVector.Normalize();
                 sprite.AddAction(new AMove(MoveVector * bulletspeed));
                 element.AddSubElement(sprite);
+
+                Sprite sprite2 = new Sprite("laserGreen", element.Position.GetRelativePosition(40, ((Sprite)element).Rotation));
+                sprite2.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
+                sprite2.Rotation = ((Sprite)element).Rotation;
+                Vector2 MoveVector2 = Input.MousePosition.GetRelativePosition(40, ((Sprite)element).Rotation) - sprite2.Position;
+                MoveVector2.Normalize();
+                sprite2.AddAction(new AMove(MoveVector2 * bulletspeed));
+                element.AddSubElement(sprite2);
             }
         }
 
