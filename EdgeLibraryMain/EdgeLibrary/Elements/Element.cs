@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     //Base for all "game elements" - stuff that needs to be updated or drawn
-    public class Element
+    public abstract class Element
     {
         //Used to identify the element, there can only be one of each ID per scene
         public string ID { get; set; }
@@ -182,7 +182,8 @@ namespace EdgeLibrary
             }
         }
 
-        protected virtual void UpdateObject(GameTime gameTime) { }
+        public abstract Element Clone();
+        protected abstract void UpdateObject(GameTime gameTime);
         protected virtual void DrawObject(GameTime gameTime, SpriteBatch spriteBatch) { }
     }
 }

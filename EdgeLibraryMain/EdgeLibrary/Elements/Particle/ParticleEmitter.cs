@@ -47,7 +47,7 @@ namespace EdgeLibrary
         public float EmitWidth;
         public float EmitHeight;
 
-        protected List<Particle> particles;
+        protected List<Particle> Particles;
         protected double timeSinceLastEmit;
 
         //To stop garbage collection every single time
@@ -60,7 +60,7 @@ namespace EdgeLibrary
 
         public ParticleEmitter(string textureName, Vector2 position) : base(textureName, position)
         {
-            particles = new List<Particle>();
+            Particles = new List<Particle>();
 
             SquareParticles = true;
 
@@ -175,7 +175,7 @@ namespace EdgeLibrary
         //Clears all the particles from the emitter
         public void ClearParticles()
         {
-            particles.Clear();
+            Particles.Clear();
         }
 
         //Emits a single particle - can be called from outside the emitter
@@ -198,14 +198,14 @@ namespace EdgeLibrary
             }
             particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
 
-            particles.Add(particle);
+            Particles.Add(particle);
 
             OnEmit(this, particle, gameTime);
         }
 
         protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (Particle particle in particles)
+            foreach (Particle particle in Particles)
             {
                 if (!particlesToRemove.Contains(particle))
                 {
@@ -220,14 +220,14 @@ namespace EdgeLibrary
             timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             //If the elapsed time is greater than the EmitWait, emit a particle
-            if (timeSinceLastEmit >= EmitWait && particles.Count < MaxParticles)
+            if (timeSinceLastEmit >= EmitWait && Particles.Count < MaxParticles)
             {
                 timeSinceLastEmit = 0;
                 EmitSingleParticle(gameTime);
             }
 
             //Checks if each particle should be removed
-            foreach (Particle particle in particles)
+            foreach (Particle particle in Particles)
             {
                 if (!particlesToRemove.Contains(particle))
                 {
@@ -244,7 +244,7 @@ namespace EdgeLibrary
             {
                 foreach (Particle particle in particlesToRemove)
                 {
-                    particles.Remove(particle);
+                    Particles.Remove(particle);
                 }
                 particlesToRemove.Clear();
             }
@@ -261,6 +261,17 @@ namespace EdgeLibrary
             spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Right, 1, rectangle.Height), color);
             spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, rectangle.Width, 1), color);
             spriteBatch.Draw(Resources.GetTexture("Pixel"), new Rectangle(rectangle.Bottom, rectangle.Left, rectangle.Width, 1), color);
+        }
+
+        public override Element Clone()
+        {
+            ParticleEmitter clone = (ParticleEmitter)base.Clone();
+            clone.Particles = new List<Particle>();
+            foreach (Particle particle in Particles)
+            {
+                clone.Particles.Add((Particle)particle.Clone());
+            }
+            return clone;
         }
     }
 }

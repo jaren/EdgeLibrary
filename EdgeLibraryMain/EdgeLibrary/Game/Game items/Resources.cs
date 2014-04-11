@@ -49,7 +49,7 @@ namespace EdgeLibrary
         //Loads a texture
         public static void LoadTexture(string path)
         {
-            addTexture(path.LastPortionOfPath(), Content.Load<Texture2D>(path));
+            addTexture(path.LastSplit('/'), Content.Load<Texture2D>(path));
         }
         public static void LoadTexture(string path, string name)
         {
@@ -59,7 +59,7 @@ namespace EdgeLibrary
         //Loads a font
         public static void LoadFont(string path)
         {
-            addFont(path.LastPortionOfPath(), Content.Load<SpriteFont>(path));
+            addFont(path.LastSplit('/'), Content.Load<SpriteFont>(path));
         }
         public static void LoadFont(string path, string name)
         {

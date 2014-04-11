@@ -56,7 +56,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Returns the rotation for a sprite
         /// </summary>
-        public static float GetRotationTowards(this Vector2 elementPos, Vector2 targetPos)
+        public static float RotationTo(this Vector2 elementPos, Vector2 targetPos)
         {
             return MathHelper.ToDegrees((float)Math.Atan2(targetPos.Y - elementPos.Y, targetPos.X - elementPos.X));
         }
@@ -64,7 +64,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Returns the position a certain distance relative to another at an angle
         /// </summary>
-        public static Vector2 GetRelativePosition(this Vector2 target, float distance, float degrees)
+        public static Vector2 PositionRelativeTo(this Vector2 target, float distance, float degrees)
         {
             return new Vector2((float)Math.Cos(MathHelper.ToRadians(degrees)) * distance + target.X, (float)Math.Sin(MathHelper.ToRadians(degrees)) * distance + target.Y);
         }
@@ -192,11 +192,7 @@ namespace EdgeLibrary
         }
 
         //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
-        public static string LastPortionOfPath(this string path)
-        {
-            return LastPortionOfPath(path, '/');
-        }
-        public static string LastPortionOfPath(this string path, char splitter)
+        public static string LastSplit(this string path, char splitter)
         {
             string[] splitParts = path.Split(splitter);
             return splitParts[splitParts.Length - 1];

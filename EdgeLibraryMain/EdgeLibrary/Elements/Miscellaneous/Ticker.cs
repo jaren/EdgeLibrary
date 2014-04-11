@@ -19,7 +19,7 @@ namespace EdgeLibrary
         protected double elapsedMilliseconds;
 
         public delegate void TickerEventHandler(GameTime gameTime);
-        public event TickerEventHandler Tick = delegate{};
+        public event TickerEventHandler OnTick = delegate{};
 
         public Ticker(double eMilliseconds)
         {
@@ -36,8 +36,15 @@ namespace EdgeLibrary
             {
                 elapsedMilliseconds = 0;
                 currentValue++;
-                Tick(gameTime);
+                OnTick(gameTime);
             }
+        }
+
+        public override Element Clone()
+        {
+            Ticker clone = (Ticker)MemberwiseClone();
+            clone.ID = clone.GenerateID();
+            return clone;
         }
     }
 
@@ -75,5 +82,12 @@ namespace EdgeLibrary
                 CurrentMillisecondsWait = RandomTools.RandomInt(MinMilliseconds, MaxMilliseconds);
             }
         }
+
+        public override Element Clone()
+        {
+            RandomTicker clone = (RandomTicker)MemberwiseClone();
+            clone.ID = clone.GenerateID();
+            return clone;
+        } 
     }
 }

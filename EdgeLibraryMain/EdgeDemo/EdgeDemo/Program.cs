@@ -14,7 +14,6 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Add an abstract method Clone in Element
     /// -Add a physics engine
     /// -Mouse position is affected by camera rotation / scale
     /// -Fix FPS Counter
@@ -81,28 +80,24 @@ namespace EdgeDemo
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Vector2.Distance(Input.MousePosition, element.Position)/20;
-            ((AFollow)((Sprite)element).GetAction("Follow")).Speed = Math.Min(((AFollow)((Sprite)element).GetAction("Follow")).Speed, maxPlayerSpeed);
+            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Vector2.Distance(Input.MousePosition, element.Position)/20;
+            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Math.Min(((Sprite)element).GetAction<AFollow>("Follow").Speed, maxPlayerSpeed);
 
-            ((Sprite)element).GetAction("Follow").Paused = !Input.IsKeyDown(Keys.Space);
+            ((Sprite)element).GetAction<AFollow>("Follow").Paused = !Input.IsKeyDown(Keys.Space);
 
             if (Input.IsLeftClicking() && elapsed >= toElapse)
             {
                 elapsed = 0;
-                Sprite sprite = new Sprite("laserGreen", element.Position.GetRelativePosition(40, ((Sprite)element).Rotation - 180));
+                Sprite sprite = new Sprite("laserGreen", element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation - 180));
                 sprite.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
                 sprite.Rotation = ((Sprite)element).Rotation;
-                Vector2 MoveVector = Input.MousePosition.GetRelativePosition(40, ((Sprite)element).Rotation - 180) - sprite.Position;
+                Vector2 MoveVector = Input.MousePosition.PositionRelativeTo(40, ((Sprite)element).Rotation - 180) - sprite.Position;
                 MoveVector.Normalize();
                 sprite.AddAction(new AMove(MoveVector * bulletspeed));
                 element.AddSubElement(sprite);
 
-                Sprite sprite2 = new Sprite("laserGreen", element.Position.GetRelativePosition(40, ((Sprite)element).Rotation));
-                sprite2.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
-                sprite2.Rotation = ((Sprite)element).Rotation;
-                Vector2 MoveVector2 = Input.MousePosition.GetRelativePosition(40, ((Sprite)element).Rotation) - sprite2.Position;
-                MoveVector2.Normalize();
-                sprite2.AddAction(new AMove(MoveVector2 * bulletspeed));
+                Sprite sprite2 = (Sprite)sprite.Clone();
+                sprite2.Position = element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation);
                 element.AddSubElement(sprite2);
             }
         }
@@ -144,8 +139,8 @@ namespace EdgeDemo
             Resources.LoadFont("Fonts/Impact/Impact-50");
             Resources.LoadFont("Fonts/Impact/Impact-60");
             Resources.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
-            Resources.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             Resources.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
+            //Resources.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
         }
 
     }

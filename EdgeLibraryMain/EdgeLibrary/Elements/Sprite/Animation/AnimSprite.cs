@@ -15,12 +15,12 @@ namespace EdgeLibrary
 {
     public class AnimSprite : Sprite
     {
-        private Dictionary<string, AnimationIndex> animations;
+        private Dictionary<string, AnimationIndex> Animations;
         public string SelectedAnimation;
 
         public AnimSprite(string textureName, Vector2 position) : base(textureName, position)
         {
-            animations = new Dictionary<string, AnimationIndex>();
+            Animations = new Dictionary<string, AnimationIndex>();
         }
 
         public void SelectAnimation(string animation)
@@ -30,19 +30,30 @@ namespace EdgeLibrary
 
         public void AddAnimation(string id, AnimationIndex animation)
         {
-            animations.Add(id, animation);
+            Animations.Add(id, animation);
         }
 
         public void RemoveAnimation(string id)
         {
-            animations.Remove(id);
+            Animations.Remove(id);
         }
 
         protected override void UpdateObject(GameTime gameTime)
         {
             base.UpdateObject(gameTime);
 
-            animations[SelectedAnimation].Update(this, gameTime);
+            Animations[SelectedAnimation].Update(this, gameTime);
+        }
+
+        public override Element Clone()
+        {
+            AnimSprite clone = (AnimSprite)base.Clone();
+            clone.Animations = new Dictionary<string, AnimationIndex>();
+            foreach (KeyValuePair<string, AnimationIndex> animation in Animations)
+            {
+                clone.Animations.Add(animation.Key, animation.Value);
+            }
+            return clone;
         }
     }
 }

@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Elements\Element.cs" />
+    <Compile Include="Elements\Miscellaneous\DebugText.cs" />
     <Compile Include="Elements\Miscellaneous\Ticker.cs" />
     <Compile Include="Elements\Sprite\Action\AClamp.cs" />
     <Compile Include="Elements\Sprite\Action\Action.cs" />
@@ -120,7 +121,6 @@
     <Compile Include="Game\Game items\Resources.cs" />
     <Compile Include="Game\EdgeGame.cs" />
     <Compile Include="Game\Game items\Tools\DebugLogger.cs" />
-    <Compile Include="Game\Game items\Tools\DebugText.cs" />
     <Compile Include="Game\Game items\Tools\Input.cs" />
     <Compile Include="Game\Scene.cs" />
     <Compile Include="Game\Game items\SceneHandler.cs" />

@@ -141,14 +141,14 @@ namespace EdgeLibrary
             }
         }
         
-        //Gets an actino
-        public Action GetAction(string id)
+        //Gets an action
+        public T GetAction<T>(string id) where T : Action
         {
             foreach(Action action in Actions)
             {
                 if (action.ID == id)
                 {
-                    return action;
+                    return (T)action;
                 }
             }
             return null;
@@ -224,7 +224,7 @@ namespace EdgeLibrary
                                 OnCollide(this, elementAsSprite, gameTime);
                                 if (!currentlyCollidingWithIDs.Contains(elementAsSprite.ID))
                                 {
-                                    DebugLogger.LogEvent(GetType().ToString().LastPortionOfPath('.') + " Collided", "ID: " + ID, "Other sprite type: " + elementAsSprite.GetType().Name, "Other sprite ID: " + elementAsSprite.ID, "GameTime: " + gameTime.TotalGameTime.ToString()); 
+                                    DebugLogger.LogEvent(GetType().ToString().LastSplit('.') + " Collided", "ID: " + ID, "Other sprite type: " + elementAsSprite.GetType().Name, "Other sprite ID: " + elementAsSprite.ID, "GameTime: " + gameTime.TotalGameTime.ToString()); 
                                     OnCollideStart(this, elementAsSprite, gameTime);
                                     currentlyCollidingWithIDs.Add(elementAsSprite.ID);
                                 }
@@ -253,6 +253,22 @@ namespace EdgeLibrary
             {
                 CollisionBody.Shape.DrawDebug(gameTime, spriteBatch, color);
             }
+        }
+
+        //Creates a copy of the sprite
+        public override Element Clone()
+        {
+            Sprite clone = (Sprite)MemberwiseClone();
+
+            //The IDs can't be the same
+            clone.ID = clone.GenerateID();
+
+            clone.Actions = new List<Action>();
+            foreach (Action action in Actions)
+            {
+                clone.AddAction(action);
+            }
+            return clone;
         }
     }
 }

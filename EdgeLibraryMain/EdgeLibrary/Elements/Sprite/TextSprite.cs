@@ -79,13 +79,20 @@ namespace EdgeLibrary
         }
 
         //Draws the textsprite to the spritebatch
-        protected override void  DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
+        protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
             for (int i = 0; i < textLines.Length; i++)
             {
                 spriteBatch.DrawString(_font, textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y/2): Vector2.Zero),
                 Color, MathHelper.ToRadians(Rotation), textLinesOriginPoints[i], Scale, SpriteEffects, 0);
             }
+        }
+
+        public override Element Clone()
+        {
+            TextSprite clone = (TextSprite)base.Clone();
+            clone.Font = _font;
+            return clone;
         }
     }
 }
