@@ -134,7 +134,7 @@ namespace EdgeLibrary
 
         public bool CheckOffScreen()
         {
-            Vector2 ScreenSize = EdgeGame.Instance.WindowSize;
+            Vector2 ScreenSize = EdgeGame.Instance.WindowSize / EdgeGame.Instance.Camera.Scale;
             Vector2 TopLeft = EdgeGame.Instance.Camera.Position - ScreenSize/2;
             //      Less than "zero"            Greater than screen size                     Less than "zero"               Greater than screen size
             return ((Position.X < TopLeft.X) || (Position.X > TopLeft.X + ScreenSize.X)) || ((Position.Y < TopLeft.Y) || (Position.Y > TopLeft.Y + ScreenSize.Y));

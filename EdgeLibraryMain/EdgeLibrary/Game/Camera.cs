@@ -52,7 +52,7 @@ namespace EdgeLibrary
                 //Adds the scale
                 * Matrix.CreateScale(new Vector3(Scale))
                 //Adds the origin
-                * Matrix.CreateTranslation(HalfScreenSize.X * Scale, HalfScreenSize.Y * Scale, 0);
+                * Matrix.CreateTranslation(HalfScreenSize.X, HalfScreenSize.Y, 0);
             return matrix;
         }
 

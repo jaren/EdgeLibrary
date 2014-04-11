@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="CollisionInfo.cs" />
     <Compile Include="CollisionResolver.cs" />
+    <Compile Include="PhysicsExtensions.cs" />
     <Compile Include="PhysicsMatrix.cs" />
     <Compile Include="PhysicsWorld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,6 +30,7 @@ namespace EdgeDemo
     static class Program
     {
         static EdgeGame game;
+        static ParticleEmitter emitter;
 
         static void Main(string[] args)
         {
@@ -55,21 +56,40 @@ namespace EdgeDemo
             Debug.FollowsCamera = false;
             Debug.AddToGame();
 
-            ParticleEmitter emitter = new ParticleEmitter("Stars", new Vector2(400, 400));
-            emitter.Position = game.WindowSize / 2;
-            emitter.SetScale(new Vector2(0.5f), new Vector2(1));
+            ParticleEmitter stars = new ParticleEmitter("Stars", Vector2.Zero)
+            {
+                BlendState = BlendState.AlphaBlend,
+                EmitWait = 0,
+                GrowSpeed = 0,
+                MaxParticles = 300
+            };
+            stars.SetScale(new Vector2(0.5f), new Vector2(1));
+            stars.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
+            stars.SetLife(3000);
+            stars.SetRotationSpeed(-0.1f, 0.1f);
+            stars.SetEmitArea(2000, 2000);
+            ColorChangeIndex starsIndex = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent);
+            stars.SetColor(starsIndex);
+            stars.AddAction(new AClamp(sprite));
+            stars.AddToGame();
+
+            emitter = new ParticleEmitter("Fire", Vector2.Zero)
+            {
+                BlendState = BlendState.Additive,
+                EmitWait = 0,
+                GrowSpeed = -0.1f,
+                MaxParticles = 300
+            };
+            emitter.SetScale(new Vector2(1.5f), new Vector2(2));
             emitter.SetVelocity(new Vector2(-1), new Vector2(1));
-            emitter.BlendState = BlendState.AlphaBlend;
-            emitter.SetLife(3000);
-            emitter.EmitWait = 0;
-            emitter.SetRotationSpeed(-1, 1);
-            emitter.GrowSpeed = 0;
-            emitter.MaxParticles = 300;
-            emitter.SetEmitArea(2000, 2000);
-            ColorChangeIndex index = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent);
-            emitter.SetColor(index);
+            emitter.SetLife(2000);
+            emitter.SetEmitArea(5, 5);
+            ColorChangeIndex emitterIndex = new ColorChangeIndex(500, Color.Orange, Color.DarkRed, Color.Transparent);
+            ColorChangeIndex emitterIndex2 = new ColorChangeIndex(500, Color.Red, Color.OrangeRed, Color.Transparent);
+            emitter.SetColor(emitterIndex, emitterIndex2);
             emitter.AddAction(new AClamp(sprite));
             emitter.AddToGame();
+
         }
 
         static double elapsed = 0;
@@ -100,6 +120,9 @@ namespace EdgeDemo
                 sprite2.Position = element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation);
                 element.AddSubElement(sprite2);
             }
+
+            Vector2 average = (((Sprite)element).Rotation - 270).RotationToVector() * 2;
+            emitter.SetVelocity(average * 0.8f, average * 1.2f);
         }
 
         static void updateProjectile(Element element, GameTime gameTime)

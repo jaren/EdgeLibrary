@@ -30,35 +30,19 @@ namespace EdgeLibrary
         }
 
         /// <summary>
-        /// Cross product of vectors
+        /// Returns the rotation for a vector (the vector should be a a position - another position)
         /// </summary>
-        public static float CrossProduct(this Vector2 a, Vector2 b)
+        public static float VectorToRotation(this Vector2 vector)
         {
-            return (a.X * b.Y) - (a.Y * b.X);
-        }
-        public static Vector2 CrossProduct(this Vector2 vector, float cross)
-        {
-            return new Vector2(cross * vector.Y, -cross * vector.X);
-        }
-        public static Vector2 CrossProduct(this float cross, Vector2 vector)
-        {
-            return new Vector2(-cross * vector.Y, cross * vector.X);
+            return MathHelper.ToDegrees((float)Math.Atan2(vector.Y, vector.X));
         }
 
         /// <summary>
-        /// Dot product of vectors
+        /// Turns an angle measure into a difference in X and Y
         /// </summary>
-        public static float DotProduct(this Vector2 a, Vector2 b)
+        public static Vector2 RotationToVector(this float degrees)
         {
-            return (a.X * b.X) + (a.Y * b.Y);
-        }
-
-        /// <summary>
-        /// Returns the rotation for a sprite
-        /// </summary>
-        public static float RotationTo(this Vector2 elementPos, Vector2 targetPos)
-        {
-            return MathHelper.ToDegrees((float)Math.Atan2(targetPos.Y - elementPos.Y, targetPos.X - elementPos.X));
+            return new Vector2((float)Math.Cos(MathHelper.ToRadians(degrees)), (float)Math.Sin(MathHelper.ToRadians(degrees)));
         }
 
         /// <summary>
@@ -70,20 +54,19 @@ namespace EdgeLibrary
         }
 
         /// <summary>
-        /// Retrieves a color by its name.
+        /// Retrieves a type by its name. For example, to colors (Color.Blue, etc.)
         /// As this method uses a (expensive) reflection call, it should only be invoked at load time.
-        /// If the color is known at compile time, a static property on the <see cref="Color"/> class should be used instead.
         /// </summary>
-        public static Color ToColor(this string colorString)
+        public static T ConvertFromProperty<T>(this string name)
         {
-            var typeProperty = typeof(Color).GetProperty(colorString);
+            var typeProperty = typeof(T).GetProperty(name);
             if (typeProperty != null)
             {
-                return (Color)typeProperty.GetValue(null, null);
+                return (T)typeProperty.GetValue(null, null);
             }
             else
             {
-                return Color.Black;
+                return default(T);
             }
         }
 
@@ -179,16 +162,6 @@ namespace EdgeLibrary
                 rectangle.Y -= rectangle.Height;
             }
             return rectangle;
-        }
-
-        /// <summary>
-        /// Returns the midpoint of a line segment drawn from one point to the other.
-        /// </summary>
-        public static Vector2 MidPoint(this Vector2 point1, Vector2 point2)
-        {
-            float diffX = point1.X - point2.X;
-            float diffY = point1.Y - point2.Y;
-            return new Vector2(point2.X + diffX / 2, point2.Y + diffY / 2);
         }
 
         //Used for a string such as: 'Planet/Country/State/City/Street/House' - this would return House
