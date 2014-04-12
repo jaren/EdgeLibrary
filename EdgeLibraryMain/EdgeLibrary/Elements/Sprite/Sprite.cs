@@ -18,19 +18,19 @@ namespace EdgeLibrary
         public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } }
 
         //Sets the scale with a Vector2
-        public Vector2 Scale { get; set; }
+        public virtual Vector2 Scale { get; set; }
 
         //Optional visual effects
-        public Color Color { get; set; }
+        public virtual Color Color { get; set; }
         //Measured in radians
-        public float Rotation { get; set; }
-        public SpriteEffects SpriteEffects { get; set; }
+        public virtual float Rotation { get; set; }
+        public virtual SpriteEffects SpriteEffects { get; set; }
 
         //Gets the origin point of the sprite, which is either (0, 0) or half of the texture size
-        public Vector2 OriginPoint { get; protected set; }
+        public virtual Vector2 OriginPoint { get; protected set; }
 
         //If set to true, origin will be top left; if not, origin will be center
-        public bool CenterAsOrigin { get { return _centerAsOrigin; } set { _centerAsOrigin = value; reloadOriginPoint(); } }
+        public virtual bool CenterAsOrigin { get { return _centerAsOrigin; } set { _centerAsOrigin = value; reloadOriginPoint(); } }
         protected bool _centerAsOrigin;
 
         //Used for detecting collisions
@@ -38,7 +38,7 @@ namespace EdgeLibrary
         public virtual ShapeTypes CollisionBodyType { get; set; }
 
         //The texture for drawing
-        public Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
+        public virtual Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
         protected Texture2D _texture;
 
         //Used for OnCollideStart

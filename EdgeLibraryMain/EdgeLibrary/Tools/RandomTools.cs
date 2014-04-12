@@ -64,15 +64,22 @@ namespace EdgeLibrary
             }
         }
         /// <summary>
-        /// Gets a random float between 0 and 1
+        /// Gets a random double - same as RandomFloat but returns a double
         /// </summary>
-        public static float RandomFloat()
+        public static double RandomDouble(double min, double max)
         {
             if (SeedAfterGeneration)
             {
                 random = new Random(random.Next());
             }
-            return RandomFloat(0, 1);
+            if (min + 1 > max)
+            {
+                return MathHelper.Lerp((float)min, (float)max, (float)random.NextDouble());
+            }
+            else
+            {
+                return RandomInt((int)min, (int)max - 1) + random.NextDouble();
+            }
         }
 
         /// <summary>

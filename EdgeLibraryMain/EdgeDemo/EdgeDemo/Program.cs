@@ -20,6 +20,7 @@ namespace EdgeDemo
     /// 
     /// Optional TODO:
     /// -Add the ability to render a scene to a RenderTarget2D
+    /// -SubElements are not copied in clone
     /// -Add scene transitions
     /// </summary>
 
@@ -30,6 +31,7 @@ namespace EdgeDemo
     static class Program
     {
         static EdgeGame game;
+        static ParticleEmitter bulletEmitter;
         static ParticleEmitter leftEmitter;
         static ParticleEmitter rightEmitter;
 
@@ -62,17 +64,34 @@ namespace EdgeDemo
                 BlendState = BlendState.AlphaBlend,
                 EmitWait = 0,
                 GrowSpeed = 0,
-                MaxParticles = 300
+                MaxParticles = 300,
+                MinScale = new Vector2(0.5f), MaxScale = new Vector2(1f),
+                MinVelocity = new Vector2(-0.1f), MaxVelocity = new Vector2(0.1f),
+                MinLife = 1000, MaxLife = 3000,
+                MinRotationSpeed = -0.1f, MaxRotationSpeed = 0.1f,
+                EmitArea = new Vector2(2000, 2000),
+                ColorIndex = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent),
             };
-            stars.SetScale(new Vector2(0.5f), new Vector2(1));
-            stars.SetVelocity(new Vector2(-0.1f), new Vector2(0.1f));
-            stars.SetLife(3000);
-            stars.SetRotationSpeed(-0.1f, 0.1f);
-            stars.SetEmitArea(2000, 2000);
-            ColorChangeIndex starsIndex = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent);
-            stars.SetColor(starsIndex);
             stars.AddAction(new AClamp(sprite));
             stars.AddToGame();
+
+            bulletEmitter = new ParticleEmitter("Fire", Vector2.Zero)
+            {
+                BlendState = BlendState.Additive,
+                EmitWait = 0,
+                GrowSpeed = 0,
+                MaxParticles = 300,
+                MinScale = new Vector2(0.5f),
+                MaxScale = new Vector2(1f),
+                MinVelocity = new Vector2(-1f),
+                MaxVelocity = new Vector2(1f),
+                MinLife = 1000,
+                MaxLife = 1500,
+                MinRotationSpeed = 0f,
+                MaxRotationSpeed = 0f,
+                EmitArea = new Vector2(1, 1),
+                ColorIndex = new ColorChangeIndex(400, Color.LightGreen, Color.DarkGreen, Color.Transparent),
+            };
 
             leftEmitter = new ParticleEmitter("Fire", Vector2.Zero)
             {
@@ -80,16 +99,15 @@ namespace EdgeDemo
                 EmitWait = 0,
                 GrowSpeed = -1f,
                 MaxParticles = 1000,
-                MinParticlesToEmit = 10,
-                MaxParticlesToEmit = 10
+                MinParticlesToEmit = 5, MaxParticlesToEmit = 10,
+                MinScale = new Vector2(0.6f), MaxScale = new Vector2(0.8f),
+                MinVelocity = new Vector2(-1f), MaxVelocity = new Vector2(1f),
+                MinLife = 500, MaxLife = 500,
+                MinRotationSpeed = 0, MaxRotationSpeed = 0,
+                EmitArea = new Vector2(5, 5),
+                MinColorIndex = new ColorChangeIndex(125, Color.Orange, Color.DarkRed, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(125, Color.Red, Color.OrangeRed, Color.Transparent)
             };
-            leftEmitter.SetScale(new Vector2(0.6f), new Vector2(0.8f));
-            leftEmitter.SetVelocity(new Vector2(-1), new Vector2(1));
-            leftEmitter.SetLife(500);
-            leftEmitter.SetEmitArea(5, 5);
-            ColorChangeIndex emitterIndex = new ColorChangeIndex(125, Color.Orange, Color.DarkRed, Color.Transparent);
-            ColorChangeIndex emitterIndex2 = new ColorChangeIndex(125, Color.Red, Color.OrangeRed, Color.Transparent);
-            leftEmitter.SetColor(emitterIndex, emitterIndex2);
             leftEmitter.AddToGame();
 
             rightEmitter = (ParticleEmitter)leftEmitter.Clone();
@@ -98,8 +116,8 @@ namespace EdgeDemo
 
         static double elapsed = 0;
         static double toElapse = 200;
-        static float bulletspeed = 20;
-        static float maxPlayerSpeed = 15;
+        static float bulletspeed = 15;
+        static float maxPlayerSpeed = 10;
         static void updateSprite(Element element, GameTime gameTime)
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -123,11 +141,19 @@ namespace EdgeDemo
                 Sprite sprite2 = (Sprite)sprite.Clone();
                 sprite2.Position = element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation);
                 element.AddSubElement(sprite2);
+
+                ParticleEmitter bullet1emitter = (ParticleEmitter)bulletEmitter.Clone();
+                bullet1emitter.AddAction(new AClamp(sprite));
+                sprite.AddSubElement(bullet1emitter);
+
+                ParticleEmitter bullet2emittter = (ParticleEmitter)bulletEmitter.Clone();
+                bullet2emittter.AddAction(new AClamp(sprite2));
+                sprite2.AddSubElement(bullet2emittter);
             }
 
             Vector2 average = (((Sprite)element).Rotation - (270f).ToRadians()).ToVector() * 2;
-            leftEmitter.SetVelocity(average * 3f, average * 4f);
-            rightEmitter.SetVelocity(leftEmitter.MinVelocity, leftEmitter.MaxVelocity);
+            leftEmitter.MinVelocity = average * 3f; leftEmitter.MaxVelocity = average * 4f;
+            rightEmitter.MinVelocity = leftEmitter.MinVelocity; rightEmitter.MaxVelocity = leftEmitter.MaxVelocity;
 
             leftEmitter.Position = element.Position.PositionRelativeTo(35, ((Sprite)element).Rotation - (180f).ToRadians());
             rightEmitter.Position = element.Position.PositionRelativeTo(35, ((Sprite)element).Rotation);

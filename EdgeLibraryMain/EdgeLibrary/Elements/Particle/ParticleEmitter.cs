@@ -17,6 +17,17 @@ namespace EdgeLibrary
     /// </summary>
     public class ParticleEmitter : Sprite
     {
+        //Sets the min and max value for both variables at the same time
+        public ColorChangeIndex ColorIndex { set { MinColorIndex = value; MaxColorIndex = value; } }
+        public Vector2 Velocity { set { MaxVelocity = value; MinVelocity = value; } }
+        public override Vector2 Scale { set { MinScale = value; MaxScale = value; } }
+        public float StartRotation { set { MaxStartRotation = value; MinStartRotation = value; } }
+        public float RotationSpeed { set { MinRotationSpeed = value; MaxRotationSpeed = value; } }
+        public float Life { set { MinLife = value; MaxLife = value; } }
+        public double EmitWait { set { MinEmitWait = value; MaxEmitWait = value; } }
+        public Vector2 EmitArea { get { return new Vector2(EmitWidth, EmitHeight); } set { EmitWidth = value.X; EmitHeight = value.Y; } }
+        public int ParticlesToEmit { set { MinParticlesToEmit = value; MaxParticlesToEmit = value; } }
+
         //The color for the particles
         public ColorChangeIndex MinColorIndex;
         public ColorChangeIndex MaxColorIndex;
@@ -38,7 +49,8 @@ namespace EdgeLibrary
         public float MaxLife;
         public float MinLife;
         //How long the emitter waits before emitting a particle
-        public double EmitWait;
+        public double MinEmitWait;
+        public double MaxEmitWait;
         //The maximum number of particles that can exist at once
         public int MaxParticles;
         //Generates particles with the same width and height
@@ -50,8 +62,10 @@ namespace EdgeLibrary
         public int MinParticlesToEmit;
         public int MaxParticlesToEmit;
 
+        //This can't be SubElements because the particles' removal must be handled by the ParticleEmitter
         protected List<Particle> Particles;
         protected double timeSinceLastEmit;
+        protected double currentEmitWait;
 
         //To stop garbage collection every single time
         protected List<Particle> particlesToRemove;
@@ -67,114 +81,22 @@ namespace EdgeLibrary
 
             SquareParticles = true;
 
-            MinColorIndex = new ColorChangeIndex(Color.White);
-            MaxColorIndex = MinColorIndex;
+            ColorIndex = new ColorChangeIndex(Color.White);
             MinVelocity = -Vector2.One;
             MaxVelocity = Vector2.One * 2;
-            MinScale = Vector2.One;
-            MaxScale = MinScale;
+            Scale = Vector2.One;
             GrowSpeed = 0;
-            MinStartRotation = 0;
-            MaxStartRotation = MinStartRotation;
-            MinRotationSpeed = 0;
-            MaxRotationSpeed = MinRotationSpeed;
-            MinLife = 1000;
-            MaxLife = MinLife;
-            MinParticlesToEmit = 1;
-            MaxParticlesToEmit = MinParticlesToEmit;
-            EmitWait = 0;
+            StartRotation = 0;
+            RotationSpeed = 0;
+            Life = 1000;
+            ParticlesToEmit = 1;
+            EmitWait = 10;
             MaxParticles = 10000;
+
+            currentEmitWait = RandomTools.RandomDouble(MinEmitWait, MaxEmitWait);
 
             particlesToRemove = new List<Particle>();
             timeSinceLastEmit = 0;
-        }
-
-        //Sets the minimum and maximum color
-        public void SetColor(Color color)
-        {
-            MinColorIndex = new ColorChangeIndex(color);
-            MaxColorIndex = MinColorIndex;
-        }
-        public void SetColor(ColorChangeIndex color)
-        {
-            MinColorIndex = color;
-            MaxColorIndex = MinColorIndex;
-        }
-        public void SetColor(Color color, Color color2)
-        {
-            MinColorIndex = new ColorChangeIndex(color);
-            MaxColorIndex = new ColorChangeIndex(color2);
-        }
-        public void SetColor(ColorChangeIndex color, ColorChangeIndex color2)
-        {
-            MinColorIndex = color;
-            MaxColorIndex = color2;
-        }
-        //Sets the minimum and maximum velocity
-        public void SetVelocity(Vector2 v)
-        {
-            MinVelocity = v;
-            MaxVelocity = v;
-        }
-        public void SetVelocity(Vector2 v, Vector2 v2)
-        {
-            MinVelocity = v;
-            MaxVelocity = v2;
-        }
-        //Sets the minimum and maximum scale
-        public void SetScale(Vector2 s)
-        {
-            MinScale = s;
-            MaxScale = s;
-        }
-        public void SetScale(Vector2 s, Vector2 s2)
-        {
-            MinScale = s;
-            MaxScale = s2;
-        }
-        //Sets the minimum and maximum start rotation
-        public void SetRotation(float r)
-        {
-            MinStartRotation = r;
-            MaxStartRotation = r;
-        }
-        public void SetRotation(float r, float r2)
-        {
-            MinStartRotation = r;
-            MaxStartRotation = r2;
-        }
-        //Sets the minimum and maximum rotation speed
-        public void SetRotationSpeed(float r)
-        {
-            MinRotationSpeed = r;
-            MaxRotationSpeed = r;
-        }
-        public void SetRotationSpeed(float r, float r2)
-        {
-            MinRotationSpeed = r;
-            MaxRotationSpeed = r2;
-        }
-        //Sets the minimum and maximum life time
-        public void SetLife(float l)
-        {
-            MinLife = l;
-            MaxLife = l;
-        }
-        public void SetLife(float l, float l2)
-        {
-            MinLife = l;
-            MaxLife = l2;
-        }
-        //Sets the emit area
-        public void SetEmitArea(float width, float height)
-        {
-            EmitWidth = width;
-            EmitHeight = height;
-        }
-        public void SetEmitArea(Vector2 value)
-        {
-            EmitWidth = value.X;
-            EmitHeight = value.Y;
         }
 
         //Clears all the particles from the emitter
@@ -195,13 +117,13 @@ namespace EdgeLibrary
             particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - EmitWidth / 2f, Position.X + EmitWidth / 2f), RandomTools.RandomFloat(Position.Y - EmitHeight / 2f, Position.Y + EmitHeight / 2f));
             particle.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
             particle.Scale = new Vector2(RandomTools.RandomFloat(MinScale.X, MaxScale.X), RandomTools.RandomFloat(MinScale.Y, MaxScale.Y));
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
+            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1));
 
             if (SquareParticles)
             {
                 particle.Scale = new Vector2(particle.Scale.X, particle.Scale.X);
             }
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat());
+            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1));
 
             Particles.Add(particle);
 
@@ -225,10 +147,12 @@ namespace EdgeLibrary
             timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             //If the elapsed time is greater than the EmitWait, emit a particle
-            if (timeSinceLastEmit >= EmitWait && Particles.Count < MaxParticles)
+            if (timeSinceLastEmit >= currentEmitWait && Particles.Count < MaxParticles)
             {
                 timeSinceLastEmit = 0;
-                for (int i = 0; i < RandomTools.RandomInt(MinParticlesToEmit, MaxParticlesToEmit); i++)
+                currentEmitWait = RandomTools.RandomDouble(MinEmitWait, MaxEmitWait);
+                int p = RandomTools.RandomInt(MinParticlesToEmit, MaxParticlesToEmit);
+                for (int i = 0; i < p; i++)
                 {
                     EmitSingleParticle(gameTime);
                 }
