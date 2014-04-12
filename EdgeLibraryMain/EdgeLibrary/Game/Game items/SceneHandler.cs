@@ -46,18 +46,21 @@ namespace EdgeLibrary
         }
 
         //Switches the scene
-        public bool SwitchScene(Scene scene)
+        public void SwitchScene(Scene scene)
         {
             if (Scenes.Contains(scene))
             {
                 selectedScene = scene;
-                return true;
             }
-            return false;
+            else
+            {
+                Scenes.Add(selectedScene);
+                selectedScene = scene;
+            }
         }
-        public bool SwitchScene(string id)
+        public void SwitchScene(string id)
         {
-            return SwitchScene(GetScene(id));
+            SwitchScene(GetScene(id));
         }
 
         //Deletes a specific scene

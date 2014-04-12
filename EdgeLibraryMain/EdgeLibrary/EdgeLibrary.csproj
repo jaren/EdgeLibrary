@@ -110,6 +110,8 @@
     <Compile Include="Elements\Sprite\Action\ASequence.cs" />
     <Compile Include="Elements\Sprite\Action\AWait.cs" />
     <Compile Include="Game\Camera.cs" />
+    <Compile Include="Game\Scenes\Transitions\FadeTransition.cs" />
+    <Compile Include="Game\Scenes\Transitions\Transition.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Elements\Particle\Particle.cs" />
     <Compile Include="Elements\Particle\ParticleEmitter.cs" />
@@ -122,7 +124,7 @@
     <Compile Include="Game\EdgeGame.cs" />
     <Compile Include="Game\Game items\Tools\DebugLogger.cs" />
     <Compile Include="Game\Game items\Tools\Input.cs" />
-    <Compile Include="Game\Scene.cs" />
+    <Compile Include="Game\Scenes\Scene.cs" />
     <Compile Include="Game\Game items\SceneHandler.cs" />
     <Compile Include="Game\Game items\Sounds.cs" />
     <Compile Include="Elements\Sprite\Sprite.cs" />

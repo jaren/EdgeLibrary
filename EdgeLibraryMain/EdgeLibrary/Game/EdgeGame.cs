@@ -27,12 +27,15 @@ namespace EdgeLibrary
     public class EdgeGame : Game
     {
         //Game components
-        private SpriteBatch SpriteBatch;
+        public SpriteBatch SpriteBatch;
         private GraphicsDeviceManager Graphics;
         public SceneHandler SceneHandler;
 
         //Used for drawing the game
         public Camera Camera;
+
+        //The common game time
+        public GameTime GameTime;
 
         //Gets the current running game
         public static EdgeGame Instance { get; private set; }
@@ -129,6 +132,7 @@ namespace EdgeLibrary
             SceneHandler.Update(gameTime);
             Input.Update(gameTime);
             Camera.Update(gameTime);
+            GameTime = gameTime;
 
             base.Update(gameTime);
             OnUpdate(gameTime, this);

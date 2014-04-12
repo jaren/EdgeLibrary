@@ -70,7 +70,7 @@ namespace EdgeLibrary
         }
 
         //Updates all of the elements in the scene
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             foreach (Element element in Elements)
             {
@@ -105,8 +105,20 @@ namespace EdgeLibrary
             }
         }
 
+        //Renders the scene to a Texture2D
+        public Texture2D RenderToTexture(GameTime gameTime, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
+        {
+            RenderTarget2D target = new RenderTarget2D(graphicsDevice, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height);
+            graphicsDevice.SetRenderTarget(target);
+            spriteBatch.Begin();
+            Draw(gameTime, spriteBatch);
+            spriteBatch.End();
+            graphicsDevice.SetRenderTarget(null);
+            return target;
+        }
+
         //Draws all of the elements in the scene
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             if (Background != null)
             {
