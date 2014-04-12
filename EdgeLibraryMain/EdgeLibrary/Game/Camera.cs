@@ -27,9 +27,6 @@ namespace EdgeLibrary
         public RenderTarget2D Target;
         private Vector2 HalfScreenSize;
 
-        //Used for clamping the camera position/rotation/scale to the element
-        private Element clampedElement;
-
         public Camera(Vector2 position, GraphicsDevice graphicsDevice)
         {
             Position = position;
@@ -67,9 +64,9 @@ namespace EdgeLibrary
         //Updates the position/rotation/scale with the clamped element
         public void Update(GameTime gameTime)
         {
-            if (clampedElement != null)
+            if (EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp != null)
             {
-                Position = clampedElement.Position;
+                Position = EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp.Position;
             }
         }
 
@@ -82,16 +79,16 @@ namespace EdgeLibrary
             spriteBatch.End();
         }
         
-        //Clamps to an element
+        //Clamps to an element - only for the current scene
         public void ClampTo(Element element)
         {
-            clampedElement = element;
+            EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp = element;
         }
 
-        //Unclamps from the element
+        //Unclamps from the element - only for the current scene
         public void Unclamp()
         {
-            clampedElement = null;
+            EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp = null;
         }
     }
 }

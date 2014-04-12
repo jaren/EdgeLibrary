@@ -14,7 +14,13 @@ namespace EdgeLibrary
     public class Scene
     {
         //Used to identify the scene
-        public string ID { get; protected set; }
+        public string ID;
+
+        //Used for clamping the camera to an element
+        public Element CameraClamp;
+
+        //The initial camera position when switching to this scene
+        public Vector2 InitialCameraPosition;
 
         //The elements in the current scene
         public List<Element> Elements { get; protected set; }
@@ -32,6 +38,8 @@ namespace EdgeLibrary
             Elements = new List<Element>();
 
             elementIDs = new List<string>();
+
+            InitialCameraPosition = EdgeGame.Instance.WindowSize / 2;
         }
 
         //Adds an element
@@ -55,6 +63,9 @@ namespace EdgeLibrary
         {
             Elements.RemoveAt(index);
         }
+
+        //Called when the scene is switched to
+        public virtual void WhenSwitched() { }
 
         //Gets the element with the given ID
         public Element GetElement(string id)

@@ -17,16 +17,19 @@ namespace EdgeLibrary
         //Generates two textures from rendering scenes
         protected Texture2D Texture1;
         protected Texture2D Texture2;
-        protected List<Color[]> Colors;
+        //The first scene's color data
         protected Color[] ColorArray1;
+        //The second scene's color data
         protected Color[] ColorArray2;
+        //Used for GenerateFrame
+        protected Color[] CurrentColors;
 
         //Called when the transition finishes
         public delegate void TransitionEvent(Transition t, GameTime gameTime);
         public event TransitionEvent OnFinish = delegate { };
 
-        //The scene to switch to on finishing
-        public Scene SceneOnFinish;
+        public Scene StartScene;
+        public Scene FinishScene;
         //The time per "frame" - a texture
         //Frames are generated before running the game; it's too expensive generating it every frame
         protected double TimePerFrame;
@@ -35,33 +38,21 @@ namespace EdgeLibrary
         protected int currentFrame;
         protected double elapsedTime;
 
-        public Transition(string id, Scene a, Scene b, float timePerFrame, int frames) : base(id)
+        public Transition(Scene a, Scene b, float timePerFrame, int frames) : base("")
         {
-            //Sets the second scene to be run on finishing
-            SceneOnFinish = b;
-            //Renders the scenes to textures and generates color arrays
-            Texture1 = a.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
-            Texture2 = b.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
-            Background = Texture1;
+            ID = this.GenerateID();
+            StartScene = a;
+            FinishScene = b;
             TimePerFrame = timePerFrame;
             Frames = frames;
             currentFrame = 0;
             elapsedTime = 0;
-
-            if ((Texture1.Width != Texture2.Width) || (Texture1.Height != Texture2.Height))
-            {
-                throw new Exception("Texture sizes do not match");
-            }
-
-            ColorArray1 = new Color[Texture1.Width * Texture1.Height];
-            ColorArray2 = new Color[Texture1.Width * Texture1.Height];
-            Texture1.GetData<Color>(ColorArray1);
-            Texture2.GetData<Color>(ColorArray2);
-            Colors = new List<Color[]>();
-            GenerateFrames();
-            Background.SetData<Color>(Colors[0]);
         }
-        public virtual void GenerateFrames() { }
+        public override void WhenSwitched()
+        {
+            Background = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+        }
+        public virtual void GenerateFrame() { }
         public override void Update(GameTime gameTime)
         {
             //Check if the frame should switch and changes the texture
@@ -73,11 +64,30 @@ namespace EdgeLibrary
                 if (currentFrame > Frames - 1)
                 {
                     OnFinish(this, gameTime);
-                    EdgeGame.Instance.SceneHandler.SwitchScene(SceneOnFinish);
+                    EdgeGame.Instance.SceneHandler.SwitchScene(FinishScene);
                 }
                 else
                 {
-                    Background.SetData<Color>(Colors[currentFrame]);
+                    //Renders the scenes to textures and generates color arrays
+                    Texture1 = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+                    Texture2 = FinishScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+                    Background = Texture1;
+
+                    //Throw exception if texture sizes don't match
+                    if ((Texture1.Width != Texture2.Width) || (Texture1.Height != Texture2.Height))
+                    {
+                        throw new Exception("Texture sizes do not match");
+                    }
+
+                    //Gets the color data
+                    ColorArray1 = new Color[Texture1.Width * Texture1.Height];
+                    ColorArray2 = new Color[Texture1.Width * Texture1.Height];
+                    CurrentColors = ColorArray1;
+                    Texture1.GetData<Color>(ColorArray1);
+                    Texture2.GetData<Color>(ColorArray2);
+
+                    GenerateFrame();
+                    Background.SetData<Color>(CurrentColors);
                 }
             }
             base.Update(gameTime);

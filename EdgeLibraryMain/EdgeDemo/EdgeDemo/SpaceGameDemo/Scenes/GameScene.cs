@@ -21,7 +21,7 @@ namespace EdgeDemo
         public GameScene() : base("GameScene")
         {
             EdgeGame.Instance.SceneHandler.SwitchScene(this);
-            Sprite sprite = new Sprite("player", Vector2.Zero);
+            Sprite sprite = new Sprite("player", Vector2.One * 500);
             sprite.DrawLayer = 100;
             sprite.AddToGame();
             sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, 90f.ToRadians()));
@@ -38,17 +38,17 @@ namespace EdgeDemo
                 BlendState = BlendState.AlphaBlend,
                 EmitWait = 0,
                 GrowSpeed = 0,
-                MaxParticles = 300,
+                MaxParticles = 300000,
                 MinScale = new Vector2(0.5f),
                 MaxScale = new Vector2(1f),
                 MinVelocity = new Vector2(-0.1f),
                 MaxVelocity = new Vector2(0.1f),
-                MinLife = 1000,
-                MaxLife = 3000,
+                MinLife = 10000,
+                MaxLife = 10000,
                 MinRotationSpeed = -0.1f,
                 MaxRotationSpeed = 0.1f,
-                EmitArea = new Vector2(2000, 2000),
-                ColorIndex = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent),
+                EmitArea = new Vector2(5000, 5000),
+                ColorIndex = new ColorChangeIndex(4000, Color.Transparent, Color.White, Color.Transparent),
             };
             stars.AddAction(new AClamp(sprite));
             stars.AddToGame();

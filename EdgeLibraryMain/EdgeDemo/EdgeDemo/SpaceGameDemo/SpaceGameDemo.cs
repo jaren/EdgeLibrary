@@ -14,10 +14,12 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Make all game movement based on game time, add a game time speed modifier
     /// -Add a physics engine
     /// -Mouse position is affected by camera rotation / scale
     /// 
     /// Optional TODO:
+    /// -Make transitions less expensive
     /// -SubElements are not copied in clone
     /// </summary>
 
@@ -42,6 +44,25 @@ namespace EdgeDemo
             game.ClearColor = Color.Black;
 
             GameScene scene = new GameScene();
+
+            Scene blank = new Scene("blank");
+            Sprite sprite = new Sprite("Pixel", Vector2.One * 500);
+            sprite.Scale = Vector2.One * 500;
+            blank.AddElement(sprite);
+
+            FadeTransition fade = new FadeTransition(scene, blank, 100, 100);
+            game.SceneHandler.AddScene(fade);
+            fade.ID = "fade";
+
+            game.OnUpdate += new EdgeGame.EdgeGameUpdateEvent(game_OnUpdate);
+        }
+
+        static void game_OnUpdate(GameTime gameTime, EdgeGame game)
+        {
+            if (Input.IsKeyDown(Keys.K))
+            {
+                game.SceneHandler.SwitchScene("fade");
+            }
         }
 
         static void game_OnLoadContent(EdgeGame game)

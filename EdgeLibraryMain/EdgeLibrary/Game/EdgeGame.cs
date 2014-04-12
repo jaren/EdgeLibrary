@@ -82,17 +82,15 @@ namespace EdgeLibrary
         /// <summary>
         /// Creates a new game with the given scene ID
         /// </summary>
-        /// <param name="sceneID">The ID of the original scene</param>
-        public EdgeGame(string sceneID)
+        public EdgeGame()
         {
             Content.RootDirectory = "Content";
-            SceneHandler = new SceneHandler(sceneID);
+            SceneHandler = new SceneHandler();
 
             Graphics = new GraphicsDeviceManager(this);
 
             IsMouseVisible = true;
         }
-        public EdgeGame() : this("Main") { }
 
         //Initializes the game
         protected override void Initialize()

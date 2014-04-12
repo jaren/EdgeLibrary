@@ -14,20 +14,13 @@ namespace EdgeLibrary
     //Creates a simple fade effect between two scenes
     public class FadeTransition : Transition
     {
-        public FadeTransition(string id, Scene a, Scene b, float timePerFrame, int frames) : base(id, a, b, timePerFrame, frames) { }
+        public FadeTransition(Scene a, Scene b, float timePerFrame, int frames) : base(a, b, timePerFrame, frames) { }
 
-        public override void GenerateFrames()
+        public override void GenerateFrame()
         {
-            for (int f = 0; f < Frames; f++)
+            for (int i = 0; i < ColorArray1.Length; i++ )
             {
-                Color[] colors = new Color[Texture1.Width * Texture1.Height];
-
-                for (int i = 0; i < ColorArray1.Length; i++ )
-                {
-                    colors[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], f / (float)Frames);
-                }
-                
-                Colors.Add(colors);
+                CurrentColors[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], currentFrame / (float)Frames);
             }
         }
     }

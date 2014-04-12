@@ -18,11 +18,9 @@ namespace EdgeLibrary
         private Scene selectedScene;
         public Color DebugDrawColor;
 
-        public SceneHandler(string sceneID)
+        public SceneHandler()
         {
             Scenes = new List<Scene>();
-            selectedScene = new Scene(sceneID);
-            Scenes.Add(selectedScene);
         }
 
         //Adds a scene
@@ -45,17 +43,19 @@ namespace EdgeLibrary
             return null;
         }
 
-        //Switches the scene
+        //Switches the scene and adds it to the game if it isn't already added
         public void SwitchScene(Scene scene)
         {
             if (Scenes.Contains(scene))
             {
                 selectedScene = scene;
+                scene.WhenSwitched();
+                EdgeGame.Instance.Camera.Position = scene.InitialCameraPosition;
             }
             else
             {
-                Scenes.Add(selectedScene);
-                selectedScene = scene;
+                Scenes.Add(scene);
+                SwitchScene(scene);
             }
         }
         public void SwitchScene(string id)
@@ -81,12 +81,14 @@ namespace EdgeLibrary
         //Updates the selected scene
         public void Update(GameTime gameTime)
         {
+            if (selectedScene == null) { return; }
             selectedScene.Update(gameTime);
         }
 
         //Draws the selected scene based on draw state
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch, DrawState drawState)
         {
+            if (selectedScene == null) { return; }
             switch (drawState)
             {
                 case DrawState.Normal:
