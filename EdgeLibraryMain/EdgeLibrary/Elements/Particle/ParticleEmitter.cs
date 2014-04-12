@@ -46,6 +46,9 @@ namespace EdgeLibrary
         //The variance in emit position
         public float EmitWidth;
         public float EmitHeight;
+        //The number of particles to emit each count
+        public int MinParticlesToEmit;
+        public int MaxParticlesToEmit;
 
         protected List<Particle> Particles;
         protected double timeSinceLastEmit;
@@ -77,6 +80,8 @@ namespace EdgeLibrary
             MaxRotationSpeed = MinRotationSpeed;
             MinLife = 1000;
             MaxLife = MinLife;
+            MinParticlesToEmit = 1;
+            MaxParticlesToEmit = MinParticlesToEmit;
             EmitWait = 0;
             MaxParticles = 10000;
 
@@ -223,7 +228,10 @@ namespace EdgeLibrary
             if (timeSinceLastEmit >= EmitWait && Particles.Count < MaxParticles)
             {
                 timeSinceLastEmit = 0;
-                EmitSingleParticle(gameTime);
+                for (int i = 0; i < RandomTools.RandomInt(MinParticlesToEmit, MaxParticlesToEmit); i++)
+                {
+                    EmitSingleParticle(gameTime);
+                }
             }
 
             //Checks if each particle should be removed

@@ -18,6 +18,7 @@ namespace EdgeLibrary
         public Vector2 Position;
         public float Scale { get { return _scale; } set { _scale = value; if (!SupportsZeroScale && _scale <= 0) { _scale = 0.1f; } } }
         private float _scale;
+        //In radians
         public float Rotation;
 
         //If set to true, then the camera will accept values of 0 and under for the scale
@@ -48,7 +49,7 @@ namespace EdgeLibrary
                 //Adds the position
                 * Matrix.CreateTranslation(-Position.X, -Position.Y, 0)
                 //Adds the rotation
-                * Matrix.CreateRotationZ(MathHelper.ToRadians(Rotation))
+                * Matrix.CreateRotationZ(Rotation)
                 //Adds the scale
                 * Matrix.CreateScale(new Vector3(Scale))
                 //Adds the origin

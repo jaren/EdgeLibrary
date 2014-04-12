@@ -30,7 +30,8 @@ namespace EdgeDemo
     static class Program
     {
         static EdgeGame game;
-        static ParticleEmitter emitter;
+        static ParticleEmitter leftEmitter;
+        static ParticleEmitter rightEmitter;
 
         static void Main(string[] args)
         {
@@ -47,7 +48,7 @@ namespace EdgeDemo
             Sprite sprite = new Sprite("player", Vector2.Zero);
             sprite.DrawLayer = 100;
             sprite.AddToGame();
-            sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, 90));
+            sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, (90f).ToRadians()));
             sprite.AddAction(new AFollow("Follow", Input.MouseSprite, 7));
             sprite.OnUpdate += new Element.ElementUpdateEvent(updateSprite);
             game.Camera.ClampTo(sprite);
@@ -73,23 +74,26 @@ namespace EdgeDemo
             stars.AddAction(new AClamp(sprite));
             stars.AddToGame();
 
-            emitter = new ParticleEmitter("Fire", Vector2.Zero)
+            leftEmitter = new ParticleEmitter("Fire", Vector2.Zero)
             {
                 BlendState = BlendState.Additive,
                 EmitWait = 0,
-                GrowSpeed = -0.1f,
-                MaxParticles = 300
+                GrowSpeed = -1f,
+                MaxParticles = 1000,
+                MinParticlesToEmit = 10,
+                MaxParticlesToEmit = 10
             };
-            emitter.SetScale(new Vector2(1.5f), new Vector2(2));
-            emitter.SetVelocity(new Vector2(-1), new Vector2(1));
-            emitter.SetLife(2000);
-            emitter.SetEmitArea(5, 5);
-            ColorChangeIndex emitterIndex = new ColorChangeIndex(500, Color.Orange, Color.DarkRed, Color.Transparent);
-            ColorChangeIndex emitterIndex2 = new ColorChangeIndex(500, Color.Red, Color.OrangeRed, Color.Transparent);
-            emitter.SetColor(emitterIndex, emitterIndex2);
-            emitter.AddAction(new AClamp(sprite));
-            emitter.AddToGame();
+            leftEmitter.SetScale(new Vector2(0.6f), new Vector2(0.8f));
+            leftEmitter.SetVelocity(new Vector2(-1), new Vector2(1));
+            leftEmitter.SetLife(500);
+            leftEmitter.SetEmitArea(5, 5);
+            ColorChangeIndex emitterIndex = new ColorChangeIndex(125, Color.Orange, Color.DarkRed, Color.Transparent);
+            ColorChangeIndex emitterIndex2 = new ColorChangeIndex(125, Color.Red, Color.OrangeRed, Color.Transparent);
+            leftEmitter.SetColor(emitterIndex, emitterIndex2);
+            leftEmitter.AddToGame();
 
+            rightEmitter = (ParticleEmitter)leftEmitter.Clone();
+            rightEmitter.AddToGame();
         }
 
         static double elapsed = 0;
@@ -108,10 +112,10 @@ namespace EdgeDemo
             if (Input.IsLeftClicking() && elapsed >= toElapse)
             {
                 elapsed = 0;
-                Sprite sprite = new Sprite("laserGreen", element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation - 180));
+                Sprite sprite = new Sprite("laserGreen", element.Position.PositionRelativeTo(40, ((Sprite)element).Rotation - (180f).ToRadians()));
                 sprite.OnUpdate += new Element.ElementUpdateEvent(updateProjectile);
                 sprite.Rotation = ((Sprite)element).Rotation;
-                Vector2 MoveVector = Input.MousePosition.PositionRelativeTo(40, ((Sprite)element).Rotation - 180) - sprite.Position;
+                Vector2 MoveVector = Input.MousePosition.PositionRelativeTo(40, ((Sprite)element).Rotation - (180f).ToRadians()) - sprite.Position;
                 MoveVector.Normalize();
                 sprite.AddAction(new AMove(MoveVector * bulletspeed));
                 element.AddSubElement(sprite);
@@ -121,8 +125,12 @@ namespace EdgeDemo
                 element.AddSubElement(sprite2);
             }
 
-            Vector2 average = (((Sprite)element).Rotation - 270).RotationToVector() * 2;
-            emitter.SetVelocity(average * 0.8f, average * 1.2f);
+            Vector2 average = (((Sprite)element).Rotation - (270f).ToRadians()).ToVector() * 2;
+            leftEmitter.SetVelocity(average * 3f, average * 4f);
+            rightEmitter.SetVelocity(leftEmitter.MinVelocity, leftEmitter.MaxVelocity);
+
+            leftEmitter.Position = element.Position.PositionRelativeTo(35, ((Sprite)element).Rotation - (180f).ToRadians());
+            rightEmitter.Position = element.Position.PositionRelativeTo(35, ((Sprite)element).Rotation);
         }
 
         static void updateProjectile(Element element, GameTime gameTime)

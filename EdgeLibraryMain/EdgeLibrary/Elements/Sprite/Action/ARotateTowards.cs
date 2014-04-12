@@ -18,7 +18,7 @@ namespace EdgeLibrary
         //The higher this is, the faster the sprite will rotate
         public float Speed;
 
-        //The number of degrees to add to the sprite's rotation after rotating towards the target sprite
+        //The number of radians to add to the sprite's rotation after rotating towards the target sprite
         public float AdditionalAngle;
 
         public ARotateTowards(Sprite target) : this(target, 0) { }
@@ -42,7 +42,7 @@ namespace EdgeLibrary
         //Calculates rotation
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            float targetRotation = MathHelper.ToDegrees((float)Math.Atan2(Target.Position.Y - sprite.Position.Y, Target.Position.X - sprite.Position.X)) + AdditionalAngle;
+            float targetRotation = (float)Math.Atan2(Target.Position.Y - sprite.Position.Y, Target.Position.X - sprite.Position.X) + AdditionalAngle;
 
             //Adds the speed to the sprite's rotation if it won't be more/less than the target rotation
             if (sprite.Rotation < targetRotation)

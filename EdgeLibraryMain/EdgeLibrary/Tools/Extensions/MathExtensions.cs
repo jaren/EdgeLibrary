@@ -32,25 +32,25 @@ namespace EdgeLibrary
         /// <summary>
         /// Returns the rotation for a vector (the vector should be a a position - another position)
         /// </summary>
-        public static float VectorToRotation(this Vector2 vector)
+        public static float ToRotation(this Vector2 vector)
         {
-            return MathHelper.ToDegrees((float)Math.Atan2(vector.Y, vector.X));
+            return (float)Math.Atan2(vector.Y, vector.X);
         }
 
         /// <summary>
         /// Turns an angle measure into a difference in X and Y
         /// </summary>
-        public static Vector2 RotationToVector(this float degrees)
+        public static Vector2 ToVector(this float radians)
         {
-            return new Vector2((float)Math.Cos(MathHelper.ToRadians(degrees)), (float)Math.Sin(MathHelper.ToRadians(degrees)));
+            return new Vector2((float)Math.Cos(radians), (float)Math.Sin(radians));
         }
 
         /// <summary>
         /// Returns the position a certain distance relative to another at an angle
         /// </summary>
-        public static Vector2 PositionRelativeTo(this Vector2 target, float distance, float degrees)
+        public static Vector2 PositionRelativeTo(this Vector2 target, float distance, float radians)
         {
-            return new Vector2((float)Math.Cos(MathHelper.ToRadians(degrees)) * distance + target.X, (float)Math.Sin(MathHelper.ToRadians(degrees)) * distance + target.Y);
+            return new Vector2((float)Math.Cos(radians) * distance + target.X, (float)Math.Sin(radians) * distance + target.Y);
         }
 
         /// <summary>
@@ -102,6 +102,23 @@ namespace EdgeLibrary
             color.A = color.A + number >= 0 ? color.A + number >= 256 ? (byte)255 : (byte)(color.A + number) : (byte)0;
             return color;
         }
+
+        /// <summary>
+        /// Converts a number from degrees to radians
+        /// </summary>
+        public static float ToRadians(this float degrees)
+        {
+            return MathHelper.ToRadians(degrees);
+        }
+
+        /// <summary>
+        /// Converts a number from radians to degrees
+        /// </summary>
+        public static float ToDegrees(this float radians)
+        {
+            return MathHelper.ToDegrees(radians);
+        }
+
 
         /// <summary>
         /// Subtracts the specified amount from each component of the specified vector.

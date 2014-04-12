@@ -11,19 +11,19 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //Adds a specific number of degrees to a sprite's rotation
+    //Adds a specific number of radians to a sprite's rotation
     public class ARotate : Action
     {
         public float Speed;
 
-        public ARotate(float degrees) : base()
+        public ARotate(float radians) : base()
         {
-            Speed = degrees;
+            Speed = radians;
         }
 
-        public ARotate(string ID, float degrees) : base(ID)
+        public ARotate(string ID, float radians) : base(ID)
         {
-            Speed = degrees;
+            Speed = radians;
         }
 
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
