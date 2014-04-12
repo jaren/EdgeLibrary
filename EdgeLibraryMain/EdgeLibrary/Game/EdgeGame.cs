@@ -130,8 +130,6 @@ namespace EdgeLibrary
             Input.Update(gameTime);
             Camera.Update(gameTime);
 
-            FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
-
             base.Update(gameTime);
             OnUpdate(gameTime, this);
         }
@@ -142,6 +140,8 @@ namespace EdgeLibrary
             GraphicsDevice.SetRenderTarget(Camera.Target);
 
             GraphicsDevice.Clear(ClearColor);
+
+            FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
 
             SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, Camera.GetTransform());
             SceneHandler.Draw(gameTime, SpriteBatch, DrawState);

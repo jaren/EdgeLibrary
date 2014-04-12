@@ -78,7 +78,7 @@ namespace EdgeDemo
             bulletEmitter = new ParticleEmitter("Fire", Vector2.Zero)
             {
                 BlendState = BlendState.Additive,
-                EmitWait = 0,
+                EmitWait = 10,
                 GrowSpeed = 0,
                 MaxParticles = 300,
                 MinScale = new Vector2(0.5f),
