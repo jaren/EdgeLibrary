@@ -60,7 +60,7 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>EdgeDemo.TransitionDemo</StartupObject>
+    <StartupObject>EdgeDemo.SpaceGameDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
@@ -111,9 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoShell.cs" />
-    <Compile Include="General Demos\TransitionDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GameDemos\SpaceGameDemo.cs" />
+    <Compile Include="SpaceGameDemo\Scenes\GameScene.cs" />
+    <Compile Include="SpaceGameDemo\SpaceGameDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

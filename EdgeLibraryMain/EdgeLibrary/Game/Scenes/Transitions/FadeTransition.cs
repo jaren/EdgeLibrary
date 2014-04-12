@@ -11,28 +11,24 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
+    //Creates a simple fade effect between two scenes
     public class FadeTransition : Transition
     {
-        private Color[] ColorArray1;
-        private Color[] ColorArray2;
-        private Color[] CurrentColorArray;
+        public FadeTransition(string id, Scene a, Scene b, float timePerFrame, int frames) : base(id, a, b, timePerFrame, frames) { }
 
-        public FadeTransition(string id, Scene a, Scene b, float time) : base(id, a, b, time) 
+        public override void GenerateFrames()
         {
-            ColorArray1 = new Color[Texture1.Width * Texture1.Height];
-            ColorArray2 = new Color[Texture1.Width * Texture1.Height];
-            Texture1.GetData<Color>(ColorArray1);
-            Texture2.GetData<Color>(ColorArray2);
-            CurrentColorArray = ColorArray1;
-        }
-
-        public override void UpdateTransition(GameTime gameTime)
-        {
-            for (int i = 0; i < ColorArray1.Length; i++)
+            for (int f = 0; f < Frames; f++)
             {
-                CurrentColorArray[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], (float)(elapsedTime/Time));
+                Color[] colors = new Color[Texture1.Width * Texture1.Height];
+
+                for (int i = 0; i < ColorArray1.Length; i++ )
+                {
+                    colors[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], f / (float)Frames);
+                }
+                
+                Colors.Add(colors);
             }
-            Background.SetData<Color>(CurrentColorArray);
         }
     }
 }

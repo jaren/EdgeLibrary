@@ -110,6 +110,7 @@ namespace EdgeLibrary
         {
             RenderTarget2D target = new RenderTarget2D(graphicsDevice, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height);
             graphicsDevice.SetRenderTarget(target);
+            graphicsDevice.Clear(EdgeGame.Instance.ClearColor);
             spriteBatch.Begin();
             Draw(gameTime, spriteBatch);
             spriteBatch.End();

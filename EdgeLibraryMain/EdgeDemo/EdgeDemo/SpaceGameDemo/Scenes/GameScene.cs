@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -12,47 +12,22 @@ using EdgeLibrary;
 
 namespace EdgeDemo
 {
-    /// <summary>
-    /// TODO:
-    /// -Add a physics engine
-    /// -Mouse position is affected by camera rotation / scale
-    /// -Fix FPS Counter
-    /// 
-    /// Optional TODO:
-    /// -SubElements are not copied in clone
-    /// -Add scene transitions
-    /// </summary>
-
-    /// <summary>
-    /// A demo of EdgeLibrary
-    /// </summary>
-    #if WINDOWS || XBOX
-    static class SpaceGameDemo
+    public class GameScene : Scene
     {
-        static EdgeGame game;
-        static ParticleEmitter bulletEmitter;
-        static ParticleEmitter leftEmitter;
-        static ParticleEmitter rightEmitter;
+        ParticleEmitter bulletEmitter;
+        ParticleEmitter leftEmitter;
+        ParticleEmitter rightEmitter;
 
-        static void Main(string[] args)
+        public GameScene() : base("GameScene")
         {
-            game = new EdgeGame();
-            game.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
-            game.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
-            game.Run();
-        }
-
-        static void game_OnInit(EdgeGame game)
-        {
-            game.ClearColor = Color.Black;
-
+            EdgeGame.Instance.SceneHandler.SwitchScene(this);
             Sprite sprite = new Sprite("player", Vector2.Zero);
             sprite.DrawLayer = 100;
             sprite.AddToGame();
             sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, 90f.ToRadians()));
             sprite.AddAction(new AFollow("Follow", Input.MouseSprite, 7));
             sprite.OnUpdate += new Element.ElementUpdateEvent(updateSprite);
-            game.Camera.ClampTo(sprite);
+            EdgeGame.Instance.Camera.ClampTo(sprite);
 
             DebugText Debug = new DebugText("ComicSans-10", Vector2.Zero);
             Debug.FollowsCamera = false;
@@ -64,10 +39,14 @@ namespace EdgeDemo
                 EmitWait = 0,
                 GrowSpeed = 0,
                 MaxParticles = 300,
-                MinScale = new Vector2(0.5f), MaxScale = new Vector2(1f),
-                MinVelocity = new Vector2(-0.1f), MaxVelocity = new Vector2(0.1f),
-                MinLife = 1000, MaxLife = 3000,
-                MinRotationSpeed = -0.1f, MaxRotationSpeed = 0.1f,
+                MinScale = new Vector2(0.5f),
+                MaxScale = new Vector2(1f),
+                MinVelocity = new Vector2(-0.1f),
+                MaxVelocity = new Vector2(0.1f),
+                MinLife = 1000,
+                MaxLife = 3000,
+                MinRotationSpeed = -0.1f,
+                MaxRotationSpeed = 0.1f,
                 EmitArea = new Vector2(2000, 2000),
                 ColorIndex = new ColorChangeIndex(1000, Color.White, Color.Black, Color.Transparent),
             };
@@ -98,11 +77,16 @@ namespace EdgeDemo
                 EmitWait = 0,
                 GrowSpeed = -1f,
                 MaxParticles = 1000,
-                MinParticlesToEmit = 5, MaxParticlesToEmit = 10,
-                MinScale = new Vector2(0.6f), MaxScale = new Vector2(0.8f),
-                MinVelocity = new Vector2(-1f), MaxVelocity = new Vector2(1f),
-                MinLife = 500, MaxLife = 500,
-                MinRotationSpeed = 0, MaxRotationSpeed = 0,
+                MinParticlesToEmit = 5,
+                MaxParticlesToEmit = 10,
+                MinScale = new Vector2(0.6f),
+                MaxScale = new Vector2(0.8f),
+                MinVelocity = new Vector2(-1f),
+                MaxVelocity = new Vector2(1f),
+                MinLife = 500,
+                MaxLife = 500,
+                MinRotationSpeed = 0,
+                MaxRotationSpeed = 0,
                 EmitArea = new Vector2(5, 5),
                 MinColorIndex = new ColorChangeIndex(125, Color.Orange, Color.DarkRed, Color.Transparent),
                 MaxColorIndex = new ColorChangeIndex(125, Color.Red, Color.OrangeRed, Color.Transparent)
@@ -113,15 +97,15 @@ namespace EdgeDemo
             rightEmitter.AddToGame();
         }
 
-        static double elapsed = 0;
-        static double toElapse = 200;
-        static float bulletspeed = 15;
-        static float maxPlayerSpeed = 10;
-        static void updateSprite(Element element, GameTime gameTime)
+        double elapsed = 0;
+        double toElapse = 200;
+        float bulletspeed = 15;
+        float maxPlayerSpeed = 10;
+        void updateSprite(Element element, GameTime gameTime)
         {
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Vector2.Distance(Input.MousePosition, element.Position)/20;
+            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Vector2.Distance(Input.MousePosition, element.Position) / 20;
             ((Sprite)element).GetAction<AFollow>("Follow").Speed = Math.Min(((Sprite)element).GetAction<AFollow>("Follow").Speed, maxPlayerSpeed);
 
             ((Sprite)element).GetAction<AFollow>("Follow").Paused = !Input.IsKeyDown(Keys.Space);
@@ -158,48 +142,12 @@ namespace EdgeDemo
             rightEmitter.Position = element.Position.PositionRelativeTo(35, ((Sprite)element).Rotation);
         }
 
-        static void updateProjectile(Element element, GameTime gameTime)
+        void updateProjectile(Element element, GameTime gameTime)
         {
             if (element.CheckOffScreen())
             {
                 element.Remove();
             }
         }
-
-        static void game_OnLoadContent(EdgeGame game)
-        {
-            game.WindowSize = new Vector2(1000);
-
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-10");
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-20");
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-30");
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-40");
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-50");
-            Resources.LoadFont("Fonts/Comic Sans/ComicSans-60");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-10");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-20");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-30");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-40");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-50");
-            Resources.LoadFont("Fonts/Courier New/CourierNew-60");
-            Resources.LoadFont("Fonts/Georgia/Georgia-10");
-            Resources.LoadFont("Fonts/Georgia/Georgia-20");
-            Resources.LoadFont("Fonts/Georgia/Georgia-30");
-            Resources.LoadFont("Fonts/Georgia/Georgia-40");
-            Resources.LoadFont("Fonts/Georgia/Georgia-50");
-            Resources.LoadFont("Fonts/Georgia/Georgia-60");
-            Resources.LoadFont("Fonts/Impact/Impact-10");
-            Resources.LoadFont("Fonts/Impact/Impact-20");
-            Resources.LoadFont("Fonts/Impact/Impact-30");
-            Resources.LoadFont("Fonts/Impact/Impact-40");
-            Resources.LoadFont("Fonts/Impact/Impact-50");
-            Resources.LoadFont("Fonts/Impact/Impact-60");
-            Resources.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
-            Resources.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
-            //Resources.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
-        }
-
     }
-    #endif
 }
-

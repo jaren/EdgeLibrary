@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -12,37 +12,39 @@ using EdgeLibrary;
 
 namespace EdgeDemo
 {
-#if WINDOWS || XBOX
-    public static class TransitionDemo
+    /// <summary>
+    /// TODO:
+    /// -Add a physics engine
+    /// -Mouse position is affected by camera rotation / scale
+    /// 
+    /// Optional TODO:
+    /// -SubElements are not copied in clone
+    /// </summary>
+
+    /// <summary>
+    /// A demo of EdgeLibrary
+    /// </summary>
+    #if WINDOWS || XBOX
+    static class SpaceGameDemo
     {
-        public static EdgeGame Game;
+        static EdgeGame game;
 
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Game = new EdgeGame();
-            Game.OnInit += new EdgeGame.EdgeGameEvent(Game_OnInit);
-            Game.OnLoadContent += new EdgeGame.EdgeGameEvent(Game_OnLoadContent);
-            Game.Run();
+            game = new EdgeGame();
+            game.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
+            game.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
+            game.Run();
         }
 
-        private static void Game_OnInit(EdgeGame game)
+        static void game_OnInit(EdgeGame game)
         {
-            game.ClearColor = Color.White;
+            game.ClearColor = Color.Black;
 
-            Scene scene1 = new Scene("1");
-            game.SceneHandler.SwitchScene(scene1);
-            Sprite pixel1 = new Sprite("Pixel", Vector2.One * 500);
-            pixel1.Scale = Vector2.One * 500;
-
-            Scene scene2 = new Scene("2");
-            game.SceneHandler.SwitchScene(scene2);
-            scene2.Background = Resources.GetTexture("player");
-
-            FadeTransition fade = new FadeTransition("fade", scene1, scene2, 10000);
-            game.SceneHandler.SwitchScene(fade);
+            GameScene scene = new GameScene();
         }
 
-        private static void Game_OnLoadContent(EdgeGame game)
+        static void game_OnLoadContent(EdgeGame game)
         {
             game.WindowSize = new Vector2(1000);
 
@@ -72,7 +74,10 @@ namespace EdgeDemo
             Resources.LoadFont("Fonts/Impact/Impact-60");
             Resources.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
             Resources.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
+            //Resources.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
         }
+
     }
-#endif
+    #endif
 }
+
