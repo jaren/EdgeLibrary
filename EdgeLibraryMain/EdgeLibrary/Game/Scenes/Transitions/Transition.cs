@@ -17,6 +17,8 @@ namespace EdgeLibrary
         //Generates two textures from rendering scenes
         protected Texture2D Texture1;
         protected Texture2D Texture2;
+        //The list of frames
+        protected List<Color[]> Colors;
         //The first scene's color data
         protected Color[] ColorArray1;
         //The second scene's color data
@@ -51,8 +53,33 @@ namespace EdgeLibrary
         public override void WhenSwitched()
         {
             Background = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+
+            //Renders the scenes to textures and generates color arrays
+            Texture1 = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+            Texture2 = FinishScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+            Background = Texture1;
+
+            //Throw exception if texture sizes don't match
+            if ((Texture1.Width != Texture2.Width) || (Texture1.Height != Texture2.Height))
+            {
+                throw new Exception("Texture sizes do not match");
+            }
+
+            //Gets the color data
+            ColorArray1 = new Color[Texture1.Width * Texture1.Height];
+            ColorArray2 = new Color[Texture1.Width * Texture1.Height];
+            CurrentColors = ColorArray1;
+            Texture1.GetData<Color>(ColorArray1);
+            Texture2.GetData<Color>(ColorArray2);
+            Colors = new List<Color[]>();
+
+            for (int i = 0; i < Frames; i++)
+            {
+                GenerateFrame(i);
+                Colors.Add((Color[])CurrentColors.Clone());
+            }
         }
-        public virtual void GenerateFrame() { }
+        public virtual void GenerateFrame(int frame) { }
         public override void Update(GameTime gameTime)
         {
             //Check if the frame should switch and changes the texture
@@ -68,26 +95,7 @@ namespace EdgeLibrary
                 }
                 else
                 {
-                    //Renders the scenes to textures and generates color arrays
-                    Texture1 = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
-                    Texture2 = FinishScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
-                    Background = Texture1;
-
-                    //Throw exception if texture sizes don't match
-                    if ((Texture1.Width != Texture2.Width) || (Texture1.Height != Texture2.Height))
-                    {
-                        throw new Exception("Texture sizes do not match");
-                    }
-
-                    //Gets the color data
-                    ColorArray1 = new Color[Texture1.Width * Texture1.Height];
-                    ColorArray2 = new Color[Texture1.Width * Texture1.Height];
-                    CurrentColors = ColorArray1;
-                    Texture1.GetData<Color>(ColorArray1);
-                    Texture2.GetData<Color>(ColorArray2);
-
-                    GenerateFrame();
-                    Background.SetData<Color>(CurrentColors);
+                    Background.SetData<Color>(Colors[currentFrame]);
                 }
             }
             base.Update(gameTime);

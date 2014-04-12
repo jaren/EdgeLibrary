@@ -16,11 +16,11 @@ namespace EdgeLibrary
     {
         public FadeTransition(Scene a, Scene b, float timePerFrame, int frames) : base(a, b, timePerFrame, frames) { }
 
-        public override void GenerateFrame()
+        public override void GenerateFrame(int frame)
         {
             for (int i = 0; i < ColorArray1.Length; i++ )
             {
-                CurrentColors[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], currentFrame / (float)Frames);
+                CurrentColors[i] = Color.Lerp(ColorArray1[i], ColorArray2[i], frame / (float)Frames);
             }
         }
     }
