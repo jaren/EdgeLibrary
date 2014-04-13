@@ -36,7 +36,7 @@ namespace EdgeDemo
             ParticleEmitter stars = new ParticleEmitter("Stars", Vector2.Zero)
             {
                 BlendState = BlendState.AlphaBlend,
-                EmitWait = 0,
+                EmitWait = 1,
                 GrowSpeed = 0,
                 MaxParticles = 300000,
                 MinScale = new Vector2(0.5f),
@@ -74,22 +74,22 @@ namespace EdgeDemo
             leftEmitter = new ParticleEmitter("Fire", Vector2.Zero)
             {
                 BlendState = BlendState.Additive,
-                EmitWait = 0,
+                EmitWait = 1,
                 GrowSpeed = -1f,
                 MaxParticles = 2000,
                 MinParticlesToEmit = 5,
                 MaxParticlesToEmit = 10,
                 MinScale = new Vector2(0.6f),
                 MaxScale = new Vector2(0.8f),
-                MinVelocity = new Vector2(-1f),
-                MaxVelocity = new Vector2(1f),
-                MinLife = 500,
-                MaxLife = 500,
+                MinVelocity = new Vector2(-0.001f),
+                MaxVelocity = new Vector2(0.001f),
+                MinLife = 5000,
+                MaxLife = 5000,
                 MinRotationSpeed = 0,
                 MaxRotationSpeed = 0,
-                EmitArea = new Vector2(5, 5),
-                MinColorIndex = new ColorChangeIndex(125, Color.Orange, Color.DarkRed, Color.Transparent),
-                MaxColorIndex = new ColorChangeIndex(125, Color.Red, Color.OrangeRed, Color.Transparent)
+                EmitArea = new Vector2(2, 2),
+                MinColorIndex = new ColorChangeIndex(1250, Color.Orange, Color.DarkRed, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(1250, Color.Red, Color.OrangeRed, Color.Transparent)
             };
             leftEmitter.AddToGame();
 

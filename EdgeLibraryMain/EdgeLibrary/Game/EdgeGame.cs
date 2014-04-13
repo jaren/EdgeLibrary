@@ -180,7 +180,7 @@ namespace EdgeLibrary
         public static double GetFrameTimeMultiplier(GameTime gameTime)
         {
             //Gets the amount to multiply any game process speed by
-            return gameTime.ElapsedGameTime.TotalMilliseconds * gameTime.ElapsedGameTime.TotalMilliseconds * Instance.GameSpeed * GameSpeedMultiplier;
+            return gameTime.ElapsedGameTime.TotalMilliseconds * Instance.GameSpeed * GameSpeedMultiplier;
         }
     }
 }
