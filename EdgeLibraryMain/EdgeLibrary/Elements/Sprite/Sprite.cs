@@ -18,7 +18,14 @@ namespace EdgeLibrary
         public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } }
 
         //Sets the scale with a Vector2
-        public virtual Vector2 Scale { get; set; }
+        public virtual Vector2 Scale { get { return _scale; } set
+            {
+                _scale = new Vector2(
+                    (value.X < 0 ? 0 : value.X),
+                    (value.Y < 0 ? 0 : value.Y));
+            }
+        }
+        private Vector2 _scale;
 
         //Optional visual effects
         public virtual Color Color { get; set; }
@@ -31,7 +38,7 @@ namespace EdgeLibrary
 
         //If set to true, origin will be top left; if not, origin will be center
         public virtual bool CenterAsOrigin { get { return _centerAsOrigin; } set { _centerAsOrigin = value; reloadOriginPoint(); } }
-        protected bool _centerAsOrigin;
+        private bool _centerAsOrigin;
 
         //Used for detecting collisions
         public virtual CollisionBody CollisionBody { get; set; }
@@ -39,7 +46,7 @@ namespace EdgeLibrary
 
         //The texture for drawing
         public virtual Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
-        protected Texture2D _texture;
+        private Texture2D _texture;
 
         //Used for OnCollideStart
         protected List<string> currentlyCollidingWithIDs;
@@ -113,7 +120,7 @@ namespace EdgeLibrary
         {
             if (Texture != null)
             {
-                if (_centerAsOrigin)
+                if (CenterAsOrigin)
                 {
                     OriginPoint = new Vector2(Width / 2f, Height / 2f);
                 }
@@ -143,7 +150,7 @@ namespace EdgeLibrary
         }
         
         //Gets an action
-        public T GetAction<T>(string id) where T : Action
+        public T Action<T>(string id) where T : Action
         {
             foreach(Action action in Actions)
             {
@@ -178,7 +185,7 @@ namespace EdgeLibrary
                 CollisionBody.ScaleWith(this);
                 
                 //If not using center as origin, change the CollisionBody position
-                if (_centerAsOrigin)
+                if (CenterAsOrigin)
                 {
                     CollisionBody.Position = new Vector2(Position.X, Position.Y);
                 }
@@ -244,7 +251,7 @@ namespace EdgeLibrary
         //Draws to the spritebatch
         protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, Position, null, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
+            spriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
         }
 
         //Draws the area of the collision body

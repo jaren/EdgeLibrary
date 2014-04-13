@@ -144,7 +144,7 @@ namespace EdgeLibrary
         //Updates all the particles in the emitter
         protected override void UpdateObject(GameTime gameTime)
         {
-            timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds;
+            timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             //If the elapsed time is greater than the EmitWait, emit a particle
             if (timeSinceLastEmit >= currentEmitWait && Particles.Count < MaxParticles)

@@ -30,7 +30,7 @@ namespace EdgeLibrary
 
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedTime += (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             if (elapsedTime >= WaitTime)
             {

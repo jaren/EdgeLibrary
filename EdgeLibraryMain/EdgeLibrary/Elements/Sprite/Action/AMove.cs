@@ -28,7 +28,7 @@ namespace EdgeLibrary
 
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            sprite.Position += MoveVector;
+            sprite.Position += MoveVector * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
         }
 
         public override Action Clone()

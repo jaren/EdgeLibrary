@@ -83,7 +83,7 @@ namespace EdgeLibrary
         public override void Update(GameTime gameTime)
         {
             //Check if the frame should switch and changes the texture
-            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
             if (elapsedTime >= TimePerFrame)
             {
                 elapsedTime = 0;

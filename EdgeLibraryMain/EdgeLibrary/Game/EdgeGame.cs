@@ -37,6 +37,10 @@ namespace EdgeLibrary
         //The common game time
         public GameTime GameTime;
 
+        //How much to multiply the game speed by - could change from computer to computer
+        public static float GameSpeedMultiplier = 1/16f;
+        public float GameSpeed;
+
         //Gets the current running game
         public static EdgeGame Instance { get; private set; }
 
@@ -88,6 +92,8 @@ namespace EdgeLibrary
             SceneHandler = new SceneHandler();
 
             Graphics = new GraphicsDeviceManager(this);
+
+            GameSpeed = 1;
 
             IsMouseVisible = true;
         }
@@ -169,6 +175,12 @@ namespace EdgeLibrary
         public static Texture2D CreateNewTexture(int width, int height)
         {
             return new Texture2D(Instance.GraphicsDevice, width, height);
+        }
+
+        public static double GetFrameTimeMultiplier(GameTime gameTime)
+        {
+            //Gets the amount to multiply any game process speed by
+            return gameTime.ElapsedGameTime.TotalMilliseconds * gameTime.ElapsedGameTime.TotalMilliseconds * Instance.GameSpeed * GameSpeedMultiplier;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace EdgeLibrary
         public List<Color> Colors;
         public List<float> Times;
         public int index;
-        private float elapsedTime;
+        private double elapsedTime;
         public bool HasFinished { get; private set; }
 
         public ColorChangeIndex(Color color) : this(1000, color) { }
@@ -114,7 +114,7 @@ namespace EdgeLibrary
         //Updates the color index
         public Color Update(GameTime gameTime)
         {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             if (elapsedTime >= Times[index])
             {
@@ -134,7 +134,7 @@ namespace EdgeLibrary
             {
                 HasFinished = false;
             }
-            return Color.Lerp(Colors[index], Colors[index + 1], elapsedTime / Times[index]);
+            return Color.Lerp(Colors[index], Colors[index + 1], (float)elapsedTime / Times[index]);
         }
     }
 }

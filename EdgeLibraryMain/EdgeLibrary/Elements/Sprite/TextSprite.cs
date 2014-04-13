@@ -57,7 +57,7 @@ namespace EdgeLibrary
                 textLinesOriginPoints = new Vector2[textLines.Length];
                 for (int i = 0; i < textLines.Length; i++)
                 {
-                    if (_centerAsOrigin)
+                    if (CenterAsOrigin)
                     {
                         textLinesOriginPoints[i] = _font.MeasureString(textLines[i]) / 2;
                     }
@@ -67,7 +67,7 @@ namespace EdgeLibrary
                     }
                 }
 
-                if (_centerAsOrigin)
+                if (CenterAsOrigin)
                 {
                     OriginPoint = _font.MeasureString(_text)/2;
                 }

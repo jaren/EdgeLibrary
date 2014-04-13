@@ -30,7 +30,7 @@ namespace EdgeLibrary
 
         protected override void UpdateObject(GameTime gameTime)
         {
-            elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             if (elapsedMilliseconds >= MillisecondsWait)
             {
@@ -71,7 +71,7 @@ namespace EdgeLibrary
 
         protected override void UpdateObject(GameTime gameTime)
         {
-            elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             if (elapsedMilliseconds >= CurrentMillisecondsWait)
             {

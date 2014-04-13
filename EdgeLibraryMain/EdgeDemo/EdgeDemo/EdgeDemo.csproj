@@ -110,7 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DemoShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpaceGameDemo\Scenes\GameScene.cs" />
     <Compile Include="SpaceGameDemo\SpaceGameDemo.cs" />

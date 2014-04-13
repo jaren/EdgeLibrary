@@ -44,27 +44,29 @@ namespace EdgeLibrary
         {
             float targetRotation = (float)Math.Atan2(Target.Position.Y - sprite.Position.Y, Target.Position.X - sprite.Position.X) + AdditionalAngle;
 
+            double actualSpeed = Speed * EdgeGame.GetFrameTimeMultiplier(gameTime);
+
             //Adds the speed to the sprite's rotation if it won't be more/less than the target rotation
             if (sprite.Rotation < targetRotation)
             {
-                if (sprite.Rotation + Math.Abs(Speed) > targetRotation)
+                if (sprite.Rotation + Math.Abs(actualSpeed) > targetRotation)
                 {
                     sprite.Rotation = targetRotation;
                 }
                 else
                 {
-                    sprite.Rotation += Math.Abs(Speed);
+                    sprite.Rotation += (float)Math.Abs(actualSpeed);
                 }
             }
             else if (sprite.Rotation > targetRotation)
             {
-                if (sprite.Rotation - Math.Abs(Speed) < targetRotation)
+                if (sprite.Rotation - Math.Abs(actualSpeed) < targetRotation)
                 {
                     sprite.Rotation = targetRotation;
                 }
                 else
                 {
-                    sprite.Rotation -= Math.Abs(Speed);
+                    sprite.Rotation -= (float)Math.Abs(actualSpeed);
                 }
             }
         }

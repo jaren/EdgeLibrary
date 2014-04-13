@@ -41,6 +41,8 @@ namespace EdgeDemo
 
         static void game_OnInit(EdgeGame game)
         {
+            game.GameSpeed = 0.1f;
+
             game.ClearColor = Color.Black;
 
             GameScene scene = new GameScene();

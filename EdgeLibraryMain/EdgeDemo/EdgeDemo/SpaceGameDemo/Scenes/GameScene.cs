@@ -76,7 +76,7 @@ namespace EdgeDemo
                 BlendState = BlendState.Additive,
                 EmitWait = 0,
                 GrowSpeed = -1f,
-                MaxParticles = 1000,
+                MaxParticles = 2000,
                 MinParticlesToEmit = 5,
                 MaxParticlesToEmit = 10,
                 MinScale = new Vector2(0.6f),
@@ -103,12 +103,12 @@ namespace EdgeDemo
         float maxPlayerSpeed = 10;
         void updateSprite(Element element, GameTime gameTime)
         {
-            elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsed += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
-            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Vector2.Distance(Input.MousePosition, element.Position) / 20;
-            ((Sprite)element).GetAction<AFollow>("Follow").Speed = Math.Min(((Sprite)element).GetAction<AFollow>("Follow").Speed, maxPlayerSpeed);
+            ((Sprite)element).Action<AFollow>("Follow").Speed = Vector2.Distance(Input.MousePosition, element.Position) / 20;
+            ((Sprite)element).Action<AFollow>("Follow").Speed = Math.Min(((Sprite)element).Action<AFollow>("Follow").Speed, maxPlayerSpeed);
 
-            ((Sprite)element).GetAction<AFollow>("Follow").Paused = !Input.IsKeyDown(Keys.Space);
+            ((Sprite)element).Action<AFollow>("Follow").Paused = !Input.IsKeyDown(Keys.Space);
 
             if (Input.IsLeftClicking() && elapsed >= toElapse)
             {
@@ -144,7 +144,7 @@ namespace EdgeDemo
 
         void updateProjectile(Element element, GameTime gameTime)
         {
-            if (element.CheckOffScreen())
+            if (element.CheckOffScreen(200))
             {
                 element.Remove();
             }

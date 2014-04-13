@@ -132,13 +132,15 @@ namespace EdgeLibrary
             return null;
         }
 
-        public bool CheckOffScreen()
+        //Checks if the element's position is off the screen
+        public bool CheckOffScreen(float additionalSize)
         {
-            Vector2 ScreenSize = EdgeGame.Instance.WindowSize / EdgeGame.Instance.Camera.Scale;
+            Vector2 ScreenSize = EdgeGame.Instance.WindowSize / EdgeGame.Instance.Camera.Scale + new Vector2(additionalSize);
             Vector2 TopLeft = EdgeGame.Instance.Camera.Position - ScreenSize/2;
             //      Less than "zero"            Greater than screen size                     Less than "zero"               Greater than screen size
             return ((Position.X < TopLeft.X) || (Position.X > TopLeft.X + ScreenSize.X)) || ((Position.Y < TopLeft.Y) || (Position.Y > TopLeft.Y + ScreenSize.Y));
         }
+        public bool CheckOffScreen() { return CheckOffScreen(0); }
 
         //Prepares the element for drawing
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -15,7 +15,7 @@ namespace EdgeLibrary
 {
     public class Particle : Sprite
     {
-        protected TimeSpan livedTime;
+        protected double livedTime;
 
         public float LifeTime;
         public Vector2 Velocity;
@@ -33,24 +33,25 @@ namespace EdgeLibrary
             GrowSpeed = growSpeed;
 
             shouldRemove = false;
-            livedTime = TimeSpan.Zero;
+            livedTime = 0;
         }
 
         protected override void UpdateObject(GameTime gameTime)
         {
             base.UpdateObject(gameTime);
 
-            livedTime += gameTime.ElapsedGameTime;
+            livedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
-            if (livedTime.TotalMilliseconds >= LifeTime)
+            if (livedTime >= LifeTime)
             {
                 shouldRemove = true;
             }
             else
             {
-                Position += Velocity;
-                Rotation += RotateSpeed / 10f;
-                Scale += new Vector2(GrowSpeed/Width, GrowSpeed/Height);
+                Position += Velocity * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+                Rotation += RotateSpeed / 10f * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+                Scale += new Vector2(GrowSpeed / Width * (float)EdgeGame.GetFrameTimeMultiplier(gameTime),
+                    GrowSpeed / Height * (float)EdgeGame.GetFrameTimeMultiplier(gameTime));
 
                 Color = ColorIndex.Update(gameTime);
             }

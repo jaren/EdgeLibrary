@@ -20,7 +20,7 @@ namespace EdgeLibrary
 
         protected List<Texture2D> textures;
 
-        private float elapsedSinceSwitch;
+        private double elapsedSinceSwitch;
 
         public AnimationIndex()
         {
@@ -28,8 +28,7 @@ namespace EdgeLibrary
             textures = new List<Texture2D>();
         }
 
-        public AnimationIndex(int switchTime)
-            : this()
+        public AnimationIndex(int switchTime) : this()
         {
             SwitchTime = switchTime;
         }
@@ -66,7 +65,7 @@ namespace EdgeLibrary
 
         public virtual void Update(Sprite s, GameTime gameTime)
         {
-            elapsedSinceSwitch += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedSinceSwitch += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
 
             if (elapsedSinceSwitch >= SwitchTime)
             {

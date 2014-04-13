@@ -40,7 +40,7 @@ namespace EdgeLibrary
             if (moveVector != Vector2.Zero)
             {
                 moveVector.Normalize();
-                moveVector *= Speed;
+                moveVector *= Speed * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
 
                 if (!checkIfEnd(moveVector, Target.Position, sprite.Position)) { sprite.Position += moveVector; }
             }
