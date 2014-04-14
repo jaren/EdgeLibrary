@@ -53,14 +53,14 @@ namespace EdgeDemo
             stars.AddAction(new AClamp(sprite));
             stars.AddToGame();
 
-            bulletEmitter = new ParticleEmitter("Fire", Vector2.Zero)
+            bulletEmitter = new ParticleEmitter("Plasma", Vector2.Zero)
             {
                 BlendState = BlendState.Additive,
                 EmitWait = 10,
                 GrowSpeed = 0,
                 MaxParticles = 300,
-                MinScale = new Vector2(0.5f),
-                MaxScale = new Vector2(1f),
+                MinScale = new Vector2(0.7f),
+                MaxScale = new Vector2(0.9f),
                 MinVelocity = new Vector2(-1f),
                 MaxVelocity = new Vector2(1f),
                 MinLife = 1000,
