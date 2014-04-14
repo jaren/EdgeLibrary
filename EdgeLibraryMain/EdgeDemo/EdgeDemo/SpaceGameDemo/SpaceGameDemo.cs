@@ -14,13 +14,14 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
-    /// -Make all game movement based on game time, add a game time speed modifier
     /// -Add a physics engine
-    /// -Mouse position is affected by camera rotation / scale
     /// 
-    /// Optional TODO:
-    /// -Make transitions less expensive
-    /// -SubElements are not copied in clone
+    /// BUGS:
+    /// -Mouse position is affected by camera rotation / scale
+    /// -Particles randomly appear at (0, 0)
+    /// -Particle emitters emit extremely quickly regardless of game speed
+    /// -SubElements not copied in clone
+    /// -Transitions are EXTREMELY expensive
     /// </summary>
 
     /// <summary>
