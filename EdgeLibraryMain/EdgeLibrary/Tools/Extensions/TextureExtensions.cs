@@ -21,7 +21,8 @@ namespace EdgeLibrary
             {
                 Color[] colors = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colors);
-                Texture2D returnTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height);
+                Texture2D returnTexture = new Texture2D(texture.GraphicsDevice, texture.Width, texture.Height, false, texture.Format);
+                returnTexture.Tag = texture.Tag;
                 returnTexture.SetData<Color>(colors);
                 return returnTexture;
             }
