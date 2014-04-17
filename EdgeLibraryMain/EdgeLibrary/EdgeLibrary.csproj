@@ -107,6 +107,7 @@
     <Compile Include="Elements\Sprite\Action\ARotate.cs" />
     <Compile Include="Elements\Sprite\Action\ARotateTowards.cs" />
     <Compile Include="Elements\Sprite\Action\ARun.cs" />
+    <Compile Include="Elements\Sprite\Action\AScale.cs" />
     <Compile Include="Elements\Sprite\Action\ASequence.cs" />
     <Compile Include="Elements\Sprite\Action\AWait.cs" />
     <Compile Include="Game\Camera.cs" />

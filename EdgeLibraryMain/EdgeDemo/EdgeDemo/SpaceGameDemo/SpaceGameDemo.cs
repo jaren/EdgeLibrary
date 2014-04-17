@@ -17,7 +17,7 @@ namespace EdgeDemo
     /// -Add a physics engine
     /// 
     /// BUGS:
-    /// -Mouse position is affected by camera rotation / scale
+    /// -Mouse position is affected by camera rotation
     /// -Particles randomly appear at (0, 0)
     /// -Particle emitters emit extremely quickly regardless of game speed
     /// -SubElements not copied in clone
