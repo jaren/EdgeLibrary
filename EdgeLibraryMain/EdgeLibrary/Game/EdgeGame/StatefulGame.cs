@@ -43,32 +43,33 @@ namespace EdgeLibrary
 
         protected override void Initialize()
         {
-            OnInit(this);
             base.Initialize();
+            OnInit(this);
         }
 
         protected override void LoadContent()
         {
-            OnLoadContent(this);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
             base.LoadContent();
+            OnLoadContent(this);
         }
 
         protected override void UnloadContent()
         {
-            OnUnloadContent(this);
             base.UnloadContent();
+            OnUnloadContent(this);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            OnUpdate(this, gameTime);
             base.Update(gameTime);
+            OnUpdate(this, gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            OnDraw(this, gameTime);
             base.Draw(gameTime);
+            OnDraw(this, gameTime);
         }
     }
 }

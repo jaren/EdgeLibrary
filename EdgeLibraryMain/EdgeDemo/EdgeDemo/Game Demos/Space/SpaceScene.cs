@@ -32,7 +32,7 @@ namespace EdgeDemo
 
             DebugText Debug = new DebugText("ComicSans-10", Vector2.Zero);
             Debug.FollowsCamera = false;
-            Debug.AddToGame();
+            //Debug.AddToGame();
 
             ParticleEmitter stars = new ParticleEmitter("Stars", Vector2.Zero)
             {
@@ -99,7 +99,7 @@ namespace EdgeDemo
         }
 
         double elapsed = 0;
-        double toElapse = 200;
+        double toElapse = 1000;
         float bulletspeed = 15;
         float maxPlayerSpeed = 10;
         void updateSprite(Element element, GameTime gameTime)

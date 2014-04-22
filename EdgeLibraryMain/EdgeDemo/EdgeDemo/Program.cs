@@ -27,7 +27,8 @@ namespace EdgeDemo
     /// <summary>
     /// A demo of EdgeLibrary
     /// </summary>
-#if WINDOWS || XBOX
+    /// 
+    #if WINDOWS
     static class Program
     {
         static void Main(string[] args)
@@ -43,12 +44,7 @@ namespace EdgeDemo
 
             EdgeGame.ClearColor = Color.Black;
 
-            Scene blank = new Scene("blank");
-            EdgeGame.AddScene(blank);
-            EdgeGame.SwitchScene("blank");
-            Sprite sprite = new Sprite("Pixel", Vector2.One * 500);
-            sprite.Scale = Vector2.One * 500;
-            blank.AddElement(sprite);
+            GameScene gameScene = new GameScene();
         }
 
         static void game_OnLoadContent()

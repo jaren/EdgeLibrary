@@ -110,9 +110,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game Demos\MenuScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceGameDemo\GameScene.cs" />
+    <Compile Include="Game Demos\Space\SpaceScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
