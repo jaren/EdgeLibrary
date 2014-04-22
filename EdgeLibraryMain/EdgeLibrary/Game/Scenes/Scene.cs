@@ -39,7 +39,7 @@ namespace EdgeLibrary
 
             elementIDs = new List<string>();
 
-            InitialCameraPosition = EdgeGame.Instance.WindowSize / 2;
+            InitialCameraPosition = EdgeGame.WindowSize / 2;
         }
 
         //Adds an element
@@ -121,7 +121,7 @@ namespace EdgeLibrary
         {
             RenderTarget2D target = new RenderTarget2D(graphicsDevice, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height);
             graphicsDevice.SetRenderTarget(target);
-            graphicsDevice.Clear(EdgeGame.Instance.ClearColor);
+            graphicsDevice.Clear(EdgeGame.ClearColor);
             spriteBatch.Begin();
             Draw(gameTime, spriteBatch);
             spriteBatch.End();
@@ -134,7 +134,7 @@ namespace EdgeLibrary
         {
             if (Background != null)
             {
-                spriteBatch.Draw(Background, new Rectangle(0, 0, (int)EdgeGame.Instance.WindowSize.X, (int)EdgeGame.Instance.WindowSize.Y), Color.White);
+                spriteBatch.Draw(Background, new Rectangle(0, 0, (int)EdgeGame.WindowSize.X, (int)EdgeGame.WindowSize.Y), Color.White);
             }
 
             //Orders the elements by their draw layer

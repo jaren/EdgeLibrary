@@ -64,9 +64,9 @@ namespace EdgeLibrary
         //Updates the position/rotation/scale with the clamped element
         public void Update(GameTime gameTime)
         {
-            if (EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp != null)
+            if (EdgeGame.CurrentScene.CameraClamp != null)
             {
-                Position = EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp.Position;
+                Position = EdgeGame.CurrentScene.CameraClamp.Position;
             }
         }
 
@@ -82,13 +82,13 @@ namespace EdgeLibrary
         //Clamps to an element - only for the current scene
         public void ClampTo(Element element)
         {
-            EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp = element;
+            EdgeGame.CurrentScene.CameraClamp = element;
         }
 
         //Unclamps from the element - only for the current scene
         public void Unclamp()
         {
-            EdgeGame.Instance.SceneHandler.CurrentScene.CameraClamp = null;
+            EdgeGame.CurrentScene.CameraClamp = null;
         }
     }
 }

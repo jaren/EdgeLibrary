@@ -104,7 +104,7 @@ namespace EdgeLibrary
         //Adds the element to the game, basically a shortcut for EdgeGame.Instance.SceneHandler.CurrentScene.AddElement(element)
         public void AddToGame()
         {
-            EdgeGame.Instance.SceneHandler.CurrentScene.AddElement(this);
+            EdgeGame.CurrentScene.AddElement(this);
         }
         
         //Various methods for adding/removing/getting SubElements
@@ -135,8 +135,8 @@ namespace EdgeLibrary
         //Checks if the element's position is off the screen
         public bool CheckOffScreen(float additionalSize)
         {
-            Vector2 ScreenSize = EdgeGame.Instance.WindowSize / EdgeGame.Instance.Camera.Scale + new Vector2(additionalSize);
-            Vector2 TopLeft = EdgeGame.Instance.Camera.Position - ScreenSize/2;
+            Vector2 ScreenSize = EdgeGame.WindowSize / EdgeGame.Camera.Scale + new Vector2(additionalSize);
+            Vector2 TopLeft = EdgeGame.Camera.Position - ScreenSize/2;
             //      Less than "zero"            Greater than screen size                     Less than "zero"               Greater than screen size
             return ((Position.X < TopLeft.X) || (Position.X > TopLeft.X + ScreenSize.X)) || ((Position.Y < TopLeft.Y) || (Position.Y > TopLeft.Y + ScreenSize.Y));
         }
@@ -160,7 +160,7 @@ namespace EdgeLibrary
                     if (BlendState != BlendState.AlphaBlend)
                     {
                         spriteBatch.End();
-                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                        spriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
                     }
                 }
                 
@@ -177,7 +177,7 @@ namespace EdgeLibrary
                 if (BlendState != BlendState.AlphaBlend || !FollowsCamera)
                 {
                     spriteBatch.End();
-                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Instance.Camera.GetTransform());
+                    spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
                 }
 
                 OnDraw(this, gameTime);

@@ -91,7 +91,7 @@ namespace EdgeLibrary
             //Gets an inner rectangle portion of a Texture2D
             public static Texture2D GetInnerTexture(this Texture2D texture, Rectangle rectangle)
             {
-                Texture2D returnTexture = EdgeGame.CreateNewTexture(rectangle.Width, rectangle.Height);
+                Texture2D returnTexture = new Texture2D(EdgeGame.GraphicsDevice, rectangle.Width, rectangle.Height);
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
 
@@ -112,7 +112,7 @@ namespace EdgeLibrary
             public static Dictionary<string, Texture2D> SplitSpritesheet(this Texture2D spriteSheetTexture, string XMLPath)
             {
                 Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
-                string completePath = string.Format("{0}\\{1}.xml", Resources.ContentRootDirectory, XMLPath);
+                string completePath = string.Format("{0}\\{1}.xml", EdgeGame.ContentRootDirectory, XMLPath);
                 XDocument textureResourceData = XDocument.Load(completePath);
 
                 foreach (XElement element in textureResourceData.Root.Elements())

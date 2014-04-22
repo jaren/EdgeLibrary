@@ -52,11 +52,11 @@ namespace EdgeLibrary
         }
         public override void WhenSwitched()
         {
-            Background = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+            Background = StartScene.RenderToTexture(EdgeGame.GameTime, EdgeGame.GraphicsDevice, EdgeGame.SpriteBatch);
 
             //Renders the scenes to textures and generates color arrays
-            Texture1 = StartScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
-            Texture2 = FinishScene.RenderToTexture(EdgeGame.Instance.GameTime, EdgeGame.Instance.GraphicsDevice, EdgeGame.Instance.SpriteBatch);
+            Texture1 = StartScene.RenderToTexture(EdgeGame.GameTime, EdgeGame.GraphicsDevice, EdgeGame.SpriteBatch);
+            Texture2 = FinishScene.RenderToTexture(EdgeGame.GameTime, EdgeGame.GraphicsDevice, EdgeGame.SpriteBatch);
             Background = Texture1;
 
             //Throw exception if texture sizes don't match
@@ -91,7 +91,7 @@ namespace EdgeLibrary
                 if (currentFrame > Frames - 1)
                 {
                     OnFinish(this, gameTime);
-                    EdgeGame.Instance.SceneHandler.SwitchScene(FinishScene);
+                    EdgeGame.SwitchScene(FinishScene.ID);
                 }
                 else
                 {

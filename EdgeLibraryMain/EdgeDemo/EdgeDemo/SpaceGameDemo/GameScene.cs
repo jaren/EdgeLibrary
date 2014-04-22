@@ -20,14 +20,15 @@ namespace EdgeDemo
 
         public GameScene() : base("GameScene")
         {
-            EdgeGame.Instance.SceneHandler.SwitchScene(this);
+            EdgeGame.AddScene(this);
+            EdgeGame.SwitchScene(ID);
             Sprite sprite = new Sprite("player", Vector2.One * 500);
             sprite.DrawLayer = 100;
             sprite.AddToGame();
             sprite.AddAction(new ARotateTowards("Rotate", Input.MouseSprite, 90f.ToRadians()));
             sprite.AddAction(new AFollow("Follow", Input.MouseSprite, 7));
             sprite.OnUpdate += new Element.ElementUpdateEvent(updateSprite);
-            EdgeGame.Instance.Camera.ClampTo(sprite);
+            EdgeGame.Camera.ClampTo(sprite);
 
             DebugText Debug = new DebugText("ComicSans-10", Vector2.Zero);
             Debug.FollowsCamera = false;

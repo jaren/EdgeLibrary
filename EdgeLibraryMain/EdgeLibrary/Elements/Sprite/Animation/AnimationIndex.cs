@@ -50,7 +50,7 @@ namespace EdgeLibrary
 
         public void AddTexture(string texture)
         {
-            textures.Add(Resources.TextureFromString(texture));
+            textures.Add(EdgeGame.TextureFromString(texture));
         }
 
         public bool RemoveTexture(Texture2D texture)

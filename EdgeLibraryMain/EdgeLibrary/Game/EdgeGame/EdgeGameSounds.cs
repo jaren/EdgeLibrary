@@ -14,53 +14,50 @@ namespace EdgeLibrary
     /// <summary>
     /// Stores all the SoundEffects/music and plays them
     /// </summary>
-    public static class Sounds
+    public static partial class EdgeGame
     {
         private static Dictionary<string, SoundEffect> SoundEffects;
         private static Dictionary<string, Song> Songs;
-        private static ContentManager Content;
 
         public static bool IsRepeating { get { return MediaPlayer.IsRepeating; } set { MediaPlayer.IsRepeating = value; } }
         public static bool IsMuted { get { return MediaPlayer.IsMuted; } set { MediaPlayer.IsMuted = value; } }
         public static float Volume { get { return MediaPlayer.Volume; } set { MediaPlayer.Volume = value; } }
         public static bool IsShuffled { get { return MediaPlayer.IsShuffled; } set { MediaPlayer.IsShuffled = value; } }
 
-        public static void Init(ContentManager c)
+        public static void InitializeSounds()
         {
             SoundEffects = new Dictionary<string, SoundEffect>();
             Songs = new Dictionary<string, Song>();
-
-            Content = c;
         }
 
         public static void LoadSound(string path)
         {
-            addSound(path.LastSplit('/'), Content.Load<SoundEffect>(path));
+            AddSound(path.LastSplit('/'), Game.Content.Load<SoundEffect>(path));
         }
 
         public static void LoadSound(string path, string name)
         {
-            addSound(name, Content.Load<SoundEffect>(path));
+            AddSound(name, Game.Content.Load<SoundEffect>(path));
         }
 
         public static void LoadSong(string path)
         {
-            addSong(path.LastSplit('/'), Content.Load<Song>(path));
+            AddSong(path.LastSplit('/'), Game.Content.Load<Song>(path));
         }
 
         public static void LoadSong(string path, string name)
         {
-            addSong(name, Content.Load<Song>(path));
+            AddSong(name, Game.Content.Load<Song>(path));
         }
 
 
-        public static void addSound(string soundName, SoundEffect sound)
+        public static void AddSound(string soundName, SoundEffect sound)
         {
             DebugLogger.LogAdd("Sound added. Name: " + soundName);
             SoundEffects.Add(soundName, sound);
         }
 
-        public static void addSong(string songName, Song song)
+        public static void AddSong(string songName, Song song)
         {
             DebugLogger.LogAdd("Song added. Name: " + songName);
             Songs.Add(songName, song);
@@ -68,16 +65,16 @@ namespace EdgeLibrary
 
         public static void playSong(string songName)
         {
-            MediaPlayer.Play(getSong(songName));
+            MediaPlayer.Play(GetSong(songName));
         }
 
         public static void playSound(string soundName)
         {
-            getSound(soundName).Play();
+            GetSound(soundName).Play();
         }
 
 
-        public static Song getSong(string songName)
+        public static Song GetSong(string songName)
         {
             foreach (var song in Songs)
             {
@@ -89,7 +86,7 @@ namespace EdgeLibrary
             return null;
         }
 
-        public static SoundEffect getSound(string soundName)
+        public static SoundEffect GetSound(string soundName)
         {
             foreach (var sound in SoundEffects)
             {

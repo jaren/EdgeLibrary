@@ -18,22 +18,22 @@ namespace EdgeLibrary
         protected override void UpdateObject(GameTime gameTime)
         {
             _text = "Mouse Position: (" + Input.MousePosition.X.ToString() + ", " + Input.MousePosition.Y.ToString() + ")\n";
-            _text += "FPS: " + EdgeGame.Instance.FPS.ToString();
-            _text += "\nElements in current scene (" + EdgeGame.Instance.SceneHandler.CurrentScene.Elements.Count.ToString() + "): ";
-            foreach (Element element in EdgeGame.Instance.SceneHandler.CurrentScene.Elements)
+            _text += "FPS: " + EdgeGame.FPS.ToString();
+            _text += "\nElements in current scene (" + EdgeGame.CurrentScene.Elements.Count.ToString() + "): ";
+            foreach (Element element in EdgeGame.CurrentScene.Elements)
             {
                 _text += element.ID + ", ";
             }
-            if (EdgeGame.Instance.SceneHandler.CurrentScene.Elements.Count > 0)
+            if (EdgeGame.CurrentScene.Elements.Count > 0)
             {
                 _text.Remove(_text.Length - 2);
             }
-            _text += "\nScenes in current game (" + EdgeGame.Instance.SceneHandler.Scenes.Count.ToString() + "): ";
-            foreach (Scene scene in EdgeGame.Instance.SceneHandler.Scenes)
+            _text += "\nScenes in current game (" + EdgeGame.Scenes.Count.ToString() + "): ";
+            foreach (Scene scene in EdgeGame.Scenes)
             {
                 _text += scene.ID + ", ";
             }
-            if (EdgeGame.Instance.SceneHandler.Scenes.Count > 0)
+            if (EdgeGame.Scenes.Count > 0)
             {
                 _text.Remove(_text.Length - 2);
             }
