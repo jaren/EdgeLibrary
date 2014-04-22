@@ -40,17 +40,24 @@ namespace EdgeDemo
 
         static void game_OnInit()
         {
+            EdgeGame.WindowSize = new Vector2(1000);
+
             EdgeGame.GameSpeed = 1f;
 
             EdgeGame.ClearColor = Color.Black;
 
-            GameScene gameScene = new GameScene();
+            //GameScene gameScene = new GameScene();
+
+            Scene scene = new Scene("Scene");
+            scene.AddAndSwitch();
+
+            Sprite pixel = new Sprite("player", Vector2.Zero);
+            pixel.AddAction(new AMathPath(0, 500, 1, new float[] { 0.1f, 0, 0 }));
+            pixel.AddToGame();
         }
 
         static void game_OnLoadContent()
         {
-            EdgeGame.WindowSize = new Vector2(1000);
-
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-10");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-20");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-30");

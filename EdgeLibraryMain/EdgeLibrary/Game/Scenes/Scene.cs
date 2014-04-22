@@ -157,5 +157,21 @@ namespace EdgeLibrary
                 }
             }
         }
+
+        public void AddToGame()
+        {
+            EdgeGame.AddScene(this);
+        }
+
+        public void SwitchTo()
+        {
+            EdgeGame.SwitchScene(ID);
+        }
+
+        public void AddAndSwitch()
+        {
+            AddToGame();
+            SwitchTo();
+        }
     }
 }

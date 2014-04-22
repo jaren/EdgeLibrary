@@ -100,6 +100,7 @@
     <Compile Include="Elements\Sprite\Action\Action.cs" />
     <Compile Include="Elements\Sprite\Action\AColorChange.cs" />
     <Compile Include="Elements\Sprite\Action\AFollow.cs" />
+    <Compile Include="Elements\Sprite\Action\AMathPath.cs" />
     <Compile Include="Elements\Sprite\Action\AMoveTo.cs" />
     <Compile Include="Elements\Sprite\Action\AMove.cs" />
     <Compile Include="Elements\Sprite\Action\AQuickSequence.cs" />

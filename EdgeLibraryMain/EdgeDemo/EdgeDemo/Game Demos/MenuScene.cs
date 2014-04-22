@@ -14,6 +14,8 @@ namespace EdgeDemo
 {
     public class MenuScene : Scene
     {
-
+        public MenuScene() : base("MenuScene")
+        {
+        }
     }
 }
