@@ -98,15 +98,17 @@ namespace EdgeLibrary
             Game.Run();
         }
 
-        //Erases all of the content, scenes, etc.
+        //Stops the game
         public static void Stop()
         {
-            Game.Content.Unload();
-            
-            Scenes.Clear();
-
             Game.Exit();
+        }
 
+        //Erases all of the content, scenes, etc.
+        public static void Reset()
+        {
+            Game.Content.Unload();
+            Scenes.Clear();
             OnReset();
         }
 

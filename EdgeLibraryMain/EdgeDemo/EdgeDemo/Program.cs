@@ -46,17 +46,23 @@ namespace EdgeDemo
 
             EdgeGame.ClearColor = Color.Black;
 
-            //GameScene gameScene = new GameScene();
-
-            Scene scene = new Scene("Scene");
-            scene.AddAndSwitch();
-
-            Sprite pixel = new Sprite("player", Vector2.Zero);
-            pixel.AddAction(new AMathPath(0, 500, 1, new float[] { 0.1f, 0, 0 }));
-            pixel.AddToGame();
+            MenuScene Menu = new MenuScene();
+            Menu.OnSwitch += new EventHandler<SwitchEventArgs>(Menu_OnSwitch);
         }
 
-        static void game_OnLoadContent()
+        static void Menu_OnSwitch(object sender, SwitchEventArgs e)
+        {
+            switch (e.value)
+            {
+                    //Space game
+                case 0:
+                    EdgeGame.Stop();
+                    EdgeGame.Start();
+                    break;
+            }
+        }
+
+        public static void game_OnLoadContent()
         {
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-10");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-20");
@@ -82,9 +88,9 @@ namespace EdgeDemo
             EdgeGame.LoadFont("Fonts/Impact/Impact-40");
             EdgeGame.LoadFont("Fonts/Impact/Impact-50");
             EdgeGame.LoadFont("Fonts/Impact/Impact-60");
-            EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
             EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
-            //EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
+            EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
+            EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
         }
 
     }
