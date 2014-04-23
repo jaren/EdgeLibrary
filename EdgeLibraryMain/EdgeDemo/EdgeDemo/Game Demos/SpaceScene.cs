@@ -12,16 +12,18 @@ using EdgeLibrary;
 
 namespace EdgeDemo
 {
-    public class GameScene : Scene
+    public class SpaceScene : Scene
     {
         ParticleEmitter bulletEmitter;
         ParticleEmitter leftEmitter;
         ParticleEmitter rightEmitter;
 
-        public GameScene() : base("GameScene")
+        public event EventHandler<SwitchEventArgs> OnSwitch = delegate { };
+
+        public SpaceScene() : base("SpaceScene")
         {
-            EdgeGame.AddScene(this);
-            EdgeGame.SwitchScene(ID);
+            AddAndSwitch();
+
             Sprite sprite = new Sprite("player", Vector2.One * 500);
             sprite.DrawLayer = 100;
             sprite.AddToGame();

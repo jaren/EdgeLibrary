@@ -17,7 +17,6 @@ namespace EdgeDemo
     /// -Add a physics engine
     /// 
     /// BUGS:
-    /// -Mouse position is affected by camera rotation
     /// -Particles randomly appear at (0, 0)
     /// -Particle emitters emit extremely quickly regardless of game speed
     /// -SubElements not copied in clone
@@ -27,7 +26,6 @@ namespace EdgeDemo
     /// <summary>
     /// A demo of EdgeLibrary
     /// </summary>
-    /// 
     #if WINDOWS
     static class Program
     {
@@ -47,17 +45,25 @@ namespace EdgeDemo
             EdgeGame.ClearColor = Color.Black;
 
             MenuScene Menu = new MenuScene();
-            Menu.OnSwitch += new EventHandler<SwitchEventArgs>(Menu_OnSwitch);
+            Menu.OnSwitch += new EventHandler<SwitchEventArgs>(OnSwitch);
+
+            SpaceScene Space = new SpaceScene();
+            Space.OnSwitch += new EventHandler<SwitchEventArgs>(OnSwitch);
+
+            Menu.SwitchTo();
         }
 
-        static void Menu_OnSwitch(object sender, SwitchEventArgs e)
+        static void OnSwitch(object sender, SwitchEventArgs e)
         {
-            switch (e.value)
+            switch (e.SwitchCode)
             {
-                    //Space game
+                //Menu
                 case 0:
-                    EdgeGame.Stop();
-                    EdgeGame.Start();
+                    EdgeGame.SwitchScene("MenuScene");
+                    break;
+                //Space Game
+                case 1:
+                    EdgeGame.SwitchScene("SpaceScene");
                     break;
             }
         }
