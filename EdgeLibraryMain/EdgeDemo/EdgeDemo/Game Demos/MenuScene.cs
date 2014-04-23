@@ -29,17 +29,24 @@ namespace EdgeDemo
     {
         public event EventHandler<SwitchEventArgs> OnSwitch = delegate { };
 
+        Sprite OptionsButton;
+        Sprite SpaceButton;
+
+        Panel Options;
+
         public MenuScene() : base("MenuScene")
         {
             AddAndSwitch();
 
-            Sprite OptionsButton = new Sprite("ShadedDark33", new Vector2(40));
+            OptionsButton = new Sprite("FlatDark32", new Vector2(40));
             OptionsButton.OnMouseOver += new Sprite.ButtonEvent(OptionsButton_OnMouseOver);
+            OptionsButton.OnMouseOff += new Sprite.ButtonEvent(OptionsButton_OnMouseOff);
             OptionsButton.OnClick += new Sprite.ButtonEvent(OptionsButton_OnClick);
             OptionsButton.AddToGame();
 
-            Sprite SpaceButton = new Sprite("ShadedDark12", EdgeGame.WindowSize / 2);
+            SpaceButton = new Sprite("ShadedDark11", EdgeGame.WindowSize / 2);
             SpaceButton.OnMouseOver += new Sprite.ButtonEvent(SpaceButton_OnMouseOver);
+            SpaceButton.OnMouseOff += new Sprite.ButtonEvent(SpaceButton_OnMouseOff);
             SpaceButton.OnClick += new Sprite.ButtonEvent(SpaceButton_OnClick);
             SpaceButton.AddToGame();
         }
@@ -48,8 +55,9 @@ namespace EdgeDemo
 
         void OptionsButton_OnClick(Sprite sender, Vector2 mousePosition, GameTime gameTime) { }
 
-        void SpaceButton_OnMouseOver(Sprite sender, Vector2 mousePosition, GameTime gameTime) { }
-
-        void OptionsButton_OnMouseOver(Sprite sender, Vector2 mousePosition, GameTime gameTime) { }
+        void SpaceButton_OnMouseOver(Sprite sender, Vector2 mousePosition, GameTime gameTime) { SpaceButton.TextureName = "ShadedDark12"; }
+        void OptionsButton_OnMouseOver(Sprite sender, Vector2 mousePosition, GameTime gameTime) { OptionsButton.TextureName = "ShadedDark33"; }
+        void SpaceButton_OnMouseOff(Sprite sender, Vector2 mousePosition, GameTime gameTime) { SpaceButton.TextureName = "FlatDark11"; }
+        void OptionsButton_OnMouseOff(Sprite sender, Vector2 mousePosition, GameTime gameTime) { OptionsButton.TextureName = "FlatDark32"; }
     }
 }

@@ -18,6 +18,9 @@ namespace EdgeLibrary
         public SpriteFont Font { get { return _font; } set { _font = value; reloadOriginPoint(); } }
         private SpriteFont _font;
 
+        //Sets the font through a string
+        public string FontName { set { Font = EdgeGame.GetFont(value); } }
+
         //The width/height of the measured text - the Height must be generated in a different way because the line breaks cause it to be generated incorrectly
         public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text).X; } }
         public override float Height { get { return Font == null ? 0 : Font.MeasureString(_text.Split("\n".ToArray())[0]).Y; } }

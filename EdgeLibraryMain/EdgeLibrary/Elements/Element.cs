@@ -24,8 +24,7 @@ namespace EdgeLibrary
         public bool FollowsCamera { get; set; }
         
         //A list of elements this "contains"
-        //No AddSubElement/RemoveSubElement methods exist because subclasses of element should add them
-        protected List<Element> SubElements { get; set; }
+        protected Dictionary<Vector2,Element> SubElements { get; set; }
         protected List<string> subElementIDs { get; set; }
 
         //Location of the element
@@ -184,7 +183,16 @@ namespace EdgeLibrary
             }
         }
 
-        public abstract Element Clone();
+        public virtual Element Clone()
+        {
+            Element element = (Element)MemberwiseClone();
+            element.SubElements.Clear();
+            foreach (Element sub in SubElements)
+            {
+                element.AddSubElement(sub.Clone());
+            }
+            return element;
+        }
         protected abstract void UpdateObject(GameTime gameTime);
         protected virtual void DrawObject(GameTime gameTime, SpriteBatch spriteBatch) { }
     }

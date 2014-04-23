@@ -17,6 +17,9 @@ namespace EdgeLibrary
         public virtual float Width { get { return Texture == null ? 0 : Texture.Width; } }
         public virtual float Height { get { return Texture == null ? 0 : Texture.Height; } }
 
+        //Sets the texture through a string
+        public string TextureName { set { Texture = EdgeGame.GetTexture(value); } }
+
         //Sets the scale with a Vector2
         public virtual Vector2 Scale { get { return _scale; } set
             {
