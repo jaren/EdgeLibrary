@@ -1,1 +1,0 @@
-This is the debug folder, where the debug logs are generated.
