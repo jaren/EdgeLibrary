@@ -15,22 +15,11 @@ namespace EdgeLibrary
     public abstract class Action
     {
         public bool toRemove { get; private set; }
-        public string ID;
         public bool Paused;
 
         public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
         public event ActionEvent OnFinish = delegate { };
         
-        public Action()
-        {
-            ID = this.GenerateID();
-        }
-        
-        public Action(string id)
-        {
-            ID = id;
-        }
-
         public void Update(GameTime gameTime, Sprite sprite)
         {
             if (!Paused)

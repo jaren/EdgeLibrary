@@ -261,7 +261,7 @@ namespace EdgeLibrary
         }
 
         //Updates the sprite
-        protected override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             UpdateCollision(gameTime, EdgeGame.Game.Components);
 
@@ -318,7 +318,7 @@ namespace EdgeLibrary
         }
 
         //Creates a copy of the sprite
-        public override object Clone()
+        public virtual object Clone()
         {
             Sprite clone = (Sprite)MemberwiseClone();
 

@@ -43,29 +43,6 @@ namespace EdgeDemo
             EdgeGame.GameSpeed = 1f;
 
             EdgeGame.ClearColor = Color.Black;
-
-            MenuScene Menu = new MenuScene();
-            Menu.OnSwitch += new EventHandler<SwitchEventArgs>(OnSwitch);
-
-            SpaceScene Space = new SpaceScene();
-            Space.OnSwitch += new EventHandler<SwitchEventArgs>(OnSwitch);
-
-            Menu.SwitchTo();
-        }
-
-        static void OnSwitch(object sender, SwitchEventArgs e)
-        {
-            switch (e.SwitchCode)
-            {
-                //Menu
-                case 0:
-                    EdgeGame.SwitchScene("MenuScene");
-                    break;
-                //Space Game
-                case 1:
-                    EdgeGame.SwitchScene("SpaceScene");
-                    break;
-            }
         }
 
         public static void game_OnLoadContent()

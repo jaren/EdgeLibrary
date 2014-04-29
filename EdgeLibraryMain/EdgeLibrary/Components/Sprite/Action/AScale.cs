@@ -25,18 +25,11 @@ namespace EdgeLibrary
             elapsedTime = 0;
         }
 
-        public AScale(string id, Vector2 targetScale, float time) : base(id)
-        {
-            TargetScale = targetScale;
-            Time = time;
-            elapsedTime = 0;
-        }
-
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
             if (originalScale == null) { originalScale = sprite.Scale; }
 
-            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
+            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedTime >= Time)
             {
@@ -48,7 +41,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AScale(ID, TargetScale, Time);
+            return new AScale(TargetScale, Time);
         }
     }
 }

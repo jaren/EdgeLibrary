@@ -24,21 +24,21 @@ namespace EdgeLibrary
         }
 
         //Creates a waypoint movement path
-        public static ASequence CreateMoveSequence(float speed, params Vector3[] targetPositions)
+        public static ASequence3D CreateMoveSequence(float speed, params Vector3[] targetPositions)
         {
             List<Vector3> vectors = new List<Vector3>(targetPositions);
             return CreateMoveSequence(speed, vectors);
         }
-        public static ASequence CreateMoveSequence(float speed, List<Vector3> targetPositions)
+        public static ASequence3D CreateMoveSequence(float speed, List<Vector3> targetPositions)
         {
-            List<Action> moves = new List<Action>();
+            List<Action3D> moves = new List<Action3D>();
 
             foreach (Vector3 vector in targetPositions)
             {
                 moves.Add(new AMoveTo3D(vector, speed));
             }
 
-            return new ASequence(moves);
+            return new ASequence3D(moves);
         }
 
         //Moves the sprite by the speed towards the target position, checks if it should end and automatically removes it

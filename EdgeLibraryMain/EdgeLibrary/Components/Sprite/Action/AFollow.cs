@@ -22,12 +22,6 @@ namespace EdgeLibrary
             Target = target;
             Speed = speed;
         }
-        
-        public AFollow(string ID, Sprite target, float speed) : base(ID)
-        {
-            Target = target;
-            Speed = speed;
-        }
 
         //Moves the sprite by the speed towards the target, checks if it should end and automatically removes it
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
@@ -40,7 +34,7 @@ namespace EdgeLibrary
             if (moveVector != Vector2.Zero)
             {
                 moveVector.Normalize();
-                moveVector *= Speed * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+                moveVector *= Speed * EdgeGame.GameSpeed;
 
                 if (!checkIfEnd(moveVector, Target.Position, sprite.Position)) { sprite.Position += moveVector; }
             }
@@ -65,7 +59,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AFollow(ID, Target, Speed);
+            return new AFollow(Target, Speed);
         }
     }
 }

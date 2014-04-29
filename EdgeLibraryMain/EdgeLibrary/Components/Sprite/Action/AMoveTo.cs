@@ -22,12 +22,6 @@ namespace EdgeLibrary
             TargetPosition = targetPosition;
             Speed = speed;
         }
-        
-        public AMoveTo(string ID, Vector2 targetPosition, float speed) : base(ID)
-        {
-            TargetPosition = targetPosition;
-            Speed = speed;
-        }
 
         //Creates a waypoint movement path
         public static ASequence CreateMoveSequence(float speed, params Vector2[] targetPositions)
@@ -58,7 +52,7 @@ namespace EdgeLibrary
             if (moveVector != Vector2.Zero)
             {
                 moveVector.Normalize();
-                moveVector *= Speed * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+                moveVector *= Speed * EdgeGame.GameSpeed;
 
                 if (checkIfEnd(moveVector, TargetPosition, sprite.Position)) { Stop(gameTime, sprite); }
                 sprite.Position += moveVector;
@@ -90,7 +84,7 @@ namespace EdgeLibrary
         //Returns an AMoveTo Clone
         public override Action Clone()
         {
-            return new AMoveTo(ID, TargetPosition, Speed);
+            return new AMoveTo(TargetPosition, Speed);
         }
     }
 }

@@ -73,6 +73,8 @@ namespace EdgeLibrary
             InitializeResources();
             InitializeSounds();
 
+            Camera3D = new Camera3D(new Vector3(0, 0, 20), Vector3.Zero, Vector3.Up, 1);
+
             WindowSize = new Vector2(800);
 
             //Connects all the events from the StatefulGame to the EdgeGame
@@ -111,7 +113,6 @@ namespace EdgeLibrary
         private static void Game_OnLoadContent(StatefulGame game)
         {
             InitializeBasicTextures();
-            Camera3D = new Camera3D(new Vector3(0, 0, 20), Vector3.Zero, Vector3.Up, Game.GraphicsDevice.Viewport.AspectRatio);
             OnLoadContent();
         }
 
@@ -155,9 +156,6 @@ namespace EdgeLibrary
         //This is called after the stateful game draws
         private static void Game_OnFinishDraw(StatefulGame game, GameTime gameTime)
         {
-            //Stops drawing to the camera render target
-            Game.SpriteBatch.End();
-
             //Prepares to render to the screen
             Game.GraphicsDevice.SetRenderTarget(null);
             Game.GraphicsDevice.Clear(ClearColor);

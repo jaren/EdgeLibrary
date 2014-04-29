@@ -112,9 +112,9 @@ namespace EdgeLibrary
         }
 
         //Updates the color index
-        public Color Update(GameTime gameTime)
+        public virtual Color Update(GameTime gameTime)
         {
-            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
+            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedTime >= Times[index])
             {

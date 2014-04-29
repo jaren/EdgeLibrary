@@ -38,14 +38,14 @@ namespace EdgeLibrary
             Animations.Remove(id);
         }
 
-        protected override void UpdateObject(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            base.UpdateObject(gameTime);
+            base.Update(gameTime);
 
             Animations[SelectedAnimation].Update(this, gameTime);
         }
 
-        public override Element Clone()
+        public override object Clone()
         {
             AnimSprite clone = (AnimSprite)base.Clone();
             clone.Animations = new Dictionary<string, AnimationIndex>();

@@ -34,22 +34,6 @@ namespace EdgeLibrary
             RepeatForever = false;
             loopedTimes = 0;
         }
-        
-        public ARepeat(string ID, Action action) : base(ID)
-        {
-            Action = action;
-            LoopTimes = 0;
-            RepeatForever = true;
-            loopedTimes = 0;
-        }
-
-        public ARepeat(string ID, int loopTimes, Action action) : base(ID)
-        {
-            Action = action;
-            LoopTimes = loopTimes;
-            RepeatForever = false;
-            loopedTimes = 0;
-        }
 
         //Updates the specific action
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
@@ -66,7 +50,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return RepeatForever ? new ARepeat(ID, Action) : new ARepeat(ID, LoopTimes, Action);
+            return RepeatForever ? new ARepeat(Action) : new ARepeat(LoopTimes, Action);
         }
     }
 }

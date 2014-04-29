@@ -32,7 +32,7 @@ namespace EdgeLibrary
         public virtual void Update(GameTime gameTime) { Effect.View = EdgeGame.Camera3D.View; Effect.Projection = EdgeGame.Camera3D.Projection; }
         public virtual void Draw(GameTime gameTime) { }
 
-        public override object Clone()
+        public virtual object Clone()
         {
             SpriteModel clone = (SpriteModel)MemberwiseClone();
             clone.Effect = new BasicEffect(EdgeGame.Game.GraphicsDevice);

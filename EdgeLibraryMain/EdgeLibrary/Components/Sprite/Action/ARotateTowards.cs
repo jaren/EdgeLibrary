@@ -29,22 +29,13 @@ namespace EdgeLibrary
             Speed = speed;
             AdditionalAngle = additionalAngle;
         }
-        
-        public ARotateTowards(string ID, Sprite target) : this(ID, target, 0) { }
-        public ARotateTowards(string ID, Sprite target, float additionalAngle) : this(ID, target, 360, additionalAngle) {}
-        public ARotateTowards(string ID, Sprite target, float speed, float additionalAngle) : base(ID)
-        {
-            Target = target;
-            Speed = speed;
-            AdditionalAngle = additionalAngle;
-        }
 
         //Calculates rotation
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
             float targetRotation = (float)Math.Atan2(Target.Position.Y - sprite.Position.Y, Target.Position.X - sprite.Position.X) + AdditionalAngle;
 
-            double actualSpeed = Speed * EdgeGame.GetFrameTimeMultiplier(gameTime);
+            double actualSpeed = Speed * EdgeGame.GameSpeed;
 
             //Adds the speed to the sprite's rotation if it won't be more/less than the target rotation
             if (sprite.Rotation < targetRotation)
@@ -73,7 +64,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new ARotateTowards(ID, Target, Speed, AdditionalAngle);
+            return new ARotateTowards(Target, Speed, AdditionalAngle);
         }
     }
 }

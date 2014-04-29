@@ -49,5 +49,18 @@ namespace EdgeLibrary
             }
             base.Update(gameTime);
         }
+
+        public object Clone()
+        {
+            Scene scene = new Scene();
+            foreach (GameComponent component in Components)
+            {
+                if (component is ICloneable)
+                {
+                    scene.Components.Add((GameComponent)((ICloneable)component).Clone());
+                }
+            }
+            return scene;
+        }
     }
 }

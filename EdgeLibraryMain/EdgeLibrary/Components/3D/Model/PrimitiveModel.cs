@@ -129,7 +129,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override SpriteModel Clone()
+        public override object Clone()
         {
             PrimitiveModel clone = (PrimitiveModel)base.Clone();
             clone.VertexBuffer = new VertexBuffer(EdgeGame.Game.GraphicsDevice, typeof(VertexPositionColor), Vertices.Count, BufferUsage.None);

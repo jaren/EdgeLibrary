@@ -21,16 +21,10 @@ namespace EdgeLibrary
             WaitTime = waitTime;
             elapsedTime = 0;
         }
-        
-        public AWait(string ID, float waitTime) : base(ID)
-        {
-            WaitTime = waitTime;
-            elapsedTime = 0;
-        }
 
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedTime >= WaitTime)
             {
@@ -40,7 +34,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AWait(ID, WaitTime);
+            return new AWait(WaitTime);
         }
     }
 }

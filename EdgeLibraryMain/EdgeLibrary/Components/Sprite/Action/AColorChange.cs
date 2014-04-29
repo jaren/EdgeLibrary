@@ -21,12 +21,6 @@ namespace EdgeLibrary
         {
             Index = index;
         }
-        
-        public AColorChange(string ID, Color start, Color finish, float time) : this(ID, new ColorChangeIndex(time, start, finish)) {}
-        public AColorChange(string ID, ColorChangeIndex index) : base(ID)
-        {
-            Index = index;
-        }
 
         //Changes the sprite's color based on the color change index
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
@@ -41,7 +35,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AColorChange(ID, Index);
+            return new AColorChange(Index);
         }
     }
 }

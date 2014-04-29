@@ -27,7 +27,7 @@ namespace EdgeLibrary
             elapsedMilliseconds = 0;
         }
 
-        protected override void UpdateObject(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
@@ -38,7 +38,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override object Clone()
+        public object Clone()
         {
             Ticker clone = (Ticker)MemberwiseClone();
             return clone;

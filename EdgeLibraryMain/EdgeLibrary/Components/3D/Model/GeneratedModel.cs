@@ -40,15 +40,15 @@ namespace EdgeLibrary
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.World = transforms[mesh.ParentBone.Index] * World;
-                    effect.View = EdgeGame.Camera.View;
-                    effect.Projection = EdgeGame.Camera.Projection;
+                    effect.View = EdgeGame.Camera3D.View;
+                    effect.Projection = EdgeGame.Camera3D.Projection;
                 }
 
                 mesh.Draw();
             }
         }
 
-        public override SpriteModel Clone()
+        public override object Clone()
         {
             SpriteModel model = (SpriteModel)MemberwiseClone();
             //Clone here

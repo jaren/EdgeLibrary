@@ -21,19 +21,14 @@ namespace EdgeLibrary
             Speed = radians;
         }
 
-        public ARotate(string ID, float radians) : base(ID)
-        {
-            Speed = radians;
-        }
-
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            sprite.Rotation += Speed * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+            sprite.Rotation += Speed * EdgeGame.GameSpeed;
         }
 
         public override Action Clone()
         {
-            return new ARotate(ID, Speed);
+            return new ARotate(Speed);
         }
     }
 }

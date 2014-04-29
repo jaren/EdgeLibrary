@@ -14,37 +14,38 @@ namespace EdgeLibrary
     //An Ticker which randomly ticks between two values
     public class RandomTicker : GameComponent, ICloneable
     {
-        public int MinMilliseconds;
-        public int MaxMilliseconds;
-        public int CurrentMillisecondsWait;
+        public double MinMilliseconds;
+        public double MaxMilliseconds;
+        public double CurrentMillisecondsWait;
         protected double elapsedMilliseconds;
 
         public delegate void TickerEventHandler(GameTime gameTime);
-        public event TickerEventHandler Tick = delegate { };
+        public event TickerEventHandler OnTick = delegate { };
 
-        public RandomTicker(int min, int max)
+        public RandomTicker(double milliseconds) : this(milliseconds, milliseconds) { }
+        public RandomTicker(double min, double max)
             : base(EdgeGame.Game)
         {
             MinMilliseconds = min;
             MaxMilliseconds = max;
-            CurrentMillisecondsWait = RandomTools.RandomInt(MinMilliseconds, MaxMilliseconds);
+            CurrentMillisecondsWait = RandomTools.RandomDouble(MinMilliseconds, MaxMilliseconds);
             elapsedMilliseconds = 0;
         }
 
-        protected override void UpdateObject(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedMilliseconds >= CurrentMillisecondsWait)
             {
                 elapsedMilliseconds = 0;
-                Tick(gameTime);
+                OnTick(gameTime);
 
-                CurrentMillisecondsWait = RandomTools.RandomInt(MinMilliseconds, MaxMilliseconds);
+                CurrentMillisecondsWait = RandomTools.RandomDouble(MinMilliseconds, MaxMilliseconds);
             }
         }
 
-        public override object Clone()
+        public object Clone()
         {
             RandomTicker clone = (RandomTicker)MemberwiseClone();
             return clone;

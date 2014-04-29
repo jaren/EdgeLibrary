@@ -90,13 +90,11 @@ namespace EdgeLibrary
         //Adds an already-generated texture to the index
         public static void AddTexture(string textureName, Texture2D texture)
         {
-            DebugLogger.LogAdd("Texture added. Name:" + textureName);
             Textures.Add(textureName, texture);
         }
         //Adds an already-generated font to the index
         public static void AddFont(string fontName, SpriteFont font)
         {
-            DebugLogger.LogAdd("Font added. Name:" + fontName);
             Fonts.Add(fontName, font);
         }
         //Adds an already-generated model to the index

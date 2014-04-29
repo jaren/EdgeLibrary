@@ -65,7 +65,7 @@ namespace EdgeLibrary
 
         public virtual void Update(Sprite s, GameTime gameTime)
         {
-            elapsedSinceSwitch += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
+            elapsedSinceSwitch += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedSinceSwitch >= SwitchTime)
             {

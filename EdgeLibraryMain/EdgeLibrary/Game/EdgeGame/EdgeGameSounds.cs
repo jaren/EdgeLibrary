@@ -53,13 +53,11 @@ namespace EdgeLibrary
 
         public static void AddSound(string soundName, SoundEffect sound)
         {
-            DebugLogger.LogAdd("Sound added. Name: " + soundName);
             SoundEffects.Add(soundName, sound);
         }
 
         public static void AddSong(string songName, Song song)
         {
-            DebugLogger.LogAdd("Song added. Name: " + songName);
             Songs.Add(songName, song);
         }
 

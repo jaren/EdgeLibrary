@@ -35,21 +35,6 @@ namespace EdgeLibrary
         {
             Actions = new List<Action>(actions);
         }
-        
-        public ASequence(string ID) : base(ID)
-        {
-            Actions = new List<Action>();
-        }
-
-        public ASequence(string ID, List<Action> actions) : base(ID)
-        {
-            Actions = new List<Action>(actions);
-        }
-
-        public ASequence(string ID, params Action[] actions) : base(ID)
-        {
-            Actions = new List<Action>(actions);
-        }
 
         //Adds an action to the end of the list
         public void AddActionLast(Action action)
@@ -97,7 +82,7 @@ namespace EdgeLibrary
         //Returns a new Action
         public override Action Clone()
         {
-            return new ASequence(ID, Actions);
+            return new ASequence(Actions);
         }
     }
 }

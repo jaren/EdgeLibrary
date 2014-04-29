@@ -13,19 +13,19 @@ using System.Xml;
 namespace EdgeLibrary
 {
     /// <summary>
-    /// An emmiter of particles.
+    /// Emits particles (sprites) which are drawn and updated through the particle emitter
     /// </summary>
     public class ParticleEmitter : Sprite
     {
         //Sets the min and max value for both variables at the same time
         public ColorChangeIndex ColorIndex { set { MinColorIndex = value; MaxColorIndex = value; } }
         public Vector2 Velocity { set { MaxVelocity = value; MinVelocity = value; } }
-        public override Vector2 Scale { set { MinScale = value; MaxScale = value; } }
+        public new Vector2 Scale { set { MinScale = value; MaxScale = value; } }
         public float StartRotation { set { MaxStartRotation = value; MinStartRotation = value; } }
         public float RotationSpeed { set { MinRotationSpeed = value; MaxRotationSpeed = value; } }
         public float Life { set { MinLife = value; MaxLife = value; } }
         public double EmitWait { set { MinEmitWait = value; MaxEmitWait = value; } }
-        public Vector2 EmitArea { get { return new Vector2(EmitWidth, EmitHeight); } set { EmitWidth = value.X; EmitHeight = value.Y; } }
+        public Vector2 EmitPositionVariance { set { MinEmitPositionVariance = value; MaxEmitPositionVariance = value; } }
         public int ParticlesToEmit { set { MinParticlesToEmit = value; MaxParticlesToEmit = value; } }
 
         //The color for the particles
@@ -49,21 +49,26 @@ namespace EdgeLibrary
         public float MaxLife;
         public float MinLife;
         //How long the emitter waits before emitting a particle
-        public double MinEmitWait;
-        public double MaxEmitWait;
+        public double MinEmitWait { get { return Ticker.MinMilliseconds; } set { Ticker.MinMilliseconds = value; } }
+        public double MaxEmitWait { get { return Ticker.MaxMilliseconds; } set { Ticker.MaxMilliseconds = value; } }
         //The maximum number of particles that can exist at once
         public int MaxParticles;
-        //Generates particles with the same width and height
-        public bool SquareParticles;
         //The variance in emit position
-        public float EmitWidth;
-        public float EmitHeight;
+        public Vector2 MinEmitPositionVariance;
+        public Vector2 MaxEmitPositionVariance;
         //The number of particles to emit each count
         public int MinParticlesToEmit;
         public int MaxParticlesToEmit;
 
+        //If set to true, generates the same X, Y, and Z coordinates for the property
+        public bool CommonRotation;
+        public bool CommonRotationSpeed;
+        public bool CommonScale;
+
+        protected RandomTicker Ticker;
+
         protected List<Sprite> Particles;
-        protected double timeSinceLastEmit;
+        protected double elapsedSinceEmit;
         protected double currentEmitWait;
 
         //To stop garbage collection every single time
@@ -74,19 +79,25 @@ namespace EdgeLibrary
         public delegate void ParticleEventHandler(ParticleEmitter sender, Sprite particle, GameTime gameTime);
         public event ParticleEventHandler OnEmit = delegate { };
 
-        public ParticleEmitter(string textureName, Vector2 position) : base(textureName, position)
+        public ParticleEmitter(string textureName, Vector2 position)
+            : base(textureName, position)
         {
             Particles = new List<Sprite>();
+            Ticker = new RandomTicker(0);
+            Ticker.OnTick += new RandomTicker.TickerEventHandler(Ticker_OnTick);
 
-            SquareParticles = true;
+            CommonRotation = false;
+            CommonRotationSpeed = false;
+            CommonScale = true;
 
             ColorIndex = new ColorChangeIndex(Color.White);
             MinVelocity = -Vector2.One;
-            MaxVelocity = Vector2.One * 2;
+            MaxVelocity = Vector2.One;
             Scale = Vector2.One;
             GrowSpeed = 0;
             StartRotation = 0;
             RotationSpeed = 0;
+            EmitPositionVariance = Vector2.Zero;
             Life = 1000;
             ParticlesToEmit = 1;
             EmitWait = 10;
@@ -95,75 +106,99 @@ namespace EdgeLibrary
             currentEmitWait = RandomTools.RandomDouble(MinEmitWait, MaxEmitWait);
 
             particlesToRemove = new List<Sprite>();
-            timeSinceLastEmit = 0;
+            elapsedSinceEmit = 0;
         }
 
-        //Clears all the particles from the emitter
+        /// <summary>
+        /// Clears all the particles from the emitter
+        /// </summary>
         public void ClearParticles()
         {
             Particles.Clear();
         }
 
-        //Emits a single particle - can be called from outside the emitter
+        /// <summary>
+        /// Emits a single particle by generating random values between the Min and Max
+        /// </summary>
         public void EmitSingleParticle(GameTime gameTime)
         {
-            Particle particle = new Particle(RandomTools.RandomFloat(MinLife, MaxLife), RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed), GrowSpeed);
-
-            particle.Velocity = new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X), RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y));
-
+            Sprite particle = new Sprite("", Vector2.Zero);
             particle.Texture = Texture;
-            particle.CollisionBody = null;
-            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - EmitWidth / 2f, Position.X + EmitWidth / 2f), RandomTools.RandomFloat(Position.Y - EmitHeight / 2f, Position.Y + EmitHeight / 2f));
-            particle.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
-            particle.Scale = new Vector2(RandomTools.RandomFloat(MinScale.X, MaxScale.X), RandomTools.RandomFloat(MinScale.Y, MaxScale.Y));
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1));
 
-            if (SquareParticles)
+            //The data is used to store life time
+            particle.Data.Add("0");
+            particle.Data.Add(RandomTools.RandomFloat(MinLife, MaxLife).ToString());
+
+            //Generates a random velocity
+            particle.AddAction("Velocity", new AMove(new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X),
+                RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y))));
+
+            //Generates a random color change index
+            //particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
+
+            //Generates a random rotation speed
+            particle.AddAction("Rotation", new ARotate(RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed)));
+
+
+            //Generates a random EmitPositionVariance to be used in the position
+            Vector2 randomEmitPositionVariance = new Vector2(RandomTools.RandomFloat(MinEmitPositionVariance.X, MinEmitPositionVariance.X),
+                RandomTools.RandomFloat(MinEmitPositionVariance.Y, MinEmitPositionVariance.Y));
+
+            //Generates a random position
+            particle.Position = new Vector2(RandomTools.RandomFloat(Position.X - randomEmitPositionVariance.X / 2f, Position.X + randomEmitPositionVariance.X / 2f),
+                RandomTools.RandomFloat(Position.Y - randomEmitPositionVariance.Y / 2f, Position.Y + randomEmitPositionVariance.Y / 2f));
+
+            //Generates a random rotation
+            particle.Rotation = RandomTools.RandomFloat(MinStartRotation, MaxStartRotation);
+
+            //Generates a random scale
+            particle.Scale = new Vector2(RandomTools.RandomFloat(MinScale.X, MaxScale.X),
+                RandomTools.RandomFloat(MinScale.Y, MaxScale.Y));
+
+            //Checks if the particles' properties should have the same X, Y, and Z
+            if (CommonRotationSpeed)
             {
-                particle.Scale = new Vector2(particle.Scale.X, particle.Scale.X);
+                float rotation = RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed);
+                ARotate rotate = particle.Action<ARotate>("Rotation");
+                rotate = new ARotate(rotation);
             }
-            particle.ColorIndex = ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1));
+            if (CommonScale)
+            {
+                particle.Scale = new Vector2(particle.Scale.X);
+            }
 
             Particles.Add(particle);
 
             OnEmit(this, particle, gameTime);
         }
 
-        protected override void DrawObject(GameTime gameTime, SpriteBatch spriteBatch)
+        /// <summary>
+        /// When the ticker has finished, emit particles
+        /// </summary>
+        protected void Ticker_OnTick(GameTime gameTime)
         {
-            foreach (Particle particle in Particles)
+            int p = RandomTools.RandomInt(MinParticlesToEmit, MaxParticlesToEmit);
+            for (int i = 0; i < p; i++)
             {
-                if (!particlesToRemove.Contains(particle))
-                {
-                    particle.Draw(gameTime, spriteBatch);
-                }
+                EmitSingleParticle(gameTime);
             }
         }
 
-        //Updates all the particles in the emitter
-        protected override void UpdateObject(GameTime gameTime)
+        /// <summary>
+        /// Checks which particle should be removed and updates particles
+        /// </summary>
+        public override void Update(GameTime gameTime)
         {
-            timeSinceLastEmit += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GetFrameTimeMultiplier(gameTime);
-
-            //If the elapsed time is greater than the EmitWait, emit a particle
-            if (timeSinceLastEmit >= currentEmitWait && Particles.Count < MaxParticles)
-            {
-                timeSinceLastEmit = 0;
-                currentEmitWait = RandomTools.RandomDouble(MinEmitWait, MaxEmitWait);
-                int p = RandomTools.RandomInt(MinParticlesToEmit, MaxParticlesToEmit);
-                for (int i = 0; i < p; i++)
-                {
-                    EmitSingleParticle(gameTime);
-                }
-            }
+            Ticker.Update(gameTime);
 
             //Checks if each particle should be removed
-            foreach (Particle particle in Particles)
+            foreach (Sprite particle in Particles)
             {
                 if (!particlesToRemove.Contains(particle))
                 {
                     particle.Update(gameTime);
-                    if (particle.shouldRemove)
+                    particle.Data[0] = (double.Parse(particle.Data[0]) + gameTime.ElapsedGameTime.TotalMilliseconds).ToString();
+                    if (double.Parse(particle.Data[0]) > double.Parse(particle.Data[1]))
                     {
                         particlesToRemove.Add(particle);
                     }
@@ -173,33 +208,39 @@ namespace EdgeLibrary
             //If enough particles should be removed, delete them
             if (particlesToRemove.Count >= maxParticlesToRemove)
             {
-                foreach (Particle particle in particlesToRemove)
+                foreach (Sprite particle in particlesToRemove)
                 {
                     Particles.Remove(particle);
                 }
                 particlesToRemove.Clear();
             }
 
+            //Needed for running actions
             base.Update(gameTime);
         }
 
-        public override void  DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
+        /// <summary>
+        /// Draws all the particles that are not going to be removed
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public override void Draw(GameTime gameTime)
         {
-            Rectangle rectangle = new Rectangle((int)(Position.X - EmitWidth / 2), (int)(Position.Y - EmitHeight / 2), (int)EmitWidth, (int)EmitHeight);
-            //Draws a box around where the rectangle is
-            spriteBatch.Draw(EdgeGame.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, 1, rectangle.Height), color);
-            spriteBatch.Draw(EdgeGame.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Right, 1, rectangle.Height), color);
-            spriteBatch.Draw(EdgeGame.GetTexture("Pixel"), new Rectangle(rectangle.Top, rectangle.Left, rectangle.Width, 1), color);
-            spriteBatch.Draw(EdgeGame.GetTexture("Pixel"), new Rectangle(rectangle.Bottom, rectangle.Left, rectangle.Width, 1), color);
+            foreach (Sprite particle in Particles)
+            {
+                if (!particlesToRemove.Contains(particle))
+                {
+                    particle.Draw(gameTime);
+                }
+            }
         }
 
         public override object Clone()
         {
             ParticleEmitter clone = (ParticleEmitter)base.Clone();
             clone.Particles = new List<Sprite>();
-            foreach (Particle particle in Particles)
+            foreach (Sprite particle in Particles)
             {
-                clone.Particles.Add((Particle)particle.Clone());
+                clone.Particles.Add((Sprite)particle.Clone());
             }
             return clone;
         }

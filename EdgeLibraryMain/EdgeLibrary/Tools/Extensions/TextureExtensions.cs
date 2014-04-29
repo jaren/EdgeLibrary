@@ -91,7 +91,7 @@ namespace EdgeLibrary
             //Gets an inner rectangle portion of a Texture2D
             public static Texture2D GetInnerTexture(this Texture2D texture, Rectangle rectangle)
             {
-                Texture2D returnTexture = new Texture2D(EdgeGame.GraphicsDevice, rectangle.Width, rectangle.Height);
+                Texture2D returnTexture = new Texture2D(EdgeGame.Game.GraphicsDevice, rectangle.Width, rectangle.Height);
                 Color[] colorData = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colorData);
 

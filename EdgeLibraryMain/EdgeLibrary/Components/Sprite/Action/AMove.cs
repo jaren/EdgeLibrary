@@ -21,19 +21,14 @@ namespace EdgeLibrary
             MoveVector = moveVector;
         }
 
-        public AMove(string ID, Vector2 moveVector) : base(ID)
-        {
-            MoveVector = moveVector;
-        }
-
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
-            sprite.Position += MoveVector * (float)EdgeGame.GetFrameTimeMultiplier(gameTime);
+            sprite.Position += MoveVector * EdgeGame.GameSpeed;
         }
 
         public override Action Clone()
         {
-            return new AMove(ID, MoveVector);
+            return new AMove(MoveVector);
         }
     }
 }

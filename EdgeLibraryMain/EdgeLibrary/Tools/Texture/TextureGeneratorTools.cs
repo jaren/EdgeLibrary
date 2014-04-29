@@ -24,7 +24,7 @@ namespace EdgeLibrary
 
         public static Texture2D GenerateGradient(Color color1, Color color2, int width, int height, bool vertical)
         {
-            Texture2D texture = new Texture2D(EdgeGame.GraphicsDevice, width, height);
+            Texture2D texture = new Texture2D(EdgeGame.Game.GraphicsDevice, width, height);
             Color[] colors = new Color[width * height];
             for (int y = 0; y < height; y++)
             {
@@ -46,7 +46,7 @@ namespace EdgeLibrary
 
         public static Texture2D GenerateCircle(int radius, Color color)
         {
-            Texture2D texture = new Texture2D(EdgeGame.GraphicsDevice, radius * 2, radius * 2);
+            Texture2D texture = new Texture2D(EdgeGame.Game.GraphicsDevice, radius * 2, radius * 2);
             Color[] colors = new Color[radius*radius*4];
             foreach(Vector2 point in GetCirclePoints(new Vector2(radius, radius), radius))
             {

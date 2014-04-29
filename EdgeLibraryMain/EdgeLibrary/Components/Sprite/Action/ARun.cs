@@ -21,11 +21,6 @@ namespace EdgeLibrary
         {
             OnRun += runEvent;
         }
-        
-        public ARun(string ID, ARunEvent runEvent) : base(ID)
-        {
-            OnRun += runEvent;
-        }
 
         //Called once then is removed
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
@@ -36,7 +31,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new ARun(ID, OnRun);
+            return new ARun(OnRun);
         }
     }
 }
