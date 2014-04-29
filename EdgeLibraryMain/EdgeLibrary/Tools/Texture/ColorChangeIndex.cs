@@ -14,18 +14,18 @@ namespace EdgeLibrary
     /// <summary>
     /// Decides how a sprite or particle will change colors
     /// </summary>
-    public struct ColorChangeIndex
+    public class ColorChangeIndex
     {
         //The colors and times showing how to change the color and at how long
         public List<Color> Colors;
         public List<float> Times;
         public int index;
-        private double elapsedTime;
-        public bool HasFinished { get; private set; }
+        protected double elapsedTime;
+        public bool HasFinished { get; protected set; }
 
         public ColorChangeIndex(Color color) : this(1000, color) { }
 
-        public ColorChangeIndex(params KeyValuePair<Color, float>[] pairs) : this()
+        public ColorChangeIndex(params KeyValuePair<Color, float>[] pairs)
         {
             Colors = new List<Color>();
             Times = new List<float>();
@@ -40,7 +40,7 @@ namespace EdgeLibrary
             }
         }
 
-        public ColorChangeIndex(float time, params Color[] colors) : this()
+        public ColorChangeIndex(float time, params Color[] colors)
         {
             Colors = new List<Color>();
             Times = new List<float>();

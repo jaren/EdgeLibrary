@@ -14,33 +14,22 @@ namespace EdgeLibrary
     //Clamps a sprite to an element
     public class AClamp : Action
     {
-        public Element Target;
+        public Sprite Target;
         public Vector2 AddPosition;
 
-        public AClamp(Element target) : base()
+        public AClamp(Sprite target)
+            : base()
         {
             Target = target;
             AddPosition = Vector2.Zero;
         }
 
-        public AClamp(string ID, Element target) : base(ID)
-        {
-            Target = target;
-            AddPosition = Vector2.Zero;
-        }
-
-        public AClamp(Element target, Vector2 addPosition) : base()
+        public AClamp(Sprite target, Vector2 addPosition)
+            : base()
         {
             Target = target;
             AddPosition = addPosition;
         }
-
-        public AClamp(string ID, Element target, Vector2 addPosition) : base(ID)
-        {
-            Target = target;
-            AddPosition = addPosition;
-        }
-
         protected override void UpdateAction(GameTime gameTime, Sprite sprite)
         {
             sprite.Position = Target.Position + AddPosition;
@@ -48,7 +37,7 @@ namespace EdgeLibrary
 
         public override Action Clone()
         {
-            return new AClamp(ID, Target, AddPosition);
+            return new AClamp(Target, AddPosition);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -14,7 +15,7 @@ using System.Text;
 namespace EdgeLibrary
 {
     /// <summary>
-    /// Logs all the events in the game - it's partial so users can add on to it
+    /// Logs all the events in the game - not really used
     /// </summary>
     public static partial class DebugLogger
     {
@@ -251,3 +252,4 @@ namespace EdgeLibrary
         }
     }
 }
+ */

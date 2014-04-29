@@ -16,16 +16,16 @@ namespace EdgeLibrary
     public static partial class EdgeGame
     {
         //The game which is run
-        private static StatefulGame Game;
+        public static StatefulGame Game { get; private set; }
 
         //Used for drawing the game
         public static Camera Camera;
+        public static Camera3D Camera3D;
 
         //The common game time
         public static GameTime GameTime;
 
-        //How much to multiply the game speed by - could change from computer to computer
-        public static float GameSpeedMultiplier = 1/16f;
+        //How quickly to run the game
         public static float GameSpeed = 1;
 
         //The events to change the game initialization/update
@@ -42,20 +42,11 @@ namespace EdgeLibrary
         //Gets the FPS that the game is currently running at
         public static int FPS { get; private set; }
 
-        //Gets the game's graphics device - used for creating new textures
-        public static GraphicsDevice GraphicsDevice { get { return Game.GraphicsDevice; } }
-        public static SpriteBatch SpriteBatch { get { return Game.SpriteBatch; } }
-
         //Sets whether the mouse is visible or not
         public static bool MouseVisible { get { return Game.IsMouseVisible; } set { Game.IsMouseVisible = value; } }
 
         //The color the graphicsdevice will clear each frame
-        public static Color ClearColor = Color.Black;
-        //The color that debug draw will color in
-        public static Color DebugDrawColor = Color.White;
-
-        //The draw state which the game will draw
-        public static DrawState DrawState = DrawState.Normal;
+        public static Color ClearColor { get { return Game.ClearColor; } set { Game.ClearColor = value; } }
 
         //Gets/Sets the graphics preferred buffer size
         public static Vector2 WindowSize
@@ -71,6 +62,7 @@ namespace EdgeLibrary
                 Game.Graphics.ApplyChanges();
 
                 Camera = new Camera(WindowSize / 2, Game.GraphicsDevice);
+                Camera3D.AspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
             }
         }
 
@@ -78,12 +70,8 @@ namespace EdgeLibrary
         public static void Start()
         {
             Game = new StatefulGame();
-            InitializeScenes();
             InitializeResources();
             InitializeSounds();
-
-            //Initializes all the game items
-            DebugLogger.Init();
 
             WindowSize = new Vector2(800);
 
@@ -91,8 +79,11 @@ namespace EdgeLibrary
             Game.OnRun += new StatefulGame.GameInitializeEvent(Game_OnRun);
             Game.OnInit += new StatefulGame.GameInitializeEvent(Game_OnInit);
             Game.OnLoadContent += new StatefulGame.GameInitializeEvent(Game_OnLoadContent);
-            Game.OnUpdate += new StatefulGame.GameEvent(Game_OnUpdate);
-            Game.OnDraw += new StatefulGame.GameEvent(Game_OnDraw);
+
+            //OnStartUpdate and OnStartDraw must be used so the graphics device can be properly cleared
+            Game.OnStartUpdate += new StatefulGame.GameEvent(Game_OnUpdate);
+            Game.OnStartDraw += new StatefulGame.GameEvent(Game_OnDraw);
+            Game.OnDraw += new StatefulGame.GameEvent(Game_OnFinishDraw);
 
             //Runs the game
             Game.Run();
@@ -108,80 +99,79 @@ namespace EdgeLibrary
         public static void Reset()
         {
             Game.Content.Unload();
-            Scenes.Clear();
+            Game.Components.Clear();
             OnReset();
         }
 
         private static void Game_OnRun(StatefulGame game)
         {
-            DebugLogger.Log('~', "EdgeGame Started");
             OnRun();
         }
 
         private static void Game_OnLoadContent(StatefulGame game)
         {
             InitializeBasicTextures();
-            Input.Init();
-            DebugLogger.Log('~', "EdgeGame Successfully Loaded Content");
+            Camera3D = new Camera3D(new Vector3(0, 0, 20), Vector3.Zero, Vector3.Up, Game.GraphicsDevice.Viewport.AspectRatio);
             OnLoadContent();
         }
 
         private static void Game_OnInit(StatefulGame game)
         {
-            DebugLogger.Log('~', "EdgeGame Successfully Initialized");
             OnInit();
         }
 
+        //This is called before the stateful game updates
         private static void Game_OnUpdate(StatefulGame game, GameTime gameTime)
         {
+            //Sets the game time
             GameTime = gameTime;
 
-            if (CurrentScene != null)
-            {
-                Input.Update(gameTime);
-                Camera.Update(gameTime);
-
-                Update();
-            }
+            //Updates all the game items
+            Input.Update(gameTime);
 
             OnUpdate(gameTime);
         }
 
+        //This is called before the stateful game draws
         private static void Game_OnDraw(StatefulGame game, GameTime gameTime)
         {
+            //Sets the game time
             GameTime = gameTime;
 
-            if (CurrentScene != null)
-            {
-                Game.GraphicsDevice.SetRenderTarget(Camera.Target);
+            //Prepares to render to the camera
+            Game.GraphicsDevice.SetRenderTarget(Camera.Target);
 
-                Game.GraphicsDevice.Clear(ClearColor);
+            //Clears the graphics device
+            Game.GraphicsDevice.Clear(ClearColor);
 
-                FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
+            //Sets the FPS in draw - it's always 60 fps in update
+            FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
 
-                Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, Camera.GetTransform());
-                Draw();
-                Input.Draw(gameTime, Game.SpriteBatch);
-                Game.SpriteBatch.End();
+            //Starts drawing to the camera render target - it needs to restart the spritebatch with the given settings
+            Game.SpriteBatch.End();
+            Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, Camera.GetTransform());
+        }
 
-                Game.GraphicsDevice.SetRenderTarget(null);
-                Game.GraphicsDevice.Clear(ClearColor);
-                Camera.Draw(Game.SpriteBatch);
-            }
+        //This is called after the stateful game draws
+        private static void Game_OnFinishDraw(StatefulGame game, GameTime gameTime)
+        {
+            //Stops drawing to the camera render target
+            Game.SpriteBatch.End();
 
-                OnDraw(game.SpriteBatch, gameTime);
+            //Prepares to render to the screen
+            Game.GraphicsDevice.SetRenderTarget(null);
+            Game.GraphicsDevice.Clear(ClearColor);
+
+            //Draws to the screen
+            Camera.Draw(Game.SpriteBatch);
+
+            OnDraw(game.SpriteBatch, gameTime);
         }
 
         //Runs one update and draw
         public static void Tick()
         {
             Game.Tick();
-        }
-
-        //Gets the amount to multiply any game process speed by
-        public static double GetFrameTimeMultiplier(GameTime gameTime)
-        {
-            return gameTime.ElapsedGameTime.TotalMilliseconds * GameSpeed * GameSpeedMultiplier;
         }
     }
 }

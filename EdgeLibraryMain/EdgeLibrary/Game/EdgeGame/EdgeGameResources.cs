@@ -12,11 +12,12 @@ using Microsoft.Xna.Framework.Media;
 namespace EdgeLibrary
 {
     /// <summary>
-    /// Stores all the textures and fonts for EdgeGame
+    /// Stores all the textures, fonts, and models for EdgeGame
     /// </summary>
     public static partial class EdgeGame
     {
         private static Dictionary<string, Texture2D> Textures;
+        private static Dictionary<string, Model> Models;
         private static Dictionary<string, SpriteFont> Fonts;
 
         public static string ContentRootDirectory { get { return Game.Content.RootDirectory; } set { } }
@@ -24,6 +25,7 @@ namespace EdgeLibrary
         private static void InitializeResources()
         {
             Textures = new Dictionary<string, Texture2D>();
+            Models = new Dictionary<string, Model>();
             Fonts = new Dictionary<string, SpriteFont>();
         }
 
@@ -79,6 +81,12 @@ namespace EdgeLibrary
         {
             return Game.Content.Load<SpriteFont>(fontPath);
         }
+        //Gets a model from Content.Load() with the given path
+        public static Model ModelFromString(string modelPath)
+        {
+            return Game.Content.Load<Model>(modelPath);
+        }
+
         //Adds an already-generated texture to the index
         public static void AddTexture(string textureName, Texture2D texture)
         {
@@ -90,6 +98,11 @@ namespace EdgeLibrary
         {
             DebugLogger.LogAdd("Font added. Name:" + fontName);
             Fonts.Add(fontName, font);
+        }
+        //Adds an already-generated model to the index
+        public static void AddModel(string modelName, Model model)
+        {
+            Models.Add(modelName, model);
         }
 
         public static Texture2D GetTexture(string textureName)
@@ -110,6 +123,17 @@ namespace EdgeLibrary
                 if (font.Key == fontName)
                 {
                     return font.Value;
+                }
+            }
+            return null;
+        }
+        public static Model GetModel(string modelName)
+        {
+            foreach (var model in Models)
+            {
+                if (model.Key == modelName)
+                {
+                    return model.Value;
                 }
             }
             return null;

@@ -21,20 +21,11 @@ namespace EdgeLibrary
         private static MouseState mouse;
         private static MouseState previousMouse;
 
-        public static Sprite MouseSprite;
         //Returns the mouse position with camera transformations
         public static Vector2 MousePosition { get { return new Vector2(mouse.X, mouse.Y) + EdgeGame.Camera.Position - EdgeGame.WindowSize/2; } set { } }
         //Returns the previous mouse position with CURRENT camera transformations
         public static Vector2 PreviousMousePosition { get { return new Vector2(previousMouse.X, previousMouse.Y) + EdgeGame.Camera.Position - EdgeGame.WindowSize / 2; } set { } }
         public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
-
-        public static void Init() 
-        {
-            MouseSprite = new Sprite("", Vector2.Zero);
-            MouseSprite.ID = "MouseSprite";
-            MouseSprite.DrawLayer = 100; 
-            MouseSprite.Visible = false; 
-        }
 
         public static void Update(GameTime gameTime)
         {
@@ -42,11 +33,7 @@ namespace EdgeLibrary
             previousMouse = mouse;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
-            MouseSprite.Position = MousePosition;
-            MouseSprite.Update(gameTime);
         }
-
-        public static void Draw(GameTime gameTime, SpriteBatch spriteBatch) { MouseSprite.Draw(gameTime, spriteBatch); }
 
         public static Keys[] KeysPressed()
         {
@@ -73,12 +60,12 @@ namespace EdgeLibrary
             return (mouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released);
         }
 
-        public static bool JustUnLeftClicked()
+        public static bool JustReleasedLeftClick()
         {
             return (mouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed);
         }
 
-        public static bool JustUnRightClicked()
+        public static bool JustReleasedRightClick()
         {
             return (mouse.RightButton == ButtonState.Released && previousMouse.RightButton == ButtonState.Pressed);
         }

@@ -61,15 +61,6 @@ namespace EdgeLibrary
             HalfScreenSize = new Vector2(Target.Width, Target.Height) / 2;
         }
 
-        //Updates the position/rotation/scale with the clamped element
-        public void Update(GameTime gameTime)
-        {
-            if (EdgeGame.CurrentScene.CameraClamp != null)
-            {
-                Position = EdgeGame.CurrentScene.CameraClamp.Position;
-            }
-        }
-
         //Draws the game to a spritebatch
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -77,18 +68,6 @@ namespace EdgeLibrary
             spriteBatch.Begin();
             spriteBatch.Draw(Target, Vector2.Zero, Color.White);
             spriteBatch.End();
-        }
-        
-        //Clamps to an element - only for the current scene
-        public void ClampTo(Element element)
-        {
-            EdgeGame.CurrentScene.CameraClamp = element;
-        }
-
-        //Unclamps from the element - only for the current scene
-        public void Unclamp()
-        {
-            EdgeGame.CurrentScene.CameraClamp = null;
         }
     }
 }

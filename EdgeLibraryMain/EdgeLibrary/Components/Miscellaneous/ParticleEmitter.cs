@@ -62,22 +62,21 @@ namespace EdgeLibrary
         public int MinParticlesToEmit;
         public int MaxParticlesToEmit;
 
-        //This can't be SubElements because the particles' removal must be handled by the ParticleEmitter
-        protected List<Particle> Particles;
+        protected List<Sprite> Particles;
         protected double timeSinceLastEmit;
         protected double currentEmitWait;
 
         //To stop garbage collection every single time
-        protected List<Particle> particlesToRemove;
+        protected List<Sprite> particlesToRemove;
         protected const int maxParticlesToRemove = 30;
 
         //Particle emitter event called when a particle is emitted
-        public delegate void ParticleEventHandler(ParticleEmitter sender, Particle particle, GameTime gameTime);
+        public delegate void ParticleEventHandler(ParticleEmitter sender, Sprite particle, GameTime gameTime);
         public event ParticleEventHandler OnEmit = delegate { };
 
         public ParticleEmitter(string textureName, Vector2 position) : base(textureName, position)
         {
-            Particles = new List<Particle>();
+            Particles = new List<Sprite>();
 
             SquareParticles = true;
 
@@ -95,7 +94,7 @@ namespace EdgeLibrary
 
             currentEmitWait = RandomTools.RandomDouble(MinEmitWait, MaxEmitWait);
 
-            particlesToRemove = new List<Particle>();
+            particlesToRemove = new List<Sprite>();
             timeSinceLastEmit = 0;
         }
 
@@ -181,8 +180,7 @@ namespace EdgeLibrary
                 particlesToRemove.Clear();
             }
 
-
-            base.UpdateObject(gameTime);
+            base.Update(gameTime);
         }
 
         public override void  DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
@@ -195,10 +193,10 @@ namespace EdgeLibrary
             spriteBatch.Draw(EdgeGame.GetTexture("Pixel"), new Rectangle(rectangle.Bottom, rectangle.Left, rectangle.Width, 1), color);
         }
 
-        public override Element Clone()
+        public override object Clone()
         {
             ParticleEmitter clone = (ParticleEmitter)base.Clone();
-            clone.Particles = new List<Particle>();
+            clone.Particles = new List<Sprite>();
             foreach (Particle particle in Particles)
             {
                 clone.Particles.Add((Particle)particle.Clone());
