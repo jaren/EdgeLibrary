@@ -15,12 +15,12 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Add a physics engine
+    /// -Fix Text not drawing and 3D bugs
     /// 
     /// BUGS:
-    /// -Particles randomly appear at (0, 0)
-    /// -Particle emitters emit extremely quickly regardless of game speed
-    /// -SubElements not copied in clone
-    /// -Transitions are EXTREMELY expensive
+    /// 
+    /// IMPROVEMENTS:
+    /// -In SpriteModel, only set Effect.View and Effect.Projection when the Camera's View or Projection changes
     /// </summary>
 
     /// <summary>
@@ -33,7 +33,13 @@ namespace EdgeDemo
         {
             EdgeGame.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
             EdgeGame.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
+            EdgeGame.OnDraw += new EdgeGame.EdgeGameDrawEvent(EdgeGame_OnDraw);
             EdgeGame.Start();
+        }
+
+        static void EdgeGame_OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            EdgeGame.Game.GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullCounterClockwiseFace, FillMode = FillMode.WireFrame };
         }
 
         static void game_OnInit()
@@ -42,7 +48,99 @@ namespace EdgeDemo
 
             EdgeGame.GameSpeed = 1f;
 
-            EdgeGame.ClearColor = Color.Black;
+            EdgeGame.ClearColor = Color.Olive;
+
+            #region CUBE
+            //These lines should draw a cube
+            List<VertexPositionColor> vertices = new List<VertexPositionColor>();
+            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Green));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Purple));
+            vertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), Color.Orange));
+            vertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), Color.White));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), Color.Blue));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), Color.Red));
+            vertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Yellow));
+            vertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
+
+            List<VertexPositionColor> lineVertices = new List<VertexPositionColor>();
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
+
+            //Back
+            // 5 6
+            // 4 7
+
+            //Front
+            // 1 2
+            // 0 3
+
+            List<short> vertexIndexes = new List<short>();
+            // Filled Cube
+            //Front
+            vertexIndexes.AddRange(new short[] { 0, 1, 2 });
+            vertexIndexes.AddRange(new short[] { 2, 3, 0 });
+            //Back
+            vertexIndexes.AddRange(new short[] { 7, 6, 5 });
+            vertexIndexes.AddRange(new short[] { 5, 4, 7 });
+            //Left
+            vertexIndexes.AddRange(new short[] { 4, 5, 1 });
+            vertexIndexes.AddRange(new short[] { 1, 0, 4 });
+            //Right
+            vertexIndexes.AddRange(new short[] { 3, 2, 6 });
+            vertexIndexes.AddRange(new short[] { 6, 7, 3 });
+            //Top
+            vertexIndexes.AddRange(new short[] { 1, 5, 6 });
+            vertexIndexes.AddRange(new short[] { 6, 2, 1 });
+            //Bottom
+            vertexIndexes.AddRange(new short[] { 4, 0, 3 });
+            vertexIndexes.AddRange(new short[] { 3, 7, 4 });
+
+
+            //Line Cube
+            List<short> vertexLineIndexes = new List<short>();
+            vertexLineIndexes.AddRange(new short[] { 0, 1 });
+            vertexLineIndexes.AddRange(new short[] { 1, 2 });
+            vertexLineIndexes.AddRange(new short[] { 2, 3 });
+            vertexLineIndexes.AddRange(new short[] { 3, 0 });
+
+            vertexLineIndexes.AddRange(new short[] { 4, 5 });
+            vertexLineIndexes.AddRange(new short[] { 5, 6 });
+            vertexLineIndexes.AddRange(new short[] { 6, 7 });
+            vertexLineIndexes.AddRange(new short[] { 7, 4 });
+
+            vertexLineIndexes.AddRange(new short[] { 1, 5 });
+            vertexLineIndexes.AddRange(new short[] { 2, 6 });
+            vertexLineIndexes.AddRange(new short[] { 0, 4 });
+            vertexLineIndexes.AddRange(new short[] { 3, 7 });
+
+            PrimitiveModel cubeModel = new PrimitiveModel(vertices, vertexIndexes) { DrawType = PrimitiveType.TriangleList };
+            PrimitiveModel cubeOutlineModel = new PrimitiveModel(lineVertices, vertexLineIndexes) { DrawType = PrimitiveType.LineList };
+
+            Sprite3D cube = new Sprite3D(Vector3.Zero, cubeModel);
+            cube.AddAction(new ARotate3D(Vector3.One / 100f));
+            cube.Scale = Vector3.One / 2f;
+            cube.AddToGame();
+
+            Sprite3D cubeOutline = new Sprite3D(Vector3.Zero, cubeOutlineModel);
+            cubeOutline.AddAction(new ARotate3D(Vector3.One / 100f));
+            cubeOutline.Scale = Vector3.One / 2f;
+            cubeOutline.AddToGame();
+
+            for (int i = 0; i < vertices.Count; i++)
+            {
+                cube.AddAction(new AColorChange3D(vertices[i], i, new InfiniteColorChangeIndex(Color.White, Color.Black, 2000)));
+            }
+            #endregion
+
+            DebugText debug = new DebugText("Impact-20", Vector2.Zero);
+            debug.Color = Color.Black;
+           // debug.AddToGame();
         }
 
         public static void game_OnLoadContent()

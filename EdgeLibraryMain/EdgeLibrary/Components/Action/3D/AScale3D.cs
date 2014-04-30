@@ -30,7 +30,7 @@ namespace EdgeLibrary
         {
             if (originalScale == null) { originalScale = sprite.Scale; }
 
-            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+            elapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
 
             if (elapsedTime >= Time)
             {

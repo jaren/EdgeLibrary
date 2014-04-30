@@ -127,6 +127,9 @@ namespace EdgeLibrary
 
                 EdgeGame.Game.GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionColor>(DrawType, VertexArray, 0, Vertices.Count, VertexIndexArray, 0, GetPrimitiveCount());
             }
+
+            //EdgeGame.Game.GraphicsDevice.SetVertexBuffer(null);
+            //EdgeGame.Game.GraphicsDevice.Indices = null;
         }
 
         public override object Clone()

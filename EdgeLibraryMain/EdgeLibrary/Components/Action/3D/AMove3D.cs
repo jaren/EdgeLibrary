@@ -23,7 +23,7 @@ namespace EdgeLibrary
 
         protected override void UpdateAction(GameTime gameTime, Sprite3D sprite)
         {
-            sprite.Position += MoveVector;
+            sprite.Position += MoveVector * EdgeGame.GameSpeed;
         }
 
         public override Action3D Clone()

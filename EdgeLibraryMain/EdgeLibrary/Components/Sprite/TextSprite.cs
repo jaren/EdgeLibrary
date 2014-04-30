@@ -11,7 +11,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //A "label"
+    /// <summary>
+    /// A sprite which draws text instead of a texture
+    /// </summary>
     public class TextSprite : Sprite
     {
         //The font to display on the screen
@@ -91,7 +93,7 @@ namespace EdgeLibrary
             }
         }
 
-        public object Clone()
+        public override object Clone()
         {
             TextSprite clone = (TextSprite)base.Clone();
             clone.Font = _font;

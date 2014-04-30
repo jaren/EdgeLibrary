@@ -34,7 +34,7 @@ namespace EdgeLibrary
             if (moveVector != Vector3.Zero)
             {
                 moveVector.Normalize();
-                moveVector *= Speed;
+                moveVector *= Speed * EdgeGame.GameSpeed;
 
                 if (!checkIfEnd(moveVector, Target.Position, sprite.Position)) { sprite.Position += moveVector; }
             }

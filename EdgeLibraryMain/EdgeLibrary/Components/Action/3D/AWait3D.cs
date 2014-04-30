@@ -11,24 +11,30 @@ using Microsoft.Xna.Framework.Media;
 
 namespace EdgeLibrary
 {
-    //Adds Vector3 to a sprite's rotation
-    public class ARotate3D : Action3D
+    public class AWait3D : Action3D
     {
-        public Vector3 Speed;
+        public float WaitTime;
+        private float elapsedTime;
 
-        public ARotate3D(Vector3 radians)
+        public AWait3D(float waitTime)
         {
-            Speed = radians;
+            WaitTime = waitTime;
+            elapsedTime = 0;
         }
 
         protected override void UpdateAction(GameTime gameTime, Sprite3D sprite)
         {
-            sprite.Rotation += Speed;
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
+
+            if (elapsedTime >= WaitTime)
+            {
+                Stop(gameTime, sprite);
+            }
         }
 
         public override Action3D Clone()
         {
-            return new ARotate3D(Speed);
+            return new AWait3D(WaitTime);
         }
     }
 }
