@@ -14,7 +14,7 @@ namespace EdgeLibrary
     /// <summary>
     /// A 3D sprite
     /// </summary>
-    public class Sprite3D : DrawableGameComponent
+    public class Sprite3D : DrawableGameComponent, ICloneable
     {
         //Used to identify the sprite
         public string ID;
@@ -152,6 +152,13 @@ namespace EdgeLibrary
             Model.Draw(gameTime);
             base.Draw(gameTime);
             OnDraw(this, gameTime);
+        }
+
+        public virtual object Clone()
+        {
+            Sprite3D clone = (Sprite3D)MemberwiseClone();
+            clone.Model = (SpriteModel)Model.Clone();
+            return clone;
         }
     }
 }

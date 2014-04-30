@@ -78,11 +78,12 @@ namespace EdgeLibrary
         {
             GraphicsDevice.Clear(ClearColor);
             SpriteBatch.Begin();
-
             OnStartDraw(this, gameTime);
-            base.Draw(gameTime);
 
+            base.Draw(gameTime);
+            
             SpriteBatch.End();
+
             OnDraw(this, gameTime);
         }
     }

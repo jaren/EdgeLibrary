@@ -37,9 +37,14 @@ namespace EdgeDemo
             EdgeGame.Start();
         }
 
+        static float rotation = 0;
         static void EdgeGame_OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
+            rotation += 0.01f;
+
             EdgeGame.Game.GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullCounterClockwiseFace, FillMode = FillMode.WireFrame };
+
+            EdgeGame.Camera3D.Position = new Vector3(0, 0, Input.MouseWheelValue / 100 + 10);
         }
 
         static void game_OnInit()
@@ -50,6 +55,7 @@ namespace EdgeDemo
 
             EdgeGame.ClearColor = Color.Olive;
 
+            
             #region CUBE
             //These lines should draw a cube
             List<VertexPositionColor> vertices = new List<VertexPositionColor>();
@@ -62,15 +68,16 @@ namespace EdgeDemo
             vertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Yellow));
             vertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
 
+            Color lineColor = Color.Black;
             List<VertexPositionColor> lineVertices = new List<VertexPositionColor>();
-            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Black));
-            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), lineColor));
+            lineVertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), lineColor));
 
             //Back
             // 5 6
@@ -124,7 +131,7 @@ namespace EdgeDemo
 
             Sprite3D cube = new Sprite3D(Vector3.Zero, cubeModel);
             cube.AddAction(new ARotate3D(Vector3.One / 100f));
-            cube.Scale = Vector3.One / 2f;
+            cube.Scale = Vector3.One /2f;
             cube.AddToGame();
 
             Sprite3D cubeOutline = new Sprite3D(Vector3.Zero, cubeOutlineModel);
@@ -134,8 +141,9 @@ namespace EdgeDemo
 
             for (int i = 0; i < vertices.Count; i++)
             {
-                cube.AddAction(new AColorChange3D(vertices[i], i, new InfiniteColorChangeIndex(Color.White, Color.Black, 2000)));
+                cube.AddAction(new AColorChange3D(vertices[i], i, new InfiniteColorChangeIndex(Color.White, Color.Transparent, 1, 10000)));
             }
+             
             #endregion
 
             DebugText debug = new DebugText("Impact-20", Vector2.Zero);
