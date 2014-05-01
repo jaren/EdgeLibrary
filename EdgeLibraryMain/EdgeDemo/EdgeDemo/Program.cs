@@ -37,14 +37,11 @@ namespace EdgeDemo
             EdgeGame.Start();
         }
 
-        static float rotation = 0;
         static void EdgeGame_OnDraw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            rotation += 0.01f;
-
             EdgeGame.Game.GraphicsDevice.RasterizerState = new RasterizerState() { CullMode = CullMode.CullCounterClockwiseFace, FillMode = FillMode.WireFrame };
 
-            EdgeGame.Camera3D.Position = new Vector3(0, 0, Input.MouseWheelValue / 100 + 10);
+            EdgeGame.Camera3D.Position = new Vector3(0, 0, Math.Abs(Input.MouseWheelValue) / 100 + 10);
         }
 
         static void game_OnInit()
@@ -57,7 +54,6 @@ namespace EdgeDemo
 
             
             #region CUBE
-            //These lines should draw a cube
             List<VertexPositionColor> vertices = new List<VertexPositionColor>();
             vertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Green));
             vertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Purple));
@@ -132,12 +128,12 @@ namespace EdgeDemo
             Sprite3D cube = new Sprite3D(Vector3.Zero, cubeModel);
             cube.AddAction(new ARotate3D(Vector3.One / 100f));
             cube.Scale = Vector3.One /2f;
-            cube.AddToGame();
+            //cube.AddToGame();
 
             Sprite3D cubeOutline = new Sprite3D(Vector3.Zero, cubeOutlineModel);
             cubeOutline.AddAction(new ARotate3D(Vector3.One / 100f));
             cubeOutline.Scale = Vector3.One / 2f;
-            cubeOutline.AddToGame();
+            //cubeOutline.AddToGame();
 
             for (int i = 0; i < vertices.Count; i++)
             {
@@ -146,9 +142,21 @@ namespace EdgeDemo
              
             #endregion
 
+            ParticleEmitter Fire = new ParticleEmitter("Fire", Vector2.One * 500)
+            {
+                BlendState = BlendState.Additive,
+                Life = 10000,
+
+                MinScale = new Vector2(1.5f),
+                MaxScale = new Vector2(2),
+
+                MinColorIndex = new ColorChangeIndex(1000, Color.Magenta, Color.Orange, Color.Red, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(1000, Color.DarkMagenta, Color.DarkOrange, Color.OrangeRed, Color.Transparent)
+            };
+            Fire.AddToGame();
             DebugText debug = new DebugText("Impact-20", Vector2.Zero);
             debug.Color = Color.Black;
-           // debug.AddToGame();
+            debug.AddToGame();
         }
 
         public static void game_OnLoadContent()

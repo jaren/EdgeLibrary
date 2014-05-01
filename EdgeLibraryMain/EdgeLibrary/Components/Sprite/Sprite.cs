@@ -85,8 +85,6 @@ namespace EdgeLibrary
         public event ButtonEvent OnMouseOff = delegate { };
 
         public delegate void SpriteEvent(Sprite sprite, GameTime gameTime);
-        public event SpriteEvent OnUpdate = delegate { };
-        public event SpriteEvent OnDraw = delegate { };
         public event SpriteEvent OnAdded = delegate { };
         public event SpriteEvent OnRemoved = delegate { };
 
@@ -97,6 +95,8 @@ namespace EdgeLibrary
             Position = position;
 
             Data = new List<string>();
+
+            BlendState = BlendState.AlphaBlend;
 
             ShouldBeRemoved = false;
 
@@ -280,32 +280,27 @@ namespace EdgeLibrary
             {
                 Actions.Remove(key);
             }
-
-            base.Update(gameTime);
-
-            OnUpdate(this, gameTime);
         }
 
         //Draws to the spritebatch
         public override void Draw(GameTime gameTime)
         {
-            //Restarts the SpriteBatch if the BlendState is not AlphaBlend
-            if (BlendState != BlendState.AlphaBlend)
-            {
-                EdgeGame.Game.SpriteBatch.End();
-                EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
-            }
+            RestartSpriteBatch();
 
             EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
-            base.Draw(gameTime);
 
+            RestartSpriteBatch();
+        }
+
+        //Restarts the spritebatch if the blend state is not AlphaBlend
+        //Should be called before and after drawing
+        protected void RestartSpriteBatch()
+        {
             if (BlendState != BlendState.AlphaBlend)
             {
                 EdgeGame.Game.SpriteBatch.End();
                 EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
             }
-
-            OnDraw(this, gameTime);
         }
 
         //Draws the area of the collision body

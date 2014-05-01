@@ -90,15 +90,15 @@ namespace EdgeLibrary
             CommonRotationSpeed = false;
             CommonScale = true;
 
-            ColorIndex = new ColorChangeIndex(Color.White);
+            ColorIndex = new ColorChangeIndex(2000, Color.White, Color.Transparent);
             MinVelocity = -Vector2.One;
-            MaxVelocity = Vector2.One;
+            MaxVelocity = Vector2.One * 2;
             Scale = Vector2.One;
             GrowSpeed = 0;
             StartRotation = 0;
             RotationSpeed = 0;
             EmitPositionVariance = Vector2.Zero;
-            Life = 1000;
+            Life = 2000;
             ParticlesToEmit = 1;
             EmitWait = 10;
             MaxParticles = 10000;
@@ -134,7 +134,7 @@ namespace EdgeLibrary
                 RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y))));
 
             //Generates a random color change index
-            //particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
+            particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
 
             //Generates a random rotation speed
             particle.AddAction("Rotation", new ARotate(RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed)));
@@ -225,6 +225,8 @@ namespace EdgeLibrary
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
+            RestartSpriteBatch();
+
             foreach (Sprite particle in Particles)
             {
                 if (!particlesToRemove.Contains(particle))
@@ -232,6 +234,8 @@ namespace EdgeLibrary
                     particle.Draw(gameTime);
                 }
             }
+
+            RestartSpriteBatch();
         }
 
         public override object Clone()

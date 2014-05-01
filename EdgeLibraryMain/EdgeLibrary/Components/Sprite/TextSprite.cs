@@ -86,11 +86,15 @@ namespace EdgeLibrary
         //Draws the textsprite to the spritebatch
         public override void Draw(GameTime gameTime)
         {
+            RestartSpriteBatch();
+
             for (int i = 0; i < textLines.Length; i++)
             {
                 EdgeGame.Game.SpriteBatch.DrawString(_font, textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y/2): Vector2.Zero),
                 Color, Rotation, textLinesOriginPoints[i], Scale, SpriteEffects, 0);
             }
+
+            RestartSpriteBatch();
         }
 
         public override object Clone()
