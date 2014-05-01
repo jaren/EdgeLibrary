@@ -146,10 +146,9 @@ namespace EdgeLibrary
             Game.GraphicsDevice.Clear(ClearColor);
 
             //Sets the FPS in draw - it's always 60 fps in update
-            FPS = (int)(1000f / gameTime.ElapsedGameTime.TotalMilliseconds);
+            FPS = (int)(1000 / gameTime.ElapsedGameTime.TotalMilliseconds + 1);
 
             //Starts drawing to the camera render target - it needs to restart the spritebatch with the given settings
-            Game.SpriteBatch.End();
             Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, Camera.GetTransform());
         }
 
@@ -159,6 +158,8 @@ namespace EdgeLibrary
             //Prepares to render to the screen
             Game.GraphicsDevice.SetRenderTarget(null);
             Game.GraphicsDevice.Clear(ClearColor);
+
+            Game.SpriteBatch.End();
 
             //Draws to the screen
             Camera.Draw(Game.SpriteBatch);

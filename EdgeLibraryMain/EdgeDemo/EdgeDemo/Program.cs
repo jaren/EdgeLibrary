@@ -50,9 +50,8 @@ namespace EdgeDemo
 
             EdgeGame.GameSpeed = 1f;
 
-            EdgeGame.ClearColor = Color.Olive;
+            EdgeGame.ClearColor = Color.Black;
 
-            
             #region CUBE
             List<VertexPositionColor> vertices = new List<VertexPositionColor>();
             vertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Green));
@@ -64,7 +63,7 @@ namespace EdgeDemo
             vertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Yellow));
             vertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
 
-            Color lineColor = Color.Black;
+            Color lineColor = Color.White;
             List<VertexPositionColor> lineVertices = new List<VertexPositionColor>();
             lineVertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), lineColor));
             lineVertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), lineColor));
@@ -133,7 +132,7 @@ namespace EdgeDemo
             Sprite3D cubeOutline = new Sprite3D(Vector3.Zero, cubeOutlineModel);
             cubeOutline.AddAction(new ARotate3D(Vector3.One / 100f));
             cubeOutline.Scale = Vector3.One / 2f;
-            //cubeOutline.AddToGame();
+            cubeOutline.AddToGame();
 
             for (int i = 0; i < vertices.Count; i++)
             {
@@ -145,17 +144,21 @@ namespace EdgeDemo
             ParticleEmitter Fire = new ParticleEmitter("Fire", Vector2.One * 500)
             {
                 BlendState = BlendState.Additive,
-                Life = 10000,
+                Life = 5000,
 
-                MinScale = new Vector2(1.5f),
-                MaxScale = new Vector2(2),
+                MinVelocity = new Vector2(-3),
+                MaxVelocity = new Vector2(3),
 
-                MinColorIndex = new ColorChangeIndex(1000, Color.Magenta, Color.Orange, Color.Red, Color.Transparent),
-                MaxColorIndex = new ColorChangeIndex(1000, Color.DarkMagenta, Color.DarkOrange, Color.OrangeRed, Color.Transparent)
+                MinScale = new Vector2(5),
+                MaxScale = new Vector2(7),
+
+                MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent)
             };
             Fire.AddToGame();
+
             DebugText debug = new DebugText("Impact-20", Vector2.Zero);
-            debug.Color = Color.Black;
+            debug.Color = Color.White;
             debug.AddToGame();
         }
 

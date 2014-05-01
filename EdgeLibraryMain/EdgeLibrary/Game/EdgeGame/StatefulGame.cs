@@ -77,12 +77,9 @@ namespace EdgeLibrary
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(ClearColor);
-            SpriteBatch.Begin();
             OnStartDraw(this, gameTime);
 
             base.Draw(gameTime);
-            
-            SpriteBatch.End();
 
             OnDraw(this, gameTime);
         }

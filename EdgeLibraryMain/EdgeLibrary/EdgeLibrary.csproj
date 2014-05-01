@@ -110,7 +110,7 @@
     <Compile Include="Components\3D\Model\PrimitiveModel.cs" />
     <Compile Include="Components\3D\Model\SpriteModel.cs" />
     <Compile Include="Components\3D\Sprite3D.cs" />
-    <Compile Include="Components\Miscellaneous\DebugText.cs" />
+    <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />
     <Compile Include="Components\Miscellaneous\Ticker.cs" />
     <Compile Include="Components\Miscellaneous\Scene.cs" />
