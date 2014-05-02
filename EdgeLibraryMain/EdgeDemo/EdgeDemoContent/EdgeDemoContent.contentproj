@@ -215,8 +215,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\wedge_p1_diff_v1.tga">
-      <Name>wedge_p1_diff_v1</Name>
+    <Compile Include="Textures\wedge_p1_diff_v1_.tga">
+      <Name>wedge_p1_diff_v1_</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

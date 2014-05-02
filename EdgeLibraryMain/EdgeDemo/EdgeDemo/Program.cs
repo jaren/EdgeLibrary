@@ -22,6 +22,9 @@ namespace EdgeDemo
     /// 
     /// IMPROVEMENTS:
     /// -In SpriteModel, only set Effect.View and Effect.Projection when the Camera's View or Projection changes
+    /// 
+    /// NOTES:
+    /// -In Models, the texture is stored at 'Relative Filename: "..\textures\X"'
     /// </summary>
 
     /// <summary>
