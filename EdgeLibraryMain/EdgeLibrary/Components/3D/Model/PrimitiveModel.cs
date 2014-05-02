@@ -68,7 +68,9 @@ namespace EdgeLibrary
         public void SetVertexAt(VertexPositionColor vertex, int index)
         {
             _vertices[index] = vertex;
-            SetVertices(_vertices, _vertexIndexes);
+            ReloadVerticesArray();
+            VertexBuffer.SetData(VertexArray);
+            IndexBuffer.SetData(VertexIndexArray);
         }
 
         /// <summary>

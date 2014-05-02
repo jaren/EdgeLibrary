@@ -18,7 +18,6 @@ namespace EdgeDemo
     /// 
     /// BUGS:
     /// -Fix SpriteBatch needed to be restart for 2D objects combined with 3D
-    /// -AColorChange causes random extreme FPS drops
     /// 
     /// IMPROVEMENTS:
     /// -In SpriteModel, only set Effect.View and Effect.Projection when the Camera's View or Projection changes
@@ -137,7 +136,7 @@ namespace EdgeDemo
 
             for (int i = 0; i < vertices.Count; i++)
             {
-            //    cube.AddAction(new AColorChange3D(i, new InfiniteColorChangeIndex(Color.White, Color.Transparent, 1, 10000)));
+                cube.AddAction(new AColorChange3D(i, new InfiniteColorChangeIndex(Color.White, Color.Transparent, 1, 10000)));
             }
              
             #endregion

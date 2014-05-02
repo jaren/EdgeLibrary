@@ -296,7 +296,7 @@ namespace EdgeLibrary
         //Should be called before and after drawing
         protected void RestartSpriteBatch()
         {
-            if (BlendState != BlendState.AlphaBlend)
+            if (true)//BlendState != BlendState.AlphaBlend)
             {
                 EdgeGame.Game.SpriteBatch.End();
                 EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
