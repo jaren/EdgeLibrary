@@ -15,7 +15,6 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Add a physics engine
-    /// -Calculate the camera Target based on the mouse
     /// 
     /// BUGS:
     /// -Fix SpriteBatch needed to be restart for 2D objects combined with 3D
@@ -25,6 +24,7 @@ namespace EdgeDemo
     /// 
     /// NOTES:
     /// -In Models, the texture is stored at 'Relative Filename: "..\textures\X"'
+    /// -Apply Rotation to Vector2 to the XZ plane for camera movement
     /// </summary>
 
     /// <summary>
