@@ -15,9 +15,10 @@ namespace EdgeDemo
     /// <summary>
     /// TODO:
     /// -Add a physics engine
-    /// -Fix Text not drawing and 3D bugs
     /// 
     /// BUGS:
+    /// -Fix SpriteBatch needed to be restart for 2D objects combined with 3D
+    /// -AColorChange causes random extreme FPS drops
     /// 
     /// IMPROVEMENTS:
     /// -In SpriteModel, only set Effect.View and Effect.Projection when the Camera's View or Projection changes
@@ -48,20 +49,20 @@ namespace EdgeDemo
         {
             EdgeGame.WindowSize = new Vector2(1000);
 
-            EdgeGame.GameSpeed = 1f;
+            EdgeGame.GameSpeed = 1;
 
             EdgeGame.ClearColor = Color.Black;
 
             #region CUBE
             List<VertexPositionColor> vertices = new List<VertexPositionColor>();
-            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Green));
-            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Purple));
-            vertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), Color.Orange));
-            vertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), Color.White));
-            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), Color.Blue));
-            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), Color.Red));
-            vertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Yellow));
-            vertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Black));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, 5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, 5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(5, 5, 5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(5, -5, 5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, -5, -5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(-5, 5, -5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(5, 5, -5), Color.Transparent));
+            vertices.Add(new VertexPositionColor(new Vector3(5, -5, -5), Color.Transparent));
 
             Color lineColor = Color.White;
             List<VertexPositionColor> lineVertices = new List<VertexPositionColor>();
@@ -127,7 +128,7 @@ namespace EdgeDemo
             Sprite3D cube = new Sprite3D(Vector3.Zero, cubeModel);
             cube.AddAction(new ARotate3D(Vector3.One / 100f));
             cube.Scale = Vector3.One /2f;
-            //cube.AddToGame();
+            cube.AddToGame();
 
             Sprite3D cubeOutline = new Sprite3D(Vector3.Zero, cubeOutlineModel);
             cubeOutline.AddAction(new ARotate3D(Vector3.One / 100f));
@@ -136,7 +137,7 @@ namespace EdgeDemo
 
             for (int i = 0; i < vertices.Count; i++)
             {
-                cube.AddAction(new AColorChange3D(vertices[i], i, new InfiniteColorChangeIndex(Color.White, Color.Transparent, 1, 10000)));
+            //    cube.AddAction(new AColorChange3D(i, new InfiniteColorChangeIndex(Color.White, Color.Transparent, 1, 10000)));
             }
              
             #endregion

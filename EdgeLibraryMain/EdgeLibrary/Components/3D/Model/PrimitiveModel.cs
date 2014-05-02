@@ -22,10 +22,10 @@ namespace EdgeLibrary
 
         public PrimitiveType DrawType;
 
-        protected List<VertexPositionColor> Vertices { get { return _vertices; } set { _vertices = value; ReloadVerticesArray(); } }
+        public List<VertexPositionColor> Vertices { get { return _vertices; } protected set { _vertices = value; ReloadVerticesArray(); } }
         private List<VertexPositionColor> _vertices;
 
-        protected List<short> VertexIndexes { get { return _vertexIndexes; } set { _vertexIndexes = value; ReloadVerticesArray(); } }
+        public List<short> VertexIndexes { get { return _vertexIndexes; } protected set { _vertexIndexes = value; ReloadVerticesArray(); } }
         private List<short> _vertexIndexes;
 
         protected VertexPositionColor[] VertexArray;

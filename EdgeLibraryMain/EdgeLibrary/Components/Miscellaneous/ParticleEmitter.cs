@@ -197,7 +197,7 @@ namespace EdgeLibrary
                 if (!particlesToRemove.Contains(particle))
                 {
                     particle.Update(gameTime);
-                    particle.Data[0] = (double.Parse(particle.Data[0]) + gameTime.ElapsedGameTime.TotalMilliseconds).ToString();
+                    particle.Data[0] = (double.Parse(particle.Data[0]) + gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed).ToString();
                     if (double.Parse(particle.Data[0]) > double.Parse(particle.Data[1]))
                     {
                         particlesToRemove.Add(particle);

@@ -15,20 +15,23 @@ namespace EdgeLibrary
     public class AColorChange3D : Action3D
     {
         public ColorChangeIndex ColorIndex;
-        VertexPositionColor Vertex;
-        int VertexIndex;
+        public VertexPositionColor Vertex;
+        protected int VertexIndex;
+        protected bool hasSetVertex;
 
-        public AColorChange3D(VertexPositionColor vertex, int vertexIndex, Color start, Color finish, float time) : this(vertex, vertexIndex, new ColorChangeIndex(time, start, finish)) {}
-        public AColorChange3D(VertexPositionColor vertex, int vertexIndex, ColorChangeIndex index)
+        public AColorChange3D(int vertexIndex, Color start, Color finish, float time) : this(vertexIndex, new ColorChangeIndex(time, start, finish)) {}
+        public AColorChange3D(int vertexIndex, ColorChangeIndex index)
         {
             ColorIndex = index;
-            Vertex = vertex;
             VertexIndex = vertexIndex;
+            hasSetVertex = false;
         }
 
         //Changes the sprite's color based on the color change index
         protected override void UpdateAction(GameTime gameTime, Sprite3D sprite)
         {
+            if (!hasSetVertex) { Vertex = ((PrimitiveModel)sprite.Model).Vertices[VertexIndex]; hasSetVertex = true; }
+
             Vertex.Color = ColorIndex.Update(gameTime);
 
             if (sprite.Model is PrimitiveModel)
@@ -48,7 +51,7 @@ namespace EdgeLibrary
 
         public override Action3D Clone()
         {
-            return new AColorChange3D(Vertex, VertexIndex, ColorIndex);
+            return new AColorChange3D(VertexIndex, ColorIndex);
         }
     }
 }
