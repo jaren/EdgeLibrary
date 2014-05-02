@@ -31,13 +31,12 @@ namespace EdgeLibrary
         //The events to change the game initialization/update
         public delegate void EdgeGameEvent();
         public delegate void EdgeGameUpdateEvent(GameTime gameTime);
-        public delegate void EdgeGameDrawEvent(SpriteBatch spriteBatch, GameTime gameTime);
         public static event EdgeGameEvent OnRun = delegate { };
         public static event EdgeGameEvent OnInit = delegate { };
         public static event EdgeGameEvent OnLoadContent = delegate { };
         public static event EdgeGameEvent OnReset = delegate { };
         public static event EdgeGameUpdateEvent OnUpdate = delegate { };
-        public static event EdgeGameDrawEvent OnDraw = delegate { };
+        public static event EdgeGameUpdateEvent OnDraw = delegate { };
 
         //Gets the FPS that the game is currently running at
         public static int FPS { get; private set; }
@@ -164,7 +163,7 @@ namespace EdgeLibrary
             //Draws to the screen
             Camera.Draw(Game.SpriteBatch);
 
-            OnDraw(game.SpriteBatch, gameTime);
+            OnDraw(gameTime);
         }
 
         //Runs one update and draw

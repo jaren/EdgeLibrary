@@ -68,6 +68,16 @@ namespace EdgeLibrary
         {
             AddFont(name, Game.Content.Load<SpriteFont>(path));
         }
+
+        //Loads a model
+        public static void LoadModel(string path)
+        {
+            AddModel(path.LastSplit('/'), Game.Content.Load<Model>(path));
+        }
+        public static void LoadModel(string path, string name)
+        {
+            AddModel(name, Game.Content.Load<Model>(path));
+        }
         #endregion
 
         #region OTHER

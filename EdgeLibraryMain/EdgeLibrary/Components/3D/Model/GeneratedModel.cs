@@ -21,6 +21,7 @@ namespace EdgeLibrary
 
         private Matrix[] transforms;
 
+        public GeneratedModel(string modelName) : this(EdgeGame.GetModel(modelName)) { }
         public GeneratedModel(Model model)
             : base()
         {
