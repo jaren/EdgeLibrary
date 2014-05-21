@@ -14,6 +14,8 @@ namespace EdgeDemo
 {
     /// <summary>
     /// TODO:
+    /// -Fix HeightMap
+    /// -Add first-person-style movement
     /// -In SpriteModel, only set Effect.View and Effect.Projection when the Camera's View or Projection changes
     /// 
     /// BUGS:
@@ -38,8 +40,9 @@ namespace EdgeDemo
             EdgeGame.Start();
         }
 
-        static Vector3 relativeLocation = new Vector3(0, 0, -10);
         static float speed = 2;
+        static float rotationX = 0;
+        static float rotationY = 0;
         static bool mouseLocked = false;
         static void EdgeGame_OnUpdate(GameTime gameTime)
         {
@@ -69,22 +72,19 @@ namespace EdgeDemo
                 EdgeGame.Camera3D.Position += new Vector3(0, -speed, 0);
             }
             #endregion
-            if (mouseLocked && Input.MousePosition != Vector2.One * 500)
-            {
-                relativeLocation += new Vector3(Input.PreviousMousePosition.Y - Input.MousePosition.Y);
-            }
-            #region CameraRotation
-
-            EdgeGame.Camera3D.Target = EdgeGame.Camera3D.Position + relativeLocation;
-            #endregion
 
             if (Input.KeyJustPressed(Keys.Escape))
             {
                 mouseLocked = !mouseLocked;
             }
 
-            if (mouseLocked)
+            if (mouseLocked && Input.MousePosition != EdgeGame.WindowSize / 2)
             {
+                rotationX += 0.001f * (Input.MousePosition.X - Input.PreviousMousePosition.X);
+                rotationY += 0.001f * (Input.MousePosition.Y - Input.PreviousMousePosition.Y);
+
+                EdgeGame.Camera3D.Target = EdgeGame.Camera3D.Position + Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateFromYawPitchRoll(-rotationX, -rotationY % 90, 0));
+
                 Mouse.SetPosition((int)EdgeGame.WindowSize.X / 2, (int)EdgeGame.WindowSize.Y / 2);
                 EdgeGame.MouseVisible = false;
             }
@@ -124,6 +124,11 @@ namespace EdgeDemo
             Sprite3D sprite = new Sprite3D(Vector3.Zero, new GeneratedModel("p1_wedge"));
             sprite.Scale = new Vector3(0.01f);
             sprite.AddToGame();
+
+            HeightMap3D SimpleTerrain = new HeightMap3D(new Vector3(0, -10, 0), Vector2.One * 100, 2, 2);
+            SimpleTerrain.AddToGame();
+            SimpleTerrain.HeightMap = new float[2, 2] { {0, 0}, {100, 100}};
+            SimpleTerrain.ColorMap = new Color[2, 2] { {Color.White, Color.Green}, {Color.Purple, Color.Black}};
         }
 
         public static void game_OnLoadContent()

@@ -18,6 +18,9 @@ namespace EdgeLibrary
         public override void Update(GameTime gameTime)
         {
             Text = "Mouse Position: (" + Input.MousePosition.X.ToString() + ", " + Input.MousePosition.Y.ToString() + ")\n";
+            Text += "2D Camera Position: " + EdgeGame.Camera.Position.ToString() + "\n";
+            Text += "3D Camera Position: " + EdgeGame.Camera3D.Position.ToString() + "\n";
+            Text += "3D Camera Looking At: " + EdgeGame.Camera3D.Target.ToString() + "\n";
             Text += "FPS: " + EdgeGame.FPS.ToString();
             base.Update(gameTime);
         }
