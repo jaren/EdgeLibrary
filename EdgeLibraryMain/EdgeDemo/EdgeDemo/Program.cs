@@ -20,10 +20,6 @@ namespace EdgeDemo
     /// 
     /// BUGS:
     /// -Fix SpriteBatch needed to be restart for 2D objects combined with 3D
-    /// 
-    /// NOTES:
-    /// -In Models, the texture is stored at 'Relative Filename: "..\textures\X"'
-    /// -Apply Rotation to Vector2 to the XZ plane for camera movement
     /// </summary>
 
     /// <summary>
@@ -36,62 +32,7 @@ namespace EdgeDemo
         {
             EdgeGame.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
             EdgeGame.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
-            EdgeGame.OnUpdate += new EdgeGame.EdgeGameUpdateEvent(EdgeGame_OnUpdate);
             EdgeGame.Start();
-        }
-
-        static float speed = 2;
-        static float rotationX = 0;
-        static float rotationY = 0;
-        static bool mouseLocked = false;
-        static void EdgeGame_OnUpdate(GameTime gameTime)
-        {
-            #region CameraMovement
-            if (Input.IsKeyDown(Keys.W))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(0, 0, -speed);
-            }
-            if (Input.IsKeyDown(Keys.S))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(0, 0, speed);
-            }
-            if (Input.IsKeyDown(Keys.A))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(-speed, 0, 0);
-            }
-            if (Input.IsKeyDown(Keys.D))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(speed, 0, 0);
-            }
-            if (Input.IsKeyDown(Keys.Q))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(0, speed, 0);
-            }
-            if (Input.IsKeyDown(Keys.E))
-            {
-                EdgeGame.Camera3D.Position += new Vector3(0, -speed, 0);
-            }
-            #endregion
-
-            if (Input.KeyJustPressed(Keys.Escape))
-            {
-                mouseLocked = !mouseLocked;
-            }
-
-            if (mouseLocked && Input.MousePosition != EdgeGame.WindowSize / 2)
-            {
-                rotationX += 0.001f * (Input.MousePosition.X - Input.PreviousMousePosition.X);
-                rotationY += 0.001f * (Input.MousePosition.Y - Input.PreviousMousePosition.Y);
-
-                EdgeGame.Camera3D.Target = EdgeGame.Camera3D.Position + Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateFromYawPitchRoll(-rotationX, -rotationY % 90, 0));
-
-                Mouse.SetPosition((int)EdgeGame.WindowSize.X / 2, (int)EdgeGame.WindowSize.Y / 2);
-                EdgeGame.MouseVisible = false;
-            }
-            else
-            {
-                EdgeGame.MouseVisible = true;
-            }
         }
 
         static void game_OnInit()
@@ -119,16 +60,7 @@ namespace EdgeDemo
                 MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
                 MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent)
             };
-            //Fire.AddToGame();
-
-            Sprite3D sprite = new Sprite3D(Vector3.Zero, new GeneratedModel("p1_wedge"));
-            sprite.Scale = new Vector3(0.01f);
-            sprite.AddToGame();
-
-            HeightMap3D SimpleTerrain = new HeightMap3D(new Vector3(0, -10, 0), Vector2.One * 100, 2, 2);
-            SimpleTerrain.AddToGame();
-            SimpleTerrain.HeightMap = new float[2, 2] { {0, 0}, {100, 100}};
-            SimpleTerrain.ColorMap = new Color[2, 2] { {Color.White, Color.Green}, {Color.Purple, Color.Black}};
+            Fire.AddToGame();
         }
 
         public static void game_OnLoadContent()
@@ -157,7 +89,6 @@ namespace EdgeDemo
             EdgeGame.LoadFont("Fonts/Impact/Impact-40");
             EdgeGame.LoadFont("Fonts/Impact/Impact-50");
             EdgeGame.LoadFont("Fonts/Impact/Impact-60");
-            EdgeGame.LoadModel("Models/p1_wedge");
             EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
             EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
