@@ -106,18 +106,20 @@ namespace EdgeDemo
             platform.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (platform.Width * platform.Scale.X).ToSimUnits(), (platform.Height * platform.Scale.Y).ToSimUnits(), 1));
             platform.Body.BodyType = BodyType.Static;
             platform.AddToGame();
-
-            Sprite ball = new Sprite("Pixel", new Vector2(600, 0)) { Scale = new Vector2(50, 50), Color = Color.Gray, Data = new List<string>() { "Ball" } };
-            ball.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ball.Width * ball.Scale.X).ToSimUnits(), (ball.Height * ball.Scale.Y).ToSimUnits(), 1));
-            ball.Body.BodyType = BodyType.Dynamic;
-            ball.Body.Restitution = 1.1f;
-            ball.AddToGame();
         }
 
         static void Fire_OnEmit(ParticleEmitter sender, Sprite particle, GameTime gameTime)
         {
             particle.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (particle.Width / 2 * particle.Scale.X).ToSimUnits(), 1));
             particle.Body.BodyType = BodyType.Dynamic;
+            particle.Body.Restitution = 0.8f;
+            particle.Body.CollisionCategories = Category.Cat1;
+            particle.Body.CollidesWith = Category.Cat2;
+            
+            float max = 10;
+            Vector2 force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
+            Vector2 point = new Vector2(RandomTools.RandomFloat((particle.Position.X - (particle.Width * particle.Scale.X))));
+            particle.Body.ApplyForce(ref force, ref point);
         }
 
         public static void game_OnLoadContent()
