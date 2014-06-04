@@ -18,7 +18,6 @@ namespace EdgeDemo
     /// TODO:
     /// -Fix HeightMap
     /// -Add scaling into physics bodies
-    /// -Add more functionality to sprites that don't follow the camera - scale, etc.
     /// 
     /// BUGS:
     /// -Fix SpriteBatch needed to be restart for 2D objects combined with 3D
@@ -38,25 +37,26 @@ namespace EdgeDemo
             EdgeGame.Start();
         }
 
+        static int speed = 10;
         static void EdgeGame_OnUpdate(GameTime gameTime)
         {
-            int speed = 10;
+            float actualSpeed = speed / EdgeGame.Camera.Scale;
 
             if (Input.IsKeyDown(Keys.Up))
             {
-                EdgeGame.Camera.Position += new Vector2(0, -speed);
+                EdgeGame.Camera.Position += new Vector2(0, -actualSpeed);
             }
             if (Input.IsKeyDown(Keys.Down))
             {
-                EdgeGame.Camera.Position += new Vector2(0, speed);
+                EdgeGame.Camera.Position += new Vector2(0, actualSpeed);
             }
             if (Input.IsKeyDown(Keys.Right))
             {
-                EdgeGame.Camera.Position += new Vector2(speed, 0);
+                EdgeGame.Camera.Position += new Vector2(actualSpeed, 0);
             }
             if (Input.IsKeyDown(Keys.Left))
             {
-                EdgeGame.Camera.Position += new Vector2(-speed, 0);
+                EdgeGame.Camera.Position += new Vector2(-actualSpeed, 0);
             }
 
             if (Input.IsKeyDown(Keys.Q))
@@ -72,7 +72,7 @@ namespace EdgeDemo
         static void game_OnInit()
         {
 
-            EdgeGame.InitializeWorld(new Vector2(0, 1));
+            EdgeGame.InitializeWorld(new Vector2(0, 9.8f));
 
             EdgeGame.WindowSize = new Vector2(1000);
 
@@ -81,16 +81,17 @@ namespace EdgeDemo
             EdgeGame.ClearColor = Color.Black;
 
             DebugText debug = new DebugText("Impact-20", Vector2.Zero) { Color = Color.White };
-            debug.FollowsCamera = false;
+            debug.FollowsCamera = true;
+            debug.ScaleWithCamera = true;
             debug.AddToGame();
              
             ParticleEmitter Fire = new ParticleEmitter("Fire", Vector2.One * 500)
             {
                 BlendState = BlendState.Additive,
-                Life = 5000,
+                Life = 5000, //5000
 
-                MinVelocity = new Vector2(-3),
-                MaxVelocity = new Vector2(3),
+                MinVelocity = new Vector2(0), //-3
+                MaxVelocity = new Vector2(0), //3
 
                 MinScale = new Vector2(5),
                 MaxScale = new Vector2(7),
@@ -98,6 +99,7 @@ namespace EdgeDemo
                 MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
                 MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent)
             };
+            Fire.OnEmit += new ParticleEmitter.ParticleEventHandler(Fire_OnEmit);
             Fire.AddToGame();
 
             Sprite platform = new Sprite("Pixel", new Vector2(500, 700)) { Scale = new Vector2(1000, 100), Color = Color.White };
@@ -105,17 +107,17 @@ namespace EdgeDemo
             platform.Body.BodyType = BodyType.Static;
             platform.AddToGame();
 
-            Sprite ball = new Sprite("Pixel", new Vector2(400, 0)) { Scale = new Vector2(50, 50), Color = Color.Gray };
-            ball.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ball.Width * ball.Scale.X).ToSimUnits(), (ball.Height * ball.Scale.Y).ToDisplayUnits(), 1));
+            Sprite ball = new Sprite("Pixel", new Vector2(600, 0)) { Scale = new Vector2(50, 50), Color = Color.Gray, Data = new List<string>() { "Ball" } };
+            ball.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ball.Width * ball.Scale.X).ToSimUnits(), (ball.Height * ball.Scale.Y).ToSimUnits(), 1));
             ball.Body.BodyType = BodyType.Dynamic;
-            ball.Body.OnCollision += new OnCollisionEventHandler(Body_OnCollision);
-            ball.Body.Restitution = 1;
+            ball.Body.Restitution = 1.1f;
             ball.AddToGame();
         }
 
-        static bool Body_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        static void Fire_OnEmit(ParticleEmitter sender, Sprite particle, GameTime gameTime)
         {
-            return true;
+            particle.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (particle.Width / 2 * particle.Scale.X).ToSimUnits(), 1));
+            particle.Body.BodyType = BodyType.Dynamic;
         }
 
         public static void game_OnLoadContent()

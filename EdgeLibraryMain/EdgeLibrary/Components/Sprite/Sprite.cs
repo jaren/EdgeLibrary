@@ -79,7 +79,7 @@ namespace EdgeLibrary
 
         //Used for camera tracking
         public bool FollowsCamera;
-        public Vector2 PositionOnScreen;
+        public bool ScaleWithCamera;
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
         protected Dictionary<string,Action> Actions;
@@ -126,8 +126,8 @@ namespace EdgeLibrary
 
             ShouldBeRemoved = false;
 
-            FollowsCamera = true;
-            PositionOnScreen = Vector2.Zero;
+            FollowsCamera = false;
+            ScaleWithCamera = false;
 
             //Sets the default visual effects
             Scale = Vector2.One;
@@ -223,16 +223,6 @@ namespace EdgeLibrary
             Body = body;
             Body.Position = ConvertUnits.ToSimUnits(Position);
         }
-        public void EnablePhysics()
-        {
-            PhysicsEnabled = false;
-
-            if (Body != null)
-            {
-                Body.Position = ConvertUnits.ToSimUnits(Position);
-            }
-        }
-
         public void DisablePhysics()
         {
             PhysicsEnabled = false;
@@ -241,15 +231,10 @@ namespace EdgeLibrary
         //Updates the sprite
         public override void Update(GameTime gameTime)
         {
-            if (!FollowsCamera)
-            {
-                Position = EdgeGame.Camera.Position - EdgeGame.WindowSize / 2 + PositionOnScreen;
-            }
-
             if (PhysicsEnabled && Body != null)
             {
-                Position = ConvertUnits.ToDisplayUnits(Body.Position);
-                Rotation = Body.Rotation;
+                _position = ConvertUnits.ToDisplayUnits(Body.Position);
+                _rotation = Body.Rotation;
             }
 
             //Updates the actions
@@ -274,7 +259,7 @@ namespace EdgeLibrary
         {
             RestartSpriteBatch();
 
-            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, Scale, SpriteEffects, 0);
+            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
             RestartSpriteBatch();
         }
@@ -283,10 +268,17 @@ namespace EdgeLibrary
         //Should be called before and after drawing
         protected void RestartSpriteBatch()
         {
-            if (BlendState != BlendState.AlphaBlend)
+            if (BlendState != BlendState.AlphaBlend || FollowsCamera)
             {
                 EdgeGame.Game.SpriteBatch.End();
-                EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
+                if (!FollowsCamera)
+                {
+                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
+                }
+                else
+                {
+                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise);
+                }
             }
         }
 
