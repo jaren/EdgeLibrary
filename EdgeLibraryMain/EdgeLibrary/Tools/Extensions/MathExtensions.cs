@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using FarseerPhysics;
 
 namespace EdgeLibrary
 {
@@ -187,5 +188,47 @@ namespace EdgeLibrary
             string[] splitParts = path.Split(splitter);
             return splitParts[splitParts.Length - 1];
         }
+
+        //Used for converting between sim units and display units
+        #region FarseerPhysics
+        public static float ToDisplayUnits(this float simUnits)
+        {
+            return ConvertUnits.ToDisplayUnits(simUnits);
+        }
+        public static float ToDisplayUnits(this int simUnits)
+        {
+            return ConvertUnits.ToDisplayUnits(simUnits);
+        }
+        public static Vector2 ToDisplayUnits(this Vector2 simUnits)
+        {
+            return ConvertUnits.ToDisplayUnits(simUnits);
+        }
+        public static Vector3 ToDisplayUnits(this Vector3 simUnits)
+        {
+            return ConvertUnits.ToDisplayUnits(simUnits);
+        }
+
+        public static double ToSimUnits(this double displayUnits)
+        {
+            return ConvertUnits.ToSimUnits(displayUnits);
+        }
+        public static float ToSimUnits(this float displayUnits)
+        {
+            return ConvertUnits.ToSimUnits(displayUnits);
+        }
+        public static float ToSimUnits(this int displayUnits)
+        {
+            return ConvertUnits.ToSimUnits(displayUnits);
+        }
+        public static Vector2 ToSimUnits(this Vector2 displayUnits)
+        {
+            return ConvertUnits.ToSimUnits(displayUnits);
+        }
+        public static Vector3 ToSimUnits(this Vector3 displayUnits)
+        {
+            return ConvertUnits.ToSimUnits(displayUnits);
+        }
+
+        #endregion
     }
 }

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 namespace EdgeLibrary
 {
@@ -21,6 +23,10 @@ namespace EdgeLibrary
         //Used for drawing the game
         public static Camera Camera;
         public static Camera3D Camera3D;
+
+        //Farseer Physics
+        public static World World { get; private set; }
+        public static float WorldStep = 1 / 60f;
 
         //The common game time
         public static GameTime GameTime;
@@ -90,6 +96,12 @@ namespace EdgeLibrary
             Game.Run();
         }
 
+        //Sets the world
+        public static void InitializeWorld(Vector2 gravity)
+        {
+            World = new World(gravity);
+        }
+
         //Stops the game
         public static void Stop()
         {
@@ -125,6 +137,12 @@ namespace EdgeLibrary
         {
             //Sets the game time
             GameTime = gameTime;
+
+            if (World != null)
+            {
+                //Updates the physics
+                World.Step(WorldStep);
+            }
 
             //Updates all the game items
             Input.Update(gameTime);

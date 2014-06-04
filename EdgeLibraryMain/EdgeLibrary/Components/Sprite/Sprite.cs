@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics;
 
 namespace EdgeLibrary
 {
@@ -22,6 +24,10 @@ namespace EdgeLibrary
 
         //If the Sprite is supposed to be removed from the game, this will be set to true
         public bool ShouldBeRemoved { get; protected set; }
+
+        //Used for physics
+        public Body Body { get; protected set; }
+        public bool PhysicsEnabled;
 
         //Sets the texture through a string
         public string TextureName { set { Texture = EdgeGame.GetTexture(value); } }
@@ -39,7 +45,19 @@ namespace EdgeLibrary
         //Optional visual effects
         public virtual Color Color { get; set; }
         //Measured in radians
-        public virtual float Rotation { get; set; }
+        public virtual float Rotation { 
+            get { return _rotation; }
+            set 
+            {
+                _rotation = value;
+                if (PhysicsEnabled && Body != null)
+                {
+                    Body.Rotation = _rotation;
+                }
+            }
+        }
+        private float _rotation;
+
         public virtual SpriteEffects SpriteEffects { get; set; }
 
         //Used to store data in a sprite
@@ -59,20 +77,30 @@ namespace EdgeLibrary
         //Used for OnCollideStart
         protected List<string> currentlyCollidingWithIDs;
 
+        //Used for camera tracking
+        public bool FollowsCamera;
+        public Vector2 PositionOnScreen;
+
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
         protected Dictionary<string,Action> Actions;
         protected List<string> actionsToRemove;
 
         //Location of the sprite
-        public virtual Vector2 Position { get; set; }
+        public virtual Vector2 Position {
+            get { return _position; }
+            set 
+            {
+                _position = value;
+                if (PhysicsEnabled && Body != null)
+                {
+                    Body.Position = ConvertUnits.ToSimUnits(_position);
+                }
+            } 
+        }
+        private Vector2 _position;
 
         //Which blend state to use when drawing the sprite
         public BlendState BlendState { get; set; }
-
-        //Used for collisions
-        public delegate void CollisionEvent(Sprite sender, Sprite collided, GameTime gameTime);
-        public event CollisionEvent OnCollideStart = delegate { };
-        public event CollisionEvent OnCollide = delegate { };
 
         //Gives a button functionality to sprites
         public delegate void ButtonEvent(Sprite sender, Vector2 mousePosition, GameTime gameTime);
@@ -94,7 +122,12 @@ namespace EdgeLibrary
 
             BlendState = BlendState.AlphaBlend;
 
+            PhysicsEnabled = false;
+
             ShouldBeRemoved = false;
+
+            FollowsCamera = true;
+            PositionOnScreen = Vector2.Zero;
 
             //Sets the default visual effects
             Scale = Vector2.One;
@@ -121,11 +154,6 @@ namespace EdgeLibrary
             Rotation = rotation;
             Scale = scale;
             SpriteEffects = effects;
-        }
-
-        //Initializes the collision body with this sprite
-        public virtual void InitializeCollision()
-        {
         }
 
         //Adds the sprite to the game
@@ -189,15 +217,40 @@ namespace EdgeLibrary
             return Actions.Remove(id);
         }
 
-        //Checks if this is colliding with any other sprite
-        public virtual void UpdateCollision(GameTime gameTime, GameComponentCollection components)
+        public void EnablePhysics(Body body)
         {
+            PhysicsEnabled = true;
+            Body = body;
+            Body.Position = ConvertUnits.ToSimUnits(Position);
+        }
+        public void EnablePhysics()
+        {
+            PhysicsEnabled = false;
+
+            if (Body != null)
+            {
+                Body.Position = ConvertUnits.ToSimUnits(Position);
+            }
+        }
+
+        public void DisablePhysics()
+        {
+            PhysicsEnabled = false;
         }
 
         //Updates the sprite
         public override void Update(GameTime gameTime)
         {
-            UpdateCollision(gameTime, EdgeGame.Game.Components);
+            if (!FollowsCamera)
+            {
+                Position = EdgeGame.Camera.Position - EdgeGame.WindowSize / 2 + PositionOnScreen;
+            }
+
+            if (PhysicsEnabled && Body != null)
+            {
+                Position = ConvertUnits.ToDisplayUnits(Body.Position);
+                Rotation = Body.Rotation;
+            }
 
             //Updates the actions
             actionsToRemove.Clear();
