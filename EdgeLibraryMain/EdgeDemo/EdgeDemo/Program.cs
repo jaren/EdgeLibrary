@@ -32,7 +32,30 @@ namespace EdgeDemo
         {
             EdgeGame.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
             EdgeGame.OnLoadContent += new EdgeGame.EdgeGameEvent(game_OnLoadContent);
+            EdgeGame.OnUpdate += new EdgeGame.EdgeGameUpdateEvent(EdgeGame_OnUpdate);
             EdgeGame.Start();
+        }
+
+        static void EdgeGame_OnUpdate(GameTime gameTime)
+        {
+            int speed = 10;
+
+            if (Input.IsKeyDown(Keys.Up))
+            {
+                EdgeGame.Camera.Position += new Vector2(0, -speed);
+            }
+            if (Input.IsKeyDown(Keys.Down))
+            {
+                EdgeGame.Camera.Position += new Vector2(0, speed);
+            }
+            if (Input.IsKeyDown(Keys.Right))
+            {
+                EdgeGame.Camera.Position += new Vector2(speed, 0);
+            }
+            if (Input.IsKeyDown(Keys.Left))
+            {
+                EdgeGame.Camera.Position += new Vector2(-speed, 0);
+            }
         }
 
         static void game_OnInit()

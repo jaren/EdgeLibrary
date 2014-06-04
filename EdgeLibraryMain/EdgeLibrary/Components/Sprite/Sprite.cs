@@ -52,10 +52,6 @@ namespace EdgeLibrary
         public virtual bool CenterAsOrigin { get { return _centerAsOrigin; } set { _centerAsOrigin = value; reloadOriginPoint(); } }
         private bool _centerAsOrigin;
 
-        //Used for detecting collisions
-        public virtual CollisionBody CollisionBody { get; set; }
-        public virtual ShapeTypes CollisionBodyType { get; set; }
-
         //The texture for drawing
         public virtual Texture2D Texture { get { return _texture; } set { _texture = value; reloadOriginPoint(); } }
         private Texture2D _texture;
@@ -113,9 +109,6 @@ namespace EdgeLibrary
 
             currentlyCollidingWithIDs = new List<string>();
 
-            CollisionBodyType = ShapeTypes.rectangle;
-            CollisionBody = CollisionBody.BodyWithSprite(this, CollisionLayers.All);
-
             if (textureName != null)
             {
                 Texture = EdgeGame.GetTexture(textureName);
@@ -133,12 +126,6 @@ namespace EdgeLibrary
         //Initializes the collision body with this sprite
         public virtual void InitializeCollision()
         {
-            CollisionBody = CollisionBody.BodyWithSprite(this, CollisionLayers.All);
-        }
-        public virtual void InitializeCollision(ShapeTypes shapeType, CollisionLayers layers)
-        {
-            CollisionBodyType = shapeType;
-            CollisionBody = CollisionBody.BodyWithSprite(this, layers);
         }
 
         //Adds the sprite to the game
@@ -205,59 +192,6 @@ namespace EdgeLibrary
         //Checks if this is colliding with any other sprite
         public virtual void UpdateCollision(GameTime gameTime, GameComponentCollection components)
         {
-            if (CollisionBody != null)
-            {
-                //Scales the collision body
-                CollisionBody.ScaleWith(this);
-
-                //If not using center as origin, change the CollisionBody position
-                if (CenterAsOrigin)
-                {
-                    CollisionBody.Position = new Vector2(Position.X, Position.Y);
-                }
-                else
-                {
-                    CollisionBody.Position = new Vector2(Position.X + Width / 2, Position.Y + Height / 2);
-                }
-
-                //Checking if this sprite collides with the mouse
-                if (CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.MousePosition, 1, 1))))
-                {
-                    //The mouse just clicked this sprite
-                    if (Input.JustLeftClicked())
-                    {
-                        OnClick(this, Input.MousePosition, gameTime);
-                    }
-
-                    //The mouse just moved over this sprite
-                    if (!CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
-                    {
-                        OnMouseOver(this, Input.MousePosition, gameTime);
-                    }
-                }
-                    //If it hasn't collided, then check if it just moved off
-                else if (CollisionBody.CheckForCollide(new CollisionBody(new ShapeRectangle(Input.PreviousMousePosition, 1, 1))))
-                {
-                    OnMouseOff(this, Input.MousePosition, gameTime);
-                }
-
-                //Loops through all the elements and checks if they're colliding
-                foreach (GameComponent component in components)
-                {
-                    if (component is Sprite)
-                    {
-                        Sprite sprite = component as Sprite;
-
-                        if (sprite != this && sprite.CollisionBody != null)
-                        {
-                            if (CollisionBody.CheckForCollide(sprite.CollisionBody))
-                            {
-                                OnCollide(this, sprite, gameTime);
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         //Updates the sprite
@@ -306,10 +240,6 @@ namespace EdgeLibrary
         //Draws the area of the collision body
         public virtual void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
-            if (CollisionBody != null)
-            {
-                CollisionBody.Shape.DrawDebug(gameTime, spriteBatch, color);
-            }
         }
 
         //Creates a copy of the sprite

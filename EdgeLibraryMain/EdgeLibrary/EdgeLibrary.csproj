@@ -138,8 +138,6 @@
     <Compile Include="Components\Miscellaneous\ParticleEmitter.cs" />
     <Compile Include="Components\Sprite\Animation\AnimationIndex.cs" />
     <Compile Include="Components\Sprite\Animation\AnimSprite.cs" />
-    <Compile Include="Components\Sprite\Collision\CollisionBody.cs" />
-    <Compile Include="Components\Sprite\Collision\Shape.cs" />
     <Compile Include="Components\Sprite\TextSprite.cs" />
     <Compile Include="Game\EdgeGame\EdgeGame.cs" />
     <Compile Include="Game\Tools\DebugLogger.cs" />
@@ -155,7 +153,9 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Physics\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
