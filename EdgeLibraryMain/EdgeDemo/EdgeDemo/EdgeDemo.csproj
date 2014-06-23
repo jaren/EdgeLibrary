@@ -64,8 +64,7 @@
     <StartupObject>EdgeDemo.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FarseerPhysics XNA, Version=3.5.0.27283, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FarseerPhysics XNA">
       <HintPath>..\..\Farseer Physics\bin\x86\Debug\FarseerPhysics XNA.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">

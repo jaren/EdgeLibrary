@@ -111,6 +111,10 @@ namespace EdgeLibrary
         {
             return MathHelper.ToRadians(degrees);
         }
+        public static float ToRadians(this int degrees)
+        {
+            return MathHelper.ToRadians(degrees);
+        }
 
         /// <summary>
         /// Converts a number from radians to degrees
@@ -119,7 +123,10 @@ namespace EdgeLibrary
         {
             return MathHelper.ToDegrees(radians);
         }
-
+        public static float ToDegrees(this int radians)
+        {
+            return MathHelper.ToDegrees(radians);
+        }
 
         /// <summary>
         /// Subtracts the specified amount from each component of the specified vector.

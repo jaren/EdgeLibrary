@@ -80,46 +80,66 @@ namespace EdgeDemo
 
             EdgeGame.ClearColor = Color.Black;
 
-            DebugText debug = new DebugText("Impact-20", Vector2.Zero) { Color = Color.White };
+            DebugText debug = new DebugText("Impact-20", new Vector2(5)) { Color = Color.White };
             debug.FollowsCamera = true;
             debug.ScaleWithCamera = true;
             debug.AddToGame();
              
-            ParticleEmitter Fire = new ParticleEmitter("Fire", Vector2.One * 500)
+            ParticleEmitter Fire = new ParticleEmitter("meteorSmall", new Vector2(500))
             {
-                BlendState = BlendState.Additive,
-                Life = 5000, //5000
+                BlendState = BlendState.AlphaBlend,
+                Life = 6000,
 
-                MinVelocity = new Vector2(0), //-3
-                MaxVelocity = new Vector2(0), //3
+                EmitPositionVariance = new Vector2(480, 0),
 
-                MinScale = new Vector2(5),
-                MaxScale = new Vector2(7),
+                MinVelocity = new Vector2(-80),
+                MaxVelocity = new Vector2(80),
 
-                MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
-                MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent)
+                MinScale = new Vector2(0.5f),
+                MaxScale = new Vector2(3),
+
+                ColorIndex = new ColorChangeIndex(6000, Color.White, Color.Transparent), //MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
+                                                                                         //MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
+
+                EmitWait = 10
             };
             Fire.OnEmit += new ParticleEmitter.ParticleEventHandler(Fire_OnEmit);
             Fire.AddToGame();
 
-            Sprite platform = new Sprite("Pixel", new Vector2(500, 700)) { Scale = new Vector2(1000, 100), Color = Color.White };
+            Sprite platform = new Sprite("Pixel", new Vector2(500, 1000)) { Scale = new Vector2(1000, 10), Color = Color.Gray };
             platform.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (platform.Width * platform.Scale.X).ToSimUnits(), (platform.Height * platform.Scale.Y).ToSimUnits(), 1));
             platform.Body.BodyType = BodyType.Static;
+            platform.Body.CollisionCategories = Category.All;
             platform.AddToGame();
+
+            Sprite platformTop = (Sprite)platform.Clone();
+            platformTop.Position = new Vector2(500, 0);
+            platformTop.AddToGame();
+
+            Sprite platformLeft = (Sprite)platform.Clone();
+            platformLeft.Position = new Vector2(0, 500);
+            platformLeft.Body.Rotation = 90.ToRadians();
+            platformLeft.AddToGame();
+
+            Sprite platformRight = (Sprite)platformLeft.Clone();
+            platformRight.Position = new Vector2(1000, 500);
+            platformRight.AddToGame();
         }
 
         static void Fire_OnEmit(ParticleEmitter sender, Sprite particle, GameTime gameTime)
         {
             particle.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (particle.Width / 2 * particle.Scale.X).ToSimUnits(), 1));
             particle.Body.BodyType = BodyType.Dynamic;
-            particle.Body.Restitution = 0.8f;
+            particle.Body.Restitution = 0.5f;
+            if (particle.Body.Mass < 0.5f)
+            {
+                particle.Body.Mass = 0.5f;
+            }
             particle.Body.CollisionCategories = Category.Cat1;
-            particle.Body.CollidesWith = Category.Cat2;
-            
-            float max = 10;
-            Vector2 force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
-            Vector2 point = new Vector2(RandomTools.RandomFloat((particle.Position.X - (particle.Width * particle.Scale.X))));
-            particle.Body.ApplyForce(ref force, ref point);
+            particle.Body.CollidesWith = Category.All;
+
+            Vector2 force = new Vector2(float.Parse(particle.Data["Velocity"].Split(',')[0]), float.Parse(particle.Data["Velocity"].Split(',')[1]));
+            particle.Body.ApplyForce(force, particle.Body.WorldCenter);
         }
 
         public static void game_OnLoadContent()

@@ -126,19 +126,17 @@ namespace EdgeLibrary
             particle.Texture = Texture;
 
             //The data is used to store life time
-            particle.Data.Add("0");
-            particle.Data.Add(RandomTools.RandomFloat(MinLife, MaxLife).ToString());
+            particle.Data.Add("LivedTime", "0");
+            particle.Data.Add("LifeTime", RandomTools.RandomFloat(MinLife, MaxLife).ToString());
 
             //Generates a random velocity
-            particle.AddAction("Velocity", new AMove(new Vector2(RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X),
-                RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y))));
+            particle.Data.Add("Velocity", RandomTools.RandomFloat(MinVelocity.X, MaxVelocity.X) + "," + RandomTools.RandomFloat(MinVelocity.Y, MaxVelocity.Y));
+
+            //Generates a random rotation speed
+            particle.Data.Add("RotationSpeed", RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed).ToString());
 
             //Generates a random color change index
             particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
-
-            //Generates a random rotation speed
-            particle.AddAction("Rotation", new ARotate(RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed)));
-
 
             //Generates a random EmitPositionVariance to be used in the position
             Vector2 randomEmitPositionVariance = new Vector2(RandomTools.RandomFloat(MinEmitPositionVariance.X, MinEmitPositionVariance.X),
@@ -197,13 +195,31 @@ namespace EdgeLibrary
                 if (!particlesToRemove.Contains(particle))
                 {
                     particle.Update(gameTime);
-                    particle.Data[0] = (double.Parse(particle.Data[0]) + gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed).ToString();
-                    if (double.Parse(particle.Data[0]) > double.Parse(particle.Data[1]))
+
+                    if (!particle.PhysicsEnabled)
                     {
+                        //Moves the particle
+                        particle.Position += new Vector2(float.Parse(particle.Data["Velocity"].Split(',')[0]), float.Parse(particle.Data["Velocity"].Split(',')[1]));
+
+                        //Rotates the particle
+                        particle.Rotation += float.Parse(particle.Data["RotationSpeed"]);
+                    }
+
+                    //Increments the LivedTime and checks if the particle should be removed
+                    particle.Data["LivedTime"] = (double.Parse(particle.Data["LivedTime"]) + gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed).ToString();
+                    if (double.Parse(particle.Data["LivedTime"]) > double.Parse(particle.Data["LifeTime"]))
+                    {
+                        if (particle.PhysicsEnabled && EdgeGame.World.BodyList.Contains(Body))
+                        {
+                            EdgeGame.World.RemoveBody(Body);
+                        }
                         particlesToRemove.Add(particle);
+                        particle.Disable();
                     }
                 }
             }
+
+            //Possibly better way - set particle.ShouldBeRemoved to be true: Particles.RemoveAll(p => p.ShouldBeRemoved);
 
             //If enough particles should be removed, delete them
             if (particlesToRemove.Count >= maxParticlesToRemove)

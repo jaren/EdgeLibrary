@@ -61,7 +61,7 @@ namespace EdgeLibrary
         public virtual SpriteEffects SpriteEffects { get; set; }
 
         //Used to store data in a sprite
-        public List<string> Data;
+        public Dictionary<string, string> Data;
 
         //Gets the origin point of the sprite, which is either (0, 0) or half of the texture size
         public virtual Vector2 OriginPoint { get; protected set; }
@@ -118,7 +118,7 @@ namespace EdgeLibrary
 
             Position = position;
 
-            Data = new List<string>();
+            Data = new Dictionary<string, string>();
 
             BlendState = BlendState.AlphaBlend;
 
@@ -167,6 +167,16 @@ namespace EdgeLibrary
         public virtual void RemoveFromGame()
         {
             EdgeGame.Game.Components.Remove(this);
+            Disable();
+        }
+
+        public virtual void Disable()
+        {
+            PhysicsEnabled = false;
+            if (EdgeGame.World.BodyList.Contains(Body))
+            {
+                EdgeGame.World.RemoveBody(Body);
+            }
             ShouldBeRemoved = true;
             OnRemoved(this, EdgeGame.GameTime);
         }
@@ -285,12 +295,18 @@ namespace EdgeLibrary
         //Draws the area of the collision body
         public virtual void DrawDebug(GameTime gameTime, SpriteBatch spriteBatch, Color color)
         {
+            //Not currently used
         }
 
         //Creates a copy of the sprite
         public virtual object Clone()
         {
             Sprite clone = (Sprite)MemberwiseClone();
+
+            if (PhysicsEnabled)
+            {
+                clone.Body = Body.DeepClone();
+            }
 
             clone.Actions = new Dictionary<string, Action>();
             foreach (var action in Actions)
