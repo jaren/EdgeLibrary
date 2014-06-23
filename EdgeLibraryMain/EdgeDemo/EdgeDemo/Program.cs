@@ -29,6 +29,8 @@ namespace EdgeDemo
     #if WINDOWS
     static class Program
     {
+        static ParticleEmitter Fire;
+
         static void Main(string[] args)
         {
             EdgeGame.OnInit += new EdgeGame.EdgeGameEvent(game_OnInit);
@@ -41,6 +43,16 @@ namespace EdgeDemo
         static void EdgeGame_OnUpdate(GameTime gameTime)
         {
             float actualSpeed = speed / EdgeGame.Camera.Scale;
+
+            if (Input.IsLeftClicking())
+            {
+                Fire.Position = Input.MousePosition;
+                Fire.EmitWait = 10;
+            }
+            else
+            {
+                Fire.EmitWait = int.MaxValue;
+            }
 
             if (Input.IsKeyDown(Keys.Up))
             {
@@ -85,12 +97,12 @@ namespace EdgeDemo
             debug.ScaleWithCamera = true;
             debug.AddToGame();
              
-            ParticleEmitter Fire = new ParticleEmitter("meteorSmall", new Vector2(500))
+            Fire = new ParticleEmitter("meteorSmall", new Vector2(500))
             {
                 BlendState = BlendState.AlphaBlend,
                 Life = 6000,
 
-                EmitPositionVariance = new Vector2(480, 0),
+                EmitPositionVariance = new Vector2(0, 0),
 
                 MinVelocity = new Vector2(-80),
                 MaxVelocity = new Vector2(80),
@@ -100,7 +112,6 @@ namespace EdgeDemo
 
                 ColorIndex = new ColorChangeIndex(6000, Color.White, Color.Transparent), //MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
                                                                                          //MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
-
                 EmitWait = 10
             };
             Fire.OnEmit += new ParticleEmitter.ParticleEventHandler(Fire_OnEmit);
