@@ -27,6 +27,7 @@ namespace EdgeLibrary
         public double EmitWait { set { MinEmitWait = value; MaxEmitWait = value; } }
         public Vector2 EmitPositionVariance { set { MinEmitPositionVariance = value; MaxEmitPositionVariance = value; } }
         public int ParticlesToEmit { set { MinParticlesToEmit = value; MaxParticlesToEmit = value; } }
+        public bool ShouldEmit { get; set; }
 
         //The color for the particles
         public ColorChangeIndex MinColorIndex;
@@ -89,6 +90,8 @@ namespace EdgeLibrary
             CommonRotation = false;
             CommonRotationSpeed = false;
             CommonScale = true;
+
+            ShouldEmit = true;
 
             ColorIndex = new ColorChangeIndex(2000, Color.White, Color.Transparent);
             MinVelocity = -Vector2.One;
@@ -187,7 +190,10 @@ namespace EdgeLibrary
         /// </summary>
         public override void Update(GameTime gameTime)
         {
-            Ticker.Update(gameTime);
+            if (ShouldEmit)
+            {
+                Ticker.Update(gameTime);
+            }
 
             //Checks if each particle should be removed
             foreach (Sprite particle in Particles)

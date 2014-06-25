@@ -47,11 +47,11 @@ namespace EdgeDemo
             if (Input.IsLeftClicking())
             {
                 Fire.Position = Input.MousePosition;
-                Fire.EmitWait = 10;
+                Fire.ShouldEmit = true;
             }
             else
             {
-                Fire.EmitWait = int.MaxValue;
+                Fire.ShouldEmit = false;
             }
 
             if (Input.IsKeyDown(Keys.Up))
@@ -112,7 +112,9 @@ namespace EdgeDemo
 
                 ColorIndex = new ColorChangeIndex(6000, Color.White, Color.Transparent), //MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
                                                                                          //MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
-                EmitWait = 10
+                EmitWait = 10,
+
+                ShouldEmit = false
             };
             Fire.OnEmit += new ParticleEmitter.ParticleEventHandler(Fire_OnEmit);
             Fire.AddToGame();
