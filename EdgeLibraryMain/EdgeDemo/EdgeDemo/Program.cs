@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using EdgeLibrary;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
+using FarseerPhysics.Common;
 
 namespace EdgeDemo
 {
@@ -83,7 +84,6 @@ namespace EdgeDemo
 
         static void game_OnInit()
         {
-
             EdgeGame.InitializeWorld(new Vector2(0, 9.8f));
 
             EdgeGame.WindowSize = new Vector2(1000);
@@ -112,7 +112,8 @@ namespace EdgeDemo
 
                 ColorIndex = new ColorChangeIndex(6000, Color.White, Color.Transparent), //MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
                                                                                          //MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
-                EmitWait = 10,
+                EmitWait = 0,
+                ParticlesToEmit = 2,
 
                 ShouldEmit = false
             };
@@ -142,6 +143,12 @@ namespace EdgeDemo
         static void Fire_OnEmit(ParticleEmitter sender, Sprite particle, GameTime gameTime)
         {
             particle.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (particle.Width / 2 * particle.Scale.X).ToSimUnits(), 1));
+            //uint[] data = new uint[particle.Texture.Width * particle.Texture.Height];
+            //particle.Texture.GetData(data);
+            //List<Vertices> verts = PolygonTools.CreatePolygon(data, particle.Texture.Width, particle.Texture.Height, 0, false, false);
+            //verts[0].Scale(new Vector2(0.002f));
+            //particle.EnablePhysics(BodyFactory.CreatePolygon(EdgeGame.World, verts[0], 1));
+
             particle.Body.BodyType = BodyType.Dynamic;
             particle.Body.Restitution = 0.5f;
             if (particle.Body.Mass < 0.5f)
