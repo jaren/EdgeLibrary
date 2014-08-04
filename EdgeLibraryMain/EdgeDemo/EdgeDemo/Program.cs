@@ -45,15 +45,7 @@ namespace EdgeDemo
         {
             float actualSpeed = speed / EdgeGame.Camera.Scale;
 
-            if (Input.IsLeftClicking())
-            {
-                Fire.Position = Input.MousePosition;
-                Fire.ShouldEmit = true;
-            }
-            else
-            {
-                Fire.ShouldEmit = false;
-            }
+            Fire.Position = Input.MousePosition;
 
             if (Input.IsKeyDown(Keys.Up))
             {
@@ -97,25 +89,23 @@ namespace EdgeDemo
             debug.ScaleWithCamera = true;
             debug.AddToGame();
              
-            Fire = new ParticleEmitter("meteorSmall", new Vector2(500))
+            Fire = new ParticleEmitter("Fire", new Vector2(500))
             {
-                BlendState = BlendState.AlphaBlend,
-                Life = 6000,
+                BlendState = BlendState.Additive,
+                Life = 2000,
 
                 EmitPositionVariance = new Vector2(0, 0),
 
-                MinVelocity = new Vector2(-80),
-                MaxVelocity = new Vector2(80),
+                MinVelocity = new Vector2(2),
+                MaxVelocity = new Vector2(-2),
 
                 MinScale = new Vector2(0.5f),
-                MaxScale = new Vector2(3),
+                MaxScale = new Vector2(2.5f),
 
-                ColorIndex = new ColorChangeIndex(6000, Color.White, Color.Transparent), //MinColorIndex = new ColorChangeIndex(700, Color.Purple, Color.Magenta, Color.Purple, Color.Transparent),
-                                                                                         //MaxColorIndex = new ColorChangeIndex(700, Color.White, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
+               MinColorIndex = new ColorChangeIndex(400, Color.Magenta, Color.Orange, Color.Purple, Color.Transparent),
+               MaxColorIndex = new ColorChangeIndex(400, Color.Teal, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
                 EmitWait = 0,
-                ParticlesToEmit = 2,
-
-                ShouldEmit = false
+                ParticlesToEmit = 30,
             };
             Fire.OnEmit += new ParticleEmitter.ParticleEventHandler(Fire_OnEmit);
             Fire.AddToGame();
@@ -142,24 +132,7 @@ namespace EdgeDemo
 
         static void Fire_OnEmit(ParticleEmitter sender, Sprite particle, GameTime gameTime)
         {
-            particle.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (particle.Width / 2 * particle.Scale.X).ToSimUnits(), 1));
-            //uint[] data = new uint[particle.Texture.Width * particle.Texture.Height];
-            //particle.Texture.GetData(data);
-            //List<Vertices> verts = PolygonTools.CreatePolygon(data, particle.Texture.Width, particle.Texture.Height, 0, false, false);
-            //verts[0].Scale(new Vector2(0.002f));
-            //particle.EnablePhysics(BodyFactory.CreatePolygon(EdgeGame.World, verts[0], 1));
-
-            particle.Body.BodyType = BodyType.Dynamic;
-            particle.Body.Restitution = 0.5f;
-            if (particle.Body.Mass < 0.5f)
-            {
-                particle.Body.Mass = 0.5f;
-            }
-            particle.Body.CollisionCategories = Category.Cat1;
-            particle.Body.CollidesWith = Category.All;
-
-            Vector2 force = new Vector2(float.Parse(particle.Data["Velocity"].Split(',')[0]), float.Parse(particle.Data["Velocity"].Split(',')[1]));
-            particle.Body.ApplyForce(force, particle.Body.WorldCenter);
+            particle.Data["LifeTime"] = (float.Parse(particle.Data["LifeTime"]) * (new Vector2(float.Parse(particle.Data["Velocity"].Split(',')[0]), float.Parse(particle.Data["Velocity"].Split(',')[0])).Length() / new Vector2(2).Length())).ToString();
         }
 
         public static void game_OnLoadContent()
