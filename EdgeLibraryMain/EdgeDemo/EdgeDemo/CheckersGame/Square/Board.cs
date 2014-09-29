@@ -49,7 +49,6 @@ namespace EdgeDemo.CheckersGame
                     hasPiece = !hasPiece;
                 }
             }
-            Instance = this;
         }
 
         public override void Draw(GameTime gameTime)
@@ -83,8 +82,6 @@ namespace EdgeDemo.CheckersGame
         {
             return Squares[x, y].OccupyingPiece;
         }
-
-        public static Board Instance;
     }
 
     public enum Direction
