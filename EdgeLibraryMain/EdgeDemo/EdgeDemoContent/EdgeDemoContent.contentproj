@@ -187,6 +187,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Hyperfun.mp3">
+      <Name>Hyperfun</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
     <Content Include="ParticleSheet.xml">
       <Name>ParticleSheet</Name>
       <Importer>XmlImporter</Importer>
