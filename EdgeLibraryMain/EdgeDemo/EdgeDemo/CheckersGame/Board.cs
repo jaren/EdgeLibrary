@@ -13,7 +13,7 @@ namespace EdgeDemo.CheckersGame
         public int Size;
         public Border Border;
 
-        public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, Color borderColor, float borderSize, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
+        public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
         {
             if (size < 7)
@@ -37,9 +37,10 @@ namespace EdgeDemo.CheckersGame
                     hasPiece = !hasPiece;
                     Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance)*x, topLeft.Y + (squareSize+squareDistance)*y), squareSize, hasPiece ? color1 : color2);
 
-                    if (hasPiece)
+                    if (hasPiece && (y < 3 || y > size - 4))
                     {
-                        Squares[x, y].SetPiece(new Piece(pieceTexture, Squares[x,y].Position, pieceColor1, pieceSize));
+                        bool topTeam = y < 3;
+                        Squares[x, y].SetPiece(new Piece(pieceTexture, Squares[x,y].Position, topTeam ? pieceColor1 : pieceColor2, pieceSize, topTeam));
                     }
                 }
 
@@ -57,6 +58,8 @@ namespace EdgeDemo.CheckersGame
             {
                 piece.Draw(gameTime);
             }
+
+            Border.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)

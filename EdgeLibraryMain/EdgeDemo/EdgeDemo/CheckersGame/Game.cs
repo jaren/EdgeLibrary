@@ -24,7 +24,7 @@ namespace EdgeDemo.CheckersGame
 
             //EdgeGame.playSong("Hyperfun");
 
-            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, 0, Color.SaddleBrown, Color.Tan, Color.DarkGoldenrod, 5, "Checkers", 50, Color.Goldenrod, Color.Gold);
+            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, 0, Color.SaddleBrown, Color.Tan, 5, Color.DarkGoldenrod, "Checkers", 50, Color.Gray, Color.DarkGray);
             Board.AddToGame();
         }
 
