@@ -26,14 +26,25 @@ namespace EdgeDemo.CheckersGame
         public Square(string texture, Vector2 position, float size, Color color)
             : base(texture, position)
         {
-            Scale = new Vector2(size, size);
+            Scale = new Vector2(size/Width, size/Height);
             Color = color;
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            if (hasPiece)
+            {
+                OccupyingPiece.Draw(gameTime);
+            }
         }
 
         public void SetPiece(Piece piece)
         {
             piece.X = X;
             piece.Y = Y;
+            OccupyingPiece = piece;
         }
     }
 }

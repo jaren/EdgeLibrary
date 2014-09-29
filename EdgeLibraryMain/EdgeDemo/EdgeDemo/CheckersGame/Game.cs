@@ -24,7 +24,7 @@ namespace EdgeDemo.CheckersGame
 
             //EdgeGame.playSong("Hyperfun");
 
-            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, Color.SaddleBrown, Color.Tan, Color.DarkGoldenrod, 5, 5);
+            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, 0, Color.SaddleBrown, Color.Tan, Color.DarkGoldenrod, 5, "Checkers", 50, Color.Goldenrod, Color.Gold);
             Board.AddToGame();
         }
 
@@ -65,6 +65,8 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
             EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
+
+            EdgeGame.LoadTexture("Checkers");
             EdgeGame.LoadSong("Hyperfun");
         }
 

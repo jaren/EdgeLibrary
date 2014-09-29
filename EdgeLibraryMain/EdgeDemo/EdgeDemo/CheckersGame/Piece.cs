@@ -12,12 +12,22 @@ namespace EdgeDemo.CheckersGame
         public bool King;
         public bool TopTeam;
 
+        public float Size
+        {
+            set
+            {
+                Scale = new Vector2(value / Width, value / Height);
+            }
+        }
+
         public int X;
         public int Y;
 
-        public Piece(string textureName, Vector2 position, Color color, Vector2 scale)
-            : base(textureName, position, color, scale)
+        public Piece(string textureName, Vector2 position, Color color, float size)
+            : base(textureName, position)
         {
+            Color = color;
+            Size = size;
             King = false;
         }
 

@@ -192,6 +192,11 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
+    <Compile Include="Checkers.png">
+      <Name>Checkers</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="ParticleSheet.xml">
       <Name>ParticleSheet</Name>
       <Importer>XmlImporter</Importer>

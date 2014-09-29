@@ -13,9 +13,14 @@ namespace EdgeDemo.CheckersGame
         public int Size;
         public Border Border;
 
-        public Board(string squareTexture, Vector2 position, int size, float squareSize, Color color1, Color color2, Color borderColor, float squareDistance = 0, float borderSize = 10)
+        public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, Color borderColor, float borderSize, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
         {
+            if (size < 7)
+            {
+                throw new ArgumentException("Board size must be greater than seven");
+            }
+
             float totalSquareDistance = squareDistance * (size - 1);
 
             Border = new Border(squareTexture, position, borderSize, squareSize*size + totalSquareDistance, borderColor);
@@ -24,18 +29,23 @@ namespace EdgeDemo.CheckersGame
 
             Size = size;
             Squares = new Square[size, size];
-            bool team1 = true;
+            bool hasPiece = true;
             for (int x = 0; x < size; x++)
             {
                 for (int y = 0; y < size; y++)
                 {
-                    team1 = !team1;
-                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance)*x, topLeft.Y + (squareSize+squareDistance)*y), squareSize, team1 ? color1 : color2);
+                    hasPiece = !hasPiece;
+                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance)*x, topLeft.Y + (squareSize+squareDistance)*y), squareSize, hasPiece ? color1 : color2);
+
+                    if (hasPiece)
+                    {
+                        Squares[x, y].SetPiece(new Piece(pieceTexture, Squares[x,y].Position, pieceColor1, pieceSize));
+                    }
                 }
 
                 if (size % 2 == 0)
                 {
-                    team1 = !team1;
+                    hasPiece = !hasPiece;
                 }
             }
             Instance = this;
@@ -47,10 +57,6 @@ namespace EdgeDemo.CheckersGame
             {
                 piece.Draw(gameTime);
             }
-
-            Border.Draw(gameTime);
-            Color = Color.White;
-            base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
