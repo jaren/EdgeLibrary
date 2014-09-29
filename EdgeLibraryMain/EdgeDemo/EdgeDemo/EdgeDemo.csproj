@@ -117,11 +117,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckersGame\Board.cs" />
-    <Compile Include="CheckersGame\Border.cs" />
+    <Compile Include="CheckersGame\BoardManager.cs" />
+    <Compile Include="CheckersGame\Square\Board.cs" />
+    <Compile Include="CheckersGame\Square\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />
-    <Compile Include="CheckersGame\Piece.cs" />
-    <Compile Include="CheckersGame\Square.cs" />
+    <Compile Include="CheckersGame\Square\Piece.cs" />
+    <Compile Include="CheckersGame\Square\Square.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

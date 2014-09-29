@@ -10,8 +10,6 @@ namespace EdgeDemo.CheckersGame
 {
     public class Game
     {
-        public Board Board;
-
         public void OnInit()
         {
             EdgeGame.InitializeWorld(new Vector2(0, 9.8f));
@@ -24,8 +22,9 @@ namespace EdgeDemo.CheckersGame
 
             //EdgeGame.playSong("Hyperfun");
 
-            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, 0, Color.SaddleBrown, Color.Tan, 5, Color.DarkGoldenrod, "Checkers", 50, Color.Gray, Color.DarkGray);
-            Board.AddToGame();
+            BoardManager manager = new BoardManager();
+            manager.AddToGame();
+
         }
 
         public void OnUpdate(GameTime gameTime)
