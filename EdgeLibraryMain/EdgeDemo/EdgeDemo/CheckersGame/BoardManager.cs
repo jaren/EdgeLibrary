@@ -15,6 +15,10 @@ namespace EdgeDemo.CheckersGame
         //Used for each move
         public bool TopTeamTurn;
         public bool SelectedFirstSquare;
+        int StartX;
+        int StartY;
+        int FinishX;
+        int FinishY;
 
         public Color TopColor = Color.Gray;
         public Color BottomColor = Color.DarkGray;
@@ -83,6 +87,16 @@ namespace EdgeDemo.CheckersGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            if (Board.CheckForClick())
+            {
+                if (!SelectedFirstSquare)
+                {
+                }
+                else
+                {
+                }
+            }
         }
     }
 }

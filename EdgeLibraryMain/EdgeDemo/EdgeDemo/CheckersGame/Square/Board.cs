@@ -78,7 +78,8 @@ namespace EdgeDemo.CheckersGame
         public bool CheckForClick()
         {
             return Input.MousePosition.X > Position.X - CompleteSize/2 && Input.MousePosition.X < Position.X + CompleteSize/2
-                && Input.MousePosition.Y > Position.Y - CompleteSize/2 && Input.MousePosition.Y < Position.Y + CompleteSize/2;
+                && Input.MousePosition.Y > Position.Y - CompleteSize/2 && Input.MousePosition.Y < Position.Y + CompleteSize/2
+                && Input.JustLeftClicked();
         }
 
         public bool TeamCanJump(bool team)

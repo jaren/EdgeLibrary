@@ -15,6 +15,8 @@ namespace EdgeDemo.CheckersGame
         public int X;
         public int Y;
 
+        private float Size;
+
         public bool hasPiece
         {
             get
@@ -26,8 +28,15 @@ namespace EdgeDemo.CheckersGame
         public Square(string texture, Vector2 position, float size, Color color)
             : base(texture, position)
         {
+            Size = size;
             Scale = new Vector2(size/Width, size/Height);
             Color = color;
+        }
+
+        public bool CheckForClick()
+        {
+            return Input.MousePosition.X > Position.X - Size / 2 && Input.MousePosition.X < Position.X + Size / 2
+            && Input.MousePosition.Y > Position.Y - Size / 2 && Input.MousePosition.Y < Position.Y + Size / 2;
         }
 
         public override void Draw(GameTime gameTime)
