@@ -84,7 +84,11 @@ namespace EdgeDemo.CheckersGame
 
         public Square GetSquareClicked()
         {
-
+            if (CheckForClick())
+            {
+                
+            }
+            return null;
         }
 
         public bool TeamCanJump(bool team)

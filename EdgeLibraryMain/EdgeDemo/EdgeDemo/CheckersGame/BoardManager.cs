@@ -88,21 +88,24 @@ namespace EdgeDemo.CheckersGame
         {
             base.Update(gameTime);
 
-            if (Board.CheckForClick())
+            if (Input.JustLeftClicked())
             {
-                if (!SelectedFirstSquare)
+                Square square = Board.GetSquareClicked();
+                if (square != null)
                 {
-                    Square square = Board.GetSquareClicked();
-                    StartX = square.X;
-                    StartY = square.Y;
-                }
-                else
-                {
-                    Square square = Board.GetSquareClicked();
-                    StartX = square.X;
-                    StartY = square.Y;
+                    if (!SelectedFirstSquare)
+                    {
+                        StartX = square.X;
+                        StartY = square.Y;
+                    }
+                    else
+                    {
+                        FinishX = square.X;
+                        FinishY = square.Y;
+                    }
                 }
             }
+        }
         }
     }
 }
