@@ -92,9 +92,15 @@ namespace EdgeDemo.CheckersGame
             {
                 if (!SelectedFirstSquare)
                 {
+                    Square square = Board.GetSquareClicked();
+                    StartX = square.X;
+                    StartY = square.Y;
                 }
                 else
                 {
+                    Square square = Board.GetSquareClicked();
+                    StartX = square.X;
+                    StartY = square.Y;
                 }
             }
         }

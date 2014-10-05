@@ -82,6 +82,11 @@ namespace EdgeDemo.CheckersGame
                 && Input.JustLeftClicked();
         }
 
+        public Square GetSquareClicked()
+        {
+
+        }
+
         public bool TeamCanJump(bool team)
         {
             //TODO: Check if team can move one of their pieces to jump one of the other team's pieces
