@@ -29,31 +29,49 @@ namespace EdgeDemo.CheckersGame
             StatusSprite.AddToGame();
         }
 
-        public bool Move(int startX, int startY, int finishX, int finishY)
+        public string Move(int startX, int startY, int finishX, int finishY)
         {
-            //Checks if the player can jump but isn't
-            if (Board.Instance.TeamCanJump(TopTeam) &&
-                //Checks if the player jumped by checking the distance it moved
-                ((x == X + 1 && y == Y + 1) || (x == X - 1 && y == Y + 1) ||
-                (x == X + 1 && y == Y - 1) || (x == X - 1 && y == Y - 1)))
+            Piece movePiece = Board.GetPieceAt(startX, startY);
+
+            if (movePiece == null)
             {
-                return false;
+                return "Please click on a square where there is a piece";
+            }
+
+            if (Board.GetPieceAt(finishX, finishY) != null)
+            {
+                return "That is an invalid move";
+            }
+
+            if (Board.GetSquareAt(finishX, finishY).FakeSquare)
+            {
+                return "That is an invalid square";
+            }
+
+            //Checks if the player can jump but isn't
+            if (Board.TeamCanJump(movePiece.TopTeam) &&
+                //Checks if the player jumped by checking the distance it moved
+                ((finishX == startX + 1 && finishY == startY + 1) || (finishX == startX - 1 && finishY == startY + 1) ||
+                (finishX == startX + 1 && finishY == startY - 1) || (finishX == startX - 1 && finishY == startY - 1)))
+            {
+                return "You must jump";
             }
 
             //Checks if a piece isn't moving in a correct direction
-            if (!King && ((TopTeam && y >= Y) || (!TopTeam && y <= Y)))
+            if (!movePiece.King && ((movePiece.TopTeam && finishY >= startY) || (!movePiece.TopTeam && finishY <= startY)))
             {
-                return false;
+                return "Please click on a valid square";
             }
 
             //Checks if a piece trying to move off of the board
-            if (x > Board.Instance.Size || y > Board.Instance.Size)
+            if (finishX > Board.Size || finishY > Board.Size)
             {
-                return false;
+                return "Please click on a square which is on the board";
             }
 
-            return true;
-            //Eventually this will call the web service's mvoe function
+            return "";
+
+            //Eventually this will call the web service's move function
             //Something like this:
             //CheckersService.move(short pieceId, short destX, short destY)
         }

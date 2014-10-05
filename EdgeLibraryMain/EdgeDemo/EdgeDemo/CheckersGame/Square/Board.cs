@@ -13,6 +13,8 @@ namespace EdgeDemo.CheckersGame
         public int Size;
         public Border Border;
 
+        public int CompleteSize;
+
         public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
         {
@@ -26,6 +28,7 @@ namespace EdgeDemo.CheckersGame
             Border = new Border(squareTexture, position, borderSize, squareSize*size + totalSquareDistance, borderColor);
 
             Vector2 topLeft = new Vector2(position.X - (squareSize * size - squareSize + totalSquareDistance) / 2, position.Y - (squareSize * size - squareSize + totalSquareDistance) / 2);
+            CompleteSize = (int)(Position.X - topLeft.X) * 2;
 
             Size = size;
             Squares = new Square[size, size];
@@ -72,6 +75,12 @@ namespace EdgeDemo.CheckersGame
             base.Initialize();
         }
 
+        public bool CheckForClick()
+        {
+            return Input.MousePosition.X > Position.X - CompleteSize/2 && Input.MousePosition.X < Position.X + CompleteSize/2
+                && Input.MousePosition.Y > Position.Y - CompleteSize/2 && Input.MousePosition.Y < Position.Y + CompleteSize/2;
+        }
+
         public bool TeamCanJump(bool team)
         {
             //TODO: Check if team can move one of their pieces to jump one of the other team's pieces
@@ -81,6 +90,11 @@ namespace EdgeDemo.CheckersGame
         public Piece GetPieceAt(int x, int y)
         {
             return Squares[x, y].OccupyingPiece;
+        }
+
+        public Square GetSquareAt(int x, int y)
+        {
+            return Squares[x, y];
         }
     }
 
