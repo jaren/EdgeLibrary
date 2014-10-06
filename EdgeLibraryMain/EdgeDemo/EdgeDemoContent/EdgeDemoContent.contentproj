@@ -22,6 +22,9 @@
     <RootNamespace>EdgeDemoContent</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FarseerPhysics XNA">
+      <HintPath>..\..\Farseer Physics Engine 3.5\FarseerPhysics XNA.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>

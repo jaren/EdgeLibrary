@@ -25,7 +25,7 @@ namespace EdgeDemo.CheckersGame
 
             float totalSquareDistance = squareDistance * (size - 1);
 
-            Border = new Border(squareTexture, position, borderSize, squareSize*size + totalSquareDistance, borderColor);
+            Border = new Border(squareTexture, position, borderSize, squareSize * size + totalSquareDistance, borderColor);
 
             Vector2 topLeft = new Vector2(position.X - (squareSize * size - squareSize + totalSquareDistance) / 2, position.Y - (squareSize * size - squareSize + totalSquareDistance) / 2);
             CompleteSize = (int)(Position.X - topLeft.X) * 2;
@@ -43,7 +43,7 @@ namespace EdgeDemo.CheckersGame
                     if (hasPiece && (y < ((size - 3) / 2 + 1) || y > ((size - 3) / 2 + 2)))
                     {
                         bool topTeam = y < ((size - 3) / 2 + 1);
-                        Squares[x, y].SetPiece(new Piece(pieceTexture, Squares[x,y].Position, topTeam ? pieceColor1 : pieceColor2, pieceSize, topTeam));
+                        Squares[x, y].SetPiece(new Piece(pieceTexture, Squares[x, y].Position, topTeam ? pieceColor1 : pieceColor2, pieceSize, topTeam));
                     }
                 }
 
@@ -77,8 +77,8 @@ namespace EdgeDemo.CheckersGame
 
         public bool CheckForClick()
         {
-            return Input.MousePosition.X > Position.X - CompleteSize/2 && Input.MousePosition.X < Position.X + CompleteSize/2
-                && Input.MousePosition.Y > Position.Y - CompleteSize/2 && Input.MousePosition.Y < Position.Y + CompleteSize/2
+            return Input.MousePosition.X > Position.X - CompleteSize / 2 && Input.MousePosition.X < Position.X + CompleteSize / 2
+                && Input.MousePosition.Y > Position.Y - CompleteSize / 2 && Input.MousePosition.Y < Position.Y + CompleteSize / 2
                 && Input.JustLeftClicked();
         }
 
@@ -93,7 +93,62 @@ namespace EdgeDemo.CheckersGame
 
         public bool TeamCanJump(bool team)
         {
-            //TODO: Check if team can move one of their pieces to jump one of the other team's pieces
+            foreach (Square square in Squares)
+            {
+                #region Variables
+                Square topLeft = Squares[square.X - 1, square.Y - 1];
+                Square topLeftTopLeft = Squares[square.X - 1, square.Y - 1];
+                Square topRight = Squares[square.X + 1, square.Y - 1];
+                Square topRightTopRight = Squares[square.X + 2, square.Y - 2];
+                Square bottomLeft = Squares[square.X - 1, square.Y + 1];
+                Square bottomLeftBottomLeft = Squares[square.X - 2, square.Y + 2];
+                Square bottomRight = Squares[square.X + 1, square.Y + 1];
+                Square bottomRightBottomRight = Squares[square.X + 2, square.Y + 2];
+                #endregion Variables
+                Piece piece = square.OccupyingPiece;
+
+                if (piece != null)
+                {
+                    #region BottomTeam
+                    if (!piece.TopTeam || piece.King)
+                    {
+                        if (topLeft.OccupyingPiece != null)
+                        {
+                            if (Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                            {
+                                return true;
+                            }
+                        }
+                        if (topRight.OccupyingPiece != null)
+                        {
+                            if (Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    #endregion BottomTeam
+                    #region TopTeam
+                    if (piece.TopTeam || piece.King)
+                    {
+                        if (bottomLeft.OccupyingPiece != null)
+                        {
+                            if (Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                            {
+                                return true;
+                            }
+                        }
+                        if (bottomRight.OccupyingPiece != null)
+                        {
+                            if (Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    #endregion TopTeam
+                }
+            }
             return false;
         }
 
