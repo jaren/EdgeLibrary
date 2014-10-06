@@ -13,7 +13,8 @@ namespace EdgeDemo.CheckersGame
         public int Size;
         public Border Border;
 
-        public int CompleteSize;
+        public float CompleteSize;
+        public float SquareSize;
 
         public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
@@ -28,7 +29,9 @@ namespace EdgeDemo.CheckersGame
             Border = new Border(squareTexture, position, borderSize, squareSize * size + totalSquareDistance, borderColor);
 
             Vector2 topLeft = new Vector2(position.X - (squareSize * size - squareSize + totalSquareDistance) / 2, position.Y - (squareSize * size - squareSize + totalSquareDistance) / 2);
-            CompleteSize = (int)(Position.X - topLeft.X) * 2;
+            CompleteSize = (Position.X - topLeft.X) * 2 + squareSize + totalSquareDistance;
+
+            SquareSize = squareSize;
 
             Size = size;
             Squares = new Square[size, size];
@@ -38,7 +41,7 @@ namespace EdgeDemo.CheckersGame
                 for (int y = 0; y < size; y++)
                 {
                     hasPiece = !hasPiece;
-                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance) * x, topLeft.Y + (squareSize + squareDistance) * y), squareSize, hasPiece ? color1 : color2) { X = size - x, Y = size - y };
+                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance) * x, topLeft.Y + (squareSize + squareDistance) * y), squareSize, hasPiece ? color1 : color2) { X = size - x, Y = size - y, TopLeft = new Vector2(topLeft.X + x * squareSize - (squareSize / 2), topLeft.Y + y * squareSize - (squareSize / 2)) };
 
                     if (hasPiece && (y < ((size - 3) / 2 + 1) || y > ((size - 3) / 2 + 2)))
                     {
@@ -50,6 +53,20 @@ namespace EdgeDemo.CheckersGame
                 if (size % 2 == 0)
                 {
                     hasPiece = !hasPiece;
+                }
+            }
+        }
+
+        public void MoveBoard(Vector2 position)
+        {
+            Vector2 topLeft = new Vector2(Position.X - CompleteSize/2, Position.Y - CompleteSize/2);
+
+            Position = position;
+            for (int x = 0; x < Size; x++)
+            {
+                for (int y = 0; y < Size; y++)
+                {
+                    Squares[x, y].TopLeft = topLeft + new Vector2(x * SquareSize, y * SquareSize);
                 }
             }
         }
@@ -86,7 +103,20 @@ namespace EdgeDemo.CheckersGame
         {
             if (CheckForClick())
             {
-                
+                Vector2 topLeft = new Vector2(Position.X - CompleteSize / 2, Position.Y - CompleteSize / 2);
+                float modifiedX = Input.MousePosition.X - topLeft.X;
+                float modifiedY = Input.MousePosition.Y - topLeft.Y;
+
+                Vector2 modifiedPosition = new Vector2(modifiedX - (modifiedX % SquareSize), modifiedY - (modifiedY % SquareSize));
+                modifiedPosition += topLeft;
+
+                foreach (Square square in Squares)
+                {
+                    if (square.TopLeft == modifiedPosition)
+                    {
+                        return square;
+                    }
+                }
             }
             return null;
         }

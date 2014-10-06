@@ -23,14 +23,18 @@ namespace EdgeDemo.CheckersGame
         public Color TopColor = Color.Gray;
         public Color BottomColor = Color.DarkGray;
 
-        public BoardManager() : base("", Vector2.Zero)
+        public BoardManager()
+            : base("", Vector2.Zero)
         {
-            Board = new Board("Pixel", EdgeGame.WindowSize / 2, 8, 64, 0, Color.SaddleBrown, Color.Tan, 5, Color.DarkGoldenrod, "Checkers", 50, TopColor, BottomColor);
+            Board = new Board("Pixel", EdgeGame.WindowSize/2, 8, 64, 0, Color.SaddleBrown, Color.Tan, 5, Color.DarkGoldenrod, "Checkers", 50, TopColor, BottomColor);
             Board.AddToGame();
+
+            DebugText debug = new DebugText("Impact-20", new Vector2(0, EdgeGame.WindowSize.Y - 75)) { Color = Color.Goldenrod, CenterAsOrigin = false };
+            debug.AddToGame();
 
             StatusSprite = new TextSprite("ComicSans-20", "Top Team: Select a square to move from", Vector2.Zero);
             StatusSprite.CenterAsOrigin = false;
-            StatusSprite.AddToGame();
+            //StatusSprite.AddToGame();
         }
 
         public string Move(int startX, int startY, int finishX, int finishY)
@@ -97,15 +101,16 @@ namespace EdgeDemo.CheckersGame
                     {
                         StartX = square.X;
                         StartY = square.Y;
+                        square.Color = Color.Green;
                     }
                     else
                     {
                         FinishX = square.X;
                         FinishY = square.Y;
+                        square.Color = Color.Red;
                     }
                 }
             }
-        }
         }
     }
 }

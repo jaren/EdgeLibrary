@@ -12,6 +12,8 @@ namespace EdgeDemo.CheckersGame
         public bool FakeSquare;
         public Piece OccupyingPiece;
 
+        public Vector2 TopLeft;
+
         public int X;
         public int Y;
 
