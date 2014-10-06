@@ -95,6 +95,8 @@ namespace EdgeDemo.CheckersGame
             if (Input.JustLeftClicked())
             {
                 Square square = Board.GetSquareClicked();
+                StatusSprite.Text = "X: " + square.X + ", Y: " + square.Y;
+
                 if (square != null)
                 {
                     if (!SelectedFirstSquare)
