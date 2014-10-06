@@ -86,6 +86,10 @@ namespace EdgeDemo.CheckersGame
             return false;
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+        }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
