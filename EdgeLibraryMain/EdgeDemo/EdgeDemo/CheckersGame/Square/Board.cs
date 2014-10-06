@@ -125,35 +125,36 @@ namespace EdgeDemo.CheckersGame
         {
             foreach (Square square in Squares)
             {
-                #region Variables
-                Square topLeft = Squares[square.X - 1, square.Y - 1];
-                Square topLeftTopLeft = Squares[square.X - 1, square.Y - 1];
-                Square topRight = Squares[square.X + 1, square.Y - 1];
-                Square topRightTopRight = Squares[square.X + 2, square.Y - 2];
-                Square bottomLeft = Squares[square.X - 1, square.Y + 1];
-                Square bottomLeftBottomLeft = Squares[square.X - 2, square.Y + 2];
-                Square bottomRight = Squares[square.X + 1, square.Y + 1];
-                Square bottomRightBottomRight = Squares[square.X + 2, square.Y + 2];
-                #endregion Variables
                 Piece piece = square.OccupyingPiece;
-
                 if (piece != null)
                 {
                     #region BottomTeam
                     if (!piece.TopTeam || piece.King)
                     {
-                        if (topLeft.OccupyingPiece != null)
+                        if (piece.X > 1 && piece.Y > 1)
                         {
-                            if (Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                            Square topLeft = Squares[square.X - 1, square.Y - 1];
+                            Square topLeftTopLeft = Squares[square.X - 1, square.Y - 1];
+
+                            if (topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                return true;
+                                if (Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                                {
+                                    return true;
+                                }
                             }
                         }
-                        if (topRight.OccupyingPiece != null)
+                        if(piece.X < Size - 2 && piece.Y > 1)
                         {
-                            if (Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                            Square topRight = Squares[square.X + 1, square.Y - 1];
+                            Square topRightTopRight = Squares[square.X + 2, square.Y - 2];
+
+                            if (topRight.OccupyingPiece != null && topRight.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                return true;
+                                if (Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -161,18 +162,28 @@ namespace EdgeDemo.CheckersGame
                     #region TopTeam
                     if (piece.TopTeam || piece.King)
                     {
-                        if (bottomLeft.OccupyingPiece != null)
+                        if (piece.X > 1 && piece.Y < Size - 2)
                         {
-                            if (Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                            Square bottomLeft = Squares[square.X - 1, square.Y + 1];
+                            Square bottomLeftBottomLeft = Squares[square.X - 2, square.Y + 2];
+                            if (bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                return true;
+                                if (Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                                {
+                                    return true;
+                                }
                             }
                         }
-                        if (bottomRight.OccupyingPiece != null)
+                        if (piece.X < Size - 2 && piece.Y < Size - 2)
                         {
-                            if (Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                            Square bottomRight = Squares[square.X + 1, square.Y + 1];
+                            Square bottomRightBottomRight = Squares[square.X + 2, square.Y + 2];
+                            if (bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                return true;
+                                if (Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
