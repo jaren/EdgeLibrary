@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckersGame\BoardManager.cs" />
+    <Compile Include="CheckersGame\Config.cs" />
     <Compile Include="CheckersGame\Square\Board.cs" />
     <Compile Include="CheckersGame\Square\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />

@@ -11,6 +11,7 @@ namespace EdgeDemo.CheckersGame
     {
         public bool FakeSquare;
         public Piece OccupyingPiece;
+        public Color DefaultColor;
 
         public Vector2 TopLeft;
 
@@ -32,6 +33,7 @@ namespace EdgeDemo.CheckersGame
         {
             Size = size;
             Scale = new Vector2(size/Width, size/Height);
+            DefaultColor = color;
             Color = color;
         }
 
