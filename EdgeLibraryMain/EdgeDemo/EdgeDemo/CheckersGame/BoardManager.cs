@@ -55,7 +55,7 @@ namespace EdgeDemo.CheckersGame
             }
 
             //Checks if the player can jump but isn't
-            if (Board.TeamCanJump(movePiece.TopTeam) &&
+            if (Board.TeamCanJump(movePiece.TopTeam) && //NOTE: This should probably be replaced with if(Board.TeamCanJumpTo(movePiece.topTeam).Count > 0 && ... (also the returned dictionary should be assigned to a variable)
                 //Checks if the player jumped by checking the distance it moved
                 ((FinishX == StartX + 1 && FinishY == StartY + 1) || (FinishX == StartX - 1 && FinishY == StartY + 1) ||
                 (FinishX == StartX + 1 && FinishY == StartY - 1) || (FinishX == StartX - 1 && FinishY == StartY - 1)))
