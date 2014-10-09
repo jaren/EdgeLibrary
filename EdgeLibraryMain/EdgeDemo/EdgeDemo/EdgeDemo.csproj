@@ -122,6 +122,7 @@
     <Compile Include="CheckersGame\Square\Board.cs" />
     <Compile Include="CheckersGame\Square\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />
+    <Compile Include="CheckersGame\Square\Movement.cs" />
     <Compile Include="CheckersGame\Square\Piece.cs" />
     <Compile Include="CheckersGame\Square\Square.cs" />
     <Compile Include="Program.cs" />
