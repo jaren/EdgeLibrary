@@ -23,17 +23,20 @@ namespace EdgeDemo.CheckersGame
         private Piece MovementPiece;
         private Square StartSquare;
         private Dictionary<Piece, List<Square>> PossibleMoves;
+        private string TeamText;
 
         public BoardManager()
             : base("", Vector2.Zero)
         {
-            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize/2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.Color1, Config.Color2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
+            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.Color1, Config.Color2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
             Board.AddToGame();
 
             DebugText debug = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 75)) { Color = Color.Goldenrod, CenterAsOrigin = false };
             debug.AddToGame();
 
-            StatusSprite = new TextSprite(Config.StatusFont, Config.TopTeamName + " " + Config.SelectSquare1Message, Vector2.Zero);
+            TeamText = Config.TopTeamName + ": ";
+
+            StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero);
             StatusSprite.CenterAsOrigin = false;
             StatusSprite.AddToGame();
 
@@ -108,32 +111,45 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (!SelectedFirstSquare)
                     {
-                        StartX = square.X;
-                        StartY = square.Y;
-
-                        foreach (Piece possiblePiece in PossibleMoves.Keys)
+                        if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
-                            Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
+                            MovementPiece = square.OccupyingPiece;
+                            StartSquare = square;
+                            StartX = square.X;
+                            StartY = square.Y;
+
+                            foreach (Piece possiblePiece in PossibleMoves.Keys)
+                            {
+                                Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
+                            }
+
+                            square.Color = Config.Square1SelectColor;
+                            SelectedFirstSquare = true;
+                            StatusSprite.Text = TeamText + Config.SelectSquare2Message;
+
+                            foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                            {
+                                possibleSquare.Color = Config.Square2SelectColor;
+                            }
                         }
-
-                        square.Color = Config.Square1SelectColor;
-                        SelectedFirstSquare = true;
-                        StatusSprite.Text = Config.SelectSquare2Message;
-
-                        foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                        else
                         {
-                            possibleSquare.Color = Config.Square2SelectColor;
+                            StatusSprite.Text = TeamText + Config.SelectSquare1MessageFailed;
                         }
                     }
                     else
                     {
-                        FinishX = square.X;
-                        FinishY = square.Y;
+                        if (PossibleMoves[MovementPiece].Contains(square))
+                        {
+                            FinishX = square.X;
+                            FinishY = square.Y;
 
-                        Move();
+                            Move();
 
-                        TopTeamTurn = !TopTeamTurn;
-                        resetMove();
+                            TopTeamTurn = !TopTeamTurn;
+                            TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+                            resetMove();
+                        }
                     }
                 }
             }
@@ -145,11 +161,12 @@ namespace EdgeDemo.CheckersGame
             {
                 foreach (Square possibleSquare in PossibleMoves[MovementPiece])
                 {
-                    possibleSquare.Color = Config.Square2SelectColor;
+                    possibleSquare.Color = possibleSquare.DefaultColor;
                 }
+
                 StartSquare.Color = StartSquare.DefaultColor;
                 SelectedFirstSquare = false;
-                StatusSprite.Text = Config.SelectSquare1Message;
+                StatusSprite.Text = TeamText + Config.SelectSquare1Message;
             }
 
             PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);

@@ -16,7 +16,9 @@ namespace EdgeDemo.CheckersGame
         public static string DebugFont = "Impact-20";
 
         public static string SelectSquare1Message = "Please select a square to move from";
-        public static string SelectSquare2Message = "Please select a valid square to move to";
+        public static string SelectSquare1MessageFailed = "Please select a valid square to move from";
+        public static string SelectSquare2Message = "Please select a square to move to";
+        public static string SelectSquare2MessageFailed = "Please select a valid square to move to";
 
         public static string TopTeamName = "Top Team";
         public static string BottomTeamName = "Bottom Team";
