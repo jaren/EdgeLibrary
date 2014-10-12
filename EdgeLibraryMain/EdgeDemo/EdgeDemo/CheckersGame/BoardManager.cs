@@ -97,7 +97,15 @@ namespace EdgeDemo.CheckersGame
 
             if (Input.KeyJustPressed(Config.MoveCancelKey))
             {
-                resetMove();
+                if (SelectedFirstSquare)
+                {
+                    foreach (Square possibleSquare in PossibleMoves[StartSquare.OccupyingPiece])
+                    {
+                        possibleSquare.Color = possibleSquare.DefaultColor;
+                    }
+
+                    resetMove();
+                }
             }
 
             if (Input.JustLeftClicked())
@@ -150,7 +158,7 @@ namespace EdgeDemo.CheckersGame
 
         public void resetMove()
         {
-            if (PossibleMoves != null)
+            if (PossibleMoves != null && StartSquare != null && FinishSquare != null)
             {
                 //It uses the finish square's occupying piece because the piece has already been moved
                 foreach (Square possibleSquare in PossibleMoves[FinishSquare.OccupyingPiece])
@@ -159,8 +167,6 @@ namespace EdgeDemo.CheckersGame
                 }
 
                 StartSquare.Color = StartSquare.DefaultColor;
-                SelectedFirstSquare = false;
-                StatusSprite.Text = TeamText + Config.SelectSquare1Message;
             }
 
             PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
@@ -169,6 +175,9 @@ namespace EdgeDemo.CheckersGame
             {
                 Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
             }
+
+            SelectedFirstSquare = false;
+            StatusSprite.Text = TeamText + Config.SelectSquare1Message;
 
             StartSquare = null;
             FinishSquare = null;
