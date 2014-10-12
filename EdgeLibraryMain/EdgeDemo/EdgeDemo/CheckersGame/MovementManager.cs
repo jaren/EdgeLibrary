@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EdgeDemo.CheckersGame
 {
-    public static class Movement
+    public static class MovementManager
     {
         public static bool TeamCanJump(bool topTeam)
         {

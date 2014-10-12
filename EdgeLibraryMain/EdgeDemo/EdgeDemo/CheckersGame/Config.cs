@@ -29,7 +29,7 @@ namespace EdgeDemo.CheckersGame
         public static int PieceSize = 54;
 
         public static int BorderSize = 5;
-        public static Color BorderColor = Color.Goldenrod;
+        public static Color BorderColor = Color.DarkGoldenrod;
         public static int SquareDistance = 0;
 
         public static Color Color1 = Color.SaddleBrown;
@@ -37,5 +37,8 @@ namespace EdgeDemo.CheckersGame
 
         public static Color TopColor = Color.Gray;
         public static Color BottomColor = Color.DarkGray;
+
+        public static Color Square1SelectColor = Color.Goldenrod;
+        public static Color Square2SelectColor = Color.DarkGoldenrod;
     }
 }

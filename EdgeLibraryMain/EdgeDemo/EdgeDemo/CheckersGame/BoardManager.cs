@@ -20,7 +20,9 @@ namespace EdgeDemo.CheckersGame
         private int StartY;
         private int FinishX;
         private int FinishY;
-        private List<Vector2> PossibleMoves;
+        private Piece MovementPiece;
+        private Square StartSquare;
+        private Dictionary<Piece, List<Square>> PossibleMoves;
 
         public BoardManager()
             : base("", Vector2.Zero)
@@ -34,8 +36,11 @@ namespace EdgeDemo.CheckersGame
             StatusSprite = new TextSprite(Config.StatusFont, Config.TopTeamName + " " + Config.SelectSquare1Message, Vector2.Zero);
             StatusSprite.CenterAsOrigin = false;
             StatusSprite.AddToGame();
+
+            resetMove();
         }
 
+        /*
         public void GeneratePossibleMoves()
         {
             PossibleMoves = new List<Vector2>();
@@ -55,7 +60,7 @@ namespace EdgeDemo.CheckersGame
             }
 
             //Checks if the player can jump but isn't
-            if (Movement.TeamCanJump(movePiece.TopTeam) && //NOTE: This should probably be replaced with if(Board.TeamCanJumpTo(movePiece.topTeam).Count > 0 && ... (also the returned dictionary should be assigned to a variable)
+            if (MovementManager.TeamCanJump(movePiece.TopTeam) && //NOTE: This should probably be replaced with if(Board.TeamCanJumpTo(movePiece.topTeam).Count > 0 && ... (also the returned dictionary should be assigned to a variable)
                 //Checks if the player jumped by checking the distance it moved
                 ((FinishX == StartX + 1 && FinishY == StartY + 1) || (FinishX == StartX - 1 && FinishY == StartY + 1) ||
                 (FinishX == StartX + 1 && FinishY == StartY - 1) || (FinishX == StartX - 1 && FinishY == StartY - 1)))
@@ -72,18 +77,14 @@ namespace EdgeDemo.CheckersGame
             {
             }
         }
+         */
 
-        public bool Move()
+        public void Move()
         {
-            if (PossibleMoves.Contains(new Vector2(FinishX, FinishY)))
-            {
-                //Move here
-                //Eventually this will call the web service's move function
-                //Something like this:
-                //CheckersService.move(short pieceId, short destX, short destY)
-                return true;
-            }
-            return false;
+            //Move here
+            //Eventually this will call the web service's move function
+            //Something like this:
+            //CheckersService.move(short pieceId, short destX, short destY)
         }
 
         public override void Draw(GameTime gameTime)
@@ -109,21 +110,30 @@ namespace EdgeDemo.CheckersGame
                     {
                         StartX = square.X;
                         StartY = square.Y;
-                        square.Color = Color.DarkGreen;
+
+                        foreach (Piece possiblePiece in PossibleMoves.Keys)
+                        {
+                            Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
+                        }
+
+                        square.Color = Config.Square1SelectColor;
                         SelectedFirstSquare = true;
                         StatusSprite.Text = Config.SelectSquare2Message;
-                        GeneratePossibleMoves();
+
+                        foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                        {
+                            possibleSquare.Color = Config.Square2SelectColor;
+                        }
                     }
                     else
                     {
                         FinishX = square.X;
                         FinishY = square.Y;
 
-                        if (Move())
-                        {
-                            TopTeamTurn = !TopTeamTurn;
-                            resetMove();
-                        }
+                        Move();
+
+                        TopTeamTurn = !TopTeamTurn;
+                        resetMove();
                     }
                 }
             }
@@ -131,10 +141,23 @@ namespace EdgeDemo.CheckersGame
 
         public void resetMove()
         {
-            Board.GetSquareAt(StartX, StartY).Color = Board.GetSquareAt(StartX, StartY).DefaultColor;
-            Board.GetSquareAt(FinishX, FinishY).Color = Board.GetSquareAt(FinishX, FinishY).DefaultColor;
-            SelectedFirstSquare = false;
-            StatusSprite.Text = Config.SelectSquare1Message;
+            if (PossibleMoves != null)
+            {
+                foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                {
+                    possibleSquare.Color = Config.Square2SelectColor;
+                }
+                StartSquare.Color = StartSquare.DefaultColor;
+                SelectedFirstSquare = false;
+                StatusSprite.Text = Config.SelectSquare1Message;
+            }
+
+            PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
+
+            foreach (Piece possiblePiece in PossibleMoves.Keys)
+            {
+                Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
+            }
         }
     }
 }
