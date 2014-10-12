@@ -20,14 +20,6 @@ namespace EdgeDemo.CheckersGame
 
         private float Size;
 
-        public bool hasPiece
-        {
-            get
-            {
-                return OccupyingPiece != null;
-            }
-        }
-
         public Square(string texture, Vector2 position, float size, Color color)
             : base(texture, position)
         {
@@ -47,7 +39,7 @@ namespace EdgeDemo.CheckersGame
         {
             base.Draw(gameTime);
 
-            if (hasPiece)
+            if (OccupyingPiece != null)
             {
                 OccupyingPiece.Draw(gameTime);
             }
@@ -58,6 +50,7 @@ namespace EdgeDemo.CheckersGame
             piece.X = X;
             piece.Y = Y;
             OccupyingPiece = piece;
+            OccupyingPiece.Position = Position;
         }
     }
 }

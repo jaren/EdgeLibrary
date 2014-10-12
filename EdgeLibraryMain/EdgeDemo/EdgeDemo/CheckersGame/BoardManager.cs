@@ -16,12 +16,8 @@ namespace EdgeDemo.CheckersGame
         //Used for each move
         public bool TopTeamTurn;
         public bool SelectedFirstSquare;
-        private int StartX;
-        private int StartY;
-        private int FinishX;
-        private int FinishY;
-        private Piece MovementPiece;
         private Square StartSquare;
+        private Square FinishSquare;
         private Dictionary<Piece, List<Square>> PossibleMoves;
         private string TeamText;
 
@@ -84,7 +80,8 @@ namespace EdgeDemo.CheckersGame
 
         public void Move()
         {
-            //Move here
+            Board.MovePiece(StartSquare.X, StartSquare.Y, FinishSquare.X, FinishSquare.Y);
+
             //Eventually this will call the web service's move function
             //Something like this:
             //CheckersService.move(short pieceId, short destX, short destY)
@@ -113,10 +110,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
-                            MovementPiece = square.OccupyingPiece;
                             StartSquare = square;
-                            StartX = square.X;
-                            StartY = square.Y;
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -127,7 +121,7 @@ namespace EdgeDemo.CheckersGame
                             SelectedFirstSquare = true;
                             StatusSprite.Text = TeamText + Config.SelectSquare2Message;
 
-                            foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                            foreach (Square possibleSquare in PossibleMoves[StartSquare.OccupyingPiece])
                             {
                                 possibleSquare.Color = Config.Square2SelectColor;
                             }
@@ -139,10 +133,9 @@ namespace EdgeDemo.CheckersGame
                     }
                     else
                     {
-                        if (PossibleMoves[MovementPiece].Contains(square))
+                        if (PossibleMoves[StartSquare.OccupyingPiece].Contains(square))
                         {
-                            FinishX = square.X;
-                            FinishY = square.Y;
+                            FinishSquare = square;
 
                             Move();
 
@@ -159,7 +152,8 @@ namespace EdgeDemo.CheckersGame
         {
             if (PossibleMoves != null)
             {
-                foreach (Square possibleSquare in PossibleMoves[MovementPiece])
+                //It uses the finish square's occupying piece because the piece has already been moved
+                foreach (Square possibleSquare in PossibleMoves[FinishSquare.OccupyingPiece])
                 {
                     possibleSquare.Color = possibleSquare.DefaultColor;
                 }
@@ -175,6 +169,9 @@ namespace EdgeDemo.CheckersGame
             {
                 Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
             }
+
+            StartSquare = null;
+            FinishSquare = null;
         }
     }
 }

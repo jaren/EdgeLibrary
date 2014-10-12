@@ -71,6 +71,18 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
+        public bool MovePiece(int startX, int startY, int finishX, int finishY)
+        {
+            if (Squares[startX, startY].OccupyingPiece != null && Squares[finishX, finishY].OccupyingPiece == null)
+            {
+                Squares[finishX, finishY].SetPiece(Squares[startX, startY].OccupyingPiece);
+                Squares[startX, startY].OccupyingPiece = null;
+
+                return true;
+            }
+            return false;
+        }
+
         public override void Draw(GameTime gameTime)
         {
             foreach (Square piece in Squares)
