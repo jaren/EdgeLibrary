@@ -10,6 +10,7 @@ namespace EdgeDemo.CheckersGame
     public static class Config
     {
         public static string PieceTexture = "Checkers";
+        public static string KingTexture = "Crown";
         public static string SquareTexture = "Pixel";
 
         public static string StatusFont = "ComicSans-20";

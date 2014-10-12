@@ -31,5 +31,19 @@ namespace EdgeDemo.CheckersGame
             TopTeam = topTeam;
             King = false;
         }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            if (King)
+            {
+                RestartSpriteBatch();
+
+                EdgeGame.Game.SpriteBatch.Draw(, Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+
+                RestartSpriteBatch();
+            }
+        }
     }
 }

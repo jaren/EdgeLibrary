@@ -65,7 +65,8 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
 
-            EdgeGame.LoadTexture("Checkers");
+            EdgeGame.LoadTexture(Config.PieceTexture);
+            EdgeGame.LoadFont(Config.KingTexture);
             EdgeGame.LoadSong("Hyperfun");
         }
 
