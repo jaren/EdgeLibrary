@@ -173,6 +173,8 @@ namespace EdgeDemo.CheckersGame
             if (PossibleMoves.Count == 0)
             {
                 TopTeamTurn = !TopTeamTurn;
+                TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+                StatusSprite.Text = TeamText + Config.PassMessage;
                 resetMove();
             }
 
