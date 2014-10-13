@@ -71,25 +71,6 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        public bool MovePiece(int startX, int startY, int finishX, int finishY)
-        {
-            if (Squares[startX, startY].OccupyingPiece != null && Squares[finishX, finishY].OccupyingPiece == null)
-            {
-                Squares[finishX, finishY].SetPiece(Squares[startX, startY].OccupyingPiece);
-                Squares[startX, startY].OccupyingPiece = null;
-
-                if ((Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == Config.BoardSize) || (!Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == 0))
-                {
-                    Squares[finishX, finishY].OccupyingPiece.King = true;
-                }
-
-                Squares[finishX, finishY].OccupyingPiece.AddAction(new AMoveTo(Squares[finishX, finishY].Position, Config.CheckerMoveSpeed));
-
-                return true;
-            }
-            return false;
-        }
-
         public override void Draw(GameTime gameTime)
         {
             //To make sure the pieces get drawn on top of the squares
