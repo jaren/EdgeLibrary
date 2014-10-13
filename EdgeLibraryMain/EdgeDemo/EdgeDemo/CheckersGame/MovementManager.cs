@@ -244,6 +244,7 @@ namespace EdgeDemo.CheckersGame
         public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam)
         {
             //Returns a list of all pieces that can move and all places they can move to
+
             Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
 
             foreach (Square square in Board.Squares)
