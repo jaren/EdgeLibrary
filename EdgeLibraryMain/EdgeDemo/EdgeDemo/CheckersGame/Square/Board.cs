@@ -78,7 +78,7 @@ namespace EdgeDemo.CheckersGame
                 Squares[finishX, finishY].SetPiece(Squares[startX, startY].OccupyingPiece);
                 Squares[startX, startY].OccupyingPiece = null;
 
-                if ((Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == Config.BoardSize) || (!Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == 0))
+                if ((Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == Config.BoardSize - 1) || (!Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == 0))
                 {
                     Squares[finishX, finishY].OccupyingPiece.King = true;
                 }

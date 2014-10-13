@@ -7,8 +7,30 @@ namespace EdgeDemo.CheckersGame
 {
     public static class MovementManager
     {
+        /*
+         * All code sections in this class named "BottomTeam" check for jumps for all pieces on the
+         * bottom team OR kinged pieces on the top team. Code sections named "TopTeam" do exactly the opposite.
+         * 
+         * All code sections named "UpwardMovement" check for possible moves for pieces on the bottom team OR
+         * for kinged pieces on the top team. Code sections named "DownwardMovement" do the exact opposite.
+         */
+
+        /*
+         * General math used in all of the below functions:
+         * 
+         * If a piece is in the top row or the left column, it cannot move up and to the left
+         * If a piece is in the top row or the right column, it cannot move up and to the right
+         * If a piece is in the bottom row or the left column, it cannot move down and to the left
+         * If a piece is in the bottom row or the right column, it cannot move down and to the right
+         * 
+         * If a piece is in the top two rows or the left two columns, it cannot jump up and to the left
+         * etc.
+         */
+
         public static bool TeamCanJump(bool topTeam)
         {
+            //Returns whether a team can jump or not
+            //Almost unnecessary as TeamCanJumpTo returns more information
             foreach (Square square in Board.Squares)
             {
                 Piece piece = square.OccupyingPiece;
@@ -82,7 +104,7 @@ namespace EdgeDemo.CheckersGame
         public static Dictionary<Piece, List<Square>> TeamCanJumpTo(bool topTeam)
         {
             Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
-            //Will create a dictionary of pieces that can jump and where they can jump to
+            //Creates a dictionary of pieces that can jump and where they can jump to
 
             foreach (Square square in Board.Squares)
             {
@@ -152,7 +174,8 @@ namespace EdgeDemo.CheckersGame
 
         public static List<Square> PieceCanJumpTo(Piece piece)
         {
-            //Will be used to check if a piece can double jump or triple jump etc.
+            //Returns a list of squares a specific piece can jump to
+
             List<Square> toReturn = new List<Square>();
             Square square;
 
@@ -242,7 +265,7 @@ namespace EdgeDemo.CheckersGame
                                 validMovements.Add(topLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y > 1)
+                        if (piece.X < Board.Size - 1 && piece.Y > 0)
                         {
                             Square topRight = Board.Squares[square.X + 1, square.Y - 1];
 
@@ -256,7 +279,7 @@ namespace EdgeDemo.CheckersGame
                     #region DownwardMovement
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 1 && piece.Y < Board.Size - 2)
+                        if (piece.X > 0 && piece.Y < Board.Size - 1)
                         {
                             Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
 
@@ -265,7 +288,7 @@ namespace EdgeDemo.CheckersGame
                                 validMovements.Add(bottomLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y < Board.Size - 2)
+                        if (piece.X < Board.Size - 1 && piece.Y < Board.Size - 1)
                         {
                             Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
 
@@ -289,6 +312,8 @@ namespace EdgeDemo.CheckersGame
 
         public static List<Square> PieceCanMoveTo(Piece piece)
         {
+            //Returns a list of squares a specific piece can move to
+
             List<Square> toReturn = new List<Square>();
             Square square;
 
@@ -309,7 +334,7 @@ namespace EdgeDemo.CheckersGame
                                 toReturn.Add(topLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y > 1)
+                        if (piece.X < Board.Size - 1 && piece.Y > 0)
                         {
                             Square topRight = Board.Squares[square.X + 1, square.Y - 1];
 
@@ -323,7 +348,7 @@ namespace EdgeDemo.CheckersGame
                     #region DownwardMovement
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 1 && piece.Y < Board.Size - 2)
+                        if (piece.X > 0 && piece.Y < Board.Size - 1)
                         {
                             Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
 
@@ -332,7 +357,7 @@ namespace EdgeDemo.CheckersGame
                                 toReturn.Add(bottomLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y < Board.Size - 2)
+                        if (piece.X < Board.Size - 1 && piece.Y < Board.Size - 1)
                         {
                             Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
 
