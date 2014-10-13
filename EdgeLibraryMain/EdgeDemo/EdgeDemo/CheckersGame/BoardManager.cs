@@ -170,6 +170,12 @@ namespace EdgeDemo.CheckersGame
 
             PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
 
+            if (PossibleMoves.Count == 0)
+            {
+                TopTeamTurn = !TopTeamTurn;
+                resetMove();
+            }
+
             foreach (Piece possiblePiece in PossibleMoves.Keys)
             {
                 Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
