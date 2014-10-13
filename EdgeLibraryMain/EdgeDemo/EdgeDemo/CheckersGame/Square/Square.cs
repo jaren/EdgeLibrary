@@ -38,10 +38,15 @@ namespace EdgeDemo.CheckersGame
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
 
             if (OccupyingPiece != null)
             {
-                OccupyingPiece.Draw(gameTime);
+                OccupyingPiece.Update(gameTime);
             }
         }
 
@@ -50,7 +55,6 @@ namespace EdgeDemo.CheckersGame
             piece.X = X;
             piece.Y = Y;
             OccupyingPiece = piece;
-            OccupyingPiece.Position = Position;
         }
     }
 }

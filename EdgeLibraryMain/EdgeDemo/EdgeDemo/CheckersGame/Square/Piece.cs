@@ -40,7 +40,7 @@ namespace EdgeDemo.CheckersGame
             {
                 RestartSpriteBatch();
 
-                EdgeGame.Game.SpriteBatch.Draw(, Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+                EdgeGame.Game.SpriteBatch.Draw(EdgeGame.GetTexture(Config.KingTexture), Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
                 RestartSpriteBatch();
             }

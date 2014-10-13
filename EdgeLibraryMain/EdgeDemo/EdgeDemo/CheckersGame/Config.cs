@@ -35,10 +35,12 @@ namespace EdgeDemo.CheckersGame
         public static Color BorderColor = Color.DarkGoldenrod;
         public static int SquareDistance = 0;
 
+        public static float CheckerMoveSpeed = 5f;
+
         public static Color Color1 = Color.SaddleBrown;
         public static Color Color2 = Color.Tan;
 
-        public static Color TopColor = Color.Gray;
+        public static Color TopColor = Color.LightGray;
         public static Color BottomColor = Color.DarkGray;
 
         public static Color Square1SelectColor = Color.Goldenrod;

@@ -83,6 +83,8 @@ namespace EdgeDemo.CheckersGame
                     Squares[finishX, finishY].OccupyingPiece.King = true;
                 }
 
+                Squares[finishX, finishY].OccupyingPiece.AddAction(new AMoveTo(Squares[finishX, finishY].Position, Config.CheckerMoveSpeed));
+
                 return true;
             }
             return false;
@@ -90,9 +92,18 @@ namespace EdgeDemo.CheckersGame
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (Square piece in Squares)
+            //To make sure the pieces get drawn on top of the squares
+            foreach(Square square in Squares)
             {
-                piece.Draw(gameTime);
+                square.Draw(gameTime);
+            }
+
+            foreach(Square square in Squares)
+            {
+                if (square.OccupyingPiece != null)
+                {
+                    square.OccupyingPiece.Draw(gameTime);
+                }
             }
 
             Border.Draw(gameTime);
@@ -102,6 +113,11 @@ namespace EdgeDemo.CheckersGame
         {
             base.Update(gameTime);
             Border.Update(gameTime);
+
+            foreach (Square square in Squares)
+            {
+                square.Update(gameTime);
+            }
         }
 
         public override void Initialize()
