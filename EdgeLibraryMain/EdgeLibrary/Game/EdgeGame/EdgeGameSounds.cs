@@ -19,6 +19,11 @@ namespace EdgeLibrary
         private static Dictionary<string, SoundEffect> SoundEffects;
         private static Dictionary<string, Song> Songs;
 
+        private static bool IsPlayingPlaylist = false;
+        private static int PlaylistIndex = 0;
+        private static string PlaylistName = "";
+        private static Dictionary<string, List<string>> Playlists;
+
         public static bool IsRepeating { get { return MediaPlayer.IsRepeating; } set { MediaPlayer.IsRepeating = value; } }
         public static bool IsMuted { get { return MediaPlayer.IsMuted; } set { MediaPlayer.IsMuted = value; } }
         public static float Volume { get { return MediaPlayer.Volume; } set { MediaPlayer.Volume = value; } }
@@ -28,6 +33,9 @@ namespace EdgeLibrary
         {
             SoundEffects = new Dictionary<string, SoundEffect>();
             Songs = new Dictionary<string, Song>();
+            Playlists = new Dictionary<string, List<string>>();
+
+            MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
         }
 
         public static void LoadSound(string path)
@@ -61,9 +69,54 @@ namespace EdgeLibrary
             Songs.Add(songName, song);
         }
 
+        public static void AddPlaylist(string playlistName, params string[] songNames)
+        {
+            Playlists.Add(playlistName, songNames.ToList());
+        }
+
         public static void playSong(string songName)
         {
             MediaPlayer.Play(GetSong(songName));
+        }
+
+        public static void playPlaylist(string playlistName)
+        {
+            if (MediaPlayer.IsShuffled)
+            {
+                PlaylistIndex = RandomTools.RandomInt(0, Playlists[playlistName].Count);
+            }
+
+            MediaPlayer.Play(GetSong(Playlists[playlistName][PlaylistIndex]));
+            PlaylistName = playlistName;
+            IsPlayingPlaylist = true;
+        }
+
+        static void MediaPlayer_MediaStateChanged(object sender, EventArgs e)
+        {
+            if (MediaPlayer.State == MediaState.Stopped)
+            {
+                if (PlaylistIndex >= Playlists[PlaylistName].Count - 1 && !MediaPlayer.IsShuffled)
+                {
+                    PlaylistIndex = 0;
+
+                    if (!MediaPlayer.IsRepeating)
+                    {
+                        IsPlayingPlaylist = false;
+                        return;
+                    }
+                }
+
+                if (MediaPlayer.IsShuffled)
+                {
+                    PlaylistIndex = RandomTools.RandomInt(0, Playlists[PlaylistName].Count);
+                }
+                else
+                {
+                    PlaylistIndex++;
+                }
+
+                MediaPlayer.Play(GetSong(Playlists[PlaylistName][PlaylistIndex++]));
+            }
         }
 
         public static void playSound(string soundName)

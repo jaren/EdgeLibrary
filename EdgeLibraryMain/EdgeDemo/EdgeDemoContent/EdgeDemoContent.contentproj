@@ -45,13 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="battleThemeA.mp3">
-      <Name>battleThemeA</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Fonts\Comic Sans\ComicSans-10.spritefont">
       <Name>ComicSans-10</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -190,11 +183,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Hyperfun.mp3">
-      <Name>Hyperfun</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
     <Compile Include="Checkers.png">
       <Name>Checkers</Name>
       <Importer>TextureImporter</Importer>
@@ -206,6 +194,36 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Music\Carefree.mp3">
+      <Name>Carefree</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Fig Leaf Times Two.mp3">
+      <Name>Fig Leaf Times Two</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Fun in a Bottle.mp3">
+      <Name>Fun in a Bottle</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Hyperfun.mp3">
+      <Name>Hyperfun</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Run Amok.mp3">
+      <Name>Run Amok</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Wallpaper.mp3">
+      <Name>Wallpaper</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
     </Compile>
     <Content Include="ParticleSheet.xml">
       <Name>ParticleSheet</Name>

@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using EdgeLibrary;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -20,7 +21,9 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.ClearColor = Color.Gray;
 
-            //EdgeGame.playSong("Hyperfun");
+            EdgeGame.IsShuffled = true;
+
+            //EdgeGame.playPlaylist("Music");
 
             BoardManager manager = new BoardManager();
             manager.AddToGame();
@@ -67,7 +70,14 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.LoadTexture(Config.PieceTexture);
             EdgeGame.LoadTexture(Config.KingTexture);
-            EdgeGame.LoadSong("Hyperfun");
+
+            EdgeGame.LoadSong("Music/Carefree");
+            EdgeGame.LoadSong("Music/Fig Leaf Times Two");
+            EdgeGame.LoadSong("Music/Fun in a Bottle");
+            EdgeGame.LoadSong("Music/Hyperfun");
+            EdgeGame.LoadSong("Music/Run Amok");
+            EdgeGame.LoadSong("Music/Wallpaper");
+            EdgeGame.AddPlaylist("Music", "Carefree", "Fig Leaf Times Two", "Fun in a Bottle", "Hyperfun", "Run Amok", "Wallpaper");
         }
 
     }
