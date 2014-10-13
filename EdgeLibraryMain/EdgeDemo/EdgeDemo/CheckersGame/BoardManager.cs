@@ -165,6 +165,14 @@ namespace EdgeDemo.CheckersGame
         {
             if (PossibleMoves != null && CurrentMove != null)
             {
+                if (PossibleMoves.Count == 0)
+                {
+                    TopTeamTurn = !TopTeamTurn;
+                    TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+                    StatusSprite.Text = TeamText + Config.PassMessage;
+                    resetMove();
+                }
+
                 //It uses the finish square's occupying piece because the piece has already been moved
                 foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
                 {
@@ -175,14 +183,6 @@ namespace EdgeDemo.CheckersGame
             }
 
             PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
-
-            if (PossibleMoves.Count == 0)
-            {
-                TopTeamTurn = !TopTeamTurn;
-                TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-                StatusSprite.Text = TeamText + Config.PassMessage;
-                resetMove();
-            }
 
             foreach (Piece possiblePiece in PossibleMoves.Keys)
             {
