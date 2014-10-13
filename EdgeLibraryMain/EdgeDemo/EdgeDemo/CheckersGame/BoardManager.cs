@@ -115,6 +115,12 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (!SelectedFirstSquare)
                     {
+                        //First check for a jump possibility:
+                        //if(MovementManager.TeamCanJumpTo(TopTeamTurn) != null) {...}
+                            
+                            //Then check if that piece can jump again:
+                            //if(MovementManager.PieceCanJumpTo(Piece) != null) {...}
+
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
                             CurrentMove = new Move(new List<Square> { square });
