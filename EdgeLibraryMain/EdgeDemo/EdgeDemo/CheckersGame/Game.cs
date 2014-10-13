@@ -33,7 +33,7 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.IsShuffled = true;
 
-            //EdgeGame.playPlaylist("Music");
+            EdgeGame.playPlaylist("Music");
 
             BoardManager manager = new BoardManager();
             manager.AddToGame();
