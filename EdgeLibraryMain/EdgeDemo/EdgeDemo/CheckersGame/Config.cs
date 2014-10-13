@@ -20,6 +20,7 @@ namespace EdgeDemo.CheckersGame
         public static string SelectSquare1MessageFailed = "Please select a valid square to move from";
         public static string SelectSquare2Message = "Please select a square to move to";
         public static string SelectSquare2MessageFailed = "Please select a valid square to move to";
+        public static string PassMessage = "You have been forced to pass because you have no possible moves";
 
         public static string TopTeamName = "Top Team";
         public static string BottomTeamName = "Bottom Team";

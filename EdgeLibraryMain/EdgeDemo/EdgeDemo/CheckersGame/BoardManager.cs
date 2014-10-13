@@ -16,8 +16,7 @@ namespace EdgeDemo.CheckersGame
         //Used for each move
         public bool TopTeamTurn;
         public bool SelectedFirstSquare;
-        private Square StartSquare;
-        private Square FinishSquare;
+        private Move CurrentMove;
         private Dictionary<Piece, List<Square>> PossibleMoves;
         private string TeamText;
 
@@ -80,7 +79,7 @@ namespace EdgeDemo.CheckersGame
 
         public void Move()
         {
-            Board.MovePiece(StartSquare.X, StartSquare.Y, FinishSquare.X, FinishSquare.Y);
+            CurrentMove.RunMove();
 
             //Eventually this will call the web service's move function
             //Something like this:
@@ -99,7 +98,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    foreach (Square possibleSquare in PossibleMoves[StartSquare.OccupyingPiece])
+                    foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
                     {
                         possibleSquare.Color = possibleSquare.DefaultColor;
                     }
@@ -118,7 +117,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
-                            StartSquare = square;
+                            CurrentMove = new Move(new List<Square> { square });
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -129,7 +128,7 @@ namespace EdgeDemo.CheckersGame
                             SelectedFirstSquare = true;
                             StatusSprite.Text = TeamText + Config.SelectSquare2Message;
 
-                            foreach (Square possibleSquare in PossibleMoves[StartSquare.OccupyingPiece])
+                            foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
                             {
                                 possibleSquare.Color = Config.Square2SelectColor;
                             }
@@ -141,9 +140,9 @@ namespace EdgeDemo.CheckersGame
                     }
                     else
                     {
-                        if (PossibleMoves[StartSquare.OccupyingPiece].Contains(square))
+                        if (PossibleMoves[CurrentMove.Piece].Contains(square))
                         {
-                            FinishSquare = square;
+                            CurrentMove.SquarePath.Add(square);
 
                             Move();
 
@@ -158,15 +157,23 @@ namespace EdgeDemo.CheckersGame
 
         public void resetMove()
         {
-            if (PossibleMoves != null && StartSquare != null && FinishSquare != null)
+            if (PossibleMoves != null && CurrentMove != null)
             {
+                if (PossibleMoves.Count == 0)
+                {
+                    TopTeamTurn = !TopTeamTurn;
+                    TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+                    StatusSprite.Text = TeamText + Config.PassMessage;
+                    resetMove();
+                }
+
                 //It uses the finish square's occupying piece because the piece has already been moved
-                foreach (Square possibleSquare in PossibleMoves[FinishSquare.OccupyingPiece])
+                foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
                 {
                     possibleSquare.Color = possibleSquare.DefaultColor;
                 }
 
-                StartSquare.Color = StartSquare.DefaultColor;
+                CurrentMove.SquarePath[0].Color = CurrentMove.SquarePath[0].DefaultColor;
             }
 
             PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
@@ -179,8 +186,7 @@ namespace EdgeDemo.CheckersGame
             SelectedFirstSquare = false;
             StatusSprite.Text = TeamText + Config.SelectSquare1Message;
 
-            StartSquare = null;
-            FinishSquare = null;
+            CurrentMove = null;
         }
     }
 }

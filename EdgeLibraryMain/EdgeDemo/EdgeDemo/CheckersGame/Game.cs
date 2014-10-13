@@ -11,6 +11,16 @@ namespace EdgeDemo.CheckersGame
 {
     public class Game
     {
+        /* TODO:
+         * -Add Documentation
+         * -Singleplayer
+         *      -Fix movement generation
+         *      -Add jumping
+         *          -Add double jumping
+         *      -If possible to jump, only allow jumps
+         * -Multiplayer
+         */
+
         public void OnInit()
         {
             EdgeGame.InitializeWorld(new Vector2(0, 9.8f));
@@ -23,7 +33,7 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.IsShuffled = true;
 
-            //EdgeGame.playPlaylist("Music");
+            EdgeGame.playPlaylist("Music");
 
             BoardManager manager = new BoardManager();
             manager.AddToGame();
