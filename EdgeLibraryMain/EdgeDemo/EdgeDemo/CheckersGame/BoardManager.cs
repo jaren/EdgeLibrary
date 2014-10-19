@@ -18,7 +18,7 @@ namespace EdgeDemo.CheckersGame
         public bool TopTeamTurn;
         public bool SelectedFirstSquare;
         private Move CurrentMove;
-        private Dictionary<Piece, List<Square>> PossibleMoves;
+        private Dictionary<Piece, List<Move>> PossibleMoves;
         private string TeamText;
 
         public BoardManager()
@@ -103,9 +103,9 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
+                    foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                     {
-                        possibleSquare.Color = possibleSquare.DefaultColor;
+                        possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
                     }
 
                     resetMove();
@@ -122,9 +122,9 @@ namespace EdgeDemo.CheckersGame
                     {
                         //First check for a jump possibility:
                         //if(MovementManager.TeamCanJumpTo(TopTeamTurn) != null) {...}
-                            
-                            //Then check if that piece can jump again:
-                            //if(MovementManager.PieceCanJumpTo(Piece) != null) {...}
+
+                        //Then check if that piece can jump again:
+                        //if(MovementManager.PieceCanJumpTo(Piece) != null) {...}
 
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
@@ -140,9 +140,9 @@ namespace EdgeDemo.CheckersGame
                             SelectedFirstSquare = true;
                             StatusSprite.Text = TeamText + Config.SelectSquare2Message;
 
-                            foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
+                            foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                             {
-                                possibleSquare.Color = Config.Square2SelectColor;
+                                possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
                             }
                         }
                         else
@@ -152,15 +152,18 @@ namespace EdgeDemo.CheckersGame
                     }
                     else
                     {
-                        if (PossibleMoves[CurrentMove.Piece].Contains(square))
+                        foreach (Move move in PossibleMoves[CurrentMove.Piece])
                         {
-                            CurrentMove.SquarePath.Add(square);
+                            if (move.SquarePath[move.SquarePath.Count - 1] == square)
+                            {
+                                CurrentMove = move;
 
-                            Move();
+                                Move();
 
-                            TopTeamTurn = !TopTeamTurn;
-                            TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-                            resetMove();
+                                TopTeamTurn = !TopTeamTurn;
+                                TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+                                resetMove();
+                            }
                         }
                     }
                 }
@@ -169,7 +172,7 @@ namespace EdgeDemo.CheckersGame
 
         void CurrentMove_OnComplete(List<Square> squarePath, List<Square> jumpedSquares)
         {
-            foreach(Square square in jumpedSquares)
+            foreach (Square square in jumpedSquares)
             {
                 Board.CapturePiece(square.OccupyingPiece);
             }
@@ -189,15 +192,15 @@ namespace EdgeDemo.CheckersGame
                 }
 
                 //It uses the finish square's occupying piece because the piece has already been moved
-                foreach (Square possibleSquare in PossibleMoves[CurrentMove.Piece])
+                foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                 {
-                    possibleSquare.Color = possibleSquare.DefaultColor;
+                    possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].DefaultColor;
                 }
 
                 CurrentMove.SquarePath[0].Color = CurrentMove.SquarePath[0].DefaultColor;
             }
 
-            PossibleMoves = MovementManager.TeamCanMoveTo(TopTeamTurn);
+            PossibleMoves = MovementManager.GenerateTeamMoves(TopTeamTurn);
 
             foreach (Piece possiblePiece in PossibleMoves.Keys)
             {

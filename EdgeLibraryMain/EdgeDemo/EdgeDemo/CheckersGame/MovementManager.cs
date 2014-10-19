@@ -34,7 +34,7 @@ namespace EdgeDemo.CheckersGame
             Dictionary<Piece, List<Square>> moves = TeamCanJumpTo(topTeam); //Single jumps
             foreach (Piece piece in moves.Keys)
             {
-
+                Moves.Add(piece, PieceCanMultiJumpTo(piece));
             }
 
             //If a team cannot jump
@@ -278,6 +278,11 @@ namespace EdgeDemo.CheckersGame
             }
 
             return toReturn;
+        }
+
+        public static List<Move> PieceCanMultiJumpTo(Piece piece)
+        {
+
         }
 
         public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam)
