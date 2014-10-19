@@ -200,9 +200,15 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
-        public static List<Square> PieceAtSquareCanJumpTo(int x, int y)
+        public static List<Square> JumpsFromSquare(Piece jumpingPiece, int jumpToX, int jumpToY)
         {
-            
+            List<Square> toReturn = new List<Square>();
+
+            Piece ghostPiece = jumpingPiece;
+            ghostPiece.X = jumpToX;
+            ghostPiece.Y = jumpToY;
+
+            return PieceCanJumpTo(ghostPiece);
         }
 
         public static List<Square> PieceCanJumpTo(Piece piece)
