@@ -27,6 +27,34 @@ namespace EdgeDemo.CheckersGame
          * etc.
          */
 
+        public static Dictionary<Piece, List<Move>> GenerateTeamMoves(bool topTeam)
+        {
+            Dictionary<Piece, List<Move>> Moves = new Dictionary<Piece, List<Move>>();
+
+            Dictionary<Piece, List<Square>> moves = TeamCanJumpTo(topTeam); //Single jumps
+            foreach (Piece piece in moves.Keys)
+            {
+
+            }
+
+            //If a team cannot jump
+            if (Moves.Count == 0)
+            {
+                moves = TeamCanMoveTo(topTeam);
+                foreach(KeyValuePair<Piece, List<Square>> move in moves)
+                {
+                    List<Move> moveList = new List<Move>();
+                    foreach(Square square in move.Value)
+                    {
+                        moveList.Add(new Move(new List<Square>() { square }));
+                    }
+                    Moves.Add(move.Key, moveList);
+                }
+            }
+
+            return Moves;
+        }
+
         public static bool TeamCanJump(bool topTeam)
         {
             //Returns whether a team can jump or not
@@ -104,7 +132,7 @@ namespace EdgeDemo.CheckersGame
         public static Dictionary<Piece, List<Square>> TeamCanJumpTo(bool topTeam)
         {
             Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
-            //Creates a dictionary of pieces that can jump and where they can jump to
+            //Creates a dictionary of pieces that can jump and where they can jump to - only single jumps
 
             foreach (Square square in Board.Squares)
             {

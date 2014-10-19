@@ -10,6 +10,9 @@ namespace EdgeDemo.CheckersGame
     public class Board : Sprite
     {
         public static Square[,] Squares;
+        public static List<Piece> CapturedPieces;
+        public static int TopTeamCaptures;
+        public static int BottomTeamCaptures;
         public static int Size;
         public Border Border;
 
@@ -27,6 +30,10 @@ namespace EdgeDemo.CheckersGame
             float totalSquareDistance = squareDistance * (size - 1);
 
             Border = new Border(squareTexture, position, borderSize, squareSize * size + totalSquareDistance, borderColor);
+
+            CapturedPieces = new List<Piece>();
+            TopTeamCaptures = 0;
+            BottomTeamCaptures = 0;
 
             Vector2 topLeft = new Vector2(position.X - (squareSize * size - squareSize + totalSquareDistance) / 2, position.Y - (squareSize * size - squareSize + totalSquareDistance) / 2);
             CompleteSize = (Position.X - topLeft.X) * 2 + squareSize + totalSquareDistance;
@@ -123,6 +130,29 @@ namespace EdgeDemo.CheckersGame
         public override void Initialize()
         {
             base.Initialize();
+        }
+
+        public bool CapturePiece(Piece piece)
+        {
+            foreach(Square square in Squares)
+            {
+                if (square.OccupyingPiece == piece)
+                {
+                    square.SetPiece(null);
+                    CapturedPieces.Add(piece);
+                    piece.AddAction(new AColorChange(new ColorChangeIndex(Config.CheckerFadeOutSpeed, piece.Color, Color.Transparent)));
+                    if (piece.TopTeam)
+                    {
+                        BottomTeamCaptures++;
+                    }
+                    else
+                    {
+                        TopTeamCaptures++;
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool CheckForClick()

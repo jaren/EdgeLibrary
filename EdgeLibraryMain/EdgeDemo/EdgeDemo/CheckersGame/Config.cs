@@ -38,6 +38,9 @@ namespace EdgeDemo.CheckersGame
 
         public static float CheckerMoveSpeed = 5f;
 
+        public static float CheckerFadeOutSpeed = 1f;
+        public static float CheckerFadeInSpeed = 1f;
+
         public static Color Color1 = Color.SaddleBrown;
         public static Color Color2 = Color.Tan;
 

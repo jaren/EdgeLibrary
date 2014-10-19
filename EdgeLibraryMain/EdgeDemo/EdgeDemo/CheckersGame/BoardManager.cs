@@ -12,6 +12,7 @@ namespace EdgeDemo.CheckersGame
     {
         public Board Board;
         public TextSprite StatusSprite;
+        public TextSprite CaptureSprite;
 
         //Used for each move
         public bool TopTeamTurn;
@@ -34,6 +35,10 @@ namespace EdgeDemo.CheckersGame
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero);
             StatusSprite.CenterAsOrigin = false;
             StatusSprite.AddToGame();
+
+            CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50));
+            CaptureSprite.CenterAsOrigin = false;
+            CaptureSprite.AddToGame();
 
             resetMove();
         }
@@ -124,6 +129,7 @@ namespace EdgeDemo.CheckersGame
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
                             CurrentMove = new Move(new List<Square> { square });
+                            CurrentMove.OnComplete += CurrentMove_OnComplete;
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -159,6 +165,15 @@ namespace EdgeDemo.CheckersGame
                     }
                 }
             }
+        }
+
+        void CurrentMove_OnComplete(List<Square> squarePath, List<Square> jumpedSquares)
+        {
+            foreach(Square square in jumpedSquares)
+            {
+                Board.CapturePiece(square.OccupyingPiece);
+            }
+            CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
         }
 
         public void resetMove()

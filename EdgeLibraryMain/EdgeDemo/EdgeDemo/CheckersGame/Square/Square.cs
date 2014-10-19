@@ -52,8 +52,12 @@ namespace EdgeDemo.CheckersGame
 
         public void SetPiece(Piece piece)
         {
-            piece.X = X;
-            piece.Y = Y;
+            if (piece != null)
+            {
+                piece.X = X;
+                piece.Y = Y;
+            }
+
             OccupyingPiece = piece;
         }
     }
