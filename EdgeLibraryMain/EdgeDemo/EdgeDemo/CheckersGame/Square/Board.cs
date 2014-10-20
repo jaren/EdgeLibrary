@@ -198,7 +198,7 @@ namespace EdgeDemo.CheckersGame
         {
             if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
             {
-                return Squares[(destination.X + origin.X) / 2, (destination.Y + origin.Y) / 2];
+                return Squares[(destination.X + origin.X) / 2 - 1, (destination.Y + origin.Y) / 2 - 1];
             }
 
             return null;

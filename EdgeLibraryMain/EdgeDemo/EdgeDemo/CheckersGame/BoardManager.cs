@@ -211,8 +211,6 @@ namespace EdgeDemo.CheckersGame
 
             SelectedFirstSquare = false;
             StatusSprite.Text = TeamText + Config.SelectSquare1Message;
-
-            CurrentMove = null;
         }
     }
 }

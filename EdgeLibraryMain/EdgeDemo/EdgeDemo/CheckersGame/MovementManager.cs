@@ -288,7 +288,7 @@ namespace EdgeDemo.CheckersGame
 
             foreach(Square square in originalJumps)
             {
-                //Temporary function
+                //Temporary function - only checks for single jumps
                 MultiJumps.Add(new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square }, new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square) }));
             }
 
