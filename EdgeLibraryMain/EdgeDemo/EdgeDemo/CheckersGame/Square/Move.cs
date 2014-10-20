@@ -11,6 +11,20 @@ namespace EdgeDemo.CheckersGame
         public List<Square> SquarePath;
         public List<Square> JumpedSquares;
         public Piece Piece;
+        public Square StartSquare
+        {
+            get
+            {
+                return SquarePath[0];
+            }
+        }
+        public Square FinishSquare
+        {
+            get
+            {
+                return SquarePath[SquarePath.Count - 1];
+            }
+        }
 
         public delegate void MoveEvent(List<Square> squarePath, List<Square> jumpedSquares);
         public event MoveEvent OnComplete = delegate { };

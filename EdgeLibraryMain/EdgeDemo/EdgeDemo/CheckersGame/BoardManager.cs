@@ -156,7 +156,8 @@ namespace EdgeDemo.CheckersGame
                         {
                             if (move.SquarePath[move.SquarePath.Count - 1] == square)
                             {
-                                CurrentMove = move;
+                                CurrentMove.SquarePath = move.SquarePath;
+                                CurrentMove.JumpedSquares = move.JumpedSquares;
 
                                 Move();
 
@@ -194,10 +195,11 @@ namespace EdgeDemo.CheckersGame
                 //It uses the finish square's occupying piece because the piece has already been moved
                 foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                 {
-                    possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].DefaultColor;
+                    foreach(Square square in possibleMove.SquarePath)
+                    {
+                        square.Color = square.DefaultColor;
+                    }
                 }
-
-                CurrentMove.SquarePath[0].Color = CurrentMove.SquarePath[0].DefaultColor;
             }
 
             PossibleMoves = MovementManager.GenerateTeamMoves(TopTeamTurn);

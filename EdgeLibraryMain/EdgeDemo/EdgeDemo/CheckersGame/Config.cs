@@ -14,6 +14,7 @@ namespace EdgeDemo.CheckersGame
         public static string SquareTexture = "Pixel";
 
         public static string StatusFont = "ComicSans-20";
+        public static string SquareFont = "ComicSans-20";
         public static string DebugFont = "Impact-20";
 
         public static string SelectSquare1Message = "Please select a square to move from";

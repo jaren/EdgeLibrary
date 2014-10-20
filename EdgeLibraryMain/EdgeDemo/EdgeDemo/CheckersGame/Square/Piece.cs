@@ -11,6 +11,7 @@ namespace EdgeDemo.CheckersGame
     {
         public bool King;
         public bool TopTeam;
+        public Square HostSquare;
 
         public float Size
         {

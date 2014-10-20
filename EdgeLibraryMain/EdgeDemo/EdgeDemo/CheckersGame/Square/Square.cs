@@ -12,6 +12,7 @@ namespace EdgeDemo.CheckersGame
         public bool FakeSquare;
         public Piece OccupyingPiece;
         public Color DefaultColor;
+        public TextSprite SquareNumber;
 
         public Vector2 TopLeft;
 
@@ -27,6 +28,8 @@ namespace EdgeDemo.CheckersGame
             Scale = new Vector2(size/Width, size/Height);
             DefaultColor = color;
             Color = color;
+
+            SquareNumber = new TextSprite(Config.SquareFont, "", Position);
         }
 
         public bool CheckForClick()
@@ -38,6 +41,7 @@ namespace EdgeDemo.CheckersGame
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            SquareNumber.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
@@ -48,6 +52,8 @@ namespace EdgeDemo.CheckersGame
             {
                 OccupyingPiece.Update(gameTime);
             }
+
+            SquareNumber.Update(gameTime);
         }
 
         public void SetPiece(Piece piece)
@@ -56,6 +62,7 @@ namespace EdgeDemo.CheckersGame
             {
                 piece.X = X;
                 piece.Y = Y;
+                piece.HostSquare = this;
             }
 
             OccupyingPiece = piece;

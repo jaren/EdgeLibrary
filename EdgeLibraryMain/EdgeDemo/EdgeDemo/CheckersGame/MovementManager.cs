@@ -46,7 +46,7 @@ namespace EdgeDemo.CheckersGame
                     List<Move> moveList = new List<Move>();
                     foreach(Square square in move.Value)
                     {
-                        moveList.Add(new Move(new List<Square>() { square }));
+                        moveList.Add(new Move(new List<Square>() { move.Key.HostSquare, square }));
                     }
                     Moves.Add(move.Key, moveList);
                 }
@@ -282,7 +282,7 @@ namespace EdgeDemo.CheckersGame
 
         public static List<Move> PieceCanMultiJumpTo(Piece piece)
         {
-
+            return null;
         }
 
         public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam)
