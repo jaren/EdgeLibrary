@@ -120,16 +120,10 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (!SelectedFirstSquare)
                     {
-                        //First check for a jump possibility:
-                        //if(MovementManager.TeamCanJumpTo(TopTeamTurn) != null) {...}
-
-                        //Then check if that piece can jump again:
-                        //if(MovementManager.PieceCanJumpTo(Piece) != null) {...}
-
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
                             CurrentMove = new Move(new List<Square> { square });
-                            CurrentMove.OnComplete += CurrentMove_OnComplete;
+                            CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -156,8 +150,7 @@ namespace EdgeDemo.CheckersGame
                         {
                             if (move.SquarePath[move.SquarePath.Count - 1] == square)
                             {
-                                CurrentMove.SquarePath = move.SquarePath;
-                                CurrentMove.JumpedSquares = move.JumpedSquares;
+                                CurrentMove = move;
 
                                 Move();
 
@@ -171,12 +164,9 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        void CurrentMove_OnComplete(List<Square> squarePath, List<Square> jumpedSquares)
+        void CurrentMove_OnCompleteSquare(List<Square> squarePath, List<Square> jumpedSquares, int index)
         {
-            foreach (Square square in jumpedSquares)
-            {
-                Board.CapturePiece(square.OccupyingPiece);
-            }
+            Board.CapturePiece(jumpedSquares[index].OccupyingPiece);
             CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
         }
 

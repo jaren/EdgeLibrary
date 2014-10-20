@@ -11,6 +11,7 @@ namespace EdgeDemo.CheckersGame
         public List<Square> SquarePath;
         public List<Square> JumpedSquares;
         public Piece Piece;
+        public int MoveIndex;
         public Square StartSquare
         {
             get
@@ -26,7 +27,7 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        public delegate void MoveEvent(List<Square> squarePath, List<Square> jumpedSquares);
+        public delegate void MoveEvent(List<Square> squarePath, List<Square> jumpedSquares, int index);
         public event MoveEvent OnComplete = delegate { };
 
         public Move(List<Square> squarePath, List<Square> jumpedSquares = null)
@@ -35,6 +36,8 @@ namespace EdgeDemo.CheckersGame
             JumpedSquares = jumpedSquares;
 
             Piece = SquarePath[0].OccupyingPiece;
+
+            MoveIndex = 0;
         }
 
         public void RunMove()
@@ -45,7 +48,7 @@ namespace EdgeDemo.CheckersGame
                 Moves.Add(new AMoveTo(square.Position, Config.CheckerMoveSpeed));
             }
             ASequence MoveSequence = new ASequence(Moves);
-            MoveSequence.OnFinish += MoveSequence_OnFinish;
+            MoveSequence.OnActionTransition += MoveSequence_OnTransition;
 
             Piece.AddAction(MoveSequence);
 
@@ -58,9 +61,9 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        void MoveSequence_OnFinish(Action action, GameTime gameTime, Sprite sprite)
+        void MoveSequence_OnTransition(ASequence sequence, Action action, Sprite sprite, GameTime gameTime)
         {
-            OnComplete(SquarePath, JumpedSquares);
+            OnComplete(SquarePath, JumpedSquares, MoveIndex++);
         }
     }
 }
