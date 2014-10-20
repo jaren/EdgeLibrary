@@ -62,7 +62,6 @@ namespace EdgeDemo.CheckersGame
             {
                 piece.X = X;
                 piece.Y = Y;
-                piece.HostSquare = this;
             }
 
             OccupyingPiece = piece;

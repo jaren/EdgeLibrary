@@ -31,12 +31,13 @@ namespace EdgeDemo.CheckersGame
         {
             Dictionary<Piece, List<Move>> Moves = new Dictionary<Piece, List<Move>>();
 
-            Dictionary<Piece, List<Square>> moves = TeamCanJumpTo(topTeam); //Single jumps
-            foreach (Piece piece in moves.Keys)
+            Dictionary<Piece, List<Move>> jumps = TeamCanMultiJumpTo(topTeam); //Single jumps
+            foreach (Piece piece in jumps.Keys)
             {
-                Moves.Add(piece, PieceCanMultiJumpTo(piece));
+                Moves.Add(piece, jumps[piece]);
             }
 
+            Dictionary<Piece, List<Square>> moves = new Dictionary<Piece, List<Square>>();
             //If a team cannot jump
             if (Moves.Count == 0)
             {
@@ -46,7 +47,7 @@ namespace EdgeDemo.CheckersGame
                     List<Move> moveList = new List<Move>();
                     foreach(Square square in move.Value)
                     {
-                        moveList.Add(new Move(new List<Square>() { move.Key.HostSquare, square }));
+                        moveList.Add(new Move(new List<Square>() { Board.Squares[move.Key.X, move.Key.Y], square }));
                     }
                     Moves.Add(move.Key, moveList);
                 }
@@ -282,77 +283,58 @@ namespace EdgeDemo.CheckersGame
 
         public static List<Move> PieceCanMultiJumpTo(Piece piece)
         {
-            return null;
+            List<Move> MultiJumps = new List<Move>();
+            List<Square> originalJumps = PieceCanJumpTo(piece);
+
+            foreach(Square square in originalJumps)
+            {
+                //Temporary function
+                MultiJumps.Add(new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square }, new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square) }));
+            }
+
+            return MultiJumps;
+        }
+
+        public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam)
+        {
+            Dictionary<Piece, List<Move>> multiJumps = new Dictionary<Piece, List<Move>>();
+
+            foreach(Square square in Board.Squares)
+            {
+                if (square.OccupyingPiece != null)
+                {
+                    if (square.OccupyingPiece.TopTeam == topTeam)
+                    {
+                        List<Move> validJumps = PieceCanMultiJumpTo(square.OccupyingPiece);
+                        if (validJumps.Count != 0)
+                        {
+                            multiJumps.Add(square.OccupyingPiece, validJumps);
+                        }
+                    }
+                }
+            }
+            return multiJumps;
         }
 
         public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam)
         {
-            //Returns a list of all pieces that can move and all places they can move to
-
-            Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
+            Dictionary<Piece, List<Square>> moves = new Dictionary<Piece, List<Square>>();
 
             foreach (Square square in Board.Squares)
             {
-                Piece piece = square.OccupyingPiece;
-                List<Square> validMovements = new List<Square>();
-
-                if (piece != null && piece.TopTeam == topTeam)
+                if (square.OccupyingPiece != null)
                 {
-                    #region UpwardMovement
-                    if (!piece.TopTeam || piece.King)
+                    if (square.OccupyingPiece.TopTeam == topTeam)
                     {
-                        if (piece.X > 0 && piece.Y > 0)
+                        List<Square> validMoves = PieceCanMoveTo(square.OccupyingPiece);
+                        if (validMoves.Count != 0)
                         {
-                            Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
-
-                            if (topLeft.OccupyingPiece == null)
-                            {
-                                validMovements.Add(topLeft);
-                            }
+                            moves.Add(square.OccupyingPiece, validMoves);
                         }
-                        if (piece.X < Board.Size - 1 && piece.Y > 0)
-                        {
-                            Square topRight = Board.Squares[square.X + 1, square.Y - 1];
-
-                            if (topRight.OccupyingPiece == null)
-                            {
-                                validMovements.Add(topRight);
-                            }
-                        }
-                    }
-                    #endregion UpwardMovement
-                    #region DownwardMovement
-                    if (piece.TopTeam || piece.King)
-                    {
-                        if (piece.X > 0 && piece.Y < Board.Size - 1)
-                        {
-                            Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
-
-                            if (bottomLeft.OccupyingPiece == null)
-                            {
-                                validMovements.Add(bottomLeft);
-                            }
-                        }
-                        if (piece.X < Board.Size - 1 && piece.Y < Board.Size - 1)
-                        {
-                            Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
-
-                            if (bottomRight.OccupyingPiece == null)
-                            {
-                                validMovements.Add(bottomRight);
-                            }
-                        }
-                    }
-                    #endregion DownwardMovement
-
-                    if (validMovements.Count > 0)
-                    {
-                        toReturn.Add(piece, validMovements);
                     }
                 }
             }
-
-            return toReturn;
+            return moves;
         }
 
         public static List<Square> PieceCanMoveTo(Piece piece)
