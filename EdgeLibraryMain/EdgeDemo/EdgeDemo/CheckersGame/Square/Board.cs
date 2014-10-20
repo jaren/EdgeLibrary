@@ -193,6 +193,16 @@ namespace EdgeDemo.CheckersGame
         {
             return Squares[x, y];
         }
+
+        public static Square GetSquareBetween(Square origin, Square destination)
+        {
+            if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
+            {
+                return Squares[(destination.X + origin.X) / 2, (destination.Y + origin.Y) / 2];
+            }
+
+            return null;
+        }
     }
 
     public enum Direction
