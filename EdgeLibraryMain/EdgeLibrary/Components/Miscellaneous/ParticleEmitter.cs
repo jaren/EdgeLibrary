@@ -78,7 +78,7 @@ namespace EdgeLibrary
 
         //Particle emitter event called when a particle is emitted
         public delegate void ParticleEventHandler(ParticleEmitter sender, Sprite particle, GameTime gameTime);
-        public event ParticleEventHandler OnEmit = delegate { };
+        public event ParticleEventHandler OnEmit;
 
         public ParticleEmitter(string textureName, Vector2 position)
             : base(textureName, position)
@@ -170,7 +170,10 @@ namespace EdgeLibrary
 
             Particles.Add(particle);
 
-            OnEmit(this, particle, gameTime);
+            if (OnEmit != null)
+            {
+                OnEmit(this, particle, gameTime);
+            }
         }
 
         /// <summary>

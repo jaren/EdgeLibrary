@@ -37,12 +37,12 @@ namespace EdgeLibrary
         //The events to change the game initialization/update
         public delegate void EdgeGameEvent();
         public delegate void EdgeGameUpdateEvent(GameTime gameTime);
-        public static event EdgeGameEvent OnRun = delegate { };
-        public static event EdgeGameEvent OnInit = delegate { };
-        public static event EdgeGameEvent OnLoadContent = delegate { };
-        public static event EdgeGameEvent OnReset = delegate { };
-        public static event EdgeGameUpdateEvent OnUpdate = delegate { };
-        public static event EdgeGameUpdateEvent OnDraw = delegate { };
+        public static event EdgeGameEvent OnRun;
+        public static event EdgeGameEvent OnInit;
+        public static event EdgeGameEvent OnLoadContent;
+        public static event EdgeGameEvent OnReset;
+        public static event EdgeGameUpdateEvent OnUpdate;
+        public static event EdgeGameUpdateEvent OnDraw;
 
         //Gets the FPS that the game is currently running at
         public static int FPS { get; private set; }
@@ -113,23 +113,35 @@ namespace EdgeLibrary
         {
             Game.Content.Unload();
             Game.Components.Clear();
-            OnReset();
+            if (OnReset != null)
+            {
+                OnReset();
+            }
         }
 
         private static void Game_OnRun(StatefulGame game)
         {
-            OnRun();
+            if (OnRun != null)
+            {
+                OnRun();
+            }
         }
 
         private static void Game_OnLoadContent(StatefulGame game)
         {
             InitializeBasicTextures();
-            OnLoadContent();
+            if (OnLoadContent != null)
+            {
+                OnLoadContent();
+            }
         }
 
         private static void Game_OnInit(StatefulGame game)
         {
-            OnInit();
+            if (OnInit != null)
+            {
+                OnInit();
+            }
         }
 
         //This is called before the stateful game updates
@@ -147,7 +159,10 @@ namespace EdgeLibrary
             //Updates all the game items
             Input.Update(gameTime);
 
-            OnUpdate(gameTime);
+            if (OnUpdate != null)
+            {
+                OnUpdate(gameTime);
+            }
         }
 
         //This is called before the stateful game draws
@@ -181,7 +196,10 @@ namespace EdgeLibrary
             //Draws to the screen
             Camera.Draw(Game.SpriteBatch);
 
-            OnDraw(gameTime);
+            if (OnDraw != null)
+            {
+                OnDraw(gameTime);
+            }
         }
 
         //Runs one update and draw

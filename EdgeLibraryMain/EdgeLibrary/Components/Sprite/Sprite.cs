@@ -104,13 +104,13 @@ namespace EdgeLibrary
 
         //Gives a button functionality to sprites
         public delegate void ButtonEvent(Sprite sender, Vector2 mousePosition, GameTime gameTime);
-        public event ButtonEvent OnClick = delegate { };
-        public event ButtonEvent OnMouseOver = delegate { };
-        public event ButtonEvent OnMouseOff = delegate { };
+        public event ButtonEvent OnClick;
+        public event ButtonEvent OnMouseOver;
+        public event ButtonEvent OnMouseOff;
 
         public delegate void SpriteEvent(Sprite sprite, GameTime gameTime);
-        public event SpriteEvent OnAdded = delegate { };
-        public event SpriteEvent OnRemoved = delegate { };
+        public event SpriteEvent OnAdded;
+        public event SpriteEvent OnRemoved;
 
         public Sprite(string textureName, Vector2 position) : base(EdgeGame.Game)
         {
@@ -160,7 +160,10 @@ namespace EdgeLibrary
         public virtual void AddToGame()
         {
             EdgeGame.Game.Components.Add(this);
-            OnAdded(this, EdgeGame.GameTime);
+            if (OnAdded != null)
+            {
+                OnAdded(this, EdgeGame.GameTime);
+            }
         }
 
         //Removes the sprite from the game
@@ -178,7 +181,10 @@ namespace EdgeLibrary
                 EdgeGame.World.RemoveBody(Body);
             }
             ShouldBeRemoved = true;
-            OnRemoved(this, EdgeGame.GameTime);
+            if (OnRemoved != null)
+            {
+                OnRemoved(this, EdgeGame.GameTime);
+            }
         }
 
         //Gets the bounding box of this sprite

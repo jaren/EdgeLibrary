@@ -24,14 +24,14 @@ namespace EdgeLibrary
         //The events for changing the game initialization and update outside of the game
         public delegate void GameEvent(StatefulGame game, GameTime gameTime);
         public delegate void GameInitializeEvent(StatefulGame game);
-        public event GameInitializeEvent OnRun = delegate { };
-        public event GameInitializeEvent OnInit = delegate { };
-        public event GameInitializeEvent OnLoadContent = delegate { };
-        public event GameInitializeEvent OnUnloadContent = delegate { };
-        public event GameEvent OnUpdate = delegate { };
-        public event GameEvent OnDraw = delegate { };
-        public event GameEvent OnStartUpdate = delegate { };
-        public event GameEvent OnStartDraw = delegate { };
+        public event GameInitializeEvent OnRun;
+        public event GameInitializeEvent OnInit;
+        public event GameInitializeEvent OnLoadContent;
+        public event GameInitializeEvent OnUnloadContent;
+        public event GameEvent OnUpdate;
+        public event GameEvent OnDraw;
+        public event GameEvent OnStartUpdate;
+        public event GameEvent OnStartDraw;
 
         public StatefulGame()
         {
@@ -44,44 +44,69 @@ namespace EdgeLibrary
         public new void Run()
         {
             //OnRun must be called before base.Run() because base.Run() keeps going forever until the game is stopped
-            OnRun(this);
+            if (OnRun != null)
+            {
+                OnRun(this);
+            }
             base.Run();
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            OnInit(this);
+            if (OnInit != null)
+            {
+                OnInit(this);
+            }
         }
 
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             base.LoadContent();
-            OnLoadContent(this);
+            if (OnLoadContent != null)
+            {
+                OnLoadContent(this);
+            }
         }
 
         protected override void UnloadContent()
         {
             base.UnloadContent();
-            OnUnloadContent(this);
+            if (OnUnloadContent != null)
+            {
+                OnUnloadContent(this);
+            }
         }
 
         protected override void Update(GameTime gameTime)
         {
-            OnStartUpdate(this, gameTime);
+            if (OnStartUpdate != null)
+            {
+                OnStartUpdate(this, gameTime);
+            }
             base.Update(gameTime);
-            OnUpdate(this, gameTime);
+            if (OnUpdate != null)
+            {
+                OnUpdate(this, gameTime);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(ClearColor);
-            OnStartDraw(this, gameTime);
+
+            if (OnStartDraw != null)
+            {
+                OnStartDraw(this, gameTime);
+            }
 
             base.Draw(gameTime);
 
-            OnDraw(this, gameTime);
+            if (OnDraw != null)
+            {
+                OnDraw(this, gameTime);
+            }
         }
     }
 }

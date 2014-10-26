@@ -18,7 +18,7 @@ namespace EdgeLibrary
         public bool Paused;
 
         public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
-        public event ActionEvent OnFinish = delegate { };
+        public event ActionEvent OnFinish;
         
         public void Update(GameTime gameTime, Sprite sprite)
         {
@@ -40,6 +40,12 @@ namespace EdgeLibrary
         //Marks the action for removal from the sprite's action list
         //OnFinish is NOT called if Stop is not passed in GameTime and Sprite
         public void Stop() { toRemove = true; }
-        protected void Stop(GameTime gameTime, Sprite sprite) { toRemove = true; OnFinish(this, gameTime, sprite); }
+        protected void Stop(GameTime gameTime, Sprite sprite)
+        {
+            toRemove = true; if (OnFinish != null)
+            {
+                OnFinish(this, gameTime, sprite);
+            }
+        }
     }
 }

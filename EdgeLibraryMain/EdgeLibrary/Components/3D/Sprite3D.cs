@@ -32,10 +32,10 @@ namespace EdgeLibrary
         private Vector3 _scale;
 
         public delegate void Sprite3DEvent(Sprite3D sprite, GameTime gameTime);
-        public event Sprite3DEvent OnUpdate = delegate { };
-        public event Sprite3DEvent OnDraw = delegate { };
-        public event Sprite3DEvent OnAdded = delegate { };
-        public event Sprite3DEvent OnRemoved = delegate { };
+        public event Sprite3DEvent OnUpdate;
+        public event Sprite3DEvent OnDraw;
+        public event Sprite3DEvent OnAdded;
+        public event Sprite3DEvent OnRemoved;
 
         protected Dictionary<string, Action3D> Actions;
         protected List<string> actionsToRemove;
@@ -108,7 +108,10 @@ namespace EdgeLibrary
         public void AddToGame()
         {
             EdgeGame.Game.Components.Add(this);
-            OnAdded(this, EdgeGame.GameTime);
+            if (OnAdded != null)
+            {
+                OnAdded(this, EdgeGame.GameTime);
+            }
         }
 
         //Removes the sprite from the game
@@ -120,7 +123,10 @@ namespace EdgeLibrary
                 EdgeGame.Game.Components.Remove(this);
             }
             ShouldBeRemoved = true;
-            OnAdded(this, EdgeGame.GameTime);
+            if (OnAdded != null)
+            {
+                OnAdded(this, EdgeGame.GameTime);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -144,14 +150,20 @@ namespace EdgeLibrary
             //Updates the sprite
             Model.Update(gameTime);
             base.Update(gameTime);
-            OnUpdate(this, gameTime);
+            if (OnUpdate != null)
+            {
+                OnUpdate(this, gameTime);
+            }
         }
 
         public override void Draw(GameTime gameTime)
         {
             Model.Draw(gameTime);
             base.Draw(gameTime);
-            OnDraw(this, gameTime);
+            if (OnDraw != null)
+            {
+                OnDraw(this, gameTime);
+            }
         }
 
         public virtual object Clone()

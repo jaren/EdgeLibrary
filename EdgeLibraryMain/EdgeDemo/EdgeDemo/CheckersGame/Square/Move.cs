@@ -28,7 +28,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         public delegate void MoveEvent(List<Square> squarePath, List<Square> jumpedSquares, int index);
-        public event MoveEvent OnComplete = delegate { };
+        public event MoveEvent OnComplete;
 
         public Move(List<Square> squarePath, List<Square> jumpedSquares = null)
         {

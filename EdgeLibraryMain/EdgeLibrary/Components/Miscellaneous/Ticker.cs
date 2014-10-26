@@ -18,7 +18,7 @@ namespace EdgeLibrary
         protected double elapsedMilliseconds;
 
         public delegate void TickerEventHandler(GameTime gameTime);
-        public event TickerEventHandler OnTick = delegate{};
+        public event TickerEventHandler OnTick;
 
         public Ticker(double milliseconds)
             : base(EdgeGame.Game)
@@ -34,7 +34,10 @@ namespace EdgeLibrary
             if (elapsedMilliseconds >= MillisecondsWait)
             {
                 elapsedMilliseconds = 0;
-                OnTick(gameTime);
+                if (OnTick != null)
+                {
+                    OnTick(gameTime);
+                }
             }
         }
 

@@ -15,7 +15,7 @@ namespace EdgeLibrary
     public class ARun3D : Action3D
     {
         public delegate void ARunEvent(Sprite3D sprite, GameTime gameTime);
-        public ARunEvent OnRun = delegate { };
+        public ARunEvent OnRun;
 
         public ARun3D(ARunEvent runEvent)
             : base()

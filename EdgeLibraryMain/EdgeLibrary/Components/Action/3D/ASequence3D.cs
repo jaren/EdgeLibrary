@@ -16,7 +16,7 @@ namespace EdgeLibrary
     {
         //Called when the next action is looped through
         public delegate void ASequenceEvent(ASequence3D sequence, Action3D currentAction, Sprite3D sprite, GameTime gameTime);
-        public event ASequenceEvent OnActionTransition = delegate { };
+        public event ASequenceEvent OnActionTransition;
 
         public List<Action3D> Actions;
         public int CurrentIndex;
@@ -75,7 +75,10 @@ namespace EdgeLibrary
                     Stop(gameTime, sprite);
                 }
 
-                OnActionTransition(this, Actions[CurrentIndex], sprite, gameTime);
+                if (OnActionTransition != null)
+                {
+                    OnActionTransition(this, Actions[CurrentIndex], sprite, gameTime);
+                }
             }
         }
 

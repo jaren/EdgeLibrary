@@ -20,7 +20,7 @@ namespace EdgeLibrary
         protected double elapsedMilliseconds;
 
         public delegate void TickerEventHandler(GameTime gameTime);
-        public event TickerEventHandler OnTick = delegate { };
+        public event TickerEventHandler OnTick;
 
         public RandomTicker(double milliseconds) : this(milliseconds, milliseconds) { }
         public RandomTicker(double min, double max)
@@ -39,7 +39,10 @@ namespace EdgeLibrary
             if (elapsedMilliseconds >= CurrentMillisecondsWait)
             {
                 elapsedMilliseconds = 0;
-                OnTick(gameTime);
+                if (OnTick != null)
+                {
+                    OnTick(gameTime);
+                }
 
                 CurrentMillisecondsWait = RandomTools.RandomDouble(MinMilliseconds, MaxMilliseconds);
             }

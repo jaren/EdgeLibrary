@@ -15,7 +15,7 @@ namespace EdgeLibrary
     public class ARun : Action
     {
         public delegate void ARunEvent(Sprite sprite, GameTime gameTime);
-        public ARunEvent OnRun = delegate { };
+        public ARunEvent OnRun;
 
         public ARun(ARunEvent runEvent) : base()
         {
