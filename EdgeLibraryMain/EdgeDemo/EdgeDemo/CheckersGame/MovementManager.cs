@@ -231,9 +231,9 @@ namespace EdgeDemo.CheckersGame
                         if (piece.X > 1 && piece.Y > 1)
                         {
                             Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
-                            Square topLeftTopLeft = Board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeftTopLeft = Board.Squares[square.X - 2, square.Y - 2];
 
-                            if ((topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                            if ((topLeft.OccupyingPiece != null && (topLeft.OccupyingPiece.TopTeam != piece.TopTeam)) && Board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(topLeftTopLeft);
                             }
@@ -243,7 +243,7 @@ namespace EdgeDemo.CheckersGame
                             Square topRight = Board.Squares[square.X + 1, square.Y - 1];
                             Square topRightTopRight = Board.Squares[square.X + 2, square.Y - 2];
 
-                            if ((topRight.OccupyingPiece != null && topRight.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                            if ((topRight.OccupyingPiece != null && (topRight.OccupyingPiece.TopTeam != piece.TopTeam)) && Board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(topRightTopRight);
                             }
