@@ -13,6 +13,7 @@ namespace EdgeDemo.CheckersGame
         public Board Board;
         public TextSprite StatusSprite;
         public TextSprite CaptureSprite;
+        public TextSprite ExtraSprite;
 
         //Used for each move
         public bool TopTeamTurn;
@@ -31,7 +32,7 @@ namespace EdgeDemo.CheckersGame
             debug.AddToGame();
 
             TeamText = Config.TopTeamName + ": ";
-
+            
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero);
             StatusSprite.CenterAsOrigin = false;
             StatusSprite.AddToGame();
@@ -39,6 +40,10 @@ namespace EdgeDemo.CheckersGame
             CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50));
             CaptureSprite.CenterAsOrigin = false;
             CaptureSprite.AddToGame();
+
+            ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150));
+            ExtraSprite.CenterAsOrigin = false;
+            ExtraSprite.AddToGame();
 
             resetMove();
         }
@@ -124,6 +129,7 @@ namespace EdgeDemo.CheckersGame
                         {
                             CurrentMove = new Move(new List<Square> { square });
                             CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
+                            ExtraSprite.Text = "Current Move ID at Start: " + CurrentMove.ID;
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -151,6 +157,7 @@ namespace EdgeDemo.CheckersGame
                             if (move.SquarePath[move.SquarePath.Count - 1] == square)
                             {
                                 CurrentMove = move;
+                                ExtraSprite.Text += "\n Current Move ID at Finish:" + CurrentMove.ID;
 
                                 Move();
 

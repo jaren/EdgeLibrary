@@ -8,6 +8,7 @@ namespace EdgeDemo.CheckersGame
 {
     public class Move
     {
+        public string ID;
         public List<Square> SquarePath;
         public List<Square> JumpedSquares;
         public Piece Piece;
@@ -32,6 +33,8 @@ namespace EdgeDemo.CheckersGame
 
         public Move(List<Square> squarePath, List<Square> jumpedSquares = null)
         {
+            ID = this.GenerateID();
+
             SquarePath = squarePath;
             JumpedSquares = jumpedSquares;
 
