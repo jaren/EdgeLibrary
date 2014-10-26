@@ -45,7 +45,7 @@ namespace EdgeDemo.CheckersGame
         public static Color Color1 = Color.SaddleBrown;
         public static Color Color2 = Color.Tan;
 
-        public static Color TopColor = Color.LightGray;
+        public static Color TopColor = Color.White;
         public static Color BottomColor = Color.DarkGray;
 
         public static Color Square1SelectColor = Color.Goldenrod;
