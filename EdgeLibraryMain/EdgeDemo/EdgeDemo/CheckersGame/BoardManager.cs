@@ -106,7 +106,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
+                    foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                     {
                         possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
                     }

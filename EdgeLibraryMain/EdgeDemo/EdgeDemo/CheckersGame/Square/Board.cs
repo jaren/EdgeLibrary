@@ -170,9 +170,9 @@ namespace EdgeDemo.CheckersGame
         {
             if (CheckForClick())
             {
-                Vector2 topLeft = new Vector2(Position.X - CompleteSize / 2, Position.Y - CompleteSize / 2);
-                float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)*EdgeGame.Camera.Scale;
-                float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)*EdgeGame.Camera.Scale;
+                Vector2 topLeft = new Vector2(BoardArea.Left, BoardArea.Top);
+                float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)/EdgeGame.Camera.Scale;
+                float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)/EdgeGame.Camera.Scale;
 
                 Vector2 modifiedPosition = new Vector2(modifiedX - (modifiedX % SquareSize), modifiedY - (modifiedY % SquareSize));
                 modifiedPosition += topLeft;
