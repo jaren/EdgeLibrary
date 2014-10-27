@@ -19,6 +19,8 @@ namespace EdgeDemo.CheckersGame
         public float CompleteSize;
         public float SquareSize;
 
+        public static Rectangle BoardArea;
+
         public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
         {
@@ -37,6 +39,8 @@ namespace EdgeDemo.CheckersGame
 
             Vector2 topLeft = new Vector2(position.X - (squareSize * size - squareSize + totalSquareDistance) / 2, position.Y - (squareSize * size - squareSize + totalSquareDistance) / 2);
             CompleteSize = (Position.X - topLeft.X) * 2 + squareSize + totalSquareDistance;
+
+            BoardArea = new Rectangle((int)topLeft.X, (int)topLeft.Y, (int)(squareSize * size - squareSize + totalSquareDistance), (int)(squareSize * size - squareSize + totalSquareDistance));
 
             SquareSize = squareSize;
 
@@ -167,8 +171,8 @@ namespace EdgeDemo.CheckersGame
             if (CheckForClick())
             {
                 Vector2 topLeft = new Vector2(Position.X - CompleteSize / 2, Position.Y - CompleteSize / 2);
-                float modifiedX = Input.MousePosition.X - topLeft.X;
-                float modifiedY = Input.MousePosition.Y - topLeft.Y;
+                float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)*EdgeGame.Camera.Scale;
+                float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)*EdgeGame.Camera.Scale;
 
                 Vector2 modifiedPosition = new Vector2(modifiedX - (modifiedX % SquareSize), modifiedY - (modifiedY % SquareSize));
                 modifiedPosition += topLeft;
@@ -198,7 +202,7 @@ namespace EdgeDemo.CheckersGame
         {
             if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
             {
-                return Squares[(destination.X + origin.X) / 2 - 1, (destination.Y + origin.Y) / 2 - 1];
+                return Squares[(destination.X + origin.X) / 2, (destination.Y + origin.Y) / 2];
             }
 
             return null;

@@ -18,6 +18,7 @@ namespace EdgeDemo.CheckersGame
         //Used for each move
         public bool TopTeamTurn;
         public bool SelectedFirstSquare;
+        private Square startSquare;
         private Move CurrentMove;
         private Dictionary<Piece, List<Move>> PossibleMoves;
         private string TeamText;
@@ -28,21 +29,18 @@ namespace EdgeDemo.CheckersGame
             Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.Color1, Config.Color2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
             Board.AddToGame();
 
-            DebugText debug = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 75)) { Color = Color.Goldenrod, CenterAsOrigin = false };
+            DebugText debug = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 75)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             debug.AddToGame();
 
             TeamText = Config.TopTeamName + ": ";
-            
-            StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero);
-            StatusSprite.CenterAsOrigin = false;
+
+            StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             StatusSprite.AddToGame();
 
-            CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50));
-            CaptureSprite.CenterAsOrigin = false;
+            CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             CaptureSprite.AddToGame();
 
-            ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150));
-            ExtraSprite.CenterAsOrigin = false;
+            ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             ExtraSprite.AddToGame();
 
             resetMove();
@@ -127,9 +125,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
                         {
-                            CurrentMove = new Move(new List<Square> { square });
-                            CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-                            ExtraSprite.Text = "Current Move ID at Start: " + CurrentMove.ID;
+                            startSquare = square;
 
                             foreach (Piece possiblePiece in PossibleMoves.Keys)
                             {
@@ -140,7 +136,7 @@ namespace EdgeDemo.CheckersGame
                             SelectedFirstSquare = true;
                             StatusSprite.Text = TeamText + Config.SelectSquare2Message;
 
-                            foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
+                            foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                             {
                                 possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
                             }
@@ -152,12 +148,12 @@ namespace EdgeDemo.CheckersGame
                     }
                     else
                     {
-                        foreach (Move move in PossibleMoves[CurrentMove.Piece])
+                        foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
                         {
                             if (move.SquarePath[move.SquarePath.Count - 1] == square)
                             {
                                 CurrentMove = move;
-                                ExtraSprite.Text += "\n Current Move ID at Finish:" + CurrentMove.ID;
+                                CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
                                 Move();
 

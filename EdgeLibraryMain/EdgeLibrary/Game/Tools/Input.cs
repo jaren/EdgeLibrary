@@ -60,6 +60,11 @@ namespace EdgeLibrary
             return (mouse.RightButton == ButtonState.Pressed && previousMouse.RightButton == ButtonState.Released);
         }
 
+        public static bool JustMiddleClicked()
+        {
+            return (mouse.MiddleButton == ButtonState.Pressed && previousMouse.MiddleButton == ButtonState.Released);
+        }
+
         public static bool JustReleasedLeftClick()
         {
             return (mouse.LeftButton == ButtonState.Released && previousMouse.LeftButton == ButtonState.Pressed);
@@ -68,6 +73,11 @@ namespace EdgeLibrary
         public static bool JustReleasedRightClick()
         {
             return (mouse.RightButton == ButtonState.Released && previousMouse.RightButton == ButtonState.Pressed);
+        }
+
+        public static bool JustReleasedMiddleClick()
+        {
+            return (mouse.MiddleButton == ButtonState.Released && previousMouse.MiddleButton == ButtonState.Pressed);
         }
 
         public static bool IsKeyDown(Keys k)

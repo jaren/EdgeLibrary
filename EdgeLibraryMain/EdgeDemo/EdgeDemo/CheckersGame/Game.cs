@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using EdgeLibrary;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -35,6 +36,8 @@ namespace EdgeDemo.CheckersGame
 
             //EdgeGame.playPlaylist("Music");
 
+            EdgeGame.OnUpdate += OnUpdate;
+
             BoardManager manager = new BoardManager();
             manager.AddToGame();
 
@@ -42,6 +45,24 @@ namespace EdgeDemo.CheckersGame
 
         public void OnUpdate(GameTime gameTime)
         {
+            EdgeGame.Camera.Scale = Input.MouseWheelValue / 1000f + 1;
+
+            if (Input.IsKeyDown(Keys.Left) && EdgeGame.Camera.Position.X >= Board.BoardArea.Left)
+            {
+                EdgeGame.Camera.Position -= new Vector2(Config.CameraScrollSpeed / EdgeGame.Camera.Scale, 0);
+            }
+            if (Input.IsKeyDown(Keys.Right) && EdgeGame.Camera.Position.X <= Board.BoardArea.Right)
+            {
+                EdgeGame.Camera.Position += new Vector2(Config.CameraScrollSpeed / EdgeGame.Camera.Scale, 0);
+            }
+            if (Input.IsKeyDown(Keys.Down) && EdgeGame.Camera.Position.Y <= Board.BoardArea.Bottom)
+            {
+                EdgeGame.Camera.Position += new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
+            }
+            if (Input.IsKeyDown(Keys.Up) && EdgeGame.Camera.Position.Y >= Board.BoardArea.Top)
+            {
+                EdgeGame.Camera.Position -= new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
+            }
         }
 
         public void OnDraw(GameTime gameTime)

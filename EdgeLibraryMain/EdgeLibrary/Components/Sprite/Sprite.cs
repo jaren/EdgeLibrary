@@ -126,8 +126,8 @@ namespace EdgeLibrary
 
             ShouldBeRemoved = false;
 
-            FollowsCamera = false;
-            ScaleWithCamera = false;
+            FollowsCamera = true;
+            ScaleWithCamera = true;
 
             //Sets the default visual effects
             Scale = Vector2.One;
@@ -275,7 +275,7 @@ namespace EdgeLibrary
         {
             RestartSpriteBatch();
 
-            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
             RestartSpriteBatch();
         }
@@ -284,10 +284,10 @@ namespace EdgeLibrary
         //Should be called before and after drawing
         protected void RestartSpriteBatch()
         {
-            if (BlendState != BlendState.AlphaBlend || FollowsCamera)
+            if (BlendState != BlendState.AlphaBlend || !FollowsCamera)
             {
                 EdgeGame.Game.SpriteBatch.End();
-                if (!FollowsCamera)
+                if (FollowsCamera)
                 {
                     EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
                 }
