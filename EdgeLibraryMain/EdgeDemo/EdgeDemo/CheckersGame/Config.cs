@@ -26,6 +26,8 @@ namespace EdgeDemo.CheckersGame
         public static string TopTeamName = "Top Team";
         public static string BottomTeamName = "Bottom Team";
 
+        public static float CameraZoomSpeed = 1000f;
+        public static float CameraMaxZoom = 10f;
         public static float CameraScrollSpeed = 10f;
 
         public static Keys MoveCancelKey = Keys.Escape;

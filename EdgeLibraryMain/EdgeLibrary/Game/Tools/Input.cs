@@ -26,6 +26,7 @@ namespace EdgeLibrary
         //Returns the previous mouse position with CURRENT camera transformations
         public static Vector2 PreviousMousePosition { get { return new Vector2(previousMouse.X, previousMouse.Y) + EdgeGame.Camera.Position - EdgeGame.WindowSize / 2; } set { } }
         public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
+        public static int PreviousMouseWheelValue { get { return previousMouse.ScrollWheelValue; } set { } }
 
         public static void Update(GameTime gameTime)
         {
