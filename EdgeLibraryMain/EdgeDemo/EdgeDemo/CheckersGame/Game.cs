@@ -45,6 +45,7 @@ namespace EdgeDemo.CheckersGame
 
         public void OnUpdate(GameTime gameTime)
         {
+            /*
             EdgeGame.Camera.Scale = Input.MouseWheelValue / 1000f + 1;
 
             if (Input.IsKeyDown(Keys.Left) && EdgeGame.Camera.Position.X >= Board.BoardArea.Left)
@@ -63,6 +64,7 @@ namespace EdgeDemo.CheckersGame
             {
                 EdgeGame.Camera.Position -= new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
             }
+             */
         }
 
         public void OnDraw(GameTime gameTime)
