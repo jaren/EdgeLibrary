@@ -1,6 +1,7 @@
 ﻿using EdgeLibrary;
-using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,11 @@ namespace EdgeDemo.CheckersGame
 
                 RestartSpriteBatch();
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
         }
     }
 }

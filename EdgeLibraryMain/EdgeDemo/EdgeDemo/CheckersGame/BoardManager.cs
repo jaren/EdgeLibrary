@@ -14,6 +14,7 @@ namespace EdgeDemo.CheckersGame
         public TextSprite StatusSprite;
         public TextSprite CaptureSprite;
         public TextSprite ExtraSprite;
+        public TextSprite DebugSprite;
 
         //Used for each move
         public bool TopTeamTurn;
@@ -29,8 +30,8 @@ namespace EdgeDemo.CheckersGame
             Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.Color1, Config.Color2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
             Board.AddToGame();
 
-            DebugText debug = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 75)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
-            debug.AddToGame();
+            DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 300)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
+            DebugSprite.AddToGame();
 
             TeamText = Config.TopTeamName + ": ";
 
@@ -101,6 +102,8 @@ namespace EdgeDemo.CheckersGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
 
             if (Input.KeyJustPressed(Config.MoveCancelKey))
             {
