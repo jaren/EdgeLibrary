@@ -68,7 +68,7 @@ namespace EdgeDemo.CheckersGame
                     BoardManager.Board.CapturePiece(square.OccupyingPiece);
                 }
             }
-            //CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
+            BoardManager.CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
             //********************
 
             if ((Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == Config.BoardSize - 1) || (!Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == 0))
