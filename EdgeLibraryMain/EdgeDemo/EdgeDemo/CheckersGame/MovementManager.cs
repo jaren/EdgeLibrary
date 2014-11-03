@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -286,6 +287,8 @@ namespace EdgeDemo.CheckersGame
             List<Move> MultiJumps = new List<Move>();
             List<Square> originalJumps = PieceCanJumpTo(piece);
 
+            //NOTES: Ask for client input even if there is only one jump available: This will not involve fake anythings
+
             foreach(Square square in originalJumps)
             {
                 //Temporary function - only checks for single jumps
@@ -293,6 +296,11 @@ namespace EdgeDemo.CheckersGame
             }
 
             return MultiJumps;
+        }
+
+        public static Move CheckForMoreMoves(Piece piece)
+        {
+            //TODO: Complete
         }
 
         public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam)
