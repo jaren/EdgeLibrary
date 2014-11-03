@@ -10,7 +10,7 @@ namespace EdgeDemo.CheckersGame
 {
     public class BoardManager : Sprite
     {
-        public Board Board;
+        public static Board Board;
         public TextSprite StatusSprite;
         public TextSprite CaptureSprite;
         public TextSprite ExtraSprite;
@@ -170,7 +170,7 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        void CurrentMove_OnCompleteSquare(List<Square> squarePath, List<Square> jumpedSquares, int index)
+        public void CurrentMove_OnCompleteSquare(List<Square> squarePath, List<Square> jumpedSquares, int index)
         {
             Board.CapturePiece(jumpedSquares[index].OccupyingPiece);
             CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;

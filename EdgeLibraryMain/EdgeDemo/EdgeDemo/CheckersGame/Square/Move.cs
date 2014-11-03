@@ -43,6 +43,7 @@ namespace EdgeDemo.CheckersGame
             MoveIndex = 0;
         }
 
+        ASequence MoveSequence;
         public void RunMove()
         {
             List<Action> Moves = new List<Action>();
@@ -50,13 +51,25 @@ namespace EdgeDemo.CheckersGame
             {
                 Moves.Add(new AMoveTo(square.Position, Config.CheckerMoveSpeed));
             }
-            ASequence MoveSequence = new ASequence(Moves);
+            Moves.RemoveAt(0);
+            MoveSequence = new ASequence(Moves);
             MoveSequence.OnActionTransition += MoveSequence_OnTransition;
 
             Piece.AddAction(MoveSequence);
 
             SquarePath[0].OccupyingPiece = null;
             SquarePath[SquarePath.Count - 1].SetPiece(Piece);
+
+            //Temporary workaround
+            if (JumpedSquares != null)
+            {
+                foreach (Square square in JumpedSquares)
+                {
+                    BoardManager.Board.CapturePiece(square.OccupyingPiece);
+                }
+            }
+            //CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
+            //********************
 
             if ((Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == Config.BoardSize - 1) || (!Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == 0))
             {
