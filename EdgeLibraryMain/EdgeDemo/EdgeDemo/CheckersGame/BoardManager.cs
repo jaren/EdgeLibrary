@@ -12,7 +12,7 @@ namespace EdgeDemo.CheckersGame
     {
         public static Board Board;
         public TextSprite StatusSprite;
-        public TextSprite CaptureSprite;
+        public static TextSprite CaptureSprite;
         public TextSprite ExtraSprite;
         public TextSprite DebugSprite;
 
