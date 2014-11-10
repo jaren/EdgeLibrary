@@ -111,7 +111,7 @@ namespace EdgeDemo.CheckersGame
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
         {
             //Gets the square clicked
-            MousedOverSquare = Board.GetSquareClicked();
+            MousedOverSquare = Board.GetSquareMousedOver();
         }
 
         private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)

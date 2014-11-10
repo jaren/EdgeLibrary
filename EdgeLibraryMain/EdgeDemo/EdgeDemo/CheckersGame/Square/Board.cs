@@ -159,16 +159,15 @@ namespace EdgeDemo.CheckersGame
             return false;
         }
 
-        public bool CheckForClick()
+        public bool CheckForMouseOver()
         {
             return Input.MousePosition.X > Position.X - CompleteSize / 2 && Input.MousePosition.X < Position.X + CompleteSize / 2
-                && Input.MousePosition.Y > Position.Y - CompleteSize / 2 && Input.MousePosition.Y < Position.Y + CompleteSize / 2
-                && Input.JustLeftClicked();
+                && Input.MousePosition.Y > Position.Y - CompleteSize / 2 && Input.MousePosition.Y < Position.Y + CompleteSize / 2;
         }
 
-        public Square GetSquareClicked()
+        public Square GetSquareMousedOver()
         {
-            if (CheckForClick())
+            if (CheckForMouseOver())
             {
                 //Vector2 topLeft = new Vector2(BoardArea.Left, BoardArea.Top);
                 //float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)/EdgeGame.Camera.Scale;

@@ -99,6 +99,14 @@ namespace EdgeLibrary
                 }
             }
 
+            if (MouseWheelValue != PreviousMouseWheelValue)
+            {
+                if (OnMouseWheelChanged != null)
+                {
+                    OnMouseWheelChanged(MouseWheelValue, PreviousMouseWheelValue);
+                }
+            }
+
             if (keyboard.GetPressedKeys() != previousKeyboard.GetPressedKeys())
             {
                 foreach(Keys key in keyboard.GetPressedKeys())
