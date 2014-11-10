@@ -222,9 +222,16 @@ namespace EdgeDemo.CheckersGame
 
             foreach (Square s in Board.Squares)
             {
-                if (s.OccupyingPiece == piece)
+                if (s.OccupyingPiece == piece || piece.Fake)
                 {
-                    square = s;
+                    if (piece.Fake)
+                    {
+                        square = Board.Squares[piece.X, piece.Y];
+                    }
+                    else
+                    {
+                        square = s;
+                    }
 
                     #region BottomTeam
                     if (!piece.TopTeam || piece.King)
@@ -290,7 +297,7 @@ namespace EdgeDemo.CheckersGame
             foreach (Square square in originalJumps)
             {
                 List<Square> secondJumps = GetJumpsFromSquare(square, piece);
-                if (secondJumps != null)
+                if (secondJumps.Count > 0)
                 {
                     foreach (Square secondSquare in secondJumps)
                     {
@@ -318,6 +325,8 @@ namespace EdgeDemo.CheckersGame
             Piece fakePiece = new Piece("none", Vector2.Zero, Color.White, 0f, jumpingPiece.TopTeam);
             fakePiece.X = originSquare.X;
             fakePiece.Y = originSquare.Y;
+            fakePiece.King = jumpingPiece.King;
+            fakePiece.Fake = true;
 
             jumps = PieceCanJumpTo(fakePiece);
 

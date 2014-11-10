@@ -12,6 +12,7 @@ namespace EdgeDemo.CheckersGame
     {
         public bool King;
         public bool TopTeam;
+        public bool Fake;
 
         public float Size
         {
@@ -31,6 +32,7 @@ namespace EdgeDemo.CheckersGame
             Size = size;
             TopTeam = topTeam;
             King = false;
+            Fake = false;
         }
 
         public override void Draw(GameTime gameTime)
