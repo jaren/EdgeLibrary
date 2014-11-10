@@ -301,10 +301,24 @@ namespace EdgeDemo.CheckersGame
                 {
                     foreach (Square secondSquare in secondJumps)
                     {
-                        MultiJumps.Add(
-                            new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square, secondSquare },
-                            new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square), Board.GetSquareBetween(square, secondSquare) })
-                        );
+                        List<Square> thirdJumps = GetJumpsFromSquare(secondSquare, piece);
+                        if (thirdJumps.Count > 0)
+                        {
+                            foreach (Square thirdSquare in thirdJumps)
+                            {
+                                MultiJumps.Add(
+                                    new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare},
+                                    new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square), Board.GetSquareBetween(square, secondSquare), Board.GetSquareBetween(secondSquare, thirdSquare) })
+                                );
+                            }
+                        }
+                        else
+                        {
+                            MultiJumps.Add(
+                                new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square, secondSquare },
+                                new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square), Board.GetSquareBetween(square, secondSquare) })
+                            );
+                        }
                     }
                 }
                 else
