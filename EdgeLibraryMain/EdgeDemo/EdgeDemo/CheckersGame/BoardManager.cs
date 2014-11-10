@@ -74,6 +74,12 @@ namespace EdgeDemo.CheckersGame
 
             //Initializing move
             ResetMove();
+
+            //Subscribes to input
+            Input.OnKeyPress += Input_OnKeyPress;
+            Input.OnKeyRelease += Input_OnKeyRelease;
+            Input.OnClick += Input_OnClick;
+            Input.OnReleaseClick += Input_OnReleaseClick;
         }
 
         //Starts the current move and sends it to the webservice
@@ -84,6 +90,25 @@ namespace EdgeDemo.CheckersGame
             //Eventually this will call the web service's move function
             //Something like this:
             //CheckersService.move(short pieceId, short destX, short destY)
+        }
+
+        private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
+        {
+        }
+
+        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Input_OnKeyRelease(Keys key)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Input_OnKeyPress(Keys key)
+        {
+            throw new NotImplementedException();
         }
 
         //Necessary override to not draw the BoardManager
