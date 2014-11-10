@@ -2,15 +2,25 @@
 To Do:
 	=Main Features:
 		-Add WebService
+			-Progress: 10%
 		-Add MultiJumps
+			-Progress: Double jumps complete
 
 	=Aesthetics
+		-Add comments on all CheckersGame classes
+			-Progress: BoardManager is done
 		-Add square numbers and line path when hovering over a selected square
+			-Progress: NONE
 		-Main Menu, Menu Select, etc.
+			-Progress: NONE
 		-Music options, sound
+			-Progress: NONE
 
 	=Bugs:
 		-Fix resetting move on escape
+			-Progress: NONE
 		-When pressing escape, KeyNotFoundException occurs
+			-Progress: NONE
 		-Fix move segment completion events
+			-Progress: NONE ?
 ===========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
