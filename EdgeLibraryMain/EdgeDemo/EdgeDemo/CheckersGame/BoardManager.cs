@@ -42,8 +42,7 @@ namespace EdgeDemo.CheckersGame
 
         //The square that is currently moused over
         public Square MousedOverSquare;
-        public Square PreviousMousedOverSquare;
-
+        
         //The possible moves on this turn
         private Dictionary<Piece, List<Move>> PossibleMoves;
 
@@ -112,22 +111,7 @@ namespace EdgeDemo.CheckersGame
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
         {
             //Gets the square clicked
-            PreviousMousedOverSquare = MousedOverSquare;
             MousedOverSquare = Board.GetSquareMousedOver();
-
-            if (MousedOverSquare != PreviousMousedOverSquare)
-            {
-                if (SelectedFirstSquare)
-                {
-                    ClearPreviousNumberSquarePath();
-                    DrawSquareNumberPath();
-                }
-                else
-                {
-                    ClearPossibleSquarePaths();
-                    DrawPossibleSquarePaths();
-                }
-            }
         }
 
         private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -148,7 +132,7 @@ namespace EdgeDemo.CheckersGame
         }
         private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { }
 
-        private void Input_OnKeyRelease(Keys key)
+        private void Input_OnKeyRelease(Keys key) 
         {
             //Cancels the move is the cancel key was pressed
             if (key == Config.MoveCancelKey)
@@ -175,7 +159,7 @@ namespace EdgeDemo.CheckersGame
             CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
         }
 
-        //Sets the starting square to the moused over square
+        //Sets the starting square
         private void SetFirstSquare()
         {
             //Checks if the square is valid
@@ -210,7 +194,7 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        //Sets the last square to the moused over square
+        //Sets the last square
         private void SetLastSquare()
         {
             //Find the correct finish square
@@ -235,33 +219,6 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        //Draws all the possible square paths for the moused over square
-        private void DrawPossibleSquarePaths(Square square)
-        {
-
-        }
-        //Clears the square paths for a certain square
-        private void ClearPossibleSquarePaths(Square square)
-        {
-        }
-
-        //Draws the square numbers and path for the current moused over square
-        private void DrawSquareNumberPath()
-        {
-
-        }
-        //Clears the possible square paths for a certain square
-        private void ClearPossibleSquarePaths()
-        {
-            foreach (Move move in PossibleMoves)
-            {
-                if (move.StartSquare = square)
-                {
-
-                }
-            }
-        }
-
         //Resets the move
         public void ResetMove()
         {
@@ -277,7 +234,7 @@ namespace EdgeDemo.CheckersGame
                     StatusSprite.Text = TeamText + Config.PassMessage;
 
                     //Resets the move again, which will generate new squares for the other team
-                    PossibleMoves = null;
+                    PossibleMoves = null; 
                     ResetMove();
                 }
 
@@ -285,7 +242,7 @@ namespace EdgeDemo.CheckersGame
                 //It uses the finish square's occupying piece because the piece has already been moved
                 foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                 {
-                    foreach (Square square in possibleMove.SquarePath)
+                    foreach(Square square in possibleMove.SquarePath)
                     {
                         square.Color = square.DefaultColor;
                     }
