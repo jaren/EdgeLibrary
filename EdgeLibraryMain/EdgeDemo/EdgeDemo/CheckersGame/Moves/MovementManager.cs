@@ -301,6 +301,7 @@ namespace EdgeDemo.CheckersGame
         public static Move CheckForMoreMoves(Piece piece)
         {
             //TODO: Complete
+            return null;
         }
 
         public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam)
