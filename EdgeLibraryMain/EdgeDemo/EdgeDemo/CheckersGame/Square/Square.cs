@@ -29,7 +29,7 @@ namespace EdgeDemo.CheckersGame
             DefaultColor = color;
             Color = color;
 
-            SquareNumber = new TextSprite(Config.SquareFont, "", Position);
+            SquareNumber = new TextSprite(Config.SquareFont, "", Position) { CenterAsOrigin = true, Color = Config.SquareNumberColor };
         }
 
         public bool CheckForClick()

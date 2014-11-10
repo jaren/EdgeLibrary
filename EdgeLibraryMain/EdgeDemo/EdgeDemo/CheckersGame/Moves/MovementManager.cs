@@ -314,6 +314,7 @@ namespace EdgeDemo.CheckersGame
 
         public static List<Square> GetJumpsFromSquare(Square originSquare, Piece jumpingPiece)
         {
+<<<<<<< HEAD:EdgeLibraryMain/EdgeDemo/EdgeDemo/CheckersGame/MovementManager.cs
             List<Square> jumps = new List<Square>();
             Piece fakePiece = new Piece("none", Vector2.Zero, Color.White, 0f, jumpingPiece.TopTeam);
             fakePiece.X = originSquare.X;
@@ -322,6 +323,10 @@ namespace EdgeDemo.CheckersGame
             jumps = PieceCanJumpTo(fakePiece);
 
             return jumps;
+=======
+            //TODO: Complete
+            return null;
+>>>>>>> origin/master:EdgeLibraryMain/EdgeDemo/EdgeDemo/CheckersGame/Moves/MovementManager.cs
         }
 
         public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam)
