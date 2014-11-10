@@ -113,11 +113,12 @@ namespace EdgeDemo.CheckersGame
                 //If not, do nothing
             }
 
-            //If the board has been clicked, find the square that has been clicked
+            //Gets the square clicked
+            Square square = Board.GetSquareClicked();
+
+            //If the board has been clicked, check for the move update
             if (Input.JustLeftClicked())
             {
-                Square square = Board.GetSquareClicked();
-
                 if (square != null)
                 {
                     //If the first square hasn't selected, try to select the first square

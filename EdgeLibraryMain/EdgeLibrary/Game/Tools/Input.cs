@@ -28,12 +28,95 @@ namespace EdgeLibrary
         public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
         public static int PreviousMouseWheelValue { get { return previousMouse.ScrollWheelValue; } set { } }
 
+        public static delegate void MouseEvent(Vector2 mousePosition, Vector2 previousMousePosition);
+        public static event MouseEvent OnMouseMove;
+        public static event MouseEvent OnClick;
+        public static event MouseEvent OnReleaseClick;
+        public static event MouseEvent OnRightClick;
+        public static event MouseEvent OnReleaseRightClick;
+        public static event MouseEvent OnMiddleClick;
+        public static event MouseEvent OnReleaseMiddleClick;
+        public static delegate void MouseWheelEvent(int mouseWheelValue, int previousMouseWheelValue);
+        public static event MouseWheelEvent OnMouseWheelChanged;
+        public static delegate void KeyboardEvent(Keys key);
+        public static event KeyboardEvent OnKeyPress;
+        public static event KeyboardEvent OnKeyRelease;
+
         public static void Update(GameTime gameTime)
         {
             previousKeyboard = keyboard;
             previousMouse = mouse;
             keyboard = Keyboard.GetState();
             mouse = Mouse.GetState();
+
+            if (MousePosition != PreviousMousePosition)
+            {
+                if (OnMouseMove != null)
+                {
+                    OnMouseMove(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustLeftClicked())
+            {
+                if (OnClick != null)
+                {
+                    OnClick(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustReleasedLeftClick())
+            {
+                if (OnReleaseClick != null)
+                {
+                    OnReleaseClick(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustRightClicked())
+            {
+                if (OnRightClick != null)
+                {
+                    OnRightClick(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustReleasedRightClick())
+            {
+                if (OnReleaseRightClick != null)
+                {
+                    OnReleaseRightClick(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustMiddleClicked())
+            {
+                if (OnMiddleClick != null)
+                {
+                    OnMiddleClick(MousePosition, PreviousMousePosition);
+                }
+            }
+            if (JustReleasedMiddleClick())
+            {
+                if (OnReleaseMiddleClick != null)
+                {
+                    OnReleaseMiddleClick(MousePosition, PreviousMousePosition);
+                }
+            }
+
+            if (keyboard.GetPressedKeys() != previousKeyboard.GetPressedKeys())
+            {
+                foreach(Keys key in keyboard.GetPressedKeys())
+                {
+                    if (!previousKeyboard.GetPressedKeys().Contains(key))
+                    {
+                        OnKeyPress(key);
+                    }
+                }
+
+                foreach(Keys key in previousKeyboard.GetPressedKeys())
+                {
+                    if (!keyboard.GetPressedKeys().Contains(key))
+                    {
+                        OnKeyRelease(key);
+                    }
+                }
+            }
         }
 
         public static Keys[] KeysPressed()
