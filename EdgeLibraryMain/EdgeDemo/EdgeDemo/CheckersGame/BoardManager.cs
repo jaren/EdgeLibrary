@@ -39,6 +39,9 @@ namespace EdgeDemo.CheckersGame
 
         //The current move
         private Move CurrentMove;
+
+        //The square that is currently moused over
+        public Square MousedOverSquare;
         
         //The possible moves on this turn
         private Dictionary<Piece, List<Move>> PossibleMoves;
@@ -76,6 +79,7 @@ namespace EdgeDemo.CheckersGame
             ResetMove();
 
             //Subscribes to input
+            Input.OnMouseMove += Input_OnMouseMove;
             Input.OnKeyPress += Input_OnKeyPress;
             Input.OnKeyRelease += Input_OnKeyRelease;
             Input.OnClick += Input_OnClick;
@@ -92,25 +96,6 @@ namespace EdgeDemo.CheckersGame
             //CheckersService.move(short pieceId, short destX, short destY)
         }
 
-        private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
-        {
-        }
-
-        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Input_OnKeyRelease(Keys key)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void Input_OnKeyPress(Keys key)
-        {
-            throw new NotImplementedException();
-        }
-
         //Necessary override to not draw the BoardManager
         public override void Draw(GameTime gameTime) { }
 
@@ -121,9 +106,36 @@ namespace EdgeDemo.CheckersGame
 
             //Updates the debug information
             DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
+        }
 
-            //Checks if the move was cancelled
-            if (Input.KeyJustPressed(Config.MoveCancelKey))
+        private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
+        {
+            //Gets the square clicked
+            MousedOverSquare = Board.GetSquareClicked();
+        }
+
+        private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
+        {
+            if (MousedOverSquare != null)
+            {
+                //If the first square hasn't selected, try to select the first square
+                if (!SelectedFirstSquare)
+                {
+                    SetFirstSquare();
+                }
+                //If the first square was selected already, complete the move
+                else
+                {
+                    SetLastSquare();
+                }
+            }
+        }
+        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { }
+
+        private void Input_OnKeyRelease(Keys key) 
+        {
+            //Cancels the move is the cancel key was pressed
+            if (key == Config.MoveCancelKey)
             {
                 //If the first square was selected, reset the move
                 if (SelectedFirstSquare)
@@ -135,78 +147,9 @@ namespace EdgeDemo.CheckersGame
 
                     ResetMove();
                 }
-                //If not, do nothing
-            }
-
-            //Gets the square clicked
-            Square square = Board.GetSquareClicked();
-
-            //If the board has been clicked, check for the move update
-            if (Input.JustLeftClicked())
-            {
-                if (square != null)
-                {
-                    //If the first square hasn't selected, try to select the first square
-                    if (!SelectedFirstSquare)
-                    {
-                        //Checks if the square is valid
-                        if (square.OccupyingPiece != null && PossibleMoves.Keys.Contains(square.OccupyingPiece))
-                        {
-                            //Sets the start square
-                            startSquare = square;
-
-                            //Resets the color of the possible start squares
-                            foreach (Piece possiblePiece in PossibleMoves.Keys)
-                            {
-                                Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
-                            }
-
-                            //Colors the start square
-                            square.Color = Config.Square1SelectColor;
-
-                            //Updates info
-                            SelectedFirstSquare = true;
-                            StatusSprite.Text = TeamText + Config.SelectSquare2Message;
-
-                            //Colors the possible end squares
-                            foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                            {
-                                possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
-                            }
-                        }
-                        //If the square isn't valid, change the message
-                        else
-                        {
-                            StatusSprite.Text = TeamText + Config.SelectSquare1MessageFailed;
-                        }
-                    }
-                    //If the first square was selected already, complete the move
-                    else
-                    {
-                        //Find the correct finish square
-                        foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
-                        {
-                            if (move.SquarePath[move.SquarePath.Count - 1] == square)
-                            {
-                                //Set the current move and subscribe to it
-                                CurrentMove = move;
-                                CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-
-                                //Run move
-                                Move();
-
-                                //Updates info
-                                TopTeamTurn = !TopTeamTurn;
-                                TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-
-                                //Resets move
-                                ResetMove();
-                            }
-                        }
-                    }
-                }
             }
         }
+        private void Input_OnKeyPress(Keys key) { }
 
         //Called after each 'segment' of the move completes
         public void CurrentMove_OnCompleteSquare(List<Square> squarePath, List<Square> jumpedSquares, int index)
@@ -214,6 +157,66 @@ namespace EdgeDemo.CheckersGame
             //Captures the piece and updates the capture sprite
             Board.CapturePiece(jumpedSquares[index].OccupyingPiece);
             CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
+        }
+
+        //Sets the starting square
+        private void SetFirstSquare()
+        {
+            //Checks if the square is valid
+            if (MousedOverSquare.OccupyingPiece != null && PossibleMoves.Keys.Contains(MousedOverSquare.OccupyingPiece))
+            {
+                //Sets the start square
+                startSquare = MousedOverSquare;
+
+                //Resets the color of the possible start squares
+                foreach (Piece possiblePiece in PossibleMoves.Keys)
+                {
+                    Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
+                }
+
+                //Colors the start square
+                MousedOverSquare.Color = Config.Square1SelectColor;
+
+                //Updates info
+                SelectedFirstSquare = true;
+                StatusSprite.Text = TeamText + Config.SelectSquare2Message;
+
+                //Colors the possible end squares
+                foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                {
+                    possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
+                }
+            }
+            //If the square isn't valid, change the message
+            else
+            {
+                StatusSprite.Text = TeamText + Config.SelectSquare1MessageFailed;
+            }
+        }
+
+        //Sets the last square
+        private void SetLastSquare()
+        {
+            //Find the correct finish square
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
+            {
+                if (move.SquarePath[move.SquarePath.Count - 1] == MousedOverSquare)
+                {
+                    //Set the current move and subscribe to it
+                    CurrentMove = move;
+                    CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
+
+                    //Run move
+                    Move();
+
+                    //Updates info
+                    TopTeamTurn = !TopTeamTurn;
+                    TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+
+                    //Resets move
+                    ResetMove();
+                }
+            }
         }
 
         //Resets the move

@@ -28,7 +28,7 @@ namespace EdgeLibrary
         public static int MouseWheelValue { get { return mouse.ScrollWheelValue; } set { } }
         public static int PreviousMouseWheelValue { get { return previousMouse.ScrollWheelValue; } set { } }
 
-        public static delegate void MouseEvent(Vector2 mousePosition, Vector2 previousMousePosition);
+        public delegate void MouseEvent(Vector2 mousePosition, Vector2 previousMousePosition);
         public static event MouseEvent OnMouseMove;
         public static event MouseEvent OnClick;
         public static event MouseEvent OnReleaseClick;
@@ -36,9 +36,9 @@ namespace EdgeLibrary
         public static event MouseEvent OnReleaseRightClick;
         public static event MouseEvent OnMiddleClick;
         public static event MouseEvent OnReleaseMiddleClick;
-        public static delegate void MouseWheelEvent(int mouseWheelValue, int previousMouseWheelValue);
+        public delegate void MouseWheelEvent(int mouseWheelValue, int previousMouseWheelValue);
         public static event MouseWheelEvent OnMouseWheelChanged;
-        public static delegate void KeyboardEvent(Keys key);
+        public delegate void KeyboardEvent(Keys key);
         public static event KeyboardEvent OnKeyPress;
         public static event KeyboardEvent OnKeyRelease;
 
