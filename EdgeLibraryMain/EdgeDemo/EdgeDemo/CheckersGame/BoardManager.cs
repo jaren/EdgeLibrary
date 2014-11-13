@@ -119,13 +119,13 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    ClearPreviousNumberSquarePath();
+                    ClearSquareNumberPaths();
                     DrawSquareNumberPath();
                 }
                 else
                 {
-                    ClearPossibleSquarePaths();
-                    DrawPossibleSquarePaths();
+                    ClearPossibleSquarePaths(PreviousMousedOverSquare);
+                    DrawPossibleSquarePaths(MousedOverSquare);
                 }
             }
         }
@@ -238,7 +238,6 @@ namespace EdgeDemo.CheckersGame
         //Draws all the possible square paths for the moused over square
         private void DrawPossibleSquarePaths(Square square)
         {
-
         }
         //Clears the square paths for a certain square
         private void ClearPossibleSquarePaths(Square square)
@@ -251,15 +250,8 @@ namespace EdgeDemo.CheckersGame
 
         }
         //Clears the possible square paths for a certain square
-        private void ClearPossibleSquarePaths()
+        private void ClearSquareNumberPaths()
         {
-            foreach (Move move in PossibleMoves)
-            {
-                if (move.StartSquare = square)
-                {
-
-                }
-            }
         }
 
         //Resets the move
