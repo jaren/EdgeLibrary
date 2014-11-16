@@ -107,6 +107,11 @@ namespace EdgeDemo.CheckersGame
 
             //Updates the debug information
             DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
+
+            if (CheckEndGame())
+            {
+                EndGame();
+            }
         }
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -252,6 +257,33 @@ namespace EdgeDemo.CheckersGame
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths()
         {
+        }
+
+        //Checks if the game should end
+        public bool CheckEndGame()
+        {
+            bool topTeamHasPieces = false;
+            bool bottomTeamHasPieces = false;
+            foreach(Square square in Board.Squares)
+            {
+                if (square.OccupyingPiece != null)
+                {
+                    if (square.OccupyingPiece.TopTeam)
+                    {
+                        topTeamHasPieces = true;
+                        continue;
+                    }
+                    bottomTeamHasPieces = true;
+                }
+            }
+
+            return !(topTeamHasPieces || bottomTeamHasPieces);
+        }
+
+        //Ends the game
+        public void EndGame()
+        {
+
         }
 
         //Resets the move
