@@ -105,13 +105,14 @@ namespace EdgeDemo.CheckersGame
         {
             base.Update(gameTime);
 
-            //Updates the debug information
-            DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
-
+            //Move to capture piece function when permanent fix is implemented
             if (CheckEndGame())
             {
                 EndGame();
             }
+
+            //Updates the debug information
+            DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
         }
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
