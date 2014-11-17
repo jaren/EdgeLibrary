@@ -4,7 +4,7 @@ To Do:
 		-Add WebService
 			-Progress: 10%
 		-Add MultiJumps
-			-Progress: Double jumps complete
+			-Progress: Up to Triple jumps complete
 
 	=Aesthetics
 		-Add comments on all CheckersGame classes
