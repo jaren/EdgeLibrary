@@ -13,6 +13,7 @@ namespace EdgeDemo.CheckersGame
         public Piece OccupyingPiece;
         public Color DefaultColor;
         public TextSprite SquareNumber;
+        public List<Sprite> SquareLines;
 
         public Vector2 TopLeft;
 
@@ -30,6 +31,7 @@ namespace EdgeDemo.CheckersGame
             Color = color;
 
             SquareNumber = new TextSprite(Config.SquareFont, "", Position) { CenterAsOrigin = true, Color = Config.SquareNumberColor };
+            SquareLines = new List<Sprite>();
         }
 
         public bool CheckForClick()
@@ -41,6 +43,11 @@ namespace EdgeDemo.CheckersGame
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+
+            foreach(Sprite sprite in SquareLines)
+            {
+                sprite.Draw(gameTime);
+            }
             SquareNumber.Draw(gameTime);
         }
 
