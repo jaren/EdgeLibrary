@@ -125,6 +125,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
+                    ClearPossibleSquarePaths(MousedOverSquare);
                     ClearSquareNumberPaths(MousedOverSquare);
                     DrawSquareNumberPath(MousedOverSquare);
                 }
