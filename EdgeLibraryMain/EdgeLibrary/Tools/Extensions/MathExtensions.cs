@@ -82,7 +82,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Gets a color from a hex string
         /// </summary>
-        public static Color ToHex(this string hexString)
+        public static Color FromHex(this string hexString)
         {
             if (!hexString.Contains('#'))
             {

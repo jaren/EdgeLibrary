@@ -36,7 +36,7 @@ namespace EdgeDemo.CheckersGame
             ID = this.GenerateID();
 
             SquarePath = squarePath;
-            JumpedSquares = jumpedSquares;
+            JumpedSquares = jumpedSquares == null ? new List<Square>() : jumpedSquares;
 
             Piece = SquarePath[0].OccupyingPiece;
 
@@ -61,12 +61,9 @@ namespace EdgeDemo.CheckersGame
             SquarePath[SquarePath.Count - 1].SetPiece(Piece);
 
             //Temporary workaround
-            if (JumpedSquares != null)
+            foreach (Square square in JumpedSquares)
             {
-                foreach (Square square in JumpedSquares)
-                {
-                    BoardManager.Board.CapturePiece(square.OccupyingPiece);
-                }
+                BoardManager.Board.CapturePiece(square.OccupyingPiece);
             }
             BoardManager.CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
             //********************

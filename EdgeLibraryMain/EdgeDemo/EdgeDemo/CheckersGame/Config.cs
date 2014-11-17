@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
+using EdgeLibrary;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -12,6 +13,7 @@ namespace EdgeDemo.CheckersGame
         public static string PieceTexture = "Checkers";
         public static string KingTexture = "Crown";
         public static string SquareTexture = "Pixel";
+        public static string XTexture = "X";
 
         public static string StatusFont = "ComicSans-20";
         public static string SquareFont = "ComicSans-20";
@@ -46,13 +48,16 @@ namespace EdgeDemo.CheckersGame
         public static float CheckerFadeOutSpeed = 1f;
         public static float CheckerFadeInSpeed = 1f;
 
-        public static Color SquareNumberColor = Color.Black;
+        public static float XScale = 0.3f;
+
+        public static Color SquareNumberColor = Color.OrangeRed;
         public static Color SquarePathColor = Color.Gray;
 
         public static Color Color1 = Color.SaddleBrown;
         public static Color Color2 = Color.Tan;
 
-        public static Color SquareLineColor = Color.DarkOrange;
+        public static Color SquareLineColor = Color.DarkRed;
+        public static float SquareLineThickness = 7;
 
         public static Color TopColor = Color.White;
         public static Color BottomColor = Color.DarkGray;

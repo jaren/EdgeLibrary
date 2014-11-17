@@ -273,11 +273,14 @@ namespace EdgeLibrary
         //Draws to the spritebatch
         public override void Draw(GameTime gameTime)
         {
-            RestartSpriteBatch();
+            if (Visible)
+            {
+                RestartSpriteBatch();
 
-            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+                EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
-            RestartSpriteBatch();
+                RestartSpriteBatch();
+            }
         }
 
         //Restarts the spritebatch if the blend state is not AlphaBlend

@@ -115,6 +115,15 @@ namespace EdgeDemo.CheckersGame
                 {
                     square.OccupyingPiece.Draw(gameTime);
                 }
+
+                foreach (Sprite sprite in square.SquareLines)
+                {
+                    sprite.Draw(gameTime);
+                }
+
+                square.SquareNumber.Draw(gameTime);
+
+                square.XSprite.Draw(gameTime);
             }
 
             Border.Draw(gameTime);

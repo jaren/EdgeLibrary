@@ -101,6 +101,7 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.LoadTexture(Config.PieceTexture);
             EdgeGame.LoadTexture(Config.KingTexture);
+            EdgeGame.LoadTexture(Config.XTexture);
 
             EdgeGame.LoadSong("Music/Carefree");
             EdgeGame.LoadSong("Music/Fig Leaf Times Two");

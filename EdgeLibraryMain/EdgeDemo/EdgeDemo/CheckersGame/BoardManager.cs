@@ -121,17 +121,12 @@ namespace EdgeDemo.CheckersGame
             PreviousMousedOverSquare = MousedOverSquare;
             MousedOverSquare = Board.GetSquareMousedOver();
 
-            if (PreviousMousedOverSquare == null)
-            {
-                PreviousMousedOverSquare = MousedOverSquare;
-            }
-
             if (MousedOverSquare != PreviousMousedOverSquare)
             {
                 if (SelectedFirstSquare)
                 {
-                    ClearSquareNumberPaths();
-                    DrawSquareNumberPath();
+                    ClearSquareNumberPaths(MousedOverSquare);
+                    DrawSquareNumberPath(MousedOverSquare);
                 }
                 else
                 {
@@ -246,28 +241,39 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
+        //Draws the square lines for a certain move
+        private void DrawSquareLines(Move move)
+        {
+            Square square = move.StartSquare;
+
+            for (int i = 0; i < move.SquarePath.Count - 1; i++)
+            {
+                square.SquareLines.Add(
+                    new Sprite(Config.SquareTexture, Vector2.Lerp(move.SquarePath[i].Position, move.SquarePath[i + 1].Position, 0.5f))
+                    {
+                        Scale = new Vector2(Config.SquareLineThickness,
+                        (float)Math.Sqrt((move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X) * (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)
+                        + (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y) * (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y))),
+
+                        Rotation = -1 * (float)Math.Atan2((move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y), (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)),
+
+                        Color = Config.SquareLineColor
+                    });
+            }
+        }
+
         //Draws all the possible square paths for the moused over square
         private void DrawPossibleSquarePaths(Square square)
         {
-            foreach (Piece piece in PossibleMoves.Keys)
+            if (square != null)
             {
-                if (square.OccupyingPiece == piece)
+                foreach (Piece piece in PossibleMoves.Keys)
                 {
-                    foreach (Move move in PossibleMoves[piece])
+                    if (square.OccupyingPiece == piece)
                     {
-                        for (int i = 0; i < move.SquarePath.Count - 2; i++)
+                        foreach (Move move in PossibleMoves[piece])
                         {
-                            square.SquareLines.Add(
-                                new Sprite(Config.SquareTexture, Vector2.Lerp(move.SquarePath[i].Position, move.SquarePath[i + 1].Position, 0.5f))
-                                {
-                                    Scale = new Vector2(1,
-                                    (float)Math.Sqrt((move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X) * (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)
-                                    + (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y) * (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y))),
-
-                                    Rotation = (float)Math.Tan((move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y) / (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)),
-
-                                    Color = Config.SquareLineColor
-                                });
+                            DrawSquareLines(move);
                         }
                     }
                 }
@@ -276,17 +282,53 @@ namespace EdgeDemo.CheckersGame
         //Clears the square paths for a certain square
         private void ClearPossibleSquarePaths(Square square)
         {
-            square.SquareLines.Clear();
+            if (square != null)
+            {
+                square.SquareLines.Clear();
+            }
         }
 
         //Draws the square numbers and path for the current moused over square
-        private void DrawSquareNumberPath()
+        private void DrawSquareNumberPath(Square endSquare)
         {
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
+            {
+                if (move.FinishSquare == endSquare)
+                {
+                    DrawPossibleSquarePaths(move.StartSquare);
 
+                    for (int i = 0; i < move.SquarePath.Count; i++)
+                    {
+                        move.SquarePath[i].SquareNumber.Text = i.ToString();
+                    }
+
+                    foreach(Square square in move.JumpedSquares)
+                    {
+                        square.XSprite.Visible = true;
+                    }
+                }
+            }
         }
         //Clears the possible square paths for a certain square
-        private void ClearSquareNumberPaths()
+        private void ClearSquareNumberPaths(Square endSquare)
         {
+            foreach(Move move in PossibleMoves[startSquare.OccupyingPiece])
+            {
+                if (move.FinishSquare == endSquare)
+                {
+                    ClearPossibleSquarePaths(move.StartSquare);
+
+                    foreach(Square square in move.SquarePath)
+                    {
+                        square.SquareNumber.Text = "";
+                    }
+
+                    foreach (Square square in move.JumpedSquares)
+                    {
+                        square.XSprite.Visible = false;
+                    }
+                }
+            }
         }
 
         //Checks if the game should end
