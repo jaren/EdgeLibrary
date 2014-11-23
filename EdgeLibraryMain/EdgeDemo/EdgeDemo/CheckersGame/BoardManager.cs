@@ -125,8 +125,8 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    ClearPossibleSquarePaths(MousedOverSquare);
-                    ClearSquareNumberPaths(MousedOverSquare);
+                    ClearPossibleSquarePaths(PreviousMousedOverSquare);
+                    ClearSquareNumberPaths(PreviousMousedOverSquare);
                     DrawSquareNumberPath(MousedOverSquare);
                 }
                 else
@@ -350,7 +350,7 @@ namespace EdgeDemo.CheckersGame
                 }
             }
 
-            return !(topTeamHasPieces || bottomTeamHasPieces);
+            return !(topTeamHasPieces && bottomTeamHasPieces);
         }
 
         //Ends the game
