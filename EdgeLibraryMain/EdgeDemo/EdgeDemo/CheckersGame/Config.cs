@@ -35,7 +35,7 @@ namespace EdgeDemo.CheckersGame
         public static Keys MoveCancelKey = Keys.Escape;
 
         public static int SquareSize = 64;
-        public static int BoardSize = 8;
+        public static int BoardSize = 4;
 
         public static int PieceSize = 54;
 

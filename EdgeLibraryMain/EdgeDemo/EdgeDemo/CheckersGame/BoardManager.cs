@@ -104,12 +104,6 @@ namespace EdgeDemo.CheckersGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            //Move to capture piece function when permanent fix is implemented
-            if (CheckEndGame())
-            {
-                EndGame();
-            }
         }
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -232,6 +226,12 @@ namespace EdgeDemo.CheckersGame
                     //Run move
                     Move();
 
+                    //Checks for the game end
+                    if (CheckEndGame())
+                    {
+                        EndGame();
+                    }
+
                     //Updates info
                     TopTeamTurn = !TopTeamTurn;
                     TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
@@ -352,7 +352,16 @@ namespace EdgeDemo.CheckersGame
         //Ends the game
         public void EndGame()
         {
+            System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (TopTeamTurn ? Config.TopTeamName : Config.BottomTeamName) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
 
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                System.Windows.Forms.MessageBox.Show("That is true.", "A false statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("That is not true", "A true statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
+            }
         }
 
         //Resets the move
