@@ -58,7 +58,7 @@ namespace EdgeDemo.CheckersGame
             Board.AddToGame();
 
             //Initializing the debug sprite
-            DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 300)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
+            DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 200)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false, Include3D = false };
             DebugSprite.AddToGame();
 
             //Initializing the teamtext
@@ -110,9 +110,6 @@ namespace EdgeDemo.CheckersGame
             {
                 EndGame();
             }
-
-            //Updates the debug information
-            DebugSprite.Text += "\n2D Camera Scale: " + EdgeGame.Camera.Scale;
         }
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
