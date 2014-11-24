@@ -170,8 +170,8 @@ namespace EdgeDemo.CheckersGame
 
         public bool CheckForMouseOver()
         {
-            return Input.MousePosition.X > Position.X - CompleteSize / 2 && Input.MousePosition.X < Position.X + CompleteSize / 2
-                && Input.MousePosition.Y > Position.Y - CompleteSize / 2 && Input.MousePosition.Y < Position.Y + CompleteSize / 2;
+            return Input.MousePosition.X > Position.X - (CompleteSize * EdgeGame.Camera.Scale / 2) && Input.MousePosition.X < Position.X + CompleteSize / 2
+                && Input.MousePosition.Y > Position.Y - (CompleteSize * EdgeGame.Camera.Scale / 2) && Input.MousePosition.Y < Position.Y + CompleteSize / 2;
         }
 
         public Square GetSquareMousedOver()
@@ -182,16 +182,16 @@ namespace EdgeDemo.CheckersGame
                 //float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)/EdgeGame.Camera.Scale;
                 //float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)/EdgeGame.Camera.Scale;
 
-                Vector2 topLeft = new Vector2(Position.X - CompleteSize / 2, Position.Y - CompleteSize / 2);
-                float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)*EdgeGame.Camera.Scale;
-                float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)*EdgeGame.Camera.Scale;
+                Vector2 topLeft = new Vector2(Position.X - (CompleteSize * EdgeGame.Camera.Scale / 2), Position.Y - (CompleteSize * EdgeGame.Camera.Scale / 2));
+                float modifiedX = Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X / 2;
+                float modifiedY = Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y / 2;
 
-                Vector2 modifiedPosition = new Vector2(modifiedX - (modifiedX % SquareSize), modifiedY - (modifiedY % SquareSize));
-                modifiedPosition += topLeft;
+                Vector2 modifiedPosition = new Vector2(modifiedX - (modifiedX % (SquareSize * EdgeGame.Camera.Scale)) + topLeft.X, modifiedY - (modifiedY % (SquareSize * EdgeGame.Camera.Scale)) + topLeft.Y);
+                Vector2 finalPosition = new Vector2(modifiedPosition.X / EdgeGame.Camera.Scale, modifiedPosition.Y / EdgeGame.Camera.Scale);
 
                 foreach (Square square in Squares)
                 {
-                    if (square.TopLeft == modifiedPosition)
+                    if (square.TopLeft == finalPosition)
                     {
                         return square;
                     }
