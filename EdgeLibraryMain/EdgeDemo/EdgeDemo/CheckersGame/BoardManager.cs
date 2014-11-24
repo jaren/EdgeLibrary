@@ -229,6 +229,9 @@ namespace EdgeDemo.CheckersGame
                     CurrentMove = move;
                     CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
+                    ClearPossibleSquarePaths(CurrentMove.StartSquare);
+                    ClearSquareNumberPaths(CurrentMove.FinishSquare);
+
                     //Run move
                     Move();
 
