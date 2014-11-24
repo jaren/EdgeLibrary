@@ -125,7 +125,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (SelectedFirstSquare)
                 {
-                    ClearPossibleSquarePaths(PreviousMousedOverSquare);
+                    //ClearPossibleSquarePaths(PreviousMousedOverSquare);
                     ClearSquareNumberPaths(PreviousMousedOverSquare);
                     DrawSquareNumberPath(MousedOverSquare);
                 }
@@ -299,8 +299,6 @@ namespace EdgeDemo.CheckersGame
             {
                 if (move.FinishSquare == endSquare)
                 {
-                    DrawPossibleSquarePaths(move.StartSquare);
-
                     for (int i = 0; i < move.SquarePath.Count; i++)
                     {
                         move.SquarePath[i].SquareNumber.Text = i.ToString();
@@ -320,8 +318,6 @@ namespace EdgeDemo.CheckersGame
             {
                 if (move.FinishSquare == endSquare)
                 {
-                    ClearPossibleSquarePaths(move.StartSquare);
-
                     foreach(Square square in move.SquarePath)
                     {
                         square.SquareNumber.Text = "";
