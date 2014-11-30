@@ -48,11 +48,12 @@ namespace EdgeDemo.CheckersGame
         /// Converts a move into a collection of integers for sending to the web service
         /// </summary>
         /// <param name="move">The Move to Convert</param>
-        public void ConvertAndSend(Move move)
+        public static void ConvertAndSend(Move move)
         {
             //Square Path
             //Jumped Squares
             //Start Square
+            //Move ID
 
             Dictionary<int, KeyValuePair<int, int>> path = new Dictionary<int, KeyValuePair<int, int>>();
             for (int i = 0; i < move.SquarePath.Count; i++)
@@ -73,21 +74,24 @@ namespace EdgeDemo.CheckersGame
                 jumped = null;
             }
 
+            string moveID = move.ID;
+
             KeyValuePair<int, int> start = new KeyValuePair<int, int>(move.StartSquare.X,move.StartSquare.Y);
 
-            object[] moveInfo = new object[3]
+            object[] moveInfo = new object[4]
                 {
                     path,
                     jumped,
-                    start
+                    start,
+                    moveID
                 };
         }
 
         /// <summary>
         /// Converts a collection of integers from the web service into a move
         /// </summary>
-        /// <param name="move">The Move to Convert</param>
-        public Move ConvertAndRecieve(object[] moveInfo)
+        /// <param name="moveInfo">An object array of move data produced by the ConvertAndSend function</param>
+        public static Move ConvertAndRecieve(object[] moveInfo)
         {
             Dictionary<int, KeyValuePair<int, int>> path = (Dictionary<int, KeyValuePair<int, int>>)moveInfo[0];
             Dictionary<int, KeyValuePair<int, int>> jumped = (Dictionary<int, KeyValuePair<int, int>>)moveInfo[1];
@@ -112,6 +116,7 @@ namespace EdgeDemo.CheckersGame
             Piece piece = startSquare.OccupyingPiece;
 
             Move decodedMove = new Move(squarePath, jumpedSquares);
+            decodedMove.ID = (string)moveInfo[3];
             return decodedMove;
         }
 

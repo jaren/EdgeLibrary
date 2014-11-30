@@ -53,8 +53,8 @@ namespace EdgeDemo.CheckersGame
         public static Color SquareNumberColor = Color.OrangeRed;
         public static Color SquarePathColor = Color.Gray;
 
-        public static Color Color1 = Color.SaddleBrown;
-        public static Color Color2 = Color.Tan;
+        public static Color SquareColor1 = Color.SaddleBrown;
+        public static Color SquareColor2 = Color.Tan;
 
         public static Color SquareLineColor = Color.DarkRed;
         public static float SquareLineThickness = 7;

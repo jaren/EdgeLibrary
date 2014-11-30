@@ -54,7 +54,7 @@ namespace EdgeDemo.CheckersGame
             : base("", Vector2.Zero)
         {
             //Initializing the board
-            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.Color1, Config.Color2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
+            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.SquareColor1, Config.SquareColor2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
             Board.AddToGame();
 
             //Initializing the debug sprite
@@ -88,7 +88,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Starts the current move and sends it to the webservice
-        public void Move()
+        public void ExecuteMove()
         {
             CurrentMove.RunMove();
 
@@ -217,14 +217,16 @@ namespace EdgeDemo.CheckersGame
                 if (move.SquarePath[move.SquarePath.Count - 1] == MousedOverSquare)
                 {
                     //Set the current move and subscribe to it
+
                     CurrentMove = move;
+
                     CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
                     ClearPossibleSquarePaths(CurrentMove.StartSquare);
                     ClearSquareNumberPaths(CurrentMove.FinishSquare);
 
                     //Run move
-                    Move();
+                    ExecuteMove();
 
                     //Checks for the game end
                     if (CheckEndGame())
