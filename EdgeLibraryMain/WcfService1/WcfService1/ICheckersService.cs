@@ -12,6 +12,9 @@ namespace CheckersService
     public interface ICheckersService
     {
         [OperationContract]
-        short[] movePiece(short pieceID, short destX, short destY);
+        void addMove(object[] moveInfo);
+
+        [OperationContract]
+        List<object[]> GetMovesAfter(DateTime time);
     }
 }

@@ -10,9 +10,25 @@ namespace CheckersService
 {
     public class CheckersService : ICheckersService
     {
-        public short[] movePiece(short pieceId, short destX, short destY)
+        public Dictionary<DateTime, object[]> Moves = new Dictionary<DateTime, object[]>();
+
+        public void addMove(object[] moveInfo)
         {
-            return new short[] { pieceId, destX, destY };
+            Moves.Add(DateTime.Now, moveInfo);
+        }
+
+        public List<object[]> GetMovesAfter(DateTime time)
+        {
+            List<object[]> moves = new List<object[]>();
+            foreach (DateTime dt in Moves.Keys)
+            {
+                if (dt > time)
+                {
+                    moves.Add(Moves[dt]);
+                }
+            }
+
+            return moves;
         }
     }
 }
