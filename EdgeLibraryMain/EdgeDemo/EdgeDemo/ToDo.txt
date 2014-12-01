@@ -19,8 +19,6 @@ To Do:
 	=Bugs:
 		-Fix resetting move on escape
 			-Progress: NONE
-		-When pressing escape, KeyNotFoundException occurs
-			-Progress: NONE
 		-Fix move segment completion events
 			-Progress: NONE ?
 		-Fix not being able to click blocks when zoomed in/out
