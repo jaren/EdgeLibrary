@@ -91,10 +91,10 @@ namespace EdgeDemo.CheckersGame
         //Starts the current move and sends it to the webservice
         public void ExecuteMove()
         {
-            DateTime LastCheck = DateTime.Now;
-            CurrentMove.RunMove();
+            //DateTime LastCheck = DateTime.Now;
+            //CurrentMove.RunMove();
 
-            #region WebServiceConnection
+            //#region WebServiceConnection
 
             //CheckersServiceClient WebService = new CheckersServiceClient();
             ////Send Move to Web Service

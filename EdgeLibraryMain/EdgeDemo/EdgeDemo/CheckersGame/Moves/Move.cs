@@ -50,6 +50,8 @@ namespace EdgeDemo.CheckersGame
         /// <param name="move">The Move to Convert</param>
         public static object[] ConvertAndSend(Move move)
         {
+            //BROKEN
+
             //Square Path
             //Jumped Squares
             //Start Square
