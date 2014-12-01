@@ -12,7 +12,7 @@ namespace CheckersService
     public interface ICheckersService
     {
         [OperationContract]
-        void addMove(object[] moveInfo);
+        void AddMove(object[] moveInfo);
 
         [OperationContract]
         List<object[]> GetMovesAfter(DateTime time);

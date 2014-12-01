@@ -15,8 +15,15 @@ namespace EdgeDemo.CheckersService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CheckersService.ICheckersService")]
     public interface ICheckersService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/movePiece", ReplyAction="http://tempuri.org/ICheckersService/movePieceResponse")]
-        short[] movePiece(short pieceID, short destX, short destY);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/AddMove", ReplyAction="http://tempuri.org/ICheckersService/AddMoveResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        void AddMove(object[] moveInfo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetMovesAfter", ReplyAction="http://tempuri.org/ICheckersService/GetMovesAfterResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
+        object[][] GetMovesAfter(System.DateTime time);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -46,8 +53,12 @@ namespace EdgeDemo.CheckersService {
                 base(binding, remoteAddress) {
         }
         
-        public short[] movePiece(short pieceID, short destX, short destY) {
-            return base.Channel.movePiece(pieceID, destX, destY);
+        public void AddMove(object[] moveInfo) {
+            base.Channel.AddMove(moveInfo);
+        }
+        
+        public object[][] GetMovesAfter(System.DateTime time) {
+            return base.Channel.GetMovesAfter(time);
         }
     }
 }

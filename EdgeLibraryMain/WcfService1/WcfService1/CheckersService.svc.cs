@@ -12,7 +12,7 @@ namespace CheckersService
     {
         public Dictionary<DateTime, object[]> Moves = new Dictionary<DateTime, object[]>();
 
-        public void addMove(object[] moveInfo)
+        public void AddMove(object[] moveInfo)
         {
             Moves.Add(DateTime.Now, moveInfo);
         }
