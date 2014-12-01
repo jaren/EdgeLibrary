@@ -182,6 +182,7 @@ namespace EdgeDemo.CheckersGame
                 //float modifiedX = (Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X/2)/EdgeGame.Camera.Scale;
                 //float modifiedY = (Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y/2)/EdgeGame.Camera.Scale;
 
+                //This was made with zooming in mind. Zooming was removed and this may be overcomplicated
                 Vector2 topLeft = new Vector2(Position.X - (CompleteSize * EdgeGame.Camera.Scale / 2), Position.Y - (CompleteSize * EdgeGame.Camera.Scale / 2));
                 float modifiedX = Input.MousePosition.X - topLeft.X - EdgeGame.Camera.Position.X + EdgeGame.WindowSize.X / 2;
                 float modifiedY = Input.MousePosition.Y - topLeft.Y - EdgeGame.Camera.Position.Y + EdgeGame.WindowSize.Y / 2;
@@ -191,7 +192,7 @@ namespace EdgeDemo.CheckersGame
 
                 foreach (Square square in Squares)
                 {
-                    if (square.TopLeft == finalPosition)
+                    if (square.TopLeft == modifiedPosition)
                     {
                         return square;
                     }
