@@ -48,7 +48,7 @@ namespace EdgeDemo.CheckersGame
         /// Converts a move into a collection of integers for sending to the web service
         /// </summary>
         /// <param name="move">The Move to Convert</param>
-        public static void ConvertAndSend(Move move)
+        public static object[] ConvertAndSend(Move move)
         {
             //Square Path
             //Jumped Squares
@@ -85,6 +85,8 @@ namespace EdgeDemo.CheckersGame
                     start,
                     moveID
                 };
+
+            return moveInfo;
         }
 
         /// <summary>

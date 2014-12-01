@@ -5,6 +5,7 @@ using System.Text;
 using EdgeLibrary;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using EdgeDemo.CheckersService;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -90,11 +91,32 @@ namespace EdgeDemo.CheckersGame
         //Starts the current move and sends it to the webservice
         public void ExecuteMove()
         {
+            DateTime LastCheck = DateTime.Now;
             CurrentMove.RunMove();
 
-            //Eventually this will call the web service's move function
-            //Something like this:
-            //CheckersService.move(short pieceId, short destX, short destY)
+            #region WebServiceConnection
+
+            //CheckersServiceClient WebService = new CheckersServiceClient();
+            ////Send Move to Web Service
+            //WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+            //Move RemoteMove = null;
+
+            //while (RemoteMove == null)
+            //{
+            //    List<object[]> recievedMoves = WebService.GetMovesAfter(LastCheck).ToList();
+
+            //    if (recievedMoves.Count > 0)
+            //    {
+            //        RemoteMove = Move.ConvertAndRecieve(recievedMoves[0]);
+            //        break;
+            //    }
+
+            //    LastCheck = DateTime.Now;
+            //}
+
+            //RemoteMove.RunMove();
+
+            #endregion WebServiceConnection
         }
 
         //Necessary override to not draw the BoardManager
