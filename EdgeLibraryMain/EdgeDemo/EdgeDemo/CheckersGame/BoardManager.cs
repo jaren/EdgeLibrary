@@ -50,6 +50,7 @@ namespace EdgeDemo.CheckersGame
 
         //Text for the current team
         private string TeamText;
+        public int TurnsCount;
 
         public BoardManager()
             : base("", Vector2.Zero)
@@ -59,7 +60,7 @@ namespace EdgeDemo.CheckersGame
             Board.AddToGame();
 
             //Initializing the debug sprite
-            DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 200)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false, Include3D = false };
+            DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 250)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false, Include3D = false };
             DebugSprite.AddToGame();
 
             //Initializing the teamtext
@@ -69,6 +70,8 @@ namespace EdgeDemo.CheckersGame
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             StatusSprite.AddToGame();
 
+            TurnsCount = 0;
+
             //Initializing capture sprite
             CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             CaptureSprite.AddToGame();
@@ -76,6 +79,10 @@ namespace EdgeDemo.CheckersGame
             //Initializing extra sprite
             ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             ExtraSprite.AddToGame();
+
+            //Initializes possible moves - necessary for cancellation of the first move
+            PossibleMoves = new Dictionary<Piece, List<Move>> { {new Piece("", Vector2.Zero, Color.White, 0, false), new List<Move>()} };
+            CurrentMove = new Move(new List<Square>() { new Square("", Vector2.Zero, 0, Color.White){OccupyingPiece = new Piece("", Vector2.Zero, Color.White, 0, false)}});
 
             //Initializing move
             ResetMove();
@@ -126,6 +133,10 @@ namespace EdgeDemo.CheckersGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            if (Board.mousedOverSquare != null)
+            {
+                DebugSprite.Text += "Last Moused Over Square: " + Board.mousedOverSquare.X + ", " + Board.mousedOverSquare.Y;
+            }
         }
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -407,14 +418,26 @@ namespace EdgeDemo.CheckersGame
                     ResetMove();
                 }
 
-                //Resets all of the square colors
-                //It uses the finish square's occupying piece because the piece has already been moved
-                foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
+                if (PossibleMoves.ContainsKey(CurrentMove.Piece))
                 {
-                    foreach (Square square in possibleMove.SquarePath)
+                    //Resets all of the square colors
+                    //It uses the finish square's occupying piece because the piece has already been moved
+                    foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                     {
-                        square.Color = square.DefaultColor;
+                        foreach (Square square in possibleMove.SquarePath)
+                        {
+                            square.Color = square.DefaultColor;
+                        }
                     }
+                }
+                //The move was already started when it reset
+                else
+                {
+                    ClearPossibleSquarePaths(startSquare);
+                    startSquare = null;
+
+                    CurrentMove = null;
+                    ResetMove();
                 }
             }
 
@@ -430,6 +453,8 @@ namespace EdgeDemo.CheckersGame
             //Resets the info
             SelectedFirstSquare = false;
             StatusSprite.Text = TeamText + Config.SelectSquare1Message;
+            TurnsCount++;
+
         }
     }
 }

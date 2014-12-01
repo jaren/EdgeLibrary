@@ -16,6 +16,8 @@ namespace EdgeDemo.CheckersGame
         public static int Size;
         public Border Border;
 
+        public Square mousedOverSquare;
+
         public float CompleteSize;
         public float SquareSize;
 
@@ -194,6 +196,7 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (square.TopLeft == modifiedPosition)
                     {
+                        mousedOverSquare = square;
                         return square;
                     }
                 }
