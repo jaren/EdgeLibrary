@@ -85,6 +85,9 @@ namespace EdgeLibrary
         protected Dictionary<string,Action> Actions;
         protected List<string> actionsToRemove;
 
+        //For buttons, etc.
+        public Rectangle BoundingBox { get; protected set; }
+
         //Location of the sprite
         public virtual Vector2 Position {
             get { return _position; }
@@ -101,12 +104,6 @@ namespace EdgeLibrary
 
         //Which blend state to use when drawing the sprite
         public BlendState BlendState { get; set; }
-
-        //Gives a button functionality to sprites
-        public delegate void ButtonEvent(Sprite sender, Vector2 mousePosition, GameTime gameTime);
-        public event ButtonEvent OnClick;
-        public event ButtonEvent OnMouseOver;
-        public event ButtonEvent OnMouseOff;
 
         public delegate void SpriteEvent(Sprite sprite, GameTime gameTime);
         public event SpriteEvent OnAdded;
@@ -206,6 +203,8 @@ namespace EdgeLibrary
                 {
                     OriginPoint = Vector2.Zero;
                 }
+
+                BoundingBox = new Rectangle((int)Position.X - (int)Width/2, (int)Position.Y - (int)Height/2, (int)Width, (int)Height);
             }
         }
 

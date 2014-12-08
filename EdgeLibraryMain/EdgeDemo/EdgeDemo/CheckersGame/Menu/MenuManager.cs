@@ -10,6 +10,7 @@ namespace EdgeDemo.CheckersGame
     {
         public static List<MenuBase> Menus { get; private set; }
         public static MenuBase SelectedMenu { get; private set; }
+        public static MenuBase PreviousMenu { get; private set; }
 
         public static void Init()
         {
@@ -32,6 +33,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (menu.Name == name)
                 {
+                    PreviousMenu = SelectedMenu;
                     SelectedMenu = menu;
                     SelectedMenu.SwitchTo();
                     return true;

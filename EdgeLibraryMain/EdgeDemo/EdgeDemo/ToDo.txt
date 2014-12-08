@@ -7,9 +7,9 @@ To Do:
 	=Aesthetics
 		-Add comments on all CheckersGame classes
 			-Progress: BoardManager is done
-		-Main Menu, Menu Select, etc.
+		-Fake squares on side of board for captured pieces
 			-Progress: NONE
-		-Music options, sound
+		-Main Menu, Menu Select, etc.
 			-Progress: NONE
 
 	=Bugs:
