@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EdgeDemo.CheckersGame.Menu
+namespace EdgeDemo.CheckersGame
 {
     public class OptionsMenu : MenuBase
     {

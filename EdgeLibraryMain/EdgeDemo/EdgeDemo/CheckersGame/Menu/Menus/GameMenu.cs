@@ -12,10 +12,5 @@ namespace EdgeDemo.CheckersGame
             BoardManager manager = new BoardManager();
             Components.Add(manager);
         }
-
-        public override void SwitchTo()
-        {
-            base.SwitchTo();
-        }
     }
 }

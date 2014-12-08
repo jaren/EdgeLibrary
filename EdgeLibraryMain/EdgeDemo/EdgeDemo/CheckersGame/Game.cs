@@ -29,6 +29,7 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.OnUpdate += OnUpdate;
 
             MenuManager.Init();
+            MenuManager.AddMenu(new MainMenu());
             MenuManager.AddMenu(new GameMenu());
             MenuManager.SwitchMenu("GameMenu");
         }

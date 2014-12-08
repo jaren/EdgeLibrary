@@ -14,8 +14,11 @@ namespace EdgeDemo.CheckersGame
     /// </summary>
     public class BoardManager : Sprite
     {
+        //Game components to update and draw
+        public static List<GameComponent> Components { get; private set; }
+
         //The main board - static so other classes can access it
-        public static Board Board;
+        public static Board Board { get; private set; }
 
         //Displays which team should move and the move state
         public TextSprite StatusSprite;
@@ -56,29 +59,30 @@ namespace EdgeDemo.CheckersGame
             : base("", Vector2.Zero)
         {
             //Initializing the board
+            Components = new List<GameComponent>();
             Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.SquareColor1, Config.SquareColor2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
-            Board.AddToGame();
+            Components.Add(Board);
 
             //Initializing the debug sprite
             DebugSprite = new DebugText(Config.DebugFont, new Vector2(0, EdgeGame.WindowSize.Y - 250)) { Color = Color.Goldenrod, CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false, Include3D = false };
-            DebugSprite.AddToGame();
+            Components.Add(DebugSprite);
 
             //Initializing the teamtext
             TeamText = Config.TopTeamName + ": ";
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
-            StatusSprite.AddToGame();
+            Components.Add(StatusSprite);
 
             TurnsCount = 0;
 
             //Initializing capture sprite
             CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
-            CaptureSprite.AddToGame();
+            Components.Add(CaptureSprite);
 
             //Initializing extra sprite
             ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
-            ExtraSprite.AddToGame();
+            Components.Add(ExtraSprite);
 
             //Initializes possible moves - necessary for cancellation of the first move
             PossibleMoves = new Dictionary<Piece, List<Move>> { { new Piece("", Vector2.Zero, Color.White, 0, false), new List<Move>() } };
@@ -127,12 +131,27 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Necessary override to not draw the BoardManager
-        public override void Draw(GameTime gameTime) { }
+        public override void Draw(GameTime gameTime)
+        {
+            foreach(GameComponent component in Components)
+            {
+                if (component is DrawableGameComponent)
+                {
+                    ((component.GetType())component).Draw(gameTime);
+                }
+            }
+        }
 
         //Updates the board
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            foreach(GameComponent component in Components)
+            {
+                component.Update(gameTime);
+            }
+
             if (Board.mousedOverSquare != null)
             {
                 DebugSprite.Text += "Last Moused Over Square: " + Board.mousedOverSquare.X + ", " + Board.mousedOverSquare.Y;

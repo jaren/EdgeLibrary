@@ -33,7 +33,7 @@ namespace EdgeDemo.CheckersGame
             {
                 if (component is DrawableGameComponent)
                 {
-                    ((DrawableGameComponent)component).Draw(gameTime);
+                    ((component.GetType())component).Draw(gameTime);
                 }
             }
         }
