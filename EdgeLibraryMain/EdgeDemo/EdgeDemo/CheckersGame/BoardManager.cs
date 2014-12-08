@@ -98,33 +98,29 @@ namespace EdgeDemo.CheckersGame
         //Starts the current move and sends it to the webservice
         public void ExecuteMove()
         {
-            //DateTime LastCheck = DateTime.Now;
             CurrentMove.RunMove();
 
-            //#region WebServiceConnection
+            #region WebServiceConnection
 
-            //CheckersServiceClient WebService = new CheckersServiceClient();
-            //SimpleMove move = new SimpleMove();
+            CheckersServiceClient WebService = new CheckersServiceClient();
             ////Send Move to Web Service
-            //WebService.AddMove(move);
-            //Move RemoteMove = null;
+            WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+            Move RemoteMove = null;
 
-            //while (RemoteMove == null)
-            //{
-            //    List<object[]> recievedMoves = WebService.GetMovesAfter(LastCheck).ToList();
+            while (RemoteMove == null)
+            {
+                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
 
-            //    if (recievedMoves.Count != null)
-            //    {
-            //        RemoteMove = Move.ConvertAndRecieve(recievedMoves[0]);
-            //        break;
-            //    }
+                if (recievedMove != null)
+                {
+                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                    break;
+                }
+            }
 
-            //    LastCheck = DateTime.Now;
-            //}
+            RemoteMove.RunMove();
 
-            //RemoteMove.RunMove();
-
-            //#endregion WebServiceConnection
+            #endregion WebServiceConnection
         }
 
         //Necessary override to not draw the BoardManager

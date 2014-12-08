@@ -1,4 +1,5 @@
-﻿using EdgeLibrary;
+﻿using EdgeDemo.CheckersService;
+using EdgeLibrary;
 using Microsoft.Xna.Framework;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,8 +49,9 @@ namespace EdgeDemo.CheckersGame
         /// Converts a move into a collection of integers for sending to the web service
         /// </summary>
         /// <param name="move">The Move to Convert</param>
-        public static object[] ConvertAndSend(Move move)
+        public static SimpleMove ConvertAndSend(Move move)
         {
+            SimpleMove newMove = new SimpleMove();
             //BROKEN
 
             //Square Path
@@ -62,6 +64,8 @@ namespace EdgeDemo.CheckersGame
             {
                 path.Add(i, new KeyValuePair<int, int>(move.SquarePath[i].X, move.SquarePath[i].Y));
             }
+
+            newMove.SquarePath = path;
 
             Dictionary<int, KeyValuePair<int, int>> jumped = new Dictionary<int, KeyValuePair<int, int>>();
             if (move.JumpedSquares != null)
@@ -76,52 +80,56 @@ namespace EdgeDemo.CheckersGame
                 jumped = null;
             }
 
-            string moveID = move.ID;
+            newMove.JumpedSquares = jumped;
 
-            KeyValuePair<int, int> start = new KeyValuePair<int, int>(move.StartSquare.X,move.StartSquare.Y);
+            newMove.ID = move.ID;
 
-            object[] moveInfo = new object[4]
-                {
-                    path,
-                    jumped,
-                    start,
-                    moveID
-                };
+            newMove.StartSquare = new KeyValuePair<int, int>(move.StartSquare.X,move.StartSquare.Y);
 
-            return moveInfo;
+            newMove.TopTeam = move.Piece.TopTeam;
+
+            return newMove;
         }
 
         /// <summary>
         /// Converts a collection of integers from the web service into a move
         /// </summary>
         /// <param name="moveInfo">An object array of move data produced by the ConvertAndSend function</param>
-        public static Move ConvertAndRecieve(object[] moveInfo)
+        public static Move ConvertAndRecieve(SimpleMove moveInfo)
         {
-            Dictionary<int, KeyValuePair<int, int>> path = (Dictionary<int, KeyValuePair<int, int>>)moveInfo[0];
-            Dictionary<int, KeyValuePair<int, int>> jumped = (Dictionary<int, KeyValuePair<int, int>>)moveInfo[1];
-            KeyValuePair<int, int> start = (KeyValuePair<int, int>)moveInfo[2];
-            
-            List<Square> squarePath = new List<Square>();
-            foreach(KeyValuePair<int,int> square in path.Values)
+            if (moveInfo != null)
             {
-                squarePath.Add(Board.Squares[square.Key, square.Value]);
-            }
+                Dictionary<int, KeyValuePair<int, int>> path = moveInfo.SquarePath;
+                Dictionary<int, KeyValuePair<int, int>> jumped = moveInfo.JumpedSquares;
+                KeyValuePair<int, int> start = moveInfo.StartSquare;
 
-            List<Square> jumpedSquares = new List<Square>();
-            if(jumped != null)
-            {
-                foreach(KeyValuePair<int,int> square in jumped.Values)
+                List<Square> squarePath = new List<Square>();
+                foreach (KeyValuePair<int, int> square in path.Values)
                 {
-                    jumpedSquares.Add(Board.Squares[square.Key, square.Value]);
+                    squarePath.Add(Board.Squares[square.Key, square.Value]);
                 }
+
+                List<Square> jumpedSquares = new List<Square>();
+                if (jumped != null)
+                {
+                    foreach (KeyValuePair<int, int> square in jumped.Values)
+                    {
+                        jumpedSquares.Add(Board.Squares[square.Key, square.Value]);
+                    }
+                }
+
+                Square startSquare = Board.Squares[start.Key, start.Value];
+                Piece piece = startSquare.OccupyingPiece;
+
+                Move decodedMove = new Move(squarePath, jumpedSquares);
+                decodedMove.ID = moveInfo.ID;
+                decodedMove.Piece = decodedMove.StartSquare.OccupyingPiece;
+                return decodedMove;
             }
-
-            Square startSquare = Board.Squares[start.Key, start.Value];
-            Piece piece = startSquare.OccupyingPiece;
-
-            Move decodedMove = new Move(squarePath, jumpedSquares);
-            decodedMove.ID = (string)moveInfo[3];
-            return decodedMove;
+            else
+            {
+                return null;
+            }
         }
 
         ASequence MoveSequence;
