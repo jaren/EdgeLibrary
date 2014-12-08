@@ -9,21 +9,128 @@
 //------------------------------------------------------------------------------
 
 namespace EdgeDemo.CheckersService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SimpleMove", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
+    [System.SerializableAttribute()]
+    public partial class SimpleMove : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> JumpedSquaresField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> SquarePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.KeyValuePair<int, int> StartSquareField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool TopTeamField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IDField, value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> JumpedSquares {
+            get {
+                return this.JumpedSquaresField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.JumpedSquaresField, value) != true)) {
+                    this.JumpedSquaresField = value;
+                    this.RaisePropertyChanged("JumpedSquares");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> SquarePath {
+            get {
+                return this.SquarePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SquarePathField, value) != true)) {
+                    this.SquarePathField = value;
+                    this.RaisePropertyChanged("SquarePath");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.KeyValuePair<int, int> StartSquare {
+            get {
+                return this.StartSquareField;
+            }
+            set {
+                if ((this.StartSquareField.Equals(value) != true)) {
+                    this.StartSquareField = value;
+                    this.RaisePropertyChanged("StartSquare");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool TopTeam {
+            get {
+                return this.TopTeamField;
+            }
+            set {
+                if ((this.TopTeamField.Equals(value) != true)) {
+                    this.TopTeamField = value;
+                    this.RaisePropertyChanged("TopTeam");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CheckersService.ICheckersService")]
     public interface ICheckersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/AddMove", ReplyAction="http://tempuri.org/ICheckersService/AddMoveResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
-        void AddMove(object[] moveInfo);
+        void AddMove(System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> movePath, System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> jumpedSquares, System.Collections.Generic.KeyValuePair<int, int> startSquare, string id, bool topTeam);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetMovesAfter", ReplyAction="http://tempuri.org/ICheckersService/GetMovesAfterResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[][]))]
-        object[][] GetMovesAfter(System.DateTime time);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
+        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -53,12 +160,12 @@ namespace EdgeDemo.CheckersService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddMove(object[] moveInfo) {
-            base.Channel.AddMove(moveInfo);
+        public void AddMove(System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> movePath, System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> jumpedSquares, System.Collections.Generic.KeyValuePair<int, int> startSquare, string id, bool topTeam) {
+            base.Channel.AddMove(movePath, jumpedSquares, startSquare, id, topTeam);
         }
         
-        public object[][] GetMovesAfter(System.DateTime time) {
-            return base.Channel.GetMovesAfter(time);
+        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam) {
+            return base.Channel.GetLatestMoveFrom(topTeam);
         }
     }
 }

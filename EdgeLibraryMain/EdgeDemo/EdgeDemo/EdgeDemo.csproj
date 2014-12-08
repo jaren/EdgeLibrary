@@ -177,6 +177,9 @@
     <Content Include="Icon.ico" />
     <None Include="Service References\CheckersService\configuration91.svcinfo" />
     <None Include="Service References\CheckersService\configuration.svcinfo" />
+    <None Include="Service References\CheckersService\EdgeDemo.CheckersService.SimpleMove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\CheckersService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -189,6 +192,11 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Service References\CheckersService\CheckersService.wsdl" />
+    <None Include="Service References\CheckersService\CheckersService.xsd" />
+    <None Include="Service References\CheckersService\CheckersService1.xsd" />
+    <None Include="Service References\CheckersService\CheckersService2.xsd" />
+    <None Include="Service References\CheckersService\CheckersService3.xsd" />
+    <None Include="Service References\CheckersService\CheckersService4.xsd" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CheckersService\" />

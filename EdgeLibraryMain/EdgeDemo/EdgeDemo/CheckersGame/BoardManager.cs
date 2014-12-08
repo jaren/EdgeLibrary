@@ -81,8 +81,8 @@ namespace EdgeDemo.CheckersGame
             ExtraSprite.AddToGame();
 
             //Initializes possible moves - necessary for cancellation of the first move
-            PossibleMoves = new Dictionary<Piece, List<Move>> { {new Piece("", Vector2.Zero, Color.White, 0, false), new List<Move>()} };
-            CurrentMove = new Move(new List<Square>() { new Square("", Vector2.Zero, 0, Color.White){OccupyingPiece = new Piece("", Vector2.Zero, Color.White, 0, false)}});
+            PossibleMoves = new Dictionary<Piece, List<Move>> { { new Piece("", Vector2.Zero, Color.White, 0, false), new List<Move>() } };
+            CurrentMove = new Move(new List<Square>() { new Square("", Vector2.Zero, 0, Color.White) { OccupyingPiece = new Piece("", Vector2.Zero, Color.White, 0, false) } });
 
             //Initializing move
             ResetMove();
@@ -336,7 +336,7 @@ namespace EdgeDemo.CheckersGame
                         move.SquarePath[i].SquareNumber.Text = i.ToString();
                     }
 
-                    foreach(Square square in move.JumpedSquares)
+                    foreach (Square square in move.JumpedSquares)
                     {
                         square.XSprite.Visible = true;
                     }
@@ -346,11 +346,11 @@ namespace EdgeDemo.CheckersGame
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths(Square endSquare)
         {
-            foreach(Move move in PossibleMoves[startSquare.OccupyingPiece])
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
             {
                 if (move.FinishSquare == endSquare)
                 {
-                    foreach(Square square in move.SquarePath)
+                    foreach (Square square in move.SquarePath)
                     {
                         square.SquareNumber.Text = "";
                     }
@@ -434,11 +434,11 @@ namespace EdgeDemo.CheckersGame
                 else
                 {
                     ClearPossibleSquarePaths(startSquare);
-                    foreach(Move possibleMove in PossibleMoves)
+                    foreach (Move possibleMove in PossibleMoves)
                     {
 
                     }
-                    
+
                     startSquare = null;
 
                     CurrentMove = null;
