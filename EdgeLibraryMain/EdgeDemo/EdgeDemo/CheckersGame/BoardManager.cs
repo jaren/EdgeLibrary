@@ -104,8 +104,9 @@ namespace EdgeDemo.CheckersGame
             //#region WebServiceConnection
 
             CheckersServiceClient WebService = new CheckersServiceClient();
+            WebService
             ////Send Move to Web Service
-            WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+            WebService.AddMove()
             //Move RemoteMove = null;
 
             //while (RemoteMove == null)

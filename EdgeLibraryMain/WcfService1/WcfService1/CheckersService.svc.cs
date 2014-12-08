@@ -12,9 +12,9 @@ namespace CheckersService
     {
         public List<SimpleMove> Moves = new List<SimpleMove>();
 
-        public void AddMove(Dictionary<int,KeyValuePair<int,int>> movePath, Dictionary<int,KeyValuePair<int,int>> jumpedSquares, KeyValuePair<int,int> startSquare, string id, bool topTeam)
+        public void AddMove(SimpleMove move)
         {
-            Moves.Add(new SimpleMove(movePath,jumpedSquares,startSquare,id,topTeam));
+            Moves.Add(move);
         }
 
         public SimpleMove GetLatestMoveFrom(bool topTeam)
