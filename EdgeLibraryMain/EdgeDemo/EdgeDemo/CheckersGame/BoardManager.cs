@@ -133,12 +133,9 @@ namespace EdgeDemo.CheckersGame
         //Necessary override to not draw the BoardManager
         public override void Draw(GameTime gameTime)
         {
-            foreach(GameComponent component in Components)
+            foreach(DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
             {
-                if (component is DrawableGameComponent)
-                {
-                    ((component.GetType())component).Draw(gameTime);
-                }
+                component.Draw(gameTime);
             }
         }
 

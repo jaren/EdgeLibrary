@@ -29,12 +29,9 @@ namespace EdgeDemo.CheckersGame
 
         public virtual void Draw(GameTime gameTime)
         {
-            foreach(GameComponent component in Components)
+            foreach(DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
             {
-                if (component is DrawableGameComponent)
-                {
-                    ((component.GetType())component).Draw(gameTime);
-                }
+                component.Draw(gameTime);
             }
         }
 
