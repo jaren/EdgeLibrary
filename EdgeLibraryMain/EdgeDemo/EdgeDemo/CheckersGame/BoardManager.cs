@@ -99,7 +99,7 @@ namespace EdgeDemo.CheckersGame
         public void ExecuteMove()
         {
             //DateTime LastCheck = DateTime.Now;
-            //CurrentMove.RunMove();
+            CurrentMove.RunMove();
 
             //#region WebServiceConnection
 
@@ -434,6 +434,11 @@ namespace EdgeDemo.CheckersGame
                 else
                 {
                     ClearPossibleSquarePaths(startSquare);
+                    foreach(Move possibleMove in PossibleMoves)
+                    {
+
+                    }
+                    
                     startSquare = null;
 
                     CurrentMove = null;
