@@ -127,7 +127,7 @@ namespace EdgeDemo.CheckersService {
     public interface ICheckersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/AddMove", ReplyAction="http://tempuri.org/ICheckersService/AddMoveResponse")]
-        void AddMove(System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> movePath, System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> jumpedSquares, System.Collections.Generic.KeyValuePair<int, int> startSquare, string id, bool topTeam);
+        void AddMove(EdgeDemo.CheckersService.SimpleMove move);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
         EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam);
@@ -160,8 +160,8 @@ namespace EdgeDemo.CheckersService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddMove(System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> movePath, System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> jumpedSquares, System.Collections.Generic.KeyValuePair<int, int> startSquare, string id, bool topTeam) {
-            base.Channel.AddMove(movePath, jumpedSquares, startSquare, id, topTeam);
+        public void AddMove(EdgeDemo.CheckersService.SimpleMove move) {
+            base.Channel.AddMove(move);
         }
         
         public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam) {

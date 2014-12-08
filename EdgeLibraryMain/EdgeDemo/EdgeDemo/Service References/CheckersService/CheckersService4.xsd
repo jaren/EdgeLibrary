@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.Collections.Generic" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:56219/CheckersService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="KeyValuePairOfintint">
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56219/CheckersService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:complexType name="ArrayOfKeyValueOfintKeyValuePairOfintinttwCi8m_S7">
     <xs:annotation>
       <xs:appinfo>
-        <GenericType Name="KeyValuePairOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="int" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="int" Namespace="http://www.w3.org/2001/XMLSchema" />
-        </GenericType>
-        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+        <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="key" type="xs:int" />
-      <xs:element name="value" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintKeyValuePairOfintinttwCi8m_S7">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Key" type="xs:int" />
+            <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" name="Value" type="q1:KeyValuePairOfintint" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="KeyValuePairOfintint" nillable="true" type="tns:KeyValuePairOfintint" />
+  <xs:element name="ArrayOfKeyValueOfintKeyValuePairOfintinttwCi8m_S7" nillable="true" type="tns:ArrayOfKeyValueOfintKeyValuePairOfintinttwCi8m_S7" />
 </xs:schema>

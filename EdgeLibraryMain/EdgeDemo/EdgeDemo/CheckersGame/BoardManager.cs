@@ -103,10 +103,10 @@ namespace EdgeDemo.CheckersGame
 
             //#region WebServiceConnection
 
-            CheckersServiceClient WebService = new CheckersServiceClient();
-            WebService
+            //CheckersServiceClient WebService = new CheckersServiceClient();
+            //SimpleMove move = new SimpleMove();
             ////Send Move to Web Service
-            WebService.AddMove()
+            //WebService.AddMove(move);
             //Move RemoteMove = null;
 
             //while (RemoteMove == null)
