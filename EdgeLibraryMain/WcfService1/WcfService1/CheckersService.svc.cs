@@ -10,25 +10,23 @@ namespace CheckersService
 {
     public class CheckersService : ICheckersService
     {
-        public Dictionary<DateTime, object[]> Moves = new Dictionary<DateTime, object[]>();
+        public List<SimpleMove> Moves = new List<SimpleMove>();
 
-        public void AddMove(object[] moveInfo)
+        public void AddMove(Dictionary<int,KeyValuePair<int,int>> movePath, Dictionary<int,KeyValuePair<int,int>> jumpedSquares, KeyValuePair<int,int> startSquare, string id, bool topTeam)
         {
-            Moves.Add(DateTime.Now, moveInfo);
+            Moves.Add(new SimpleMove(movePath,jumpedSquares,startSquare,id,topTeam));
         }
 
-        public List<object[]> GetMovesAfter(DateTime time)
+        public SimpleMove GetLatestMoveFrom(bool topTeam)
         {
-            List<object[]> moves = new List<object[]>();
-            foreach (DateTime dt in Moves.Keys)
+            if (Moves[Moves.Count - 1].TopTeam = topTeam)
             {
-                if (dt > time)
-                {
-                    moves.Add(Moves[dt]);
-                }
+                return Moves[Moves.Count - 1];
             }
-
-            return moves;
+            else
+            {
+                return null;
+            }
         }
     }
 }

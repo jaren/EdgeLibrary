@@ -12,9 +12,9 @@ namespace CheckersService
     public interface ICheckersService
     {
         [OperationContract]
-        void AddMove(object[] moveInfo);
+        void AddMove(Dictionary<int, KeyValuePair<int, int>> movePath, Dictionary<int, KeyValuePair<int, int>> jumpedSquares, KeyValuePair<int, int> startSquare, string id, bool topTeam);
 
         [OperationContract]
-        List<object[]> GetMovesAfter(DateTime time);
+        SimpleMove GetLatestMoveFrom(bool topTeam);
     }
 }

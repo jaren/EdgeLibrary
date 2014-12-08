@@ -17,13 +17,16 @@ namespace CheckersService
         KeyValuePair<int, int> StartSquare { get; set; }
         [DataMember]
         string ID { get; set; }
+        [DataMember]
+        public bool TopTeam { get; set; }
 
-        public SimpleMove(Dictionary<int, KeyValuePair<int, int>> squarePath, Dictionary<int, KeyValuePair<int, int>> jumpedSquares, KeyValuePair<int, int> startSquare, string id)
+        public SimpleMove(Dictionary<int, KeyValuePair<int, int>> squarePath, Dictionary<int, KeyValuePair<int, int>> jumpedSquares, KeyValuePair<int, int> startSquare, string id, bool topTeam)
         {
             SquarePath = squarePath;
             JumpedSquares = jumpedSquares;
             StartSquare = startSquare;
             ID = id;
+            TopTeam = topTeam;
         }
     }
 }

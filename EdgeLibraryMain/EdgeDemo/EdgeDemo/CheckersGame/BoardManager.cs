@@ -103,16 +103,16 @@ namespace EdgeDemo.CheckersGame
 
             //#region WebServiceConnection
 
-            //CheckersServiceClient WebService = new CheckersServiceClient();
+            CheckersServiceClient WebService = new CheckersServiceClient();
             ////Send Move to Web Service
-            //WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+            WebService.AddMove(Move.ConvertAndSend(CurrentMove));
             //Move RemoteMove = null;
 
             //while (RemoteMove == null)
             //{
             //    List<object[]> recievedMoves = WebService.GetMovesAfter(LastCheck).ToList();
 
-            //    if (recievedMoves.Count > 0)
+            //    if (recievedMoves.Count != null)
             //    {
             //        RemoteMove = Move.ConvertAndRecieve(recievedMoves[0]);
             //        break;
@@ -123,7 +123,7 @@ namespace EdgeDemo.CheckersGame
 
             //RemoteMove.RunMove();
 
-            #endregion WebServiceConnection
+            //#endregion WebServiceConnection
         }
 
         //Necessary override to not draw the BoardManager
