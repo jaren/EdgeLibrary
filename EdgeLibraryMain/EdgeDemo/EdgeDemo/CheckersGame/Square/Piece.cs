@@ -11,6 +11,7 @@ namespace EdgeDemo.CheckersGame
     public class Piece : Sprite
     {
         public bool King;
+        public bool ShowX;
         public bool TopTeam;
         public bool Fake;
 
@@ -32,6 +33,7 @@ namespace EdgeDemo.CheckersGame
             Size = size;
             TopTeam = topTeam;
             King = false;
+            ShowX = false;
             Fake = false;
         }
 
@@ -44,6 +46,14 @@ namespace EdgeDemo.CheckersGame
                 RestartSpriteBatch();
 
                 EdgeGame.Game.SpriteBatch.Draw(EdgeGame.GetTexture(Config.KingTexture), Position, null, Color, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+
+                RestartSpriteBatch();
+            }
+            if (ShowX)
+            {
+                RestartSpriteBatch();
+                
+                EdgeGame.Game.SpriteBatch.Draw(EdgeGame.GetTexture(Config.XTexture), Position, null, Color.White, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
                 RestartSpriteBatch();
             }

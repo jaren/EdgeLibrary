@@ -124,8 +124,6 @@ namespace EdgeDemo.CheckersGame
                 }
 
                 square.SquareNumber.Draw(gameTime);
-
-                square.XSprite.Draw(gameTime);
             }
 
             Border.Draw(gameTime);

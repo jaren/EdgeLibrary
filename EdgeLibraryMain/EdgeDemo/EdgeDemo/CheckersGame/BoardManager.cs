@@ -335,7 +335,7 @@ namespace EdgeDemo.CheckersGame
 
                     foreach (Square square in move.JumpedSquares)
                     {
-                        square.XSprite.Visible = true;
+                        square.OccupyingPiece.ShowX = true;
                     }
                 }
             }
@@ -354,7 +354,7 @@ namespace EdgeDemo.CheckersGame
 
                     foreach (Square square in move.JumpedSquares)
                     {
-                        square.XSprite.Visible = false;
+                        square.OccupyingPiece.ShowX = false;
                     }
                 }
             }

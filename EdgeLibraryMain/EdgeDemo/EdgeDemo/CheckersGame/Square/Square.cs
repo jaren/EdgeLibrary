@@ -14,7 +14,6 @@ namespace EdgeDemo.CheckersGame
         public Color DefaultColor;
         public TextSprite SquareNumber;
         public List<Sprite> SquareLines;
-        public Sprite XSprite;
 
         public Vector2 TopLeft;
 
@@ -33,8 +32,6 @@ namespace EdgeDemo.CheckersGame
 
             SquareNumber = new TextSprite(Config.SquareFont, "", Position) { CenterAsOrigin = true, Color = Config.SquareNumberColor };
             SquareLines = new List<Sprite>();
-            XSprite = new Sprite(Config.XTexture, position, Color.White, new Vector2(Config.XScale));
-            XSprite.Visible = false;
         }
 
         public bool CheckForClick()

@@ -48,8 +48,6 @@ namespace EdgeDemo.CheckersGame
         public static float CheckerFadeOutSpeed = 1f;
         public static float CheckerFadeInSpeed = 1f;
 
-        public static float XScale = 0.3f;
-
         public static Color SquareNumberColor = Color.OrangeRed;
         public static Color SquarePathColor = Color.Gray;
 
