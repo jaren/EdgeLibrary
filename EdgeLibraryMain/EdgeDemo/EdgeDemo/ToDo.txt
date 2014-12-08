@@ -2,15 +2,11 @@
 To Do:
 	=Main Features:
 		-Add WebService
-			-Progress: 10%
-		-Add MultiJumps
-			-Progress: Up to Triple jumps complete
+			-Progress: 30%
 
 	=Aesthetics
 		-Add comments on all CheckersGame classes
 			-Progress: BoardManager is done
-		-Add square numbers and line path when hovering over a selected square
-			-Progress: NONE
 		-Main Menu, Menu Select, etc.
 			-Progress: NONE
 		-Music options, sound

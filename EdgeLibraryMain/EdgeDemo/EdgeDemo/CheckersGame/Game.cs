@@ -28,9 +28,9 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.OnUpdate += OnUpdate;
 
-            BoardManager manager = new BoardManager();
-            manager.AddToGame();
-
+            MenuManager.Init();
+            MenuManager.AddMenu(new GameMenu());
+            MenuManager.SwitchMenu("GameMenu");
         }
 
         public void OnUpdate(GameTime gameTime)
@@ -63,10 +63,13 @@ namespace EdgeDemo.CheckersGame
                 EdgeGame.Camera.Position -= new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
             }
              */
+
+            MenuManager.Update(gameTime);
         }
 
         public void OnDraw(GameTime gameTime)
         {
+            MenuManager.Draw(gameTime);
         }
 
         public void OnLoadContent()
