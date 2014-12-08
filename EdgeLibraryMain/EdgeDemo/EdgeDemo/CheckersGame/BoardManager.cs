@@ -196,6 +196,19 @@ namespace EdgeDemo.CheckersGame
                         possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
                     }
 
+                    ClearPossibleSquarePaths(startSquare);
+                    if (startSquare != null)
+                    {
+                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                        {
+                            foreach (Square square in possibleMove.SquarePath)
+                            {
+                                square.Color = square.DefaultColor;
+                                square.SquareNumber.Text = "";
+                            }
+                        }
+                    }
+
                     ResetMove();
                 }
             }
@@ -433,27 +446,6 @@ namespace EdgeDemo.CheckersGame
                             square.Color = square.DefaultColor;
                         }
                     }
-                }
-                //The move was already started when it reset
-                else
-                {
-                    ClearPossibleSquarePaths(startSquare);
-                    if (startSquare != null)
-                    {
-                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                        {
-                            foreach(Square square in possibleMove.SquarePath)
-                            {
-                                square.Color = square.DefaultColor;
-                                square.SquareNumber.Text = "";
-                            }
-                        }
-                    }
-
-                    startSquare = null;
-
-                    CurrentMove = null;
-                    ResetMove();
                 }
             }
 

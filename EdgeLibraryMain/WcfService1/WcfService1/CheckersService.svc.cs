@@ -19,7 +19,7 @@ namespace CheckersService
 
         public SimpleMove GetLatestMoveFrom(bool topTeam)
         {
-            if (Moves[Moves.Count - 1].TopTeam = topTeam)
+            if (Moves.Count > 0 && Moves[Moves.Count - 1].TopTeam == topTeam)
             {
                 return Moves[Moves.Count - 1];
             }
