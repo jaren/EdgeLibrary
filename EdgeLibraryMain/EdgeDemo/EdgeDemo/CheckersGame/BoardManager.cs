@@ -435,9 +435,12 @@ namespace EdgeDemo.CheckersGame
                 else
                 {
                     ClearPossibleSquarePaths(startSquare);
-                    foreach (Move possibleMove in PossibleMoves)
+                    if (startSquare != null)
                     {
+                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                        {
 
+                        }
                     }
 
                     startSquare = null;
