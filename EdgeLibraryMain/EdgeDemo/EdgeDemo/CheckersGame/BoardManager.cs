@@ -124,10 +124,6 @@ namespace EdgeDemo.CheckersGame
 
                 #endregion WebServiceConnection
             }
-            else if(Config.ThisGameType == Config.GameType.Hotseat)
-            {
-                //System.Windows.Forms.MessageBox.Show("It is now " + (TopTeamTurn ? Config.TopTeamName : Config.BottomTeamName) + "'s Turn.\nHave them sit down and hit OK", "Turn Complete");
-            }
         }
 
         //Necessary override to not draw the BoardManager
@@ -462,7 +458,6 @@ namespace EdgeDemo.CheckersGame
             SelectedFirstSquare = false;
             StatusSprite.Text = TeamText + Config.SelectSquare1Message;
             TurnsCount++;
-
         }
     }
 }
