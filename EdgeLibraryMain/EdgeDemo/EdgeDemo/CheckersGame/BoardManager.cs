@@ -100,27 +100,34 @@ namespace EdgeDemo.CheckersGame
         {
             CurrentMove.RunMove();
 
-            #region WebServiceConnection
-
-            CheckersServiceClient WebService = new CheckersServiceClient();
-            ////Send Move to Web Service
-            WebService.AddMove(Move.ConvertAndSend(CurrentMove));
-            Move RemoteMove = null;
-
-            while (RemoteMove == null)
+            if (Config.ThisGameType == Config.GameType.Online)
             {
-                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                #region WebServiceConnection
 
-                if (recievedMove != null)
+                CheckersServiceClient WebService = new CheckersServiceClient();
+                ////Send Move to Web Service
+                WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+                Move RemoteMove = null;
+
+                while (RemoteMove == null)
                 {
-                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
-                    break;
+                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+
+                    if (recievedMove != null)
+                    {
+                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                        break;
+                    }
                 }
+
+                RemoteMove.RunMove();
+
+                #endregion WebServiceConnection
             }
-
-            RemoteMove.RunMove();
-
-            #endregion WebServiceConnection
+            else if(Config.ThisGameType == Config.GameType.Hotseat)
+            {
+                //System.Windows.Forms.MessageBox.Show("It is now " + (TopTeamTurn ? Config.TopTeamName : Config.BottomTeamName) + "'s Turn.\nHave them sit down and hit OK", "Turn Complete");
+            }
         }
 
         //Necessary override to not draw the BoardManager
