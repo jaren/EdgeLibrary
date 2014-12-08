@@ -114,6 +114,7 @@
     <Compile Include="Components\3D\Model\PrimitiveModel.cs" />
     <Compile Include="Components\3D\Model\SpriteModel.cs" />
     <Compile Include="Components\3D\Sprite3D.cs" />
+    <Compile Include="Game\EdgeGame\ModifiedSpriteBatch.cs" />
     <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />
     <Compile Include="Components\Miscellaneous\Ticker.cs" />

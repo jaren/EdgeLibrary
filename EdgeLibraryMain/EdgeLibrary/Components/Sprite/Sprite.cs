@@ -298,6 +298,11 @@ namespace EdgeLibrary
                     EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise);
                 }
             }
+
+            if (!EdgeGame.Game.SpriteBatch.IsStarted)
+            {
+                EdgeGame.Game.SpriteBatch.Begin();
+            }
         }
 
         //Draws the area of the collision body

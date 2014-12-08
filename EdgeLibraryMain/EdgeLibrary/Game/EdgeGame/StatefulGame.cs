@@ -15,7 +15,7 @@ namespace EdgeLibrary
     public class StatefulGame : Game
     {
         //Game components
-        public SpriteBatch SpriteBatch { get; protected set; }
+        public ModifiedSpriteBatch SpriteBatch { get; protected set; }
         public GraphicsDeviceManager Graphics { get; protected set; }
 
         //The color to clear the GraphicsDevice with
@@ -62,7 +62,7 @@ namespace EdgeLibrary
 
         protected override void LoadContent()
         {
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new ModifiedSpriteBatch(GraphicsDevice);
             base.LoadContent();
             if (OnLoadContent != null)
             {

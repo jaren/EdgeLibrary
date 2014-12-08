@@ -32,7 +32,7 @@ namespace EdgeDemo.CheckersGame
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
             MenuManager.AddMenu(new GameMenu());
-            MenuManager.SwitchMenu("GameMenu");
+            MenuManager.SwitchMenu("MainMenu");
         }
 
         public void OnUpdate(GameTime gameTime)
