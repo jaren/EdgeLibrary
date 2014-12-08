@@ -27,6 +27,7 @@ namespace EdgeDemo.CheckersGame
             //EdgeGame.playPlaylist("Music");
 
             EdgeGame.OnUpdate += OnUpdate;
+            EdgeGame.OnDraw += OnDraw;
 
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
