@@ -103,31 +103,6 @@ namespace EdgeDemo.CheckersGame
         public void ExecuteMove()
         {
             CurrentMove.RunMove();
-
-            if (Config.ThisGameType == Config.GameType.Online)
-            {
-                #region WebServiceConnection
-
-                CheckersServiceClient WebService = new CheckersServiceClient();
-                ////Send Move to Web Service
-                WebService.AddMove(Move.ConvertAndSend(CurrentMove));
-                Move RemoteMove = null;
-
-                while (RemoteMove == null)
-                {
-                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
-
-                    if (recievedMove != null)
-                    {
-                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
-                        break;
-                    }
-                }
-
-                RemoteMove.RunMove();
-
-                #endregion WebServiceConnection
-            }
         }
 
         //Necessary override to not draw the BoardManager
@@ -302,6 +277,36 @@ namespace EdgeDemo.CheckersGame
 
                     //Resets move
                     ResetMove();
+
+
+                    if (Config.ThisGameType == Config.GameType.Online)
+                    {
+                        #region WebServiceConnection
+
+                        CheckersServiceClient WebService = new CheckersServiceClient();
+                        ////Send Move to Web Service
+                        WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+                        Move RemoteMove = null;
+
+                        while (RemoteMove == null)
+                        {
+                            //TODO: Add loading text so user thinks something is happening
+                            Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+
+                            if (recievedMove != null)
+                            {
+                                RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                                break;
+                            }
+                        }
+
+                        RemoteMove.RunMove();
+
+                        #endregion WebServiceConnection
+                    }
+
+
+                    break;
                 }
             }
         }

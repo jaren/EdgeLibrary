@@ -64,6 +64,7 @@ namespace EdgeDemo.CheckersGame
         public static Color Square2SelectColor = Color.DarkGoldenrod;
 
         public static GameType ThisGameType = GameType.Hotseat;
+        public static bool IsHost = true;
 
         public enum GameType
         {
