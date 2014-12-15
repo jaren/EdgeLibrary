@@ -199,11 +199,21 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Service References\CheckersService\CheckersService.wsdl" />
-    <None Include="Service References\CheckersService\CheckersService.xsd" />
-    <None Include="Service References\CheckersService\CheckersService1.xsd" />
-    <None Include="Service References\CheckersService\CheckersService2.xsd" />
-    <None Include="Service References\CheckersService\CheckersService3.xsd" />
-    <None Include="Service References\CheckersService\CheckersService4.xsd" />
+    <None Include="Service References\CheckersService\CheckersService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CheckersService\" />

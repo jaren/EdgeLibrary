@@ -291,20 +291,55 @@ namespace EdgeDemo.CheckersGame
                         ////Send Move to Web Service
                         WebService.AddMove(Move.ConvertAndSend(CurrentMove));
                         Move RemoteMove = null;
+                        int loop = 0;
 
                         while (RemoteMove == null)
                         {
-                            //TODO: Add loading text so user thinks something is happening
-                            Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
-
-                            if (recievedMove != null)
+                            if (loop == 0)
                             {
-                                RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
-                                break;
+                                //TODO: Add loading text so user thinks something is happening
+                                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+
+                                if (recievedMove != null)
+                                {
+                                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                                    break;
+                                }
                             }
+                            else if (loop == 120)
+                            {
+                                loop = -1;
+                            }
+
+                            loop++;
                         }
 
-                        RemoteMove.RunMove();
+                        //Duplicate This Function
+
+                        //Set the current move and subscribe to it
+
+                        CurrentMove = RemoteMove;
+
+                        CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
+
+                        ClearPossibleSquarePaths(CurrentMove.StartSquare);
+                        ClearSquareNumberPaths(CurrentMove.FinishSquare);
+
+                        //Run move
+                        ExecuteMove();
+
+                        //Checks for the game end
+                        if (CheckEndGame())
+                        {
+                            EndGame();
+                        }
+
+                        //Updates info
+                        TopTeamTurn = !TopTeamTurn;
+                        TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
+
+                        //Resets move
+                        ResetMove();
 
                         #endregion WebServiceConnection
                     }
@@ -384,18 +419,21 @@ namespace EdgeDemo.CheckersGame
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths(Square endSquare)
         {
-            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
+            if ((Config.IsHost && !CurrentMove.StartSquare.OccupyingPiece.TopTeam) || (!Config.IsHost && CurrentMove.StartSquare.OccupyingPiece.TopTeam))
             {
-                if (move.FinishSquare == endSquare)
+                foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
                 {
-                    foreach (Square square in move.SquarePath)
+                    if (move.FinishSquare == endSquare)
                     {
-                        square.SquareNumber.Text = "";
-                    }
+                        foreach (Square square in move.SquarePath)
+                        {
+                            square.SquareNumber.Text = "";
+                        }
 
-                    foreach (Square square in move.JumpedSquares)
-                    {
-                        square.OccupyingPiece.ShowX = false;
+                        foreach (Square square in move.JumpedSquares)
+                        {
+                            square.OccupyingPiece.ShowX = false;
+                        }
                     }
                 }
             }

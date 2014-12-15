@@ -8,6 +8,7 @@ using System.Text;
 
 namespace CheckersService
 {
+    [ServiceBehavior(InstanceContextMode= InstanceContextMode.Single)]
     public class CheckersService : ICheckersService
     {
         public List<SimpleMove> Moves = new List<SimpleMove>();
