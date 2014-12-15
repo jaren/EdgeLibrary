@@ -38,6 +38,7 @@ namespace EdgeLibrary
                 _scale = new Vector2(
                     (value.X < 0 ? 0 : value.X),
                     (value.Y < 0 ? 0 : value.Y));
+                reloadBoundingBox();
             }
         }
         private Vector2 _scale;
@@ -98,6 +99,7 @@ namespace EdgeLibrary
                 {
                     Body.Position = ConvertUnits.ToSimUnits(_position);
                 }
+                reloadBoundingBox();
             } 
         }
         private Vector2 _position;
@@ -185,10 +187,10 @@ namespace EdgeLibrary
         }
 
         //Gets the bounding box of this sprite
-        public virtual Rectangle GetBoundingBox()
-        {
-            return new Rectangle((int)(Position.X - Width / 2 * Scale.X), (int)(Position.Y - Height / 2 * Scale.Y), (int)(Width * Scale.X), (int)(Height * Scale.Y));
-        }
+        //public virtual Rectangle GetBoundingBox()
+        //{
+        //   return new Rectangle((int)(Position.X - Width / 2 * Scale.X), (int)(Position.Y - Height / 2 * Scale.Y), (int)(Width * Scale.X), (int)(Height * Scale.Y));
+        //}
 
         //Reloads origin point based on texture
         protected virtual void reloadOriginPoint()
@@ -203,9 +205,12 @@ namespace EdgeLibrary
                 {
                     OriginPoint = Vector2.Zero;
                 }
-
-                BoundingBox = new Rectangle((int)Position.X - (int)Width/2, (int)Position.Y - (int)Height/2, (int)Width, (int)Height);
             }
+        }
+
+        protected virtual void reloadBoundingBox()
+        {
+            BoundingBox = new Rectangle((int)Position.X - (int)(Width * Scale.X) / 2, (int)Position.Y - (int)(Height * Scale.Y) / 2, (int)(Width * Scale.X), (int)(Height * Scale.Y));
         }
 
         //Gets an action

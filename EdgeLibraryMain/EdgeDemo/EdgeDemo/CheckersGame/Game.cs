@@ -14,7 +14,7 @@ namespace EdgeDemo.CheckersGame
     {
         public void OnInit()
         {
-            EdgeGame.InitializeWorld(new Vector2(0, 9.8f));
+            EdgeGame.InitializeWorld(new Vector2(0, 0));
 
             EdgeGame.WindowSize = new Vector2(1000);
 
