@@ -200,6 +200,11 @@ namespace EdgeLibrary
             {
                 OnDraw(gameTime);
             }
+
+            if (Game.SpriteBatch.IsStarted)
+            {
+                Game.SpriteBatch.End();
+            }
         }
 
         //Runs one update and draw

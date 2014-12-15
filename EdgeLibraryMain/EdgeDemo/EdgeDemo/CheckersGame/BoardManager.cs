@@ -91,6 +91,7 @@ namespace EdgeDemo.CheckersGame
             //Initializing move
             ResetMove();
 
+
             //Subscribes to input
             Input.OnMouseMove += Input_OnMouseMove;
             Input.OnKeyPress += Input_OnKeyPress;
@@ -108,9 +109,12 @@ namespace EdgeDemo.CheckersGame
         //Necessary override to not draw the BoardManager
         public override void Draw(GameTime gameTime)
         {
-            foreach(DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
+            if (Visible)
             {
-                component.Draw(gameTime);
+                foreach (DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
+                {
+                    component.Draw(gameTime);
+                }
             }
         }
 

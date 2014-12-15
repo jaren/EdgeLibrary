@@ -37,13 +37,13 @@ namespace EdgeDemo.CheckersGame
         public Button(string texture, Vector2 position)
             : base(texture, position)
         {
-            MouseOverTexture = EdgeGame.GetTexture(texture);
-            NormalTexture = MouseOverTexture;
-            ClickTexture = MouseOverTexture;
+            MouseOverTexture = Texture;
+            NormalTexture = Texture;
+            ClickTexture = Texture;
 
-            MouseOverColor = Color.White;
-            NormalColor = Color.White;
-            ClickColor = Color.White;
+            MouseOverColor = Color;
+            NormalColor = Color;
+            ClickColor = Color;
 
             ButtonState = ButtonClickState.Normal;
         }
@@ -81,6 +81,11 @@ namespace EdgeDemo.CheckersGame
             NormalColor = color;
             MouseOverColor = color;
             ClickColor = color;
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)

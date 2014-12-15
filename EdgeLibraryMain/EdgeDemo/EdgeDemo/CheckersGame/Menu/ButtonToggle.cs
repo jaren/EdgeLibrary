@@ -27,11 +27,11 @@ namespace EdgeDemo.CheckersGame
 
         public ButtonToggle(string texture, Vector2 position) : base(texture, position)
         {
-            OnMouseOverTexture = MouseOverTexture;
+            OnMouseOverTexture = Texture;
             OnMouseOverColor = MouseOverColor;
-            OnNormalTexture = NormalTexture;
+            OnNormalTexture = Texture;
             OnNormalColor = NormalColor;
-            OnClickTexture = ClickTexture;
+            OnClickTexture = Texture;
             OnClickColor = ClickColor;
 
             OffMouseOverTexture = MouseOverTexture;

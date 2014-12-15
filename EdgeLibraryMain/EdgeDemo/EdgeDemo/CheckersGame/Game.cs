@@ -37,7 +37,7 @@ namespace EdgeDemo.CheckersGame
 
         public void OnUpdate(GameTime gameTime)
         {
-            /*
+            
             EdgeGame.Camera.Scale += (Input.MouseWheelValue - Input.PreviousMouseWheelValue) / Config.CameraZoomSpeed;
             if (EdgeGame.Camera.Scale > Config.CameraMaxZoom)
             {
@@ -64,7 +64,7 @@ namespace EdgeDemo.CheckersGame
             {
                 EdgeGame.Camera.Position -= new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
             }
-             */
+             
 
             MenuManager.Update(gameTime);
         }

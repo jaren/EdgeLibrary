@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EdgeLibrary;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -9,9 +11,14 @@ namespace EdgeDemo.CheckersGame
     {
         public MainMenu() : base("MainMenu")
         {
-            Button button = new Button("ShadedDark01", new Microsoft.Xna.Framework.Vector2(500));
+            BoardManager manager = new BoardManager() { Visible = false };
+            Components.Add(manager);
+
+            Button button = new Button("FlatDark01", new Microsoft.Xna.Framework.Vector2(500));
             button.OnClick += button_OnClick;
             Components.Add(button);
+
+  
         }
 
         void button_OnClick(Button sender, Microsoft.Xna.Framework.GameTime gameTime)

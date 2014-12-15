@@ -14,29 +14,29 @@ namespace EdgeLibrary
 
         public new void Begin()
         {
-                        if (!IsStarted)
+            if (!IsStarted)
             {
-            IsStarted = true;
-            base.Begin();
-                        }
+                IsStarted = true;
+                base.Begin();
+            }
         }
 
         public new void Begin(SpriteSortMode sortMode, BlendState blendState)
         {
-                        if (!IsStarted)
+            if (!IsStarted)
             {
-            IsStarted = true;
-            base.Begin(sortMode, blendState);
-                        }
+                IsStarted = true;
+                base.Begin(sortMode, blendState);
+            }
         }
 
         public new void Begin(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState)
         {
-                        if (!IsStarted)
+            if (!IsStarted)
             {
-            IsStarted = true;
-            base.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState);
-                        }
+                IsStarted = true;
+                base.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState);
+            }
         }
 
         public new void Begin(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState, RasterizerState rasterizerState, Effect effect)
