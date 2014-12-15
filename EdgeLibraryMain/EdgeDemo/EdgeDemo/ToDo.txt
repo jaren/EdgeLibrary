@@ -2,6 +2,8 @@
 To Do:
 	=Main Features:
 		-Add WebService
+			-Add "Waiting for other user" screen after you move
+			-The Host is always the bottom team to make things easier
 			-Progress: 30%
 
 	=Aesthetics
