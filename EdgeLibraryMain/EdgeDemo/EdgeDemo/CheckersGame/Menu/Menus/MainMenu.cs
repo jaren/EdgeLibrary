@@ -18,6 +18,8 @@ namespace EdgeDemo.CheckersGame
             DebugText debug = new DebugText("Impact-20", Vector2.Zero) { CenterAsOrigin = false };
             //Components.Add(debug);
 
+            Input.OnKeyRelease += Input_OnKeyRelease;
+
             TextSprite title = new TextSprite("Georgia-50", "Checkers Game", new Vector2(500, 50));
             Components.Add(title);
 
@@ -62,6 +64,21 @@ namespace EdgeDemo.CheckersGame
             top.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * top.Scale.X).ToSimUnits(), (top.Height * top.Scale.Y).ToSimUnits(), 1));
             top.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(top);
+        }
+
+        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
+        {
+            if (key == Config.BackKey)
+            {
+                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?", "Quit", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
+                {
+                    EdgeGame.Stop();
+                }
+                else
+                {
+
+                }
+            }
         }
 
         void screenButton_OnClick(Button sender, GameTime gameTime)

@@ -124,10 +124,13 @@
     <Compile Include="CheckersGame\Menu\Button.cs" />
     <Compile Include="CheckersGame\Menu\ButtonToggle.cs" />
     <Compile Include="CheckersGame\Menu\Menus\GameMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\HotseatMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\MenuBase.cs" />
     <Compile Include="CheckersGame\Menu\MenuManager.cs" />
     <Compile Include="CheckersGame\Menu\Menus\MainMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\MultiplayerMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\OptionsMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\SingleplayerMenu.cs" />
     <Compile Include="CheckersGame\Square\Board.cs" />
     <Compile Include="CheckersGame\Square\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />

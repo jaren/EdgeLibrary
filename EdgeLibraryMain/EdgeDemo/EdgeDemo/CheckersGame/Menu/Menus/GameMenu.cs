@@ -9,16 +9,31 @@ namespace EdgeDemo.CheckersGame
 {
     public class GameMenu : MenuBase
     {
+        BoardManager manager;
+
         public GameMenu() : base("GameMenu")
         {
-            BoardManager manager = new BoardManager();
-            Components.Add(manager);
+            Input.OnKeyRelease += Input_OnKeyRelease;
         }
 
         public override void SwitchTo()
         {
             EdgeGame.ClearColor = Color.Gray;
+            if (manager == null)
+            {
+                manager = new BoardManager();
+            }
+            Components.Add(manager);
+
             base.SwitchTo();
+        }
+
+        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
+        {
+            if (key == Config.BackKey)
+            {
+                MenuManager.SwitchMenu("OptionsMenu");
+            }
         }
     }
 }

@@ -113,7 +113,10 @@ namespace EdgeLibrary
                 {
                     if (!previousKeyboard.GetPressedKeys().Contains(key))
                     {
-                        OnKeyPress(key);
+                        if (OnKeyPress != null)
+                        {
+                            OnKeyPress(key);
+                        }
                     }
                 }
 
@@ -121,7 +124,10 @@ namespace EdgeLibrary
                 {
                     if (!keyboard.GetPressedKeys().Contains(key))
                     {
-                        OnKeyRelease(key);
+                        if (OnKeyRelease != null)
+                        {
+                            OnKeyRelease(key);
+                        }
                     }
                 }
             }
