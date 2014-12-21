@@ -70,7 +70,7 @@ namespace EdgeDemo.CheckersGame
         {
             Hotseat,
             Online,
-            VSComputer
+            Singleplayer
         }
     }
 }
