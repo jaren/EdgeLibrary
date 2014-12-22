@@ -18,15 +18,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:56219/CheckersService.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:56221/CheckersService.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CheckersService.xsd" MetadataType="Schema" ID="20be12aa-03a7-47c0-ab1a-37ceb5fd8f5e" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd0" />
-    <MetadataFile FileName="CheckersService1.xsd" MetadataType="Schema" ID="6a5941c1-5968-4f40-b731-3947598d762a" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd1" />
-    <MetadataFile FileName="CheckersService2.xsd" MetadataType="Schema" ID="ddf2cdb8-de15-4835-bebd-e6a246ee98bb" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd2" />
-    <MetadataFile FileName="CheckersService3.xsd" MetadataType="Schema" ID="d751a0a1-4226-4ebd-b5e5-d9968924bf27" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd4" />
-    <MetadataFile FileName="CheckersService.wsdl" MetadataType="Wsdl" ID="51ae15a8-18de-4bb9-8024-33d98948a99b" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?wsdl" />
-    <MetadataFile FileName="CheckersService4.xsd" MetadataType="Schema" ID="8b0ba7b5-b945-4a71-8f0e-2621410cac9a" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd3" />
+    <MetadataFile FileName="CheckersService1.wsdl" MetadataType="Wsdl" ID="b9ccbcae-c9c2-4401-8791-4ef8f488f1ee" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?wsdl" />
+    <MetadataFile FileName="CheckersService5.xsd" MetadataType="Schema" ID="62a8ac65-1a14-43ba-abce-d2e36e49f17b" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CheckersService51.xsd" MetadataType="Schema" ID="d9349f7b-56fd-4877-ba5f-1b0b122a965b" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CheckersService52.xsd" MetadataType="Schema" ID="50a37129-5660-4bba-b187-297158e58dd8" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CheckersService53.xsd" MetadataType="Schema" ID="6177eb09-e8ea-46eb-94af-eebfaccd54fd" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?xsd=xsd3" />
+    <MetadataFile FileName="CheckersService54.xsd" MetadataType="Schema" ID="319b4654-4151-48e9-b9f3-402cee1b7a27" SourceId="1" SourceUrl="http://localhost:56221/CheckersService.svc?xsd=xsd4" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

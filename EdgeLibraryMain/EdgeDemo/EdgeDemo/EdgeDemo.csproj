@@ -185,6 +185,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Service References\CheckersService\CheckersService1.wsdl" />
+    <None Include="Service References\CheckersService\CheckersService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService51.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService52.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CheckersService\CheckersService54.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\CheckersService\configuration91.svcinfo" />
     <None Include="Service References\CheckersService\configuration.svcinfo" />
     <None Include="Service References\CheckersService\EdgeDemo.CheckersService.GameManager.datasource">
@@ -204,22 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\CheckersService\CheckersService.wsdl" />
-    <None Include="Service References\CheckersService\CheckersService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CheckersService\CheckersService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CheckersService\CheckersService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CheckersService\CheckersService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\CheckersService\CheckersService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CheckersService\" />
