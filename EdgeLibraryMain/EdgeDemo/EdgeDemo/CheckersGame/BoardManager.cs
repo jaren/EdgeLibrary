@@ -426,7 +426,7 @@ namespace EdgeDemo.CheckersGame
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths(Square endSquare)
         {
-            if (Config.ThisGameType == Config.GameType.Hotseat || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
+            if (Config.ThisGameType != Config.GameType.Online || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
             {
                 foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
                 {
