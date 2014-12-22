@@ -64,7 +64,7 @@ namespace EdgeDemo.CheckersGame
 
             Button singleplayerButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             singleplayerButton.SetColors(Config.MenuButtonColor);
-            singleplayerButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Singleplayer; MenuManager.SwitchMenu("SingleplayerMenu"); };
+            singleplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("SingleplayerMenu"); };
 
             Components.Add(singleplayerButton);
 
@@ -72,7 +72,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(singleplayerButtonText);
 
             Button hotseatButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            hotseatButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Hotseat; MenuManager.SwitchMenu("HotseatMenu"); };
+            hotseatButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("HotseatMenu"); };
             hotseatButton.SetColors(Config.MenuButtonColor);
             Components.Add(hotseatButton);
 
@@ -80,7 +80,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(hotseatButtonText);
 
             Button multiplayerButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            multiplayerButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Online; MenuManager.SwitchMenu("MultiplayerMenu"); };
+            multiplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerMenu"); };
             multiplayerButton.SetColors(Config.MenuButtonColor);
             Components.Add(multiplayerButton);
 
