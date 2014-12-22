@@ -104,10 +104,11 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadFont("Fonts/Impact/Impact-40");
             EdgeGame.LoadFont("Fonts/Impact/Impact-50");
             EdgeGame.LoadFont("Fonts/Impact/Impact-60");
-            EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
-            EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
+            //EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
+            //EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
             EdgeGame.LoadTexturesInSpritesheet("BlueGUI", "BlueGUI");
+            EdgeGame.LoadTexturesInSpritesheet("GreyGUI", "GreyGUI");
 
             EdgeGame.LoadTexture(Config.PieceTexture);
             EdgeGame.LoadTexture(Config.KingTexture);

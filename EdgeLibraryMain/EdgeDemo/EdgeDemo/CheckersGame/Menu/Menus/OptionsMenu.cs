@@ -21,8 +21,12 @@ namespace EdgeDemo.CheckersGame
             quitButton.OnRelease += (x, y) => { if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) { Config.ThisGameType = Config.GameType.Singleplayer; MenuManager.SwitchMenu("MainMenu"); } };
             Components.Add(quitButton);
 
-            TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Leave Game", quitButton.Position);
+            TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Main Menu", quitButton.Position);
             Components.Add(quitButtonText);
+
+            ButtonToggle musicButton = new ButtonToggle("blue_boxCheckmark", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { OnClickTexture = EdgeGame.GetTexture("blue_boxCheckmark"), OnMouseOverTexture = EdgeGame.GetTexture("blue_boxCheckmark"), OffNormalTexture = EdgeGame.GetTexture("grey_box"), OffClickTexture = EdgeGame.GetTexture("grey_box"), OffMouseOverTexture = EdgeGame.GetTexture("grey_box"), Scale = new Vector2(1) };
+            //musicButton.OnRelease += (x, y) => { if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) { Config.ThisGameType = Config.GameType.Singleplayer; MenuManager.SwitchMenu("MainMenu"); } };
+            Components.Add(musicButton);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
