@@ -16,5 +16,17 @@ namespace CheckersService
 
         [OperationContract]
         SimpleMove GetLatestMoveFrom(bool topTeam);
+
+        [OperationContract]
+        int CreateGame(string hostTeamName);
+
+        [OperationContract]
+        void JoinGame(int gameId, string otherTeamName);
+
+        [OperationContract]
+        void Disconnect(int gameId, bool isHost);
+
+        [OperationContract]
+        void EndGame(int gameId);
     }
 }

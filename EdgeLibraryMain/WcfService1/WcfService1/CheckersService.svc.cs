@@ -8,10 +8,11 @@ using System.Text;
 
 namespace CheckersService
 {
-    [ServiceBehavior(InstanceContextMode= InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class CheckersService : ICheckersService
     {
         public List<SimpleMove> Moves = new List<SimpleMove>();
+        public Dictionary<int,GameManager> Games = new Dictionary<int,GameManager>();
 
         public void AddMove(SimpleMove move)
         {
@@ -28,6 +29,36 @@ namespace CheckersService
             {
                 return null;
             }
+        }
+
+        public int CreateGame(string hostTeamName)
+        {
+            GameManager Game = new GameManager(hostTeamName);
+            Games.Add(Games.Count,Game);
+            return Games.Count - 1;
+        }
+
+        public void JoinGame(int gameId, string otherTeamName)
+        {
+            Games[gameId].OtherTeamName = otherTeamName;
+            Games[gameId].State = GameManager.GameState.InProgress;
+        }
+
+        public void Disconnect(int gameId, bool isHost)
+        {
+            if (isHost)
+            {
+                Games[gameId].State = GameManager.GameState.HostDisconnected;
+            }
+            else
+            {
+                Games[gameId].State = GameManager.GameState.PlayerDisconnected;
+            }
+        }
+
+        public void EndGame(int gameId)
+        {
+            Games[gameId].State = GameManager.GameState.Ended;
         }
     }
 }

@@ -11,7 +11,7 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WcfService1</RootNamespace>
+    <RootNamespace>CheckersService</RootNamespace>
     <AssemblyName>WcfService1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
@@ -74,7 +74,7 @@
     <Compile Include="CheckersService.svc.cs">
       <DependentUpon>CheckersService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="ICheckersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleMove.cs" />
