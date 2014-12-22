@@ -62,19 +62,19 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button singleplayerButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            Button singleplayerButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             singleplayerButton.OnRelease += (x, y) => {MenuManager.SwitchMenu("SingleplayerMenu"); };
             Components.Add(singleplayerButton);
 
-            Button hotseatButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            Button hotseatButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             hotseatButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("HotseatMenu"); };
             Components.Add(hotseatButton);
 
-            Button multiplayerButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            Button multiplayerButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             multiplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerMenu"); };
             Components.Add(multiplayerButton);
 
-            Button optionsButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            Button optionsButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("OptionsMenu"); };
             Components.Add(optionsButton);
 
