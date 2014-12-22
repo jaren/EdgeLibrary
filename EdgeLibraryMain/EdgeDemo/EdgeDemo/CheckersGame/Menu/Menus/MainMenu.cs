@@ -20,21 +20,20 @@ namespace EdgeDemo.CheckersGame
 
             Input.OnKeyRelease += Input_OnKeyRelease;
 
-            TextSprite title = new TextSprite("Georgia-50", "Checkers Game", new Vector2(500, 50));
+            TextSprite title = new TextSprite("Georgia-50", "Checkers Game", new Vector2(EdgeGame.WindowSize.X/2, EdgeGame.WindowSize.Y*0.05f));
             Components.Add(title);
 
-            Button screenButton = new Button("Pixel", new Vector2(500)) { Visible = false, Scale = new Vector2(1000) };
+            TextSprite subTitle = new TextSprite("Georgia-20", "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f));
+            Components.Add(subTitle);
+
+            Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X/2, EdgeGame.WindowSize.Y/2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
             screenButton.OnClick += screenButton_OnClick;
             Components.Add(screenButton);
 
-            Button button = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(500)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
-            button.OnRelease += button_OnClick;
-            Components.Add(button);
-
-            physicsSprite = new Sprite("Checkers", new Vector2(500)) { Scale = new Vector2(0.5f), Color = Color.Red };
+            physicsSprite = new Sprite("Checkers", new Vector2(EdgeGame.WindowSize.X*0.5f, EdgeGame.WindowSize.Y*0.5f)) { Scale = new Vector2(0.5f), Color = Color.Red };
             physicsSprite.EnablePhysics(BodyFactory.CreateCircle(EdgeGame.World, (physicsSprite.Width*physicsSprite.Scale.X/2f).ToSimUnits(), 1));
             physicsSprite.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Dynamic;
-            physicsSprite.Body.Restitution = 0.5f;
+            physicsSprite.Body.Restitution = 1;
             float max = 500;
             Vector2 force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
             Vector2 point = physicsSprite.Position;
@@ -43,27 +42,42 @@ namespace EdgeDemo.CheckersGame
 
             physicsSprite2 = (Sprite)physicsSprite.Clone();
             physicsSprite2.Color = Color.Black;
+            force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
+            point = physicsSprite2.Position;
+            physicsSprite2.Body.ApplyForce(ref force, ref point);
             Components.Add(physicsSprite2);
 
-            Sprite bottom = new Sprite("Pixel", new Vector2(500, 1000)) { Scale = new Vector2(1000, 10), Color = Color.White };
+            Sprite bottom = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X/2, EdgeGame.WindowSize.Y)) { Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
             bottom.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * bottom.Scale.X).ToSimUnits(), (bottom.Height * bottom.Scale.Y).ToSimUnits(), 1));
             bottom.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(bottom);
 
-            Sprite left = new Sprite("Pixel", new Vector2(0, 500)) { Scale = new Vector2(10, 1000), Color = Color.White };
+            Sprite left = new Sprite("Pixel", new Vector2(0, EdgeGame.WindowSize.Y/2)) { Scale = new Vector2(10, EdgeGame.WindowSize.Y), Color = Color.White };
             left.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (left.Width * left.Scale.X).ToSimUnits(), (left.Height * left.Scale.Y).ToSimUnits(), 1));
             left.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(left);
 
-            Sprite right = new Sprite("Pixel", new Vector2(1000, 500)) { Scale = new Vector2(10, 1000), Color = Color.White };
+            Sprite right = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y/2)) { Scale = new Vector2(10, EdgeGame.WindowSize.Y), Color = Color.White };
             right.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (right.Width * right.Scale.X).ToSimUnits(), (right.Height * right.Scale.Y).ToSimUnits(), 1));
             right.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(right);
 
-            Sprite top = new Sprite("Pixel", new Vector2(500, 0)) { Scale = new Vector2(1000, 10), Color = Color.White };
+            Sprite top = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X/2, 0)) { Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
             top.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * top.Scale.X).ToSimUnits(), (top.Height * top.Scale.Y).ToSimUnits(), 1));
             top.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(top);
+
+            Button singleplayerButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            singleplayerButton.OnRelease += (x, y) => {MenuManager.SwitchMenu("SingleplayerMenu"); };
+            Components.Add(singleplayerButton);
+
+            Button hotseatButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            hotseatButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("HotseatButton"); };
+            Components.Add(hotseatButton);
+
+            Button multiplayerButton = new Button("ShadedDark42", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("TransparentDark40"), MouseOverTexture = EdgeGame.GetTexture("FlatDark41"), Scale = new Vector2(1) };
+            multiplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerButton"); };
+            Components.Add(multiplayerButton);
         }
 
         void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
@@ -73,10 +87,6 @@ namespace EdgeDemo.CheckersGame
                 if (System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?", "Quit", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
                 {
                     EdgeGame.Stop();
-                }
-                else
-                {
-
                 }
             }
         }
@@ -91,11 +101,6 @@ namespace EdgeDemo.CheckersGame
             force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
             point = physicsSprite2.Position;
             physicsSprite2.Body.ApplyForce(ref force, ref point);
-        }
-
-        void button_OnClick(Button sender, Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            MenuManager.SwitchMenu("GameMenu");
         }
 
         public override void Update(GameTime gameTime)

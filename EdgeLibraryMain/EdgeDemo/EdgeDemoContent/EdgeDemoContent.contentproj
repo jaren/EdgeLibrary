@@ -225,6 +225,17 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
+    <Compile Include="GreyGUI.png">
+      <Name>GreyGUI</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="GreyGUI.xml">
+      <Name>GreyGUI</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ParticleSheet.xml">
       <Name>ParticleSheet</Name>
       <Importer>XmlImporter</Importer>
