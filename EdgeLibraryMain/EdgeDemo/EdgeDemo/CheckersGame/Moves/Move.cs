@@ -29,7 +29,6 @@ namespace EdgeDemo.CheckersGame
                 return SquarePath[SquarePath.Count - 1];
             }
         }
-
         public delegate void MoveEvent(List<Square> squarePath, List<Square> jumpedSquares, int index);
         public event MoveEvent OnComplete;
 
@@ -41,7 +40,6 @@ namespace EdgeDemo.CheckersGame
             JumpedSquares = jumpedSquares == null ? new List<Square>() : jumpedSquares;
 
             Piece = SquarePath[0].OccupyingPiece;
-
             MoveIndex = 0;
         }
 
@@ -52,7 +50,6 @@ namespace EdgeDemo.CheckersGame
         public static SimpleMove ConvertAndSend(Move move)
         {
             SimpleMove newMove = new SimpleMove();
-            //BROKEN
 
             //Square Path
             //Jumped Squares

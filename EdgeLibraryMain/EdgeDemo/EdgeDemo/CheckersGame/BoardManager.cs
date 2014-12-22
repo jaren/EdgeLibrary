@@ -285,10 +285,9 @@ namespace EdgeDemo.CheckersGame
 
                     if (Config.ThisGameType == Config.GameType.Online)
                     {
-                        try
-                        {
-                            #region WebServiceConnection
-
+                        #region WebServiceConnection
+                        //try
+                        //{
                             CheckersServiceClient WebService = new CheckersServiceClient();
                             ////Send Move to Web Service
 
@@ -343,12 +342,12 @@ namespace EdgeDemo.CheckersGame
 
                             //Resets move
                             ResetMove();
-                        }
-                        catch(Exception e)
-                        {
-                            System.Windows.Forms.MessageBox.Show("Multiplayer Connection Error!\nGame will now close.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                            System.Windows.Forms.MessageBox.Show("Detailed Error Below:\n" + e, "Error");
-                        }
+                        //}
+                        //catch(Exception e)
+                        //{
+                        //    System.Windows.Forms.MessageBox.Show("Multiplayer Connection Error!\nGame will now close.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        //    System.Windows.Forms.MessageBox.Show("Detailed Error Below:\n" + e, "Error");
+                        //}
                         #endregion WebServiceConnection
                     }
 
@@ -427,7 +426,7 @@ namespace EdgeDemo.CheckersGame
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths(Square endSquare)
         {
-            if (Config.ThisGameType == Config.GameType.Hotseat || (Config.IsHost && !CurrentMove.StartSquare.OccupyingPiece.TopTeam) || (!Config.IsHost && CurrentMove.StartSquare.OccupyingPiece.TopTeam))
+            if (Config.ThisGameType == Config.GameType.Hotseat || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
             {
                 foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
                 {
