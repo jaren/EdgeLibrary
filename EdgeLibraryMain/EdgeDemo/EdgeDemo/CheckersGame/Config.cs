@@ -22,6 +22,7 @@ namespace EdgeDemo.CheckersGame
         public static string MenuTitleFont = "Georgia-50";
         public static string MenuSubtitleFont = "Georgia-20";
         public static string MenuButtonTextFont = "Georgia-20";
+        public static Color MenuButtonColor = Color.DarkTurquoise;
         public static Color MenuTextColor = Color.White;
 
         public static string SelectSquare1Message = "Please select a square to move from";

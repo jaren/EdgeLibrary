@@ -62,29 +62,34 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button singleplayerButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            Button singleplayerButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            singleplayerButton.SetColors(Config.MenuButtonColor);
             singleplayerButton.OnRelease += (x, y) => {MenuManager.SwitchMenu("SingleplayerMenu"); };
+
             Components.Add(singleplayerButton);
 
             TextSprite singleplayerButtonText = new TextSprite(Config.MenuButtonTextFont, "Singleplayer", singleplayerButton.Position);
             Components.Add(singleplayerButtonText);
 
-            Button hotseatButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            Button hotseatButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             hotseatButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("HotseatMenu"); };
+            hotseatButton.SetColors(Config.MenuButtonColor);
             Components.Add(hotseatButton);
 
             TextSprite hotseatButtonText = new TextSprite(Config.MenuButtonTextFont, "Hotseat", hotseatButton.Position);
             Components.Add(hotseatButtonText);
 
-            Button multiplayerButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            Button multiplayerButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             multiplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerMenu"); };
+            multiplayerButton.SetColors(Config.MenuButtonColor);
             Components.Add(multiplayerButton);
 
             TextSprite multiplayerButtonText = new TextSprite(Config.MenuButtonTextFont, "Multiplayer", multiplayerButton.Position);
             Components.Add(multiplayerButtonText);
 
-            Button optionsButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            Button optionsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("OptionsMenu"); };
+            optionsButton.SetColors(Config.MenuButtonColor);
             Components.Add(optionsButton);
 
             TextSprite optionsButtonText = new TextSprite(Config.MenuButtonTextFont, "Options", optionsButton.Position);

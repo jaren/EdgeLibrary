@@ -107,7 +107,6 @@ namespace EdgeDemo.CheckersGame
             //EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
             //EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
-            EdgeGame.LoadTexturesInSpritesheet("BlueGUI", "BlueGUI");
             EdgeGame.LoadTexturesInSpritesheet("GreyGUI", "GreyGUI");
 
             EdgeGame.LoadTexture(Config.PieceTexture);
