@@ -21,6 +21,30 @@
   <wsdl:message name="ICheckersService_GetLatestMoveFrom_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLatestMoveFromResponse" />
   </wsdl:message>
+  <wsdl:message name="ICheckersService_CreateGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGame" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_CreateGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_JoinGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinGame" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_JoinGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_EndGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndGame" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_EndGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EndGameResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICheckersService">
     <wsdl:operation name="AddMove">
       <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/AddMove" message="tns:ICheckersService_AddMove_InputMessage" />
@@ -29,6 +53,22 @@
     <wsdl:operation name="GetLatestMoveFrom">
       <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom" message="tns:ICheckersService_GetLatestMoveFrom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse" message="tns:ICheckersService_GetLatestMoveFrom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/CreateGame" message="tns:ICheckersService_CreateGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/CreateGameResponse" message="tns:ICheckersService_CreateGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/JoinGame" message="tns:ICheckersService_JoinGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/JoinGameResponse" message="tns:ICheckersService_JoinGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/Disconnect" message="tns:ICheckersService_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/DisconnectResponse" message="tns:ICheckersService_Disconnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/EndGame" message="tns:ICheckersService_EndGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/EndGameResponse" message="tns:ICheckersService_EndGame_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICheckersService" type="tns:ICheckersService">
@@ -44,6 +84,42 @@
     </wsdl:operation>
     <wsdl:operation name="GetLatestMoveFrom">
       <soap:operation soapAction="http://tempuri.org/ICheckersService/GetLatestMoveFrom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateGame">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/CreateGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinGame">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/JoinGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/EndGame" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

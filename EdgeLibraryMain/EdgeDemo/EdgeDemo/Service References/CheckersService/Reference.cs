@@ -131,6 +131,18 @@ namespace EdgeDemo.CheckersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
         EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/CreateGame", ReplyAction="http://tempuri.org/ICheckersService/CreateGameResponse")]
+        int CreateGame(string hostTeamName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/JoinGame", ReplyAction="http://tempuri.org/ICheckersService/JoinGameResponse")]
+        void JoinGame(int gameId, string otherTeamName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/Disconnect", ReplyAction="http://tempuri.org/ICheckersService/DisconnectResponse")]
+        void Disconnect(int gameId, bool isHost);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/EndGame", ReplyAction="http://tempuri.org/ICheckersService/EndGameResponse")]
+        void EndGame(int gameId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -166,6 +178,22 @@ namespace EdgeDemo.CheckersService {
         
         public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam) {
             return base.Channel.GetLatestMoveFrom(topTeam);
+        }
+        
+        public int CreateGame(string hostTeamName) {
+            return base.Channel.CreateGame(hostTeamName);
+        }
+        
+        public void JoinGame(int gameId, string otherTeamName) {
+            base.Channel.JoinGame(gameId, otherTeamName);
+        }
+        
+        public void Disconnect(int gameId, bool isHost) {
+            base.Channel.Disconnect(gameId, isHost);
+        }
+        
+        public void EndGame(int gameId) {
+            base.Channel.EndGame(gameId);
         }
     }
 }
