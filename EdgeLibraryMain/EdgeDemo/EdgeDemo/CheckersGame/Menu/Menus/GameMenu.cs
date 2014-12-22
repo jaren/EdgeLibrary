@@ -30,7 +30,7 @@ namespace EdgeDemo.CheckersGame
 
         void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
         {
-            if (key == Config.BackKey)
+            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
             {
                 MenuManager.SwitchMenu("OptionsMenu");
             }

@@ -19,6 +19,10 @@ namespace EdgeDemo.CheckersGame
         public static string SquareFont = "ComicSans-20";
         public static string DebugFont = "Impact-20";
 
+        public static string MenuTitleFont = "Georgia-50";
+        public static string MenuSubtitleFont = "Georgia-20";
+        public static Color MenuTextColor = Color.White;
+
         public static string SelectSquare1Message = "Please select a square to move from";
         public static string SelectSquare1MessageFailed = "Please select a valid square to move from";
         public static string SelectSquare2Message = "Please select a square to move to";
