@@ -20,6 +20,9 @@ namespace EdgeDemo.CheckersGame
         //The main board - static so other classes can access it
         public static Board Board { get; private set; }
 
+        //If set to true, will reset the game when created by GameMenu
+        public static bool ResetGame = true;
+
         //Displays which team should move and the move state
         public TextSprite StatusSprite;
 
@@ -90,7 +93,6 @@ namespace EdgeDemo.CheckersGame
 
             //Initializing move
             ResetMove();
-
 
             //Subscribes to input
             Input.OnMouseMove += Input_OnMouseMove;
