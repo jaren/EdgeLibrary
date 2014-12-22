@@ -17,6 +17,13 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
+            Button quitButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            quitButton.OnRelease += (x, y) => { if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) { Config.ThisGameType = Config.GameType.Singleplayer; MenuManager.SwitchMenu("MainMenu"); } };
+            Components.Add(quitButton);
+
+            TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Leave Game", quitButton.Position);
+            Components.Add(quitButtonText);
+
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 

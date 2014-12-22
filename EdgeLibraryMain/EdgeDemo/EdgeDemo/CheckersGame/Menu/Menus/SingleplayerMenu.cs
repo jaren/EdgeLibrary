@@ -17,6 +17,13 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
+            Button startButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
+            startButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Singleplayer;  MenuManager.SwitchMenu("GameMenu"); };
+            Components.Add(startButton);
+
+            TextSprite startButtonText = new TextSprite(Config.MenuButtonTextFont, "Start Game", startButton.Position);
+            Components.Add(startButtonText);
+
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 

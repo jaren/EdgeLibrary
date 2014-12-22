@@ -66,17 +66,29 @@ namespace EdgeDemo.CheckersGame
             singleplayerButton.OnRelease += (x, y) => {MenuManager.SwitchMenu("SingleplayerMenu"); };
             Components.Add(singleplayerButton);
 
+            TextSprite singleplayerButtonText = new TextSprite(Config.MenuButtonTextFont, "Singleplayer", singleplayerButton.Position);
+            Components.Add(singleplayerButtonText);
+
             Button hotseatButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             hotseatButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("HotseatMenu"); };
             Components.Add(hotseatButton);
+
+            TextSprite hotseatButtonText = new TextSprite(Config.MenuButtonTextFont, "Hotseat", hotseatButton.Position);
+            Components.Add(hotseatButtonText);
 
             Button multiplayerButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.4f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             multiplayerButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerMenu"); };
             Components.Add(multiplayerButton);
 
+            TextSprite multiplayerButtonText = new TextSprite(Config.MenuButtonTextFont, "Multiplayer", multiplayerButton.Position);
+            Components.Add(multiplayerButtonText);
+
             Button optionsButton = new Button("blue_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("blue_button01"), MouseOverTexture = EdgeGame.GetTexture("blue_button02"), Scale = new Vector2(1) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("OptionsMenu"); };
             Components.Add(optionsButton);
+
+            TextSprite optionsButtonText = new TextSprite(Config.MenuButtonTextFont, "Options", optionsButton.Position);
+            Components.Add(optionsButtonText);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
