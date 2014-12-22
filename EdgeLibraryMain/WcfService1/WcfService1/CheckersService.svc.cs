@@ -60,5 +60,25 @@ namespace CheckersService
         {
             Games[gameId].State = GameManager.GameState.Ended;
         }
+
+        public List<GameManager> GetJoinableGames()
+        {
+            List<GameManager> JoinableGames = new List<GameManager>();
+
+            foreach (int gameId in Games.Keys)
+            {
+                if (Games[gameId].State == GameManager.GameState.WaitingForPlayers)
+                {
+                    JoinableGames.Add(Games[gameId]);
+                }
+            }
+
+            return JoinableGames;
+        }
+
+        public List<GameManager> GetAllGames()
+        {
+            return Games.Values.ToList();
+        }
     }
 }

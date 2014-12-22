@@ -45,6 +45,18 @@
   <wsdl:message name="ICheckersService_EndGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:EndGameResponse" />
   </wsdl:message>
+  <wsdl:message name="ICheckersService_GetAllGames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGames" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_GetAllGames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllGamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_GetJoinableGames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJoinableGames" />
+  </wsdl:message>
+  <wsdl:message name="ICheckersService_GetJoinableGames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJoinableGamesResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICheckersService">
     <wsdl:operation name="AddMove">
       <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/AddMove" message="tns:ICheckersService_AddMove_InputMessage" />
@@ -69,6 +81,14 @@
     <wsdl:operation name="EndGame">
       <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/EndGame" message="tns:ICheckersService_EndGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/EndGameResponse" message="tns:ICheckersService_EndGame_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/GetAllGames" message="tns:ICheckersService_GetAllGames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/GetAllGamesResponse" message="tns:ICheckersService_GetAllGames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJoinableGames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICheckersService/GetJoinableGames" message="tns:ICheckersService_GetJoinableGames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICheckersService/GetJoinableGamesResponse" message="tns:ICheckersService_GetJoinableGames_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICheckersService" type="tns:ICheckersService">
@@ -120,6 +140,24 @@
     </wsdl:operation>
     <wsdl:operation name="EndGame">
       <soap:operation soapAction="http://tempuri.org/ICheckersService/EndGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGames">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/GetAllGames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJoinableGames">
+      <soap:operation soapAction="http://tempuri.org/ICheckersService/GetJoinableGames" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

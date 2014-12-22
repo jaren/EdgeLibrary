@@ -28,5 +28,11 @@ namespace CheckersService
 
         [OperationContract]
         void EndGame(int gameId);
+
+        [OperationContract]
+        List<GameManager> GetAllGames();
+
+        [OperationContract]
+        List<GameManager> GetJoinableGames();
     }
 }

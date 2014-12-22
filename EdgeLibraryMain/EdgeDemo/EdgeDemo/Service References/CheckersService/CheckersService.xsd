@@ -79,4 +79,28 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllGames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllGamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="GetAllGamesResult" nillable="true" type="q3:ArrayOfGameManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetJoinableGames">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetJoinableGamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="GetJoinableGamesResult" nillable="true" type="q4:ArrayOfGameManager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -122,6 +122,119 @@ namespace EdgeDemo.CheckersService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameManager", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
+    [System.SerializableAttribute()]
+    public partial class GameManager : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime GameStartTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string HostTeamNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OtherTeamNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private EdgeDemo.CheckersService.GameManager.GameState StateField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime GameStartTime {
+            get {
+                return this.GameStartTimeField;
+            }
+            set {
+                if ((this.GameStartTimeField.Equals(value) != true)) {
+                    this.GameStartTimeField = value;
+                    this.RaisePropertyChanged("GameStartTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string HostTeamName {
+            get {
+                return this.HostTeamNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HostTeamNameField, value) != true)) {
+                    this.HostTeamNameField = value;
+                    this.RaisePropertyChanged("HostTeamName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OtherTeamName {
+            get {
+                return this.OtherTeamNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OtherTeamNameField, value) != true)) {
+                    this.OtherTeamNameField = value;
+                    this.RaisePropertyChanged("OtherTeamName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public EdgeDemo.CheckersService.GameManager.GameState State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((this.StateField.Equals(value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="GameManager.GameState", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
+        public enum GameState : int {
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            WaitingForPlayers = 0,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            InProgress = 1,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Ended = 2,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            HostDisconnected = 3,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            PlayerDisconnected = 4,
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CheckersService.ICheckersService")]
     public interface ICheckersService {
@@ -143,6 +256,12 @@ namespace EdgeDemo.CheckersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/EndGame", ReplyAction="http://tempuri.org/ICheckersService/EndGameResponse")]
         void EndGame(int gameId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetAllGames", ReplyAction="http://tempuri.org/ICheckersService/GetAllGamesResponse")]
+        EdgeDemo.CheckersService.GameManager[] GetAllGames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetJoinableGames", ReplyAction="http://tempuri.org/ICheckersService/GetJoinableGamesResponse")]
+        EdgeDemo.CheckersService.GameManager[] GetJoinableGames();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -194,6 +313,14 @@ namespace EdgeDemo.CheckersService {
         
         public void EndGame(int gameId) {
             base.Channel.EndGame(gameId);
+        }
+        
+        public EdgeDemo.CheckersService.GameManager[] GetAllGames() {
+            return base.Channel.GetAllGames();
+        }
+        
+        public EdgeDemo.CheckersService.GameManager[] GetJoinableGames() {
+            return base.Channel.GetJoinableGames();
         }
     }
 }

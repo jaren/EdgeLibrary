@@ -12,4 +12,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SimpleMove" nillable="true" type="tns:SimpleMove" />
+  <xs:complexType name="ArrayOfGameManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GameManager" nillable="true" type="tns:GameManager" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGameManager" nillable="true" type="tns:ArrayOfGameManager" />
+  <xs:complexType name="GameManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HostTeamName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherTeamName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" type="tns:GameManager.GameState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GameManager" nillable="true" type="tns:GameManager" />
+  <xs:simpleType name="GameManager.GameState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WaitingForPlayers" />
+      <xs:enumeration value="InProgress" />
+      <xs:enumeration value="Ended" />
+      <xs:enumeration value="HostDisconnected" />
+      <xs:enumeration value="PlayerDisconnected" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GameManager.GameState" nillable="true" type="tns:GameManager.GameState" />
 </xs:schema>
