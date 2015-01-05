@@ -12,10 +12,10 @@ namespace CheckersService
     public interface ICheckersService
     {
         [OperationContract]
-        void AddMove(SimpleMove move);
+        bool AddMove(SimpleMove move, int gameId);
 
         [OperationContract]
-        SimpleMove GetLatestMoveFrom(bool topTeam);
+        SimpleMove GetLatestMoveFrom(bool topTeam, int gameId);
 
         [OperationContract]
         int CreateGame(string hostTeamName);
@@ -33,6 +33,6 @@ namespace CheckersService
         List<GameManager> GetAllGames();
 
         [OperationContract]
-        List<GameManager> GetJoinableGames();
+        Dictionary<int, GameManager> GetJoinableGames();
     }
 }

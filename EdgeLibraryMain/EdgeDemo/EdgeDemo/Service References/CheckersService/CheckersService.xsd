@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:56221/CheckersService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CheckersService" />
+  <xs:import schemaLocation="http://localhost:56219/CheckersService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CheckersService" />
+  <xs:import schemaLocation="http://localhost:56219/CheckersService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="AddMove">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="move" nillable="true" type="q1:SimpleMove" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddMoveResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddMoveResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetLatestMoveFrom">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="topTeam" type="xs:boolean" />
+        <xs:element minOccurs="0" name="gameId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -99,7 +104,7 @@
   <xs:element name="GetJoinableGamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="GetJoinableGamesResult" nillable="true" type="q4:ArrayOfGameManager" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetJoinableGamesResult" nillable="true" type="q4:ArrayOfKeyValueOfintGameManagerittRTxUx" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -27,6 +27,8 @@ namespace CheckersService
         public DateTime GameStartTime { get; set; }
         [DataMember]
         public GameState State { get; set; }
+        [DataMember]
+        public List<SimpleMove> MoveList { get; set; }
 
         public GameManager(string hostTeamName)
         {
@@ -34,6 +36,7 @@ namespace CheckersService
             OtherTeamName = "Waiting For Players";
             GameStartTime = DateTime.UtcNow;
             State = GameState.WaitingForPlayers;
+            MoveList = new List<SimpleMove>();
         }
     }
 }

@@ -138,6 +138,9 @@ namespace EdgeDemo.CheckersService {
         private string HostTeamNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private EdgeDemo.CheckersService.SimpleMove[] MoveListField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OtherTeamNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -175,6 +178,19 @@ namespace EdgeDemo.CheckersService {
                 if ((object.ReferenceEquals(this.HostTeamNameField, value) != true)) {
                     this.HostTeamNameField = value;
                     this.RaisePropertyChanged("HostTeamName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public EdgeDemo.CheckersService.SimpleMove[] MoveList {
+            get {
+                return this.MoveListField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MoveListField, value) != true)) {
+                    this.MoveListField = value;
+                    this.RaisePropertyChanged("MoveList");
                 }
             }
         }
@@ -240,10 +256,10 @@ namespace EdgeDemo.CheckersService {
     public interface ICheckersService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/AddMove", ReplyAction="http://tempuri.org/ICheckersService/AddMoveResponse")]
-        void AddMove(EdgeDemo.CheckersService.SimpleMove move);
+        bool AddMove(EdgeDemo.CheckersService.SimpleMove move, int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
-        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam);
+        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam, int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/CreateGame", ReplyAction="http://tempuri.org/ICheckersService/CreateGameResponse")]
         int CreateGame(string hostTeamName);
@@ -261,7 +277,7 @@ namespace EdgeDemo.CheckersService {
         EdgeDemo.CheckersService.GameManager[] GetAllGames();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetJoinableGames", ReplyAction="http://tempuri.org/ICheckersService/GetJoinableGamesResponse")]
-        EdgeDemo.CheckersService.GameManager[] GetJoinableGames();
+        System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameManager> GetJoinableGames();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -291,12 +307,12 @@ namespace EdgeDemo.CheckersService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddMove(EdgeDemo.CheckersService.SimpleMove move) {
-            base.Channel.AddMove(move);
+        public bool AddMove(EdgeDemo.CheckersService.SimpleMove move, int gameId) {
+            return base.Channel.AddMove(move, gameId);
         }
         
-        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam) {
-            return base.Channel.GetLatestMoveFrom(topTeam);
+        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam, int gameId) {
+            return base.Channel.GetLatestMoveFrom(topTeam, gameId);
         }
         
         public int CreateGame(string hostTeamName) {
@@ -319,7 +335,7 @@ namespace EdgeDemo.CheckersService {
             return base.Channel.GetAllGames();
         }
         
-        public EdgeDemo.CheckersService.GameManager[] GetJoinableGames() {
+        public System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameManager> GetJoinableGames() {
             return base.Channel.GetJoinableGames();
         }
     }

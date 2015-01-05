@@ -71,7 +71,8 @@ namespace EdgeDemo.CheckersGame
         public static Color Square2SelectColor = Color.DarkGoldenrod;
 
         public static GameType ThisGameType = GameType.Online;
-        public static bool IsHost = false;
+        public static bool IsHost = true;
+        public static int ThisGameID = -1; //Not online if -1
 
         public enum GameType
         {

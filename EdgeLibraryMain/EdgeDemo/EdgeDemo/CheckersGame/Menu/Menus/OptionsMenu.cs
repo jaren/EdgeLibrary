@@ -4,13 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EdgeDemo.CheckersService;
 
 namespace EdgeDemo.CheckersGame
 {
     public class OptionsMenu : MenuBase
     {
-        public OptionsMenu() : base("OptionsMenu")
+        public OptionsMenu()
+            : base("OptionsMenu")
         {
+                CheckersServiceClient ServiceClient = new CheckersServiceClient();
+
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Options Menu", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
@@ -19,7 +23,17 @@ namespace EdgeDemo.CheckersGame
 
             Button quitButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             quitButton.SetColors(Config.MenuButtonColor);
-            quitButton.OnRelease += (x, y) => { if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) { Config.ThisGameType = Config.GameType.Singleplayer; MenuManager.SwitchMenu("MainMenu"); } };
+            quitButton.OnRelease += (x, y) => {
+                if (Config.ThisGameType == Config.GameType.Online)
+                {
+                    ServiceClient.Disconnect(Config.ThisGameID, Config.IsHost);
+                }
+                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) 
+                { 
+                    Config.ThisGameType = Config.GameType.Singleplayer;
+                    MenuManager.SwitchMenu("MainMenu");
+                }
+            };
             Components.Add(quitButton);
 
             TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Main Menu", quitButton.Position);

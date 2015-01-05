@@ -11,19 +11,26 @@ namespace CheckersService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class CheckersService : ICheckersService
     {
-        public List<SimpleMove> Moves = new List<SimpleMove>();
         public Dictionary<int,GameManager> Games = new Dictionary<int,GameManager>();
 
-        public void AddMove(SimpleMove move)
+        public bool AddMove(SimpleMove move, int gameId)
         {
-            Moves.Add(move);
+            if (Games.Count >= gameId + 1)
+            {
+                Games[gameId].MoveList.Add(move);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public SimpleMove GetLatestMoveFrom(bool topTeam)
+        public SimpleMove GetLatestMoveFrom(bool topTeam, int gameId)
         {
-            if (Moves.Count > 0 && Moves[Moves.Count - 1].TopTeam == topTeam)
+            if (Games.Count >= gameId + 1 && Games[gameId].MoveList.Count > 0 && Games[gameId].MoveList[Games[gameId].MoveList.Count - 1].TopTeam == topTeam)
             {
-                return Moves[Moves.Count - 1];
+                return Games[gameId].MoveList[Games[gameId].MoveList.Count - 1];
             }
             else
             {
@@ -61,15 +68,15 @@ namespace CheckersService
             Games[gameId].State = GameManager.GameState.Ended;
         }
 
-        public List<GameManager> GetJoinableGames()
+        public Dictionary<int,GameManager> GetJoinableGames()
         {
-            List<GameManager> JoinableGames = new List<GameManager>();
+            Dictionary<int, GameManager> JoinableGames = new Dictionary<int, GameManager>();
 
             foreach (int gameId in Games.Keys)
             {
                 if (Games[gameId].State == GameManager.GameState.WaitingForPlayers)
                 {
-                    JoinableGames.Add(Games[gameId]);
+                    JoinableGames.Add(gameId,Games[gameId]);
                 }
             }
 

@@ -58,6 +58,8 @@ namespace EdgeDemo.CheckersGame
         private string TeamText;
         public int TurnsCount;
 
+        CheckersServiceClient ServiceClient = new CheckersServiceClient();
+
         public BoardManager()
             : base("", Vector2.Zero)
         {
@@ -133,6 +135,11 @@ namespace EdgeDemo.CheckersGame
             if (Board.mousedOverSquare != null)
             {
                 DebugSprite.Text += "Last Moused Over Square: " + Board.mousedOverSquare.X + ", " + Board.mousedOverSquare.Y;
+            }
+
+            if (Config.ThisGameType == Config.GameType.Online && ServiceClient.GetAllGames().ElementAt(Config.ThisGameID).State == GameManager.GameState.WaitingForPlayers)
+            {
+                System.Windows.Forms.MessageBox.Show("ToDo: Waiting for Players Screen\n(To have this dialog stop appearing, set the current game state to something besides WaitingForPlayers)\n\nThis Game ID: " + Config.ThisGameID);
             }
         }
 
@@ -293,7 +300,7 @@ namespace EdgeDemo.CheckersGame
                             CheckersServiceClient WebService = new CheckersServiceClient();
                             ////Send Move to Web Service
 
-                            WebService.AddMove(Move.ConvertAndSend(CurrentMove));
+                            WebService.AddMove(Move.ConvertAndSend(CurrentMove), Config.ThisGameID);
                             Move RemoteMove = null;
                             int loop = 0;
 
@@ -302,11 +309,11 @@ namespace EdgeDemo.CheckersGame
                                 if (loop == 0)
                                 {
                                     //TODO: Add loading text so user thinks something is happening
-                                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
 
                                     if (recievedMove != null)
                                     {
-                                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn));
+                                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
                                         break;
                                     }
                                 }
