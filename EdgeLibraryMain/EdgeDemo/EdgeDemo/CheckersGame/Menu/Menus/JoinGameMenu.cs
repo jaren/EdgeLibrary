@@ -20,14 +20,14 @@ namespace EdgeDemo.CheckersGame
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Join Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Looking for Available Games...", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click Refresh to Search for Joinable Games", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
             Button join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join1Button.SetColors(Config.MenuButtonColor);
             join1Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetAllGames().ElementAt(gameIDs[0]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetJoinableGames().Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).State == GameManager.GameState.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -38,7 +38,7 @@ namespace EdgeDemo.CheckersGame
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is not joinable", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join1Button);
@@ -47,7 +47,7 @@ namespace EdgeDemo.CheckersGame
             join2Button.SetColors(Config.MenuButtonColor);
             join2Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetAllGames().ElementAt(gameIDs[1]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetJoinableGames().Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).State == GameManager.GameState.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -58,7 +58,7 @@ namespace EdgeDemo.CheckersGame
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is not joinable", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join2Button);
@@ -67,7 +67,7 @@ namespace EdgeDemo.CheckersGame
             join3Button.SetColors(Config.MenuButtonColor);
             join3Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetAllGames().ElementAt(gameIDs[2]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetJoinableGames().Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).State == GameManager.GameState.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -78,7 +78,7 @@ namespace EdgeDemo.CheckersGame
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is not joinable", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join3Button);
@@ -96,33 +96,11 @@ namespace EdgeDemo.CheckersGame
             #region InitialRefresh
             gameIDs = new List<int>(3);
             List<string> buttonTexts = new List<string>();
-            Dictionary<int, GameManager> joinableGames = ServiceClient.GetJoinableGames();
-            for (int i = 0; i < Components.OfType<Button>().Count(); i++)
+            Dictionary<int, GameManager> joinableGames; ;
+            try
             {
-                if (joinableGames.Count >= i + 1)
-                {
-                    buttonTexts.Add(joinableGames.Values.ElementAt(i).HostTeamName);
-                    gameIDs.Add(joinableGames.Keys.ElementAt(i));
-                }
-                else
-                {
-                    buttonTexts.Add("No Game");
-                }
-            }
-
-            join1ButtonText.Text = buttonTexts[0];
-            join2ButtonText.Text = buttonTexts[1];
-            join3ButtonText.Text = buttonTexts[2];
-            #endregion
-
-            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            refreshButton.SetColors(Config.MenuButtonColor);
-            refreshButton.OnRelease += (x, y) =>
-            {
-                gameIDs = new List<int>(3);
-                buttonTexts = new List<string>();
                 joinableGames = ServiceClient.GetJoinableGames();
-                for (int i = 0; i < Components.OfType<Button>().Count() - 1; i++)
+                for (int i = 0; i < Components.OfType<Button>().Count(); i++)
                 {
                     if (joinableGames.Count >= i + 1)
                     {
@@ -138,6 +116,43 @@ namespace EdgeDemo.CheckersGame
                 join1ButtonText.Text = buttonTexts[0];
                 join2ButtonText.Text = buttonTexts[1];
                 join3ButtonText.Text = buttonTexts[2];
+            }
+            catch (Exception exception)
+            {
+                System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+            }
+            #endregion
+
+            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            refreshButton.SetColors(Config.MenuButtonColor);
+            refreshButton.OnRelease += (x, y) =>
+            {
+                gameIDs = new List<int>(3);
+                buttonTexts = new List<string>();
+                try
+                {
+                    joinableGames = ServiceClient.GetJoinableGames();
+                    for (int i = 0; i < Components.OfType<Button>().Count() - 1; i++)
+                    {
+                        if (joinableGames.Count >= i + 1)
+                        {
+                            buttonTexts.Add(joinableGames.Values.ElementAt(i).HostTeamName);
+                            gameIDs.Add(joinableGames.Keys.ElementAt(i));
+                        }
+                        else
+                        {
+                            buttonTexts.Add("No Game");
+                        }
+                    }
+
+                    join1ButtonText.Text = buttonTexts[0];
+                    join2ButtonText.Text = buttonTexts[1];
+                    join3ButtonText.Text = buttonTexts[2];
+                }
+                catch (Exception exception)
+                {
+                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+                }
             };
             Components.Add(refreshButton);
 
