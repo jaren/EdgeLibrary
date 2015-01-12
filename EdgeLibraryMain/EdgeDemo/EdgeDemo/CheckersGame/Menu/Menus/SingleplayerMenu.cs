@@ -19,7 +19,7 @@ namespace EdgeDemo.CheckersGame
 
             Button startButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             startButton.SetColors(Config.MenuButtonColor);
-            startButton.OnRelease += (x, y) => { System.Windows.Forms.MessageBox.Show("Singleplayer Mode not implemented, switching to hotseat","Not Implemented"); Config.ThisGameType = Config.GameType.Singleplayer; BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
+            startButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Singleplayer; BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(startButton);
 
             TextSprite startButtonText = new TextSprite(Config.MenuButtonTextFont, "Start Game", startButton.Position);

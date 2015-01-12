@@ -9,13 +9,22 @@ namespace EdgeDemo.CheckersGame.Players
     //A player used by the computer
     public class ComputerPlayer : Player
     {
-        public ComputerPlayer()
-        {
+        private ComputerMoveChooser MoveChooser;
 
+        public ComputerPlayer(int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500)
+        {
+            MoveChooser = new ComputerMoveChooser(difficulty, difficultyFluctuation, moveWait, moveWaitFluctuation);
         }
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+            List<Move> moves = new List<Move>();
+            foreach(Piece piece in possibleMoves.Keys)
+            {
+                moves.AddRange(possibleMoves[piece]);
+            }
+
+            SendMove(MoveChooser.ChooseMove(moves, BoardManager.Board));
         }
 
         public override void Draw(GameTime gameTime)

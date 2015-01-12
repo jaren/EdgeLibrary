@@ -4,6 +4,7 @@ To Do:
 		-Add 'Players' into the game
 			-Fix all 'TODO - Possibly move because of Players'
 			-Fix all 'TODO - Fix because of players'
+			-Progress: 50%
 		-Add WebService
 			-Add "Waiting for other user" screen after you move
 			-The Host is always the bottom team to make things easier
