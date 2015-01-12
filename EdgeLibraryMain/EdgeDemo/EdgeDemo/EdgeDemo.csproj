@@ -135,6 +135,10 @@
     <Compile Include="CheckersGame\Menu\Menus\MultiplayerMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\OptionsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\SingleplayerMenu.cs" />
+    <Compile Include="CheckersGame\Players\ComputerPlayer.cs" />
+    <Compile Include="CheckersGame\Players\HumanPlayer.cs" />
+    <Compile Include="CheckersGame\Players\Player.cs" />
+    <Compile Include="CheckersGame\Players\WebPlayer.cs" />
     <Compile Include="CheckersGame\Square\Board.cs" />
     <Compile Include="CheckersGame\Square\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />
