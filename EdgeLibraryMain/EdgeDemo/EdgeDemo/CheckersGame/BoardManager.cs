@@ -36,7 +36,7 @@ namespace EdgeDemo.CheckersGame
         public TextSprite DebugSprite;
 
         //Is it the top team's turn?
-        public bool TopTeamTurn;
+        public static bool TopTeamTurn;
 
         //Team has selected the starting square?
         public bool SelectedFirstSquare;

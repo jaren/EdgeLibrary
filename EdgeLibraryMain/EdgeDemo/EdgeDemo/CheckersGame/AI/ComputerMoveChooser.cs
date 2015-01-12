@@ -64,6 +64,19 @@ namespace EdgeDemo.CheckersGame
                 Board = board;
                 move.RunMove(Board);
 
+                //Generates the possible moves for the next team
+                Dictionary<Piece, List<Move>> possibleNextMoves = MovementManager.GenerateTeamMoves(!BoardManager.TopTeamTurn, Board);
+                foreach(Piece possibleNextPiece in possibleNextMoves.Keys)
+                {
+                    //Loops through all the moves and chooses the one with the most pieces captured (lost)
+                    foreach(Move possibleNextMove in possibleNextMoves[possibleNextPiece])
+                    {
+                        if (possibleNextMove.JumpedSquares.Count > piecesLostNext)
+                        {
+                            piecesLostNext = possibleNextMove.JumpedSquares.Count;
+                        }
+                    }
+                }
 
                 //Adds the move with extra information to sortedMoves
                 sortedMoves.Add(new SortedMove(move, piecesTaken, piecesLostNext));
