@@ -20,7 +20,7 @@ namespace EdgeDemo.CheckersGame
 
         //The player gets send the previous move and possible moves
         public virtual void ReceivePreviousMove(Move previousMove, Dictionary<Piece, List<Move>> possibleMoves) { CanMove = true; }
-        protected virtual void SendMove(Move move)
+        protected void SendMove(Move move)
         {
             if (OnRunMove != null)
             {

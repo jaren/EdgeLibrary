@@ -26,12 +26,6 @@ namespace EdgeDemo.CheckersGame
         public static Color MenuButtonColor = Color.DarkTurquoise;
         public static Color MenuTextColor = Color.White;
 
-        public static string SelectSquare1Message = "Please select a square to move from";
-        public static string SelectSquare1MessageFailed = "Please select a valid square to move from";
-        public static string SelectSquare2Message = "Please select a square to move to";
-        public static string SelectSquare2MessageFailed = "Please select a valid square to move to";
-        public static string PassMessage = "You have been forced to pass because you have no possible moves";
-
         public static string Player1Name = "Top Team";
         public static string Player2Name = "Bottom Team";
 

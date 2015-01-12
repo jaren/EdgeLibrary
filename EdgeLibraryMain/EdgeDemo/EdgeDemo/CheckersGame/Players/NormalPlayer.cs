@@ -142,7 +142,7 @@ namespace EdgeDemo.CheckersGame.Players
 
                 //Updates info
                 SelectedFirstSquare = true;
-                StatusSprite.Text = TeamText + Config.SelectSquare2Message;
+                BoardManager.MessageSprite.Display("Select a second square");
 
                 //Colors the possible end squares
                 foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
@@ -153,7 +153,7 @@ namespace EdgeDemo.CheckersGame.Players
             //If the square isn't valid, change the message
             else
             {
-                StatusSprite.Text = TeamText + Config.SelectSquare1MessageFailed;
+                BoardManager.MessageSprite.Display("Invalid square");
             }
         }
 
@@ -165,39 +165,28 @@ namespace EdgeDemo.CheckersGame.Players
             {
                 if (move.SquarePath[move.SquarePath.Count - 1] == MousedOverSquare)
                 {
-                    //Set the current move and subscribe to it
-
+                    //Set the current move
                     CurrentMove = move;
-
-                    CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
                     ClearPossibleSquarePaths(CurrentMove.StartSquare);
                     ClearSquareNumberPaths(CurrentMove.FinishSquare);
 
                     //Run move
-                    ExecuteMove();
-
-                    //Checks for the game end
-                    if (CheckEndGame())
-                    {
-                        EndGame();
-                    }
-
-                    //Updates info
-                    TopTeamTurn = !TopTeamTurn;
-                    TeamText = TopTeamTurn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
+                    SendMove(CurrentMove);
 
                     //Resets move
                     ResetMove();
 
-
+                    /* TODO - Possibly move because of Players
                     if (Config.ThisGameType == Config.GameType.Online)
                     {
                         #region WebServiceConnection
                         //try
                         //{
+
                         CheckersServiceClient WebService = new CheckersServiceClient();
-                        ////Send Move to Web Service
+
+                        //Send Move to Web Service
 
                         WebService.AddMove(Move.ConvertAndSend(CurrentMove), Config.ThisGameID);
                         Move RemoteMove = null;
@@ -259,6 +248,7 @@ namespace EdgeDemo.CheckersGame.Players
                         #endregion WebServiceConnection
                     }
 
+                     */
 
                     break;
                 }
@@ -335,21 +325,20 @@ namespace EdgeDemo.CheckersGame.Players
         //Clears the possible square paths for a certain square
         private void ClearSquareNumberPaths(Square endSquare)
         {
-            if (Config.ThisGameType != Config.GameType.Online || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
+            //TODO - Fix because of players
+            //if (Config.ThisGameType != Config.GameType.Online || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
             {
-                foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
+                if (move.FinishSquare == endSquare)
                 {
-                    if (move.FinishSquare == endSquare)
+                    foreach (Square square in move.SquarePath)
                     {
-                        foreach (Square square in move.SquarePath)
-                        {
-                            square.SquareNumber.Text = "";
-                        }
+                        square.SquareNumber.Text = "";
+                    }
 
-                        foreach (Square square in move.JumpedSquares)
-                        {
-                            square.OccupyingPiece.ShowX = false;
-                        }
+                    foreach (Square square in move.JumpedSquares)
+                    {
+                        square.OccupyingPiece.ShowX = false;
                     }
                 }
             }
