@@ -124,8 +124,10 @@
     <Compile Include="CheckersGame\AI\ComputerMoveChooser.cs" />
     <Compile Include="CheckersGame\Config.cs" />
     <Compile Include="CheckersGame\ColorTextSprite.cs" />
-    <Compile Include="CheckersGame\Menu\Button.cs" />
-    <Compile Include="CheckersGame\Menu\ButtonToggle.cs" />
+    <Compile Include="CheckersGame\Menu\Buttons\Button.cs" />
+    <Compile Include="CheckersGame\Menu\Buttons\ButtonMultiToggle.cs" />
+    <Compile Include="CheckersGame\Menu\Buttons\ButtonToggle.cs" />
+    <Compile Include="CheckersGame\Menu\Buttons\Style.cs" />
     <Compile Include="CheckersGame\Menu\Menus\GameMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\HostGameMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\HotseatMenu.cs" />

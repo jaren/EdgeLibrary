@@ -27,23 +27,12 @@ namespace EdgeDemo.CheckersGame
 
         protected bool wasContained;
 
-        public Texture2D MouseOverTexture;
-        public Color MouseOverColor;
-        public Texture2D NormalTexture;
-        public Color NormalColor;
-        public Texture2D ClickTexture;
-        public Color ClickColor;
+        public Style Style;
 
         public Button(string texture, Vector2 position)
             : base(texture, position)
         {
-            MouseOverTexture = Texture;
-            NormalTexture = Texture;
-            ClickTexture = Texture;
-
-            MouseOverColor = Color;
-            NormalColor = Color;
-            ClickColor = Color;
+            Style = new Style(Texture, Color, Texture, Color, Texture, Color);
 
             ButtonState = ButtonClickState.Normal;
         }
@@ -55,32 +44,18 @@ namespace EdgeDemo.CheckersGame
             switch (ButtonState)
             {
                 case ButtonClickState.Normal:
-                    Texture = NormalTexture;
-                    Color = NormalColor;
+                    Texture = Style.NormalTexture;
+                    Color = Style.NormalColor;
                     break;
                 case ButtonClickState.Clicked:
-                    Texture = ClickTexture;
-                    Color = ClickColor;
+                    Texture = Style.ClickTexture;
+                    Color = Style.ClickColor;
                     break;
                 case ButtonClickState.MousedOver:
-                    Texture = MouseOverTexture;
-                    Color = MouseOverColor;
+                    Texture = Style.MouseOverTexture;
+                    Color = Style.MouseOverColor;
                     break;
             }
-        }
-
-        public virtual void SetTextures(Texture2D texture)
-        {
-            NormalTexture = texture;
-            MouseOverTexture = texture;
-            ClickTexture = texture;
-        }
-
-        public virtual void SetColors(Color color)
-        {
-            NormalColor = color;
-            MouseOverColor = color;
-            ClickColor = color;
         }
 
         public override void Draw(GameTime gameTime)
