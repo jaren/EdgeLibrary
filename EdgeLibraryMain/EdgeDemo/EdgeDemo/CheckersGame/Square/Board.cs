@@ -91,7 +91,7 @@ namespace EdgeDemo.CheckersGame
                 Squares[finishX, finishY].SetPiece(Squares[startX, startY].OccupyingPiece);
                 Squares[startX, startY].OccupyingPiece = null;
 
-                if ((Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == Config.BoardSize - 1) || (!Squares[finishX, finishY].OccupyingPiece.TopTeam && finishY == 0))
+                if ((Squares[finishX, finishY].OccupyingPiece.Player1 && finishY == Config.BoardSize - 1) || (!Squares[finishX, finishY].OccupyingPiece.Player1 && finishY == 0))
                 {
                     Squares[finishX, finishY].OccupyingPiece.King = true;
                 }
@@ -154,7 +154,7 @@ namespace EdgeDemo.CheckersGame
                     square.SetPiece(null);
                     CapturedPieces.Add(piece);
                     piece.AddAction(new AColorChange(new ColorChangeIndex(Config.CheckerFadeOutSpeed, piece.Color, Color.Transparent)));
-                    if (piece.TopTeam)
+                    if (piece.Player1)
                     {
                         BottomTeamCaptures++;
                     }

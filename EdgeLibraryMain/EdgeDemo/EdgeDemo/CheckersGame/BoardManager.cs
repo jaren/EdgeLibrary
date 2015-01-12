@@ -29,30 +29,15 @@ namespace EdgeDemo.CheckersGame
         //Displays how many captures each team has
         public static TextSprite CaptureSprite;
 
-        //Displays other stuff
-        public TextSprite ExtraSprite;
-
         //Displays debug info
         public TextSprite DebugSprite;
 
-        //Is it the top team's turn?
-        public static bool TopTeamTurn;
+        //Is it player 1's turn
+        public static bool Player1Turn;
 
-        //Team has selected the starting square?
-        public bool SelectedFirstSquare;
-
-        //The square to start moving from
-        private Square startSquare;
-
-        //The current move
-        private Move CurrentMove;
-
-        //The square that is currently moused over
-        public Square MousedOverSquare;
-        public Square PreviousMousedOverSquare;
-
-        //The possible moves on this turn
-        private Dictionary<Piece, List<Move>> PossibleMoves;
+        //The players in the game
+        Player Player1;
+        Player Player2;
 
         //Text for the current team
         private string TeamText;
@@ -73,7 +58,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(DebugSprite);
 
             //Initializing the teamtext
-            TeamText = Config.TopTeamName + ": ";
+            TeamText = Config.Player1Name + ": ";
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
@@ -85,29 +70,12 @@ namespace EdgeDemo.CheckersGame
             CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             Components.Add(CaptureSprite);
 
-            //Initializing extra sprite
-            ExtraSprite = new TextSprite(Config.StatusFont, "Current Move ID at Start: \n Current Move ID at Finish:", new Vector2(0, 150)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
-            Components.Add(ExtraSprite);
+            //Subscribes to the player events
+            Player1.OnRunMove += Player1_OnRunMove;
+            Player2.OnRunMove += Player2_OnRunMove;
 
-            //Initializes possible moves - necessary for cancellation of the first move
-            PossibleMoves = new Dictionary<Piece, List<Move>> { { new Piece("", Vector2.Zero, Color.White, 0, false), new List<Move>() } };
-            CurrentMove = new Move(new List<Square>() { new Square("", Vector2.Zero, 0, Color.White) { OccupyingPiece = new Piece("", Vector2.Zero, Color.White, 0, false) } });
-
-            //Initializing move
-            ResetMove();
-
-            //Subscribes to input
-            Input.OnMouseMove += Input_OnMouseMove;
-            Input.OnKeyPress += Input_OnKeyPress;
-            Input.OnKeyRelease += Input_OnKeyRelease;
-            Input.OnClick += Input_OnClick;
-            Input.OnReleaseClick += Input_OnReleaseClick;
-        }
-
-        //Starts the current move and sends it to the webservice
-        public void ExecuteMove()
-        {
-            CurrentMove.RunMove();
+            //Starts the game off with player 1 moving first
+            Player1.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
         }
 
         //Necessary override to not draw the BoardManager
@@ -119,6 +87,9 @@ namespace EdgeDemo.CheckersGame
                 {
                     component.Draw(gameTime);
                 }
+
+                Player1.Draw(gameTime);
+                Player2.Draw(gameTime);
             }
         }
 
@@ -132,354 +103,77 @@ namespace EdgeDemo.CheckersGame
                 component.Update(gameTime);
             }
 
+            Player1.Update(gameTime);
+            Player2.Update(gameTime);
+
             if (Board.mousedOverSquare != null)
             {
                 DebugSprite.Text += "Last Moused Over Square: " + Board.mousedOverSquare.X + ", " + Board.mousedOverSquare.Y;
             }
 
+            //TODO - Possibly move because of Players
             if (Config.ThisGameType == Config.GameType.Online && ServiceClient.GetAllGames().ElementAt(Config.ThisGameID).State == GameManager.GameState.WaitingForPlayers)
             {
                 System.Windows.Forms.MessageBox.Show("ToDo: Waiting for Players Screen\n(To have this dialog stop appearing, set the current game state to something besides WaitingForPlayers)\n\nThis Game ID: " + Config.ThisGameID);
             }
         }
 
-        private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
+        void Player1_OnRunMove(Move move)
         {
-            //Gets the square clicked
-            PreviousMousedOverSquare = MousedOverSquare;
-            MousedOverSquare = Board.GetSquareMousedOver();
+            RunMove(move);
 
-            if (MousedOverSquare != PreviousMousedOverSquare)
+            Player1Turn = false;
+            Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
+        }
+
+        void Player2_OnRunMove(Move move)
+        {
+            RunMove(move);
+
+            Player1Turn = true;
+            Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
+        }
+
+        public void RunMove(Move move)
+        {
+            foreach (Square square in move.JumpedSquares)
             {
-                if (SelectedFirstSquare)
-                {
-                    //ClearPossibleSquarePaths(PreviousMousedOverSquare);
-                    ClearSquareNumberPaths(PreviousMousedOverSquare);
-                    DrawSquareNumberPath(MousedOverSquare);
-                }
-                else
-                {
-                    ClearPossibleSquarePaths(PreviousMousedOverSquare);
-                    DrawPossibleSquarePaths(MousedOverSquare);
-                }
+                CapturePiece(square.OccupyingPiece);
             }
         }
 
-        private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
-        {
-            if (MousedOverSquare != null)
-            {
-                //If the first square hasn't selected, try to select the first square
-                if (!SelectedFirstSquare)
-                {
-                    SetFirstSquare();
-                }
-                //If the first square was selected already, complete the move
-                else
-                {
-                    SetLastSquare();
-                }
-            }
-        }
-        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { }
-
-        private void Input_OnKeyRelease(Keys key)
-        {
-            //Cancels the move is the cancel key was pressed
-            if (key == Config.MoveCancelKey)
-            {
-                //If the first square was selected, reset the move
-                if (SelectedFirstSquare)
-                {
-                    foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                    {
-                        possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
-                    }
-
-                    ClearPossibleSquarePaths(startSquare);
-                    if (startSquare != null)
-                    {
-                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                        {
-                            foreach (Square square in possibleMove.SquarePath)
-                            {
-                                square.Color = square.DefaultColor;
-                                square.SquareNumber.Text = "";
-                            }
-                        }
-                    }
-
-                    ResetMove();
-                }
-            }
-        }
-        private void Input_OnKeyPress(Keys key) { }
-
-        //Called after each 'segment' of the move completes
-        public void CurrentMove_OnCompleteSquare(List<Square> squarePath, List<Square> jumpedSquares, int index)
+        public void CapturePiece(Piece piece)
         {
             //Captures the piece and updates the capture sprite
-            Board.CapturePiece(jumpedSquares[index].OccupyingPiece);
-            CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
-        }
-
-        //Sets the starting square to the moused over square
-        private void SetFirstSquare()
-        {
-            //Checks if the square is valid
-            if (MousedOverSquare.OccupyingPiece != null && PossibleMoves.Keys.Contains(MousedOverSquare.OccupyingPiece))
-            {
-                //Sets the start square
-                startSquare = MousedOverSquare;
-
-                //Resets the color of the possible start squares
-                foreach (Piece possiblePiece in PossibleMoves.Keys)
-                {
-                    Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
-                }
-
-                //Colors the start square
-                MousedOverSquare.Color = Config.Square1SelectColor;
-
-                //Updates info
-                SelectedFirstSquare = true;
-                StatusSprite.Text = TeamText + Config.SelectSquare2Message;
-
-                //Colors the possible end squares
-                foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                {
-                    possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
-                }
-            }
-            //If the square isn't valid, change the message
-            else
-            {
-                StatusSprite.Text = TeamText + Config.SelectSquare1MessageFailed;
-            }
-        }
-
-        //Sets the last square to the moused over square
-        private void SetLastSquare()
-        {
-            //Find the correct finish square
-            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
-            {
-                if (move.SquarePath[move.SquarePath.Count - 1] == MousedOverSquare)
-                {
-                    //Set the current move and subscribe to it
-
-                    CurrentMove = move;
-
-                    CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-
-                    ClearPossibleSquarePaths(CurrentMove.StartSquare);
-                    ClearSquareNumberPaths(CurrentMove.FinishSquare);
-
-                    //Run move
-                    ExecuteMove();
-
-                    //Checks for the game end
-                    if (CheckEndGame())
-                    {
-                        EndGame();
-                    }
-
-                    //Updates info
-                    TopTeamTurn = !TopTeamTurn;
-                    TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-
-                    //Resets move
-                    ResetMove();
-
-
-                    if (Config.ThisGameType == Config.GameType.Online)
-                    {
-                        #region WebServiceConnection
-                        //try
-                        //{
-                            CheckersServiceClient WebService = new CheckersServiceClient();
-                            ////Send Move to Web Service
-
-                            WebService.AddMove(Move.ConvertAndSend(CurrentMove), Config.ThisGameID);
-                            Move RemoteMove = null;
-                            int loop = 0;
-
-                            while (RemoteMove == null)
-                            {
-                                if (loop == 0)
-                                {
-                                    //TODO: Add loading text so user thinks something is happening
-                                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
-
-                                    if (recievedMove != null)
-                                    {
-                                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
-                                        break;
-                                    }
-                                }
-                                else if (loop == 120)
-                                {
-                                    loop = -1;
-                                }
-
-                                loop++;
-                            }
-
-                            //Duplicate This Function
-
-                            //Set the current move and subscribe to it
-
-                            CurrentMove = RemoteMove;
-
-                            CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-
-                            ClearPossibleSquarePaths(CurrentMove.StartSquare);
-                            ClearSquareNumberPaths(CurrentMove.FinishSquare);
-
-                            //Run move
-                            ExecuteMove();
-
-                            //Checks for the game end
-                            if (CheckEndGame())
-                            {
-                                EndGame();
-                            }
-
-                            //Updates info
-                            TopTeamTurn = !TopTeamTurn;
-                            TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-
-                            //Resets move
-                            ResetMove();
-                        //}
-                        //catch(Exception e)
-                        //{
-                        //    System.Windows.Forms.MessageBox.Show("Multiplayer Connection Error!\nGame will now close.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                        //    System.Windows.Forms.MessageBox.Show("Detailed Error Below:\n" + e, "Error");
-                        //}
-                        #endregion WebServiceConnection
-                    }
-
-
-                    break;
-                }
-            }
-        }
-
-        //Draws the square lines for a certain move
-        private void DrawSquareLines(Move move)
-        {
-            Square square = move.StartSquare;
-
-            for (int i = 0; i < move.SquarePath.Count - 1; i++)
-            {
-                square.SquareLines.Add(
-                    new Sprite(Config.SquareTexture, Vector2.Lerp(move.SquarePath[i].Position, move.SquarePath[i + 1].Position, 0.5f))
-                    {
-                        Scale = new Vector2(Config.SquareLineThickness,
-                        (float)Math.Sqrt((move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X) * (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)
-                        + (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y) * (move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y))),
-
-                        Rotation = -1 * (float)Math.Atan2((move.SquarePath[i].Position.Y - move.SquarePath[i + 1].Position.Y), (move.SquarePath[i].Position.X - move.SquarePath[i + 1].Position.X)),
-
-                        Color = Config.SquareLineColor
-                    });
-            }
-        }
-
-        //Draws all the possible square paths for the moused over square
-        private void DrawPossibleSquarePaths(Square square)
-        {
-            if (square != null)
-            {
-                foreach (Piece piece in PossibleMoves.Keys)
-                {
-                    if (square.OccupyingPiece == piece)
-                    {
-                        foreach (Move move in PossibleMoves[piece])
-                        {
-                            DrawSquareLines(move);
-                        }
-                    }
-                }
-            }
-        }
-        //Clears the square paths for a certain square
-        private void ClearPossibleSquarePaths(Square square)
-        {
-            if (square != null)
-            {
-                square.SquareLines.Clear();
-            }
-        }
-
-        //Draws the square numbers and path for the current moused over square
-        private void DrawSquareNumberPath(Square endSquare)
-        {
-            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
-            {
-                if (move.FinishSquare == endSquare)
-                {
-                    for (int i = 0; i < move.SquarePath.Count; i++)
-                    {
-                        move.SquarePath[i].SquareNumber.Text = i.ToString();
-                    }
-
-                    foreach (Square square in move.JumpedSquares)
-                    {
-                        square.OccupyingPiece.ShowX = true;
-                    }
-                }
-            }
-        }
-        //Clears the possible square paths for a certain square
-        private void ClearSquareNumberPaths(Square endSquare)
-        {
-            if (Config.ThisGameType != Config.GameType.Online || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
-            {
-                foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
-                {
-                    if (move.FinishSquare == endSquare)
-                    {
-                        foreach (Square square in move.SquarePath)
-                        {
-                            square.SquareNumber.Text = "";
-                        }
-
-                        foreach (Square square in move.JumpedSquares)
-                        {
-                            square.OccupyingPiece.ShowX = false;
-                        }
-                    }
-                }
-            }
+            Board.CapturePiece(piece);
+            CaptureSprite.Text = "Player 1 Captures: " + Board.TopTeamCaptures + "\nPlayer 2 Captures: " + Board.BottomTeamCaptures;
         }
 
         //Checks if the game should end
         public bool CheckEndGame()
         {
-            bool topTeamHasPieces = false;
-            bool bottomTeamHasPieces = false;
+            bool player1HasPieces = false;
+            bool player2HasPieces = false;
             foreach (Square square in Board.Squares)
             {
                 if (square.OccupyingPiece != null)
                 {
-                    if (square.OccupyingPiece.TopTeam)
+                    if (square.OccupyingPiece.Player1)
                     {
-                        topTeamHasPieces = true;
+                        player1HasPieces = true;
                         continue;
                     }
-                    bottomTeamHasPieces = true;
+                    player2HasPieces = true;
                 }
             }
 
-            return !(topTeamHasPieces && bottomTeamHasPieces);
+            return !(player1HasPieces && player2HasPieces);
         }
 
         //Ends the game
         public void EndGame()
         {
-            System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (TopTeamTurn ? Config.TopTeamName : Config.BottomTeamName) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+            System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (Player1Turn ? Config.Player1Name : Config.Player2Name) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
 
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
@@ -489,54 +183,6 @@ namespace EdgeDemo.CheckersGame
             {
                 System.Windows.Forms.MessageBox.Show("That is not true", "A true statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
             }
-        }
-
-        //Resets the move
-        public void ResetMove()
-        {
-            //If the possible moves have been generated, reset the info
-            if (PossibleMoves != null && CurrentMove != null)
-            {
-                //If you can't move, switches teams
-                if (PossibleMoves.Count == 0)
-                {
-                    //Reversees turns, updates team text, updates sprite, and re-calls ResetMove
-                    TopTeamTurn = !TopTeamTurn;
-                    TeamText = TopTeamTurn ? Config.TopTeamName + ": " : Config.BottomTeamName + ": ";
-                    StatusSprite.Text = TeamText + Config.PassMessage;
-
-                    //Resets the move again, which will generate new squares for the other team
-                    PossibleMoves = null;
-                    ResetMove();
-                }
-
-                if (PossibleMoves.ContainsKey(CurrentMove.Piece))
-                {
-                    //Resets all of the square colors
-                    //It uses the finish square's occupying piece because the piece has already been moved
-                    foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
-                    {
-                        foreach (Square square in possibleMove.SquarePath)
-                        {
-                            square.Color = square.DefaultColor;
-                        }
-                    }
-                }
-            }
-
-            //Generates new moves
-            PossibleMoves = MovementManager.GenerateTeamMoves(TopTeamTurn);
-
-            //Sets the color of the possible starting squares
-            foreach (Piece possiblePiece in PossibleMoves.Keys)
-            {
-                Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
-            }
-
-            //Resets the info
-            SelectedFirstSquare = false;
-            StatusSprite.Text = TeamText + Config.SelectSquare1Message;
-            TurnsCount++;
         }
     }
 }

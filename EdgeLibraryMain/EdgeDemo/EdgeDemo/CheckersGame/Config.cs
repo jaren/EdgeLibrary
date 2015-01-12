@@ -31,8 +31,8 @@ namespace EdgeDemo.CheckersGame
         public static string SelectSquare2MessageFailed = "Please select a valid square to move to";
         public static string PassMessage = "You have been forced to pass because you have no possible moves";
 
-        public static string TopTeamName = "Top Team";
-        public static string BottomTeamName = "Bottom Team";
+        public static string Player1Name = "Top Team";
+        public static string Player2Name = "Bottom Team";
 
         public static float CameraZoomSpeed = 1000f;
         public static float CameraMaxZoom = 10f;

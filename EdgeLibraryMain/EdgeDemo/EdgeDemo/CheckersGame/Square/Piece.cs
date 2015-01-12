@@ -12,7 +12,7 @@ namespace EdgeDemo.CheckersGame
     {
         public bool King;
         public bool ShowX;
-        public bool TopTeam;
+        public bool Player1;
         public bool Fake;
 
         public float Size
@@ -31,7 +31,7 @@ namespace EdgeDemo.CheckersGame
         {
             Color = color;
             Size = size;
-            TopTeam = topTeam;
+            Player1 = topTeam;
             King = false;
             ShowX = false;
             Fake = false;

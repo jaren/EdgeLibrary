@@ -83,7 +83,7 @@ namespace EdgeDemo.CheckersGame
 
             newMove.StartSquare = new KeyValuePair<int, int>(move.StartSquare.X, move.StartSquare.Y);
 
-            newMove.TopTeam = move.Piece.TopTeam;
+            newMove.TopTeam = move.Piece.Player1;
 
             return newMove;
         }
@@ -169,7 +169,7 @@ namespace EdgeDemo.CheckersGame
             }
             //********************
 
-            if ((Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == Config.BoardSize - 1) || (!Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == 0))
+            if ((Piece.Player1 && SquarePath[SquarePath.Count - 1].Y == Config.BoardSize - 1) || (!Piece.Player1 && SquarePath[SquarePath.Count - 1].Y == 0))
             {
                 Piece.King = true;
             }
