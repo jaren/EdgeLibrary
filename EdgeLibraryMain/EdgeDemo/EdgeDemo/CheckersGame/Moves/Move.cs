@@ -81,7 +81,7 @@ namespace EdgeDemo.CheckersGame
 
             newMove.ID = move.ID;
 
-            newMove.StartSquare = new KeyValuePair<int, int>(move.StartSquare.X,move.StartSquare.Y);
+            newMove.StartSquare = new KeyValuePair<int, int>(move.StartSquare.X, move.StartSquare.Y);
 
             newMove.TopTeam = move.Piece.TopTeam;
 
@@ -92,8 +92,14 @@ namespace EdgeDemo.CheckersGame
         /// Converts a collection of integers from the web service into a move
         /// </summary>
         /// <param name="moveInfo">An object array of move data produced by the ConvertAndSend function</param>
-        public static Move ConvertAndRecieve(SimpleMove moveInfo)
+        public static Move ConvertAndRecieve(SimpleMove moveInfo, Board board = null)
         {
+            //Board needs to be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
             if (moveInfo != null)
             {
                 Dictionary<int, KeyValuePair<int, int>> path = moveInfo.SquarePath;
@@ -103,7 +109,7 @@ namespace EdgeDemo.CheckersGame
                 List<Square> squarePath = new List<Square>();
                 foreach (KeyValuePair<int, int> square in path.Values)
                 {
-                    squarePath.Add(Board.Squares[square.Key, square.Value]);
+                    squarePath.Add(board.Squares[square.Key, square.Value]);
                 }
 
                 List<Square> jumpedSquares = new List<Square>();
@@ -111,11 +117,11 @@ namespace EdgeDemo.CheckersGame
                 {
                     foreach (KeyValuePair<int, int> square in jumped.Values)
                     {
-                        jumpedSquares.Add(Board.Squares[square.Key, square.Value]);
+                        jumpedSquares.Add(board.Squares[square.Key, square.Value]);
                     }
                 }
 
-                Square startSquare = Board.Squares[start.Key, start.Value];
+                Square startSquare = board.Squares[start.Key, start.Value];
                 Piece piece = startSquare.OccupyingPiece;
 
                 Move decodedMove = new Move(squarePath, jumpedSquares);
@@ -130,8 +136,14 @@ namespace EdgeDemo.CheckersGame
         }
 
         ASequence MoveSequence;
-        public void RunMove()
+        public void RunMove(Board boardToRunOn = null)
         {
+            //boardToRunOn must be set here because BoardManager.Board is not a compile-time constant
+            if (boardToRunOn == null)
+            {
+                boardToRunOn = BoardManager.Board;
+            }
+
             List<Action> Moves = new List<Action>();
             foreach (Square square in SquarePath)
             {
@@ -149,9 +161,12 @@ namespace EdgeDemo.CheckersGame
             //Temporary workaround
             foreach (Square square in JumpedSquares)
             {
-                BoardManager.Board.CapturePiece(square.OccupyingPiece);
+                boardToRunOn.CapturePiece(square.OccupyingPiece);
             }
-            BoardManager.CaptureSprite.Text = "Top Team Captures: " + Board.TopTeamCaptures + "\nBottom Team Captures: " + Board.BottomTeamCaptures;
+            if (boardToRunOn == BoardManager.Board)
+            {
+                BoardManager.CaptureSprite.Text = "Top Team Captures: " + boardToRunOn.TopTeamCaptures + "\nBottom Team Captures: " + boardToRunOn.BottomTeamCaptures;
+            }
             //********************
 
             if ((Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == Config.BoardSize - 1) || (!Piece.TopTeam && SquarePath[SquarePath.Count - 1].Y == 0))

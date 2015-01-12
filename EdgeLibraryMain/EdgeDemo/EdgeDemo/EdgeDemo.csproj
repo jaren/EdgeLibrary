@@ -119,7 +119,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckersGame\AI\SortedMove.cs" />
     <Compile Include="CheckersGame\BoardManager.cs" />
+    <Compile Include="CheckersGame\AI\ComputerMoveChooser.cs" />
     <Compile Include="CheckersGame\Config.cs" />
     <Compile Include="CheckersGame\Menu\Button.cs" />
     <Compile Include="CheckersGame\Menu\ButtonToggle.cs" />

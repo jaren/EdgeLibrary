@@ -9,11 +9,11 @@ namespace EdgeDemo.CheckersGame
 {
     public class Board : Sprite
     {
-        public static Square[,] Squares;
-        public static List<Piece> CapturedPieces;
-        public static int TopTeamCaptures;
-        public static int BottomTeamCaptures;
-        public static int Size;
+        public Square[,] Squares;
+        public List<Piece> CapturedPieces;
+        public int TopTeamCaptures;
+        public int BottomTeamCaptures;
+        public int Size;
         public Border Border;
 
         public Square mousedOverSquare;
@@ -21,7 +21,7 @@ namespace EdgeDemo.CheckersGame
         public float CompleteSize;
         public float SquareSize;
 
-        public static Rectangle BoardArea;
+        public Rectangle BoardArea;
 
         public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
@@ -212,7 +212,7 @@ namespace EdgeDemo.CheckersGame
             return Squares[x, y];
         }
 
-        public static Square GetSquareBetween(Square origin, Square destination)
+        public Square GetSquareBetween(Square origin, Square destination)
         {
             if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
             {

@@ -35,6 +35,8 @@ namespace EdgeDemo.CheckersGame
         public float MoveWait;
         public float MoveWaitFluctuation;
 
+        private Board Board; //Used for choosing next moves without disturbing default board
+
         public ComputerMoveChooser(int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500)
         {
             Difficulty = difficulty;
@@ -43,12 +45,11 @@ namespace EdgeDemo.CheckersGame
             MoveWaitFluctuation = moveWaitFluctuation;
         }
 
-        public Move ChooseMove(List<Move> possibleMoves)
+        public Move ChooseMove(List<Move> possibleMoves, Board board)
         {
             /* Move sorting order
              * - Number of pieces taken
              * - Number of pieces possible to be lost in the next move
-             * - Random
              */
 
             List<SortedMove> sortedMoves = new List<SortedMove>();
@@ -56,15 +57,25 @@ namespace EdgeDemo.CheckersGame
             int piecesLostNext = 0;
             foreach(Move move in possibleMoves)
             {
-                //Add generating stuff here
+                //Gets the number of pieces taken
+                piecesTaken = move.JumpedSquares.Count;
+
+                //Runs the move on the fake board to find how many pieces can be taken next move
+                Board = board;
+                move.RunMove(Board);
+
+
+                //Adds the move with extra information to sortedMoves
                 sortedMoves.Add(new SortedMove(move, piecesTaken, piecesLostNext));
             }
+            //Sorts the moves
             sortedMoves.OrderByDescending(x => x.PiecesTaken).ThenBy(x => x.PiecesLostNext);
 
+            //Chooses a move based on Difficulty and DifficultyFluctuation
             //If indexToChoose is -1, then math is broken
             int indexToChoose = Difficulty <= 0 ? 0 : Difficulty == 1 ? sortedMoves.Count / 2 : Difficulty >= 2 ? sortedMoves.Count - 1 : -1;
             indexToChoose = RandomTools.RandomInt(indexToChoose - DifficultyFluctuation, indexToChoose + DifficultyFluctuation);
-            indexToChoose = indexToChoose < 0 ? 0 : indexToChoose > sortedMoves.Count - 1 ? sortedMoves.Count - 1;
+            indexToChoose = indexToChoose < 0 ? 0 : indexToChoose > sortedMoves.Count - 1 ? sortedMoves.Count - 1 : indexToChoose;
 
             return sortedMoves[indexToChoose].Move;
         }

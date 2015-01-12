@@ -28,8 +28,14 @@ namespace EdgeDemo.CheckersGame
          * etc.
          */
 
-        public static Dictionary<Piece, List<Move>> GenerateTeamMoves(bool topTeam)
+        public static Dictionary<Piece, List<Move>> GenerateTeamMoves(bool topTeam, Board board = null)
         {
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
             Dictionary<Piece, List<Move>> Moves = new Dictionary<Piece, List<Move>>();
 
             Dictionary<Piece, List<Move>> jumps = TeamCanMultiJumpTo(topTeam); //Single jumps
@@ -48,7 +54,7 @@ namespace EdgeDemo.CheckersGame
                     List<Move> moveList = new List<Move>();
                     foreach (Square square in move.Value)
                     {
-                        moveList.Add(new Move(new List<Square>() { Board.Squares[move.Key.X, move.Key.Y], square }));
+                        moveList.Add(new Move(new List<Square>() { board.Squares[move.Key.X, move.Key.Y], square }));
                     }
                     Moves.Add(move.Key, moveList);
                 }
@@ -57,11 +63,17 @@ namespace EdgeDemo.CheckersGame
             return Moves;
         }
 
-        public static bool TeamCanJump(bool topTeam)
+        //Returns whether a team can jump or not
+        //Almost unnecessary as TeamCanJumpTo returns more information
+        public static bool TeamCanJump(bool topTeam, Board board = null)
         {
-            //Returns whether a team can jump or not
-            //Almost unnecessary as TeamCanJumpTo returns more information
-            foreach (Square square in Board.Squares)
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
+            foreach (Square square in board.Squares)
             {
                 Piece piece = square.OccupyingPiece;
                 if (piece != null && piece.TopTeam == topTeam)
@@ -71,25 +83,25 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (piece.X > 1 && piece.Y > 1)
                         {
-                            Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
-                            Square topLeftTopLeft = Board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeft = board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeftTopLeft = board.Squares[square.X - 1, square.Y - 1];
 
                             if (topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                if (Board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                                if (board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
                                 {
                                     return true;
                                 }
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y > 1)
+                        if (piece.X < board.Size - 2 && piece.Y > 1)
                         {
-                            Square topRight = Board.Squares[square.X + 1, square.Y - 1];
-                            Square topRightTopRight = Board.Squares[square.X + 2, square.Y - 2];
+                            Square topRight = board.Squares[square.X + 1, square.Y - 1];
+                            Square topRightTopRight = board.Squares[square.X + 2, square.Y - 2];
 
                             if (topRight.OccupyingPiece != null && topRight.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                if (Board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                                if (board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
                                 {
                                     return true;
                                 }
@@ -100,25 +112,25 @@ namespace EdgeDemo.CheckersGame
                     #region TopTeam
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 1 && piece.Y < Board.Size - 2)
+                        if (piece.X > 1 && piece.Y < board.Size - 2)
                         {
-                            Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
-                            Square bottomLeftBottomLeft = Board.Squares[square.X - 2, square.Y + 2];
+                            Square bottomLeft = board.Squares[square.X - 1, square.Y + 1];
+                            Square bottomLeftBottomLeft = board.Squares[square.X - 2, square.Y + 2];
                             if (bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                if (Board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                                if (board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
                                 {
                                     return true;
                                 }
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y < Board.Size - 2)
+                        if (piece.X < board.Size - 2 && piece.Y < board.Size - 2)
                         {
-                            Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
-                            Square bottomRightBottomRight = Board.Squares[square.X + 2, square.Y + 2];
+                            Square bottomRight = board.Squares[square.X + 1, square.Y + 1];
+                            Square bottomRightBottomRight = board.Squares[square.X + 2, square.Y + 2];
                             if (bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam)
                             {
-                                if (Board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                                if (board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
                                 {
                                     return true;
                                 }
@@ -131,12 +143,18 @@ namespace EdgeDemo.CheckersGame
             return false;
         }
 
-        public static Dictionary<Piece, List<Square>> TeamCanJumpTo(bool topTeam)
+        public static Dictionary<Piece, List<Square>> TeamCanJumpTo(bool topTeam, Board board = null)
         {
-            Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
-            //Creates a dictionary of pieces that can jump and where they can jump to - only single jumps
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
 
-            foreach (Square square in Board.Squares)
+            //Creates a dictionary of pieces that can jump and where they can jump to - only single jumps
+            Dictionary<Piece, List<Square>> toReturn = new Dictionary<Piece, List<Square>>();
+
+            foreach (Square square in board.Squares)
             {
                 Piece piece = square.OccupyingPiece;
                 List<Square> validJumps = new List<Square>();
@@ -148,20 +166,20 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (piece.X > 1 && piece.Y > 1)
                         {
-                            Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
-                            Square topLeftTopLeft = Board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeft = board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeftTopLeft = board.Squares[square.X - 1, square.Y - 1];
 
-                            if ((topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                            if ((topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
                             {
                                 validJumps.Add(topLeftTopLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y > 1)
+                        if (piece.X < board.Size - 2 && piece.Y > 1)
                         {
-                            Square topRight = Board.Squares[square.X + 1, square.Y - 1];
-                            Square topRightTopRight = Board.Squares[square.X + 2, square.Y - 2];
+                            Square topRight = board.Squares[square.X + 1, square.Y - 1];
+                            Square topRightTopRight = board.Squares[square.X + 2, square.Y - 2];
 
-                            if ((topRight.OccupyingPiece != null && topRight.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                            if ((topRight.OccupyingPiece != null && topRight.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
                             {
                                 validJumps.Add(topRightTopRight);
                             }
@@ -171,20 +189,20 @@ namespace EdgeDemo.CheckersGame
                     #region TopTeam
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 1 && piece.Y < Board.Size - 2)
+                        if (piece.X > 1 && piece.Y < board.Size - 2)
                         {
-                            Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
-                            Square bottomLeftBottomLeft = Board.Squares[square.X - 2, square.Y + 2];
-                            if ((bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                            Square bottomLeft = board.Squares[square.X - 1, square.Y + 1];
+                            Square bottomLeftBottomLeft = board.Squares[square.X - 2, square.Y + 2];
+                            if ((bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
                             {
                                 validJumps.Add(bottomLeftBottomLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y < Board.Size - 2)
+                        if (piece.X < board.Size - 2 && piece.Y < board.Size - 2)
                         {
-                            Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
-                            Square bottomRightBottomRight = Board.Squares[square.X + 2, square.Y + 2];
-                            if ((bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                            Square bottomRight = board.Squares[square.X + 1, square.Y + 1];
+                            Square bottomRightBottomRight = board.Squares[square.X + 2, square.Y + 2];
+                            if ((bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
                             {
                                 validJumps.Add(bottomRightBottomRight);
                             }
@@ -213,20 +231,25 @@ namespace EdgeDemo.CheckersGame
             return PieceCanJumpTo(ghostPiece);
         }
 
-        public static List<Square> PieceCanJumpTo(Piece piece)
+        //Returns a list of squares a specific piece can jump to
+        public static List<Square> PieceCanJumpTo(Piece piece, Board board = null)
         {
-            //Returns a list of squares a specific piece can jump to
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
 
             List<Square> toReturn = new List<Square>();
             Square square;
 
-            foreach (Square s in Board.Squares)
+            foreach (Square s in board.Squares)
             {
                 if (s.OccupyingPiece == piece || piece.Fake)
                 {
                     if (piece.Fake)
                     {
-                        square = Board.Squares[piece.X, piece.Y];
+                        square = board.Squares[piece.X, piece.Y];
                     }
                     else
                     {
@@ -238,20 +261,20 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (piece.X > 1 && piece.Y > 1)
                         {
-                            Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
-                            Square topLeftTopLeft = Board.Squares[square.X - 2, square.Y - 2];
+                            Square topLeft = board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeftTopLeft = board.Squares[square.X - 2, square.Y - 2];
 
-                            if ((topLeft.OccupyingPiece != null && (topLeft.OccupyingPiece.TopTeam != piece.TopTeam)) && Board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
+                            if ((topLeft.OccupyingPiece != null && (topLeft.OccupyingPiece.TopTeam != piece.TopTeam)) && board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(topLeftTopLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y > 1)
+                        if (piece.X < board.Size - 2 && piece.Y > 1)
                         {
-                            Square topRight = Board.Squares[square.X + 1, square.Y - 1];
-                            Square topRightTopRight = Board.Squares[square.X + 2, square.Y - 2];
+                            Square topRight = board.Squares[square.X + 1, square.Y - 1];
+                            Square topRightTopRight = board.Squares[square.X + 2, square.Y - 2];
 
-                            if ((topRight.OccupyingPiece != null && (topRight.OccupyingPiece.TopTeam != piece.TopTeam)) && Board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
+                            if ((topRight.OccupyingPiece != null && (topRight.OccupyingPiece.TopTeam != piece.TopTeam)) && board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(topRightTopRight);
                             }
@@ -261,20 +284,20 @@ namespace EdgeDemo.CheckersGame
                     #region TopTeam
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 1 && piece.Y < Board.Size - 2)
+                        if (piece.X > 1 && piece.Y < board.Size - 2)
                         {
-                            Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
-                            Square bottomLeftBottomLeft = Board.Squares[square.X - 2, square.Y + 2];
-                            if ((bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
+                            Square bottomLeft = board.Squares[square.X - 1, square.Y + 1];
+                            Square bottomLeftBottomLeft = board.Squares[square.X - 2, square.Y + 2];
+                            if ((bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(bottomLeftBottomLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 2 && piece.Y < Board.Size - 2)
+                        if (piece.X < board.Size - 2 && piece.Y < board.Size - 2)
                         {
-                            Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
-                            Square bottomRightBottomRight = Board.Squares[square.X + 2, square.Y + 2];
-                            if ((bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam) && Board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
+                            Square bottomRight = board.Squares[square.X + 1, square.Y + 1];
+                            Square bottomRightBottomRight = board.Squares[square.X + 2, square.Y + 2];
+                            if ((bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.TopTeam != piece.TopTeam) && board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
                             {
                                 toReturn.Add(bottomRightBottomRight);
                             }
@@ -289,8 +312,14 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
-        public static List<Move> PieceCanMultiJumpTo(Piece piece)
+        public static List<Move> PieceCanMultiJumpTo(Piece piece, Board board = null)
         {
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
             List<Move> MultiJumps = new List<Move>();
             List<Square> originalJumps = PieceCanJumpTo(piece);
 
@@ -307,16 +336,16 @@ namespace EdgeDemo.CheckersGame
                             foreach (Square thirdSquare in thirdJumps)
                             {
                                 MultiJumps.Add(
-                                    new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare},
-                                    new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square), Board.GetSquareBetween(square, secondSquare), Board.GetSquareBetween(secondSquare, thirdSquare) })
+                                    new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
+                                    new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
                                 );
                             }
                         }
                         else
                         {
                             MultiJumps.Add(
-                                new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square, secondSquare },
-                                new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square), Board.GetSquareBetween(square, secondSquare) })
+                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare },
+                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare) })
                             );
                         }
                     }
@@ -324,8 +353,8 @@ namespace EdgeDemo.CheckersGame
                 else
                 {
                     MultiJumps.Add(
-                        new Move(new List<Square>() { Board.Squares[piece.X, piece.Y], square },
-                        new List<Square>() { Board.GetSquareBetween(Board.Squares[piece.X, piece.Y], square) })
+                        new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square },
+                        new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square) })
                     );
                 }
             }
@@ -347,11 +376,17 @@ namespace EdgeDemo.CheckersGame
             return jumps;
         }
 
-        public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam)
+        public static Dictionary<Piece, List<Move>> TeamCanMultiJumpTo(bool topTeam, Board board = null)
         {
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
             Dictionary<Piece, List<Move>> multiJumps = new Dictionary<Piece, List<Move>>();
 
-            foreach (Square square in Board.Squares)
+            foreach (Square square in board.Squares)
             {
                 if (square.OccupyingPiece != null)
                 {
@@ -368,11 +403,17 @@ namespace EdgeDemo.CheckersGame
             return multiJumps;
         }
 
-        public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam)
+        public static Dictionary<Piece, List<Square>> TeamCanMoveTo(bool topTeam, Board board = null)
         {
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
             Dictionary<Piece, List<Square>> moves = new Dictionary<Piece, List<Square>>();
 
-            foreach (Square square in Board.Squares)
+            foreach (Square square in board.Squares)
             {
                 if (square.OccupyingPiece != null)
                 {
@@ -389,14 +430,19 @@ namespace EdgeDemo.CheckersGame
             return moves;
         }
 
-        public static List<Square> PieceCanMoveTo(Piece piece)
+        //Returns a list of squares a specific piece can move to
+        public static List<Square> PieceCanMoveTo(Piece piece, Board board = null)
         {
-            //Returns a list of squares a specific piece can move to
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
 
             List<Square> toReturn = new List<Square>();
             Square square;
 
-            foreach (Square s in Board.Squares)
+            foreach (Square s in board.Squares)
             {
                 if (s.OccupyingPiece == piece)
                 {
@@ -406,16 +452,16 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (piece.X > 0 && piece.Y > 0)
                         {
-                            Square topLeft = Board.Squares[square.X - 1, square.Y - 1];
+                            Square topLeft = board.Squares[square.X - 1, square.Y - 1];
 
                             if (topLeft.OccupyingPiece == null)
                             {
                                 toReturn.Add(topLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 1 && piece.Y > 0)
+                        if (piece.X < board.Size - 1 && piece.Y > 0)
                         {
-                            Square topRight = Board.Squares[square.X + 1, square.Y - 1];
+                            Square topRight = board.Squares[square.X + 1, square.Y - 1];
 
                             if (topRight.OccupyingPiece == null)
                             {
@@ -427,18 +473,18 @@ namespace EdgeDemo.CheckersGame
                     #region DownwardMovement
                     if (piece.TopTeam || piece.King)
                     {
-                        if (piece.X > 0 && piece.Y < Board.Size - 1)
+                        if (piece.X > 0 && piece.Y < board.Size - 1)
                         {
-                            Square bottomLeft = Board.Squares[square.X - 1, square.Y + 1];
+                            Square bottomLeft = board.Squares[square.X - 1, square.Y + 1];
 
                             if (bottomLeft.OccupyingPiece == null)
                             {
                                 toReturn.Add(bottomLeft);
                             }
                         }
-                        if (piece.X < Board.Size - 1 && piece.Y < Board.Size - 1)
+                        if (piece.X < board.Size - 1 && piece.Y < board.Size - 1)
                         {
-                            Square bottomRight = Board.Squares[square.X + 1, square.Y + 1];
+                            Square bottomRight = board.Squares[square.X + 1, square.Y + 1];
 
                             if (bottomRight.OccupyingPiece == null)
                             {
