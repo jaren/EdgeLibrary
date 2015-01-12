@@ -121,7 +121,7 @@ namespace EdgeDemo.CheckersGame.Players
             }
         }
         private void Input_OnKeyPress(Keys key) { }
-        
+
         //Sets the starting square to the moused over square
         private void SetFirstSquare()
         {
@@ -356,52 +356,30 @@ namespace EdgeDemo.CheckersGame.Players
         }
 
 
-        //Resets the move
+        //Resets the move at the end of the turn
         public void ResetMove()
         {
-            //If the possible moves have been generated, reset the info
-            if (PossibleMoves != null && CurrentMove != null)
+            //If you can't move, switches teams
+            if (PossibleMoves.Count == 0)
             {
-                //If you can't move, switches teams
-                if (PossibleMoves.Count == 0)
-                {
-                    //Reversees turns, updates team text, updates sprite, and re-calls ResetMove
-                    Player1Turn = !Player1Turn;
-                    TeamText = Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
-                    StatusSprite.Text = TeamText + Config.PassMessage;
+                BoardManager.MessageSprite.Display("You have passed your turn\nYou have no possible moves");
+            }
 
-                    //Resets the move again, which will generate new squares for the other team
-                    PossibleMoves = null;
-                    ResetMove();
-                }
-
-                if (PossibleMoves.ContainsKey(CurrentMove.Piece))
+            if (PossibleMoves.ContainsKey(CurrentMove.Piece))
+            {
+                //Resets all of the square colors
+                //It uses the finish square's occupying piece because the piece has already been moved
+                foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                 {
-                    //Resets all of the square colors
-                    //It uses the finish square's occupying piece because the piece has already been moved
-                    foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
+                    foreach (Square square in possibleMove.SquarePath)
                     {
-                        foreach (Square square in possibleMove.SquarePath)
-                        {
-                            square.Color = square.DefaultColor;
-                        }
+                        square.Color = square.DefaultColor;
                     }
                 }
             }
 
-            //Generates new moves
-            PossibleMoves = MovementManager.GenerateTeamMoves(Player1Turn);
-
-            //Sets the color of the possible starting squares
-            foreach (Piece possiblePiece in PossibleMoves.Keys)
-            {
-                Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = Config.Square1SelectColor;
-            }
-
             //Resets the info
             SelectedFirstSquare = false;
-            StatusSprite.Text = TeamText + Config.SelectSquare1Message;
-            TurnsCount++;
         }
     }
 }

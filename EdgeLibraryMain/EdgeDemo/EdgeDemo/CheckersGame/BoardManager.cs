@@ -29,6 +29,9 @@ namespace EdgeDemo.CheckersGame
         //Displays how many captures each team has
         public static TextSprite CaptureSprite;
 
+        //The sprite which displays when there is an important message
+        public static ColorTextSprite MessageSprite;
+
         //Displays debug info
         public TextSprite DebugSprite;
 
@@ -64,7 +67,9 @@ namespace EdgeDemo.CheckersGame
             StatusSprite = new TextSprite(Config.StatusFont, TeamText + Config.SelectSquare1Message, Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             Components.Add(StatusSprite);
 
-            TurnsCount = 0;
+            //Initializing message sprite
+            MessageSprite = new ColorTextSprite(Config.BigStatusFont, EdgeGame.WindowSize / 2, new ColorChangeIndex(1000, Color.Transparent, Color.Red, Color.Transparent));
+            Components.Add(MessageSprite);
 
             //Initializing capture sprite
             CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
@@ -73,6 +78,7 @@ namespace EdgeDemo.CheckersGame
             //Subscribes to the player events
             Player1.OnRunMove += Player1_OnRunMove;
             Player2.OnRunMove += Player2_OnRunMove;
+            TurnsCount = 0;
 
             //Starts the game off with player 1 moving first
             Player1.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
@@ -122,6 +128,8 @@ namespace EdgeDemo.CheckersGame
         {
             RunMove(move);
 
+            StatusSprite.Text = "It is " + Config.Player2Name + "'s Turn";
+
             Player1Turn = false;
             Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
         }
@@ -129,6 +137,8 @@ namespace EdgeDemo.CheckersGame
         void Player2_OnRunMove(Move move)
         {
             RunMove(move);
+
+            StatusSprite.Text = "It is " + Config.Player1Name + "'s Turn";
 
             Player1Turn = true;
             Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));

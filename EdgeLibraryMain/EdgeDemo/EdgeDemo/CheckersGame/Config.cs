@@ -16,6 +16,7 @@ namespace EdgeDemo.CheckersGame
         public static string XTexture = "X";
 
         public static string StatusFont = "ComicSans-20";
+        public static string BigStatusFont = "ComicSans-40";
         public static string SquareFont = "ComicSans-20";
         public static string DebugFont = "Impact-20";
 
