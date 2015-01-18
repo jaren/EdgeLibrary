@@ -20,14 +20,19 @@ namespace EdgeDemo.CheckersGame
 
         //The player gets send the previous move and possible moves
         public virtual void ReceivePreviousMove(Move previousMove, Dictionary<Piece, List<Move>> possibleMoves) { CanMove = true; }
+
+        //The player sends a move to be executed by BoardManager - only works if it is 
         protected void SendMove(Move move)
         {
-            if (OnRunMove != null)
+            if (CanMove)
             {
-                OnRunMove(move);
-            }
+                if (OnRunMove != null)
+                {
+                    OnRunMove(move);
+                }
 
-            CanMove = false;
+                CanMove = false;
+            }
         }
     }
 }

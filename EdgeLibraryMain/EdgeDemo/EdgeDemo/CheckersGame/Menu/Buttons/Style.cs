@@ -17,6 +17,26 @@ namespace EdgeDemo.CheckersGame
         public Texture2D ClickTexture;
         public Color ClickColor;
 
+        public Color AllColors
+        {
+            set
+            {
+                NormalColor = value;
+                ClickColor = value;
+                MouseOverColor = value;
+            }
+        }
+
+        public Texture2D AllTextures
+        {
+            set
+            {
+                NormalTexture = value;
+                ClickTexture = value;
+                MouseOverTexture = value;
+            }
+        }
+
         public Style(Texture2D mouseOverTexture, Color mouseOverColor, Texture2D normalTexture, Color normalColor, Texture2D clickTexture, Color clickColor)
         {
             MouseOverTexture = mouseOverTexture;

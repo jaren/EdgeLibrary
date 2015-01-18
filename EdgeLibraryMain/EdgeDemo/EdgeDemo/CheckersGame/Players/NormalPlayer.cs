@@ -179,23 +179,23 @@ namespace EdgeDemo.CheckersGame.Players
 
                     // TODO - Possibly move because of Players
 
-                    CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
+                    //CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
 
-                    ClearPossibleSquarePaths(CurrentMove.StartSquare);
-                    ClearSquareNumberPaths(CurrentMove.FinishSquare);
+                    //ClearPossibleSquarePaths(CurrentMove.StartSquare);
+                    //ClearSquareNumberPaths(CurrentMove.FinishSquare);
 
-                    //Run move
-                    ExecuteMove();
+                    ////Run move
+                    //ExecuteMove();
 
-                    //Checks for the game end
-                    if (BoardManager.CheckEndGame())
-                    {
-                        BoardManager.EndGame();
-                    }
+                    ////Checks for the game end
+                    //if (BoardManager.CheckEndGame())
+                    //{
+                    //    BoardManager.EndGame();
+                    //}
 
-                    //Updates info
-                    BoardManager.Player1Turn = !BoardManager.Player1Turn;
-                    TeamText = BoardManager.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
+                    ////Updates info
+                    //BoardManager.Player1Turn = !BoardManager.Player1Turn;
+                    //TeamText = BoardManager.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
 
                     //Resets move
                     ResetMove();

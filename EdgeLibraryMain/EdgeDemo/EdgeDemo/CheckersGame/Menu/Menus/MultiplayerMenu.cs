@@ -17,13 +17,19 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            hostButton.SetColors(Config.MenuButtonColor);
+            Button hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Scale = new Vector2(1) };
+            hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            hostButton.Style.AllColors = Config.MenuButtonColor;
             hostButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("HostGameMenu"); };
             Components.Add(hostButton);
 
-            Button joinButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.8f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            joinButton.SetColors(Config.MenuButtonColor);
+            Button joinButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.8f)) { Scale = new Vector2(1) };
+            joinButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            joinButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            joinButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            joinButton.Style.AllColors = Config.MenuButtonColor;
             joinButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("JoinGameMenu"); };
             Components.Add(joinButton);
 

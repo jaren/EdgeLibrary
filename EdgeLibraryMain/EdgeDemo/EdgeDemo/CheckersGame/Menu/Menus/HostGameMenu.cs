@@ -21,8 +21,11 @@ namespace EdgeDemo.CheckersGame
             Components.Add(subTitle);
 
             
-            Button hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            hostButton.SetColors(Config.MenuButtonColor);
+            Button hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Scale = new Vector2(1) };
+            hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            hostButton.Style.AllColors = Config.MenuButtonColor;
             hostButton.OnRelease += (x, y) => { Config.IsHost = true; Config.ThisGameID = ServiceClient.CreateGame("DefaultName"); Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(hostButton);
             /*

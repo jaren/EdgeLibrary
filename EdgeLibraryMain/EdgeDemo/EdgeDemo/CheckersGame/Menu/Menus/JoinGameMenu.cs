@@ -23,8 +23,11 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click Refresh to Search for Joinable Games", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            join1Button.SetColors(Config.MenuButtonColor);
+            Button join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Scale = new Vector2(1) };
+            join1Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            join1Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            join1Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) => 
             {
                 if (ServiceClient.GetJoinableGames().Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).State == GameManager.GameState.WaitingForPlayers)
@@ -43,8 +46,11 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join1Button);
 
-            Button join2Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            join2Button.SetColors(Config.MenuButtonColor);
+            Button join2Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { Scale = new Vector2(1) };
+            join2Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            join2Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            join2Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) => 
             {
                 if (ServiceClient.GetJoinableGames().Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).State == GameManager.GameState.WaitingForPlayers)
@@ -63,8 +69,11 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join2Button);
 
-            Button join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            join3Button.SetColors(Config.MenuButtonColor);
+            Button join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Scale = new Vector2(1) };
+            join3Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            join3Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            join3Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) => 
             {
                 if (ServiceClient.GetJoinableGames().Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).State == GameManager.GameState.WaitingForPlayers)
@@ -123,8 +132,11 @@ namespace EdgeDemo.CheckersGame
             }
             #endregion
 
-            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            refreshButton.SetColors(Config.MenuButtonColor);
+            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Scale = new Vector2(1) };
+            refreshButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            refreshButton.Style.AllColors = Config.MenuButtonColor;
             refreshButton.OnRelease += (x, y) =>
             {
                 gameIDs = new List<int>(3);
