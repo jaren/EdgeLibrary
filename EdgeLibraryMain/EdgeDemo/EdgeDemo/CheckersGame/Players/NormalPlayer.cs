@@ -177,78 +177,30 @@ namespace EdgeDemo.CheckersGame.Players
                     //Resets move
                     ResetMove();
 
-                    /* TODO - Possibly move because of Players
-                    if (Config.ThisGameType == Config.GameType.Online)
+                    // TODO - Possibly move because of Players
+
+                    CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
+
+                    ClearPossibleSquarePaths(CurrentMove.StartSquare);
+                    ClearSquareNumberPaths(CurrentMove.FinishSquare);
+
+                    //Run move
+                    ExecuteMove();
+
+                    //Checks for the game end
+                    if (CheckEndGame())
                     {
-                        #region WebServiceConnection
-                        //try
-                        //{
-
-                        CheckersServiceClient WebService = new CheckersServiceClient();
-
-                        //Send Move to Web Service
-
-                        WebService.AddMove(Move.ConvertAndSend(CurrentMove), Config.ThisGameID);
-                        Move RemoteMove = null;
-                        int loop = 0;
-
-                        while (RemoteMove == null)
-                        {
-                            if (loop == 0)
-                            {
-                                //TODO: Add loading text so user thinks something is happening
-                                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
-
-                                if (recievedMove != null)
-                                {
-                                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
-                                    break;
-                                }
-                            }
-                            else if (loop == 120)
-                            {
-                                loop = -1;
-                            }
-
-                            loop++;
-                        }
-
-                        //Duplicate This Function
-
-                        //Set the current move and subscribe to it
-
-                        CurrentMove = RemoteMove;
-
-                        CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-
-                        ClearPossibleSquarePaths(CurrentMove.StartSquare);
-                        ClearSquareNumberPaths(CurrentMove.FinishSquare);
-
-                        //Run move
-                        ExecuteMove();
-
-                        //Checks for the game end
-                        if (CheckEndGame())
-                        {
-                            EndGame();
-                        }
-
-                        //Updates info
-                        TopTeamTurn = !TopTeamTurn;
-                        TeamText = TopTeamTurn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
-
-                        //Resets move
-                        ResetMove();
-                        //}
-                        //catch(Exception e)
-                        //{
-                        //    System.Windows.Forms.MessageBox.Show("Multiplayer Connection Error!\nGame will now close.", "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                        //    System.Windows.Forms.MessageBox.Show("Detailed Error Below:\n" + e, "Error");
-                        //}
-                        #endregion WebServiceConnection
+                        EndGame();
                     }
 
-                     */
+                    //Updates info
+                    BoardManager.Player1Turn = !BoardManager.Player1Turn;
+                    TeamText = BoardManager.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
+
+                    //Resets move
+                    ResetMove();
+
+
 
                     break;
                 }
