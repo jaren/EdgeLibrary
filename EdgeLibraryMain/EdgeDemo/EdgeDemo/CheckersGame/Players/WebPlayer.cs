@@ -16,52 +16,47 @@ namespace EdgeDemo.CheckersGame.Players
 
         }
 
-        public static void SendAndRecieve ()
+        CheckersServiceClient WebService = new CheckersServiceClient();
+
+        public static void SendAndRecieve()
         {
-            if (Config.ThisGameType == Config.GameType.Online)
-            {
-                #region WebServiceConnection
+            //Send Move to Web Service
 
-                CheckersServiceClient WebService = new CheckersServiceClient();
 
-                //Send Move to Web Service
+            //Duplicate This Function
 
-                WebService.AddMove(Move.ConvertAndSend(CurrentMove), Config.ThisGameID);
-                Move RemoteMove = null;
-                int loop = 0;
-
-                while (RemoteMove == null)
-                {
-                    if (loop == 0)
-                    {
-                        //TODO: Add loading text so user thinks something is happening
-                        Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
-
-                        if (recievedMove != null)
-                        {
-                            RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
-                            break;
-                        }
-                    }
-                    else if (loop == 120)
-                    {
-                        loop = -1;
-                    }
-
-                    loop++;
-                }
-
-                //Duplicate This Function
-
-                //Set the current move and subscribe to it
-
-                CurrentMove = RemoteMove;
-                #endregion WebServiceConnection
-            }
+            //Set the current move and subscribe to it
         }
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+            WebService.AddMove(Move.ConvertAndSend(move), Config.ThisGameID);
+            Move RemoteMove = null;
+            int loop = 0;
+
+            while (RemoteMove == null)
+            {
+                if (loop == 0)
+                {
+                    //TODO: Add loading text so user thinks something is happening
+                    Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
+
+                    if (recievedMove != null)
+                    {
+                        RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
+                        break;
+                    }
+                }
+                else if (loop == Config.WebServiceCheck)
+                {
+                    loop = -1;
+                }
+
+                loop++;
+            }
+
+            base.SendMove(RemoteMove);
+
         }
 
         public override void Draw(GameTime gameTime)
