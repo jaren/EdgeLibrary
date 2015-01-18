@@ -16,7 +16,7 @@ namespace EdgeDemo.CheckersGame.Players
 
         }
 
-        public static void SendAndRecieve (Move CurrentMove)
+        public static void SendAndRecieve ()
         {
             if (Config.ThisGameType == Config.GameType.Online)
             {
@@ -35,11 +35,11 @@ namespace EdgeDemo.CheckersGame.Players
                     if (loop == 0)
                     {
                         //TODO: Add loading text so user thinks something is happening
-                        Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
+                        Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
 
                         if (recievedMove != null)
                         {
-                            RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(TopTeamTurn, Config.ThisGameID));
+                            RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, Config.ThisGameID));
                             break;
                         }
                     }
@@ -56,27 +56,6 @@ namespace EdgeDemo.CheckersGame.Players
                 //Set the current move and subscribe to it
 
                 CurrentMove = RemoteMove;
-
-                CurrentMove.OnComplete += CurrentMove_OnCompleteSquare;
-
-                ClearPossibleSquarePaths(CurrentMove.StartSquare);
-                ClearSquareNumberPaths(CurrentMove.FinishSquare);
-
-                //Run move
-                ExecuteMove();
-
-                //Checks for the game end
-                if (CheckEndGame())
-                {
-                    EndGame();
-                }
-
-                //Updates info
-                TopTeamTurn = !TopTeamTurn;
-                TeamText = TopTeamTurn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
-
-                //Resets move
-                ResetMove();
                 #endregion WebServiceConnection
             }
         }

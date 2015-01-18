@@ -188,9 +188,9 @@ namespace EdgeDemo.CheckersGame.Players
                     ExecuteMove();
 
                     //Checks for the game end
-                    if (CheckEndGame())
+                    if (BoardManager.CheckEndGame())
                     {
-                        EndGame();
+                        BoardManager.EndGame();
                     }
 
                     //Updates info

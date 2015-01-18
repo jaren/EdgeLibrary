@@ -160,7 +160,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Checks if the game should end
-        public bool CheckEndGame()
+        public static bool CheckEndGame()
         {
             bool player1HasPieces = false;
             bool player2HasPieces = false;
@@ -181,7 +181,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Ends the game
-        public void EndGame()
+        public static void EndGame()
         {
             System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (Player1Turn ? Config.Player1Name : Config.Player2Name) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
 
