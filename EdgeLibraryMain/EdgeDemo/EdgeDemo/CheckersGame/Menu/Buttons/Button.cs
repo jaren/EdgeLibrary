@@ -23,6 +23,8 @@ namespace EdgeDemo.CheckersGame
         public virtual event ButtonEvent OnMouseOver;
         public virtual event ButtonEvent OnMouseOff;
 
+        public bool LeftClick;
+
         protected ButtonClickState ButtonState;
 
         protected bool wasContained;
@@ -32,6 +34,8 @@ namespace EdgeDemo.CheckersGame
         public Button(string texture, Vector2 position)
             : base(texture, position)
         {
+            LeftClick = true;
+
             Style = new Style(Texture, Color, Texture, Color, Texture, Color);
 
             ButtonState = ButtonClickState.Normal;
@@ -67,7 +71,7 @@ namespace EdgeDemo.CheckersGame
         {
             if (BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)))
             {
-                if (Input.JustLeftClicked())
+                if (LeftClick ? Input.JustLeftClicked() : Input.JustRightClicked() )
                 {
                     ChangeState(ButtonClickState.Clicked);
                     if (OnClick != null)
@@ -75,7 +79,7 @@ namespace EdgeDemo.CheckersGame
                         OnClick(this, gameTime);
                     }
                 }
-                else if (Input.JustReleasedLeftClick())
+                else if (LeftClick ? Input.JustReleasedLeftClick() : Input.JustReleasedRightClick())
                 {
                     ChangeState(ButtonClickState.MousedOver);
                     if (OnRelease != null)
@@ -83,7 +87,7 @@ namespace EdgeDemo.CheckersGame
                         OnRelease(this, gameTime);
                     }
                 }
-                else if (!Input.IsLeftClicking())
+                else if (LeftClick ? !Input.IsLeftClicking() : !Input.IsLeftClicking())
                 {
                     ChangeState(ButtonClickState.MousedOver);
                     if (OnMouseOver != null)

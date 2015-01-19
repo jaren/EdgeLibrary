@@ -21,7 +21,7 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button quitButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Scale = new Vector2(1) };
+            Button quitButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             quitButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             quitButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             quitButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -42,7 +42,7 @@ namespace EdgeDemo.CheckersGame
             TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Main Menu", quitButton.Position);
             Components.Add(quitButtonText);
 
-            ButtonToggle musicButton = new ButtonToggle("grey_boxCheckmark", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) {  Scale = new Vector2(1) };
+            ButtonToggle musicButton = new ButtonToggle("grey_boxCheckmark", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             musicButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             musicButton.OnStyle.AllColors = Config.MenuButtonColor;
             musicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");

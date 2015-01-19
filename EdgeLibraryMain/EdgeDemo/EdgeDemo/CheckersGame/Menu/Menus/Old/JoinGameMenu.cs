@@ -23,7 +23,7 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click Refresh to Search for Joinable Games", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Scale = new Vector2(1) };
+            Button join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join1Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             join1Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join1Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -46,7 +46,7 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join1Button);
 
-            Button join2Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { Scale = new Vector2(1) };
+            Button join2Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join2Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             join2Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join2Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -69,7 +69,7 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join2Button);
 
-            Button join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Scale = new Vector2(1) };
+            Button join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join3Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             join3Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join3Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -128,11 +128,11 @@ namespace EdgeDemo.CheckersGame
             }
             catch (Exception exception)
             {
-                System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+               // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
             }
             #endregion
 
-            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Scale = new Vector2(1) };
+            Button refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             refreshButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -163,7 +163,7 @@ namespace EdgeDemo.CheckersGame
                 }
                 catch (Exception exception)
                 {
-                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+                   // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
                 }
             };
             Components.Add(refreshButton);

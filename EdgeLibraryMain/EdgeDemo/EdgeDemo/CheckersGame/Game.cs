@@ -31,13 +31,9 @@ namespace EdgeDemo.CheckersGame
 
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
-            MenuManager.AddMenu(new SingleplayerMenu());
-            MenuManager.AddMenu(new HotseatMenu());
-            MenuManager.AddMenu(new MultiplayerMenu());
+            MenuManager.AddMenu(new MainChooseMenu());
             MenuManager.AddMenu(new OptionsMenu());
             MenuManager.AddMenu(new GameMenu());
-            MenuManager.AddMenu(new HostGameMenu());
-            MenuManager.AddMenu(new JoinGameMenu());
             MenuManager.SwitchMenu("MainMenu");
         }
 
