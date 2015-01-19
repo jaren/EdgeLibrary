@@ -18,15 +18,15 @@ namespace CheckersService
         [DataMember]
         string ID { get; set; }
         [DataMember]
-        public bool TopTeam { get; set; }
+        public bool Player1 { get; set; }
 
-        public SimpleMove(Dictionary<int, KeyValuePair<int, int>> squarePath, Dictionary<int, KeyValuePair<int, int>> jumpedSquares, KeyValuePair<int, int> startSquare, string id, bool topTeam)
+        public SimpleMove(Dictionary<int, KeyValuePair<int, int>> squarePath, Dictionary<int, KeyValuePair<int, int>> jumpedSquares, KeyValuePair<int, int> startSquare, string id, bool player1)
         {
             SquarePath = squarePath;
             JumpedSquares = jumpedSquares;
             StartSquare = startSquare;
             ID = id;
-            TopTeam = topTeam;
+            Player1 = player1;
         }
     }
 }

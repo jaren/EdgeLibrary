@@ -29,13 +29,13 @@ namespace EdgeDemo.CheckersService {
         private System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> JumpedSquaresField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool Player1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> SquarePathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.KeyValuePair<int, int> StartSquareField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool TopTeamField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -74,6 +74,19 @@ namespace EdgeDemo.CheckersService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Player1 {
+            get {
+                return this.Player1Field;
+            }
+            set {
+                if ((this.Player1Field.Equals(value) != true)) {
+                    this.Player1Field = value;
+                    this.RaisePropertyChanged("Player1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Collections.Generic.Dictionary<int, System.Collections.Generic.KeyValuePair<int, int>> SquarePath {
             get {
                 return this.SquarePathField;
@@ -95,19 +108,6 @@ namespace EdgeDemo.CheckersService {
                 if ((this.StartSquareField.Equals(value) != true)) {
                     this.StartSquareField = value;
                     this.RaisePropertyChanged("StartSquare");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool TopTeam {
-            get {
-                return this.TopTeamField;
-            }
-            set {
-                if ((this.TopTeamField.Equals(value) != true)) {
-                    this.TopTeamField = value;
-                    this.RaisePropertyChanged("TopTeam");
                 }
             }
         }
@@ -259,7 +259,7 @@ namespace EdgeDemo.CheckersService {
         bool AddMove(EdgeDemo.CheckersService.SimpleMove move, int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
-        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam, int gameId);
+        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool player1, int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/CreateGame", ReplyAction="http://tempuri.org/ICheckersService/CreateGameResponse")]
         int CreateGame(string hostTeamName);
@@ -311,8 +311,8 @@ namespace EdgeDemo.CheckersService {
             return base.Channel.AddMove(move, gameId);
         }
         
-        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool topTeam, int gameId) {
-            return base.Channel.GetLatestMoveFrom(topTeam, gameId);
+        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool player1, int gameId) {
+            return base.Channel.GetLatestMoveFrom(player1, gameId);
         }
         
         public int CreateGame(string hostTeamName) {

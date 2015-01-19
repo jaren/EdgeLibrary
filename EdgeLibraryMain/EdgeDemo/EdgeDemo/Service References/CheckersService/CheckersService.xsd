@@ -20,7 +20,7 @@
   <xs:element name="GetLatestMoveFrom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="topTeam" type="xs:boolean" />
+        <xs:element minOccurs="0" name="player1" type="xs:boolean" />
         <xs:element minOccurs="0" name="gameId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>

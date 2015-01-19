@@ -44,7 +44,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         /// <summary>
-        /// Converts a move into a collection of integers for sending to the web service
+        /// Converts a move into a SimpleMove for sending to the web service
         /// </summary>
         /// <param name="move">The Move to Convert</param>
         public static SimpleMove ConvertAndSend(Move move)
@@ -83,13 +83,13 @@ namespace EdgeDemo.CheckersGame
 
             newMove.StartSquare = new KeyValuePair<int, int>(move.StartSquare.X, move.StartSquare.Y);
 
-            newMove.TopTeam = move.Piece.Player1;
+            newMove.Player1 = move.Piece.Player1;
 
             return newMove;
         }
 
         /// <summary>
-        /// Converts a collection of integers from the web service into a move
+        /// Converts a SimpleMove from the web service into a Move
         /// </summary>
         /// <param name="moveInfo">An object array of move data produced by the ConvertAndSend function</param>
         public static Move ConvertAndRecieve(SimpleMove moveInfo, Board board = null)

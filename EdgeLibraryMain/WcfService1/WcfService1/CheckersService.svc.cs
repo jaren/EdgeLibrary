@@ -26,9 +26,9 @@ namespace CheckersService
             }
         }
 
-        public SimpleMove GetLatestMoveFrom(bool topTeam, int gameId)
+        public SimpleMove GetLatestMoveFrom(bool player1, int gameId)
         {
-            if (Games.Count >= gameId + 1 && Games[gameId].MoveList.Count > 0 && Games[gameId].MoveList[Games[gameId].MoveList.Count - 1].TopTeam == topTeam)
+            if (Games.Count >= gameId + 1 && Games[gameId].MoveList.Count > 0 && Games[gameId].MoveList[Games[gameId].MoveList.Count - 1].Player1 == player1)
             {
                 return Games[gameId].MoveList[Games[gameId].MoveList.Count - 1];
             }
@@ -68,19 +68,36 @@ namespace CheckersService
             Games[gameId].State = GameManager.GameState.Ended;
         }
 
-        public Dictionary<int,GameManager> GetJoinableGames()
+        public Dictionary<int,GameManager> GetSpecificGames(bool waitingForPlayers = false, bool inProgress = false, bool ended = false, bool hostDisconnect = false, bool playerDisconnect = false)
         {
-            Dictionary<int, GameManager> JoinableGames = new Dictionary<int, GameManager>();
+            Dictionary<int, GameManager> SpecificGames = new Dictionary<int, GameManager>();
 
             foreach (int gameId in Games.Keys)
             {
-                if (Games[gameId].State == GameManager.GameState.WaitingForPlayers)
+                GameManager game = Games[gameId];
+                if (waitingForPlayers && game.State == GameManager.GameState.WaitingForPlayers)
                 {
-                    JoinableGames.Add(gameId,Games[gameId]);
+                    SpecificGames.Add(gameId,game);
+                }
+                else if (inProgress && game.State == GameManager.GameState.InProgress)
+                {
+                    SpecificGames.Add(gameId, game);
+                }
+                else if (ended && game.State == GameManager.GameState.Ended)
+                {
+                    SpecificGames.Add(gameId, game);
+                }
+                else if (hostDisconnect && game.State == GameManager.GameState.HostDisconnected)
+                {
+                    SpecificGames.Add(gameId, game);
+                }
+                else if (playerDisconnect && game.State == GameManager.GameState.PlayerDisconnected)
+                {
+                    SpecificGames.Add(gameId, game);
                 }
             }
 
-            return JoinableGames;
+            return SpecificGames;
         }
 
         public List<GameManager> GetAllGames()

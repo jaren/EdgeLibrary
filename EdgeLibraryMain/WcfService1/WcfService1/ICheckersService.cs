@@ -15,7 +15,7 @@ namespace CheckersService
         bool AddMove(SimpleMove move, int gameId);
 
         [OperationContract]
-        SimpleMove GetLatestMoveFrom(bool topTeam, int gameId);
+        SimpleMove GetLatestMoveFrom(bool player1, int gameId);
 
         [OperationContract]
         int CreateGame(string hostTeamName);
@@ -33,6 +33,6 @@ namespace CheckersService
         List<GameManager> GetAllGames();
 
         [OperationContract]
-        Dictionary<int, GameManager> GetJoinableGames();
+        Dictionary<int, GameManager> GetSpecificGames(bool waitingForPlayers = false, bool inProgress = false, bool ended = false, bool hostDisconnect = false, bool playerDisconnect = false);
     }
 }
