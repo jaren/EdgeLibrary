@@ -70,6 +70,7 @@ namespace EdgeDemo.CheckersGame
 
         public override object Clone()
         {
+            //Squares aren't the same here
             Square square = (Square)base.Clone();
             if (OccupyingPiece != null)
             {

@@ -229,6 +229,7 @@ namespace EdgeDemo.CheckersGame
             {
                 for (int y = 0; y < Size; y++)
                 {
+                    //Squares are the same here - should be false !?!??!?!?!?!?! (Ghost)
                     board.Squares[x, y] = (Square)Squares[x, y].Clone();
                 }
             }
