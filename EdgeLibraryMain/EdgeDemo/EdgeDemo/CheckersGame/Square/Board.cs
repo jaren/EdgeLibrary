@@ -235,7 +235,7 @@ namespace EdgeDemo.CheckersGame
             board.CapturedPieces.Clear();
             foreach(Piece capturedPiece in CapturedPieces)
             {
-                board.CapturedPieces.Add(capturedPiece);
+                board.CapturedPieces.Add((Piece)capturedPiece.Clone());
             }
             return board;
         }

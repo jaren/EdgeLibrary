@@ -72,10 +72,12 @@ namespace EdgeDemo.CheckersGame
                         }
                     }
                 }
-
                 //Adds the move with extra information to sortedMoves
                 sortedMoves.Add(new SortedMove(move, piecesTaken, piecesLostNext));
             }
+
+            Board = null;
+
             //Sorts the moves
             sortedMoves.OrderByDescending(x => x.PiecesTaken).ThenBy(x => x.PiecesLostNext);
 
