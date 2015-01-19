@@ -40,14 +40,11 @@ namespace EdgeLibrary
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (GameComponent component in Components)
+            foreach (DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
             {
-                if (component is DrawableGameComponent)
-                {
-                    ((DrawableGameComponent)component).Draw(gameTime);
-                }
+                component.Draw(gameTime);
             }
-            base.Update(gameTime);
+            base.Draw(gameTime);
         }
 
         public object Clone()

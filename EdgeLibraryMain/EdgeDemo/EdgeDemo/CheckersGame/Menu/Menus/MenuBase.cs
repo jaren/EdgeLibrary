@@ -8,31 +8,13 @@ using Microsoft.Xna.Framework;
 
 namespace EdgeDemo.CheckersGame
 {
-    public class MenuBase
+    public class MenuBase : Scene
     {
         public string Name;
-        protected List<GameComponent> Components;
 
         public MenuBase(string name)
         {
             Name = name;
-            Components = new List<GameComponent>();
-        }
-
-        public virtual void Update(GameTime gameTime)
-        {
-            foreach(GameComponent component in Components)
-            {
-                component.Update(gameTime);
-            }
-        }
-
-        public virtual void Draw(GameTime gameTime)
-        {
-            foreach(DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
-            {
-                component.Draw(gameTime);
-            }
         }
 
         public virtual void SwitchTo()

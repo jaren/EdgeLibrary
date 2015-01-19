@@ -31,18 +31,12 @@ namespace EdgeDemo.CheckersGame
          */
         public int DifficultyFluctuation;
 
-        //How many milliseconds to wait before choosing a move
-        public float MoveWait;
-        public float MoveWaitFluctuation;
-
         private Board Board; //Used for choosing next moves without disturbing default board
 
-        public ComputerMoveChooser(int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500)
+        public ComputerMoveChooser(int difficulty = 1, int difficultyFluctuation = 1)
         {
             Difficulty = difficulty;
             DifficultyFluctuation = difficultyFluctuation;
-            MoveWait = moveWait;
-            MoveWaitFluctuation = moveWaitFluctuation;
         }
 
         public Move ChooseMove(List<Move> possibleMoves, Board board)

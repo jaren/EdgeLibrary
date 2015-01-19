@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EdgeLibrary;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,18 @@ namespace EdgeDemo.CheckersGame
     public class ComputerPlayer : Player
     {
         private ComputerMoveChooser MoveChooser;
+        private Move ChosenMove;
+
+        private RandomTicker Ticker;
 
         public ComputerPlayer(int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500)
         {
-            MoveChooser = new ComputerMoveChooser(difficulty, difficultyFluctuation, moveWait, moveWaitFluctuation);
+            Ticker = new RandomTicker(moveWait - moveWaitFluctuation, moveWait + moveWaitFluctuation);
+
+            MoveChooser = new ComputerMoveChooser(difficulty, difficultyFluctuation);
+
+            Ticker.Enabled = false;
+            Ticker.OnTick += Ticker_OnTick;
         }
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
@@ -24,7 +33,14 @@ namespace EdgeDemo.CheckersGame
                 moves.AddRange(possibleMoves[piece]);
             }
 
-            SendMove(MoveChooser.ChooseMove(moves, BoardManager.Board));
+            ChosenMove = MoveChooser.ChooseMove(moves, BoardManager.Board);
+            Ticker.Enabled = true;
+        }
+
+        void Ticker_OnTick(GameTime gameTime)
+        {
+            SendMove(ChosenMove);
+            Ticker.Enabled = false;
         }
 
         public override void Draw(GameTime gameTime)
