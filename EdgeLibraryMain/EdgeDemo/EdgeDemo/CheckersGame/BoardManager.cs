@@ -149,10 +149,14 @@ namespace EdgeDemo.CheckersGame
 
         public void RunMove(Move move)
         {
+            move.RunMove();
+
             foreach (Square square in move.JumpedSquares)
             {
                 CapturePiece(square.OccupyingPiece);
             }
+
+            CheckEndGame();
         }
 
         public void CapturePiece(Piece piece)
