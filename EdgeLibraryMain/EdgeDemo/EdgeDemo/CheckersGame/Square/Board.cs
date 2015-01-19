@@ -225,6 +225,7 @@ namespace EdgeDemo.CheckersGame
         public override object Clone()
         {
             Board board = (Board)base.Clone();
+            board.Squares = new Square[Size, Size];
             for (int x = 0; x < Size; x++ )
             {
                 for (int y = 0; y < Size; y++)
