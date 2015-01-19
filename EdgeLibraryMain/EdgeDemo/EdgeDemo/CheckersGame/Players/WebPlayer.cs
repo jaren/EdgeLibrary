@@ -30,6 +30,8 @@ namespace EdgeDemo.CheckersGame
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+            base.ReceivePreviousMove(move, possibleMoves);
+
             WebService.AddMove(Move.ConvertAndSend(move), Config.ThisGameID);
             Move RemoteMove = null;
             int loop = 0;

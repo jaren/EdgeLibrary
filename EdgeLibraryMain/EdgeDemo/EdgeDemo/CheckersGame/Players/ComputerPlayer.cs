@@ -27,6 +27,8 @@ namespace EdgeDemo.CheckersGame
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+            base.ReceivePreviousMove(move, possibleMoves);
+
             List<Move> moves = new List<Move>();
             foreach(Piece piece in possibleMoves.Keys)
             {
@@ -49,6 +51,7 @@ namespace EdgeDemo.CheckersGame
 
         public override void Update(GameTime gameTime)
         {
+            Ticker.Update(gameTime);
         }
     }
 }

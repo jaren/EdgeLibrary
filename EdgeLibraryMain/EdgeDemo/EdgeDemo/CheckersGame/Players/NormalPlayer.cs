@@ -39,6 +39,8 @@ namespace EdgeDemo.CheckersGame
 
         public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+            base.ReceivePreviousMove(move, possibleMoves);
+
             PossibleMoves = possibleMoves;
         }
 
