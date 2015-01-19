@@ -75,6 +75,10 @@ namespace EdgeDemo.CheckersGame
             {
                 square.SetPiece((Piece)OccupyingPiece.Clone());
             }
+            else
+            {
+                square.SetPiece(null);
+            }
             return square;
         }
     }
