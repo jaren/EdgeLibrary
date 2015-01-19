@@ -6,7 +6,7 @@ using EdgeLibrary;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace EdgeDemo.CheckersGame.Players
+namespace EdgeDemo.CheckersGame
 {
     //A player used by the person playing the game
     public class NormalPlayer : Player

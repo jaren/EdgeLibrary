@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EdgeDemo.CheckersGame.Players
+namespace EdgeDemo.CheckersGame
 {
     //A player used by the remote person playing the game
     public class WebPlayer : Player
