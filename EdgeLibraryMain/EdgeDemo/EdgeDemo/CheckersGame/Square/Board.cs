@@ -221,6 +221,24 @@ namespace EdgeDemo.CheckersGame
 
             return null;
         }
+
+        public override object Clone()
+        {
+            Board board = (Board)base.Clone();
+            for (int x = 0; x < Size; x++ )
+            {
+                for (int y = 0; y < Size; y++)
+                {
+                    board.Squares[x, y] = (Square)Squares[x, y].Clone();
+                }
+            }
+            board.CapturedPieces.Clear();
+            foreach(Piece capturedPiece in CapturedPieces)
+            {
+                board.CapturedPieces.Add(capturedPiece);
+            }
+            return board;
+        }
     }
 
     public enum Direction

@@ -67,5 +67,15 @@ namespace EdgeDemo.CheckersGame
 
             OccupyingPiece = piece;
         }
+
+        public override object Clone()
+        {
+            Square square = (Square)base.Clone();
+            if (OccupyingPiece != null)
+            {
+                square.SetPiece((Piece)OccupyingPiece.Clone());
+            }
+            return square;
+        }
     }
 }

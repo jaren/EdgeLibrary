@@ -55,7 +55,8 @@ namespace EdgeDemo.CheckersGame
                 piecesTaken = move.JumpedSquares.Count;
 
                 //Runs the move on the fake board to find how many pieces can be taken next move
-                Board = board;
+                //Warning: This is very expensive to do every move
+                Board = (Board)board.Clone();
                 move.RunMove(Board);
 
                 //Generates the possible moves for the next team
