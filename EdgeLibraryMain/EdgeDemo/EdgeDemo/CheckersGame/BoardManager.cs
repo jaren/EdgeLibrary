@@ -121,10 +121,10 @@ namespace EdgeDemo.CheckersGame
             }
 
             //TODO - Possibly move because of Players
-            if (Config.ThisGameType == Config.GameType.Online && ServiceClient.GetAllGames().ElementAt(Config.ThisGameID).State == GameManager.GameState.WaitingForPlayers)
-            {
-                System.Windows.Forms.MessageBox.Show("ToDo: Waiting for Players Screen\n(To have this dialog stop appearing, set the current game state to something besides WaitingForPlayers)\n\nThis Game ID: " + Config.ThisGameID);
-            }
+            //if (Config.ThisGameType == Config.GameType.Online && ServiceClient.GetAllGames().ElementAt(Config.ThisGameID).State == GameManager.GameState.WaitingForPlayers)
+            //{
+            //    System.Windows.Forms.MessageBox.Show("ToDo: Waiting for Players Screen\n(To have this dialog stop appearing, set the current game state to something besides WaitingForPlayers)\n\nThis Game ID: " + Config.ThisGameID);
+            //}
         }
 
         void Player1_OnRunMove(Move move)
