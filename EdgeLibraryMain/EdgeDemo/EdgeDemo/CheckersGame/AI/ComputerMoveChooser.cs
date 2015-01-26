@@ -49,15 +49,19 @@ namespace EdgeDemo.CheckersGame
             List<SortedMove> sortedMoves = new List<SortedMove>();
             int piecesTaken = 0;
             int piecesLostNext = 0;
+
             foreach(Move move in possibleMoves)
             {
                 //Gets the number of pieces taken
                 piecesTaken = move.JumpedSquares.Count;
 
-                //Runs the move on the fake board to find how many pieces can be taken next move
+                //Clones the board into the fake board
                 //Warning: This is very expensive to do every move
                 Board = (Board)board.Clone();
-                move.RunMove(Board);
+
+                //Transfers the move to the fake board
+                //Runs the transferred move on the fake board to find how many pieces can be taken next move
+                RemakeMove(move, Board).RunMove(Board);
 
                 //Generates the possible moves for the next team
                 Dictionary<Piece, List<Move>> possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
@@ -88,6 +92,23 @@ namespace EdgeDemo.CheckersGame
             indexToChoose = indexToChoose < 0 ? 0 : indexToChoose > sortedMoves.Count - 1 ? sortedMoves.Count - 1 : indexToChoose;
 
             return sortedMoves[indexToChoose].Move;
+        }
+
+        //Moves a move from one board to another
+        public Move RemakeMove(Move move, Board board)
+        {
+            Move newMove = new Move(move.SquarePath);
+            newMove.SquarePath = new List<Square>();
+            newMove.Piece = board.Squares[move.SquarePath[0].X, move.SquarePath[0].Y].OccupyingPiece;
+            foreach(Square square in move.SquarePath)
+            {
+                newMove.SquarePath.Add(board.Squares[square.X, square.Y]);
+            }
+            foreach(Square square in move.JumpedSquares)
+            {
+                newMove.JumpedSquares.Add(board.Squares[square.X, square.Y]);
+            }
+            return newMove;
         }
     }
 
