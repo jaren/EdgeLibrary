@@ -63,8 +63,8 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new ComputerPlayer(0, 0, 1000f, 500f);
-            Player2 = new ComputerPlayer(0, 0, 1000f, 500f);
+            Player1 = new ComputerPlayer(2, 0, 2000f, 500f);
+            Player2 = new ComputerPlayer(2, 0, 2000f, 500f);
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, Config.Player1Name + "'s Turn", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
@@ -151,19 +151,7 @@ namespace EdgeDemo.CheckersGame
         {
             move.RunMove();
 
-            foreach (Square square in move.JumpedSquares)
-            {
-                CapturePiece(square.OccupyingPiece);
-            }
-
             CheckEndGame();
-        }
-
-        public void CapturePiece(Piece piece)
-        {
-            //Captures the piece and updates the capture sprite
-            Board.CapturePiece(piece);
-            CaptureSprite.Text = "Player 1 Captures: " + Board.TopTeamCaptures + "\nPlayer 2 Captures: " + Board.BottomTeamCaptures;
         }
 
         //Checks if the game should end
