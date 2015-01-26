@@ -55,6 +55,14 @@ namespace EdgeLibrary
             }
         }
 
+        //Resets the elapsed time
+        public void ResetTime()
+        {
+            elapsedTime = 0;
+            index = 0;
+            HasFinished = false;
+        }
+
         //Clears the colors and times
         public void Clear()
         {

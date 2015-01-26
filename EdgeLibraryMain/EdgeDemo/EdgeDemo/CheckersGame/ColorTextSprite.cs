@@ -17,9 +17,15 @@ namespace EdgeDemo.CheckersGame
             Colors = colors;
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
         public void Display(string text)
         {
             Text = text;
+            Colors.ResetTime();
             AddAction(new AColorChange(Colors));
         }
     }
