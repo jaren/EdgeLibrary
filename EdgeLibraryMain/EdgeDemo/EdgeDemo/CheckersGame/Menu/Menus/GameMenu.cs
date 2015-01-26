@@ -21,6 +21,7 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.ClearColor = Color.Gray;
             if (BoardManager.ResetGame)
             {
+                Components.Remove(manager);
                 manager = new BoardManager();
             }
             Components.Add(manager);
