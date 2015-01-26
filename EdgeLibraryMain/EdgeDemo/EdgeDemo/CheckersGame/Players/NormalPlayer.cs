@@ -42,6 +42,8 @@ namespace EdgeDemo.CheckersGame
             base.ReceivePreviousMove(move, possibleMoves);
 
             PossibleMoves = possibleMoves;
+
+            DrawPossibleStartSquares(PossibleMoves);
         }
 
         public override void Draw(GameTime gameTime)
@@ -54,75 +56,83 @@ namespace EdgeDemo.CheckersGame
 
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
         {
-            //Gets the square clicked
-            PreviousMousedOverSquare = MousedOverSquare;
-            MousedOverSquare = BoardManager.Board.GetSquareMousedOver();
-
-            if (MousedOverSquare != PreviousMousedOverSquare)
+            if (CanMove)
             {
-                if (SelectedFirstSquare)
+                //Gets the square clicked
+                PreviousMousedOverSquare = MousedOverSquare;
+                MousedOverSquare = BoardManager.Board.GetSquareMousedOver();
+
+                if (MousedOverSquare != PreviousMousedOverSquare)
                 {
-                    //ClearPossibleSquarePaths(PreviousMousedOverSquare);
-                    ClearSquareNumberPaths(PreviousMousedOverSquare);
-                    DrawSquareNumberPath(MousedOverSquare);
-                }
-                else
-                {
-                    ClearPossibleSquarePaths(PreviousMousedOverSquare);
-                    DrawPossibleSquarePaths(MousedOverSquare);
+                    if (SelectedFirstSquare)
+                    {
+                        //ClearPossibleSquarePaths(PreviousMousedOverSquare);
+                        ClearSquareNumberPaths(PreviousMousedOverSquare);
+                        DrawSquareNumberPath(MousedOverSquare);
+                    }
+                    else
+                    {
+                        ClearPossibleSquarePaths(PreviousMousedOverSquare);
+                        DrawPossibleSquarePaths(MousedOverSquare);
+                    }
                 }
             }
         }
 
         private void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
         {
-            if (MousedOverSquare != null)
+            if (CanMove)
             {
-                //If the first square hasn't selected, try to select the first square
-                if (!SelectedFirstSquare)
+                if (MousedOverSquare != null)
                 {
-                    SetFirstSquare();
-                }
-                //If the first square was selected already, complete the move
-                else
-                {
-                    SetLastSquare();
+                    //If the first square hasn't selected, try to select the first square
+                    if (!SelectedFirstSquare)
+                    {
+                        SetFirstSquare();
+                    }
+                    //If the first square was selected already, complete the move
+                    else
+                    {
+                        SetLastSquare();
+                    }
                 }
             }
         }
-        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { }
+        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { if (CanMove) { } }
 
         private void Input_OnKeyRelease(Keys key)
         {
-            //Cancels the move is the cancel key was pressed
-            if (key == Config.MoveCancelKey)
-            {
-                //If the first square was selected, reset the move
-                if (SelectedFirstSquare)
+            if (CanMove)
+            {             //Cancels the move is the cancel key was pressed
+                if (key == Config.MoveCancelKey)
                 {
-                    foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                    {
-                        possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
-                    }
-
-                    ClearPossibleSquarePaths(startSquare);
-                    if (startSquare != null)
+                    //If the first square was selected, reset the move
+                    if (SelectedFirstSquare)
                     {
                         foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                         {
-                            foreach (Square square in possibleMove.SquarePath)
+                            possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
+                        }
+
+                        ClearPossibleSquarePaths(startSquare);
+                        if (startSquare != null)
+                        {
+                            foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                             {
-                                square.Color = square.DefaultColor;
-                                square.SquareNumber.Text = "";
+                                foreach (Square square in possibleMove.SquarePath)
+                                {
+                                    square.Color = square.DefaultColor;
+                                    square.SquareNumber.Text = "";
+                                }
                             }
                         }
-                    }
 
-                    ResetMove();
+                        ResetMove();
+                    }
                 }
             }
         }
-        private void Input_OnKeyPress(Keys key) { }
+        private void Input_OnKeyPress(Keys key) { if (CanMove) { } }
 
         //Sets the starting square to the moused over square
         private void SetFirstSquare()
@@ -172,6 +182,7 @@ namespace EdgeDemo.CheckersGame
 
                     ClearPossibleSquarePaths(CurrentMove.StartSquare);
                     ClearSquareNumberPaths(CurrentMove.FinishSquare);
+                    ClearPossibleStartSquares(PossibleMoves);
 
                     //Run move
                     SendMove(CurrentMove);
@@ -206,6 +217,24 @@ namespace EdgeDemo.CheckersGame
 
                     break;
                 }
+            }
+        }
+
+        //Draws the possible starting squares
+        private void DrawPossibleStartSquares(Dictionary<Piece,List<Move>> moves)
+        {
+            foreach (Piece piece in moves.Keys)
+            {
+                moves[piece][0].StartSquare.Color = Config.Square1SelectColor;
+            }
+        }
+
+        //Clears the possible starting squares
+        private void ClearPossibleStartSquares(Dictionary<Piece, List<Move>> moves)
+        {
+            foreach (Piece piece in moves.Keys)
+            {
+                moves[piece][0].StartSquare.Color = moves[piece][0].StartSquare.DefaultColor;
             }
         }
 

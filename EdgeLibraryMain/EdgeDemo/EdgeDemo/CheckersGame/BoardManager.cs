@@ -63,7 +63,7 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new ComputerPlayer(2, 0, 2000f, 500f);
+            Player1 = new NormalPlayer();//new ComputerPlayer(2, 0, 2000f, 500f);
             Player2 = new ComputerPlayer(2, 0, 2000f, 500f);
 
             //Initializing status sprite
@@ -84,7 +84,8 @@ namespace EdgeDemo.CheckersGame
             TurnsCount = 0;
 
             //Starts the game off with player 1 moving first
-            Player1.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
+            Player1Turn = false;
+            Player2.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
         }
 
         //Necessary override to not draw the BoardManager
