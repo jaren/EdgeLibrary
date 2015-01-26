@@ -154,7 +154,6 @@ namespace EdgeDemo.CheckersGame
 
                 //Updates info
                 SelectedFirstSquare = true;
-                BoardManager.MessageSprite.Display("Select a second square");
 
                 //Colors the possible end squares
                 foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])

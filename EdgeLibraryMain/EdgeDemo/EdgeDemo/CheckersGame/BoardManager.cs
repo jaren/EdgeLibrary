@@ -64,7 +64,7 @@ namespace EdgeDemo.CheckersGame
             TeamText = Config.Player1Name + ": ";
 
             Player1 = new NormalPlayer();//new ComputerPlayer(2, 0, 2000f, 500f);
-            Player2 = new ComputerPlayer(2, 0, 1000f, 500f);
+            Player2 = new NormalPlayer();// new ComputerPlayer(2, 0, 1000f, 500f);
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, Config.Player1Name + "'s Turn", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
@@ -136,6 +136,11 @@ namespace EdgeDemo.CheckersGame
 
             Player1Turn = false;
             Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
+
+            if (Player2 is NormalPlayer)
+            {
+                BoardManager.MessageSprite.Display("It is " + Config.Player2Name + "'s Turn");
+            }
         }
 
         void Player2_OnRunMove(Move move)
@@ -146,6 +151,11 @@ namespace EdgeDemo.CheckersGame
 
             Player1Turn = true;
             Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
+
+            if (Player1 is NormalPlayer)
+            {
+                BoardManager.MessageSprite.Display("It is " + Config.Player1Name + "'s Turn");
+            }
         }
 
         public void RunMove(Move move)
