@@ -39,8 +39,8 @@ namespace EdgeDemo.CheckersGame
         public static bool Player1Turn;
 
         //The players in the game
-        Player Player1;
-        Player Player2;
+        public static Player Player1;
+        public static Player Player2;
 
         //Text for the current team
         private string TeamText;

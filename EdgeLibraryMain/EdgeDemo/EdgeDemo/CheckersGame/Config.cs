@@ -67,10 +67,11 @@ namespace EdgeDemo.CheckersGame
         public static PlayerType Player1Type = PlayerType.Normal;
         public static PlayerType Player2Type = PlayerType.Normal;
 
+        //Should remove lines below because of players --------------
         public static GameType ThisGameType = GameType.Hotseat;
         public static bool IsHost = true;
         public static int ThisGameID = -1; //Not online if -1
-        public static int WebServiceCheck = 120; //Used in WebPlayer
+        //-----------------------------------------------------------
 
         public enum PlayerType
         {
