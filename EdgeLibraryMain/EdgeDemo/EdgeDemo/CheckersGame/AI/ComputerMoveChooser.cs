@@ -85,6 +85,33 @@ namespace EdgeDemo.CheckersGame
             //Sorts the moves
             sortedMoves.OrderByDescending(x => x.PiecesTaken).ThenBy(x => x.PiecesLostNext);
 
+            //Adds a random element to the move choosing - all moves with equal 'value' are randomly shuffled
+            //Organizes all moves of equal value into smaller lists
+            List<List<SortedMove>> DividedSortedMoves = new List<List<SortedMove>>();
+            int currentIndex = 0;
+            SortedMove previousMove = null;
+            foreach(SortedMove move in sortedMoves)
+            {
+                if (move != previousMove)
+                {
+                    previousMove = move;
+                    currentIndex = 0;
+                    continue;
+                }
+                else
+                {
+
+                }
+            }
+
+            //Shuffles the equal moves and adds them back into sortedMoves
+            sortedMoves = new List<SortedMove>();
+            foreach(List<SortedMove> dividedSortedMoveList in DividedSortedMoves)
+            {
+                //dividedSortedMoveList.Shuffle();
+                sortedMoves.AddRange(dividedSortedMoveList);
+            }
+
             //Chooses a move based on Difficulty and DifficultyFluctuation
             //If indexToChoose is -1, then math is broken
             int indexToChoose = Difficulty <= 0 ? 0 : Difficulty == 1 ? sortedMoves.Count / 2 : Difficulty >= 2 ? sortedMoves.Count - 1 : -1;
