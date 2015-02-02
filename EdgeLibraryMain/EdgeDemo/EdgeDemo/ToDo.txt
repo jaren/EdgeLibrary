@@ -5,7 +5,6 @@ To Do:
 			-Fix all 'TODO - Possibly move because of Players'
 			-Fix all 'TODO - Fix because of players'
 			-Improve computer AI
-				-PiecesLostNext is not calculated correctly
 				-If a pieces will be taken next move if NOT moved, then move the piece
 			-Progress: 85%
 		-Add WebService
