@@ -88,16 +88,14 @@ namespace EdgeDemo.CheckersGame
             //Adds a random element to the move choosing - all moves with equal 'value' are randomly shuffled
             //Organizes all moves of equal value into smaller lists
             List<List<SortedMove>> DividedSortedMoves = new List<List<SortedMove>>();
-            int currentIndex = -1;
-            SortedMove previousMove = null;
+            int currentIndex = 0;
+            SortedMove previousMove = sortedMoves[0];
+            DividedSortedMoves.Add(new List<SortedMove>());
             foreach(SortedMove move in sortedMoves)
             {
-                if (move != previousMove)
+                if ((move.PiecesTaken != previousMove.PiecesTaken) || (move.PiecesLostNext != previousMove.PiecesLostNext))
                 {
-                    if (currentIndex != -1)
-                    {
-                        DividedSortedMoves[currentIndex].Add(previousMove);
-                    }
+                    DividedSortedMoves[currentIndex].Add(previousMove);
 
                     previousMove = move;
                     currentIndex++;
@@ -107,6 +105,7 @@ namespace EdgeDemo.CheckersGame
                 else
                 {
                     DividedSortedMoves[currentIndex].Add(move);
+                    previousMove = move;
                 }
             }
 
@@ -114,7 +113,7 @@ namespace EdgeDemo.CheckersGame
             sortedMoves = new List<SortedMove>();
             foreach(List<SortedMove> dividedSortedMoveList in DividedSortedMoves)
             {
-                dividedSortedMoveList.Shuffle();
+                dividedSortedMoveList.Shuffle<SortedMove>();
                 sortedMoves.AddRange(dividedSortedMoveList);
             }
 

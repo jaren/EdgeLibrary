@@ -34,9 +34,9 @@ namespace EdgeLibrary
         /// <summary>
         /// Shuffles a list randomly
         /// </summary>
-        public static List<int> Shuffle(this List<int> list) 
+        public static List<T> Shuffle<T>(this List<T> list)
         {
-            List<int> newList = new List<int>();
+            List<T> newList = new List<T>();
 
             //Generates a list of all the numbers in the list's count
             List<int> availableIndices = new List<int>();
@@ -49,7 +49,7 @@ namespace EdgeLibrary
             for (int i = 0; i < list.Count; i++)
             {
                 int chosenIndex = RandomTools.RandomInt(0, availableIndices.Count);
-                newList.Add(list.ElementAt(availableIndices[chosenIndex]));
+                newList.Add(list[availableIndices[chosenIndex]]);
                 availableIndices.Remove(availableIndices[chosenIndex]);
             }
 

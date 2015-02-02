@@ -4,7 +4,10 @@ To Do:
 		-Add 'Players' into the game
 			-Fix all 'TODO - Possibly move because of Players'
 			-Fix all 'TODO - Fix because of players'
-			-Progress: 95%
+			-Improve computer AI
+				-PiecesLostNext is not calculated correctly
+				-If a pieces will be taken next move if NOT moved, then move the piece
+			-Progress: 85%
 		-Add WebService
 			-Add "Waiting for other user" screen after you move
 			-The Host is always the bottom team to make things easier
