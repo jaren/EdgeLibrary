@@ -63,7 +63,7 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new ComputerPlayer(2, 0, 2000f, 0f);
+            Player1 = new NormalPlayer();// new ComputerPlayer(2, 0, 2000f, 0f);
             Player2 = new NormalPlayer();// new ComputerPlayer(2, 0, 1000f, 500f);
 
             //Initializing status sprite
