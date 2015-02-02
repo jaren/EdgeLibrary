@@ -127,7 +127,16 @@ namespace EdgeDemo.CheckersGame
                             }
                         }
 
-                        ResetMove();
+                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                        {
+                            foreach (Square square in possibleMove.SquarePath)
+                            {
+                                square.Color = square.DefaultColor;
+                            }
+                        }
+
+
+                        SelectedFirstSquare = false;
                     }
                 }
             }
@@ -325,7 +334,6 @@ namespace EdgeDemo.CheckersGame
                 }
             }
         }
-
 
         //Resets the move at the end of the turn
         public void ResetMove()
