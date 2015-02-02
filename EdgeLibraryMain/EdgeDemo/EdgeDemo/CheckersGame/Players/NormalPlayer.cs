@@ -109,32 +109,19 @@ namespace EdgeDemo.CheckersGame
                     //If the first square was selected, reset the move
                     if (SelectedFirstSquare)
                     {
-                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                        {
-                            possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
-                        }
-
+                        //Clears the possible square paths and resets the colors and numbers of all squares in all possible moves
                         ClearPossibleSquarePaths(startSquare);
-                        if (startSquare != null)
-                        {
-                            foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
-                            {
-                                foreach (Square square in possibleMove.SquarePath)
-                                {
-                                    square.Color = square.DefaultColor;
-                                    square.SquareNumber.Text = "";
-                                }
-                            }
-                        }
 
                         foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                         {
                             foreach (Square square in possibleMove.SquarePath)
                             {
                                 square.Color = square.DefaultColor;
+                                square.SquareNumber.Text = "";
                             }
                         }
 
+                        DrawPossibleStartSquares(PossibleMoves);
 
                         SelectedFirstSquare = false;
                     }
@@ -229,7 +216,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Draws the possible starting squares
-        private void DrawPossibleStartSquares(Dictionary<Piece,List<Move>> moves)
+        private void DrawPossibleStartSquares(Dictionary<Piece, List<Move>> moves)
         {
             foreach (Piece piece in moves.Keys)
             {
