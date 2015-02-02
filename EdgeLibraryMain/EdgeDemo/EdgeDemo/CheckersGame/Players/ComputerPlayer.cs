@@ -25,9 +25,12 @@ namespace EdgeDemo.CheckersGame
             Ticker.OnTick += Ticker_OnTick;
         }
 
-        public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
+        public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-            base.ReceivePreviousMove(move, possibleMoves);
+            if (!base.ReceivePreviousMove(move, possibleMoves))
+            {
+                return false;
+            }
 
             List<Move> moves = new List<Move>();
             foreach(Piece piece in possibleMoves.Keys)
@@ -37,6 +40,8 @@ namespace EdgeDemo.CheckersGame
 
             ChosenMove = MoveChooser.ChooseMove(moves, BoardManager.Board);
             Ticker.Enabled = true;
+
+            return true;
         }
 
         void Ticker_OnTick(GameTime gameTime)

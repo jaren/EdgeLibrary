@@ -18,8 +18,17 @@ namespace EdgeDemo.CheckersGame
 
         public virtual void Draw(GameTime gameTime) { }
 
-        //The player gets send the previous move and possible moves
-        public virtual void ReceivePreviousMove(Move previousMove, Dictionary<Piece, List<Move>> possibleMoves) { CanMove = true; }
+        //The player gets send the previous move and possible moves - if there are no possible moves, return false
+        public virtual bool ReceivePreviousMove(Move previousMove, Dictionary<Piece, List<Move>> possibleMoves)
+        {
+            if (possibleMoves.Count == 0) 
+            {
+                return false;
+            } 
+
+            CanMove = true;
+            return true; 
+        }
 
         //The player sends a move to be executed by BoardManager - only works if it is 
         protected void SendMove(Move move)

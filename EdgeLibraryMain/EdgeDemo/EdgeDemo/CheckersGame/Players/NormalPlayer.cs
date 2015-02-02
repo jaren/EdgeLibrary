@@ -37,13 +37,18 @@ namespace EdgeDemo.CheckersGame
             Input.OnReleaseClick += Input_OnReleaseClick;
         }
 
-        public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
+        public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-            base.ReceivePreviousMove(move, possibleMoves);
+            if (!base.ReceivePreviousMove(move, possibleMoves))
+            {
+                return false;
+            }
 
             PossibleMoves = possibleMoves;
 
             DrawPossibleStartSquares(PossibleMoves);
+
+            return true;
         }
 
         public override void Draw(GameTime gameTime)

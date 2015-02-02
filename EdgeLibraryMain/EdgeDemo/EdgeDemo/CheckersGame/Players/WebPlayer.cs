@@ -42,9 +42,13 @@ namespace EdgeDemo.CheckersGame
             base.SendMove(RemoteMove);
         }
 
-        public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
+        public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-            base.ReceivePreviousMove(move, possibleMoves);
+            if (!base.ReceivePreviousMove(move, possibleMoves))
+            {
+                return false;
+            }
+
 
             WebService.AddMove(Move.ConvertAndSend(move), ThisGameID);
 
@@ -52,6 +56,8 @@ namespace EdgeDemo.CheckersGame
             waitForMoveThread = new Thread(CheckForRemoteMove);
             waitForMoveThread.Start();
             //TODO: Switch to waiting for other player screen here.
+
+            return true;
         }
 
         public override void Draw(GameTime gameTime)
