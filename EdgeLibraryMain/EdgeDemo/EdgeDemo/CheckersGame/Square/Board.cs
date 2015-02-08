@@ -26,11 +26,6 @@ namespace EdgeDemo.CheckersGame
         public Board(string squareTexture, Vector2 position, int size, float squareSize, float squareDistance, Color color1, Color color2, float borderSize, Color borderColor, string pieceTexture, float pieceSize, Color pieceColor1, Color pieceColor2)
             : base(squareTexture, position)
         {
-            if (size < 4)
-            {
-                throw new ArgumentException("Board size must be greater than three");
-            }
-
             float totalSquareDistance = squareDistance * (size - 1);
 
             Border = new Border(squareTexture, position, borderSize, squareSize * size + totalSquareDistance, borderColor);
