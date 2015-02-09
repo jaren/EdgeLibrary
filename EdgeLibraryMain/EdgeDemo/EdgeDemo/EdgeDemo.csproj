@@ -129,6 +129,7 @@
     <Compile Include="CheckersGame\Menu\Buttons\ButtonToggle.cs" />
     <Compile Include="CheckersGame\Menu\Buttons\Style.cs" />
     <Compile Include="CheckersGame\Menu\Menus\GameMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\NoGameOptionsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\Old\HostGameMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\Old\HotseatMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\Old\JoinGameMenu.cs" />

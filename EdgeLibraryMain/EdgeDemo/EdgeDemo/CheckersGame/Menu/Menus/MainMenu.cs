@@ -79,6 +79,20 @@ namespace EdgeDemo.CheckersGame
             TextSprite startGameButtonText = new TextSprite(Config.MenuButtonTextFont, "START A GAME", startGameButton.Position);
             Components.Add(startGameButtonText);
 
+            Button optionsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("NoGameOptionsMenu"); };
+            optionsButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            optionsButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            optionsButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            optionsButton.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(optionsButton);
+
+            optionsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (optionsButton.Width * optionsButton.Scale.X).ToSimUnits(), (optionsButton.Height * optionsButton.Scale.Y).ToSimUnits(), 1));
+            optionsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            TextSprite optionsButtonText = new TextSprite(Config.MenuButtonTextFont, "OPTIONS", optionsButton.Position);
+            Components.Add(optionsButtonText);
+
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 
