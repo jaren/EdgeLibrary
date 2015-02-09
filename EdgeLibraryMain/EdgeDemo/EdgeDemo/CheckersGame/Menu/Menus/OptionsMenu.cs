@@ -42,13 +42,17 @@ namespace EdgeDemo.CheckersGame
             TextSprite quitButtonText = new TextSprite(Config.MenuButtonTextFont, "Main Menu", quitButton.Position);
             Components.Add(quitButtonText);
 
-            ButtonToggle musicButton = new ButtonToggle("grey_boxCheckmark", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            ButtonToggle musicButton = new ButtonToggle("grey_boxCheckmark", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             musicButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             musicButton.OnStyle.AllColors = Config.MenuButtonColor;
             musicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
             musicButton.OffStyle.AllColors = Config.MenuButtonColor;
+            musicButton.Style = musicButton.OnStyle;
             musicButton.On = true;
             Components.Add(musicButton);
+
+            TextSprite musicButtonText = new TextSprite(Config.MenuButtonTextFont, "Music", musicButton.Position + new Vector2(musicButton.Width, -musicButton.Height/2)) { CenterAsOrigin = false };
+            Components.Add(musicButtonText);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }

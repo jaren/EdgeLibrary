@@ -27,12 +27,12 @@ namespace EdgeDemo.CheckersGame
             if (On)
             {
                 On = false;
-                Style = OnStyle;
+                Style = OffStyle;
             }
             else
             {
                 On = true;
-                Style = OffStyle;
+                Style = OnStyle;
             }
         }
     }
