@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using FarseerPhysics;
+using System.Collections;
 
 namespace EdgeLibrary
 {
@@ -28,6 +29,31 @@ namespace EdgeLibrary
             }
             GivenIDs[obj.GetType()]++;
             return obj.GetType().Name + GivenIDs[obj.GetType()].ToString();
+        }
+
+        /// <summary>
+        /// Shuffles a list randomly
+        /// </summary>
+        public static List<T> Shuffle<T>(this List<T> list)
+        {
+            List<T> newList = new List<T>();
+
+            //Generates a list of all the numbers in the list's count
+            List<int> availableIndices = new List<int>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                availableIndices.Add(i);
+            }
+
+            //Adds the objects randomly to the new list
+            for (int i = 0; i < list.Count; i++)
+            {
+                int chosenIndex = RandomTools.RandomInt(0, availableIndices.Count);
+                newList.Add(list[availableIndices[chosenIndex]]);
+                availableIndices.Remove(availableIndices[chosenIndex]);
+            }
+
+            return newList;
         }
 
         /// <summary>

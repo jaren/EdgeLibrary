@@ -12,19 +12,25 @@ namespace EdgeDemo.CheckersGame
     public class WebPlayer : Player
     {
         //Move everything service related here?
-        public WebPlayer()
+        public WebPlayer(int thisGameID)
         {
-
+            ThisGameID = thisGameID;
         }
 
         CheckersServiceClient WebService = new CheckersServiceClient();
         private Thread waitForMoveThread;
+<<<<<<< HEAD
         Move PreviousMove = new Move(null, null);
+=======
+        public int ThisGameID;
+        private Move PreviousMove;
+>>>>>>> origin/master
 
         public void CheckForRemoteMove()
         {
-            Move RemoteMove = null;
+            Move RemoteMove = PreviousMove;
 
+<<<<<<< HEAD
             while (RemoteMove == PreviousMove)
             {
                 //TODO: Add loading text so user thinks something is happening
@@ -33,25 +39,45 @@ namespace EdgeDemo.CheckersGame
                 if (recievedMove != null)
                 {
                     RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(Config.ThisGameID));
+=======
+            do
+            {
+                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, ThisGameID));
+
+                if (recievedMove != null)
+                {
+                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, ThisGameID));
+>>>>>>> origin/master
                     break;
                 }
 
-                Thread.Sleep(250);
-            }
+                Thread.Sleep(1000);
+            } while (RemoteMove == PreviousMove);
 
             base.SendMove(RemoteMove);
         }
 
-        public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
+        public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
+<<<<<<< HEAD
             base.ReceivePreviousMove(move, possibleMoves);
             PreviousMove = move;
+=======
+            if (!base.ReceivePreviousMove(move, possibleMoves))
+            {
+                return false;
+            }
 
-            WebService.AddMove(Move.ConvertAndSend(move), Config.ThisGameID);
+>>>>>>> origin/master
 
+            WebService.AddMove(Move.ConvertAndSend(move), ThisGameID);
+
+            PreviousMove = move;
             waitForMoveThread = new Thread(CheckForRemoteMove);
             waitForMoveThread.Start();
-            BoardManager.MessageSprite.Display("Waiting For the Other Player...");
+            //TODO: Switch to waiting for other player screen here.
+
+            return true;
         }
 
         public override void Draw(GameTime gameTime)

@@ -37,13 +37,18 @@ namespace EdgeDemo.CheckersGame
             Input.OnReleaseClick += Input_OnReleaseClick;
         }
 
-        public override void ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
+        public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-            base.ReceivePreviousMove(move, possibleMoves);
+            if (!base.ReceivePreviousMove(move, possibleMoves))
+            {
+                return false;
+            }
 
             PossibleMoves = possibleMoves;
 
             DrawPossibleStartSquares(PossibleMoves);
+
+            return true;
         }
 
         public override void Draw(GameTime gameTime)
@@ -109,25 +114,21 @@ namespace EdgeDemo.CheckersGame
                     //If the first square was selected, reset the move
                     if (SelectedFirstSquare)
                     {
+                        //Clears the possible square paths and resets the colors and numbers of all squares in all possible moves
+                        ClearPossibleSquarePaths(startSquare);
+
                         foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                         {
-                            possibleMove.SquarePath[0].Color = possibleMove.SquarePath[0].DefaultColor;
-                        }
-
-                        ClearPossibleSquarePaths(startSquare);
-                        if (startSquare != null)
-                        {
-                            foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                            foreach (Square square in possibleMove.SquarePath)
                             {
-                                foreach (Square square in possibleMove.SquarePath)
-                                {
-                                    square.Color = square.DefaultColor;
-                                    square.SquareNumber.Text = "";
-                                }
+                                square.Color = square.DefaultColor;
+                                square.SquareNumber.Text = "";
                             }
                         }
 
-                        ResetMove();
+                        DrawPossibleStartSquares(PossibleMoves);
+
+                        SelectedFirstSquare = false;
                     }
                 }
             }
@@ -220,7 +221,7 @@ namespace EdgeDemo.CheckersGame
         }
 
         //Draws the possible starting squares
-        private void DrawPossibleStartSquares(Dictionary<Piece,List<Move>> moves)
+        private void DrawPossibleStartSquares(Dictionary<Piece, List<Move>> moves)
         {
             foreach (Piece piece in moves.Keys)
             {
@@ -325,7 +326,6 @@ namespace EdgeDemo.CheckersGame
                 }
             }
         }
-
 
         //Resets the move at the end of the turn
         public void ResetMove()

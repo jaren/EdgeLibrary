@@ -38,7 +38,7 @@ namespace EdgeDemo.CheckersGame
 
             Dictionary<Piece, List<Move>> Moves = new Dictionary<Piece, List<Move>>();
 
-            Dictionary<Piece, List<Move>> jumps = PlayerCanMultiJumpTo(player1); //Single jumps
+            Dictionary<Piece, List<Move>> jumps = PlayerCanMultiJumpTo(player1, board); //Single jumps
             foreach (Piece piece in jumps.Keys)
             {
                 Moves.Add(piece, jumps[piece]);
@@ -48,7 +48,7 @@ namespace EdgeDemo.CheckersGame
             //If a player cannot jump
             if (Moves.Count == 0)
             {
-                moves = PlayerCanMoveTo(player1);
+                moves = PlayerCanMoveTo(player1, board);
                 foreach (KeyValuePair<Piece, List<Square>> move in moves)
                 {
                     List<Move> moveList = new List<Move>();

@@ -39,8 +39,8 @@ namespace EdgeDemo.CheckersGame
         public static bool Player1Turn;
 
         //The players in the game
-        Player Player1;
-        Player Player2;
+        public static Player Player1;
+        public static Player Player2;
 
         //Text for the current team
         private string TeamText;
@@ -63,7 +63,7 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new NormalPlayer();//new ComputerPlayer(2, 0, 2000f, 500f);
+            Player1 = new ComputerPlayer(2, 0, 2000f, 0f);
             Player2 = new NormalPlayer();// new ComputerPlayer(2, 0, 1000f, 500f);
 
             //Initializing status sprite
@@ -135,11 +135,12 @@ namespace EdgeDemo.CheckersGame
             StatusSprite.Text = "It is " + Config.Player2Name + "'s Turn";
 
             Player1Turn = false;
-            Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
-
-            if (Player2 is NormalPlayer)
+            if (!Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
             {
-                BoardManager.MessageSprite.Display("It is " + Config.Player2Name + "'s Turn");
+                if (CheckEndGame())
+                {
+                    EndGame();
+                }
             }
         }
 
@@ -150,11 +151,12 @@ namespace EdgeDemo.CheckersGame
             StatusSprite.Text = "It is " + Config.Player1Name + "'s Turn";
 
             Player1Turn = true;
-            Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn));
-
-            if (Player1 is NormalPlayer)
+            if (!Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
             {
-                BoardManager.MessageSprite.Display("It is " + Config.Player1Name + "'s Turn");
+                if (CheckEndGame())
+                {
+                    EndGame();
+                }
             }
         }
 
