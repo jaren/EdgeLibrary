@@ -42,13 +42,13 @@ namespace EdgeDemo.CheckersGame
             Vector2 force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
             Vector2 point = Vector2.One;
 
-            TextSprite credit1 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 1 ☺", EdgeGame.WindowSize / 2);
+            TextSprite credit1 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 1", EdgeGame.WindowSize / 2);
             credit1.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (credit1.Width * credit1.Scale.X).ToSimUnits(), (credit1.Height * credit1.Scale.Y).ToSimUnits(), 1));
             point = credit1.Position;
             credit1.Body.ApplyForce(ref force, ref point);
             Components.Add(credit1);
 
-            TextSprite credit2 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 2 ☻", EdgeGame.WindowSize / 2);
+            TextSprite credit2 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 2", EdgeGame.WindowSize / 2);
             credit2.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (credit2.Width * credit2.Scale.X).ToSimUnits(), (credit2.Height * credit2.Scale.Y).ToSimUnits(), 1));
             force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
             point = credit2.Position;
