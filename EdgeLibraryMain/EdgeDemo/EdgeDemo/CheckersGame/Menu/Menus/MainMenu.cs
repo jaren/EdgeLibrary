@@ -93,6 +93,20 @@ namespace EdgeDemo.CheckersGame
             TextSprite optionsButtonText = new TextSprite(Config.MenuButtonTextFont, "OPTIONS", optionsButton.Position);
             Components.Add(optionsButtonText);
 
+            Button creditsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.9f) };
+            creditsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("CreditsMenu"); };
+            creditsButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            creditsButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            creditsButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            creditsButton.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(creditsButton);
+
+            creditsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (creditsButton.Width * creditsButton.Scale.X).ToSimUnits(), (creditsButton.Height * creditsButton.Scale.Y).ToSimUnits(), 1));
+            creditsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            TextSprite creditsButtonText = new TextSprite(Config.MenuButtonTextFont, "CREDITS", creditsButton.Position);
+            Components.Add(creditsButtonText);
+
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 
