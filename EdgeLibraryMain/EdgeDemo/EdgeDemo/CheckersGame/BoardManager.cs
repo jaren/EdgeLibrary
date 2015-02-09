@@ -137,10 +137,7 @@ namespace EdgeDemo.CheckersGame
             Player1Turn = false;
             if (!Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
             {
-                if (CheckEndGame())
-                {
-                    EndGame();
-                }
+                EndGame();
             }
         }
 
@@ -153,39 +150,13 @@ namespace EdgeDemo.CheckersGame
             Player1Turn = true;
             if (!Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
             {
-                if (CheckEndGame())
-                {
-                    EndGame();
-                }
+                EndGame();
             }
         }
 
         public void RunMove(Move move)
         {
             move.RunMove();
-
-            CheckEndGame();
-        }
-
-        //Checks if the game should end
-        public static bool CheckEndGame()
-        {
-            bool player1HasPieces = false;
-            bool player2HasPieces = false;
-            foreach (Square square in Board.Squares)
-            {
-                if (square.OccupyingPiece != null)
-                {
-                    if (square.OccupyingPiece.Player1)
-                    {
-                        player1HasPieces = true;
-                        continue;
-                    }
-                    player2HasPieces = true;
-                }
-            }
-
-            return !(player1HasPieces && player2HasPieces);
         }
 
         //Ends the game
@@ -206,7 +177,9 @@ namespace EdgeDemo.CheckersGame
 
             MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000,Color.Blue,Color.Transparent));
             Ticker ticker = new Ticker(6000);
+            ticker.Enabled = true;
             ticker.OnTick += new Ticker.TickerEventHandler(ticker_OnTick);
+            Components.Add(ticker);
         }
 
         static void ticker_OnTick(GameTime gameTime)
