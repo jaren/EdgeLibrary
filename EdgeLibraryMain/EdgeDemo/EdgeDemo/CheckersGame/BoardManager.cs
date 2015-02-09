@@ -191,6 +191,7 @@ namespace EdgeDemo.CheckersGame
         //Ends the game
         public static void EndGame()
         {
+            /*
             System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (Player1Turn ? Config.Player1Name : Config.Player2Name) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
 
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
@@ -201,6 +202,16 @@ namespace EdgeDemo.CheckersGame
             {
                 System.Windows.Forms.MessageBox.Show("That is not true", "A true statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
             }
+            */
+
+            MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000,Color.Blue,Color.Transparent));
+            Ticker ticker = new Ticker(6000);
+            ticker.OnTick += new Ticker.TickerEventHandler(ticker_OnTick);
+        }
+
+        static void ticker_OnTick(GameTime gameTime)
+        {
+            MenuManager.SwitchMenu("MainMenu");
         }
     }
 }

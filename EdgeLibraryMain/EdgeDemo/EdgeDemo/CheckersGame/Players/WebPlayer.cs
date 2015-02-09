@@ -34,20 +34,22 @@ namespace EdgeDemo.CheckersGame
                 if (recievedMove != null)
                 {
                     RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(Config.ThisGameID));
-            do
-            {
-                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
+                    do
+                    {
+                        recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
 
-                if (recievedMove != null)
-                {
-                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
-                    break;
+                        if (recievedMove != null)
+                        {
+                            RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
+                            break;
+                        }
+
+                        Thread.Sleep(1000);
+                    } while (RemoteMove == PreviousMove);
+
+                    base.SendMove(RemoteMove);
                 }
-
-                Thread.Sleep(1000);
-            } while (RemoteMove == PreviousMove);
-
-            base.SendMove(RemoteMove);
+            }
         }
 
         public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)

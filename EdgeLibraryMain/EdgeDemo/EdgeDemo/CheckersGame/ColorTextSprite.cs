@@ -22,11 +22,11 @@ namespace EdgeDemo.CheckersGame
             base.Update(gameTime);
         }
 
-        public void Display(string text)
+        public void Display(string text, ColorChangeIndex index = null)
         {
             Text = text;
             Colors.ResetTime();
-            AddAction(new AColorChange(Colors));
+            AddAction(new AColorChange(index == null ? Colors : index));
         }
     }
 }
