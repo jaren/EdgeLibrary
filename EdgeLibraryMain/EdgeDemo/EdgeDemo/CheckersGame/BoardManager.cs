@@ -64,7 +64,7 @@ namespace EdgeDemo.CheckersGame
             TeamText = Config.Player1Name + ": ";
 
             Player1 = new ComputerPlayer(2, 0, 2000f, 0f);
-            Player2 = new NormalPlayer();// new ComputerPlayer(2, 0, 1000f, 500f);
+            Player2 = new NormalPlayer();
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, Config.Player1Name + "'s Turn", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };

@@ -75,6 +75,29 @@ namespace EdgeDemo.CheckersGame
 
         //-----------------------------------------------------------
 
+        public static GameType GetGameType()
+        {
+            Type Player1Type = BoardManager.Player1.GetType();
+            Type Player2Type = BoardManager.Player2.GetType();
+
+            if (Player1Type == typeof(NormalPlayer) && Player2Type == typeof(NormalPlayer))
+            {
+                return GameType.Hotseat;
+            }
+            else if (Player1Type == typeof(WebPlayer) || Player2Type == typeof(WebPlayer))
+            {
+                return GameType.Online;
+            }
+            else if (Player1Type == typeof(ComputerPlayer) && Player2Type == typeof(ComputerPlayer))
+            {
+                return GameType.AIOnly;
+            }
+            else /*if((Player1Type == typeof(NormalPlayer) && Player2Type == typeof(ComputerPlayer)) || (Player1Type == typeof(ComputerPlayer) && Player2Type == typeof(NormalPlayer)))*/
+            {
+                return GameType.Singleplayer;
+            }
+        }
+
         public enum PlayerType
         {
             Normal, 
@@ -86,7 +109,8 @@ namespace EdgeDemo.CheckersGame
         {
             Hotseat,
             Online,
-            Singleplayer
+            Singleplayer,
+            AIOnly
         }
     }
 }

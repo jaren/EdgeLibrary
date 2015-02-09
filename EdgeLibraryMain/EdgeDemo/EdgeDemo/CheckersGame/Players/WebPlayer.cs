@@ -11,16 +11,32 @@ namespace EdgeDemo.CheckersGame
     //A player used by the remote person playing the game
     public class WebPlayer : Player
     {
-        //Move everything service related here?
-        public WebPlayer(int thisGameID)
+        /// <summary>
+        /// If the web player is Player2 (the joiner) use this overload
+        /// </summary>
+        /// <param name="hostTeamName">Team name of the hosting team</param>
+        public WebPlayer(string hostTeamName)
         {
-            ThisGameID = thisGameID;
+            IsHost = false;
+            ThisGameID = WebService.CreateGame(hostTeamName);
+        }
+        /// <summary>
+        /// If the web player is Player1 (the host) use this overload
+        /// </summary>
+        /// <param name="gameId">ID of the joined game</param>
+        /// <param name="player2name">The name of the joining team</param>
+        public WebPlayer(int gameId, string player2name)
+        {
+            ThisGameID = gameId;
+            IsHost = true;
+            WebService.JoinGame(gameId, player2name);
         }
 
         CheckersServiceClient WebService = new CheckersServiceClient();
         private Thread waitForMoveThread;
         Move PreviousMove = new Move(null, null);
         public int ThisGameID;
+        public bool IsHost;
 
         public void CheckForRemoteMove()
         {
