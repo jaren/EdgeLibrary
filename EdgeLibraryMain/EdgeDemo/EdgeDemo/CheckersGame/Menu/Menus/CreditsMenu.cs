@@ -38,6 +38,23 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(emitter);
 
+            float max = 100;
+            Vector2 force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
+            Vector2 point = Vector2.One;
+
+            TextSprite credit1 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 1 ☺", EdgeGame.WindowSize / 2);
+            credit1.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (credit1.Width * credit1.Scale.X).ToSimUnits(), (credit1.Height * credit1.Scale.Y).ToSimUnits(), 1));
+            point = credit1.Position;
+            credit1.Body.ApplyForce(ref force, ref point);
+            Components.Add(credit1);
+
+            TextSprite credit2 = new TextSprite(Config.MenuButtonTextFont, "Bouncy Credit 2 ☻", EdgeGame.WindowSize / 2);
+            credit2.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (credit2.Width * credit2.Scale.X).ToSimUnits(), (credit2.Height * credit2.Scale.Y).ToSimUnits(), 1));
+            force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
+            point = credit2.Position;
+            credit2.Body.ApplyForce(ref force, ref point);
+            Components.Add(credit2);
+
             Sprite bottom = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
             bottom.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * bottom.Scale.X).ToSimUnits(), (bottom.Height * bottom.Scale.Y).ToSimUnits(), 1));
             bottom.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
