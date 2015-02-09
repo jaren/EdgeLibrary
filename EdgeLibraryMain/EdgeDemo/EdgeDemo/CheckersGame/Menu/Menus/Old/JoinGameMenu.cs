@@ -30,7 +30,7 @@ namespace EdgeDemo.CheckersGame
             join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetJoinableGames().Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -53,7 +53,7 @@ namespace EdgeDemo.CheckersGame
             join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetJoinableGames().Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -76,7 +76,7 @@ namespace EdgeDemo.CheckersGame
             join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) => 
             {
-                if (ServiceClient.GetJoinableGames().Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).State == GameManager.GameState.WaitingForPlayers)
+                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     Config.IsHost = false;
                     Config.ThisGameType = Config.GameType.Online;
@@ -105,10 +105,10 @@ namespace EdgeDemo.CheckersGame
             #region InitialRefresh
             gameIDs = new List<int>(3);
             List<string> buttonTexts = new List<string>();
-            Dictionary<int, GameManager> joinableGames; ;
+            Dictionary<int, GameState> joinableGames; ;
             try
             {
-                joinableGames = ServiceClient.GetJoinableGames();
+                joinableGames = ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers);
                 for (int i = 0; i < Components.OfType<Button>().Count(); i++)
                 {
                     if (joinableGames.Count >= i + 1)
@@ -143,12 +143,12 @@ namespace EdgeDemo.CheckersGame
                 buttonTexts = new List<string>();
                 try
                 {
-                    joinableGames = ServiceClient.GetJoinableGames();
+                    joinableGames = ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers);
                     for (int i = 0; i < Components.OfType<Button>().Count() - 1; i++)
                     {
                         if (joinableGames.Count >= i + 1)
                         {
-                            buttonTexts.Add(joinableGames.Values.ElementAt(i).HostTeamName);
+                            buttonTexts.Add(joinableGames[i].HostTeamName);
                             gameIDs.Add(joinableGames.Keys.ElementAt(i));
                         }
                         else

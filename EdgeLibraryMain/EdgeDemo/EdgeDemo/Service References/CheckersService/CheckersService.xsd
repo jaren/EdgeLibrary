@@ -20,7 +20,6 @@
   <xs:element name="GetLatestMoveFrom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="player1" type="xs:boolean" />
         <xs:element minOccurs="0" name="gameId" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -63,7 +62,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="gameId" type="xs:int" />
-        <xs:element minOccurs="0" name="isHost" type="xs:boolean" />
+        <xs:element minOccurs="0" name="host" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -92,19 +91,21 @@
   <xs:element name="GetAllGamesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="GetAllGamesResult" nillable="true" type="q3:ArrayOfGameManager" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="GetAllGamesResult" nillable="true" type="q3:ArrayOfGameState" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetJoinableGames">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetJoinableGamesResponse">
+  <xs:element name="GetSpecificGames">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetJoinableGamesResult" nillable="true" type="q4:ArrayOfKeyValueOfintGameManagerittRTxUx" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CheckersService" minOccurs="0" name="state" type="q4:GameState.State" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSpecificGamesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetSpecificGamesResult" nillable="true" type="q5:ArrayOfKeyValueOfintGameStateittRTxUx" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

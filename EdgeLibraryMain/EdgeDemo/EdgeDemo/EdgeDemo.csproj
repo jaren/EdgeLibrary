@@ -215,7 +215,7 @@
     </None>
     <None Include="Service References\CheckersService\configuration91.svcinfo" />
     <None Include="Service References\CheckersService\configuration.svcinfo" />
-    <None Include="Service References\CheckersService\EdgeDemo.CheckersService.GameManager.datasource">
+    <None Include="Service References\CheckersService\EdgeDemo.CheckersService.GameState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CheckersService\EdgeDemo.CheckersService.SimpleMove.datasource">

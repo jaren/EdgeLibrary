@@ -8,9 +8,9 @@ using System.Drawing;
 namespace CheckersService
 {
     [DataContract]
-    public class GameManager
+    public class GameState
     {
-        public enum GameState
+        public enum State
         {
             WaitingForPlayers,
             InProgress,
@@ -26,16 +26,16 @@ namespace CheckersService
         [DataMember]
         public DateTime GameStartTime { get; set; }
         [DataMember]
-        public GameState State { get; set; }
+        public State GameInfo { get; set; }
         [DataMember]
         public List<SimpleMove> MoveList { get; set; }
 
-        public GameManager(string hostTeamName)
+        public GameState(string hostTeamName)
         {
             HostTeamName = hostTeamName;
             OtherTeamName = "Waiting For Players";
             GameStartTime = DateTime.UtcNow;
-            State = GameState.WaitingForPlayers;
+            GameInfo = State.WaitingForPlayers;
             MoveList = new List<SimpleMove>();
         }
     }

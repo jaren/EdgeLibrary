@@ -124,12 +124,15 @@ namespace EdgeDemo.CheckersService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameManager", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameState", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
     [System.SerializableAttribute()]
-    public partial class GameManager : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GameState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private EdgeDemo.CheckersService.GameState.State GameInfoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime GameStartTimeField;
@@ -143,9 +146,6 @@ namespace EdgeDemo.CheckersService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string OtherTeamNameField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private EdgeDemo.CheckersService.GameManager.GameState StateField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -153,6 +153,19 @@ namespace EdgeDemo.CheckersService {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public EdgeDemo.CheckersService.GameState.State GameInfo {
+            get {
+                return this.GameInfoField;
+            }
+            set {
+                if ((this.GameInfoField.Equals(value) != true)) {
+                    this.GameInfoField = value;
+                    this.RaisePropertyChanged("GameInfo");
+                }
             }
         }
         
@@ -208,19 +221,6 @@ namespace EdgeDemo.CheckersService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public EdgeDemo.CheckersService.GameManager.GameState State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((this.StateField.Equals(value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -231,8 +231,8 @@ namespace EdgeDemo.CheckersService {
         }
         
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-        [System.Runtime.Serialization.DataContractAttribute(Name="GameManager.GameState", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
-        public enum GameState : int {
+        [System.Runtime.Serialization.DataContractAttribute(Name="GameState.State", Namespace="http://schemas.datacontract.org/2004/07/CheckersService")]
+        public enum State : int {
             
             [System.Runtime.Serialization.EnumMemberAttribute()]
             WaitingForPlayers = 0,
@@ -259,7 +259,7 @@ namespace EdgeDemo.CheckersService {
         bool AddMove(EdgeDemo.CheckersService.SimpleMove move, int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetLatestMoveFrom", ReplyAction="http://tempuri.org/ICheckersService/GetLatestMoveFromResponse")]
-        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool player1, int gameId);
+        EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/CreateGame", ReplyAction="http://tempuri.org/ICheckersService/CreateGameResponse")]
         int CreateGame(string hostTeamName);
@@ -268,16 +268,16 @@ namespace EdgeDemo.CheckersService {
         void JoinGame(int gameId, string otherTeamName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/Disconnect", ReplyAction="http://tempuri.org/ICheckersService/DisconnectResponse")]
-        void Disconnect(int gameId, bool isHost);
+        void Disconnect(int gameId, bool host);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/EndGame", ReplyAction="http://tempuri.org/ICheckersService/EndGameResponse")]
         void EndGame(int gameId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetAllGames", ReplyAction="http://tempuri.org/ICheckersService/GetAllGamesResponse")]
-        EdgeDemo.CheckersService.GameManager[] GetAllGames();
+        EdgeDemo.CheckersService.GameState[] GetAllGames();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetJoinableGames", ReplyAction="http://tempuri.org/ICheckersService/GetJoinableGamesResponse")]
-        System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameManager> GetJoinableGames();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICheckersService/GetSpecificGames", ReplyAction="http://tempuri.org/ICheckersService/GetSpecificGamesResponse")]
+        System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameState> GetSpecificGames(EdgeDemo.CheckersService.GameState.State state);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -311,8 +311,8 @@ namespace EdgeDemo.CheckersService {
             return base.Channel.AddMove(move, gameId);
         }
         
-        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(bool player1, int gameId) {
-            return base.Channel.GetLatestMoveFrom(player1, gameId);
+        public EdgeDemo.CheckersService.SimpleMove GetLatestMoveFrom(int gameId) {
+            return base.Channel.GetLatestMoveFrom(gameId);
         }
         
         public int CreateGame(string hostTeamName) {
@@ -323,20 +323,20 @@ namespace EdgeDemo.CheckersService {
             base.Channel.JoinGame(gameId, otherTeamName);
         }
         
-        public void Disconnect(int gameId, bool isHost) {
-            base.Channel.Disconnect(gameId, isHost);
+        public void Disconnect(int gameId, bool host) {
+            base.Channel.Disconnect(gameId, host);
         }
         
         public void EndGame(int gameId) {
             base.Channel.EndGame(gameId);
         }
         
-        public EdgeDemo.CheckersService.GameManager[] GetAllGames() {
+        public EdgeDemo.CheckersService.GameState[] GetAllGames() {
             return base.Channel.GetAllGames();
         }
         
-        public System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameManager> GetJoinableGames() {
-            return base.Channel.GetJoinableGames();
+        public System.Collections.Generic.Dictionary<int, EdgeDemo.CheckersService.GameState> GetSpecificGames(EdgeDemo.CheckersService.GameState.State state) {
+            return base.Channel.GetSpecificGames(state);
         }
     }
 }

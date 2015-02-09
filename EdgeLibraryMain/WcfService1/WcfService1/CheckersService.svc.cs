@@ -11,7 +11,7 @@ namespace CheckersService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class CheckersService : ICheckersService
     {
-        public Dictionary<int,GameManager> Games = new Dictionary<int,GameManager>();
+        public Dictionary<int, GameState> Games = new Dictionary<int, GameState>();
 
         public bool AddMove(SimpleMove move, int gameId)
         {
@@ -26,9 +26,9 @@ namespace CheckersService
             }
         }
 
-        public SimpleMove GetLatestMoveFrom(bool player1, int gameId)
+        public SimpleMove GetLatestMoveFrom(int gameId)
         {
-            if (Games.Count >= gameId + 1 && Games[gameId].MoveList.Count > 0 && Games[gameId].MoveList[Games[gameId].MoveList.Count - 1].Player1 == player1)
+            if (Games.Count >= gameId + 1 && Games[gameId].MoveList.Count > 0)
             {
                 return Games[gameId].MoveList[Games[gameId].MoveList.Count - 1];
             }
@@ -40,7 +40,7 @@ namespace CheckersService
 
         public int CreateGame(string hostTeamName)
         {
-            GameManager Game = new GameManager(hostTeamName);
+            GameState Game = new GameState(hostTeamName);
             Games.Add(Games.Count,Game);
             return Games.Count - 1;
         }
@@ -48,50 +48,50 @@ namespace CheckersService
         public void JoinGame(int gameId, string otherTeamName)
         {
             Games[gameId].OtherTeamName = otherTeamName;
-            Games[gameId].State = GameManager.GameState.InProgress;
+            Games[gameId].GameInfo = GameState.State.InProgress;
         }
 
-        public void Disconnect(int gameId, bool isHost)
+        public void Disconnect(int gameId, bool host)
         {
-            if (isHost)
+            if (host)
             {
-                Games[gameId].State = GameManager.GameState.HostDisconnected;
+                Games[gameId].GameInfo = GameState.State.HostDisconnected;
             }
             else
             {
-                Games[gameId].State = GameManager.GameState.PlayerDisconnected;
+                Games[gameId].GameInfo = GameState.State.PlayerDisconnected;
             }
         }
 
         public void EndGame(int gameId)
         {
-            Games[gameId].State = GameManager.GameState.Ended;
+            Games[gameId].GameInfo = GameState.State.Ended;
         }
 
-        public Dictionary<int,GameManager> GetSpecificGames(bool waitingForPlayers = false, bool inProgress = false, bool ended = false, bool hostDisconnect = false, bool playerDisconnect = false)
+        public Dictionary<int, GameState> GetSpecificGames(GameState.State state)
         {
-            Dictionary<int, GameManager> SpecificGames = new Dictionary<int, GameManager>();
+            Dictionary<int, GameState> SpecificGames = new Dictionary<int, GameState>();
 
             foreach (int gameId in Games.Keys)
             {
-                GameManager game = Games[gameId];
-                if (waitingForPlayers && game.State == GameManager.GameState.WaitingForPlayers)
+                GameState game = Games[gameId];
+                if (state == GameState.State.WaitingForPlayers)
                 {
                     SpecificGames.Add(gameId,game);
                 }
-                else if (inProgress && game.State == GameManager.GameState.InProgress)
+                else if (state == GameState.State.InProgress)
                 {
                     SpecificGames.Add(gameId, game);
                 }
-                else if (ended && game.State == GameManager.GameState.Ended)
+                else if (state == GameState.State.Ended)
                 {
                     SpecificGames.Add(gameId, game);
                 }
-                else if (hostDisconnect && game.State == GameManager.GameState.HostDisconnected)
+                else if (state == GameState.State.HostDisconnected)
                 {
                     SpecificGames.Add(gameId, game);
                 }
-                else if (playerDisconnect && game.State == GameManager.GameState.PlayerDisconnected)
+                else if (state == GameState.State.PlayerDisconnected)
                 {
                     SpecificGames.Add(gameId, game);
                 }
@@ -100,7 +100,7 @@ namespace CheckersService
             return SpecificGames;
         }
 
-        public List<GameManager> GetAllGames()
+        public List<GameState> GetAllGames()
         {
             return Games.Values.ToList();
         }

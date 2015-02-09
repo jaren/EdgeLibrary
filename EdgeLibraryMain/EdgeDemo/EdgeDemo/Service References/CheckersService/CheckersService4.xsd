@@ -20,22 +20,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfKeyValueOfintKeyValuePairOfintinttwCi8m_S7" nillable="true" type="tns:ArrayOfKeyValueOfintKeyValuePairOfintinttwCi8m_S7" />
-  <xs:complexType name="ArrayOfKeyValueOfintGameManagerittRTxUx">
+  <xs:complexType name="ArrayOfKeyValueOfintGameStateittRTxUx">
     <xs:annotation>
       <xs:appinfo>
         <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintGameManagerittRTxUx">
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="KeyValueOfintGameStateittRTxUx">
         <xs:complexType>
           <xs:sequence>
             <xs:element name="Key" type="xs:int" />
-            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CheckersService" name="Value" nillable="true" type="q2:GameManager" />
+            <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CheckersService" name="Value" nillable="true" type="q2:GameState" />
           </xs:sequence>
         </xs:complexType>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfKeyValueOfintGameManagerittRTxUx" nillable="true" type="tns:ArrayOfKeyValueOfintGameManagerittRTxUx" />
+  <xs:element name="ArrayOfKeyValueOfintGameStateittRTxUx" nillable="true" type="tns:ArrayOfKeyValueOfintGameStateittRTxUx" />
 </xs:schema>
