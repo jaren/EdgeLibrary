@@ -19,18 +19,13 @@ namespace EdgeDemo.CheckersGame
 
         CheckersServiceClient WebService = new CheckersServiceClient();
         private Thread waitForMoveThread;
-<<<<<<< HEAD
         Move PreviousMove = new Move(null, null);
-=======
         public int ThisGameID;
-        private Move PreviousMove;
->>>>>>> origin/master
 
         public void CheckForRemoteMove()
         {
             Move RemoteMove = PreviousMove;
 
-<<<<<<< HEAD
             while (RemoteMove == PreviousMove)
             {
                 //TODO: Add loading text so user thinks something is happening
@@ -39,15 +34,13 @@ namespace EdgeDemo.CheckersGame
                 if (recievedMove != null)
                 {
                     RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(Config.ThisGameID));
-=======
             do
             {
-                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, ThisGameID));
+                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
 
                 if (recievedMove != null)
                 {
-                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(BoardManager.Player1Turn, ThisGameID));
->>>>>>> origin/master
+                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
                     break;
                 }
 
@@ -59,16 +52,12 @@ namespace EdgeDemo.CheckersGame
 
         public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-<<<<<<< HEAD
             base.ReceivePreviousMove(move, possibleMoves);
             PreviousMove = move;
-=======
             if (!base.ReceivePreviousMove(move, possibleMoves))
             {
                 return false;
             }
-
->>>>>>> origin/master
 
             WebService.AddMove(Move.ConvertAndSend(move), ThisGameID);
 
