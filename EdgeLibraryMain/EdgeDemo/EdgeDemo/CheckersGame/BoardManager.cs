@@ -63,7 +63,7 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new ComputerPlayer(2, 0, 2000f, 0f);
+            Player1 = new NormalPlayer();
             Player2 = new NormalPlayer();
 
             //Initializing status sprite
@@ -175,7 +175,7 @@ namespace EdgeDemo.CheckersGame
             }
             */
 
-            MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000,Color.Blue,Color.Transparent));
+            MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
             Ticker ticker = new Ticker(6000);
             ticker.Enabled = true;
             ticker.OnTick += new Ticker.TickerEventHandler(ticker_OnTick);

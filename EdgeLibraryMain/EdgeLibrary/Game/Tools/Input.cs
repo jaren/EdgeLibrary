@@ -41,9 +41,11 @@ namespace EdgeLibrary
         public delegate void KeyboardEvent(Keys key);
         public static event KeyboardEvent OnKeyPress;
         public static event KeyboardEvent OnKeyRelease;
+        public static int ClickCount = 0;
 
         public static void Update(GameTime gameTime)
         {
+            ClickCount = 0;
             previousKeyboard = keyboard;
             previousMouse = mouse;
             keyboard = Keyboard.GetState();

@@ -59,6 +59,8 @@ namespace EdgeDemo.CheckersGame
         {
         }
 
+
+
         private void Input_OnMouseMove(Vector2 mousePosition, Vector2 previousMousePosition)
         {
             if (CanMove)
@@ -71,6 +73,9 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (SelectedFirstSquare)
                     {
+
+   
+
                         //ClearPossibleSquarePaths(PreviousMousedOverSquare);
                         ClearSquareNumberPaths(PreviousMousedOverSquare);
                         DrawSquareNumberPath(MousedOverSquare);
@@ -80,6 +85,8 @@ namespace EdgeDemo.CheckersGame
                         ClearPossibleSquarePaths(PreviousMousedOverSquare);
                         DrawPossibleSquarePaths(MousedOverSquare);
                     }
+
+                 
                 }
             }
         }
@@ -88,7 +95,11 @@ namespace EdgeDemo.CheckersGame
         {
             if (CanMove)
             {
-                if (MousedOverSquare != null)
+                //WORKAROUND**********
+                Input.ClickCount++;
+                //********************
+
+                if (MousedOverSquare != null && /*WORKAROUND*/ Input.ClickCount == 1)
                 {
                     //If the first square hasn't selected, try to select the first square
                     if (!SelectedFirstSquare)
@@ -102,6 +113,7 @@ namespace EdgeDemo.CheckersGame
                     }
                 }
             }
+
         }
         private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { if (CanMove) { } }
 
@@ -211,7 +223,7 @@ namespace EdgeDemo.CheckersGame
                     //TeamText = BoardManager.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
 
                     //Resets move
-                    ResetMove();
+                    //ResetMove();
 
 
 
