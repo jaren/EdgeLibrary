@@ -1,0 +1,27 @@
+<TextureAtlas imagePath="WhitePuff.png">
+	<SubTexture name="whitePuff00.png" x="402" y="758" width="381" height="346"/>
+	<SubTexture name="whitePuff01.png" x="1177" y="0" width="345" height="374"/>
+	<SubTexture name="whitePuff02.png" x="396" y="1143" width="382" height="360"/>
+	<SubTexture name="whitePuff03.png" x="1532" y="1548" width="353" height="383"/>
+	<SubTexture name="whitePuff04.png" x="785" y="411" width="375" height="378"/>
+	<SubTexture name="whitePuff05.png" x="1894" y="790" width="337" height="378"/>
+	<SubTexture name="whitePuff06.png" x="0" y="758" width="400" height="383"/>
+	<SubTexture name="whitePuff07.png" x="1162" y="378" width="367" height="362"/>
+	<SubTexture name="whitePuff08.png" x="0" y="0" width="419" height="384"/>
+	<SubTexture name="whitePuff09.png" x="1161" y="791" width="368" height="405"/>
+	<SubTexture name="whitePuff10.png" x="1887" y="1548" width="349" height="417"/>
+	<SubTexture name="whitePuff11.png" x="0" y="386" width="406" height="370"/>
+	<SubTexture name="whitePuff12.png" x="1894" y="403" width="348" height="385"/>
+	<SubTexture name="whitePuff13.png" x="1531" y="0" width="367" height="401"/>
+	<SubTexture name="whitePuff14.png" x="0" y="1522" width="392" height="350"/>
+	<SubTexture name="whitePuff15.png" x="0" y="1143" width="394" height="377"/>
+	<SubTexture name="whitePuff16.png" x="1531" y="403" width="361" height="384"/>
+	<SubTexture name="whitePuff17.png" x="394" y="1522" width="385" height="345"/>
+	<SubTexture name="whitePuff18.png" x="1532" y="1182" width="360" height="364"/>
+	<SubTexture name="whitePuff19.png" x="781" y="1492" width="377" height="411"/>
+	<SubTexture name="whitePuff20.png" x="780" y="1106" width="379" height="384"/>
+	<SubTexture name="whitePuff21.png" x="804" y="0" width="371" height="376"/>
+	<SubTexture name="whitePuff22.png" x="1531" y="789" width="361" height="391"/>
+	<SubTexture name="whitePuff23.png" x="421" y="0" width="381" height="409"/>
+	<SubTexture name="whitePuff24.png" x="1160" y="1492" width="370" height="362"/>
+</TextureAtlas>

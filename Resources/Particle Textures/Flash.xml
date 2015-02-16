@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="Flash.png">
+	<SubTexture name="flash00.png" x="0" y="526" width="550" height="496"/>
+	<SubTexture name="flash01.png" x="0" y="1560" width="463" height="482"/>
+	<SubTexture name="flash02.png" x="0" y="0" width="563" height="524"/>
+	<SubTexture name="flash03.png" x="1083" y="0" width="463" height="495"/>
+	<SubTexture name="flash04.png" x="1078" y="544" width="483" height="502"/>
+	<SubTexture name="flash05.png" x="551" y="1024" width="525" height="534"/>
+	<SubTexture name="flash06.png" x="1078" y="1048" width="473" height="557"/>
+	<SubTexture name="flash07.png" x="0" y="1024" width="549" height="521"/>
+	<SubTexture name="flash08.png" x="565" y="0" width="516" height="542"/>
+</TextureAtlas>

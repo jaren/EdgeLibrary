@@ -253,6 +253,17 @@
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Particles\Explosion2.png">
+      <Name>Explosion2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="Particles\Explosion2.xml">
+      <Name>Explosion2</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SpaceSheet.xml">
       <Name>SpaceSheet</Name>
       <Importer>XmlImporter</Importer>

@@ -1,0 +1,27 @@
+<TextureAtlas imagePath="Smoke.png">
+	<SubTexture name="blackSmoke00.png" x="1528" y="404" width="362" height="336"/>
+	<SubTexture name="blackSmoke01.png" x="0" y="0" width="398" height="364"/>
+	<SubTexture name="blackSmoke02.png" x="388" y="1467" width="386" height="342"/>
+	<SubTexture name="blackSmoke03.png" x="1530" y="0" width="351" height="367"/>
+	<SubTexture name="blackSmoke04.png" x="0" y="1467" width="386" height="364"/>
+	<SubTexture name="blackSmoke05.png" x="400" y="0" width="377" height="348"/>
+	<SubTexture name="blackSmoke06.png" x="1158" y="417" width="368" height="407"/>
+	<SubTexture name="blackSmoke07.png" x="0" y="366" width="395" height="397"/>
+	<SubTexture name="blackSmoke08.png" x="781" y="0" width="378" height="415"/>
+	<SubTexture name="blackSmoke09.png" x="1887" y="1115" width="338" height="360"/>
+	<SubTexture name="blackSmoke10.png" x="783" y="783" width="372" height="370"/>
+	<SubTexture name="blackSmoke11.png" x="0" y="1138" width="393" height="327"/>
+	<SubTexture name="blackSmoke12.png" x="783" y="417" width="373" height="364"/>
+	<SubTexture name="blackSmoke13.png" x="1156" y="1155" width="371" height="388"/>
+	<SubTexture name="blackSmoke14.png" x="776" y="1161" width="378" height="404"/>
+	<SubTexture name="blackSmoke15.png" x="776" y="1567" width="378" height="371"/>
+	<SubTexture name="blackSmoke16.png" x="1528" y="742" width="360" height="371"/>
+	<SubTexture name="blackSmoke17.png" x="1883" y="0" width="350" height="398"/>
+	<SubTexture name="blackSmoke18.png" x="397" y="366" width="382" height="359"/>
+	<SubTexture name="blackSmoke19.png" x="1529" y="1115" width="356" height="382"/>
+	<SubTexture name="blackSmoke20.png" x="1156" y="1545" width="369" height="350"/>
+	<SubTexture name="blackSmoke21.png" x="395" y="765" width="386" height="394"/>
+	<SubTexture name="blackSmoke22.png" x="1527" y="1545" width="366" height="385"/>
+	<SubTexture name="blackSmoke23.png" x="1161" y="0" width="367" height="402"/>
+	<SubTexture name="blackSmoke24.png" x="0" y="765" width="393" height="371"/>
+</TextureAtlas>

@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="GreenSmoke.png">
+	<SubTexture name="fart00.png" x="607" y="577" width="543" height="547"/>
+	<SubTexture name="fart01.png" x="610" y="0" width="579" height="575"/>
+	<SubTexture name="fart02.png" x="0" y="0" width="608" height="561"/>
+	<SubTexture name="fart03.png" x="1182" y="1129" width="564" height="588"/>
+	<SubTexture name="fart04.png" x="594" y="1128" width="586" height="629"/>
+	<SubTexture name="fart05.png" x="1191" y="0" width="520" height="554"/>
+	<SubTexture name="fart06.png" x="0" y="1128" width="592" height="566"/>
+	<SubTexture name="fart07.png" x="0" y="563" width="605" height="563"/>
+	<SubTexture name="fart08.png" x="1182" y="577" width="571" height="550"/>
+</TextureAtlas>

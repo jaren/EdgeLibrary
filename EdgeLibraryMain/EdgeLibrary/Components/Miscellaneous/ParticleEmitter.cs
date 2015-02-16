@@ -146,7 +146,7 @@ namespace EdgeLibrary
             //If set, changes the particle's texture
             if (TextureIndex != null)
             {
-                particle.AddAction("Texture", new ATextureChange(TextureIndex));
+                particle.AddAction("Texture", new ATextureChange(TextureIndex.Clone()));
             }
 
             //Generates a random EmitPositionVariance to be used in the position

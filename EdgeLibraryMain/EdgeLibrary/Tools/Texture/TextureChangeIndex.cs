@@ -22,6 +22,7 @@ namespace EdgeLibrary
         public int index;
         protected double elapsedTime;
         public bool HasFinished { get; protected set; }
+        public int FrameIncrement = 1;
 
         public TextureChangeIndex(params KeyValuePair<Texture2D, float>[] pairs)
         {
@@ -53,9 +54,9 @@ namespace EdgeLibrary
             }
         }
 
-        public static TextureChangeIndex FromXMLSpriteSheet(float time, string xmlPath, string texturePath)
+        public static TextureChangeIndex FromXMLSpriteSheet(float time, string xmlPath, string texturePath, int frameIncrement = 1)
         {
-            TextureChangeIndex index = new TextureChangeIndex(time);
+            TextureChangeIndex index = new TextureChangeIndex(time) { FrameIncrement = frameIncrement };
             foreach (var kvp in TextureGeneratorTools.SplitSpritesheet(texturePath, xmlPath))
             {
                 index.Add(kvp.Value, time);
@@ -120,13 +121,15 @@ namespace EdgeLibrary
             {
                 if (index < Textures.Count - 1)
                 {
-                    index++;
+                    index += FrameIncrement;
                 }
                 elapsedTime = 0;
             }
 
             if (index >= Textures.Count - 1)
             {
+                index = Textures.Count - 1;
+
                 HasFinished = true;
                 return Textures[index];
             }
@@ -135,6 +138,16 @@ namespace EdgeLibrary
                 HasFinished = false;
             }
             return Textures[index];
+        }
+
+        public TextureChangeIndex Clone()
+        {
+            TextureChangeIndex index = new TextureChangeIndex(0) { FrameIncrement = this.FrameIncrement };
+            for(int i = 0; i < Textures.Count; i++)
+            {
+                index.Add(Textures[i], Times[i]);
+            }
+            return index;
         }
     }
 }
