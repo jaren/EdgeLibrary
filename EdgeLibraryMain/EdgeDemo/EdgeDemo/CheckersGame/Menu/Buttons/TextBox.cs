@@ -82,11 +82,18 @@ namespace EdgeDemo.CheckersGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            TextSprite.Text += key.ToCorrectString();
+            TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
 
             if (key == Keys.Back)
             {
-                TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                /*
+                if (!TextSpriteBlank)
+                {
+                    TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                }
+                 */
+
+                TextSprite.Text = "";
             }
 
             if (TextSprite.Text.Length == 0)

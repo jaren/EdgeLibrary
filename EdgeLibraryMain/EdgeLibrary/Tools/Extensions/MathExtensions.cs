@@ -100,10 +100,10 @@ namespace EdgeLibrary
                     return shifted ? ":" : ";";
                     break;
                 case Keys.OemPeriod:
-                    return shifted ? "." : ">";
+                    return shifted ? ">" : ".";
                     break;
                 case Keys.OemComma:
-                    return shifted ? "." : ">";
+                    return shifted ? "<" : ",";
                     break;
                 case Keys.OemQuestion:
                     return shifted ? "?" : "/";
