@@ -18,6 +18,13 @@ namespace EdgeDemo.CheckersGame
 
         public MainMenu() : base("MainMenu")
         {
+            TextBox box = new TextBox("grey_button00", Config.MenuSubtitleFont, new Vector2(200, 200)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            box.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            box.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            box.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            box.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(box);
+
             Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X/2, EdgeGame.WindowSize.Y/2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
             screenButton.OnClick += screenButton_OnClick;
             Components.Add(screenButton);
@@ -123,17 +130,6 @@ namespace EdgeDemo.CheckersGame
 
         void screenButton_OnClick(Button sender, GameTime gameTime)
         {
-            force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
-
-            foreach (Sprite sprite in PhysicsSprites)
-            {
-                point = sprite.Position;
-                sprite.Body.ApplyForce(ref force, ref point);
-            }
-        }
-
-        void screenRightButton_OnClick(Button sender, GameTime gameTime)
-        {
             Sprite physicsSprite2 = (Sprite)spriteToClone.Clone();
             physicsSprite2.Position = new Vector2(RandomTools.RandomFloat(0, EdgeGame.WindowSize.X), RandomTools.RandomFloat(0, EdgeGame.WindowSize.Y));
             physicsSprite2.AddAction(new AColorChange(new InfiniteColorChangeIndex(Color.Black, Color.White, 1000)));
@@ -141,6 +137,17 @@ namespace EdgeDemo.CheckersGame
             point = physicsSprite2.Position;
             physicsSprite2.Body.ApplyForce(ref force, ref point);
             PhysicsSprites.Add(physicsSprite2);
+        }
+
+        void screenRightButton_OnClick(Button sender, GameTime gameTime)
+        {
+            force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
+
+            foreach (Sprite sprite in PhysicsSprites)
+            {
+                point = sprite.Position;
+                sprite.Body.ApplyForce(ref force, ref point);
+            }
         }
 
         public override void Update(GameTime gameTime)

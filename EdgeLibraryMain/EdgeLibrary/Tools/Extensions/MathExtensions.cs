@@ -57,6 +57,103 @@ namespace EdgeLibrary
         }
 
         /// <summary>
+        /// Returns false if an object equals any of the other ones
+        /// </summary>
+        public static bool EqualsAnyOf(this Object obj, params Object[] objects)
+        {
+            foreach(Object obj2 in objects)
+            {
+                if (obj == obj2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static string ToCorrectString(this Keys key, bool shifted = false)
+        {
+            switch (key)
+            {
+                case Keys.Space:
+                    return " ";
+                    break;
+                case Keys.Tab:
+                    return "    ";
+                    break;
+                case Keys.OemPlus:
+                    return shifted ? "+" : "=";
+                    break;
+                case Keys.OemMinus:
+                    return shifted ? "_" : "-";
+                    break;
+                case Keys.OemTilde:
+                    return shifted ? "~" : "`";
+                    break;
+                case Keys.OemBackslash:
+                    return shifted ? "|" : "\\";
+                    break;
+                case Keys.OemQuotes:
+                    return shifted ? "\"" : "\'";
+                    break;
+                case Keys.OemSemicolon:
+                    return shifted ? ":" : ";";
+                    break;
+                case Keys.OemPeriod:
+                    return shifted ? "." : ">";
+                    break;
+                case Keys.OemComma:
+                    return shifted ? "." : ">";
+                    break;
+                case Keys.OemQuestion:
+                    return shifted ? "?" : "/";
+                    break;
+                case Keys.D0:
+                    return shifted ? ")" : "0";
+                    break;
+                case Keys.D1:
+                    return shifted ? "!" : "1";
+                    break;
+                case Keys.D2:
+                    return shifted ? "@" : "2";
+                    break;
+                case Keys.D3:
+                    return shifted ? "#" : "3";
+                    break;
+                case Keys.D4:
+                    return shifted ? "$" : "4";
+                    break;
+                case Keys.D5:
+                    return shifted ? "%" : "5";
+                    break;
+                case Keys.D6:
+                    return shifted ? "^" : "6";
+                    break;
+                case Keys.D7:
+                    return shifted ? "&" : "7";
+                    break;
+                case Keys.D8:
+                    return shifted ? "*" : "8";
+                    break;
+                case Keys.D9:
+                    return shifted ? "(" : "9";
+                    break;
+            }
+
+            if (key >= Keys.A && key <= Keys.Z)
+            {
+                return shifted ? key.ToString() : key.ToString().ToLower();
+            }
+
+            if (key >= Keys.NumPad0 && key <= Keys.NumPad9)
+            {
+                return key.ToString().Remove(0, 6);
+            }
+
+            return "";
+        }
+
+        /// <summary>
         /// Returns the rotation for a vector (the vector should be a a position - another position)
         /// </summary>
         public static float ToRotation(this Vector2 vector)
