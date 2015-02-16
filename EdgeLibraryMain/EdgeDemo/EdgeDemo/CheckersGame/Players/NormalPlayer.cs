@@ -32,7 +32,7 @@ namespace EdgeDemo.CheckersGame
             //Subscribes to input
             Input.OnMouseMove += Input_OnMouseMove;
             Input.OnKeyPress += Input_OnKeyPress;
-            Input.OnKeyRelease += Input_OnKeyRelease;
+            Input.OnReleaseRightClick += Input_OnReleaseRightClick;
             Input.OnClick += Input_OnClick;
             Input.OnReleaseClick += Input_OnReleaseClick;
         }
@@ -74,7 +74,7 @@ namespace EdgeDemo.CheckersGame
                     if (SelectedFirstSquare)
                     {
 
-   
+
 
                         //ClearPossibleSquarePaths(PreviousMousedOverSquare);
                         ClearSquareNumberPaths(PreviousMousedOverSquare);
@@ -86,7 +86,7 @@ namespace EdgeDemo.CheckersGame
                         DrawPossibleSquarePaths(MousedOverSquare);
                     }
 
-                 
+
                 }
             }
         }
@@ -117,31 +117,28 @@ namespace EdgeDemo.CheckersGame
         }
         private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition) { if (CanMove) { } }
 
-        private void Input_OnKeyRelease(Keys key)
+        private void Input_OnReleaseRightClick(Vector2 mousePosition, Vector2 previousMousePosition)
         {
             if (CanMove)
-            {             //Cancels the move is the cancel key was pressed
-                if (key == Config.MoveCancelKey)
+            {
+                //If the first square was selected, reset the move
+                if (SelectedFirstSquare)
                 {
-                    //If the first square was selected, reset the move
-                    if (SelectedFirstSquare)
+                    //Clears the possible square paths and resets the colors and numbers of all squares in all possible moves
+                    ClearPossibleSquarePaths(startSquare);
+
+                    foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                     {
-                        //Clears the possible square paths and resets the colors and numbers of all squares in all possible moves
-                        ClearPossibleSquarePaths(startSquare);
-
-                        foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
+                        foreach (Square square in possibleMove.SquarePath)
                         {
-                            foreach (Square square in possibleMove.SquarePath)
-                            {
-                                square.Color = square.DefaultColor;
-                                square.SquareNumber.Text = "";
-                            }
+                            square.Color = square.DefaultColor;
+                            square.SquareNumber.Text = "";
                         }
-
-                        DrawPossibleStartSquares(PossibleMoves);
-
-                        SelectedFirstSquare = false;
                     }
+
+                    DrawPossibleStartSquares(PossibleMoves);
+
+                    SelectedFirstSquare = false;
                 }
             }
         }

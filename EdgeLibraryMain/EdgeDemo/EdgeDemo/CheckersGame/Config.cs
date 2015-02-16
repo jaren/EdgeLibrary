@@ -33,7 +33,6 @@ namespace EdgeDemo.CheckersGame
         public static float CameraMaxZoom = 10f;
         public static float CameraScrollSpeed = 10f;
 
-        public static Keys MoveCancelKey = Keys.Tab;
         public static Keys BackKey = Keys.Escape;
 
         public static int SquareSize = 64;

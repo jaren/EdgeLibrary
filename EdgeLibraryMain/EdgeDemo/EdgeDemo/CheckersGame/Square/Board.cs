@@ -156,7 +156,7 @@ namespace EdgeDemo.CheckersGame
                     square.SetPiece(null);
                     CapturedPieces.Add(piece);
                     piece.AddAction(new AColorChange(new ColorChangeIndex(Config.CheckerFadeOutSpeed, piece.Color, Color.Transparent)));
-                    ExplodeSprite.AddAction(new ATextureChange(TextureChangeIndex.FromXMLSpriteSheet(30, "Particles/Explosion2", "Particles/Explosion2", 1)));
+                    ExplodeSprite.AddAction(new ATextureChange(TextureChangeIndex.FromXMLSpriteSheet(20, "Particles/Explosion2", "Particles/Explosion2", 1)));
                     ExplodeSprite.Position = piece.Position;
                     if (piece.Player1)
                     {
