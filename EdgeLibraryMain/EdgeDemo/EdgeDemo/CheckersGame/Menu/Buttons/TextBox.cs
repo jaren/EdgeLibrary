@@ -31,6 +31,9 @@ namespace EdgeDemo.CheckersGame
             Input.OnClick += Input_OnClick;
             Input.OnKeyRelease += Input_OnKeyRelease;
 
+            OnTextColor = Color.White;
+            OffTextColor = Color.LightGray;
+
             textOffset = Vector2.One * 10;
             ReplaceExtra = true;
             TextSpriteBlank = true;
@@ -38,7 +41,9 @@ namespace EdgeDemo.CheckersGame
 
             DefaultText = "Enter Text";
 
-            TextSprite = new TextSprite(font, DefaultText, position - new Vector2(BoundingBox.X, BoundingBox.Y) / 2 + TextOffset) { CenterAsOrigin = false };
+            reloadBoundingBox();
+
+            TextSprite = new TextSprite(font, DefaultText, position - new Vector2(BoundingBox.Width, BoundingBox.Height) / 2 + TextOffset) { Color = OffTextColor, CenterAsOrigin = false };
         }
 
         private void moveTextSprite()
@@ -82,27 +87,30 @@ namespace EdgeDemo.CheckersGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
-
-            if (key == Keys.Back)
+            if (Focused)
             {
-                /*
-                if (!TextSpriteBlank)
+                TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+
+                if (key == Keys.Back)
                 {
-                    TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                    /*
+                    if (!TextSpriteBlank)
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                    }
+                     */
+
+                    TextSprite.Text = "";
                 }
-                 */
 
-                TextSprite.Text = "";
-            }
-
-            if (TextSprite.Text.Length == 0)
-            {
-                TextSpriteBlank = true;
-            }
-            else
-            {
-                TextSpriteBlank = false;
+                if (TextSprite.Text.Length == 0)
+                {
+                    TextSpriteBlank = true;
+                }
+                else
+                {
+                    TextSpriteBlank = false;
+                }
             }
         }
     }

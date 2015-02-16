@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using EdgeLibrary;
 using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -18,12 +19,32 @@ namespace EdgeDemo.CheckersGame
 
         public MainMenu() : base("MainMenu")
         {
-            TextBox box = new TextBox("grey_button00", Config.MenuSubtitleFont, new Vector2(200, 200)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
-            box.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            box.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            box.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
-            box.Style.AllColors = Config.MenuButtonColor;
-            Components.Add(box);
+            ParticleEmitter emitter = new ParticleEmitter("Fire", EdgeGame.WindowSize / 2)
+            {
+                MinEmitWait = 10,
+                MaxEmitWait = 20,
+
+                BlendState = BlendState.Additive,
+
+                MinVelocity = new Vector2(-1.5f),
+                MaxVelocity = new Vector2(2.5f),
+
+                GrowSpeed = 0,
+
+                //MinColorIndex = new ColorChangeIndex(1000, Color.MediumAquamarine, Color.Purple, Color.OrangeRed, Color.Transparent),
+                //MaxColorIndex = new ColorChangeIndex(1000, Color.Aquamarine, Color.MediumPurple, Color.DarkOrange, Color.Transparent),
+
+                TextureIndex = TextureChangeIndex.FromXMLSpriteSheet(10, "Particles/Explosion", "Particles/Explosion"),
+
+                MinLife = 4000,
+                MaxLife = 4500,
+
+                MinScale = new Vector2(2),
+                MaxScale = new Vector2(4),
+
+                MaxParticles = 1000
+            };
+            Components.Add(emitter);
 
             Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X/2, EdgeGame.WindowSize.Y/2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
             screenButton.OnClick += screenButton_OnClick;

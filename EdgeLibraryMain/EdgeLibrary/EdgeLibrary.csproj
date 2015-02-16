@@ -114,6 +114,7 @@
     <Compile Include="Components\3D\Model\PrimitiveModel.cs" />
     <Compile Include="Components\3D\Model\SpriteModel.cs" />
     <Compile Include="Components\3D\Sprite3D.cs" />
+    <Compile Include="Components\Action\2D\ATextureChange.cs" />
     <Compile Include="Game\EdgeGame\ModifiedSpriteBatch.cs" />
     <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />
@@ -140,8 +141,6 @@
     <Compile Include="Game\Tools\Camera3D.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Components\Miscellaneous\ParticleEmitter.cs" />
-    <Compile Include="Components\Sprite\Animation\AnimationIndex.cs" />
-    <Compile Include="Components\Sprite\Animation\AnimSprite.cs" />
     <Compile Include="Components\Sprite\TextSprite.cs" />
     <Compile Include="Game\EdgeGame\EdgeGame.cs" />
     <Compile Include="Game\Tools\DebugLogger.cs" />
@@ -149,6 +148,7 @@
     <Compile Include="Components\Sprite\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Texture\InfiniteColorChangeIndex.cs" />
+    <Compile Include="Tools\Texture\TextureChangeIndex.cs" />
     <Compile Include="Tools\Texture\TextureEditor.cs" />
     <Compile Include="Tools\Extensions\MathExtensions.cs" />
     <Compile Include="Tools\RandomTools.cs" />

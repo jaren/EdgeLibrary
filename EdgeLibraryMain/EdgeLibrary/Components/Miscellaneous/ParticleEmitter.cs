@@ -32,6 +32,8 @@ namespace EdgeLibrary
         //The color for the particles
         public ColorChangeIndex MinColorIndex;
         public ColorChangeIndex MaxColorIndex;
+        //The textures for the particles
+        public TextureChangeIndex TextureIndex;
         //The velocity that the particles will move at
         public Vector2 MinVelocity;
         public Vector2 MaxVelocity;
@@ -140,6 +142,12 @@ namespace EdgeLibrary
 
             //Generates a random color change index
             particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
+            
+            //If set, changes the particle's texture
+            if (TextureIndex != null)
+            {
+                particle.AddAction("Texture", new ATextureChange(TextureIndex));
+            }
 
             //Generates a random EmitPositionVariance to be used in the position
             Vector2 randomEmitPositionVariance = new Vector2(RandomTools.RandomFloat(MinEmitPositionVariance.X, MinEmitPositionVariance.X),
