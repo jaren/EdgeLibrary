@@ -28,12 +28,10 @@ namespace EdgeDemo.CheckersGame
             join1Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join1Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             join1Button.Style.AllColors = Config.MenuButtonColor;
-            join1Button.OnRelease += (x, y) => 
+            join1Button.OnRelease += (x, y) =>
             {
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                 {
-                    Config.IsHost = false;
-                    Config.ThisGameType = Config.GameType.Online;
                     BoardManager.ResetGame = true;
                     MenuManager.SwitchMenu("GameMenu");
                     ServiceClient.JoinGame(gameIDs[0], "OtherTeam");
@@ -51,12 +49,10 @@ namespace EdgeDemo.CheckersGame
             join2Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join2Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             join2Button.Style.AllColors = Config.MenuButtonColor;
-            join2Button.OnRelease += (x, y) => 
+            join2Button.OnRelease += (x, y) =>
             {
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                 {
-                    Config.IsHost = false;
-                    Config.ThisGameType = Config.GameType.Online;
                     BoardManager.ResetGame = true;
                     MenuManager.SwitchMenu("GameMenu");
                     ServiceClient.JoinGame(gameIDs[1], "OtherTeam");
@@ -74,12 +70,10 @@ namespace EdgeDemo.CheckersGame
             join3Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             join3Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             join3Button.Style.AllColors = Config.MenuButtonColor;
-            join3Button.OnRelease += (x, y) => 
+            join3Button.OnRelease += (x, y) =>
             {
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                 {
-                    Config.IsHost = false;
-                    Config.ThisGameType = Config.GameType.Online;
                     BoardManager.ResetGame = true;
                     MenuManager.SwitchMenu("GameMenu");
                     ServiceClient.JoinGame(gameIDs[2], "OtherTeam");
@@ -128,7 +122,7 @@ namespace EdgeDemo.CheckersGame
             }
             catch (Exception exception)
             {
-               // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+                // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
             }
             #endregion
 
@@ -163,7 +157,7 @@ namespace EdgeDemo.CheckersGame
                 }
                 catch (Exception exception)
                 {
-                   // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+                    // System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
                 }
             };
             Components.Add(refreshButton);

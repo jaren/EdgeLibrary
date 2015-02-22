@@ -9,7 +9,8 @@ namespace EdgeDemo.CheckersGame
 {
     public class SingleplayerMenu : MenuBase
     {
-        public SingleplayerMenu() : base("SingleplayerMenu")
+        public SingleplayerMenu()
+            : base("SingleplayerMenu")
         {
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Singleplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
@@ -22,7 +23,7 @@ namespace EdgeDemo.CheckersGame
             startButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             startButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             startButton.Style.AllColors = Config.MenuButtonColor;
-            startButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Singleplayer; BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
+            startButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(startButton);
 
             TextSprite startButtonText = new TextSprite(Config.MenuButtonTextFont, "Start Game", startButton.Position);

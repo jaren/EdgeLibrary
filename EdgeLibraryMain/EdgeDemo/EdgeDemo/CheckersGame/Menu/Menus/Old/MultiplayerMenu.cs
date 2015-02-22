@@ -9,7 +9,8 @@ namespace EdgeDemo.CheckersGame
 {
     public class MultiplayerMenu : MenuBase
     {
-        public MultiplayerMenu() : base("MultiplayerMenu")
+        public MultiplayerMenu()
+            : base("MultiplayerMenu")
         {
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Multiplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
@@ -22,7 +23,7 @@ namespace EdgeDemo.CheckersGame
             hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             hostButton.Style.AllColors = Config.MenuButtonColor;
-            hostButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("HostGameMenu"); };
+            hostButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("HostGameMenu"); };
             Components.Add(hostButton);
 
             Button joinButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.8f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
@@ -30,7 +31,7 @@ namespace EdgeDemo.CheckersGame
             joinButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             joinButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             joinButton.Style.AllColors = Config.MenuButtonColor;
-            joinButton.OnRelease += (x, y) => { Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("JoinGameMenu"); };
+            joinButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("JoinGameMenu"); };
             Components.Add(joinButton);
 
             TextSprite hostButtonText = new TextSprite(Config.MenuButtonTextFont, "Host Game", hostButton.Position);

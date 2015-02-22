@@ -45,11 +45,11 @@ namespace EdgeDemo.CheckersGame
             while (RemoteMove == PreviousMove)
             {
                 //TODO: Add loading text so user thinks something is happening
-                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(Config.ThisGameID));
+                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
 
                 if (recievedMove != null)
                 {
-                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(Config.ThisGameID));
+                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
                     do
                     {
                         recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));

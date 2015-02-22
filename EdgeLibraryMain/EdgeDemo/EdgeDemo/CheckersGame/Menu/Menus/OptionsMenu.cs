@@ -39,12 +39,11 @@ namespace EdgeDemo.CheckersGame
             {
                 if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) 
                 {
-                    if (Config.ThisGameType == Config.GameType.Online)
+                    if (Config.GetGameType() == Config.GameType.Online)
                     {
                         ServiceClient.Disconnect(Config.ThisGameID, Config.IsHost);
                     }
 
-                    Config.ThisGameType = Config.GameType.Singleplayer;
                     MenuManager.SwitchMenu("MainMenu");
                 }
             };

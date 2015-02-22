@@ -8,9 +8,10 @@ using EdgeDemo.CheckersService;
 
 namespace EdgeDemo.CheckersGame
 {
-    class HostGameMenu : MenuBase
+    class HostGameMenu : ToGameMenu
     {
-        public HostGameMenu() : base("HostGameMenu")
+        public HostGameMenu()
+            : base("HostGameMenu")
         {
             CheckersServiceClient ServiceClient = new CheckersServiceClient();
 
@@ -20,13 +21,13 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Waiting For Players\nToDo: TextBox for host team name", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            
+
             Button hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             hostButton.Style.AllColors = Config.MenuButtonColor;
-            hostButton.OnRelease += (x, y) => { Config.IsHost = true; Config.ThisGameID = ServiceClient.CreateGame("DefaultName"); Config.ThisGameType = Config.GameType.Online; BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
+            hostButton.OnRelease += (x, y) => { Config.ThisGameID = ServiceClient.CreateGame("DefaultName"); BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(hostButton);
             /*
             Button joinButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.8f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Color = Config.MenuButtonColor, Scale = new Vector2(1) };
