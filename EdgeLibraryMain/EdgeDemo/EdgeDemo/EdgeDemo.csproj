@@ -142,6 +142,7 @@
     <Compile Include="CheckersGame\Menu\Menus\Old\MultiplayerMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\OptionsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\Old\SingleplayerMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\ToGameMenu.cs" />
     <Compile Include="CheckersGame\Players\ComputerPlayer.cs" />
     <Compile Include="CheckersGame\Players\NormalPlayer.cs" />
     <Compile Include="CheckersGame\Players\Player.cs" />

@@ -63,8 +63,17 @@ namespace EdgeDemo.CheckersGame
             //Initializing the teamtext
             TeamText = Config.Player1Name + ": ";
 
-            Player1 = new NormalPlayer();
-            Player2 = new NormalPlayer();
+            if (MenuManager.PreviousMenu is ToGameMenu)
+            {
+                Player1 = ((ToGameMenu)MenuManager.PreviousMenu).Player1;
+                Player2 = ((ToGameMenu)MenuManager.PreviousMenu).Player2;
+            }
+            else
+            {
+                //Should not be called
+                Player1 = new NormalPlayer();
+                Player2 = new NormalPlayer();
+            }
 
             //Initializing status sprite
             StatusSprite = new TextSprite(Config.StatusFont, Config.Player1Name + "'s Turn", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
