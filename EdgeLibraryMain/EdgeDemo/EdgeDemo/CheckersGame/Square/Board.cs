@@ -16,6 +16,7 @@ namespace EdgeDemo.CheckersGame
         public int Size;
         public Border Border;
         private Sprite ExplodeSprite;
+        private TextureChangeIndex Explosion;
 
         public Square mousedOverSquare;
 
@@ -32,6 +33,7 @@ namespace EdgeDemo.CheckersGame
             Border = new Border(squareTexture, position, borderSize, squareSize * size + totalSquareDistance, borderColor);
 
             ExplodeSprite = new Sprite("Pixel", Vector2.Zero);
+            Explosion = TextureChangeIndex.FromXMLSpriteSheet(20, "Particles/Explosion2", "Particles/Explosion2", 1);
 
             CapturedPieces = new List<Piece>();
             TopTeamCaptures = 0;
@@ -156,7 +158,7 @@ namespace EdgeDemo.CheckersGame
                     square.SetPiece(null);
                     CapturedPieces.Add(piece);
                     piece.AddAction(new AColorChange(new ColorChangeIndex(Config.CheckerFadeOutSpeed, piece.Color, Color.Transparent)));
-                    ExplodeSprite.AddAction(new ATextureChange(TextureChangeIndex.FromXMLSpriteSheet(20, "Particles/Explosion2", "Particles/Explosion2", 1)));
+                    ExplodeSprite.AddAction(new ATextureChange(Explosion));
                     ExplodeSprite.Position = piece.Position;
                     if (piece.Player1)
                     {

@@ -47,6 +47,7 @@ namespace EdgeDemo.CheckersGame
              */
 
             List<SortedMove> sortedMoves = new List<SortedMove>();
+            int piecesLostNextIfNotMoved = 0;
             int piecesTaken = 0;
             int piecesLostNext = 0;
 
@@ -76,14 +77,32 @@ namespace EdgeDemo.CheckersGame
                         }
                     }
                 }
+
+                //Finds out how many pieces will be lost if piece is NOT moved
+                //Warning: Very expensive
+                Board = (Board)board.Clone();
+
+                possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
+                foreach (Piece possibleNextPiece in possibleNextMoves.Keys)
+                {
+                    //Loops through all the moves and chooses the one with the most pieces captured (lost)
+                    foreach (Move possibleNextMove in possibleNextMoves[possibleNextPiece])
+                    {
+                        if (possibleNextMove.JumpedSquares.Count > piecesLostNextIfNotMoved)
+                        {
+                            piecesLostNextIfNotMoved = possibleNextMove.JumpedSquares.Count;
+                        }
+                    }
+                }
+
                 //Adds the move with extra information to sortedMoves
-                sortedMoves.Add(new SortedMove(move, piecesTaken, piecesLostNext));
+                sortedMoves.Add(new SortedMove(move, piecesLostNextIfNotMoved, piecesTaken, piecesLostNext));
             }
 
             Board = null;
 
             //Sorts the moves
-            sortedMoves.OrderByDescending(x => x.PiecesTaken).ThenBy(x => x.PiecesLostNext);
+            sortedMoves.OrderBy(x => x.LostIfNotMoved).ThenByDescending(x => x.PiecesTaken).ThenBy(x => x.PiecesLostNext);
 
             //Adds a random element to the move choosing - all moves with equal 'value' are randomly shuffled
             //Organizes all moves of equal value into smaller lists
@@ -93,7 +112,7 @@ namespace EdgeDemo.CheckersGame
             DividedSortedMoves.Add(new List<SortedMove>());
             foreach(SortedMove move in sortedMoves)
             {
-                if ((move.PiecesTaken != previousMove.PiecesTaken) || (move.PiecesLostNext != previousMove.PiecesLostNext))
+                if ((move.LostIfNotMoved != previousMove.LostIfNotMoved) || (move.PiecesTaken != previousMove.PiecesTaken) || (move.PiecesLostNext != previousMove.PiecesLostNext))
                 {
                     DividedSortedMoves[currentIndex].Add(previousMove);
 
