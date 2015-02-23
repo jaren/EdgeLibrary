@@ -65,8 +65,26 @@ namespace EdgeDemo.CheckersGame
 
             if (MenuManager.PreviousMenu is ToGameMenu)
             {
-                Player1 = ((ToGameMenu)MenuManager.PreviousMenu).Player1;
-                Player2 = ((ToGameMenu)MenuManager.PreviousMenu).Player2;
+                Player pp1 = ((ToGameMenu)MenuManager.PreviousMenu).Player1;
+                Player pp2 = ((ToGameMenu)MenuManager.PreviousMenu).Player2;
+
+                if (pp1 is WebPlayer)
+                {
+                    Player1 = new WebPlayer(((WebPlayer)pp1).TeamName);
+                }
+                else
+                {
+                    Player1 = ((ToGameMenu)MenuManager.PreviousMenu).Player1;
+                }
+
+                if (pp2 is WebPlayer)
+                {
+                    Player2 = new WebPlayer(((WebPlayer)pp2).ThisGameID, ((WebPlayer)pp2).TeamName);
+                }
+                else
+                {
+                    Player2 = ((ToGameMenu)MenuManager.PreviousMenu).Player2;
+                }
             }
             else
             {

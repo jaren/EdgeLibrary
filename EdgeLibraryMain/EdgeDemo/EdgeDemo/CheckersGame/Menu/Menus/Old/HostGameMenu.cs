@@ -13,6 +13,9 @@ namespace EdgeDemo.CheckersGame
         public HostGameMenu()
             : base("HostGameMenu")
         {
+            Player1 = new WebPlayer("DefaultName", false);
+            Player2 = new NormalPlayer();
+
             CheckersServiceClient ServiceClient = new CheckersServiceClient();
 
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Host Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
@@ -27,7 +30,7 @@ namespace EdgeDemo.CheckersGame
             hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             hostButton.Style.AllColors = Config.MenuButtonColor;
-            hostButton.OnRelease += (x, y) => { Config.ThisGameID = ServiceClient.CreateGame("DefaultName"); BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
+            hostButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(hostButton);
             /*
             Button joinButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.8f)) { ClickTexture = EdgeGame.GetTexture("grey_button01"), MouseOverTexture = EdgeGame.GetTexture("grey_button02"), Color = Config.MenuButtonColor, Color = Config.MenuButtonColor, Scale = new Vector2(1) };

@@ -8,11 +8,13 @@ using EdgeDemo.CheckersService;
 
 namespace EdgeDemo.CheckersGame
 {
-    class JoinGameMenu : MenuBase
+    class JoinGameMenu : ToGameMenu
     {
         public JoinGameMenu()
             : base("JoinGameMenu")
         {
+            Player1 = new NormalPlayer();
+
             List<int> gameIDs = new List<int>(3);
 
             CheckersServiceClient ServiceClient = new CheckersServiceClient();
@@ -33,9 +35,8 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player2 = new WebPlayer(gameIDs[0], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
-                    ServiceClient.JoinGame(gameIDs[0], "OtherTeam");
-                    Config.ThisGameID = gameIDs[0];
                 }
                 else
                 {
@@ -54,9 +55,8 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player2 = new WebPlayer(gameIDs[1], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
-                    ServiceClient.JoinGame(gameIDs[1], "OtherTeam");
-                    Config.ThisGameID = gameIDs[1];
                 }
                 else
                 {
@@ -75,9 +75,8 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player2 = new WebPlayer(gameIDs[2], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
-                    ServiceClient.JoinGame(gameIDs[2], "OtherTeam");
-                    Config.ThisGameID = gameIDs[2];
                 }
                 else
                 {

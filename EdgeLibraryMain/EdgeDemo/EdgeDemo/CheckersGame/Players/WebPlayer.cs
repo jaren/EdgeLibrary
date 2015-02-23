@@ -15,21 +15,30 @@ namespace EdgeDemo.CheckersGame
         /// If the web player is Player2 (the joiner) use this overload
         /// </summary>
         /// <param name="hostTeamName">Team name of the hosting team</param>
-        public WebPlayer(string hostTeamName)
+        public WebPlayer(string hostTeamName, bool createGame = true)
         {
             IsHost = false;
-            ThisGameID = WebService.CreateGame(hostTeamName);
+            if (createGame)
+            {
+                ThisGameID = WebService.CreateGame(hostTeamName);
+            }
+            TeamName = hostTeamName;
         }
         /// <summary>
         /// If the web player is Player1 (the host) use this overload
         /// </summary>
         /// <param name="gameId">ID of the joined game</param>
         /// <param name="player2name">The name of the joining team</param>
-        public WebPlayer(int gameId, string player2name)
+        public WebPlayer(int gameId, string player2name, bool joinGame = true)
         {
             ThisGameID = gameId;
             IsHost = true;
-            WebService.JoinGame(gameId, player2name);
+            if (joinGame)
+            {
+                WebService.JoinGame(gameId, player2name);
+            }
+
+            TeamName = player2name;
         }
 
         CheckersServiceClient WebService = new CheckersServiceClient();
@@ -37,6 +46,7 @@ namespace EdgeDemo.CheckersGame
         Move PreviousMove = new Move(null, null);
         public int ThisGameID;
         public bool IsHost;
+        public string TeamName;
 
         public void CheckForRemoteMove()
         {

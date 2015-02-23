@@ -41,7 +41,7 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (Config.GetGameType() == Config.GameType.Online)
                     {
-                        ServiceClient.Disconnect(Config.ThisGameID, Config.IsHost);
+                        ServiceClient.Disconnect(((WebPlayer)Config.GetWebPlayer()).ThisGameID, Config.IsHost());
                     }
 
                     MenuManager.SwitchMenu("MainMenu");

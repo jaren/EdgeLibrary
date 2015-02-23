@@ -97,6 +97,30 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
+        public static Player GetWebPlayer()
+        {
+            if(BoardManager.Player1 is WebPlayer)
+            {
+                return BoardManager.Player1;
+            }
+            else
+            {
+                return BoardManager.Player2;
+            }
+        }
+
+        public static bool IsHost()
+        {
+            if (BoardManager.Player1 is WebPlayer)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public enum PlayerType
         {
             Normal, 
