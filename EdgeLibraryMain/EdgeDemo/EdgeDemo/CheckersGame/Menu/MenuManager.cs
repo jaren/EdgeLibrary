@@ -35,6 +35,10 @@ namespace EdgeDemo.CheckersGame
                 {
                     PreviousMenu = SelectedMenu;
                     SelectedMenu = menu;
+                    if (PreviousMenu != null)
+                    {
+                        PreviousMenu.SwitchOut();
+                    }
                     SelectedMenu.SwitchTo();
                     return true;
                 }

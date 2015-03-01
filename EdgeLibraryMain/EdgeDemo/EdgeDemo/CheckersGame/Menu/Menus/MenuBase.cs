@@ -21,5 +21,10 @@ namespace EdgeDemo.CheckersGame
         {
 
         }
+
+        public virtual void SwitchOut()
+        {
+
+        }
     }
 }
