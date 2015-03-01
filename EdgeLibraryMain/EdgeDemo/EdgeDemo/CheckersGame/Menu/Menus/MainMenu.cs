@@ -12,7 +12,7 @@ namespace EdgeDemo.CheckersGame
     public class MainMenu : MenuBase
     {
         private List<Sprite> PhysicsSprites;
-        private float max;
+        private float max = 100;
         private Vector2 force;
         private Vector2 point;
         private int particleWait = 1;
