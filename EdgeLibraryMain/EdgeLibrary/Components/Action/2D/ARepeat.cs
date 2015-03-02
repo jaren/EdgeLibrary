@@ -41,11 +41,21 @@ namespace EdgeLibrary
             loopedTimes++;
 
             Action.Update(gameTime, sprite);
+            if (Action.toRemove)
+            {
+                Action.Reset();
+            }
 
             if (loopedTimes >= LoopTimes && !RepeatForever)
             {
                 Stop(gameTime, sprite);
             }
+        }
+
+        public override void Reset()
+        {
+            loopedTimes = 0;
+            base.Reset();
         }
 
         public override Action Clone()

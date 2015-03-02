@@ -39,6 +39,12 @@ namespace EdgeLibrary
             sprite.Scale = new Vector2(MathHelper.Lerp(originalScale.X, TargetScale.X, (float)elapsedTime / Time), MathHelper.Lerp(originalScale.Y, TargetScale.Y, (float)elapsedTime / Time));
         }
 
+        public override void Reset()
+        {
+            elapsedTime = 0;
+            base.Reset();
+        }
+
         public override Action Clone()
         {
             return new AScale(TargetScale, Time);

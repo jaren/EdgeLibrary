@@ -33,6 +33,12 @@ namespace EdgeLibrary
             }
         }
 
+        public override void Reset()
+        {
+            Index.ResetTime();
+            base.Reset();
+        }
+
         public override Action Clone()
         {
             return new AColorChange(Index);

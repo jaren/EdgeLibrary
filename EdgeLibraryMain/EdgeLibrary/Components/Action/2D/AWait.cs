@@ -32,6 +32,12 @@ namespace EdgeLibrary
             }
         }
 
+        public override void Reset()
+        {
+            elapsedTime = 0;
+            base.Reset();
+        }
+
         public override Action Clone()
         {
             return new AWait(WaitTime);

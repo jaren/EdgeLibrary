@@ -54,6 +54,16 @@ namespace EdgeLibrary
             }
         }
 
+        //Resets all the actions in the sequence
+        public override void Reset()
+        {
+            foreach(Action action in Actions)
+            {
+                action.Reset();
+            }
+            base.Reset();
+        }
+
         //Returns a new Action
         public override Action Clone()
         {

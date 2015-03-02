@@ -23,7 +23,11 @@ namespace EdgeDemo.CheckersGame
 
         public Sprite CursorFlashSprite;
         public Vector2 CursorFlashOffset;
-        public Vector2 CursorFlashScale;
+        public Vector2 CursorFlashScale
+        {
+            get { return CursorFlashSprite.Scale; }
+            set { CursorFlashSprite.Scale = value; }
+        }
 
         public int CursorFlashDelay
         {
@@ -64,8 +68,9 @@ namespace EdgeDemo.CheckersGame
 
             cursorFlashColor = Color.Black;
             cursorFlashDelay = 750;
-            CursorFlashOffset = new Vector2(4, 0);
+            CursorFlashOffset = new Vector2(4, -7);
             CursorFlashSprite = new Sprite("Pixel", Vector2.Zero);
+            CursorFlashScale = new Vector2(1, 40);
             CursorFlashSprite.AddAction("CursorFlashing", new ARepeat(new ASequence(new AColorChange(new ColorChangeIndex(cursorFlashDelay, Color.Transparent, cursorFlashColor)), new AColorChange(new ColorChangeIndex(cursorFlashDelay, cursorFlashColor, Color.Transparent)))));
 
             textOffset = Vector2.One * 10;
@@ -78,12 +83,26 @@ namespace EdgeDemo.CheckersGame
             reloadBoundingBox();
 
             TextSprite = new TextSprite(font, DefaultText, position - new Vector2(BoundingBox.Width, BoundingBox.Height) / 2 + TextOffset) { Color = OffTextColor, CenterAsOrigin = false };
+            ReloadCursorFlashPosition();
         }
 
         private void ReloadCursorFlash()
         {
             CursorFlashSprite.RemoveAction("CursorFlashing");
             CursorFlashSprite.AddAction("CursorFlashing", new ARepeat(new ASequence(new AColorChange(new ColorChangeIndex(cursorFlashDelay, Color.Transparent, cursorFlashColor)), new AColorChange(new ColorChangeIndex(cursorFlashDelay, cursorFlashColor, Color.Transparent)))));
+        }
+
+        private void ReloadCursorFlashPosition()
+        {
+            //Finds the middle of the right edge on the text sprite
+            if (TextSprite.CenterAsOrigin)
+            {
+                CursorFlashSprite.Position = new Vector2(TextSprite.Position.X + TextSprite.Width / 2, TextSprite.Position.Y) + CursorFlashOffset;
+            }
+            else
+            {
+                CursorFlashSprite.Position = new Vector2(TextSprite.Position.X + TextSprite.Width, TextSprite.Position.Y + TextSprite.Height / 2) + CursorFlashOffset;
+            }
         }
 
         private void moveTextSprite()
@@ -95,12 +114,14 @@ namespace EdgeDemo.CheckersGame
         {
             base.Update(gameTime);
             TextSprite.Update(gameTime);
+            CursorFlashSprite.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             TextSprite.Draw(gameTime);
+            CursorFlashSprite.Draw(gameTime);
         }
 
         void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -155,15 +176,7 @@ namespace EdgeDemo.CheckersGame
                         TextSpriteBlank = false;
                     }
 
-                    //Middle of the right edge on the text sprite
-                    if (TextSprite.CenterAsOrigin)
-                    {
-                        CursorFlashSprite.Position = new Vector2(TextSprite.Position.X + TextSprite.Width / 2, TextSprite.Position.Y) + CursorFlashOffset;
-                    }
-                    else
-                    {
-                        CursorFlashSprite.Position = new Vector2(TextSprite.Position.X + TextSprite.Width, TextSprite.Position.Y + TextSprite.Height / 2) + CursorFlashOffset;
-                    }
+                    ReloadCursorFlashPosition();
                 }
                 else
                 {

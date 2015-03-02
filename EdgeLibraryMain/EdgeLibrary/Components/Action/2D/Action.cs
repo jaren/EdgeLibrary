@@ -37,6 +37,9 @@ namespace EdgeLibrary
         //Returns a Clone of the action so that multiple sprites don't share the same action
         public abstract Action Clone();
         
+        //Resets the action so it can be run again
+        public virtual void Reset() { }
+
         //Marks the action for removal from the sprite's action list
         //OnFinish is NOT called if Stop is not passed in GameTime and Sprite
         public void Stop() { toRemove = true; }
