@@ -46,12 +46,14 @@ namespace EdgeDemo.CheckersGame
             Components.Add(enterNameBox);
 
             #region HOSTGAME
+
+
             hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
             hostButton.Style.AllColors = Config.MenuButtonColor;
-            hostButton.OnRelease += (x, y) => 
+            hostButton.OnRelease += (x, y) =>
             {
                 if (!enterNameBox.TextSpriteBlank)
                 {
@@ -82,16 +84,23 @@ namespace EdgeDemo.CheckersGame
             join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) =>
             {
-                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
+                if (!enterNameBox.TextSpriteBlank)
                 {
-                    BoardManager.ResetGame = true;
-                    Player1 = new NormalPlayer();
-                    Player2 = new WebPlayer(gameIDs[0], "Other Team", false);
-                    MenuManager.SwitchMenu("GameMenu");
+                    if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
+                    {
+                        BoardManager.ResetGame = true;
+                        Player1 = new NormalPlayer();
+                        Player2 = new WebPlayer(gameIDs[0], "Other Team", false);
+                        MenuManager.SwitchMenu("GameMenu");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join1Button);
@@ -103,16 +112,23 @@ namespace EdgeDemo.CheckersGame
             join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) =>
             {
-                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
+                if (!enterNameBox.TextSpriteBlank)
                 {
-                    BoardManager.ResetGame = true;
-                    Player1 = new NormalPlayer();
-                    Player2 = new WebPlayer(gameIDs[1], "Other Team", false);
-                    MenuManager.SwitchMenu("GameMenu");
+                    if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
+                    {
+                        BoardManager.ResetGame = true;
+                        Player1 = new NormalPlayer();
+                        Player2 = new WebPlayer(gameIDs[1], "Other Team", false);
+                        MenuManager.SwitchMenu("GameMenu");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join2Button);
@@ -124,16 +140,23 @@ namespace EdgeDemo.CheckersGame
             join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) =>
             {
-                if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
+                if (!enterNameBox.TextSpriteBlank)
                 {
-                    BoardManager.ResetGame = true;
-                    Player1 = new NormalPlayer();
-                    Player2 = new WebPlayer(gameIDs[2], "Other Team", false);
-                    MenuManager.SwitchMenu("GameMenu");
+                    if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
+                    {
+                        BoardManager.ResetGame = true;
+                        Player1 = new NormalPlayer();
+                        Player2 = new WebPlayer(gameIDs[2], "Other Team", false);
+                        MenuManager.SwitchMenu("GameMenu");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
             };
             Components.Add(join3Button);
