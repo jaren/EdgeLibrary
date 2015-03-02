@@ -7,15 +7,15 @@ using Microsoft.Xna.Framework;
 
 namespace EdgeDemo.CheckersGame
 {
-    public class SingleplayerMenu : MenuBase
+    public class LocalGameSelectMenu : MenuBase
     {
-        public SingleplayerMenu()
-            : base("SingleplayerMenu")
+        public LocalGameSelectMenu()
+            : base("LocalGameSelectMenu")
         {
-            TextSprite title = new TextSprite(Config.MenuTitleFont, "Singleplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
+            TextSprite title = new TextSprite(Config.MenuTitleFont, "Local Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Choose Players!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
             Button startButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };

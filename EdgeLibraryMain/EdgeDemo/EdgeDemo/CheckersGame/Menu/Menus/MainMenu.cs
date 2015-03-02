@@ -17,7 +17,8 @@ namespace EdgeDemo.CheckersGame
         private Vector2 point;
         private int particleWait = 1;
         private bool clicking = false;
-        private Button startGameButton;
+        private Button startLocalGameButton;
+        private Button startMultiplayerGameButton;
         private Button optionsButton;
         private Button creditsButton;
 
@@ -46,18 +47,29 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            startGameButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
-            startGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MainChooseMenu"); };
-            startGameButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            startGameButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            startGameButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
-            startGameButton.Style.AllColors = Config.MenuButtonColor;
-            Components.Add(startGameButton);
+            startLocalGameButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
+            startLocalGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("LocalGameSelectMenu"); };
+            startLocalGameButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            startLocalGameButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            startLocalGameButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            startLocalGameButton.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(startLocalGameButton);
 
-            TextSprite startGameButtonText = new TextSprite(Config.MenuButtonTextFont, "START A GAME", startGameButton.Position);
-            Components.Add(startGameButtonText);
+            TextSprite startLocalGameButtonText = new TextSprite(Config.MenuButtonTextFont, "LOCAL GAME", startLocalGameButton.Position);
+            Components.Add(startLocalGameButtonText);
 
-            optionsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            startMultiplayerGameButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
+            startMultiplayerGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerGameSelectMenu"); };
+            startMultiplayerGameButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            startMultiplayerGameButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            startMultiplayerGameButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            startMultiplayerGameButton.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(startMultiplayerGameButton);
+
+            TextSprite startMultiplayerGameButtonText = new TextSprite(Config.MenuButtonTextFont, "MULTIPLAYER GAME", startMultiplayerGameButton.Position);
+            Components.Add(startMultiplayerGameButtonText);
+
+            optionsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("NoGameOptionsMenu"); };
             optionsButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             optionsButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
@@ -68,7 +80,7 @@ namespace EdgeDemo.CheckersGame
             TextSprite optionsButtonText = new TextSprite(Config.MenuButtonTextFont, "OPTIONS", optionsButton.Position);
             Components.Add(optionsButtonText);
 
-            creditsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.9f) };
+            creditsButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.75f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             creditsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("CreditsMenu"); };
             creditsButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             creditsButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
@@ -179,8 +191,11 @@ namespace EdgeDemo.CheckersGame
             top.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(top);
 
-            startGameButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (startGameButton.Width * startGameButton.Scale.X).ToSimUnits(), (startGameButton.Height * startGameButton.Scale.Y).ToSimUnits(), 1));
-            startGameButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+            startLocalGameButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (startLocalGameButton.Width * startLocalGameButton.Scale.X).ToSimUnits(), (startLocalGameButton.Height * startLocalGameButton.Scale.Y).ToSimUnits(), 1));
+            startLocalGameButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            startMultiplayerGameButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (startMultiplayerGameButton.Width * startMultiplayerGameButton.Scale.X).ToSimUnits(), (startMultiplayerGameButton.Height * startMultiplayerGameButton.Scale.Y).ToSimUnits(), 1));
+            startMultiplayerGameButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
 
             optionsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (optionsButton.Width * optionsButton.Scale.X).ToSimUnits(), (optionsButton.Height * optionsButton.Scale.Y).ToSimUnits(), 1));
             optionsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
