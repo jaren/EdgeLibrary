@@ -303,7 +303,7 @@ namespace EdgeDemo.CheckersGame
                 {
                     for (int i = 0; i < move.SquarePath.Count; i++)
                     {
-                        move.SquarePath[i].SquareNumber.Text = i.ToString();
+                        move.SquarePath[i].SquareNumber.Text = (i + 1).ToString();
                     }
 
                     foreach (Square square in move.JumpedSquares)

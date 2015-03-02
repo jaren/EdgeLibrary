@@ -63,86 +63,6 @@ namespace EdgeDemo.CheckersGame
             return Moves;
         }
 
-        //Returns whether a player can jump or not
-        //Almost unnecessary as PlayerCanJumpTo returns more information
-        public static bool PlayerCanJump(bool player1, Board board = null)
-        {
-            //Must be set here because BoardManager.Board is not a compile-time constant
-            if (board == null)
-            {
-                board = BoardManager.Board;
-            }
-
-            foreach (Square square in board.Squares)
-            {
-                Piece piece = square.OccupyingPiece;
-                if (piece != null && piece.Player1 == player1)
-                {
-                    #region BottomTeam
-                    if (!piece.Player1 || piece.King)
-                    {
-                        if (piece.X > 1 && piece.Y > 1)
-                        {
-                            Square topLeft = board.Squares[square.X - 1, square.Y - 1];
-                            Square topLeftTopLeft = board.Squares[square.X - 1, square.Y - 1];
-
-                            if (topLeft.OccupyingPiece != null && topLeft.OccupyingPiece.Player1 != piece.Player1)
-                            {
-                                if (board.Squares[topLeftTopLeft.X, topLeftTopLeft.Y].OccupyingPiece == null)
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                        if (piece.X < board.Size - 2 && piece.Y > 1)
-                        {
-                            Square topRight = board.Squares[square.X + 1, square.Y - 1];
-                            Square topRightTopRight = board.Squares[square.X + 2, square.Y - 2];
-
-                            if (topRight.OccupyingPiece != null && topRight.OccupyingPiece.Player1 != piece.Player1)
-                            {
-                                if (board.Squares[topRightTopRight.X, topRightTopRight.Y].OccupyingPiece == null)
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    #endregion BottomTeam
-                    #region TopTeam
-                    if (piece.Player1 || piece.King)
-                    {
-                        if (piece.X > 1 && piece.Y < board.Size - 2)
-                        {
-                            Square bottomLeft = board.Squares[square.X - 1, square.Y + 1];
-                            Square bottomLeftBottomLeft = board.Squares[square.X - 2, square.Y + 2];
-                            if (bottomLeft.OccupyingPiece != null && bottomLeft.OccupyingPiece.Player1 != piece.Player1)
-                            {
-                                if (board.Squares[bottomLeftBottomLeft.X, bottomLeftBottomLeft.Y].OccupyingPiece == null)
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                        if (piece.X < board.Size - 2 && piece.Y < board.Size - 2)
-                        {
-                            Square bottomRight = board.Squares[square.X + 1, square.Y + 1];
-                            Square bottomRightBottomRight = board.Squares[square.X + 2, square.Y + 2];
-                            if (bottomRight.OccupyingPiece != null && bottomRight.OccupyingPiece.Player1 != piece.Player1)
-                            {
-                                if (board.Squares[bottomRightBottomRight.X, bottomRightBottomRight.Y].OccupyingPiece == null)
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    #endregion TopTeam
-                }
-            }
-            return false;
-        }
-
         public static Dictionary<Piece, List<Square>> PlayerCanJumpTo(bool player1, Board board = null)
         {
             //Must be set here because BoardManager.Board is not a compile-time constant
@@ -218,17 +138,6 @@ namespace EdgeDemo.CheckersGame
             }
 
             return toReturn;
-        }
-
-        public static List<Square> JumpsFromSquare(Piece jumpingPiece, int jumpToX, int jumpToY)
-        {
-            List<Square> toReturn = new List<Square>();
-
-            Piece ghostPiece = jumpingPiece;
-            ghostPiece.X = jumpToX;
-            ghostPiece.Y = jumpToY;
-
-            return PieceCanJumpTo(ghostPiece);
         }
 
         //Returns a list of squares a specific piece can jump to
@@ -312,6 +221,39 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
+        //Unused: May be used for recursion later
+        public static List<Move> AllPossibleJumps(Piece piece, Board board = null)
+        {
+            //Must be set here because BoardManager.Board is not a compile-time constant
+            if (board == null)
+            {
+                board = BoardManager.Board;
+            }
+
+            List<Move> MultiJumps = new List<Move>();
+            List<Square> originalJumps = PieceCanJumpTo(piece);
+
+            foreach (Square square in originalJumps)
+            {
+                List<Square> JumpedSquares = new List<Square>();
+                List<Square> SquarePath = new List<Square>();
+
+                SquarePath.Add(board.Squares[piece.X, piece.Y]);
+                SquarePath.Add(square);
+                JumpedSquares.Add(board.GetSquareBetween(board.Squares[piece.X, piece.Y], square));
+
+                List<Square> nextJumps = GetJumpsFromSquare(piece, square);
+                while (nextJumps.Count > 0)
+                {
+
+                }
+
+                MultiJumps.Add(new Move(SquarePath, JumpedSquares));
+            }
+
+            return MultiJumps;
+        }
+
         public static List<Move> PieceCanMultiJumpTo(Piece piece, Board board = null)
         {
             //Must be set here because BoardManager.Board is not a compile-time constant
@@ -325,20 +267,54 @@ namespace EdgeDemo.CheckersGame
 
             foreach (Square square in originalJumps)
             {
-                List<Square> secondJumps = GetJumpsFromSquare(square, piece);
+                List<Square> secondJumps = GetJumpsFromSquare(piece, square);
                 if (secondJumps.Count > 0)
                 {
                     foreach (Square secondSquare in secondJumps)
                     {
-                        List<Square> thirdJumps = GetJumpsFromSquare(secondSquare, piece);
+                        List<Square> thirdJumps = GetJumpsFromSquare(piece, square);
                         if (thirdJumps.Count > 0)
                         {
                             foreach (Square thirdSquare in thirdJumps)
                             {
-                                MultiJumps.Add(
-                                    new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
-                                    new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
-                                );
+                                List<Square> fourthJumps = GetJumpsFromSquare(piece, square);
+                                if (fourthJumps.Count > 0)
+                                {
+                                    foreach (Square fourthSquare in fourthJumps)
+                                    {
+                                        if (fourthSquare != thirdSquare)
+                                        {
+                                            MultiJumps.Add(
+                                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare, fourthSquare},
+                                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare), board.GetSquareBetween(thirdSquare, fourthSquare) })
+                                            );
+                                        }
+                                        else
+                                        {
+                                            MultiJumps.Add(
+                                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
+                                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
+                                            );
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (thirdSquare != secondSquare)
+                                    {
+                                        MultiJumps.Add(
+                                            new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
+                                            new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
+                                        );
+                                    }
+                                    else
+                                    {
+                                        MultiJumps.Add(
+                                            new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare },
+                                            new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare) })
+                                        );
+                                    }
+                                }
                             }
                         }
                         else
@@ -360,20 +336,6 @@ namespace EdgeDemo.CheckersGame
             }
 
             return MultiJumps;
-        }
-
-        public static List<Square> GetJumpsFromSquare(Square originSquare, Piece jumpingPiece)
-        {
-            List<Square> jumps = new List<Square>();
-            Piece fakePiece = new Piece("none", Vector2.Zero, Color.White, 0f, jumpingPiece.Player1);
-            fakePiece.X = originSquare.X;
-            fakePiece.Y = originSquare.Y;
-            fakePiece.King = jumpingPiece.King;
-            fakePiece.Fake = true;
-
-            jumps = PieceCanJumpTo(fakePiece);
-
-            return jumps;
         }
 
         public static Dictionary<Piece, List<Move>> PlayerCanMultiJumpTo(bool topTeam, Board board = null)
@@ -401,6 +363,18 @@ namespace EdgeDemo.CheckersGame
                 }
             }
             return multiJumps;
+        }
+
+        public static List<Square> GetJumpsFromSquare(Piece jumpingPiece, Square originSquare)
+        {
+            List<Square> jumps = new List<Square>();
+            Piece fakePiece = new Piece("none", Vector2.Zero, Color.White, 0f, jumpingPiece.Player1);
+            fakePiece.X = originSquare.X;
+            fakePiece.Y = originSquare.Y;
+            fakePiece.King = jumpingPiece.King;
+            fakePiece.Fake = true;
+
+            return PieceCanJumpTo(fakePiece);
         }
 
         public static Dictionary<Piece, List<Square>> PlayerCanMoveTo(bool topTeam, Board board = null)
