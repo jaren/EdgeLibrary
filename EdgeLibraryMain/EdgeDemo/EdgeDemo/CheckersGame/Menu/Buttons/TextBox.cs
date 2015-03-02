@@ -13,6 +13,7 @@ namespace EdgeDemo.CheckersGame
         public bool Focused;
         public bool TextSpriteBlank;
         public string DefaultText;
+        public Keys EnterKey;
         public Color OnTextColor;
         public Color OffTextColor;
         public TextSprite TextSprite;
@@ -33,6 +34,8 @@ namespace EdgeDemo.CheckersGame
 
             OnTextColor = Color.White;
             OffTextColor = Color.LightGray;
+
+            EnterKey = Keys.Enter;
 
             textOffset = Vector2.One * 10;
             ReplaceExtra = true;
@@ -89,27 +92,39 @@ namespace EdgeDemo.CheckersGame
         {
             if (Focused)
             {
-                TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
-
-                if (key == Keys.Back)
+                if (key != EnterKey)
                 {
-                    /*
-                    if (!TextSpriteBlank)
+                    TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+
+                    if (key == Keys.Back)
                     {
-                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                        /*
+                        if (!TextSpriteBlank)
+                        {
+                            TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                        }
+                         */
+
+                        TextSprite.Text = "";
                     }
-                     */
 
-                    TextSprite.Text = "";
-                }
-
-                if (TextSprite.Text.Length == 0)
-                {
-                    TextSpriteBlank = true;
+                    if (TextSprite.Text.Length == 0)
+                    {
+                        TextSpriteBlank = true;
+                    }
+                    else
+                    {
+                        TextSpriteBlank = false;
+                    }
                 }
                 else
                 {
-                    TextSpriteBlank = false;
+                    Focused = false;
+                    TextSprite.Color = OffTextColor;
+                    if (TextSpriteBlank)
+                    {
+                        TextSprite.Text = DefaultText;
+                    }
                 }
             }
         }

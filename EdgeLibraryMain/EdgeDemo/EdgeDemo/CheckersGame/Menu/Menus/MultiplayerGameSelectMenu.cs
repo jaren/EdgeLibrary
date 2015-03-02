@@ -12,6 +12,11 @@ namespace EdgeDemo.CheckersGame
     {
         private List<int> gameIDs;
         private CheckersServiceClient ServiceClient;
+
+        private TextBox enterNameBox;
+
+        private Button hostButton;
+        private TextSprite hostButtonText;
         private Button join1Button;
         private TextSprite join1ButtonText;
         private Button join2Button;
@@ -24,17 +29,51 @@ namespace EdgeDemo.CheckersGame
         public MultiplayerGameSelectMenu()
             : base("MultiplayerGameSelectMenu")
         {
-            Player1 = new NormalPlayer();
-
-            gameIDs = new List<int>(3);
-
             ServiceClient = new CheckersServiceClient();
 
-            TextSprite title = new TextSprite(Config.MenuTitleFont, "Join Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
+            TextSprite title = new TextSprite(Config.MenuTitleFont, "Multiplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click Refresh to Search for Joinable Games", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Join or Host a Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
+
+            enterNameBox = new TextBox("grey_button00", Config.MenuButtonTextFont, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { Color = Config.MenuButtonColor, Scale = new Vector2(2, 1.25f) };
+            enterNameBox.DefaultText = "Enter your team name here";
+            enterNameBox.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            enterNameBox.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            enterNameBox.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            enterNameBox.Style.AllColors = Config.MenuButtonColor;
+            Components.Add(enterNameBox);
+
+            #region HOSTGAME
+            hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
+            hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
+            hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            hostButton.Style.AllColors = Config.MenuButtonColor;
+            hostButton.OnRelease += (x, y) => 
+            {
+                if (!enterNameBox.TextSpriteBlank)
+                {
+                    Player1 = new WebPlayer(enterNameBox.TextSprite.Text, false);
+                    Player2 = new NormalPlayer();
+                    BoardManager.ResetGame = true;
+                    MenuManager.SwitchMenu("GameMenu");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
+            };
+            Components.Add(hostButton);
+
+            hostButtonText = new TextSprite(Config.MenuButtonTextFont, "Host a Game", hostButton.Position);
+            Components.Add(hostButtonText);
+
+            #endregion
+
+            #region JOINGAME
+            gameIDs = new List<int>(3);
 
             join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join1Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
@@ -46,6 +85,7 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player1 = new NormalPlayer();
                     Player2 = new WebPlayer(gameIDs[0], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
                 }
@@ -66,6 +106,7 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player1 = new NormalPlayer();
                     Player2 = new WebPlayer(gameIDs[1], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
                 }
@@ -86,6 +127,7 @@ namespace EdgeDemo.CheckersGame
                 if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                 {
                     BoardManager.ResetGame = true;
+                    Player1 = new NormalPlayer();
                     Player2 = new WebPlayer(gameIDs[2], "Other Team", false);
                     MenuManager.SwitchMenu("GameMenu");
                 }
@@ -119,6 +161,7 @@ namespace EdgeDemo.CheckersGame
 
             TextSprite refreshButtonText = new TextSprite(Config.MenuButtonTextFont, "Refresh", refreshButton.Position);
             Components.Add(refreshButtonText);
+            #endregion
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }

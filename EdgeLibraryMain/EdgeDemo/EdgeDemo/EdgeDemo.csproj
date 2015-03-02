@@ -132,7 +132,6 @@
     <Compile Include="CheckersGame\Menu\Menus\CreditsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\GameMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\NoGameOptionsMenu.cs" />
-    <Compile Include="CheckersGame\Menu\Menus\Old\HostGameMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\MultiplayerGameSelectMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\LocalGameSelectMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\MenuBase.cs" />
