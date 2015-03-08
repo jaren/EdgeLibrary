@@ -24,7 +24,7 @@ namespace EdgeDemo.CheckersGame
         private Button join3Button;
         private TextSprite join3ButtonText;
         private Button refreshButton;
-        private TextSprite refreshButtonText;
+        private Sprite refreshButtonTexture;
         private List<string> buttonTexts;
         private Dictionary<int, GameState> joinableGames;
 
@@ -36,9 +36,6 @@ namespace EdgeDemo.CheckersGame
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Multiplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Join or Host a Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
-            Components.Add(subTitle);
-
             enterNameBox = new TextBox("grey_button00", Config.MenuButtonTextFont, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { Color = Color.LightGray, Scale = new Vector2(2, 1.25f) };
             enterNameBox.DefaultText = "Enter your team name here";
             enterNameBox.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
@@ -48,9 +45,10 @@ namespace EdgeDemo.CheckersGame
             Components.Add(enterNameBox);
 
             #region HOSTGAME
+            TextSprite hostText = new TextSprite(Config.MenuSubtitleFont, "Host a Game", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.35f));
+            Components.Add(hostText);
 
-
-            hostButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.8f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            hostButton = new Button("grey_button00", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             hostButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             hostButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
             hostButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
@@ -79,10 +77,13 @@ namespace EdgeDemo.CheckersGame
             #region JOINGAME
             gameIDs = new List<int>(3);
 
-            join1Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.4f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            TextSprite joinText = new TextSprite(Config.MenuSubtitleFont, "Join a Game", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.35f));
+            Components.Add(joinText);
+
+            join1Button = new Button("grey_button00", new Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join1Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            join1Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            join1Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join1Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
+            join1Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button025");
             join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) =>
             {
@@ -107,10 +108,10 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join1Button);
 
-            join2Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            join2Button = new Button("grey_button00", new Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join2Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            join2Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            join2Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join2Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
+            join2Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button02");
             join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) =>
             {
@@ -135,10 +136,10 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(join2Button);
 
-            join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            join3Button = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.65f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join3Button.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            join3Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            join3Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            join3Button.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
+            join3Button.Style.ClickTexture = EdgeGame.GetTexture("grey_button02");
             join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) =>
             {
@@ -173,10 +174,10 @@ namespace EdgeDemo.CheckersGame
             join3ButtonText = new TextSprite(Config.MenuButtonTextFont, "No Game", join3Button.Position);
             Components.Add(join3ButtonText);
 
-            refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.65f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.23f, 1) };
             refreshButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
+            refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button02");
             refreshButton.Style.AllColors = Config.MenuButtonColor;
             refreshButton.OnRelease += (x, y) =>
             {
@@ -184,8 +185,8 @@ namespace EdgeDemo.CheckersGame
             };
             Components.Add(refreshButton);
 
-            refreshButtonText = new TextSprite(Config.MenuButtonTextFont, "Refresh", refreshButton.Position);
-            Components.Add(refreshButtonText);
+            refreshButtonTexture = new Sprite("return_white2", refreshButton.Position) { Scale = new Vector2(0.5f) };
+            Components.Add(refreshButtonTexture);
             #endregion
 
             Input.OnKeyRelease += Input_OnKeyRelease;

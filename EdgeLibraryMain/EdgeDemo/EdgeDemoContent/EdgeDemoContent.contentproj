@@ -167,23 +167,45 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonSheet.png">
+    <Compile Include="GUI\ButtonSheet.png">
       <Name>ButtonSheet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BlueGUI.png">
+    <Compile Include="GUI\BlueGUI.png">
       <Name>BlueGUI</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="BlueGUI.xml">
+    <Compile Include="GUI\BlackIcons1x.png">
+      <Name>BlackIcons1x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="GUI\BlackIcons1x.xml">
+      <Name>BlackIcons1x</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="GUI\BlackIcons2x.png">
+      <Name>BlackIcons2x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="GUI\BlackIcons2x.xml">
+      <Name>BlackIcons2x</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GUI\BlueGUI.xml">
       <Name>BlueGUI</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ButtonSheet.xml">
+    <Content Include="GUI\ButtonSheet.xml">
       <Name>ButtonSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
@@ -236,13 +258,35 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
     </Compile>
-    <Compile Include="GreyGUI.png">
+    <Compile Include="GUI\GreyGUI.png">
       <Name>GreyGUI</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Content Include="GreyGUI.xml">
+    <Content Include="GUI\GreyGUI.xml">
       <Name>GreyGUI</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="GUI\WhiteIcons1x.png">
+      <Name>WhiteIcons1x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="GUI\WhiteIcons1x.xml">
+      <Name>WhiteIcons1x</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="GUI\WhiteIcons2x.png">
+      <Name>WhiteIcons2x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="GUI\WhiteIcons2x.xml">
+      <Name>WhiteIcons2x</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
