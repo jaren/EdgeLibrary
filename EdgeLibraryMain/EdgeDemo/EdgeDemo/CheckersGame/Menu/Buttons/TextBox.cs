@@ -49,11 +49,17 @@ namespace EdgeDemo.CheckersGame
         public Vector2 TextOffset
         {
             get { return textOffset; }
-            set { textOffset = value; moveTextSprite(); }
+            set { textOffset = value; ChangeCentering(); }
         }
 
         private Vector2 textOffset;
         public bool ReplaceExtra;
+        public bool CenterTextBox
+        {
+            get { return centerTextBox; }
+            set { centerTextBox = value; ChangeCentering(); }
+        }
+        private bool centerTextBox;
 
         public TextBox(string texture, string font, Vector2 position)
             : base(texture, position)
@@ -75,6 +81,7 @@ namespace EdgeDemo.CheckersGame
 
             textOffset = Vector2.One * 10;
             ReplaceExtra = true;
+            centerTextBox = true;
             TextSpriteBlank = true;
             Focused = false;
 
@@ -82,8 +89,25 @@ namespace EdgeDemo.CheckersGame
 
             reloadBoundingBox();
 
-            TextSprite = new TextSprite(font, DefaultText, position - new Vector2(BoundingBox.Width, BoundingBox.Height) / 2 + TextOffset) { Color = OffTextColor, CenterAsOrigin = false };
+            TextSprite = new TextSprite(font, DefaultText, position) { Color = OffTextColor };
             ReloadCursorFlashPosition();
+            ChangeCentering();
+        }
+
+        private void ChangeCentering()
+        {
+            if (centerTextBox)
+            {
+                CenterAsOrigin = true;
+                TextSprite.CenterAsOrigin = true;
+                TextSprite.Position = Position;
+            }
+            else
+            {
+                CenterAsOrigin = false;
+                TextSprite.CenterAsOrigin = false;
+                TextSprite.Position = Position + TextOffset;
+            }
         }
 
         private void ReloadCursorFlash()
@@ -103,11 +127,6 @@ namespace EdgeDemo.CheckersGame
             {
                 CursorFlashSprite.Position = new Vector2(TextSprite.Position.X + TextSprite.Width, TextSprite.Position.Y + TextSprite.Height / 2) + CursorFlashOffset;
             }
-        }
-
-        private void moveTextSprite()
-        {
-            TextSprite.Position = Position - new Vector2(BoundingBox.X, BoundingBox.Y) / 2 + TextOffset;
         }
 
         public override void Update(GameTime gameTime)
@@ -133,6 +152,7 @@ namespace EdgeDemo.CheckersGame
                 if (TextSpriteBlank)
                 {
                     TextSprite.Text = "";
+                    CursorFlashSprite.Position = Position;
                 }
             }
             else
