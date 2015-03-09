@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EdgeDemo.CheckersGame
 {
-    public static class MovementManager
+    public static class MovementManagerTest
     {
         /*
          * All code sections in this class named "BottomTeam" check for jumps for all pieces on the
@@ -140,6 +140,37 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
+        public static List<Move> GenerateNewListOfJumps(Piece piece)
+        {
+            List<Move> CompletedJumpSequences = new List<Move>();
+            Board fakeBoard = (Board)BoardManager.Board.Clone();
+            PieceCanMultiJumpToTwo(piece, fakeBoard, CompletedJumpSequences);
+            return CompletedJumpSequences;
+        }
+
+        private static void PieceCanMultiJumpToTwo(Piece piece, Board FakeBoard, List<Move> JumpSequences, Move CurrentMove = null)
+        {
+            foreach (Square jump in PieceCanJumpTo(piece))
+            {
+                if (CurrentMove == null)
+                {
+                    CurrentMove = new Move(new List<Square>() { FakeBoard.Squares[piece.X, piece.Y], jump }, new List<Square>() { FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump) });
+                }
+                else
+                {
+                    CurrentMove.SquarePath.Add(jump);
+                    CurrentMove.JumpedSquares.Add(FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y],jump));
+                }
+
+                CurrentMove.SwitchBoards(FakeBoard).RunMove(FakeBoard);
+
+                PieceCanMultiJumpToTwo(piece, FakeBoard, JumpSequences, CurrentMove);
+            }
+
+            JumpSequences.Add(CurrentMove);
+        }
+
+
         //Returns a list of squares a specific piece can jump to
         public static List<Square> PieceCanJumpTo(Piece piece, Board board = null)
         {
@@ -221,8 +252,7 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
-        //Unused: May be used for recursion later
-        public static List<Move> AllPossibleJumps(Piece piece, Board board = null)
+        public static List<Move> PieceCanMultiJumpTo(Piece piece, Board board = null)
         {
             //Must be set here because BoardManager.Board is not a compile-time constant
             if (board == null)
@@ -235,56 +265,75 @@ namespace EdgeDemo.CheckersGame
 
             foreach (Square square in originalJumps)
             {
-                List<Square> JumpedSquares = new List<Square>();
-                List<Square> SquarePath = new List<Square>();
-
-                SquarePath.Add(board.Squares[piece.X, piece.Y]);
-                SquarePath.Add(square);
-                JumpedSquares.Add(board.GetSquareBetween(board.Squares[piece.X, piece.Y], square));
-
-                List<Square> nextJumps = GetJumpsFromSquare(piece, square);
-                while (nextJumps.Count > 0)
+                List<Square> secondJumps = GetJumpsFromSquare(piece, square);
+                if (secondJumps.Count > 0)
                 {
-
-                }
-
-                MultiJumps.Add(new Move(SquarePath, JumpedSquares));
-            }
-
-            return MultiJumps;
-        }
-
-        public static List<Move> GenerateNewListOfJumps(Piece piece)
-        {
-            List<Move> CompletedJumpSequences = new List<Move>();
-            Board fakeBoard = (Board)BoardManager.Board.Clone();
-            PieceCanMultiJumpTo(fakeBoard.Squares[piece.X,piece.Y].OccupyingPiece, fakeBoard, CompletedJumpSequences);
-            return CompletedJumpSequences;
-        }
-
-        private static void PieceCanMultiJumpTo(Piece piece, Board FakeBoard, List<Move> JumpSequences, Move CurrentMove = null)
-        {
-            foreach (Square jump in PieceCanJumpTo(piece,FakeBoard))
-            {
-                if (CurrentMove == null)
-                {
-                    CurrentMove = new Move(new List<Square>() { FakeBoard.Squares[piece.X, piece.Y], jump }, new List<Square>() { FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump) });
+                    foreach (Square secondSquare in secondJumps)
+                    {
+                        List<Square> thirdJumps = GetJumpsFromSquare(piece, square);
+                        if (thirdJumps.Count > 0)
+                        {
+                            foreach (Square thirdSquare in thirdJumps)
+                            {
+                                List<Square> fourthJumps = GetJumpsFromSquare(piece, square);
+                                if (fourthJumps.Count > 0)
+                                {
+                                    foreach (Square fourthSquare in fourthJumps)
+                                    {
+                                        if (fourthSquare != thirdSquare)
+                                        {
+                                            MultiJumps.Add(
+                                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare, fourthSquare },
+                                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare), board.GetSquareBetween(thirdSquare, fourthSquare) })
+                                            );
+                                        }
+                                        else
+                                        {
+                                            MultiJumps.Add(
+                                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
+                                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
+                                            );
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (thirdSquare != secondSquare)
+                                    {
+                                        MultiJumps.Add(
+                                            new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare, thirdSquare },
+                                            new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare), board.GetSquareBetween(secondSquare, thirdSquare) })
+                                        );
+                                    }
+                                    else
+                                    {
+                                        MultiJumps.Add(
+                                            new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare },
+                                            new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare) })
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MultiJumps.Add(
+                                new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square, secondSquare },
+                                new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square), board.GetSquareBetween(square, secondSquare) })
+                            );
+                        }
+                    }
                 }
                 else
                 {
-                    CurrentMove.SquarePath.Add(jump);
-                    CurrentMove.JumpedSquares.Add(FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump));
+                    MultiJumps.Add(
+                        new Move(new List<Square>() { board.Squares[piece.X, piece.Y], square },
+                        new List<Square>() { board.GetSquareBetween(board.Squares[piece.X, piece.Y], square) })
+                    );
                 }
-
-                CurrentMove.SwitchBoards(FakeBoard).RunMove(FakeBoard);
-
-                PieceCanMultiJumpTo(piece, FakeBoard, JumpSequences, CurrentMove);
             }
 
-            if (CurrentMove != null && !JumpSequences.Contains(CurrentMove))
-            {
-                JumpSequences.Add(CurrentMove.SwitchBoards(BoardManager.Board));
-            }
+            return MultiJumps;
         }
 
         public static Dictionary<Piece, List<Move>> PlayerCanMultiJumpTo(bool topTeam, Board board = null)
@@ -303,7 +352,7 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (square.OccupyingPiece.Player1 == topTeam)
                     {
-                        List<Move> validJumps = GenerateNewListOfJumps(square.OccupyingPiece);
+                        List<Move> validJumps = PieceCanMultiJumpTo(square.OccupyingPiece);
                         if (validJumps.Count != 0)
                         {
                             multiJumps.Add(square.OccupyingPiece, validJumps);

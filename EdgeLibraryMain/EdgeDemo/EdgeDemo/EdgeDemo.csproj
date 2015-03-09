@@ -139,6 +139,7 @@
     <Compile Include="CheckersGame\Menu\Menus\MainMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\OptionsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\ToGameMenu.cs" />
+    <Compile Include="CheckersGame\Moves\MovementManagerTest.cs" />
     <Compile Include="CheckersGame\Players\ComputerPlayer.cs" />
     <Compile Include="CheckersGame\Players\NormalPlayer.cs" />
     <Compile Include="CheckersGame\Players\Player.cs" />

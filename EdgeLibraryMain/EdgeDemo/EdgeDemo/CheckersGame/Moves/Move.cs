@@ -136,10 +136,9 @@ namespace EdgeDemo.CheckersGame
         }
 
         ASequence MoveSequence;
-        public void RunMove(Board boardToRunOn = null)
+        public void RunMove(Board boardToRunOn)
         {
-            //boardToRunOn must be set here because BoardManager.Board is not a compile-time constant
-            if (boardToRunOn == null)
+            if(boardToRunOn == null)
             {
                 boardToRunOn = BoardManager.Board;
             }
@@ -178,6 +177,23 @@ namespace EdgeDemo.CheckersGame
         void MoveSequence_OnTransition(ASequence sequence, Action action, Sprite sprite, GameTime gameTime)
         {
             OnComplete(SquarePath, JumpedSquares, MoveIndex++);
+        }
+
+        //Moves a move from one board to another
+        public Move SwitchBoards(Board board)
+        {
+            Move newMove = new Move(SquarePath);
+            newMove.SquarePath = new List<Square>();
+            newMove.Piece = board.Squares[SquarePath[0].X, SquarePath[0].Y].OccupyingPiece;
+            foreach (Square square in SquarePath)
+            {
+                newMove.SquarePath.Add(board.Squares[square.X, square.Y]);
+            }
+            foreach (Square square in JumpedSquares)
+            {
+                newMove.JumpedSquares.Add(board.Squares[square.X, square.Y]);
+            }
+            return newMove;
         }
     }
 }

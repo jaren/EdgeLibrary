@@ -156,7 +156,7 @@ namespace EdgeDemo.CheckersGame
                 //Resets the color of the possible start squares
                 foreach (Piece possiblePiece in PossibleMoves.Keys)
                 {
-                    BoardManager.Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).Color = BoardManager.Board.GetSquareAt(possiblePiece.X, possiblePiece.Y).DefaultColor;
+                    BoardManager.Board.Squares[possiblePiece.X, possiblePiece.Y].Color = BoardManager.Board.Squares[possiblePiece.X, possiblePiece.Y].DefaultColor;
                 }
 
                 //Colors the start square

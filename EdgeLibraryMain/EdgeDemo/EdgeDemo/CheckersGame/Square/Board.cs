@@ -209,16 +209,6 @@ namespace EdgeDemo.CheckersGame
             return null;
         }
 
-        public Piece GetPieceAt(int x, int y)
-        {
-            return Squares[x, y].OccupyingPiece;
-        }
-
-        public Square GetSquareAt(int x, int y)
-        {
-            return Squares[x, y];
-        }
-
         public Square GetSquareBetween(Square origin, Square destination)
         {
             if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)

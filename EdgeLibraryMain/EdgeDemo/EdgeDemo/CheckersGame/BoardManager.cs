@@ -183,7 +183,7 @@ namespace EdgeDemo.CheckersGame
 
         public void RunMove(Move move)
         {
-            move.RunMove();
+            move.RunMove(BoardManager.Board);
         }
 
         //Ends the game

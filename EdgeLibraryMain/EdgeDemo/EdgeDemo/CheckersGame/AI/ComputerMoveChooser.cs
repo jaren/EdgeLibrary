@@ -62,7 +62,7 @@ namespace EdgeDemo.CheckersGame
 
                 //Transfers the move to the fake board
                 //Runs the transferred move on the fake board to find how many pieces can be taken next move
-                RemakeMove(move, Board).RunMove(Board);
+                move.SwitchBoards(Board).RunMove(Board);
 
                 //Generates the possible moves for the next team
                 Dictionary<Piece, List<Move>> possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
@@ -143,23 +143,6 @@ namespace EdgeDemo.CheckersGame
             indexToChoose = indexToChoose < 0 ? 0 : indexToChoose > sortedMoves.Count - 1 ? sortedMoves.Count - 1 : indexToChoose;
 
             return sortedMoves[indexToChoose].Move;
-        }
-
-        //Moves a move from one board to another
-        public Move RemakeMove(Move move, Board board)
-        {
-            Move newMove = new Move(move.SquarePath);
-            newMove.SquarePath = new List<Square>();
-            newMove.Piece = board.Squares[move.SquarePath[0].X, move.SquarePath[0].Y].OccupyingPiece;
-            foreach(Square square in move.SquarePath)
-            {
-                newMove.SquarePath.Add(board.Squares[square.X, square.Y]);
-            }
-            foreach(Square square in move.JumpedSquares)
-            {
-                newMove.JumpedSquares.Add(board.Squares[square.X, square.Y]);
-            }
-            return newMove;
         }
     }
 
