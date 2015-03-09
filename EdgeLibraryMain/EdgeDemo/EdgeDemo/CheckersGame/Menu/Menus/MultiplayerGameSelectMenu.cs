@@ -55,7 +55,7 @@ namespace EdgeDemo.CheckersGame
             hostButton.Style.AllColors = Config.MenuButtonColor;
             hostButton.OnRelease += (x, y) =>
             {
-                if (!enterNameBox.TextSpriteBlank)
+                if (!enterNameBox.TextBlank)
                 {
                     Player1 = new WebPlayer(enterNameBox.TextSprite.Text, false);
                     Player2 = new NormalPlayer();
@@ -87,7 +87,7 @@ namespace EdgeDemo.CheckersGame
             join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) =>
             {
-                if (!enterNameBox.TextSpriteBlank)
+                if (!enterNameBox.TextBlank)
                 {
                     if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                     {
@@ -115,7 +115,7 @@ namespace EdgeDemo.CheckersGame
             join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) =>
             {
-                if (!enterNameBox.TextSpriteBlank)
+                if (!enterNameBox.TextBlank)
                 {
                     if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                     {
@@ -143,7 +143,7 @@ namespace EdgeDemo.CheckersGame
             join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) =>
             {
-                if (!enterNameBox.TextSpriteBlank)
+                if (!enterNameBox.TextBlank)
                 {
                     if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                     {

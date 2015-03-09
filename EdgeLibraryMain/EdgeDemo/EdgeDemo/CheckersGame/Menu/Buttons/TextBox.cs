@@ -17,14 +17,19 @@ namespace EdgeDemo.CheckersGame
             set { focused = value; CursorFlashSprite.Visible = value; }
         }
         private bool focused;
-        public bool TextSpriteBlank;
+        public bool TextBlank;
         public string DefaultText;
         public Keys EnterKey;
+        public string Text;
 
         public double TypingInputDelay;
         public double TypingInputStartDelay;
         private Ticker TypingTicker;
         private Keys CurrentKey;
+
+        public bool ReplaceExtra;
+        public string ReplaceExtraString;
+        public bool ReplaceExtraFront;
 
         public Sprite CursorFlashSprite;
         public Vector2 CursorFlashOffset;
@@ -56,9 +61,8 @@ namespace EdgeDemo.CheckersGame
             get { return textOffset; }
             set { textOffset = value; ChangeCentering(); }
         }
-
         private Vector2 textOffset;
-        public bool ReplaceExtra;
+
         public bool CenterTextBox
         {
             get { return centerTextBox; }
@@ -87,20 +91,25 @@ namespace EdgeDemo.CheckersGame
 
             textOffset = Vector2.One * 10;
             ReplaceExtra = true;
+            ReplaceExtraString = "..";
+            ReplaceExtraFront = true;
+
             centerTextBox = true;
-            TextSpriteBlank = true;
+            TextBlank = true;
             Focused = false;
 
             TypingInputDelay = 50;
             TypingInputStartDelay = 600;
             TypingTicker = new Ticker(TypingInputStartDelay);
             TypingTicker.OnTick += TypingTicker_OnTick;
+            TypingTicker.Started = false;
 
             DefaultText = "Enter Text";
+            Text = DefaultText;
 
             reloadBoundingBox();
 
-            TextSprite = new TextSprite(font, DefaultText, position) { Color = OffTextColor };
+            TextSprite = new TextSprite(font, Text, position) { Color = OffTextColor };
             ReloadCursorFlashPosition();
             ChangeCentering();
         }
@@ -166,26 +175,25 @@ namespace EdgeDemo.CheckersGame
         {
             if (key != EnterKey)
             {
-                TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+                Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
 
                 if (key == Keys.Back)
                 {
-                    if (!TextSpriteBlank)
+                    if (!TextBlank)
                     {
-                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                        Text = Text.Remove(Text.Length - 1, 1);
+                        TextSprite.Text = Text;
                     }
                 }
 
-                if (TextSprite.Text.Length == 0)
+                if (Text.Length == 0)
                 {
-                    TextSpriteBlank = true;
+                    TextBlank = true;
                 }
                 else
                 {
-                    TextSpriteBlank = false;
+                    TextBlank = false;
                 }
-
-                ReloadCursorFlashPosition();
             }
             else
             {
@@ -193,11 +201,45 @@ namespace EdgeDemo.CheckersGame
                 TypingTicker.Started = false;
                 TypingTicker.MillisecondsWait = TypingInputStartDelay;
                 TextSprite.Color = OffTextColor;
-                if (TextSpriteBlank)
+                if (TextBlank)
                 {
-                    TextSprite.Text = DefaultText;
+                    Text = DefaultText;
                 }
             }
+
+            TextSprite.Text = Text;
+
+            if (ReplaceExtra)
+            {
+                bool removedText = false;
+                while (TextSprite.BoundingBox.Width > BoundingBox.Width)
+                {
+                    if (ReplaceExtraFront)
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(0, 1);
+                    }
+                    else
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                    }
+                    removedText = true;
+                }
+                if (removedText)
+                {
+                    if (ReplaceExtraFront)
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(0, 1);
+                        TextSprite.Text = ReplaceExtraString + TextSprite.Text;
+                    }
+                    else
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                        TextSprite.Text += ReplaceExtraString;
+                    }
+                }
+            }
+
+            ReloadCursorFlashPosition();
         }
 
         private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
@@ -206,8 +248,9 @@ namespace EdgeDemo.CheckersGame
             {
                 Focused = true;
                 TextSprite.Color = OnTextColor;
-                if (TextSpriteBlank)
+                if (TextBlank)
                 {
+                    Text = "";
                     TextSprite.Text = "";
                     CursorFlashSprite.Position = Position;
                 }
@@ -216,7 +259,7 @@ namespace EdgeDemo.CheckersGame
             {
                 Focused = false;
                 TextSprite.Color = OffTextColor;
-                if (TextSpriteBlank)
+                if (TextBlank)
                 {
                     TextSprite.Text = DefaultText;
                 }

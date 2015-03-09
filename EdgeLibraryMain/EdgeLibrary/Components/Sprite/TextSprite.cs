@@ -17,7 +17,7 @@ namespace EdgeLibrary
     public class TextSprite : Sprite
     {
         //The font to display on the screen
-        public SpriteFont Font { get { return _font; } set { _font = value; reloadOriginPoint(); } }
+        public SpriteFont Font { get { return _font; } set { _font = value; reloadOriginPoint(); reloadBoundingBox(); } }
         private SpriteFont _font;
 
         //Sets the font through a string
@@ -28,7 +28,7 @@ namespace EdgeLibrary
         public override float Height { get { return Font == null ? 0 : Font.MeasureString(_text.Split("\n".ToArray())[0]).Y; } }
 
         //The text to display on the screen
-        public string Text { get { return _text; } set { _text = value; reloadOriginPoint(); } }
+        public string Text { get { return _text; } set { _text = value; reloadOriginPoint(); reloadBoundingBox(); } }
         protected string _text;
         protected string[] textLines;
         protected Vector2[] textLinesOriginPoints;
