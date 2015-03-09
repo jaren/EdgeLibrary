@@ -18,10 +18,10 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Choose Players!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button startButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
-            startButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            startButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            startButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            Button startButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            startButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
+            startButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
+            startButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
             startButton.Style.AllColors = Config.MenuButtonColor;
             startButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(startButton);

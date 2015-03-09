@@ -73,10 +73,10 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            Button returnButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.8f) };
-            returnButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            returnButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button02");
-            returnButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button01");
+            Button returnButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.8f) };
+            returnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
+            returnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
+            returnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
             returnButton.Style.AllColors = Config.MenuButtonColor;
             returnButton.OnRelease += (x, y) =>
             {
