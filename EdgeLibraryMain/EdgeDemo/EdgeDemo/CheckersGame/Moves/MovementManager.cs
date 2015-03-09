@@ -221,39 +221,6 @@ namespace EdgeDemo.CheckersGame
             return toReturn;
         }
 
-        //Unused: May be used for recursion later
-        public static List<Move> AllPossibleJumps(Piece piece, Board board = null)
-        {
-            //Must be set here because BoardManager.Board is not a compile-time constant
-            if (board == null)
-            {
-                board = BoardManager.Board;
-            }
-
-            List<Move> MultiJumps = new List<Move>();
-            List<Square> originalJumps = PieceCanJumpTo(piece);
-
-            foreach (Square square in originalJumps)
-            {
-                List<Square> JumpedSquares = new List<Square>();
-                List<Square> SquarePath = new List<Square>();
-
-                SquarePath.Add(board.Squares[piece.X, piece.Y]);
-                SquarePath.Add(square);
-                JumpedSquares.Add(board.GetSquareBetween(board.Squares[piece.X, piece.Y], square));
-
-                List<Square> nextJumps = GetJumpsFromSquare(piece, square);
-                while (nextJumps.Count > 0)
-                {
-
-                }
-
-                MultiJumps.Add(new Move(SquarePath, JumpedSquares));
-            }
-
-            return MultiJumps;
-        }
-
         public static List<Move> GenerateNewListOfJumps(Piece piece)
         {
             List<Move> CompletedJumpSequences = new List<Move>();
@@ -278,7 +245,7 @@ namespace EdgeDemo.CheckersGame
 
                 CurrentMove.SwitchBoards(FakeBoard).RunMove(FakeBoard);
 
-                PieceCanMultiJumpTo(piece, FakeBoard, JumpSequences, CurrentMove);
+                PieceCanMultiJumpTo(CurrentMove.SquarePath.Last().OccupyingPiece, FakeBoard, JumpSequences, CurrentMove);
             }
 
             if (CurrentMove != null && !JumpSequences.Contains(CurrentMove))

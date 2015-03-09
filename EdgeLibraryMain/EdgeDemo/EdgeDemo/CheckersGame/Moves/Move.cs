@@ -37,9 +37,9 @@ namespace EdgeDemo.CheckersGame
             ID = this.GenerateID();
 
             SquarePath = squarePath;
+            Piece = StartSquare.OccupyingPiece;
             JumpedSquares = jumpedSquares == null ? new List<Square>() : jumpedSquares;
-
-            Piece = SquarePath[0].OccupyingPiece;
+            
             MoveIndex = 0;
         }
 
@@ -184,7 +184,6 @@ namespace EdgeDemo.CheckersGame
         {
             Move newMove = new Move(SquarePath);
             newMove.SquarePath = new List<Square>();
-            newMove.Piece = board.Squares[SquarePath[0].X, SquarePath[0].Y].OccupyingPiece;
             foreach (Square square in SquarePath)
             {
                 newMove.SquarePath.Add(board.Squares[square.X, square.Y]);
@@ -193,6 +192,7 @@ namespace EdgeDemo.CheckersGame
             {
                 newMove.JumpedSquares.Add(board.Squares[square.X, square.Y]);
             }
+            newMove.Piece = board.Squares[SquarePath[0].X, SquarePath[0].Y].OccupyingPiece;
             return newMove;
         }
     }
