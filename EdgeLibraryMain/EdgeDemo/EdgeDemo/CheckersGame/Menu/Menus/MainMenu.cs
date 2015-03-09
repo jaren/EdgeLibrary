@@ -88,6 +88,15 @@ namespace EdgeDemo.CheckersGame
             creditsButton.Style.AllColors = Config.MenuButtonColor;
             Components.Add(creditsButton);
 
+            Sprite button00Sprite = new Sprite("grey_button00", new Vector2(100, 50));
+            Components.Add(button00Sprite);
+
+            Sprite button01Sprite = new Sprite("grey_button01", new Vector2(200, 50));
+            Components.Add(button01Sprite);
+
+            Sprite button02Sprite = new Sprite("grey_button02", new Vector2(300, 50));
+            Components.Add(button02Sprite);
+
             TextSprite creditsButtonText = new TextSprite(Config.MenuButtonTextFont, "CREDITS", creditsButton.Position);
             Components.Add(creditsButtonText);
 

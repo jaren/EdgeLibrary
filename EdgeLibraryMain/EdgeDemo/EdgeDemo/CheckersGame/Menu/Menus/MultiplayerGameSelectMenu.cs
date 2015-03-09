@@ -36,12 +36,12 @@ namespace EdgeDemo.CheckersGame
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Multiplayer Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            enterNameBox = new TextBox("grey_button00", Config.MenuButtonTextFont, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { Color = Color.LightGray, Scale = new Vector2(2, 1.25f) };
+            enterNameBox = new TextBox("grey_button00", Config.MenuButtonTextFont, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { Color = Config.MenuButtonColor, Scale = new Vector2(2, 1.25f) };
             enterNameBox.DefaultText = "Enter your team name here";
             enterNameBox.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
             enterNameBox.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
             enterNameBox.Style.ClickTexture = EdgeGame.GetTexture("grey_button02");
-            enterNameBox.Style.AllColors = Color.LightGray;
+            enterNameBox.Style.AllColors = Config.MenuButtonColor;
             Components.Add(enterNameBox);
 
             #region HOSTGAME
@@ -174,10 +174,10 @@ namespace EdgeDemo.CheckersGame
             join3ButtonText = new TextSprite(Config.MenuButtonTextFont, "No Game", join3Button.Position);
             Components.Add(join3ButtonText);
 
-            refreshButton = new Button("grey_button00", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.65f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.23f, 1) };
-            refreshButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button00");
-            refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button01");
-            refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button02");
+            refreshButton = new Button("grey_button07", new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.65f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            refreshButton.Style.NormalTexture = EdgeGame.GetTexture("grey_button07");
+            refreshButton.Style.MouseOverTexture = EdgeGame.GetTexture("grey_button08");
+            refreshButton.Style.ClickTexture = EdgeGame.GetTexture("grey_button09");
             refreshButton.Style.AllColors = Config.MenuButtonColor;
             refreshButton.OnRelease += (x, y) =>
             {
