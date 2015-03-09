@@ -21,11 +21,8 @@ namespace EdgeDemo.CheckersGame
         public string DefaultText;
         public Keys EnterKey;
 
-        public double TypingInputDelay
-        {
-            get { return TypingTicker.MillisecondsWait; }
-            set { TypingTicker.MillisecondsWait = value; }
-        }
+        public double TypingInputDelay;
+        public double TypingInputStartDelay;
         private Ticker TypingTicker;
         private Keys CurrentKey;
 
@@ -93,7 +90,10 @@ namespace EdgeDemo.CheckersGame
             centerTextBox = true;
             TextSpriteBlank = true;
             Focused = false;
-            TypingTicker = new Ticker(10);
+
+            TypingInputDelay = 50;
+            TypingInputStartDelay = 600;
+            TypingTicker = new Ticker(TypingInputStartDelay);
             TypingTicker.OnTick += TypingTicker_OnTick;
 
             DefaultText = "Enter Text";
@@ -157,11 +157,18 @@ namespace EdgeDemo.CheckersGame
 
         private void TypingTicker_OnTick(GameTime gameTime)
         {
-            if (CurrentKey != EnterKey)
-            {
-                TextSprite.Text += CurrentKey.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+            TypingTicker.MillisecondsWait = TypingInputDelay;
 
-                if (CurrentKey == Keys.Back)
+            AddKeyToField(CurrentKey);
+        }
+
+        private void AddKeyToField(Keys key)
+        {
+            if (key != EnterKey)
+            {
+                TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+
+                if (key == Keys.Back)
                 {
                     if (!TextSpriteBlank)
                     {
@@ -183,7 +190,8 @@ namespace EdgeDemo.CheckersGame
             else
             {
                 Focused = false;
-                TypingTicker.Enabled = false;
+                TypingTicker.Started = false;
+                TypingTicker.MillisecondsWait = TypingInputStartDelay;
                 TextSprite.Color = OffTextColor;
                 if (TextSpriteBlank)
                 {
@@ -220,13 +228,16 @@ namespace EdgeDemo.CheckersGame
             if (Focused)
             {
                 CurrentKey = key;
-                TypingTicker.Enabled = true;
+                TypingTicker.Started = true;
+                AddKeyToField(key);
             }
         }
 
         private void Input_OnKeyRelease(Keys key)
         {
-            TypingTicker.Enabled = false;
+            TypingTicker.Started = false;
+            TypingTicker.MillisecondsWait = TypingInputStartDelay;
+            TypingTicker.elapsedMilliseconds = 0;
         }
     }
 }

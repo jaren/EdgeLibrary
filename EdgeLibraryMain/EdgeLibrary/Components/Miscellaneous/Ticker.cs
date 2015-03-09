@@ -15,7 +15,8 @@ namespace EdgeLibrary
     public class Ticker : GameComponent, ICloneable
     {
         public double MillisecondsWait { get; set; }
-        protected double elapsedMilliseconds;
+        public double elapsedMilliseconds;
+        public bool Started;
 
         public delegate void TickerEventHandler(GameTime gameTime);
         public event TickerEventHandler OnTick;
@@ -25,18 +26,22 @@ namespace EdgeLibrary
         {
             MillisecondsWait = milliseconds;
             elapsedMilliseconds = 0;
+            Started = true;
         }
 
         public override void Update(GameTime gameTime)
         {
-            elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
-
-            if (elapsedMilliseconds >= MillisecondsWait)
+            if (Started)
             {
-                elapsedMilliseconds = 0;
-                if (OnTick != null)
+                elapsedMilliseconds += gameTime.ElapsedGameTime.TotalMilliseconds * EdgeGame.GameSpeed;
+
+                if (elapsedMilliseconds >= MillisecondsWait)
                 {
-                    OnTick(gameTime);
+                    elapsedMilliseconds = 0;
+                    if (OnTick != null)
+                    {
+                        OnTick(gameTime);
+                    }
                 }
             }
         }
