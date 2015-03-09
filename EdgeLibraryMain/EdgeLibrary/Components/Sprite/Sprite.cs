@@ -251,26 +251,29 @@ namespace EdgeLibrary
         //Updates the sprite
         public override void Update(GameTime gameTime)
         {
-            if (PhysicsEnabled && Body != null)
+            if (Enabled)
             {
-                _position = ConvertUnits.ToDisplayUnits(Body.Position);
-                _rotation = Body.Rotation;
-            }
-
-            //Updates the actions
-            actionsToRemove.Clear();
-            foreach (KeyValuePair<string, Action> action in Actions)
-            {
-                action.Value.Update(gameTime, this);
-
-                if (action.Value.toRemove)
+                if (PhysicsEnabled && Body != null)
                 {
-                    actionsToRemove.Add(action.Key);
+                    _position = ConvertUnits.ToDisplayUnits(Body.Position);
+                    _rotation = Body.Rotation;
                 }
-            }
-            foreach (string key in actionsToRemove)
-            {
-                Actions.Remove(key);
+
+                //Updates the actions
+                actionsToRemove.Clear();
+                foreach (KeyValuePair<string, Action> action in Actions)
+                {
+                    action.Value.Update(gameTime, this);
+
+                    if (action.Value.toRemove)
+                    {
+                        actionsToRemove.Add(action.Key);
+                    }
+                }
+                foreach (string key in actionsToRemove)
+                {
+                    Actions.Remove(key);
+                }
             }
         }
 

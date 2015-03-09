@@ -27,8 +27,8 @@ namespace EdgeDemo.CheckersGame
         public static Color MenuTextColor = Color.White;
 
         public static string ButtonNormalTexture = "grey_button03";
-        public static string ButtonMousedOverTexture = "grey_button02";
-        public static string ButtonClickTexture = "grey_button01";
+        public static string ButtonClickTexture = "grey_button02";
+        public static string ButtonMouseOverTexture = "grey_button01";
 
         public static string Player1Name = "Top Team";
         public static string Player2Name = "Bottom Team";

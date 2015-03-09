@@ -21,6 +21,14 @@ namespace EdgeDemo.CheckersGame
         public string DefaultText;
         public Keys EnterKey;
 
+        public double TypingInputDelay
+        {
+            get { return TypingTicker.MillisecondsWait; }
+            set { TypingTicker.MillisecondsWait = value; }
+        }
+        private Ticker TypingTicker;
+        private Keys CurrentKey;
+
         public Sprite CursorFlashSprite;
         public Vector2 CursorFlashOffset;
         public Vector2 CursorFlashScale
@@ -66,6 +74,7 @@ namespace EdgeDemo.CheckersGame
         {
             Input.OnClick += Input_OnClick;
             Input.OnKeyRelease += Input_OnKeyRelease;
+            Input.OnKeyPress += Input_OnKeyPress;
 
             OnTextColor = Color.White;
             OffTextColor = Color.LightGray;
@@ -84,6 +93,8 @@ namespace EdgeDemo.CheckersGame
             centerTextBox = true;
             TextSpriteBlank = true;
             Focused = false;
+            TypingTicker = new Ticker(10);
+            TypingTicker.OnTick += TypingTicker_OnTick;
 
             DefaultText = "Enter Text";
 
@@ -134,6 +145,7 @@ namespace EdgeDemo.CheckersGame
             base.Update(gameTime);
             TextSprite.Update(gameTime);
             CursorFlashSprite.Update(gameTime);
+            TypingTicker.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
@@ -143,7 +155,44 @@ namespace EdgeDemo.CheckersGame
             CursorFlashSprite.Draw(gameTime);
         }
 
-        void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
+        private void TypingTicker_OnTick(GameTime gameTime)
+        {
+            if (CurrentKey != EnterKey)
+            {
+                TextSprite.Text += CurrentKey.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
+
+                if (CurrentKey == Keys.Back)
+                {
+                    if (!TextSpriteBlank)
+                    {
+                        TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
+                    }
+                }
+
+                if (TextSprite.Text.Length == 0)
+                {
+                    TextSpriteBlank = true;
+                }
+                else
+                {
+                    TextSpriteBlank = false;
+                }
+
+                ReloadCursorFlashPosition();
+            }
+            else
+            {
+                Focused = false;
+                TypingTicker.Enabled = false;
+                TextSprite.Color = OffTextColor;
+                if (TextSpriteBlank)
+                {
+                    TextSprite.Text = DefaultText;
+                }
+            }
+        }
+
+        private void Input_OnClick(Vector2 mousePosition, Vector2 previousMousePosition)
         {
             if (BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)))
             {
@@ -166,48 +215,18 @@ namespace EdgeDemo.CheckersGame
             }
         }
 
-        void Input_OnKeyRelease(Keys key)
+        private void Input_OnKeyPress(Keys key)
         {
             if (Focused)
             {
-                if (key != EnterKey)
-                {
-                    TextSprite.Text += key.ToCorrectString((Input.IsKeyDown(Keys.LeftShift) || Input.IsKeyDown(Keys.RightShift)));
-
-                    if (key == Keys.Back)
-                    {
-                        /* Removes single characters
-                        if (!TextSpriteBlank)
-                        {
-                            TextSprite.Text = TextSprite.Text.Remove(TextSprite.Text.Length - 1, 1);
-                        }
-                         */
-
-                        //Clears the text sprite
-                        TextSprite.Text = "";
-                    }
-
-                    if (TextSprite.Text.Length == 0)
-                    {
-                        TextSpriteBlank = true;
-                    }
-                    else
-                    {
-                        TextSpriteBlank = false;
-                    }
-
-                    ReloadCursorFlashPosition();
-                }
-                else
-                {
-                    Focused = false;
-                    TextSprite.Color = OffTextColor;
-                    if (TextSpriteBlank)
-                    {
-                        TextSprite.Text = DefaultText;
-                    }
-                }
+                CurrentKey = key;
+                TypingTicker.Enabled = true;
             }
+        }
+
+        private void Input_OnKeyRelease(Keys key)
+        {
+            TypingTicker.Enabled = false;
         }
     }
 }

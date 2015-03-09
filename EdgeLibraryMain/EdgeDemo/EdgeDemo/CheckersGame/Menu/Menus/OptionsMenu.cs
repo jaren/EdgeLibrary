@@ -32,8 +32,8 @@ namespace EdgeDemo.CheckersGame
 
             QuitButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             QuitButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            QuitButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            QuitButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            QuitButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            QuitButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             QuitButton.Style.AllColors = Config.MenuButtonColor;
             QuitButton.OnRelease += (x, y) =>
             {
@@ -66,8 +66,8 @@ namespace EdgeDemo.CheckersGame
 
             ReturnButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
             ReturnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            ReturnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            ReturnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            ReturnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            ReturnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             ReturnButton.Style.AllColors = Config.MenuButtonColor;
             ReturnButton.OnRelease += (x, y) =>
             {

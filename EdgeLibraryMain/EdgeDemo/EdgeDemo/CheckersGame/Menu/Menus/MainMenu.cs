@@ -50,8 +50,8 @@ namespace EdgeDemo.CheckersGame
             startLocalGameButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             startLocalGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("LocalGameSelectMenu"); };
             startLocalGameButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            startLocalGameButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            startLocalGameButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            startLocalGameButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            startLocalGameButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             startLocalGameButton.Style.AllColors = Config.MenuButtonColor;
             Components.Add(startLocalGameButton);
 
@@ -61,8 +61,8 @@ namespace EdgeDemo.CheckersGame
             startMultiplayerGameButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             startMultiplayerGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerGameSelectMenu"); };
             startMultiplayerGameButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            startMultiplayerGameButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            startMultiplayerGameButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            startMultiplayerGameButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            startMultiplayerGameButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             startMultiplayerGameButton.Style.AllColors = Config.MenuButtonColor;
             Components.Add(startMultiplayerGameButton);
 
@@ -72,8 +72,8 @@ namespace EdgeDemo.CheckersGame
             optionsButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("NoGameOptionsMenu"); };
             optionsButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            optionsButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            optionsButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            optionsButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            optionsButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             optionsButton.Style.AllColors = Config.MenuButtonColor;
             Components.Add(optionsButton);
 
@@ -83,8 +83,8 @@ namespace EdgeDemo.CheckersGame
             creditsButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.75f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             creditsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("CreditsMenu"); };
             creditsButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            creditsButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            creditsButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            creditsButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            creditsButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             creditsButton.Style.AllColors = Config.MenuButtonColor;
             Components.Add(creditsButton);
             TextSprite creditsButtonText = new TextSprite(Config.MenuButtonTextFont, "CREDITS", creditsButton.Position);

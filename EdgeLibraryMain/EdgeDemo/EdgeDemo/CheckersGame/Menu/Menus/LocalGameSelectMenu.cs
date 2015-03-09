@@ -20,8 +20,8 @@ namespace EdgeDemo.CheckersGame
 
             Button startButton = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             startButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            startButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            startButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            startButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            startButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             startButton.Style.AllColors = Config.MenuButtonColor;
             startButton.OnRelease += (x, y) => { BoardManager.ResetGame = true; MenuManager.SwitchMenu("GameMenu"); };
             Components.Add(startButton);

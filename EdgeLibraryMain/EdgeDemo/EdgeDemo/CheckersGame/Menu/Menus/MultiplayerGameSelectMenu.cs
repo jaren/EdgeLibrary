@@ -39,7 +39,7 @@ namespace EdgeDemo.CheckersGame
             enterNameBox = new TextBox(Config.ButtonNormalTexture, Config.MenuButtonTextFont, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.2f)) { Color = Config.MenuButtonColor, Scale = new Vector2(2, 1.25f) };
             enterNameBox.DefaultText = "Enter your team name here";
             enterNameBox.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            enterNameBox.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            enterNameBox.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             enterNameBox.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             enterNameBox.Style.AllColors = Config.MenuButtonColor;
             Components.Add(enterNameBox);
@@ -50,8 +50,8 @@ namespace EdgeDemo.CheckersGame
 
             hostButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             hostButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            hostButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
-            hostButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            hostButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            hostButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             hostButton.Style.AllColors = Config.MenuButtonColor;
             hostButton.OnRelease += (x, y) =>
             {
@@ -82,8 +82,8 @@ namespace EdgeDemo.CheckersGame
 
             join1Button = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join1Button.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            join1Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
-            join1Button.Style.ClickTexture = EdgeGame.GetTexture("GREYBUTTON025");
+            join1Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
+            join1Button.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             join1Button.Style.AllColors = Config.MenuButtonColor;
             join1Button.OnRelease += (x, y) =>
             {
@@ -110,7 +110,7 @@ namespace EdgeDemo.CheckersGame
 
             join2Button = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join2Button.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            join2Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            join2Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             join2Button.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             join2Button.Style.AllColors = Config.MenuButtonColor;
             join2Button.OnRelease += (x, y) =>
@@ -138,7 +138,7 @@ namespace EdgeDemo.CheckersGame
 
             join3Button = new Button(Config.ButtonNormalTexture, new Microsoft.Xna.Framework.Vector2(EdgeGame.WindowSize.X * 0.8f, EdgeGame.WindowSize.Y * 0.65f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             join3Button.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
-            join3Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMousedOverTexture);
+            join3Button.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             join3Button.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             join3Button.Style.AllColors = Config.MenuButtonColor;
             join3Button.OnRelease += (x, y) =>
