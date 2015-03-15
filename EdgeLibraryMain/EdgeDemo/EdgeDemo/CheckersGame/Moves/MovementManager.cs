@@ -233,17 +233,21 @@ namespace EdgeDemo.CheckersGame
         {
             foreach (Square jump in PieceCanJumpTo(piece,FakeBoard))
             {
+                Move MoveToRun;
+
                 if (CurrentMove == null)
                 {
                     CurrentMove = new Move(new List<Square>() { FakeBoard.Squares[piece.X, piece.Y], jump }, new List<Square>() { FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump) });
+                    MoveToRun = CurrentMove.SwitchBoards(BoardManager.Board);
                 }
                 else
                 {
                     CurrentMove.SquarePath.Add(jump);
                     CurrentMove.JumpedSquares.Add(FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump));
+                    MoveToRun = new Move(new List<Square>() { CurrentMove.SquarePath[CurrentMove.SquarePath.Count - 2], CurrentMove.SquarePath.Last() }, new List<Square>() { CurrentMove.JumpedSquares.Last() });
                 }
 
-                CurrentMove.SwitchBoards(FakeBoard).RunMove(FakeBoard);
+                MoveToRun.SwitchBoards(FakeBoard).RunMove(FakeBoard);
 
                 PieceCanMultiJumpTo(CurrentMove.SquarePath.Last().OccupyingPiece, FakeBoard, JumpSequences, CurrentMove);
             }
