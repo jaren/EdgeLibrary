@@ -83,7 +83,7 @@ namespace EdgeDemo.CheckersGame
             EnterKey = Keys.Enter;
 
             cursorFlashColor = Color.Black;
-            cursorFlashDelay = 750;
+            cursorFlashDelay = 300;
             CursorFlashOffset = new Vector2(4, -7);
             CursorFlashSprite = new Sprite("Pixel", Vector2.Zero);
             CursorFlashScale = new Vector2(1, 40);

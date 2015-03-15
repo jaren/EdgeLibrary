@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,8 @@ namespace EdgeDemo.CheckersGame
             base.ReturnButtonText.Position = base.QuitButtonText.Position;
             base.ReturnButtonText.Text = "Back to Menu";
 
-            base.QuitButton.Position = new Microsoft.Xna.Framework.Vector2(-10000);
-            base.QuitButtonText.Position = new Microsoft.Xna.Framework.Vector2(-10000);
+            base.QuitButton.Position = new Vector2(-10000);
+            base.QuitButtonText.Position = new Vector2(-10000);
         }
     }
 }
