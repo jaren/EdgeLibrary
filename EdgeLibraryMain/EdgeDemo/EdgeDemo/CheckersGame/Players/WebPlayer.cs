@@ -43,7 +43,7 @@ namespace EdgeDemo.CheckersGame
 
         CheckersServiceClient WebService = new CheckersServiceClient();
         private Thread waitForMoveThread;
-        Move PreviousMove = new Move(null, null);
+        Move PreviousMove = null;
         public int ThisGameID;
         public bool IsHost;
         public string TeamName;

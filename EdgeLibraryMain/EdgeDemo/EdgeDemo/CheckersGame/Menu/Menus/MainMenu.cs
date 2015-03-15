@@ -15,6 +15,8 @@ namespace EdgeDemo.CheckersGame
         private Button startMultiplayerGameButton;
         private Button optionsButton;
         private Button creditsButton;
+        private TextSprite infoText;
+        private CheckersService.CheckersServiceClient WebService = new CheckersService.CheckersServiceClient();
 
         public MainMenu() : base("MainMenu")
         {
@@ -35,8 +37,20 @@ namespace EdgeDemo.CheckersGame
             TextSprite startLocalGameButtonText = new TextSprite(Config.MenuButtonTextFont, "LOCAL GAME", startLocalGameButton.Position);
             Components.Add(startLocalGameButtonText);
 
+            System.Windows.Forms.Form form1 = new System.Windows.Forms.Form();
+
             startMultiplayerGameButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
-            startMultiplayerGameButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("MultiplayerGameSelectMenu"); };
+            startMultiplayerGameButton.OnRelease += (x, y) => {
+                try
+                {
+                    WebService.GetAllGames();
+                    MenuManager.SwitchMenu("MultiplayerGameSelectMenu");
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
+            };
             startMultiplayerGameButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             startMultiplayerGameButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             startMultiplayerGameButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);

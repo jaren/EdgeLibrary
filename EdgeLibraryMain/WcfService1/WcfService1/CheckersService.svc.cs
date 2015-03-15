@@ -75,25 +75,9 @@ namespace CheckersService
             foreach (int gameId in Games.Keys)
             {
                 GameState game = Games[gameId];
-                if (state == GameState.State.WaitingForPlayers)
+                if (game.GameInfo == state)
                 {
                     SpecificGames.Add(gameId,game);
-                }
-                else if (state == GameState.State.InProgress)
-                {
-                    SpecificGames.Add(gameId, game);
-                }
-                else if (state == GameState.State.Ended)
-                {
-                    SpecificGames.Add(gameId, game);
-                }
-                else if (state == GameState.State.HostDisconnected)
-                {
-                    SpecificGames.Add(gameId, game);
-                }
-                else if (state == GameState.State.PlayerDisconnected)
-                {
-                    SpecificGames.Add(gameId, game);
                 }
             }
 
