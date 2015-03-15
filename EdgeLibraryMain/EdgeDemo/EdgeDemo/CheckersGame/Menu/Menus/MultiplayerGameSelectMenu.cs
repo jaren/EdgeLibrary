@@ -50,7 +50,7 @@ namespace EdgeDemo.CheckersGame
                 TextSprite hostText = new TextSprite(Config.MenuSubtitleFont, "Host a Game", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.35f));
                 Components.Add(hostText);
 
-                hostButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+                hostButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.45f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
                 hostButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
                 hostButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
                 hostButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using EdgeLibrary;
 using FarseerPhysics.Factories;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -70,7 +70,7 @@ namespace EdgeDemo.CheckersGame
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 
-        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
+        void Input_OnKeyRelease(Keys key)
         {
             if (MenuManager.SelectedMenu == this && key == Config.BackKey)
             {

@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EdgeDemo.CheckersService;
+using FarseerPhysics.Factories;
 
 namespace EdgeDemo.CheckersGame
 {
-    public class OptionsMenu : MenuBase
+    public class OptionsMenu : ParticleMenu
     {
         public static bool MusicOn = true;
         public static bool SoundEffectsOn = true;
@@ -38,7 +39,7 @@ namespace EdgeDemo.CheckersGame
             Title = new TextSprite(Config.MenuTitleFont, "Options Menu", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(Title);
 
-            SubTitle = new TextSprite(Config.MenuSubtitleFont, "Click!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            SubTitle = new TextSprite(Config.MenuSubtitleFont, "Click for Checkers! Right Click to Move Them!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(SubTitle);
 
             QuitButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
@@ -115,7 +116,7 @@ namespace EdgeDemo.CheckersGame
             ParticlesButtonText = new TextSprite(Config.MenuButtonTextFont, "Particles", ParticlesButton.Position + new Vector2(ParticlesButton.Width, -ParticlesButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(ParticlesButtonText);
 
-            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.7f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
+            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.95f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
             ReturnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             ReturnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             ReturnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
@@ -138,6 +139,29 @@ namespace EdgeDemo.CheckersGame
             {
                 MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
             }
+        }
+
+        public override void SwitchTo()
+        {
+            base.SwitchTo();
+
+            MusicButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (MusicButton.Width * MusicButton.Scale.X).ToSimUnits(), (MusicButton.Height * MusicButton.Scale.Y).ToSimUnits(), 1));
+            MusicButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            SoundEffectsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (SoundEffectsButton.Width * SoundEffectsButton.Scale.X).ToSimUnits(), (SoundEffectsButton.Height * SoundEffectsButton.Scale.Y).ToSimUnits(), 1));
+            SoundEffectsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            FullscreenButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (FullscreenButton.Width * FullscreenButton.Scale.X).ToSimUnits(), (FullscreenButton.Height * FullscreenButton.Scale.Y).ToSimUnits(), 1));
+            FullscreenButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            ParticlesButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ParticlesButton.Width * ParticlesButton.Scale.X).ToSimUnits(), (ParticlesButton.Height * ParticlesButton.Scale.Y).ToSimUnits(), 1));
+            ParticlesButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            ReturnButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ReturnButton.Width * ReturnButton.Scale.X).ToSimUnits(), (ReturnButton.Height * ReturnButton.Scale.Y).ToSimUnits(), 1));
+            ReturnButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+
+            QuitButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (QuitButton.Width * QuitButton.Scale.X).ToSimUnits(), (QuitButton.Height * QuitButton.Scale.Y).ToSimUnits(), 1));
+            QuitButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
         }
     }
 }
