@@ -38,6 +38,19 @@ namespace EdgeLibrary
             MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
         }
 
+        public static void StopSong()
+        {
+            MediaPlayer.Stop();
+        }
+
+        public static void StopPlaylist()
+        {
+            StopSong();
+
+            IsPlayingPlaylist = false;
+            PlaylistIndex = 0;
+        }
+
         public static void LoadSound(string path)
         {
             AddSound(path.LastSplit('/'), Game.Content.Load<SoundEffect>(path));
@@ -93,29 +106,32 @@ namespace EdgeLibrary
 
         static void MediaPlayer_MediaStateChanged(object sender, EventArgs e)
         {
-            if (MediaPlayer.State == MediaState.Stopped)
+            if (IsPlayingPlaylist)
             {
-                if (PlaylistIndex >= Playlists[PlaylistName].Count - 1 && !MediaPlayer.IsShuffled)
+                if (MediaPlayer.State == MediaState.Stopped)
                 {
-                    PlaylistIndex = 0;
-
-                    if (!MediaPlayer.IsRepeating)
+                    if (PlaylistIndex >= Playlists[PlaylistName].Count - 1 && !MediaPlayer.IsShuffled)
                     {
-                        IsPlayingPlaylist = false;
-                        return;
+                        PlaylistIndex = 0;
+
+                        if (!MediaPlayer.IsRepeating)
+                        {
+                            IsPlayingPlaylist = false;
+                            return;
+                        }
                     }
-                }
 
-                if (MediaPlayer.IsShuffled)
-                {
-                    PlaylistIndex = RandomTools.RandomInt(0, Playlists[PlaylistName].Count);
-                }
-                else
-                {
-                    PlaylistIndex++;
-                }
+                    if (MediaPlayer.IsShuffled)
+                    {
+                        PlaylistIndex = RandomTools.RandomInt(0, Playlists[PlaylistName].Count);
+                    }
+                    else
+                    {
+                        PlaylistIndex++;
+                    }
 
-                MediaPlayer.Play(GetSong(Playlists[PlaylistName][PlaylistIndex++]));
+                    MediaPlayer.Play(GetSong(Playlists[PlaylistName][PlaylistIndex++]));
+                }
             }
         }
 

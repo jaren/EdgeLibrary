@@ -24,7 +24,10 @@ namespace EdgeDemo.CheckersGame
 
             EdgeGame.IsShuffled = true;
 
-            //EdgeGame.playPlaylist("Music");
+            OptionsMenu.FullscreenOn = false;
+            OptionsMenu.MusicOn = false;
+            OptionsMenu.ParticlesOn = true;
+            OptionsMenu.SoundEffectsOn = true;
 
             EdgeGame.OnUpdate += OnUpdate;
             EdgeGame.OnDraw += OnDraw;

@@ -19,7 +19,6 @@ namespace EdgeDemo.CheckersGame
 
         public CreditsMenu() : base("CreditsMenu")
         {
-
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Credits", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
@@ -48,6 +47,8 @@ namespace EdgeDemo.CheckersGame
                 MenuManager.SwitchMenu("MainMenu");
             };
             Components.Add(returnButton);
+
+            Input.OnKeyRelease += (x) => { if (x == Config.BackKey) { MenuManager.SwitchMenu("MainMenu"); } };
 
             TextSprite returnButtonText = new TextSprite(Config.MenuButtonTextFont, "Return", returnButton.Position);
             Components.Add(returnButtonText);
