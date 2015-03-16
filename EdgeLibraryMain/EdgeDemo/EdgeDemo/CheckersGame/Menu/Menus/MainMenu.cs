@@ -15,7 +15,7 @@ namespace EdgeDemo.CheckersGame
         private Button startMultiplayerGameButton;
         private Button optionsButton;
         private Button creditsButton;
-        private TextSprite infoText;
+
         private CheckersService.CheckersServiceClient WebService = new CheckersService.CheckersServiceClient();
 
         public MainMenu() : base("MainMenu")
@@ -111,6 +111,20 @@ namespace EdgeDemo.CheckersGame
             creditsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (creditsButton.Width * creditsButton.Scale.X).ToSimUnits(), (creditsButton.Height * creditsButton.Scale.Y).ToSimUnits(), 1));
             creditsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
 
+            if (OptionsMenu.MusicOn)
+            {
+                EdgeGame.playPlaylist("TitleMusic");
+            }
+        }
+
+        public override void SwitchOut()
+        {
+            base.SwitchOut();
+
+            if (OptionsMenu.MusicOn)
+            {
+                EdgeGame.playPlaylist("Music");
+            }
         }
     }
 }

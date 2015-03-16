@@ -32,7 +32,13 @@ namespace EdgeDemo.CheckersGame
         public static bool FullscreenOn
         {
             get { return fullscreenOn; }
-            set { fullscreenOn = value; EdgeGame.Game.Graphics.IsFullScreen = value; }
+            set 
+            {
+                fullscreenOn = value;
+
+                EdgeGame.Game.Graphics.IsFullScreen = value;
+                EdgeGame.Game.Graphics.ApplyChanges();
+            }
         }
         private static bool fullscreenOn;
         public static bool ParticlesOn = true;

@@ -25,7 +25,7 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.IsShuffled = true;
 
             OptionsMenu.FullscreenOn = false;
-            OptionsMenu.MusicOn = false;
+            OptionsMenu.MusicOn = true;
             OptionsMenu.ParticlesOn = true;
             OptionsMenu.SoundEffectsOn = true;
 
@@ -118,13 +118,10 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadTexture(Config.KingTexture);
             EdgeGame.LoadTexture(Config.XTexture);
 
-            EdgeGame.LoadSong("Music/Carefree");
-            EdgeGame.LoadSong("Music/Fig Leaf Times Two");
-            EdgeGame.LoadSong("Music/Fun in a Bottle");
             EdgeGame.LoadSong("Music/Hyperfun");
-            EdgeGame.LoadSong("Music/Run Amok");
-            EdgeGame.LoadSong("Music/Wallpaper");
-            EdgeGame.AddPlaylist("Music", "Carefree", "Fig Leaf Times Two", "Fun in a Bottle", "Hyperfun", "Run Amok", "Wallpaper");
+            EdgeGame.LoadSong("Music/The Curtain Rises");
+            EdgeGame.AddPlaylist("Music", "Hyperfun");
+            EdgeGame.AddPlaylist("TitleMusic", "The Curtain Rises");
         }
 
     }

@@ -25,16 +25,16 @@ namespace EdgeDemo.CheckersGame
             TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click for Checkers! Right Click to Move Them!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
-            credit1 = new TextSprite(Config.MenuTitleFont, "Credit 1", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f));
+            credit1 = new TextSprite(Config.MenuTitleFont, "Jaren", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f));
             Components.Add(credit1);
 
-            credit2 = new TextSprite(Config.MenuTitleFont, "Credit 2", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.25f));
+            credit2 = new TextSprite(Config.MenuTitleFont, "Aaron", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.25f));
             Components.Add(credit2);
 
-            credit3 = new TextSprite(Config.MenuTitleFont, "Credit 3", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.75f));
+            credit3 = new TextSprite(Config.MenuTitleFont, "Incompetech", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.75f));
             Components.Add(credit3);
 
-            credit4 = new TextSprite(Config.MenuTitleFont, "Credit 4", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.75f));
+            credit4 = new TextSprite(Config.MenuTitleFont, "GMR", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.75f));
             Components.Add(credit4);
 
             returnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.8f) };
