@@ -59,10 +59,19 @@ namespace EdgeDemo.CheckersGame
                 {
                     if (!enterNameBox.TextBlank)
                     {
-                        Player1 = new WebPlayer(enterNameBox.TextSprite.Text, false);
-                        Player2 = new NormalPlayer();
-                        BoardManager.ResetGame = true;
-                        MenuManager.SwitchMenu("GameMenu");
+                        try
+                        {
+                            ServiceClient.GetAllGames();
+
+                            Player1 = new WebPlayer(enterNameBox.TextSprite.Text, false);
+                            Player2 = new NormalPlayer();
+                            BoardManager.ResetGame = true;
+                            MenuManager.SwitchMenu("GameMenu");
+                        }
+                        catch
+                        {
+                            System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -95,7 +104,7 @@ namespace EdgeDemo.CheckersGame
                         {
                             BoardManager.ResetGame = true;
                             Player1 = new NormalPlayer();
-                            Player2 = new WebPlayer(gameIDs[0], "Other Team", false);
+                            Player2 = new WebPlayer(gameIDs[0], enterNameBox.Text, false);
                             MenuManager.SwitchMenu("GameMenu");
                         }
                         else
@@ -123,7 +132,7 @@ namespace EdgeDemo.CheckersGame
                         {
                             BoardManager.ResetGame = true;
                             Player1 = new NormalPlayer();
-                            Player2 = new WebPlayer(gameIDs[1], "Other Team", false);
+                            Player2 = new WebPlayer(gameIDs[1], enterNameBox.Text, false);
                             MenuManager.SwitchMenu("GameMenu");
                         }
                         else
@@ -151,7 +160,7 @@ namespace EdgeDemo.CheckersGame
                         {
                             BoardManager.ResetGame = true;
                             Player1 = new NormalPlayer();
-                            Player2 = new WebPlayer(gameIDs[2], "Other Team", false);
+                            Player2 = new WebPlayer(gameIDs[2], enterNameBox.Text, false);
                             MenuManager.SwitchMenu("GameMenu");
                         }
                         else

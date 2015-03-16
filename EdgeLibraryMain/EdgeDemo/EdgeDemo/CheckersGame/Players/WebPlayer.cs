@@ -21,8 +21,13 @@ namespace EdgeDemo.CheckersGame
             if (createGame)
             {
                 ThisGameID = WebService.CreateGame(hostTeamName);
+                while (WebService.GetSpecificGames(GameState.State.WaitingForPlayers).ContainsKey(ThisGameID))
+                {
+                    //Waiting For Another Player...
+                }
+
+                TeamName = hostTeamName;
             }
-            TeamName = hostTeamName;
         }
         /// <summary>
         /// If the web player is Player1 (the host) use this overload
@@ -50,50 +55,35 @@ namespace EdgeDemo.CheckersGame
 
         public void CheckForRemoteMove()
         {
-            Move RemoteMove = PreviousMove;
-
-            while (RemoteMove == PreviousMove)
+            SimpleMove ProcessedPreviousMove = Move.ConvertAndSend(PreviousMove);
+            Move RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
+            //TODO: Add loading text so user thinks something is happening
+            while(ProcessedPreviousMove.ID == RemoteMove.ID)
             {
-                //TODO: Add loading text so user thinks something is happening
-                Move recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
-
-                if (recievedMove != null)
-                {
-                    RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
-                    do
-                    {
-                        recievedMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
-
-                        if (recievedMove != null)
-                        {
-                            RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
-                            break;
-                        }
-
-                        Thread.Sleep(1000);
-                    } while (RemoteMove == PreviousMove);
-
-                    base.SendMove(RemoteMove);
-                }
+                Thread.Sleep(1000);
+                RemoteMove = Move.ConvertAndRecieve(WebService.GetLatestMoveFrom(ThisGameID));
             }
+
+            base.SendMove(RemoteMove);
         }
 
         public override bool ReceivePreviousMove(Move move, Dictionary<Piece, List<Move>> possibleMoves)
         {
-            base.ReceivePreviousMove(move, possibleMoves);
-            PreviousMove = move;
-            if (!base.ReceivePreviousMove(move, possibleMoves))
+            if (move != null)
             {
-                return false;
+                base.ReceivePreviousMove(move, possibleMoves);
+                PreviousMove = move;
+                if (!base.ReceivePreviousMove(move, possibleMoves))
+                {
+                    return false;
+                }
+
+                WebService.AddMove(Move.ConvertAndSend(move), ThisGameID);
+
+                PreviousMove = move;
             }
-
-            WebService.AddMove(Move.ConvertAndSend(move), ThisGameID);
-
-            PreviousMove = move;
-            waitForMoveThread = new Thread(CheckForRemoteMove);
-            waitForMoveThread.Start();
+            CheckForRemoteMove();
             //TODO: Switch to waiting for other player screen here.
-
             return true;
         }
 
