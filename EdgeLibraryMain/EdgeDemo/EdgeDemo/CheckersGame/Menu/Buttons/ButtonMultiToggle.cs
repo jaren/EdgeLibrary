@@ -9,11 +9,12 @@ namespace EdgeDemo.CheckersGame
 {
     public class ButtonMultiToggle : Button
     {
-        public bool On = false;
-
         public List<Style> Styles;
         public int CurrentIndex;
         public int MaxIndices;
+
+        public delegate void ButtonMultiToggleEvent(ButtonMultiToggle sender, GameTime gameTime);
+        public virtual event ButtonMultiToggleEvent OnToggled;
 
         public ButtonMultiToggle(string texture, Vector2 position, int maxIndices)
             : base(texture, position)
@@ -28,6 +29,18 @@ namespace EdgeDemo.CheckersGame
 
         void ButtonToggle_OnClick(Button sender, GameTime gameTime)
         {
+            CurrentIndex++;
+            if (CurrentIndex > MaxIndices)
+            {
+                CurrentIndex = 0;
+            }
+
+            Style = Styles[Styles.Count % CurrentIndex];
+
+            if (OnToggled != null)
+            {
+                OnToggled(this, gameTime);
+            }
         }
     }
 }

@@ -96,7 +96,7 @@ namespace EdgeDemo.CheckersGame
             MusicButton.OnStyle.AllColors = Config.MenuButtonColor;
             MusicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
             MusicButton.OffStyle.AllColors = Config.MenuButtonColor;
-            MusicButton.Style = MusicButton.OnStyle;
+            MusicButton.Style = MusicOn ? MusicButton.OnStyle : MusicButton.OffStyle;
             MusicButton.OnRelease += (x, y) => { MusicOn = MusicButton.On; };
             MusicButton.On = MusicOn;
             Components.Add(MusicButton);
@@ -109,7 +109,7 @@ namespace EdgeDemo.CheckersGame
             SoundEffectsButton.OnStyle.AllColors = Config.MenuButtonColor;
             SoundEffectsButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
             SoundEffectsButton.OffStyle.AllColors = Config.MenuButtonColor;
-            SoundEffectsButton.Style = SoundEffectsButton.OnStyle;
+            SoundEffectsButton.Style = SoundEffectsOn ? SoundEffectsButton.OnStyle : SoundEffectsButton.OffStyle;
             SoundEffectsButton.OnRelease += (x, y) => { SoundEffectsOn = SoundEffectsButton.On; };
             SoundEffectsButton.On = SoundEffectsOn;
             Components.Add(SoundEffectsButton);
@@ -122,7 +122,7 @@ namespace EdgeDemo.CheckersGame
             FullscreenButton.OnStyle.AllColors = Config.MenuButtonColor;
             FullscreenButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
             FullscreenButton.OffStyle.AllColors = Config.MenuButtonColor;
-            FullscreenButton.Style = FullscreenButton.OnStyle;
+            FullscreenButton.Style = FullscreenOn ? FullscreenButton.OnStyle : FullscreenButton.OffStyle;
             FullscreenButton.OnRelease += (x, y) => { FullscreenOn = FullscreenButton.On; };
             FullscreenButton.On = FullscreenOn;
             Components.Add(FullscreenButton);
@@ -135,7 +135,7 @@ namespace EdgeDemo.CheckersGame
             ParticlesButton.OnStyle.AllColors = Config.MenuButtonColor;
             ParticlesButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
             ParticlesButton.OffStyle.AllColors = Config.MenuButtonColor;
-            ParticlesButton.Style = ParticlesButton.OnStyle;
+            ParticlesButton.Style = ParticlesOn ? ParticlesButton.OnStyle : ParticlesButton.OffStyle;
             ParticlesButton.OnRelease += (x, y) => { ParticlesOn = ParticlesButton.On; };
             ParticlesButton.On = ParticlesOn;
             Components.Add(ParticlesButton);
