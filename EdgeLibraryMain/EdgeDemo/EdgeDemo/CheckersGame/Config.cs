@@ -48,7 +48,7 @@ namespace EdgeDemo.CheckersGame
         public static Color BorderColor = Color.DarkGoldenrod;
         public static int SquareDistance = 0;
 
-        public static float CheckerMoveSpeed = 5f;
+        public static float CheckerMoveSpeed = 15f;
 
         public static float CheckerFadeOutSpeed = 1000f;
 

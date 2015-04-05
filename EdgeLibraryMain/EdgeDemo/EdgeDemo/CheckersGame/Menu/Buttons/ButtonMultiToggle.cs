@@ -35,7 +35,7 @@ namespace EdgeDemo.CheckersGame
                 CurrentIndex = 0;
             }
 
-            Style = Styles[Styles.Count % CurrentIndex];
+            Style = Styles[CurrentIndex % Styles.Count];
 
             if (OnToggled != null)
             {
