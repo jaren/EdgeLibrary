@@ -43,25 +43,3 @@ namespace EdgeDemo
     }
 #endif
 }
-
-/*
- *             Fire = new ParticleEmitter("Fire", new Vector2(500))
-            {
-                BlendState = BlendState.Additive,
-                Life = 2000,
-
-                EmitPositionVariance = new Vector2(0, 0),
-
-                MinVelocity = new Vector2(2, 2),
-                MaxVelocity = new Vector2(-3, -3),
-
-                MinScale = new Vector2(2.5f),
-                MaxScale = new Vector2(3f),
-
-                MinColorIndex = new ColorChangeIndex(400, Color.Magenta, Color.Orange, Color.Purple, Color.Transparent),
-                MaxColorIndex = new ColorChangeIndex(400, Color.Teal, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
-                EmitWait = 0,
-                ParticlesToEmit = 10,
-            };
-            Fire.AddToGame();
-*/

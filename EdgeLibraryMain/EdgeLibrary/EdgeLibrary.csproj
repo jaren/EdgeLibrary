@@ -115,6 +115,11 @@
     <Compile Include="Components\3D\Model\SpriteModel.cs" />
     <Compile Include="Components\3D\Sprite3D.cs" />
     <Compile Include="Components\Action\2D\ATextureChange.cs" />
+    <Compile Include="Components\Miscellaneous\Buttons\Button.cs" />
+    <Compile Include="Components\Miscellaneous\Buttons\ButtonMultiToggle.cs" />
+    <Compile Include="Components\Miscellaneous\Buttons\ButtonToggle.cs" />
+    <Compile Include="Components\Miscellaneous\Buttons\Style.cs" />
+    <Compile Include="Components\Miscellaneous\Buttons\TextBox.cs" />
     <Compile Include="Game\EdgeGame\ModifiedSpriteBatch.cs" />
     <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />

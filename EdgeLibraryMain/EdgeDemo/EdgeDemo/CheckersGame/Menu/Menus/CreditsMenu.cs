@@ -9,7 +9,7 @@ using System.Text;
 
 namespace EdgeDemo.CheckersGame
 {
-    public class CreditsMenu : ParticleMenu
+    public class CreditsMenu : MenuBase
     {
         TextSprite credit1;
         TextSprite credit2;
@@ -36,6 +36,26 @@ namespace EdgeDemo.CheckersGame
 
             credit4 = new TextSprite(Config.MenuTitleFont, "GMR", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.75f));
             Components.Add(credit4);
+
+            ParticleEmitter Fire = new ParticleEmitter("Fire", new Vector2(500))
+            {
+                BlendState = BlendState.Additive,
+                Life = 2400,
+
+                EmitPositionVariance = new Vector2(10, 10),
+
+                MinVelocity = new Vector2(2, 2),
+                MaxVelocity = new Vector2(-3, -3),
+
+                MinScale = new Vector2(1.5f),
+                MaxScale = new Vector2(2f),
+
+                MinColorIndex = new ColorChangeIndex(400, Color.Magenta, Color.Orange, Color.Purple, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(400, Color.Teal, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
+                EmitWait = 0,
+                ParticlesToEmit = 10,
+            };
+            Components.Add(Fire);
 
             returnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.9f)) { Color = Config.MenuButtonColor, Scale = new Vector2(0.8f) };
             returnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
@@ -71,7 +91,16 @@ namespace EdgeDemo.CheckersGame
             returnButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (returnButton.Width * returnButton.Scale.X).ToSimUnits(), (returnButton.Height * returnButton.Scale.Y).ToSimUnits(), 1f));
             returnButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
 
+            EdgeGame.ClearColor = Color.Black;
+
             base.SwitchTo();
+        }
+
+        public override void SwitchOut()
+        {
+            EdgeGame.ClearColor = Color.Gray;
+
+            base.SwitchOut();
         }
     }
 }
