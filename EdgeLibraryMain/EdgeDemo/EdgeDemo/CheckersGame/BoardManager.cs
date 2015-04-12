@@ -147,12 +147,6 @@ namespace EdgeDemo.CheckersGame
             {
                 DebugSprite.Text += "Last Moused Over Square: " + Board.mousedOverSquare.X + ", " + Board.mousedOverSquare.Y;
             }
-
-            //TODO - Possibly move because of Players
-            //if (Config.ThisGameType == Config.GameType.Online && ServiceClient.GetAllGames().ElementAt(Config.ThisGameID).State == GameManager.GameState.WaitingForPlayers)
-            //{
-            //    System.Windows.Forms.MessageBox.Show("ToDo: Waiting for Players Screen\n(To have this dialog stop appearing, set the current game state to something besides WaitingForPlayers)\n\nThis Game ID: " + Config.ThisGameID);
-            //}
         }
 
         void Player1_OnRunMove(Move move)
@@ -189,19 +183,7 @@ namespace EdgeDemo.CheckersGame
         //Ends the game
         public static void EndGame()
         {
-            /*
-            System.Windows.Forms.DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Somebody won the game... congratulations. Somebody also lost. (" + (Player1Turn ? Config.Player1Name : Config.Player2Name) + ")", "Somebody lost", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
-
-            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-            {
-                System.Windows.Forms.MessageBox.Show("That is true.", "A false statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Warning);
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("That is not true", "A true statement", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Stop);
-            }
-            */
-
+            
             MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
             Ticker ticker = new Ticker(6000);
             ticker.Enabled = true;

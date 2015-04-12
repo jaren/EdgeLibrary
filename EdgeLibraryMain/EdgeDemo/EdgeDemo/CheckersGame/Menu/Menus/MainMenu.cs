@@ -48,7 +48,10 @@ namespace EdgeDemo.CheckersGame
                 }
                 catch
                 {
-                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    if (!EdgeGame.Game.Graphics.IsFullScreen)
+                    {
+                        System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    }
                 }
             };
             startMultiplayerGameButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
@@ -86,7 +89,7 @@ namespace EdgeDemo.CheckersGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
+            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !EdgeGame.Game.Graphics.IsFullScreen)
             {
                 if (System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?", "Quit", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
                 {

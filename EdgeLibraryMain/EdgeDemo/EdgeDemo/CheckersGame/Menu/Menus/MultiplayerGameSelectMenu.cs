@@ -70,12 +70,18 @@ namespace EdgeDemo.CheckersGame
                         }
                         catch
                         {
-                            System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            if (!EdgeGame.Game.Graphics.IsFullScreen)
+                            {
+                                System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        if (!EdgeGame.Game.Graphics.IsFullScreen)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        }
                     }
                 };
                 Components.Add(hostButton);
@@ -109,12 +115,18 @@ namespace EdgeDemo.CheckersGame
                         }
                         else
                         {
-                            System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            if (!EdgeGame.Game.Graphics.IsFullScreen)
+                            {
+                                System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        if (!EdgeGame.Game.Graphics.IsFullScreen)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        }
                     }
                 };
                 Components.Add(join1Button);
@@ -165,12 +177,18 @@ namespace EdgeDemo.CheckersGame
                         }
                         else
                         {
-                            System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            if (!EdgeGame.Game.Graphics.IsFullScreen)
+                            {
+                                System.Windows.Forms.MessageBox.Show("That game is no longer joinable or does not exist", "Not Joinable", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
                     {
-                        System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        if (!EdgeGame.Game.Graphics.IsFullScreen)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Please enter a team name into the text box", "Invalid team name", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                        }
                     }
                 };
                 Components.Add(join3Button);
@@ -204,7 +222,10 @@ namespace EdgeDemo.CheckersGame
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                if (!EdgeGame.Game.Graphics.IsFullScreen)
+                {
+                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -248,7 +269,10 @@ namespace EdgeDemo.CheckersGame
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                if (!EdgeGame.Game.Graphics.IsFullScreen)
+                {
+                    System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                }
             }
         }
     }
