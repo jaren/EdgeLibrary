@@ -91,10 +91,10 @@ namespace EdgeDemo.CheckersGame
             QuitButtonText = new TextSprite(Config.MenuButtonTextFont, "Quit Game", QuitButton.Position);
             Components.Add(QuitButtonText);
 
-            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_box", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             MusicButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             MusicButton.OnStyle.AllColors = Config.MenuButtonColor;
-            MusicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
+            MusicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
             MusicButton.OffStyle.AllColors = Config.MenuButtonColor;
             MusicButton.Style = MusicOn ? MusicButton.OnStyle : MusicButton.OffStyle;
             MusicButton.OnRelease += (x, y) => { MusicOn = MusicButton.On; };
@@ -104,10 +104,10 @@ namespace EdgeDemo.CheckersGame
             MusicButtonText = new TextSprite(Config.MenuButtonTextFont, "Music", MusicButton.Position + new Vector2(MusicButton.Width, -MusicButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(MusicButtonText);
 
-            SoundEffectsButton = new ButtonToggle(SoundEffectsOn ? "grey_boxCheckmark" : "grey_box", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            SoundEffectsButton = new ButtonToggle(SoundEffectsOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             SoundEffectsButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             SoundEffectsButton.OnStyle.AllColors = Config.MenuButtonColor;
-            SoundEffectsButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
+            SoundEffectsButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
             SoundEffectsButton.OffStyle.AllColors = Config.MenuButtonColor;
             SoundEffectsButton.Style = SoundEffectsOn ? SoundEffectsButton.OnStyle : SoundEffectsButton.OffStyle;
             SoundEffectsButton.OnRelease += (x, y) => { SoundEffectsOn = SoundEffectsButton.On; };
@@ -117,10 +117,10 @@ namespace EdgeDemo.CheckersGame
             SoundEffectsButtonText = new TextSprite(Config.MenuButtonTextFont, "Sound Effects", SoundEffectsButton.Position + new Vector2(SoundEffectsButton.Width, -SoundEffectsButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(SoundEffectsButtonText);
 
-            FullscreenButton = new ButtonToggle(FullscreenOn ? "grey_boxCheckmark" : "grey_box", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            FullscreenButton = new ButtonToggle(FullscreenOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             FullscreenButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             FullscreenButton.OnStyle.AllColors = Config.MenuButtonColor;
-            FullscreenButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
+            FullscreenButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
             FullscreenButton.OffStyle.AllColors = Config.MenuButtonColor;
             FullscreenButton.Style = FullscreenOn ? FullscreenButton.OnStyle : FullscreenButton.OffStyle;
             FullscreenButton.OnRelease += (x, y) => { FullscreenOn = FullscreenButton.On; };
@@ -130,10 +130,10 @@ namespace EdgeDemo.CheckersGame
             FullscreenButtonText = new TextSprite(Config.MenuButtonTextFont, "Fullscreen", FullscreenButton.Position + new Vector2(FullscreenButton.Width, -FullscreenButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(FullscreenButtonText);
 
-            ParticlesButton = new ButtonToggle(ParticlesOn ? "grey_boxCheckmark" : "grey_box", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            ParticlesButton = new ButtonToggle(ParticlesOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             ParticlesButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             ParticlesButton.OnStyle.AllColors = Config.MenuButtonColor;
-            ParticlesButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_box");
+            ParticlesButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
             ParticlesButton.OffStyle.AllColors = Config.MenuButtonColor;
             ParticlesButton.Style = ParticlesOn ? ParticlesButton.OnStyle : ParticlesButton.OffStyle;
             ParticlesButton.OnRelease += (x, y) => { ParticlesOn = ParticlesButton.On; };
