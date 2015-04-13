@@ -209,15 +209,13 @@ namespace EdgeDemo.CheckersGame
             TextSprite startButtonText = new TextSprite(Config.MenuButtonTextFont, "Start Game", startButton.Position);
             Components.Add(startButtonText);
 
-            Input.OnKeyRelease += Input_OnKeyRelease;
-        }
-
-        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
-        {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
+            Input.OnKeyRelease += (x) =>
             {
-                MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
-            }
+                if (MenuManager.SelectedMenu == this && x == Config.BackKey)
+                {
+                    MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
+                }
+            };
         }
     }
 }

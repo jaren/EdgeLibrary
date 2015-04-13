@@ -218,7 +218,13 @@ namespace EdgeDemo.CheckersGame
                 Components.Add(refreshButtonTexture);
                 #endregion
 
-                Input.OnKeyRelease += Input_OnKeyRelease;
+                Input.OnKeyRelease += (x) =>
+                {
+                    if (MenuManager.SelectedMenu == this && x == Config.BackKey)
+                    {
+                        MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
+                    }
+                };
             }
             catch
             {
@@ -226,14 +232,6 @@ namespace EdgeDemo.CheckersGame
                 {
                     System.Windows.Forms.MessageBox.Show("The multiplayer service is not available. Please try again later.", "Multiplayer not Available", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
-        {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
-            {
-                MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
             }
         }
 

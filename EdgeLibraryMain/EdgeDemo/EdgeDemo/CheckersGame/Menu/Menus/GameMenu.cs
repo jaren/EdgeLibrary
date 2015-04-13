@@ -13,7 +13,13 @@ namespace EdgeDemo.CheckersGame
 
         public GameMenu() : base("GameMenu")
         {
-            Input.OnKeyRelease += Input_OnKeyRelease;
+            Input.OnKeyRelease += (x) =>
+            {
+                if (MenuManager.SelectedMenu == this && x == Config.BackKey)
+                {
+                    MenuManager.SwitchMenu("OptionsMenu");
+                }
+            };
         }
 
         public override void SwitchTo()
@@ -21,20 +27,15 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.ClearColor = Color.Gray;
             if (BoardManager.ResetGame)
             {
-                Components.Remove(manager);
+                if (Components.Contains(manager))
+                {
+                    Components.Remove(manager);
+                }
                 manager = new BoardManager();
+                Components.Add(manager);
             }
-            Components.Add(manager);
 
             base.SwitchTo();
-        }
-
-        void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
-        {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
-            {
-                MenuManager.SwitchMenu("OptionsMenu");
-            }
         }
     }
 }

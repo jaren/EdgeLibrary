@@ -36,7 +36,13 @@ namespace EdgeDemo.CheckersGame
             Sprite credits = new Sprite("CreditsTexture", EdgeGame.WindowSize / 2);
             Components.Add(credits);
 
-            Input.OnKeyRelease += (x) => { if (x == Config.BackKey) { MenuManager.SwitchMenu("MainMenu"); } };
+            Input.OnKeyRelease += (x) =>
+            {
+                if (MenuManager.SelectedMenu == this && x == Config.BackKey)
+                {
+                    MenuManager.SwitchMenu("MainMenu");
+                }
+            };
         }
 
         public override void SwitchTo()
