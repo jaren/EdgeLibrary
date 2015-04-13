@@ -42,6 +42,7 @@ namespace EdgeLibrary
             if (fontName != null)
             {
                 Font = EdgeGame.GetFont(fontName);
+                reloadOriginPoint();
             }
         }
 

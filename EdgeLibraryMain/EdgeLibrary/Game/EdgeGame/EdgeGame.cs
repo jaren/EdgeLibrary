@@ -41,6 +41,7 @@ namespace EdgeLibrary
         public static event EdgeGameEvent OnInit;
         public static event EdgeGameEvent OnLoadContent;
         public static event EdgeGameEvent OnReset;
+        public static event EdgeGameEvent OnResized;
         public static event EdgeGameUpdateEvent OnUpdate;
         public static event EdgeGameUpdateEvent OnDraw;
 
@@ -49,6 +50,33 @@ namespace EdgeLibrary
 
         //Sets whether the mouse is visible or not
         public static bool MouseVisible { get { return Game.IsMouseVisible; } set { Game.IsMouseVisible = value; } }
+
+        //Sets whether the game is in fullscreen or not
+        private static Vector2 previousWindowSize;
+        public static bool Fullscreen
+        {
+            get { return Game.Graphics.IsFullScreen; }
+            set
+            {
+                if (value != Fullscreen)
+                {
+                    if (Fullscreen)
+                    {
+                        WindowSize = previousWindowSize;
+
+                        Game.Graphics.IsFullScreen = false;
+                    }
+                    else
+                    {
+                        previousWindowSize = WindowSize;
+                        WindowSize = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
+                        Game.Graphics.IsFullScreen = true;
+                    }
+                    Game.Graphics.ApplyChanges();
+                }
+            }
+        }
 
         //The color the graphicsdevice will clear each frame
         public static Color ClearColor { get { return Game.ClearColor; } set { Game.ClearColor = value; } }
@@ -68,6 +96,11 @@ namespace EdgeLibrary
 
                 Camera = new Camera(WindowSize / 2, Game.GraphicsDevice);
                 Camera3D.AspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
+
+                if (OnResized != null)
+                {
+                    OnResized();
+                }
             }
         }
 

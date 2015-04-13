@@ -120,6 +120,7 @@
     <Compile Include="Components\Miscellaneous\Buttons\ButtonToggle.cs" />
     <Compile Include="Components\Miscellaneous\Buttons\Style.cs" />
     <Compile Include="Components\Miscellaneous\Buttons\TextBox.cs" />
+    <Compile Include="Components\Miscellaneous\RenderTargetImager.cs" />
     <Compile Include="Game\EdgeGame\ModifiedSpriteBatch.cs" />
     <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />

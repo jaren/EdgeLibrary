@@ -16,8 +16,6 @@ namespace EdgeDemo.CheckersGame
         {
             EdgeGame.InitializeWorld(new Vector2(0, 0));
 
-            EdgeGame.WindowSize = new Vector2(950);
-
             EdgeGame.GameSpeed = 1;
 
             EdgeGame.ClearColor = Color.Gray;
@@ -84,6 +82,9 @@ namespace EdgeDemo.CheckersGame
 
         public void OnLoadContent()
         {
+            //Window size must be set here for the credits render target
+            EdgeGame.WindowSize = new Vector2(950);
+
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-10");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-20");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-30");
@@ -122,7 +123,27 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadSong("Music/The Curtain Rises");
             EdgeGame.AddPlaylist("Music", "Hyperfun");
             EdgeGame.AddPlaylist("TitleMusic", "The Curtain Rises");
+
+            //Creating the Credits 'particle' text
+            RenderTargetImager imager = new RenderTargetImager();
+            imager.Components.Add(new TextSprite(Config.MenuTitleFont, "Credits", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.05f)) { Color = Color.White });
+            imager.Components.Add(new TextSprite(Config.MenuTitleFont, "Jaren", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Color.White });
+            imager.Components.Add(new TextSprite(Config.MenuTitleFont, "Aaron", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Color.White });
+            imager.Components.Add(new TextSprite("Georgia-40", "Incompetech", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.75f)) { Color = Color.White });
+            imager.Components.Add(new TextSprite(Config.MenuTitleFont, "GMR", new Vector2(EdgeGame.WindowSize.X * 0.75f, EdgeGame.WindowSize.Y * 0.75f)) { Color = Color.White });
+            Texture2D creditsTexture = imager.RenderToTarget(Color.Black);
+            TextureEditor editor = new TextureEditor();
+            editor.OnEditPixel += editor_OnEditPixel;
+            editor.ApplyTo(creditsTexture);
+            EdgeGame.AddTexture("CreditsTexture", creditsTexture.Clone());
         }
 
+        private void editor_OnEditPixel(ref Color color, int x, int y)
+        {
+            if (color != Color.Black)
+            {
+                color = Color.Transparent;
+            }
+        }
     }
 }

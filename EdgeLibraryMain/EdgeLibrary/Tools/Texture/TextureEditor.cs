@@ -16,7 +16,7 @@ namespace EdgeLibrary
     {
         //The event which is called for every pixel on the texture
         public delegate void ColorLoopEvent(ref Color color, int x, int y);
-        public event ColorLoopEvent OnColorCheck;
+        public event ColorLoopEvent OnEditPixel;
 
         //Applies the texture editor to a certain texture, modifying it
         public void ApplyTo(Texture2D texture)
@@ -27,9 +27,9 @@ namespace EdgeLibrary
             {
                 for (int y = 0; y < texture.Height; y++)
                 {
-                    if (OnColorCheck != null)
+                    if (OnEditPixel != null)
                     {
-                        OnColorCheck(ref colors[x + y * texture.Width], x, y);
+                        OnEditPixel(ref colors[x + y * texture.Width], x, y);
                     }
                 }
             }
