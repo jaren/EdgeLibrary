@@ -120,17 +120,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckersGame\AI\SortedMove.cs" />
-    <Compile Include="CheckersGame\BoardManager.cs" />
+    <Compile Include="CheckersGame\BoardManager\2D\BoardManager.cs" />
     <Compile Include="CheckersGame\AI\ComputerMoveChooser.cs" />
+    <Compile Include="CheckersGame\BoardManager\3D\Board3D.cs" />
+    <Compile Include="CheckersGame\BoardManager\3D\BoardManager3D.cs" />
+    <Compile Include="CheckersGame\BoardManager\3D\Border3D.cs" />
+    <Compile Include="CheckersGame\BoardManager\3D\Piece3D.cs" />
+    <Compile Include="CheckersGame\BoardManager\3D\Square3D.cs" />
     <Compile Include="CheckersGame\Config.cs" />
     <Compile Include="CheckersGame\ColorTextSprite.cs" />
-    <Compile Include="CheckersGame\Menu\Buttons\Button.cs" />
-    <Compile Include="CheckersGame\Menu\Buttons\ButtonMultiToggle.cs" />
-    <Compile Include="CheckersGame\Menu\Buttons\ButtonToggle.cs" />
-    <Compile Include="CheckersGame\Menu\Buttons\Style.cs" />
-    <Compile Include="CheckersGame\Menu\Buttons\TextBox.cs" />
     <Compile Include="CheckersGame\Menu\Menus\CreditsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\GameMenu.cs" />
+    <Compile Include="CheckersGame\Menu\Menus\GameMenu3D.cs" />
     <Compile Include="CheckersGame\Menu\Menus\NoGameOptionsMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\MultiplayerGameSelectMenu.cs" />
     <Compile Include="CheckersGame\Menu\Menus\LocalGameSelectMenu.cs" />
@@ -145,13 +146,13 @@
     <Compile Include="CheckersGame\Players\NormalPlayer.cs" />
     <Compile Include="CheckersGame\Players\Player.cs" />
     <Compile Include="CheckersGame\Players\WebPlayer.cs" />
-    <Compile Include="CheckersGame\Square\Board.cs" />
-    <Compile Include="CheckersGame\Square\Border.cs" />
+    <Compile Include="CheckersGame\BoardManager\2D\Board.cs" />
+    <Compile Include="CheckersGame\BoardManager\2D\Border.cs" />
     <Compile Include="CheckersGame\Game.cs" />
     <Compile Include="CheckersGame\Moves\MovementManager.cs" />
     <Compile Include="CheckersGame\Moves\Move.cs" />
-    <Compile Include="CheckersGame\Square\Piece.cs" />
-    <Compile Include="CheckersGame\Square\Square.cs" />
+    <Compile Include="CheckersGame\BoardManager\2D\Piece.cs" />
+    <Compile Include="CheckersGame\BoardManager\2D\Square.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CheckersService\Reference.cs">
