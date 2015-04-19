@@ -65,7 +65,16 @@ namespace EdgeDemo.CheckersGame
                 move.SwitchBoards(Board).RunMove(Board);
 
                 //Generates the possible moves for the next team
-                Dictionary<Piece, List<Move>> possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
+                Dictionary<Piece, List<Move>> possibleNextMoves;
+                if (Config.DrawIn3D)
+                {
+                    possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
+                }
+                else
+                {
+                    possibleNextMoves = MovementManager3D.GeneratePlayerMoves(!BoardManager3D.Player1Turn, Board);
+                }
+
                 foreach(Piece possibleNextPiece in possibleNextMoves.Keys)
                 {
                     //Loops through all the moves and chooses the one with the most pieces captured (lost)
@@ -82,7 +91,15 @@ namespace EdgeDemo.CheckersGame
                 //Warning: Very expensive
                 Board = (Board)board.Clone();
 
-                possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
+                if (Config.DrawIn3D)
+                {
+                    possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
+                }
+                else
+                {
+                    possibleNextMoves = MovementManager3D.GeneratePlayerMoves(!BoardManager3D.Player1Turn, Board);
+                }
+
                 foreach (Piece possibleNextPiece in possibleNextMoves.Keys)
                 {
                     //Loops through all the moves and chooses the one with the most pieces captured (lost)

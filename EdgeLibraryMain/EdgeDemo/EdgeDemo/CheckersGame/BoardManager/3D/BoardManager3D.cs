@@ -18,7 +18,7 @@ namespace EdgeDemo.CheckersGame
 
         //If set to true, will reset the game when created by GameMenu
         public static bool ResetGame = true;
-
+        
         //Displays which team should move and the move state
         public TextSprite StatusSprite;
 
@@ -107,7 +107,7 @@ namespace EdgeDemo.CheckersGame
 
             //Starts the game off with player 1 moving first
             Player1Turn = false;
-            Player2.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
+            Player2.ReceivePreviousMove(null, MovementManager3D.GeneratePlayerMoves(Player1Turn));
         }
 
         //Necessary override to not draw the BoardManager
@@ -152,7 +152,7 @@ namespace EdgeDemo.CheckersGame
             StatusSprite.Text = "It is " + Player2.Name + "'s Turn";
 
             Player1Turn = false;
-            if (!Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
+            if (!Player2.ReceivePreviousMove(move, MovementManager3D.GeneratePlayerMoves(Player1Turn)))
             {
                 EndGame();
             }
@@ -165,7 +165,7 @@ namespace EdgeDemo.CheckersGame
             StatusSprite.Text = "It is " + Player1.Name + "'s Turn";
 
             Player1Turn = true;
-            if (!Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
+            if (!Player1.ReceivePreviousMove(move, MovementManager3D.GeneratePlayerMoves(Player1Turn)))
             {
                 EndGame();
             }
