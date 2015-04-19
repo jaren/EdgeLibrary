@@ -182,7 +182,7 @@ namespace EdgeDemo.CheckersGame
             startButton.Style.AllColors = Config.MenuButtonColor;
             startButton.OnRelease += (x, y) => 
             {
-                BoardManager.ResetGame = true; 
+                BoardManager.Instance.ResetGame = true; 
                 
                 if (player1Button.On)
                 {

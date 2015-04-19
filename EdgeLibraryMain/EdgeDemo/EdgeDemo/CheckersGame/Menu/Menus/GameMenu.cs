@@ -25,7 +25,7 @@ namespace EdgeDemo.CheckersGame
         public override void SwitchTo()
         {
             EdgeGame.ClearColor = Color.Gray;
-            if (BoardManager.ResetGame)
+            if (BoardManager.Instance.ResetGame)
             {
                 if (Components.Contains(manager))
                 {

@@ -66,14 +66,8 @@ namespace EdgeDemo.CheckersGame
 
                 //Generates the possible moves for the next team
                 Dictionary<Piece, List<Move>> possibleNextMoves;
-                if (Config.DrawIn3D)
-                {
-                    possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
-                }
-                else
-                {
-                    possibleNextMoves = MovementManager3D.GeneratePlayerMoves(!BoardManager3D.Player1Turn, Board);
-                }
+
+                possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Instance.Player1Turn, Board);
 
                 foreach(Piece possibleNextPiece in possibleNextMoves.Keys)
                 {
@@ -91,14 +85,7 @@ namespace EdgeDemo.CheckersGame
                 //Warning: Very expensive
                 Board = (Board)board.Clone();
 
-                if (Config.DrawIn3D)
-                {
-                    possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Player1Turn, Board);
-                }
-                else
-                {
-                    possibleNextMoves = MovementManager3D.GeneratePlayerMoves(!BoardManager3D.Player1Turn, Board);
-                }
+                possibleNextMoves = MovementManager.GeneratePlayerMoves(!BoardManager.Instance.Player1Turn, Board);
 
                 foreach (Piece possibleNextPiece in possibleNextMoves.Keys)
                 {

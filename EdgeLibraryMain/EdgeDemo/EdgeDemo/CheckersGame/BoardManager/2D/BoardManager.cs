@@ -15,36 +15,39 @@ namespace EdgeDemo.CheckersGame
     public class BoardManager : Sprite
     {
         //Game components to update and draw
-        public static List<GameComponent> Components { get; private set; }
+        public List<GameComponent> Components { get; private set; }
 
         //The main board - static so other classes can access it
-        public static Board Board { get; private set; }
+        public Board Board { get; private set; }
 
         //If set to true, will reset the game when created by GameMenu
-        public static bool ResetGame = true;
+        public bool ResetGame = true;
 
         //Displays which team should move and the move state
         public TextSprite StatusSprite;
 
         //Displays how many captures each team has
-        public static TextSprite CaptureSprite;
+        public TextSprite CaptureSprite;
 
         //The sprite which displays when there is an important message
-        public static ColorTextSprite MessageSprite;
+        public ColorTextSprite MessageSprite;
 
         //Displays debug info
         public TextSprite DebugSprite;
 
         //Is it player 1's turn
-        public static bool Player1Turn;
+        public bool Player1Turn;
 
         //The players in the game
-        public static Player Player1;
-        public static Player Player2;
+        public Player Player1;
+        public Player Player2;
 
         //Text for the current team
         private string TeamText;
         public int TurnsCount;
+
+        //Gets the instance of the current BoardManager
+        public static BoardManager Instance { get; protected set; }
 
         CheckersServiceClient ServiceClient = new CheckersServiceClient();
 
@@ -113,6 +116,8 @@ namespace EdgeDemo.CheckersGame
             //Starts the game off with player 1 moving first
             Player1Turn = false;
             Player2.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
+
+            Instance = this;
         }
 
         //Necessary override to not draw the BoardManager
@@ -177,13 +182,12 @@ namespace EdgeDemo.CheckersGame
 
         public void RunMove(Move move)
         {
-            move.RunMove(BoardManager.Board);
+            move.RunMove(Board);
         }
 
         //Ends the game
-        public static void EndGame()
+        public void EndGame()
         {
-            
             MessageSprite.Display((!Player1Turn ? Player1.Name : Player2.Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
             Ticker ticker = new Ticker(6000);
             ticker.Enabled = true;

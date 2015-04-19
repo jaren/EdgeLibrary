@@ -65,7 +65,7 @@ namespace EdgeDemo.CheckersGame
 
                             Player1 = new WebPlayer(enterNameBox.TextSprite.Text, false);
                             Player2 = new NormalPlayer("This shouldn't be seen...");
-                            BoardManager.ResetGame = true;
+                            BoardManager.Instance.ResetGame = true;
                             MenuManager.SwitchMenu("GameMenu");
                         }
                         catch
@@ -108,7 +108,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 0 && ServiceClient.GetAllGames().ElementAt(gameIDs[0]).GameInfo == GameState.State.WaitingForPlayers)
                         {
-                            BoardManager.ResetGame = true;
+                            BoardManager.Instance.ResetGame = true;
                             Player1 = new NormalPlayer("This shouldn't be seen...");
                             Player2 = new WebPlayer(enterNameBox.Text, gameIDs[0], false);
                             MenuManager.SwitchMenu("GameMenu");
@@ -142,7 +142,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 1 && ServiceClient.GetAllGames().ElementAt(gameIDs[1]).GameInfo == GameState.State.WaitingForPlayers)
                         {
-                            BoardManager.ResetGame = true;
+                            BoardManager.Instance.ResetGame = true;
                             Player1 = new NormalPlayer("This shouldn't be seen...");
                             Player2 = new WebPlayer(enterNameBox.Text, gameIDs[1], false);
                             MenuManager.SwitchMenu("GameMenu");
@@ -170,7 +170,7 @@ namespace EdgeDemo.CheckersGame
                     {
                         if (ServiceClient.GetSpecificGames(GameState.State.WaitingForPlayers).Count > 2 && ServiceClient.GetAllGames().ElementAt(gameIDs[2]).GameInfo == GameState.State.WaitingForPlayers)
                         {
-                            BoardManager.ResetGame = true;
+                            BoardManager.Instance.ResetGame = true;
                             Player1 = new NormalPlayer("This shouldn't be seen...");
                             Player2 = new WebPlayer(enterNameBox.Text, gameIDs[2], false);
                             MenuManager.SwitchMenu("GameMenu");

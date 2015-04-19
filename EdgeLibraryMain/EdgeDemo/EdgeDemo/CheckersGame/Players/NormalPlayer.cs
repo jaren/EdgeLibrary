@@ -67,7 +67,7 @@ namespace EdgeDemo.CheckersGame
             {
                 //Gets the square clicked
                 PreviousMousedOverSquare = MousedOverSquare;
-                MousedOverSquare = BoardManager.Board.GetSquareMousedOver();
+                MousedOverSquare = BoardManager.Instance.Board.GetSquareMousedOver();
 
                 if (MousedOverSquare != PreviousMousedOverSquare)
                 {
@@ -156,7 +156,7 @@ namespace EdgeDemo.CheckersGame
                 //Resets the color of the possible start squares
                 foreach (Piece possiblePiece in PossibleMoves.Keys)
                 {
-                    BoardManager.Board.Squares[possiblePiece.X, possiblePiece.Y].Color = BoardManager.Board.Squares[possiblePiece.X, possiblePiece.Y].DefaultColor;
+                    BoardManager.Instance.Board.Squares[possiblePiece.X, possiblePiece.Y].Color = BoardManager.Instance.Board.Squares[possiblePiece.X, possiblePiece.Y].DefaultColor;
                 }
 
                 //Colors the start square
@@ -174,7 +174,7 @@ namespace EdgeDemo.CheckersGame
             //If the square isn't valid, change the message
             else
             {
-                BoardManager.MessageSprite.Display("Invalid square");
+                BoardManager.Instance.MessageSprite.Display("Invalid square");
             }
         }
 
@@ -210,14 +210,14 @@ namespace EdgeDemo.CheckersGame
                     //ExecuteMove();
 
                     ////Checks for the game end
-                    //if (BoardManager.CheckEndGame())
+                    //if (BoardManager.Instance.CheckEndGame())
                     //{
-                    //    BoardManager.EndGame();
+                    //    BoardManager.Instance.EndGame();
                     //}
 
                     ////Updates info
-                    //BoardManager.Player1Turn = !BoardManager.Player1Turn;
-                    //TeamText = BoardManager.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
+                    //BoardManager.Instance.Player1Turn = !BoardManager.Instance.Player1Turn;
+                    //TeamText = BoardManager.Instance.Player1Turn ? Config.Player1Name + ": " : Config.Player2Name + ": ";
 
                     //Resets move
                     //ResetMove();
@@ -342,7 +342,7 @@ namespace EdgeDemo.CheckersGame
             //If you can't move, switches teams
             if (PossibleMoves.Count == 0)
             {
-                BoardManager.MessageSprite.Display("You have passed your turn\nYou have no possible moves");
+                BoardManager.Instance.MessageSprite.Display("You have passed your turn\nYou have no possible moves");
             }
 
             if (PossibleMoves.ContainsKey(CurrentMove.Piece))

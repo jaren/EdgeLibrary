@@ -94,10 +94,10 @@ namespace EdgeDemo.CheckersGame
         /// <param name="moveInfo">An object array of move data produced by the ConvertAndSend function</param>
         public static Move ConvertAndRecieve(SimpleMove moveInfo, Board board = null)
         {
-            //Board needs to be set here because BoardManager.Board is not a compile-time constant
+            //Board needs to be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             if (moveInfo != null)
@@ -140,7 +140,7 @@ namespace EdgeDemo.CheckersGame
         {
             if(boardToRunOn == null)
             {
-                boardToRunOn = BoardManager.Board;
+                boardToRunOn = BoardManager.Instance.Board;
             }
 
             List<Action> Moves = new List<Action>();
@@ -162,9 +162,9 @@ namespace EdgeDemo.CheckersGame
             {
                 boardToRunOn.CapturePiece(square.OccupyingPiece);
             }
-            if (boardToRunOn == BoardManager.Board)
+            if (boardToRunOn == BoardManager.Instance.Board)
             {
-                BoardManager.CaptureSprite.Text = "Top Team Captures: " + boardToRunOn.TopTeamCaptures + "\nBottom Team Captures: " + boardToRunOn.BottomTeamCaptures;
+                BoardManager.Instance.CaptureSprite.Text = "Top Team Captures: " + boardToRunOn.TopTeamCaptures + "\nBottom Team Captures: " + boardToRunOn.BottomTeamCaptures;
             }
             //********************
 

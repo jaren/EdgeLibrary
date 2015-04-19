@@ -30,10 +30,10 @@ namespace EdgeDemo.CheckersGame
 
         public static Dictionary<Piece, List<Move>> GeneratePlayerMoves(bool player1, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             Dictionary<Piece, List<Move>> Moves = new Dictionary<Piece, List<Move>>();
@@ -65,10 +65,10 @@ namespace EdgeDemo.CheckersGame
 
         public static Dictionary<Piece, List<Square>> PlayerCanJumpTo(bool player1, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             //Creates a dictionary of pieces that can jump and where they can jump to - only single jumps
@@ -143,10 +143,10 @@ namespace EdgeDemo.CheckersGame
         //Returns a list of squares a specific piece can jump to
         public static List<Square> PieceCanJumpTo(Piece piece, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             List<Square> toReturn = new List<Square>();
@@ -224,7 +224,7 @@ namespace EdgeDemo.CheckersGame
         public static List<Move> GenerateNewListOfJumps(Piece piece)
         {
             List<Move> CompletedJumpSequences = new List<Move>();
-            Board fakeBoard = (Board)BoardManager.Board.Clone();
+            Board fakeBoard = (Board)BoardManager.Instance.Board.Clone();
             PieceCanMultiJumpTo(fakeBoard.Squares[piece.X,piece.Y].OccupyingPiece, fakeBoard, CompletedJumpSequences);
             return CompletedJumpSequences;
         }
@@ -238,7 +238,7 @@ namespace EdgeDemo.CheckersGame
                 if (CurrentMove == null)
                 {
                     CurrentMove = new Move(new List<Square>() { FakeBoard.Squares[piece.X, piece.Y], jump }, new List<Square>() { FakeBoard.GetSquareBetween(FakeBoard.Squares[piece.X, piece.Y], jump) });
-                    MoveToRun = CurrentMove.SwitchBoards(BoardManager.Board);
+                    MoveToRun = CurrentMove.SwitchBoards(BoardManager.Instance.Board);
                 }
                 else
                 {
@@ -254,16 +254,16 @@ namespace EdgeDemo.CheckersGame
 
             if (CurrentMove != null && !JumpSequences.Contains(CurrentMove))
             {
-                JumpSequences.Add(CurrentMove.SwitchBoards(BoardManager.Board));
+                JumpSequences.Add(CurrentMove.SwitchBoards(BoardManager.Instance.Board));
             }
         }
 
         public static Dictionary<Piece, List<Move>> PlayerCanMultiJumpTo(bool topTeam, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             Dictionary<Piece, List<Move>> multiJumps = new Dictionary<Piece, List<Move>>();
@@ -299,10 +299,10 @@ namespace EdgeDemo.CheckersGame
 
         public static Dictionary<Piece, List<Square>> PlayerCanMoveTo(bool topTeam, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             Dictionary<Piece, List<Square>> moves = new Dictionary<Piece, List<Square>>();
@@ -327,10 +327,10 @@ namespace EdgeDemo.CheckersGame
         //Returns a list of squares a specific piece can move to
         public static List<Square> PieceCanMoveTo(Piece piece, Board board = null)
         {
-            //Must be set here because BoardManager.Board is not a compile-time constant
+            //Must be set here because BoardManager.Instance.Board is not a compile-time constant
             if (board == null)
             {
-                board = BoardManager.Board;
+                board = BoardManager.Instance.Board;
             }
 
             List<Square> toReturn = new List<Square>();

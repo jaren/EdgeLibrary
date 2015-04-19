@@ -38,7 +38,7 @@ namespace EdgeDemo.CheckersGame
                 moves.AddRange(possibleMoves[piece]);
             }
 
-            ChosenMove = MoveChooser.ChooseMove(moves, BoardManager.Board);
+            ChosenMove = MoveChooser.ChooseMove(moves, BoardManager.Instance.Board);
             Ticker.Enabled = true;
 
             return true;

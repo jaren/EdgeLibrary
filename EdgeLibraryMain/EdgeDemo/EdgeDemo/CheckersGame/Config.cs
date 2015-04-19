@@ -71,8 +71,8 @@ namespace EdgeDemo.CheckersGame
 
         public static GameType GetGameType()
         {
-            Type Player1Type = BoardManager.Player1.GetType();
-            Type Player2Type = BoardManager.Player2.GetType();
+            Type Player1Type = BoardManager.Instance.Player1.GetType();
+            Type Player2Type = BoardManager.Instance.Player2.GetType();
 
             if (Player1Type == typeof(NormalPlayer) && Player2Type == typeof(NormalPlayer))
             {
@@ -94,19 +94,19 @@ namespace EdgeDemo.CheckersGame
 
         public static Player GetWebPlayer()
         {
-            if(BoardManager.Player1 is WebPlayer)
+            if(BoardManager.Instance.Player1 is WebPlayer)
             {
-                return BoardManager.Player1;
+                return BoardManager.Instance.Player1;
             }
             else
             {
-                return BoardManager.Player2;
+                return BoardManager.Instance.Player2;
             }
         }
 
         public static bool IsHost()
         {
-            if (BoardManager.Player1 is WebPlayer)
+            if (BoardManager.Instance.Player1 is WebPlayer)
             {
                 return true;
             }
