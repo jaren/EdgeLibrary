@@ -61,7 +61,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(DebugSprite);
 
             //Initializing the teamtext
-            TeamText = Config.Player1Name + ": ";
+            TeamText =  "This shouldn't be seen...";
 
             if (MenuManager.PreviousMenu is ToGameMenu)
             {
@@ -70,31 +70,31 @@ namespace EdgeDemo.CheckersGame
 
                 if (pp1 is WebPlayer)
                 {
-                    Player1 = new WebPlayer(((WebPlayer)pp1).TeamName);
+                    Player1 = new WebPlayer(((WebPlayer)pp1).Name);
                 }
                 else
                 {
-                    Player1 = ((ToGameMenu)MenuManager.PreviousMenu).Player1;
+                    Player1 = pp1;
                 }
 
                 if (pp2 is WebPlayer)
                 {
-                    Player2 = new WebPlayer(((WebPlayer)pp2).ThisGameID, ((WebPlayer)pp2).TeamName);
+                    Player2 = new WebPlayer(((WebPlayer)pp2).Name, ((WebPlayer)pp2).ThisGameID);
                 }
                 else
                 {
-                    Player2 = ((ToGameMenu)MenuManager.PreviousMenu).Player2;
+                    Player2 = pp2;
                 }
             }
             else
             {
                 //Should not be called
-                Player1 = new NormalPlayer();
-                Player2 = new NormalPlayer();
+                Player1 = new NormalPlayer("This shouldn't be called...");
+                Player2 = new NormalPlayer("This really shouldn't be called...");
             }
 
             //Initializing status sprite
-            StatusSprite = new TextSprite(Config.StatusFont, Config.Player1Name + "'s Turn", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
+            StatusSprite = new TextSprite(Config.StatusFont, "It is " + Player2.Name + "'s Turn to Start", Vector2.Zero) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             Components.Add(StatusSprite);
 
             //Initializing message sprite
@@ -153,7 +153,7 @@ namespace EdgeDemo.CheckersGame
         {
             RunMove(move);
 
-            StatusSprite.Text = "It is " + Config.Player2Name + "'s Turn";
+            StatusSprite.Text = "It is " + Player2.Name + "'s Turn";
 
             Player1Turn = false;
             if (!Player2.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
@@ -166,7 +166,7 @@ namespace EdgeDemo.CheckersGame
         {
             RunMove(move);
 
-            StatusSprite.Text = "It is " + Config.Player1Name + "'s Turn";
+            StatusSprite.Text = "It is " + Player1.Name + "'s Turn";
 
             Player1Turn = true;
             if (!Player1.ReceivePreviousMove(move, MovementManager.GeneratePlayerMoves(Player1Turn)))
@@ -184,7 +184,7 @@ namespace EdgeDemo.CheckersGame
         public static void EndGame()
         {
             
-            MessageSprite.Display((!Player1Turn ? Config.Player1Name : Config.Player2Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
+            MessageSprite.Display((!Player1Turn ? Player1.Name : Player2.Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
             Ticker ticker = new Ticker(6000);
             ticker.Enabled = true;
             ticker.OnTick += new Ticker.TickerEventHandler(ticker_OnTick);

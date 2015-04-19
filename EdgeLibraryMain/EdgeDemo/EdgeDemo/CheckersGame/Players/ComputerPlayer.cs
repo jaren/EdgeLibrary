@@ -15,7 +15,7 @@ namespace EdgeDemo.CheckersGame
 
         private RandomTicker Ticker;
 
-        public ComputerPlayer(int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500)
+        public ComputerPlayer(string name, int difficulty = 1, int difficultyFluctuation = 1, float moveWait = 1000, float moveWaitFluctuation = 500) : base(name)
         {
             Ticker = new RandomTicker(moveWait - moveWaitFluctuation, moveWait + moveWaitFluctuation);
 

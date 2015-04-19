@@ -186,20 +186,20 @@ namespace EdgeDemo.CheckersGame
                 
                 if (player1Button.On)
                 {
-                    Player1 = new ComputerPlayer(player1DifficultyBox.CurrentIndex);
+                    Player1 = new ComputerPlayer(player1NameBox.TextBlank ? player1NameBox.DefaultText : player1NameBox.Text, player1DifficultyBox.CurrentIndex);
                 }
                 else
                 {
-                    Player1 = new NormalPlayer();
+                    Player1 = new NormalPlayer(player1NameBox.TextBlank ? player1NameBox.DefaultText : player1NameBox.Text);
                 }
 
                 if (player2Button.On)
                 {
-                    Player2 = new ComputerPlayer(player2DifficultyBox.CurrentIndex);
+                    Player2 = new ComputerPlayer(player2NameBox.TextBlank ? player2NameBox.DefaultText : player2NameBox.Text, player2DifficultyBox.CurrentIndex);
                 }
                 else
                 {
-                    Player2 = new NormalPlayer();
+                    Player2 = new NormalPlayer(player2NameBox.TextBlank ? player2NameBox.DefaultText : player2NameBox.Text);
                 }
 
                 MenuManager.SwitchMenu("GameMenu");

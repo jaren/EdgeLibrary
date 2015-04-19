@@ -14,6 +14,13 @@ namespace EdgeDemo.CheckersGame
 
         public bool CanMove = false;
 
+        public string Name;
+
+        public Player(string name)
+        {
+            Name = name;
+        }
+
         public virtual void Update(GameTime gameTime) { }
 
         public virtual void Draw(GameTime gameTime) { }

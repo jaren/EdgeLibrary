@@ -30,9 +30,6 @@ namespace EdgeDemo.CheckersGame
         public static string ButtonClickTexture = "grey_button02";
         public static string ButtonMouseOverTexture = "grey_button01";
 
-        public static string Player1Name = "Top Team";
-        public static string Player2Name = "Bottom Team";
-
         public static float CameraZoomSpeed = 1000f;
         public static float CameraMaxZoom = 10f;
         public static float CameraScrollSpeed = 10f;

@@ -27,7 +27,7 @@ namespace EdgeDemo.CheckersGame
         //The possible moves on this turn
         private Dictionary<Piece, List<Move>> PossibleMoves;
 
-        public NormalPlayer()
+        public NormalPlayer(string name) : base(name)
         {
             //Subscribes to input
             Input.OnMouseMove += Input_OnMouseMove;

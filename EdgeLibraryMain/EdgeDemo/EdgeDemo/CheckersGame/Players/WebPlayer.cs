@@ -11,22 +11,26 @@ namespace EdgeDemo.CheckersGame
     //A player used by the remote person playing the game
     public class WebPlayer : Player
     {
+        CheckersServiceClient WebService = new CheckersServiceClient();
+        private Thread waitForMoveThread;
+        Move PreviousMove = null;
+        public int ThisGameID;
+        public bool IsHost;
+
         /// <summary>
         /// If the web player is Player2 (the joiner) use this overload
         /// </summary>
         /// <param name="hostTeamName">Team name of the hosting team</param>
-        public WebPlayer(string hostTeamName, bool createGame = true)
+        public WebPlayer(string name, bool createGame = true) : base(name)
         {
             IsHost = false;
             if (createGame)
             {
-                ThisGameID = WebService.CreateGame(hostTeamName);
+                ThisGameID = WebService.CreateGame(Name);
                 while (WebService.GetSpecificGames(GameState.State.WaitingForPlayers).ContainsKey(ThisGameID))
                 {
                     //Waiting For Another Player...
                 }
-
-                TeamName = hostTeamName;
             }
         }
         /// <summary>
@@ -34,24 +38,15 @@ namespace EdgeDemo.CheckersGame
         /// </summary>
         /// <param name="gameId">ID of the joined game</param>
         /// <param name="player2name">The name of the joining team</param>
-        public WebPlayer(int gameId, string player2name, bool joinGame = true)
+        public WebPlayer(string name, int gameId, bool joinGame = true) : base(name)
         {
             ThisGameID = gameId;
             IsHost = true;
             if (joinGame)
             {
-                WebService.JoinGame(gameId, player2name);
+                WebService.JoinGame(gameId, Name);
             }
-
-            TeamName = player2name;
         }
-
-        CheckersServiceClient WebService = new CheckersServiceClient();
-        private Thread waitForMoveThread;
-        Move PreviousMove = null;
-        public int ThisGameID;
-        public bool IsHost;
-        public string TeamName;
 
         public void CheckForRemoteMove()
         {

@@ -43,35 +43,6 @@ namespace EdgeDemo.CheckersGame
 
         public void OnUpdate(GameTime gameTime)
         {
-            
-            EdgeGame.Camera.Scale += (Input.MouseWheelValue - Input.PreviousMouseWheelValue) / Config.CameraZoomSpeed;
-            if (EdgeGame.Camera.Scale > Config.CameraMaxZoom)
-            {
-                EdgeGame.Camera.Scale = Config.CameraMaxZoom;
-            }
-            if (Input.JustMiddleClicked())
-            {
-                EdgeGame.Camera.Scale = 1;
-            }
-
-            if (Input.IsKeyDown(Keys.Left) && EdgeGame.Camera.Position.X >= BoardManager.Board.BoardArea.Left)
-            {
-                EdgeGame.Camera.Position -= new Vector2(Config.CameraScrollSpeed / EdgeGame.Camera.Scale, 0);
-            }
-            if (Input.IsKeyDown(Keys.Right) && EdgeGame.Camera.Position.X <= BoardManager.Board.BoardArea.Right)
-            {
-                EdgeGame.Camera.Position += new Vector2(Config.CameraScrollSpeed / EdgeGame.Camera.Scale, 0);
-            }
-            if (Input.IsKeyDown(Keys.Down) && EdgeGame.Camera.Position.Y <= BoardManager.Board.BoardArea.Bottom)
-            {
-                EdgeGame.Camera.Position += new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
-            }
-            if (Input.IsKeyDown(Keys.Up) && EdgeGame.Camera.Position.Y >= BoardManager.Board.BoardArea.Top)
-            {
-                EdgeGame.Camera.Position -= new Vector2(0, Config.CameraScrollSpeed / EdgeGame.Camera.Scale);
-            }
-             
-
             MenuManager.Update(gameTime);
         }
 
