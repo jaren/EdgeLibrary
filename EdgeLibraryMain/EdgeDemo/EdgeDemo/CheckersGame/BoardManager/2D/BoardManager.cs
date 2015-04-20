@@ -18,7 +18,7 @@ namespace EdgeDemo.CheckersGame
         public List<GameComponent> Components { get; private set; }
 
         //The main board - static so other classes can access it
-        public Board Board { get; private set; }
+        public Board Board { get; protected set; }
 
         //If set to true, will reset the game when created by GameMenu
         public bool ResetGame = true;
@@ -55,8 +55,9 @@ namespace EdgeDemo.CheckersGame
             : base("", Vector2.Zero)
         {
             //Initializing the board
+            Instance = this;
             Components = new List<GameComponent>();
-            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.SquareColor1, Config.SquareColor2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.TopColor, Config.BottomColor);
+            Board = new Board(Config.SquareTexture, EdgeGame.WindowSize / 2, Config.BoardSize, Config.SquareSize, Config.SquareDistance, Config.SquareColor1, Config.SquareColor2, Config.BorderSize, Config.BorderColor, Config.PieceTexture, Config.PieceSize, Config.PieceColor1, Config.PieceColor2);
             Components.Add(Board);
 
             //Initializing the debug sprite
@@ -116,8 +117,6 @@ namespace EdgeDemo.CheckersGame
             //Starts the game off with player 1 moving first
             Player1Turn = false;
             Player2.ReceivePreviousMove(null, MovementManager.GeneratePlayerMoves(Player1Turn));
-
-            Instance = this;
         }
 
         //Necessary override to not draw the BoardManager
@@ -195,9 +194,14 @@ namespace EdgeDemo.CheckersGame
             Components.Add(ticker);
         }
 
-        static void ticker_OnTick(GameTime gameTime)
+        private void ticker_OnTick(GameTime gameTime)
         {
             MenuManager.SwitchMenu("MainMenu");
+        }
+
+        public static void ResetInstance()
+        {
+            Instance = new BoardManager();
         }
     }
 }

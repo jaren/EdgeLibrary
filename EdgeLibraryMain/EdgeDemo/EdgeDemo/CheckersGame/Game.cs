@@ -30,6 +30,8 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.OnUpdate += OnUpdate;
             EdgeGame.OnDraw += OnDraw;
 
+            BoardManager.ResetInstance();
+
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
             MenuManager.AddMenu(new LocalGameSelectMenu());
@@ -87,11 +89,11 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadFont("Fonts/Impact/Impact-40");
             EdgeGame.LoadFont("Fonts/Impact/Impact-50");
             EdgeGame.LoadFont("Fonts/Impact/Impact-60");
-            //EdgeGame.LoadTexturesInSpritesheet("SpaceSheet", "SpaceSheet");
-            //EdgeGame.LoadTexturesInSpritesheet("ButtonSheet", "ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
             EdgeGame.LoadTexturesInSpritesheet("GUI/GreyGUI", "GUI/GreyGUI");
             EdgeGame.LoadTexturesInSpritesheet("GUI/WhiteIcons2x", "GUI/WhiteIcons2x");
+
+            EdgeGame.LoadModel(Config.CheckerModel);
 
             EdgeGame.LoadTexture(Config.PieceTexture);
             EdgeGame.LoadTexture(Config.KingTexture);

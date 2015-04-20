@@ -15,6 +15,7 @@ namespace EdgeDemo.CheckersGame
         public static string PieceTexture = "Checkers";
         public static string KingTexture = "Crown";
         public static string SquareTexture = "Pixel";
+        public static string CheckerModel = "Checker";
         public static string XTexture = "X";
 
         public static string StatusFont = "ComicSans-20";
@@ -51,6 +52,11 @@ namespace EdgeDemo.CheckersGame
 
         public static float CheckerFadeOutSpeed = 1000f;
 
+        public static Vector3 SquareScale3D = Vector3.One;
+        public static Vector3 PieceScale3D = Vector3.One;
+        public static float BorderSize3D = 1;
+        public static float BoardHeight3D = 1;
+
         public static Color SquareNumberColor = Color.OrangeRed;
         public static Color SquarePathColor = Color.Gray;
 
@@ -60,8 +66,8 @@ namespace EdgeDemo.CheckersGame
         public static Color SquareLineColor = Color.DarkRed;
         public static float SquareLineThickness = 7;
 
-        public static Color TopColor = Color.White;
-        public static Color BottomColor = Color.DarkGray;
+        public static Color PieceColor1 = Color.White;
+        public static Color PieceColor2 = Color.DarkGray;
 
         public static Color Square1SelectColor = Color.Goldenrod;
         public static Color Square2SelectColor = Color.DarkGoldenrod;

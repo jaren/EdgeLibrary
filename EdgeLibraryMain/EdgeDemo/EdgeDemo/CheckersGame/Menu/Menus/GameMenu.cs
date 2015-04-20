@@ -9,8 +9,6 @@ namespace EdgeDemo.CheckersGame
 {
     public class GameMenu : MenuBase
     {
-        BoardManager manager;
-
         public GameMenu() : base("GameMenu")
         {
             Input.OnKeyRelease += (x) =>
@@ -22,17 +20,26 @@ namespace EdgeDemo.CheckersGame
             };
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            BoardManager.Instance.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            BoardManager.Instance.Draw(gameTime);
+        }
+
         public override void SwitchTo()
         {
             EdgeGame.ClearColor = Color.Gray;
             if (BoardManager.Instance.ResetGame)
             {
-                if (Components.Contains(manager))
-                {
-                    Components.Remove(manager);
-                }
-                manager = new BoardManager();
-                Components.Add(manager);
+                BoardManager.ResetInstance();
             }
 
             base.SwitchTo();

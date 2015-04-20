@@ -286,9 +286,6 @@ namespace EdgeLibrary
 
                 EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
-                Color[] pixels = new Color[Texture.Width * Texture.Height];
-                Texture.GetData<Color>(pixels);
-
                 RestartSpriteBatch();
             }
         }
