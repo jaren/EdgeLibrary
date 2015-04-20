@@ -33,8 +33,9 @@ namespace EdgeDemo.CheckersGame
         public static string ButtonClickTexture = "grey_button02";
         public static string ButtonMouseOverTexture = "grey_button01";
 
-        public static float CameraZoomSpeed = 1000f;
+        public static float CameraZoomSpeed = 1;
         public static float CameraMaxZoom = 10f;
+        public static float CameraMinZoom = 300f;
         public static float CameraScrollSpeed = 10f;
 
         public static Keys BackKey = Keys.Escape;
@@ -52,7 +53,7 @@ namespace EdgeDemo.CheckersGame
 
         public static float CheckerFadeOutSpeed = 1000f;
 
-        public static Vector3 SquareScale3D = Vector3.One;
+        public static float SquareScale3D = 1;
         public static Vector3 PieceScale3D = Vector3.One;
         public static float BorderSize3D = 1;
         public static float BoardHeight3D = 1;

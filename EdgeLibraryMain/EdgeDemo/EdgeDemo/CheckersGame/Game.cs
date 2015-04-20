@@ -50,9 +50,28 @@ namespace EdgeDemo.CheckersGame
             MenuManager.SwitchMenu("MainMenu");
         }
 
+        private float degrees = 0;
+        //TODO: Add rotating camera movement
         public void OnUpdate(GameTime gameTime)
         {
             MenuManager.Update(gameTime);
+
+            if (Input.IsKeyDown(Keys.A))
+            {
+                degrees -= Config.CameraScrollSpeed;
+                if (degrees < 0)
+                {
+                    degrees = 360 - degrees;
+                }
+            }
+            else if (Input.IsKeyDown(Keys.D))
+            {
+                degrees += Config.CameraScrollSpeed;
+                if (degrees > 360)
+                {
+                    degrees = degrees % 360;
+                }
+            }
         }
 
         public void OnDraw(GameTime gameTime)
