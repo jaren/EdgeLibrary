@@ -36,12 +36,12 @@ namespace EdgeLibrary
 
         public TextSprite(string fontName, string text, Vector2 position) : base("", position)
         {
-            text = text;
+            this.text = text;
 
             //Finds the font from the current game's resources
             if (fontName != null)
             {
-                Font = EdgeGame.GetFont(fontName);
+                font = EdgeGame.GetFont(fontName);
                 reloadOriginPoint();
             }
         }
