@@ -19,6 +19,7 @@ namespace EdgeLibrary
         private static Dictionary<string, Texture2D> Textures;
         private static Dictionary<string, Model> Models;
         private static Dictionary<string, SpriteFont> Fonts;
+        private static Dictionary<string, BitmapFont> BitmapFonts;
 
         public static string ContentRootDirectory { get { return Game.Content.RootDirectory; } set { } }
 
@@ -27,6 +28,7 @@ namespace EdgeLibrary
             Textures = new Dictionary<string, Texture2D>();
             Models = new Dictionary<string, Model>();
             Fonts = new Dictionary<string, SpriteFont>();
+            BitmapFonts = new Dictionary<string, BitmapFont>();
         }
 
         private static void InitializeBasicTextures()
@@ -69,6 +71,16 @@ namespace EdgeLibrary
             AddFont(name, Game.Content.Load<SpriteFont>(path));
         }
 
+        //Loads a bitmap font
+        public static void LoadBitmapFont(string xmlPath, string imagePath)
+        {
+            AddBitmapFont(imagePath.LastSplit('/'), new BitmapFont(xmlPath, Game.Content.Load<Texture2D>(imagePath)));
+        }
+        public static void LoadBitmapFont(string xmlPath, string imagePath, string name)
+        {
+            AddBitmapFont(name, new BitmapFont(xmlPath, Game.Content.Load<Texture2D>(imagePath)));
+        }
+
         //Loads a model
         public static void LoadModel(string path)
         {
@@ -107,6 +119,11 @@ namespace EdgeLibrary
         {
             Fonts.Add(fontName, font);
         }
+        //Adds an already-generated bitmap font to the index
+        public static void AddBitmapFont(string fontName, BitmapFont font)
+        {
+            BitmapFonts.Add(fontName, font);
+        }
         //Adds an already-generated model to the index
         public static void AddModel(string modelName, Model model)
         {
@@ -127,6 +144,17 @@ namespace EdgeLibrary
         public static SpriteFont GetFont(string fontName)
         {
             foreach (var font in Fonts)
+            {
+                if (font.Key == fontName)
+                {
+                    return font.Value;
+                }
+            }
+            return null;
+        }
+        public static BitmapFont GetBitmapFont(string fontName)
+        {
+            foreach (var font in BitmapFonts)
             {
                 if (font.Key == fontName)
                 {

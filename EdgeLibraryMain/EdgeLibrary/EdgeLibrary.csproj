@@ -121,6 +121,8 @@
     <Compile Include="Components\Miscellaneous\Buttons\Style.cs" />
     <Compile Include="Components\Miscellaneous\Buttons\TextBox.cs" />
     <Compile Include="Components\Miscellaneous\RenderTargetImager.cs" />
+    <Compile Include="Components\Sprite\Text\BitmapFont.cs" />
+    <Compile Include="Components\Sprite\Text\BitmapTextSprite.cs" />
     <Compile Include="Game\EdgeGame\ModifiedSpriteBatch.cs" />
     <Compile Include="Game\Tools\DebugText.cs" />
     <Compile Include="Components\Miscellaneous\RandomTicker.cs" />
@@ -147,7 +149,7 @@
     <Compile Include="Game\Tools\Camera3D.cs" />
     <Compile Include="Tools\Texture\ColorChangeIndex.cs" />
     <Compile Include="Components\Miscellaneous\ParticleEmitter.cs" />
-    <Compile Include="Components\Sprite\TextSprite.cs" />
+    <Compile Include="Components\Sprite\Text\TextSprite.cs" />
     <Compile Include="Game\EdgeGame\EdgeGame.cs" />
     <Compile Include="Game\Tools\DebugLogger.cs" />
     <Compile Include="Game\Tools\Input.cs" />
