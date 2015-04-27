@@ -109,6 +109,7 @@ namespace EdgeDemo.CheckersGame
             EdgeGame.LoadFont("Fonts/Impact/Impact-50");
             EdgeGame.LoadFont("Fonts/Impact/Impact-60");
             EdgeGame.LoadBitmapFont("Fonts/KenVector/kenvector_future_regular_32", "Fonts/KenVector/kenvector_future_regular_32");
+            EdgeGame.LoadBitmapFont("Fonts/windsong_regular_65", "Fonts/windsong_regular_65");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
             EdgeGame.LoadTexturesInSpritesheet("GUI/GreyGUI", "GUI/GreyGUI");
             EdgeGame.LoadTexturesInSpritesheet("GUI/WhiteIcons2x", "GUI/WhiteIcons2x");

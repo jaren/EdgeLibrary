@@ -230,6 +230,18 @@
       <Processor>PassThroughProcessor</Processor>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Fonts\windsong_regular_65.PNG">
+      <Name>windsong_regular_65</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="Fonts\windsong_regular_65.xml">
+      <Name>windsong_regular_65</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="GUI\BlackIcons1x.xml">
       <Name>BlackIcons1x</Name>
       <Importer>XmlImporter</Importer>

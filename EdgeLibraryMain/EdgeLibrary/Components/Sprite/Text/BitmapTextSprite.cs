@@ -24,8 +24,8 @@ namespace EdgeLibrary
         public string FontName { set { Font = EdgeGame.GetBitmapFont(value); } }
 
         //The width/height of the measured text - the Height must be generated in a different way because the line breaks cause it to be generated incorrectly
-        public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text, CharacterSpacing).X; } }
-        public override float Height { get { return Font == null ? 0 : Font.MeasureString(text.Split("\n".ToArray())[0], CharacterSpacing).Y; } }
+        public override float Width { get { return Font == null ? 0 : Font.MeasureString(Text).X; } }
+        public override float Height { get { return Font == null ? 0 : Font.MeasureString(text.Split("\n".ToArray())[0]).Y; } }
 
         //The text to display on the screen
         public string Text { get { return text; } set { text = value; reloadOriginPoint(); reloadBoundingBox(); } }
@@ -33,19 +33,6 @@ namespace EdgeLibrary
         protected string[] textLines;
         protected Vector2[] textLinesOriginPoints;
         protected float yLineDifference;
-
-        //The space between characters
-        public float CharacterSpacing 
-        {
-            get { return characterSpacing; }
-            set
-            {
-                characterSpacing = value;
-                reloadBoundingBox();
-                reloadOriginPoint();
-            }
-        }
-        private float characterSpacing;
 
         public BitmapTextSprite(string fontName, string text, Vector2 position)
             : base("", position)
@@ -63,8 +50,6 @@ namespace EdgeLibrary
         public BitmapTextSprite(string fontName, string text, Vector2 position, Color color, Vector2 scale, float rotation = 0)
             : this(fontName, text, position)
         {
-            characterSpacing = 1;
-
             Color = color;
             Rotation = rotation;
             Scale = scale;
@@ -76,13 +61,13 @@ namespace EdgeLibrary
             if (Font != null && text != null)
             {
                 textLines = text.Split("\n".ToArray());
-                yLineDifference = font.MeasureString(text.Split("\n".ToArray())[0], CharacterSpacing).Y;
+                yLineDifference = font.MeasureString(text.Split("\n".ToArray())[0]).Y;
                 textLinesOriginPoints = new Vector2[textLines.Length];
                 for (int i = 0; i < textLines.Length; i++)
                 {
                     if (CenterAsOrigin)
                     {
-                        textLinesOriginPoints[i] = font.MeasureString(textLines[i], CharacterSpacing) / 2;
+                        textLinesOriginPoints[i] = font.MeasureString(textLines[i]) / 2;
                     }
                     else
                     {
@@ -92,7 +77,7 @@ namespace EdgeLibrary
 
                 if (CenterAsOrigin)
                 {
-                    OriginPoint = font.MeasureString(text, CharacterSpacing) / 2;
+                    OriginPoint = font.MeasureString(text) / 2;
                 }
                 else
                 {
@@ -108,7 +93,7 @@ namespace EdgeLibrary
 
             for (int i = 0; i < textLines.Length; i++)
             {
-                Font.DrawString(textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y / 2) : Vector2.Zero), Color, Rotation, Scale, SpriteEffects, 0, CharacterSpacing, EdgeGame.Game.SpriteBatch);
+                Font.DrawString(textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y / 2) : Vector2.Zero), Color, Rotation, Scale, SpriteEffects, 0, EdgeGame.Game.SpriteBatch);
             }
 
             RestartSpriteBatch();

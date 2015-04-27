@@ -16,6 +16,7 @@ namespace EdgeLibrary
     {
         public Texture2D FontTexture;
         public Dictionary<char, BitmapCharacter> Characters;
+        public Dictionary<char, Dictionary<char, int>> KerningPairs;
 
         public BitmapFont(string xmlPath, Texture2D imageTexture)
         {
@@ -27,6 +28,7 @@ namespace EdgeLibrary
             string[] offset;
 
             Characters = new Dictionary<char, BitmapCharacter>();
+            KerningPairs = new Dictionary<char, Dictionary<char, int>>();
             foreach(XElement element in document.Root.Elements())
             {
                 rectangle = ((string)element.Attribute("rect")).Split(' ');
@@ -37,10 +39,20 @@ namespace EdgeLibrary
                         Convert.ToInt32((string)element.Attribute("width")),
                         new Vector2(Convert.ToInt32(offset[0]), Convert.ToInt32(offset[1])) 
                         ));
+
+                Dictionary<char, int> kerningPair = new Dictionary<char, int>();
+                foreach(XElement subElement in element.Elements())
+                {
+                        kerningPair.Add(((string)subElement.Attribute("id"))[0], (int)subElement.Attribute("advance"));
+                }
+                if (kerningPair.Count > 0)
+                {
+                    KerningPairs.Add(((string)element.Attribute("code"))[0], kerningPair);
+                }
             }
         }
 
-        public Vector2 MeasureString(string text, float characterSpacing)
+        public Vector2 MeasureString(string text)
         {
             Vector2 size = Vector2.Zero;
 
@@ -48,12 +60,11 @@ namespace EdgeLibrary
             {
                 size = new Vector2(size.X + character.Width, size.Y < (character.Rectangle.Height + character.Offset.Y) ? (character.Rectangle.Height + character.Offset.Y) : size.Y);
             }
-            size = new Vector2(size.X - characterSpacing, size.Y);
 
             return size;
         }
 
-        public void DrawString(string text, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects spriteEffects, int layerDepth, float characterSpacing, SpriteBatch spritebatch)
+        public void DrawString(string text, Vector2 position, Color color, float rotation, Vector2 scale, SpriteEffects spriteEffects, int layerDepth, SpriteBatch spritebatch)
         {
             Vector2 currentOffset = Vector2.Zero;
 
