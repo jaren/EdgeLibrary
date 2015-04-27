@@ -50,7 +50,7 @@ namespace EdgeLibrary
         public BitmapTextSprite(string fontName, string text, Vector2 position)
             : base("", position)
         {
-            text = text;
+            this.text = text;
 
             //Finds the font from the current game's resources
             if (fontName != null)
@@ -63,6 +63,8 @@ namespace EdgeLibrary
         public BitmapTextSprite(string fontName, string text, Vector2 position, Color color, Vector2 scale, float rotation = 0)
             : this(fontName, text, position)
         {
+            characterSpacing = 1;
+
             Color = color;
             Rotation = rotation;
             Scale = scale;

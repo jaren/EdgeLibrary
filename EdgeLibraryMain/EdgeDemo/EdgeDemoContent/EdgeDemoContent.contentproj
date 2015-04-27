@@ -182,6 +182,54 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Fonts\KenVector\kenvector_future_regular_20.PNG">
+      <Name>kenvector_future_regular_20</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="Fonts\KenVector\kenvector_future_regular_20.xml">
+      <Name>kenvector_future_regular_20</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Fonts\KenVector\kenvector_future_regular_32.PNG">
+      <Name>kenvector_future_regular_32</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="Fonts\KenVector\kenvector_future_regular_32.xml">
+      <Name>kenvector_future_regular_32</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Fonts\KenVector\kenvector_future_regular_48.PNG">
+      <Name>kenvector_future_regular_48</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="Fonts\KenVector\kenvector_future_regular_48.xml">
+      <Name>kenvector_future_regular_48</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="Fonts\KenVector\kenvector_future_regular_65.PNG">
+      <Name>kenvector_future_regular_65</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Content Include="Fonts\KenVector\kenvector_future_regular_65.xml">
+      <Name>kenvector_future_regular_65</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="GUI\BlackIcons1x.xml">
       <Name>BlackIcons1x</Name>
       <Importer>XmlImporter</Importer>
