@@ -144,23 +144,11 @@ namespace CheckersGame
         }
         private void Input_OnKeyPress(Keys key) { if (CanMove) { } }
 
-        public List<Move> GetMovesFromOccupyingPiece(Piece piece)
-        {
-            for (int i = 0; i < PossibleMoves.Keys.Count; i++)
-            {
-                if (PossibleMoves.Keys.ToList()[i].X == piece.X && PossibleMoves.Keys.ToList()[i].Y == piece.Y)
-                {
-                    return PossibleMoves[PossibleMoves.Keys.ToList()[i]];
-                }
-            }
-            return null;
-        }
-
         //Sets the starting square to the moused over square
         private void SetFirstSquare()
         {
             //Checks if the square is valid
-            if (MousedOverSquare.OccupyingPiece != null && GetMovesFromOccupyingPiece(MousedOverSquare.OccupyingPiece) != null)
+            if (MousedOverSquare.OccupyingPiece != null && PossibleMoves.Keys.Contains(MousedOverSquare.OccupyingPiece))
             {
                 //Sets the start square
                 startSquare = MousedOverSquare;
@@ -178,7 +166,7 @@ namespace CheckersGame
                 SelectedFirstSquare = true;
 
                 //Colors the possible end squares
-                foreach (Move possibleMove in GetMovesFromOccupyingPiece(MousedOverSquare.OccupyingPiece))
+                foreach (Move possibleMove in PossibleMoves[startSquare.OccupyingPiece])
                 {
                     possibleMove.SquarePath[possibleMove.SquarePath.Count - 1].Color = Config.Square2SelectColor;
                 }
@@ -194,7 +182,7 @@ namespace CheckersGame
         private void SetLastSquare()
         {
             //Find the correct finish square
-            foreach (Move move in GetMovesFromOccupyingPiece(startSquare.OccupyingPiece))
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
             {
                 if (move.SquarePath[move.SquarePath.Count - 1] == MousedOverSquare)
                 {
@@ -309,7 +297,7 @@ namespace CheckersGame
         //Draws the square numbers and path for the current moused over square
         private void DrawSquareNumberPath(Square endSquare)
         {
-            foreach (Move move in GetMovesFromOccupyingPiece(startSquare.OccupyingPiece))
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
             {
                 if (move.FinishSquare == endSquare)
                 {
@@ -331,7 +319,7 @@ namespace CheckersGame
         {
             //TODO - Fix because of players
             //if (Config.ThisGameType != Config.GameType.Online || (Config.IsHost && !TopTeamTurn) || (!Config.IsHost && TopTeamTurn))
-            foreach (Move move in GetMovesFromOccupyingPiece(startSquare.OccupyingPiece))
+            foreach (Move move in PossibleMoves[startSquare.OccupyingPiece])
             {
                 if (move.FinishSquare == endSquare)
                 {
@@ -361,7 +349,7 @@ namespace CheckersGame
             {
                 //Resets all of the square colors
                 //It uses the finish square's occupying piece because the piece has already been moved
-                foreach (Move possibleMove in GetMovesFromOccupyingPiece(CurrentMove.Piece))
+                foreach (Move possibleMove in PossibleMoves[CurrentMove.Piece])
                 {
                     foreach (Square square in possibleMove.SquarePath)
                     {
