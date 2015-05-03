@@ -206,12 +206,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\KenVector\kenvector_future_regular_20.xml">
+    <Content Include="Fonts\KenVector\kenvector_future_regular_20.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>kenvector_future_regular_20</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\KenVector\kenvector_future_regular_32.PNG">
@@ -222,12 +222,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\KenVector\kenvector_future_regular_32.xml">
+    <Content Include="Fonts\KenVector\kenvector_future_regular_32.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>kenvector_future_regular_32</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\KenVector\kenvector_future_regular_48.PNG">
@@ -238,12 +238,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\KenVector\kenvector_future_regular_48.xml">
+    <Content Include="Fonts\KenVector\kenvector_future_regular_48.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>kenvector_future_regular_48</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\KenVector\kenvector_future_regular_65.PNG">
@@ -254,12 +254,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\KenVector\kenvector_future_regular_65.xml">
+    <Content Include="Fonts\KenVector\kenvector_future_regular_65.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>kenvector_future_regular_65</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\windsong_regular_65.PNG">
@@ -269,13 +269,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\windsong_regular_65.xml">
+    <Content Include="Fonts\windsong_regular_65.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>windsong_regular_65</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\BlackIcons1x.png">
@@ -285,12 +285,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\BlackIcons1x.xml">
+    <Content Include="GUI\BlackIcons1x.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BlackIcons1x</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\BlackIcons2x.png">
@@ -300,12 +300,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\BlackIcons2x.xml">
+    <Content Include="GUI\BlackIcons2x.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BlackIcons2x</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\BlueGUI.png">
@@ -315,12 +315,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\BlueGUI.xml">
+    <Content Include="GUI\BlueGUI.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>BlueGUI</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\ButtonSheet.png">
@@ -330,12 +330,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\ButtonSheet.xml">
+    <Content Include="GUI\ButtonSheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ButtonSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\GreyGUI.png">
@@ -345,12 +345,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\GreyGUI.xml">
+    <Content Include="GUI\GreyGUI.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>GreyGUI</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\WhiteIcons1x.png">
@@ -360,12 +360,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\WhiteIcons1x.xml">
+    <Content Include="GUI\WhiteIcons1x.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WhiteIcons1x</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GUI\WhiteIcons2x.png">
@@ -375,12 +375,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\WhiteIcons2x.xml">
+    <Content Include="GUI\WhiteIcons2x.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>WhiteIcons2x</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Music\Hyperfun.mp3">
@@ -404,12 +404,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Particles\Explosion2.xml">
+    <Content Include="Particles\Explosion2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Explosion2</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ParticleSheet.png">
@@ -419,12 +419,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParticleSheet.xml">
+    <Content Include="ParticleSheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ParticleSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SpaceSheet.png">
@@ -434,12 +434,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpaceSheet.xml">
+    <Content Include="SpaceSheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>SpaceSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

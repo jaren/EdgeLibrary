@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EdgeDemo.TowerDefenseGame
+namespace TowerDefenseGame
 {
     public class CreditsMenu : MenuBase
     {

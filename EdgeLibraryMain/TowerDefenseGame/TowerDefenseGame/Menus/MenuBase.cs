@@ -6,7 +6,7 @@ using EdgeLibrary;
 using Microsoft.Xna.Framework;
 
 
-namespace EdgeDemo.TowerDefenseGame
+namespace TowerDefenseGame
 {
     public class MenuBase : Scene
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using FarseerPhysics.Factories;
 
-namespace EdgeDemo.TowerDefenseGame
+namespace TowerDefenseGame
 {
     public class OptionsMenu : ParticleMenu
     {

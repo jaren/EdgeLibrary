@@ -7,15 +7,13 @@ using EdgeLibrary;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework.Input;
 
-namespace EdgeDemo.TowerDefenseGame
+namespace TowerDefenseGame
 {
     public class MainMenu : ParticleMenu
     {
         private Button startLocalGameButton;
         private Button optionsButton;
         private Button creditsButton;
-
-        private CheckersService.CheckersServiceClient WebService = new CheckersService.CheckersServiceClient();
 
         public MainMenu() : base("MainMenu")
         {
@@ -35,8 +33,6 @@ namespace EdgeDemo.TowerDefenseGame
 
             TextSprite startLocalGameButtonText = new TextSprite(Config.MenuButtonTextFont, "START GAME", startLocalGameButton.Position);
             Components.Add(startLocalGameButtonText);
-
-            System.Windows.Forms.Form form1 = new System.Windows.Forms.Form();
 
             optionsButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
             optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("NoGameOptionsMenu"); };
@@ -76,6 +72,8 @@ namespace EdgeDemo.TowerDefenseGame
         public override void SwitchTo()
         {
             base.SwitchTo();
+
+            EdgeGame.ClearColor = Color.Black;
 
             startLocalGameButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (startLocalGameButton.Width * startLocalGameButton.Scale.X).ToSimUnits(), (startLocalGameButton.Height * startLocalGameButton.Scale.Y).ToSimUnits(), 1));
             startLocalGameButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;

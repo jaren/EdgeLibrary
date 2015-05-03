@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using EdgeLibrary;
 
-namespace EdgeDemo.TowerDefenseGame
+namespace TowerDefenseGame
 {
     public static class Config
     {
