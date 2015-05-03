@@ -10,7 +10,7 @@ namespace EdgeDemo.CheckersGame
 {
     public static class Config
     {
-        public static bool DrawIn3D = true;
+        public static bool DrawIn3D = false;
 
         public static string PieceTexture = "Checkers";
         public static string KingTexture = "Crown";
