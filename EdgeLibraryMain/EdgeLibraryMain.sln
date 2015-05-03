@@ -1,11 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemo", "EdgeDemo\EdgeDemo\EdgeDemo.csproj", "{2A3B045B-6616-42FD-B285-AACE6062E4B3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeDemoContent", "EdgeDemo\EdgeDemoContent\EdgeDemoContent.contentproj", "{91DEBBCD-5FFE-4073-BD8F-1F8CC8E01E65}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibrary", "EdgeLibrary\EdgeLibrary.csproj", "{AD485453-05E0-4714-8630-BCC909D9106D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckersGame", "CheckersGame\CheckersGame\CheckersGame.csproj", "{716053B0-207A-4B6D-853B-E81571185448}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "CheckersGameContent", "CheckersGame\CheckersGameContent\CheckersGameContent.contentproj", "{6C859006-EE2B-4271-976F-AB08EB11657E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerDefenseGame", "TowerDefenseGame\TowerDefenseGame\TowerDefenseGame.csproj", "{BBB855A4-6870-43F7-A9B0-9653860F862A}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TowerDefenseGameContent", "TowerDefenseGame\TowerDefenseGameContent\TowerDefenseGameContent.contentproj", "{44ED241E-A467-4F9E-8CAD-16C4456780E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +19,22 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A3B045B-6616-42FD-B285-AACE6062E4B3}.Debug|x86.ActiveCfg = Debug|x86
-		{2A3B045B-6616-42FD-B285-AACE6062E4B3}.Debug|x86.Build.0 = Debug|x86
-		{2A3B045B-6616-42FD-B285-AACE6062E4B3}.Release|x86.ActiveCfg = Release|x86
-		{2A3B045B-6616-42FD-B285-AACE6062E4B3}.Release|x86.Build.0 = Release|x86
-		{91DEBBCD-5FFE-4073-BD8F-1F8CC8E01E65}.Debug|x86.ActiveCfg = Debug|x86
-		{91DEBBCD-5FFE-4073-BD8F-1F8CC8E01E65}.Release|x86.ActiveCfg = Release|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Debug|x86.ActiveCfg = Debug|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Debug|x86.Build.0 = Debug|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.ActiveCfg = Release|x86
 		{AD485453-05E0-4714-8630-BCC909D9106D}.Release|x86.Build.0 = Release|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Debug|x86.ActiveCfg = Debug|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Debug|x86.Build.0 = Debug|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Release|x86.ActiveCfg = Release|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Release|x86.Build.0 = Release|x86
+		{6C859006-EE2B-4271-976F-AB08EB11657E}.Debug|x86.ActiveCfg = Debug|x86
+		{6C859006-EE2B-4271-976F-AB08EB11657E}.Release|x86.ActiveCfg = Release|x86
+		{BBB855A4-6870-43F7-A9B0-9653860F862A}.Debug|x86.ActiveCfg = Debug|x86
+		{BBB855A4-6870-43F7-A9B0-9653860F862A}.Debug|x86.Build.0 = Debug|x86
+		{BBB855A4-6870-43F7-A9B0-9653860F862A}.Release|x86.ActiveCfg = Release|x86
+		{BBB855A4-6870-43F7-A9B0-9653860F862A}.Release|x86.Build.0 = Release|x86
+		{44ED241E-A467-4F9E-8CAD-16C4456780E8}.Debug|x86.ActiveCfg = Debug|x86
+		{44ED241E-A467-4F9E-8CAD-16C4456780E8}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5834a719-2b3d-4809-ab1d-203af3782fa5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56219/CheckersService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CheckersService.disco" MetadataType="Disco" ID="f9de079b-b8a7-4982-8dfa-4bfe4eab65aa" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?disco" />
+    <MetadataFile FileName="CheckersService.xsd" MetadataType="Schema" ID="75a06a08-a337-43c5-8ba1-9428e65b76a6" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CheckersService1.xsd" MetadataType="Schema" ID="3f23e98b-f258-4f2d-926d-90e346ce1c62" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CheckersService2.xsd" MetadataType="Schema" ID="83c3adb6-75ee-45f9-887a-a22fd47b8a42" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CheckersService3.xsd" MetadataType="Schema" ID="89a16459-071c-41c8-95f6-9ad2b367528d" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd4" />
+    <MetadataFile FileName="CheckersService.wsdl" MetadataType="Wsdl" ID="4aa84507-c974-4c3f-96e3-02a59c1ffccd" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?wsdl" />
+    <MetadataFile FileName="CheckersService4.xsd" MetadataType="Schema" ID="0da47057-a808-4b0f-83de-5762800e5c3e" SourceId="1" SourceUrl="http://localhost:56219/CheckersService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
