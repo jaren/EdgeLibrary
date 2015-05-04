@@ -20,7 +20,7 @@ namespace TowerDefenseGame
             TextSprite title = new TextSprite(Config.MenuTitleFont, "Tower Defense Game", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(title);
 
-            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click for more Fire!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            TextSprite subTitle = new TextSprite(Config.MenuSubtitleFont, "Click for more fire! Right click to clear!", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(subTitle);
 
             startLocalGameButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.3f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
