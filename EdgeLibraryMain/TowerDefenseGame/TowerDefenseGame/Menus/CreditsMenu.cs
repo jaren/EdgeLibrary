@@ -54,8 +54,6 @@ namespace TowerDefenseGame
 
         public override void SwitchOut()
         {
-            EdgeGame.ClearColor = Color.Gray;
-
             base.SwitchOut();
         }
     }

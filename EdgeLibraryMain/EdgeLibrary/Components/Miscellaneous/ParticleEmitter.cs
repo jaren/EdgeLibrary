@@ -23,6 +23,7 @@ namespace EdgeLibrary
         public new Vector2 Scale { set { MinScale = value; MaxScale = value; } }
         public float StartRotation { set { MaxStartRotation = value; MinStartRotation = value; } }
         public float RotationSpeed { set { MinRotationSpeed = value; MaxRotationSpeed = value; } }
+        public Vector2 GrowSpeed { set { MinGrowSpeed = value; MaxGrowSpeed = value; } }
         public float Life { set { MinLife = value; MaxLife = value; } }
         public double EmitWait { set { MinEmitWait = value; MaxEmitWait = value; } }
         public Vector2 EmitPositionVariance { set { MinEmitPositionVariance = value; MaxEmitPositionVariance = value; } }
@@ -41,7 +42,8 @@ namespace EdgeLibrary
         public Vector2 MinScale;
         public Vector2 MaxScale;
         //How quickly the particles will grow
-        public float GrowSpeed;
+        public Vector2 MinGrowSpeed;
+        public Vector2 MaxGrowSpeed;
         //What the particles starting rotation will be
         public float MaxStartRotation;
         public float MinStartRotation;
@@ -99,7 +101,7 @@ namespace EdgeLibrary
             MinVelocity = -Vector2.One;
             MaxVelocity = Vector2.One * 2;
             Scale = Vector2.One;
-            GrowSpeed = 0;
+            GrowSpeed = Vector2.Zero;
             StartRotation = 0;
             RotationSpeed = 0;
             EmitPositionVariance = Vector2.Zero;
@@ -139,6 +141,9 @@ namespace EdgeLibrary
 
             //Generates a random rotation speed
             particle.Data.Add("RotationSpeed", RandomTools.RandomFloat(MinRotationSpeed, MaxRotationSpeed).ToString());
+
+            //Generates a random grow speed
+            particle.Data.Add("GrowSpeed", RandomTools.RandomFloat(MinGrowSpeed.X, MaxGrowSpeed.X) + "," + RandomTools.RandomFloat(MinGrowSpeed.Y, MaxGrowSpeed.Y));
 
             //Generates a random color change index
             particle.AddAction("Color", new AColorChange(ColorChangeIndex.Lerp(MinColorIndex, MaxColorIndex, RandomTools.RandomFloat(0, 1))));
@@ -220,6 +225,9 @@ namespace EdgeLibrary
 
                         //Rotates the particle
                         particle.Rotation += float.Parse(particle.Data["RotationSpeed"]);
+
+                        //Grows the particle
+                        particle.Scale += new Vector2(float.Parse(particle.Data["GrowSpeed"].Split(',')[0]), float.Parse(particle.Data["GrowSpeed"].Split(',')[1]));
                     }
 
                     //Increments the LivedTime and checks if the particle should be removed

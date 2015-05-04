@@ -73,8 +73,6 @@ namespace TowerDefenseGame
         {
             base.SwitchTo();
 
-            EdgeGame.ClearColor = Color.Black;
-
             startLocalGameButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (startLocalGameButton.Width * startLocalGameButton.Scale.X).ToSimUnits(), (startLocalGameButton.Height * startLocalGameButton.Scale.Y).ToSimUnits(), 1));
             startLocalGameButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
 

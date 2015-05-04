@@ -1,6 +1,7 @@
 ﻿using EdgeLibrary;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,31 @@ namespace TowerDefenseGame
         protected int particleWait = 100;
         protected bool clicking = false;
 
+        ParticleEmitter Fire;
+
         public ParticleMenu(string name)
             : base(name)
         {
-            PhysicsSprites = new List<Sprite>();
+            Fire = new ParticleEmitter("Fire", new Vector2(500))
+            {
+                BlendState = BlendState.Additive,
+                Life = 700,
 
-            Ticker particleTicker = new Ticker(particleWait);
-            particleTicker.OnTick += particleTicker_OnTick;
-            Components.Add(particleTicker);
+                EmitPositionVariance = new Vector2(0, 0),
+
+                MinVelocity = new Vector2(-3, -8),
+                MaxVelocity = new Vector2(4, -5),
+
+                MinScale = new Vector2(1f),
+                MaxScale = new Vector2(2f),
+
+                MinColorIndex = new ColorChangeIndex(200, Color.Magenta, Color.Orange, Color.Purple, Color.Transparent),
+                MaxColorIndex = new ColorChangeIndex(200, Color.Teal, Color.OrangeRed, Color.DarkOrange, Color.Transparent),
+                EmitWait = 0,
+                ParticlesToEmit = 5,
+                GrowSpeed = new Vector2(0.03f)
+            };
+            Components.Add(Fire);
 
             Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y / 2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
             screenButton.OnClick += screenButton_OnClick;
@@ -38,6 +56,10 @@ namespace TowerDefenseGame
             Components.Add(screenRightButton);
         }
 
+        private void screenRightButton_OnClick(Button sender, GameTime gameTime)
+        {
+        }
+
         void screenButton_OnClick(Button sender, GameTime gameTime)
         {
             clicking = true;
@@ -48,72 +70,25 @@ namespace TowerDefenseGame
             clicking = false;
         }
 
-        void particleTicker_OnTick(GameTime gameTime)
-        {
-            if (clicking)
-            {
-            }
-        }
-
-        void screenRightButton_OnClick(Button sender, GameTime gameTime)
-        {
-            force = new Vector2(RandomTools.RandomFloat(-max, max), RandomTools.RandomFloat(-max, max));
-
-            foreach (Sprite sprite in PhysicsSprites)
-            {
-                point = sprite.Position;
-                sprite.Body.ApplyForce(ref force, ref point);
-            }
-        }
-
         public override void Update(GameTime gameTime)
         {
-            foreach (Sprite physicsSprite in PhysicsSprites)
-            {
-                physicsSprite.Rotation = 0;
-                physicsSprite.Update(gameTime);
-            }
+            Fire.Position = Input.MousePosition;
+
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (Sprite physicsSprite in PhysicsSprites)
-            {
-                physicsSprite.Draw(gameTime);
-            }
             base.Draw(gameTime);
         }
 
         public override void SwitchOut()
         {
-            PhysicsSprites.Clear();
-            EdgeGame.InitializeWorld(EdgeGame.World.Gravity);
             base.SwitchOut();
         }
 
         public override void SwitchTo()
         {
-            Sprite bottom = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
-            bottom.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * bottom.Scale.X).ToSimUnits(), (bottom.Height * bottom.Scale.Y).ToSimUnits(), 1));
-            bottom.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-            Components.Add(bottom);
-
-            Sprite left = new Sprite("Pixel", new Vector2(0, EdgeGame.WindowSize.Y / 2)) { Visible = false, Scale = new Vector2(10, EdgeGame.WindowSize.Y), Color = Color.White };
-            left.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (left.Width * left.Scale.X).ToSimUnits(), (left.Height * left.Scale.Y).ToSimUnits(), 1));
-            left.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-            Components.Add(left);
-
-            Sprite right = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y / 2)) { Visible = false, Scale = new Vector2(10, EdgeGame.WindowSize.Y), Color = Color.White };
-            right.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (right.Width * right.Scale.X).ToSimUnits(), (right.Height * right.Scale.Y).ToSimUnits(), 1));
-            right.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-            Components.Add(right);
-
-            Sprite top = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, 0)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
-            top.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * top.Scale.X).ToSimUnits(), (top.Height * top.Scale.Y).ToSimUnits(), 1));
-            top.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-            Components.Add(top);
-
             base.SwitchTo();
         }
 

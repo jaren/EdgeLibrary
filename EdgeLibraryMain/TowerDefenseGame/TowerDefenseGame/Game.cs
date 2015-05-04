@@ -23,7 +23,7 @@ namespace TowerDefenseGame
             EdgeGame.IsShuffled = true;
 
             OptionsMenu.FullscreenOn = false;
-            OptionsMenu.MusicOn = true;
+            OptionsMenu.MusicOn = false;
             OptionsMenu.ParticlesOn = true;
             OptionsMenu.SoundEffectsOn = true;
 
