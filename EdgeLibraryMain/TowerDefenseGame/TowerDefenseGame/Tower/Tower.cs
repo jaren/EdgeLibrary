@@ -26,11 +26,12 @@ namespace TowerDefenseGame
         public float Accuracy;
         public int Cost;
         public ProjectileData AttackData;
+        public TowerData NextUpgrade;
 
         public string Texture;
         public Vector2 Scale;
 
-        public TowerData(float attackDamage, float attackSpeed, float armorPierce, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost)
+        public TowerData(float attackDamage, float attackSpeed, float armorPierce, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, TowerData nextUpgrade)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -41,6 +42,7 @@ namespace TowerDefenseGame
             Scale = scale;
             Accuracy = accuracy;
             Cost = cost;
+            NextUpgrade = nextUpgrade;
         }
 
         public void SpecialActions()
