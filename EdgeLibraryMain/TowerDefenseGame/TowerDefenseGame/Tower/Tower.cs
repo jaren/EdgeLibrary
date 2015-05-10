@@ -43,7 +43,7 @@ namespace TowerDefenseGame
             Cost = cost;
         }
 
-        public virtual void SpecialActions()
+        public void SpecialActions()
         {
 
         }
@@ -62,7 +62,7 @@ namespace TowerDefenseGame
             MaxEnemyPierce = maxEnemyPierce;
         }
 
-        public virtual void SpecialActions()
+        public void SpecialActions()
         {
 
         }

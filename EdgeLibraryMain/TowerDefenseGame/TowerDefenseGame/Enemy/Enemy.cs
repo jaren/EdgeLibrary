@@ -39,7 +39,7 @@ namespace TowerDefenseGame
             LivesTaken = livesTaken;
         }
 
-        public virtual void SpecialActions()
+        public void SpecialActions()
         {
 
         }

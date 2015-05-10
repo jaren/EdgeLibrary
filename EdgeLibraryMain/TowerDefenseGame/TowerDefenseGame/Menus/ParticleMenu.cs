@@ -140,6 +140,7 @@ namespace TowerDefenseGame
         public override void SwitchOut()
         {
             PhysicsSprites.Clear();
+            PhysicsSpritesEmitters.Clear();
             EdgeGame.InitializeWorld(EdgeGame.World.Gravity);
 
             base.SwitchOut();
