@@ -61,12 +61,10 @@ namespace EdgeLibrary
             }
         }
 
-        public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
             if (BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)))
             {
@@ -107,7 +105,7 @@ namespace EdgeLibrary
                 wasContained = false;
             }
 
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
     }
 }

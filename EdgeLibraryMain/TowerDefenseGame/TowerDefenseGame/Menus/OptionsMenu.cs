@@ -8,7 +8,7 @@ using FarseerPhysics.Factories;
 
 namespace TowerDefenseGame
 {
-    public class OptionsMenu : ParticleMenu
+    public class OptionsMenu : MenuBase
     {
         public static bool MusicOn
         {
@@ -66,13 +66,14 @@ namespace TowerDefenseGame
             SubTitle = new TextSprite(Config.MenuSubtitleFont, "", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(SubTitle);
 
-            QuitButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            QuitButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.95f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             QuitButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             QuitButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             QuitButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
             QuitButton.Style.AllColors = Config.MenuButtonColor;
             QuitButton.OnRelease += (x, y) =>
             {
+                MenuManager.SwitchMenu("MainMenu");
             };
             Components.Add(QuitButton);
 
@@ -131,7 +132,7 @@ namespace TowerDefenseGame
             ParticlesButtonText = new TextSprite(Config.MenuButtonTextFont, "Particles", ParticlesButton.Position + new Vector2(ParticlesButton.Width, -ParticlesButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(ParticlesButtonText);
 
-            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.95f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
+            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
             ReturnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             ReturnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             ReturnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
@@ -142,7 +143,7 @@ namespace TowerDefenseGame
             };
             Components.Add(ReturnButton);
 
-            ReturnButtonText = new TextSprite(Config.MenuButtonTextFont, "Return to Game", ReturnButton.Position);
+            ReturnButtonText = new TextSprite(Config.MenuButtonTextFont, "Back", ReturnButton.Position);
             Components.Add(ReturnButtonText);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
@@ -160,7 +161,18 @@ namespace TowerDefenseGame
         {
             base.SwitchTo();
 
-            MusicButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (MusicButton.Width * MusicButton.Scale.X).ToSimUnits(), (MusicButton.Height * MusicButton.Scale.Y).ToSimUnits(), 1));
+            if (MenuManager.PreviousMenu.Name == "GameMenu")
+            {
+                QuitButton.Visible = true;
+                QuitButtonText.Visible = true;
+            }
+            else
+            {
+                QuitButton.Visible = false;
+                QuitButtonText.Visible = false;
+            }
+
+            /*MusicButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (MusicButton.Width * MusicButton.Scale.X).ToSimUnits(), (MusicButton.Height * MusicButton.Scale.Y).ToSimUnits(), 1));
             MusicButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
 
             SoundEffectsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (SoundEffectsButton.Width * SoundEffectsButton.Scale.X).ToSimUnits(), (SoundEffectsButton.Height * SoundEffectsButton.Scale.Y).ToSimUnits(), 1));
@@ -177,6 +189,7 @@ namespace TowerDefenseGame
 
             QuitButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (QuitButton.Width * QuitButton.Scale.X).ToSimUnits(), (QuitButton.Height * QuitButton.Scale.Y).ToSimUnits(), 1));
             QuitButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
+             */
         }
     }
 }

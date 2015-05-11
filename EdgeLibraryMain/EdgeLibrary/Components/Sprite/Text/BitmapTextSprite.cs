@@ -87,7 +87,7 @@ namespace EdgeLibrary
         }
 
         //Draws the textsprite to the spritebatch
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             RestartSpriteBatch();
 

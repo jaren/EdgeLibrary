@@ -35,7 +35,7 @@ namespace TowerDefenseGame
             Components.Add(startLocalGameButtonText);
 
             optionsButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.5f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.55f) };
-            optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("NoGameOptionsMenu"); };
+            optionsButton.OnRelease += (x, y) => { MenuManager.SwitchMenu("OptionsMenu"); };
             optionsButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             optionsButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             optionsButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);

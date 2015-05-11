@@ -26,6 +26,7 @@ namespace TowerDefenseGame
 
             EdgeGame.OnInit += new EdgeGame.EdgeGameEvent(MainGame.OnInit);
             EdgeGame.OnLoadContent += new EdgeGame.EdgeGameEvent(MainGame.OnLoadContent);
+
             EdgeGame.Start();
         }
     }

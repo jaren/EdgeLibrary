@@ -33,6 +33,8 @@ namespace TowerDefenseGame
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
             MenuManager.AddMenu(new CreditsMenu());
+            MenuManager.AddMenu(new GameMenu());
+            MenuManager.AddMenu(new OptionsMenu());
             MenuManager.SwitchMenu("MainMenu");
         }
 

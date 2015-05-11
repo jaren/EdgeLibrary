@@ -11,6 +11,11 @@ namespace TowerDefenseGame
     {
         public TowerData TowerData;
 
+        public void doStuff()
+        { 
+        
+        }
+
         public Tower(TowerData data) : base(data.Texture, Vector2.Zero)
         {
             TowerData = data;
@@ -27,10 +32,12 @@ namespace TowerDefenseGame
         public int Cost;
         public ProjectileData AttackData;
 
+        public System.Action SpecialActions;
+
         public string Texture;
         public Vector2 Scale;
 
-        public TowerData(float attackDamage, float attackSpeed, float armorPierce, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost)
+        public TowerData(float attackDamage, float attackSpeed, float armorPierce, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, System.Action specialActions)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -41,11 +48,7 @@ namespace TowerDefenseGame
             Scale = scale;
             Accuracy = accuracy;
             Cost = cost;
-        }
-
-        public void SpecialActions()
-        {
-
+            SpecialActions = specialActions;
         }
     }
 
@@ -55,16 +58,14 @@ namespace TowerDefenseGame
         public float Range;
         public int MaxEnemyPierce;
 
-        public ProjectileData(float movementSpeed, float range, int maxEnemyPierce)
+        public System.Action SpecialActions;
+
+        public ProjectileData(float movementSpeed, float range, int maxEnemyPierce, System.Action specialActions)
         {
             MovementSpeed = movementSpeed;
             Range = range;
             MaxEnemyPierce = maxEnemyPierce;
-        }
-
-        public void SpecialActions()
-        {
-
+            SpecialActions = specialActions;
         }
     }
 }

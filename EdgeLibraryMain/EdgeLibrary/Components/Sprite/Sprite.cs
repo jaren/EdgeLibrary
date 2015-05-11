@@ -33,7 +33,10 @@ namespace EdgeLibrary
         public string TextureName { set { Texture = EdgeGame.GetTexture(value); } }
 
         //Sets the scale with a Vector2
-        public virtual Vector2 Scale { get { return _scale; } set
+        public virtual Vector2 Scale
+        {
+            get { return _scale; }
+            set
             {
                 _scale = new Vector2(
                     (value.X < 0 ? 0 : value.X),
@@ -46,9 +49,10 @@ namespace EdgeLibrary
         //Optional visual effects
         public virtual Color Color { get; set; }
         //Measured in radians
-        public virtual float Rotation { 
+        public virtual float Rotation
+        {
             get { return _rotation; }
-            set 
+            set
             {
                 _rotation = value;
                 if (PhysicsEnabled && Body != null)
@@ -83,16 +87,17 @@ namespace EdgeLibrary
         public bool ScaleWithCamera;
 
         //Used to change properties of the sprite - could be uesd for moving, color changing, etc.
-        protected Dictionary<string,Action> Actions;
+        protected Dictionary<string, Action> Actions;
         protected List<string> actionsToRemove;
 
         //For buttons, etc.
         public Rectangle BoundingBox { get; protected set; }
 
         //Location of the sprite
-        public virtual Vector2 Position {
+        public virtual Vector2 Position
+        {
             get { return _position; }
-            set 
+            set
             {
                 _position = value;
                 if (PhysicsEnabled && Body != null)
@@ -100,7 +105,7 @@ namespace EdgeLibrary
                     Body.Position = ConvertUnits.ToSimUnits(_position);
                 }
                 reloadBoundingBox();
-            } 
+            }
         }
         private Vector2 _position;
 
@@ -111,7 +116,8 @@ namespace EdgeLibrary
         public event SpriteEvent OnAdded;
         public event SpriteEvent OnRemoved;
 
-        public Sprite(string textureName, Vector2 position) : base(EdgeGame.Game)
+        public Sprite(string textureName, Vector2 position)
+            : base(EdgeGame.Game)
         {
             ID = this.GenerateID();
 
@@ -147,7 +153,8 @@ namespace EdgeLibrary
             }
             reloadOriginPoint();
         }
-        public Sprite(string textureName, Vector2 position, Color color, Vector2 scale, float rotation = 0f, SpriteEffects effects = SpriteEffects.None) : this(textureName, position)
+        public Sprite(string textureName, Vector2 position, Color color, Vector2 scale, float rotation = 0f, SpriteEffects effects = SpriteEffects.None)
+            : this(textureName, position)
         {
             Color = color;
             Rotation = rotation;
@@ -185,12 +192,6 @@ namespace EdgeLibrary
                 OnRemoved(this, EdgeGame.GameTime);
             }
         }
-
-        //Gets the bounding box of this sprite
-        //public virtual Rectangle GetBoundingBox()
-        //{
-        //   return new Rectangle((int)(Position.X - Width / 2 * Scale.X), (int)(Position.Y - Height / 2 * Scale.Y), (int)(Width * Scale.X), (int)(Height * Scale.Y));
-        //}
 
         //Reloads origin point based on texture
         protected virtual void reloadOriginPoint()
@@ -243,51 +244,64 @@ namespace EdgeLibrary
             Body = body;
             Body.Position = ConvertUnits.ToSimUnits(Position);
         }
+
         public void DisablePhysics()
         {
             PhysicsEnabled = false;
         }
 
-        //Updates the sprite
-        public override void Update(GameTime gameTime)
+        //Updates the sprite - this should be overwritten
+        public virtual void UpdateObject(GameTime gameTime)
         {
-            if (Enabled)
+            if (PhysicsEnabled && Body != null)
             {
-                if (PhysicsEnabled && Body != null)
-                {
-                    _position = ConvertUnits.ToDisplayUnits(Body.Position);
-                    _rotation = Body.Rotation;
-                }
+                _position = ConvertUnits.ToDisplayUnits(Body.Position);
+                _rotation = Body.Rotation;
+            }
 
-                //Updates the actions
-                actionsToRemove.Clear();
-                foreach (KeyValuePair<string, Action> action in Actions)
-                {
-                    action.Value.Update(gameTime, this);
+            //Updates the actions
+            actionsToRemove.Clear();
+            foreach (KeyValuePair<string, Action> action in Actions)
+            {
+                action.Value.Update(gameTime, this);
 
-                    if (action.Value.toRemove)
-                    {
-                        actionsToRemove.Add(action.Key);
-                    }
-                }
-                foreach (string key in actionsToRemove)
+                if (action.Value.toRemove)
                 {
-                    Actions.Remove(key);
+                    actionsToRemove.Add(action.Key);
                 }
+            }
+            foreach (string key in actionsToRemove)
+            {
+                Actions.Remove(key);
             }
         }
 
-        //Draws to the spritebatch
-        public override void Draw(GameTime gameTime)
+        //Override of DrawableGameComponent - should not be overwritten
+        public override sealed void Update(GameTime gameTime)
+        {
+            if (Enabled)
+            {
+                UpdateObject(gameTime);
+            }
+        }
+
+        //Override of DrawableGameComponent - should not be overwritten
+        public override sealed void Draw(GameTime gameTime)
         {
             if (Visible)
             {
-                RestartSpriteBatch();
-
-                EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
-
-                RestartSpriteBatch();
+                DrawObject(gameTime);
             }
+        }
+
+        //Draws to the spritebatch - this should be overwritten
+        public virtual void DrawObject(GameTime gameTime)
+        {
+            RestartSpriteBatch();
+
+            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+
+            RestartSpriteBatch();
         }
 
         //Restarts the spritebatch if the blend state is not AlphaBlend

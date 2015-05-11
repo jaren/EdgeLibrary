@@ -129,41 +129,56 @@ namespace EdgeLibrary
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public virtual void UpdateObject(GameTime gameTime)
         {
-            //Updates the actions
-            actionsToRemove.Clear();
-            foreach (KeyValuePair<string, Action3D> action in Actions)
-            {
-                action.Value.Update(gameTime, this);
-
-                if (action.Value.toRemove)
-                {
-                    actionsToRemove.Add(action.Key);
-                }
-            }
-            foreach (string key in actionsToRemove)
-            {
-                Actions.Remove(key);
-            }
-
-            //Updates the sprite
             Model.Update(gameTime);
-            base.Update(gameTime);
-            if (OnUpdate != null)
+        }
+
+        public sealed override void Update(GameTime gameTime)
+        {
+            if (Enabled)
             {
-                OnUpdate(this, gameTime);
+                //Updates the actions
+                actionsToRemove.Clear();
+                foreach (KeyValuePair<string, Action3D> action in Actions)
+                {
+                    action.Value.Update(gameTime, this);
+
+                    if (action.Value.toRemove)
+                    {
+                        actionsToRemove.Add(action.Key);
+                    }
+                }
+                foreach (string key in actionsToRemove)
+                {
+                    Actions.Remove(key);
+                }
+
+                base.Update(gameTime);
+                if (OnUpdate != null)
+                {
+                    OnUpdate(this, gameTime);
+                }
+                UpdateObject(gameTime);
             }
         }
 
-        public override void Draw(GameTime gameTime)
+        public sealed override void Draw(GameTime gameTime)
+        {
+            if (Visible)
+            {
+                base.Draw(gameTime);
+                if (OnDraw != null)
+                {
+                    OnDraw(this, gameTime);
+                }
+                DrawObject(gameTime);
+            }
+        }
+
+        public virtual void DrawObject(GameTime gameTime)
         {
             Model.Draw(gameTime);
-            base.Draw(gameTime);
-            if (OnDraw != null)
-            {
-                OnDraw(this, gameTime);
-            }
         }
 
         public virtual object Clone()

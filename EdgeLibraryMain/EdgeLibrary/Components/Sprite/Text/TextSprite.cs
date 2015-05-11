@@ -34,7 +34,8 @@ namespace EdgeLibrary
         protected Vector2[] textLinesOriginPoints;
         protected float yLineDifference;
 
-        public TextSprite(string fontName, string text, Vector2 position) : base("", position)
+        public TextSprite(string fontName, string text, Vector2 position)
+            : base("", position)
         {
             this.text = text;
 
@@ -46,7 +47,8 @@ namespace EdgeLibrary
             }
         }
 
-        public TextSprite(string fontName, string text, Vector2 position, Color color, Vector2 scale, float rotation = 0) : this(fontName, text, position)
+        public TextSprite(string fontName, string text, Vector2 position, Color color, Vector2 scale, float rotation = 0)
+            : this(fontName, text, position)
         {
             Color = color;
             Rotation = rotation;
@@ -75,7 +77,7 @@ namespace EdgeLibrary
 
                 if (CenterAsOrigin)
                 {
-                    OriginPoint = font.MeasureString(text)/2;
+                    OriginPoint = font.MeasureString(text) / 2;
                 }
                 else
                 {
@@ -85,19 +87,18 @@ namespace EdgeLibrary
         }
 
         //Draws the textsprite to the spritebatch
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             RestartSpriteBatch();
 
             for (int i = 0; i < textLines.Length; i++)
             {
-                EdgeGame.Game.SpriteBatch.DrawString(font, textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y/2): Vector2.Zero),
+                EdgeGame.Game.SpriteBatch.DrawString(font, textLines[i], Position + new Vector2(0, yLineDifference * i) - (textLines.Length > 1 ? new Vector2(0, OriginPoint.Y / 2) : Vector2.Zero),
                 Color, Rotation, textLinesOriginPoints[i], Scale, SpriteEffects, 0);
             }
 
             RestartSpriteBatch();
         }
-
         public override object Clone()
         {
             TextSprite clone = (TextSprite)base.Clone();

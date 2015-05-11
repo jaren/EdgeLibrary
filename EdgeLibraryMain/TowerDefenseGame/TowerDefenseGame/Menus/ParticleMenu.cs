@@ -103,7 +103,7 @@ namespace TowerDefenseGame
         {
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
             Fire.Position = Input.MousePosition;
 
@@ -120,10 +120,10 @@ namespace TowerDefenseGame
                 emitter.Update(gameTime);
             }
 
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             foreach (Sprite physicsSprite in PhysicsSprites)
             {
@@ -134,7 +134,7 @@ namespace TowerDefenseGame
                 emitter.Draw(gameTime);
             }
 
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
         }
 
         public override void SwitchOut()

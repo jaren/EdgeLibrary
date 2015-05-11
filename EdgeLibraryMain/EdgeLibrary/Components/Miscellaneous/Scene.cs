@@ -29,22 +29,38 @@ namespace EdgeLibrary
 
         public Scene(params GameComponent[] components) : this(new List<GameComponent>(components)) { }
 
-        public override void Update(GameTime gameTime)
+        public virtual void UpdateObject(GameTime gameTime)
         {
-            foreach (GameComponent component in Components)
-            {
-                component.Update(gameTime);
-            }
-            base.Update(gameTime);
+
         }
 
-        public override void Draw(GameTime gameTime)
+        public override sealed void Update(GameTime gameTime)
         {
-            foreach (DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
+            if (Enabled)
             {
-                component.Draw(gameTime);
+                foreach (GameComponent component in Components)
+                {
+                    component.Update(gameTime);
+                }
+                base.Update(gameTime);
+                UpdateObject(gameTime);
             }
-            base.Draw(gameTime);
+        }
+
+        {
+
+        }
+
+        public override sealed void Draw(GameTime gameTime)
+        {
+            if (Visible)
+            {
+                foreach (DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
+                {
+                    component.Draw(gameTime);
+                }
+                base.Draw(gameTime);
+            }
         }
 
         public object Clone()

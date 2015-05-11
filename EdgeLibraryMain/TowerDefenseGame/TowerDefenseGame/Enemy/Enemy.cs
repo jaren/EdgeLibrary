@@ -25,10 +25,12 @@ namespace TowerDefenseGame
         public int LivesTaken;
         public List<EnemyType> DeathEnemies;
 
+        public System.Action SpecialActions;
+
         public string Texture;
         public Vector2 Scale;
 
-        public EnemyType(float health, float speed, float armor, int livesTaken, List<EnemyType> deathEnemies, string texture, Vector2 scale)
+        public EnemyType(float health, float speed, float armor, int livesTaken, List<EnemyType> deathEnemies, string texture, Vector2 scale, System.Action specialActions)
         {
             Health = health;
             Speed = speed;
@@ -37,11 +39,7 @@ namespace TowerDefenseGame
             Texture = texture;
             Scale = scale;
             LivesTaken = livesTaken;
-        }
-
-        public void SpecialActions()
-        {
-
+            SpecialActions = specialActions;
         }
     }
 }

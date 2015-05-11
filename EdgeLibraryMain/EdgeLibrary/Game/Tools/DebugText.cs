@@ -42,7 +42,7 @@ namespace EdgeLibrary
 
         public DebugText(string fontName, Vector2 position) : base(fontName, "", position) { CenterAsOrigin = false; }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
             if (IncludeFPS)
             { Text = "FPS: " + EdgeGame.FPS.ToString() + "\n"; }
@@ -65,7 +65,7 @@ namespace EdgeLibrary
             if (Include3DCameraLookingAt)
             { Text += "3D Camera Looking At: " + EdgeGame.Camera3D.Target.ToString() + "\n"; }
 
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
     }
 }
