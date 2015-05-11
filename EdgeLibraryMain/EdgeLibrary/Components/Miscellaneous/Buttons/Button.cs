@@ -61,7 +61,9 @@ namespace EdgeLibrary
             }
         }
 
+        public override void DrawObject(GameTime gameTime)
         {
+            base.DrawObject(gameTime);
         }
 
         public override void UpdateObject(GameTime gameTime)

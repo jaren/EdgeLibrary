@@ -204,7 +204,7 @@ namespace EdgeLibrary
         /// <summary>
         /// Checks which particle should be removed and updates particles
         /// </summary>
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
             if (ShouldEmit)
             {
@@ -257,14 +257,14 @@ namespace EdgeLibrary
             }
 
             //Needed for running actions
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
 
         /// <summary>
         /// Draws all the particles that are not going to be removed
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             RestartSpriteBatch();
 

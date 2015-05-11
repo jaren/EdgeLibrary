@@ -47,6 +47,7 @@ namespace EdgeLibrary
             }
         }
 
+        public virtual void DrawObject(GameTime gameTime)
         {
 
         }
@@ -60,6 +61,7 @@ namespace EdgeLibrary
                     component.Draw(gameTime);
                 }
                 base.Draw(gameTime);
+                DrawObject(gameTime);
             }
         }
 

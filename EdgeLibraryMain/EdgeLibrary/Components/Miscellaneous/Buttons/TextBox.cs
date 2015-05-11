@@ -148,17 +148,17 @@ namespace EdgeLibrary
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
             TextSprite.Update(gameTime);
             CursorFlashSprite.Update(gameTime);
             TypingTicker.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
             TextSprite.Draw(gameTime);
             CursorFlashSprite.Draw(gameTime);
         }
