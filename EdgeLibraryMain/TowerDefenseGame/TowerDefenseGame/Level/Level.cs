@@ -10,6 +10,7 @@ namespace TowerDefenseGame
     public class Level : Sprite
     {
         public List<Vector2> Waypoints;
+        public List<Restriction> Restrictions;
 
         public Level(List<Vector2> waypoints, string texture) : base(texture, Vector2.Zero)
         {

@@ -88,7 +88,9 @@
     <Compile Include="Config.cs" />
     <Compile Include="Enemy\Enemy.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Level\CollisionDetection.cs" />
     <Compile Include="Level\Level.cs" />
+    <Compile Include="Level\Restriction.cs" />
     <Compile Include="Level\Round.cs" />
     <Compile Include="Level\RoundManager.cs" />
     <Compile Include="Menus\CreditsMenu.cs" />
