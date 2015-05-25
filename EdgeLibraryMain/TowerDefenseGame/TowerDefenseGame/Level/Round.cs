@@ -12,6 +12,11 @@ namespace TowerDefenseGame
         public Dictionary<EnemyType, float> Enemies;
         public int CurrentIndex = 0;
 
+        public delegate void RoundEvent(Round round);
+        public delegate void RoundEventEnemy(Round round, EnemyType enemy);
+        public event RoundEvent OnFinish;
+        public event RoundEventEnemy OnEmitEnemy;
+
         public Round(Dictionary<EnemyType, float> enemies) : base(0)
         {
             Enemies = enemies;
@@ -22,6 +27,13 @@ namespace TowerDefenseGame
         {
             CurrentIndex++;
             MillisecondsWait = Enemies.Values.ToList()[CurrentIndex];
+
+            OnEmitEnemy(this, Enemies.Keys.ToList()[CurrentIndex]);
+
+            if (CurrentIndex >= Enemies.Keys.Count && OnFinish != null)
+            {
+                OnFinish(this);
+            }
         }
     }
 }

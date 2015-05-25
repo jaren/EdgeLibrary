@@ -9,12 +9,14 @@ namespace TowerDefenseGame
 {
     public class Level : Sprite
     {
-        public List<Vector2> Waypoints;
+        public WaypointList Waypoints;
         public List<Restriction> Restrictions;
 
-        public Level(List<Vector2> waypoints, string texture) : base(texture, Vector2.Zero)
+
+        public Level(WaypointList waypoints, List<Restriction> restrictions, string texture) : base(texture, Vector2.Zero)
         {
             Waypoints = waypoints;
+            Restrictions = restrictions;
         }
     }
 }

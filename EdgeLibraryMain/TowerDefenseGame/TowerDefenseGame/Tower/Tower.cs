@@ -11,11 +11,6 @@ namespace TowerDefenseGame
     {
         public TowerData TowerData;
 
-        public void doStuff()
-        { 
-        
-        }
-
         public Tower(TowerData data) : base(data.Texture, Vector2.Zero)
         {
             TowerData = data;

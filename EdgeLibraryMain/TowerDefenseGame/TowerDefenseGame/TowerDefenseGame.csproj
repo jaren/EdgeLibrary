@@ -93,6 +93,7 @@
     <Compile Include="Level\Restriction.cs" />
     <Compile Include="Level\Round.cs" />
     <Compile Include="Level\RoundManager.cs" />
+    <Compile Include="Level\WaypointList.cs" />
     <Compile Include="Menus\CreditsMenu.cs" />
     <Compile Include="Menus\GameMenu.cs" />
     <Compile Include="Menus\MainMenu.cs" />
