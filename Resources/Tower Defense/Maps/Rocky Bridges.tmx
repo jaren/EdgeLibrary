@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="23">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="32">
  <tileset firstgid="1" name="Grass Tileset" tilewidth="16" tileheight="16">
   <image source="../Tilesets/grass_tileset.png" width="368" height="128"/>
  </tileset>
@@ -26,5 +26,63 @@
   <object id="20" x="176.667" y="0" width="14.6667" height="256"/>
   <object id="21" x="-0.333333" y="64" width="256.667" height="15.6667"/>
   <object id="22" x="0.333333" y="176" width="256" height="16.3333"/>
+ </objectgroup>
+ <objectgroup name="Waypoints">
+  <object id="24" x="176" y="-8" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="-1"/>
+    <property name="WaypointID" value="3"/>
+    <property name="WaypointType" value="2"/>
+   </properties>
+  </object>
+  <object id="25" x="64" y="248" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="-1"/>
+    <property name="WaypointID" value="1"/>
+    <property name="WaypointType" value="2"/>
+   </properties>
+  </object>
+  <object id="26" x="248" y="64" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="-1"/>
+    <property name="WaypointID" value="5"/>
+    <property name="WaypointType" value="2"/>
+   </properties>
+  </object>
+  <object id="27" x="-8" y="176" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="-1"/>
+    <property name="WaypointID" value="7"/>
+    <property name="WaypointType" value="2"/>
+   </properties>
+  </object>
+  <object id="28" x="176" y="248" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="3"/>
+    <property name="WaypointID" value="2"/>
+    <property name="WaypointType" value="0"/>
+   </properties>
+  </object>
+  <object id="29" x="248" y="176" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="7"/>
+    <property name="WaypointID" value="6"/>
+    <property name="WaypointType" value="0"/>
+   </properties>
+  </object>
+  <object id="30" x="-8" y="64" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="5"/>
+    <property name="WaypointID" value="4"/>
+    <property name="WaypointType" value="0"/>
+   </properties>
+  </object>
+  <object id="31" x="64" y="-8" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="1"/>
+    <property name="WaypointID" value="0"/>
+    <property name="WaypointType" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
