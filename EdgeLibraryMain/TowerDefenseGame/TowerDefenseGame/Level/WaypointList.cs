@@ -46,5 +46,13 @@ namespace TowerDefenseGame
 
         //The position of the waypoint
         public Vector2 Position;
+
+        public Waypoint(int id, int type, List<int> nextID, Vector2 position)
+        {
+            ID = id;
+            Type = type;
+            NextID = nextID;
+            Position = position;
+        }
     }
 }

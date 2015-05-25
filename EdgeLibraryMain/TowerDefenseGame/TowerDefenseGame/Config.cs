@@ -21,6 +21,11 @@ namespace TowerDefenseGame
         public static Color MenuButtonColor = Color.DarkOrange;
         public static Color MenuTextColor = Color.Orange;
 
+        public static string WaypointsXMLName = "Waypoints";
+        public static string ObjectsXMLName = "DecorationCollision";
+        public static string PathXMLName = "Path";
+        public static string WaterXMLName = "Water";
+
         public static string ButtonNormalTexture = "grey_button03";
         public static string ButtonClickTexture = "grey_button02";
         public static string ButtonMouseOverTexture = "grey_button01";
