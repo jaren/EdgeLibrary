@@ -22,10 +22,10 @@
   </data>
  </layer>
  <objectgroup name="Path">
-  <object id="18" x="65" y="0.333333" width="14" height="255.333"/>
-  <object id="20" x="176.667" y="0" width="14.6667" height="256"/>
-  <object id="21" x="-0.333333" y="64" width="256.667" height="15.6667"/>
-  <object id="22" x="0.333333" y="176" width="256" height="16.3333"/>
+  <object id="18" x="64" y="0" width="16" height="256"/>
+  <object id="20" x="176" y="0" width="16" height="256"/>
+  <object id="21" x="0" y="64" width="256" height="16"/>
+  <object id="22" x="0" y="176" width="256" height="16"/>
  </objectgroup>
  <objectgroup name="Waypoints">
   <object id="24" x="176" y="-8" width="16" height="16">
