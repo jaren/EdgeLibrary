@@ -37,40 +37,40 @@
   <object id="83" gid="457" x="129" y="172"/>
  </objectgroup>
  <objectgroup name="DecorationCollision">
-  <object id="210" x="25" y="40.3333" width="12" height="12.3333">
+  <object id="210" x="25" y="40.3333" width="12" height="12">
    <ellipse/>
   </object>
-  <object id="211" x="83" y="90" width="11.6667" height="11.6667">
+  <object id="211" x="83" y="90" width="12" height="12">
    <ellipse/>
   </object>
-  <object id="212" x="198.333" y="51" width="13.3333" height="12.6667">
+  <object id="212" x="198" y="51" width="13" height="13">
    <ellipse/>
   </object>
-  <object id="213" x="214.811" y="105.102" width="13" height="13">
+  <object id="213" x="215" y="105" width="13" height="13">
    <ellipse/>
   </object>
-  <object id="214" x="166" y="160" width="12.3333" height="11.6667">
+  <object id="214" x="166" y="160" width="12" height="12">
    <ellipse/>
   </object>
-  <object id="215" x="118.667" y="158.667" width="27.6667" height="27.6667">
+  <object id="215" x="119" y="159" width="28" height="28">
    <ellipse/>
   </object>
-  <object id="216" x="12.6667" y="106.667" width="11.6667" height="11.6667">
+  <object id="216" x="13" y="107" width="12" height="12">
    <ellipse/>
   </object>
-  <object id="217" x="81" y="172" width="13.6667" height="12.6667">
+  <object id="217" x="81" y="172" width="13" height="13">
    <ellipse/>
   </object>
-  <object id="218" x="19.3333" y="204.333" width="11.3333" height="11.6667">
+  <object id="218" x="19" y="204" width="11" height="11">
    <ellipse/>
   </object>
-  <object id="219" x="130.333" y="200.667" width="14" height="15">
+  <object id="219" x="130" y="201" width="15" height="15">
    <ellipse/>
   </object>
-  <object id="220" x="171.667" y="198.667" width="16" height="15.6667">
+  <object id="220" x="172" y="199" width="16" height="16">
    <ellipse/>
   </object>
-  <object id="221" x="230" y="221.667" width="13.3333" height="13.3333">
+  <object id="221" x="230" y="222" width="13" height="13">
    <ellipse/>
   </object>
  </objectgroup>
@@ -79,7 +79,7 @@
   <object id="102" x="112" y="80" width="64" height="32"/>
  </objectgroup>
  <objectgroup name="Path">
-  <object id="104" x="4" y="16" width="224" height="16"/>
+  <object id="104" x="0" y="16" width="224" height="16"/>
   <object id="105" x="224" y="16" width="16" height="64"/>
   <object id="107" x="48" y="64" width="176" height="16"/>
   <object id="108" x="48" y="80" width="16" height="160"/>

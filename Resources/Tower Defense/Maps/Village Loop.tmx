@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="70">
+ <tileset firstgid="1" name="grass_fences_tileset" tilewidth="16" tileheight="16">
+  <image source="../Tilesets/grass_fences_tileset.png" width="400" height="224"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJydU8ENwzAIZNSM5lHsqJnCZIvyLxGxdL3iKM3jhC04MHDuImIn1NFPaAIDaxA3OJtjFam7SJnBYwrzR073Swu7ZHBf8fyLQl2FXHugvt1mGH6lPgzq3+HjvHBud/k8t/6Aj3haH2f3D98k14fvprTYVbr7Ftr44qMWNtr3i/SwRkw1ejtraZyxXyP/rIcuv3rI/Dz7q/pXvOw/8T75P+IbZ/cZH2se9gP2XAC1
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJwzZGTACvTQxPVxqCMHGGIxi5rm7wXifWh4P5oaA0bcbrmGxcwbBOw0QDKHHP2k2o8eP6Tqx2fWeyD+gIY/4tFPKsAW5pQAayC2AWJbILbDIg+LG2zqQHIhQDoUiMOAOByP+9DVwUAuEOcBcT4QF6DZiewGdHUwe9qAuB2IO4C4E48/cakD5Z0FQHohHr2w/IWuDgBfxCMu
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzty0sVgCAABVESIaRASIGaAjQFn75OhrdE55y7HGPWzGKDgxf+gB0RSfgzDpy4hL+g4sYj/A0dA1P4/77RCxi1B58=
+  </data>
+ </layer>
+ <objectgroup name="DecorationCollision">
+  <object id="3" x="80" y="48" width="96" height="96"/>
+  <object id="4" x="0" y="0" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="5" x="32" y="32" width="15" height="15">
+   <ellipse/>
+  </object>
+  <object id="6" x="97" y="1" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="7" x="162" y="1" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="8" x="209" y="16" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="11" x="225" y="49" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="14" x="226" y="98" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="15" x="210" y="146" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="16" x="145" y="178" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="17" x="162" y="210" width="12" height="12">
+   <ellipse/>
+  </object>
+  <object id="18" x="241" y="209" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="19" x="161" y="241" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="23" x="96" y="209" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="24" x="82" y="194" width="12" height="12">
+   <ellipse/>
+  </object>
+  <object id="25" x="1" y="194" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="26" x="18" y="241" width="14" height="14">
+   <ellipse/>
+  </object>
+  <object id="27" x="17" y="128" width="14" height="15">
+   <ellipse/>
+  </object>
+  <object id="28" x="33" y="82" width="13" height="13">
+   <ellipse/>
+  </object>
+  <object id="29" x="0" y="64" width="15" height="15">
+   <ellipse/>
+  </object>
+  <object id="31" x="16" y="176" width="64" height="64"/>
+  <object id="32" x="176" y="176" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Path">
+  <object id="49" x="184" y="24" width="16" height="144"/>
+  <object id="50" x="56" y="152" width="144" height="16"/>
+  <object id="51" x="56" y="24" width="16" height="144"/>
+  <object id="52" x="56" y="24" width="144" height="16"/>
+  <object id="53" x="120" y="152" width="16" height="104"/>
+ </objectgroup>
+ <objectgroup name="Waypoints">
+  <object id="55" x="120" y="248" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="1"/>
+    <property name="WaypointID" value="0"/>
+    <property name="WaypointType" value="0"/>
+   </properties>
+  </object>
+  <object id="56" x="120" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="2"/>
+    <property name="WaypointID" value="1"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="57" x="56" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="2"/>
+    <property name="WaypointID" value="1"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="58" x="56" y="24" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="3"/>
+    <property name="WaypointID" value="2"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="59" x="184" y="24" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="4"/>
+    <property name="WaypointID" value="3"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="60" x="184" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="5"/>
+    <property name="WaypointID" value="4"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="64" x="56" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="6"/>
+    <property name="WaypointID" value="5"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="65" x="56" y="24" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="7"/>
+    <property name="WaypointID" value="6"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="66" x="184" y="24" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="8"/>
+    <property name="WaypointID" value="7"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="67" x="184" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="9"/>
+    <property name="WaypointID" value="8"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="68" x="120" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="10"/>
+    <property name="WaypointID" value="9"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
+  <object id="69" x="120" y="248" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="-1"/>
+    <property name="WaypointID" value="10"/>
+    <property name="WaypointType" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
