@@ -1,0 +1,30 @@
+<TextureAtlas imagePath="WhiteIcons2x.png">
+	<SubTexture name="buttonLong_beige.png" x="0" y="294" width="190" height="49"/>
+	<SubTexture name="buttonLong_beige_pressed.png" x="0" y="345" width="190" height="45"/>
+	<SubTexture name="buttonLong_blue.png" x="0" y="243" width="190" height="49"/>
+	<SubTexture name="buttonLong_blue_pressed.png" x="0" y="196" width="190" height="45"/>
+	<SubTexture name="buttonLong_brown.png" x="0" y="145" width="190" height="49"/>
+	<SubTexture name="buttonLong_brown_pressed.png" x="0" y="98" width="190" height="45"/>
+	<SubTexture name="buttonLong_grey.png" x="0" y="0" width="190" height="49"/>
+	<SubTexture name="buttonLong_grey_pressed.png" x="0" y="51" width="190" height="45"/>
+	<SubTexture name="buttonRound_beige.png" x="341" y="40" width="35" height="38"/>
+	<SubTexture name="buttonRound_blue.png" x="341" y="0" width="35" height="38"/>
+	<SubTexture name="buttonRound_brown.png" x="341" y="120" width="35" height="38"/>
+	<SubTexture name="buttonRound_grey.png" x="341" y="80" width="35" height="38"/>
+	<SubTexture name="buttonSquare_beige.png" x="294" y="94" width="45" height="49"/>
+	<SubTexture name="buttonSquare_beige_pressed.png" x="294" y="0" width="45" height="45"/>
+	<SubTexture name="buttonSquare_blue.png" x="299" y="449" width="45" height="49"/>
+	<SubTexture name="buttonSquare_blue_pressed.png" x="294" y="47" width="45" height="45"/>
+	<SubTexture name="buttonSquare_brown.png" x="299" y="398" width="45" height="49"/>
+	<SubTexture name="buttonSquare_brown_pressed.png" x="299" y="351" width="45" height="45"/>
+	<SubTexture name="buttonSquare_grey.png" x="299" y="300" width="45" height="49"/>
+	<SubTexture name="buttonSquare_grey_pressed.png" x="294" y="145" width="45" height="45"/>
+	<SubTexture name="panelInset_beige.png" x="204" y="396" width="93" height="94"/>
+	<SubTexture name="panelInset_beigeLight.png" x="204" y="300" width="93" height="94"/>
+	<SubTexture name="panelInset_blue.png" x="287" y="204" width="93" height="94"/>
+	<SubTexture name="panelInset_brown.png" x="192" y="204" width="93" height="94"/>
+	<SubTexture name="panel_beige.png" x="192" y="0" width="100" height="100"/>
+	<SubTexture name="panel_beigeLight.png" x="102" y="392" width="100" height="100"/>
+	<SubTexture name="panel_blue.png" x="0" y="392" width="100" height="100"/>
+	<SubTexture name="panel_brown.png" x="192" y="102" width="100" height="100"/>
+</TextureAtlas>

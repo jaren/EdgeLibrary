@@ -90,6 +90,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexturesInSpritesheet("GUI/ButtonSheet", "GUI/ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("GUI/GreyGUI", "GUI/GreyGUI");
             EdgeGame.LoadTexturesInSpritesheet("GUI/WhiteIcons2x", "GUI/WhiteIcons2x");
+            EdgeGame.LoadTexturesInSpritesheet("GUI/UIRPG", "GUI/UIRPG");
             EdgeGame.LoadTexture("Levels/Grassy Plains");
             EdgeGame.LoadTexture("Levels/Islands");
             EdgeGame.LoadTexture("Levels/Rocky Bridges");
