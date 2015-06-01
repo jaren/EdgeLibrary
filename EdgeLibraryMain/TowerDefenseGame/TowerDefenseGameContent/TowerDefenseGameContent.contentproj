@@ -404,11 +404,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Levels\Grassy Plains.png">
-      <Name>Grassy Plains</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Levels\Islands.png">
       <Name>Islands</Name>
       <Importer>TextureImporter</Importer>
@@ -416,6 +411,16 @@
     </Compile>
     <Compile Include="Levels\Rocky Bridges.png">
       <Name>Rocky Bridges</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Grassy Plains.png">
+      <Name>Grassy Plains</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Village Loop.png">
+      <Name>Village Loop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -457,16 +462,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Levels\Grassy Plains.tmx">
-      <Name>Grassy Plains</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Levels\Islands.tmx">
       <Name>Islands</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\Rocky Bridges.tmx">
       <Name>Rocky Bridges</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Levels\Grassy Plains.tmx">
+      <Name>Grassy Plains</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\Village Loop.tmx">
+      <Name>Village Loop</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

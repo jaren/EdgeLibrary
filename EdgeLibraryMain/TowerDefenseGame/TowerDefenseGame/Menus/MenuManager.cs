@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EdgeLibrary;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,19 @@ namespace TowerDefenseGame
         public static MenuBase SelectedMenu { get; private set; }
         public static MenuBase PreviousMenu { get; private set; }
 
+        //Used to make sure that a menu doesn't immediately switch twice when escape is pressed
+        public static bool InputEventHandled = false;
+
         public static void Init()
         {
             Menus = new List<MenuBase>();
+
+            EdgeGame.OnUpdate += EdgeGame_OnUpdate;
+        }
+
+        static void EdgeGame_OnUpdate(GameTime gameTime)
+        {
+            InputEventHandled = false;
         }
 
         public static void Update(GameTime gameTime)

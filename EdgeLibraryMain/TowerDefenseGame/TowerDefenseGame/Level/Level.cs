@@ -1,5 +1,6 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,18 @@ namespace TowerDefenseGame
             {
                 restriction.BoundingBox = new Rectangle((int)(restriction.BoundingBox.X * ratio.X), (int)(restriction.BoundingBox.Y * ratio.Y), (int)(restriction.BoundingBox.Width * ratio.X), (int)(restriction.BoundingBox.Height * ratio.Y));
             }
+
             Size = size;
+
+            Scale = new Vector2(Size.X / Texture.Width, Size.Y / Texture.Height);
+        }
+
+        public override void DrawObject(GameTime gameTime)
+        {
+            EdgeGame.Game.SpriteBatch.End();
+            EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
+            EdgeGame.Game.SpriteBatch.Begin();
         }
 
         public static Level ImportLevel(string xmlPath, string texture, string name = "Level", string difficulty = "Easy", string description = "A level")

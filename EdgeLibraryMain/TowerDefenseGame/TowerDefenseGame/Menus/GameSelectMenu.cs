@@ -40,7 +40,8 @@ namespace TowerDefenseGame
 
             Levels = new List<Level>()
             {
-                Level.ImportLevel("Levels/Grassy Plains", "Grassy Plains", "Grassy Plains", Config.TrackEasyDifficulty, "A meandering peaceful path"),
+                Level.ImportLevel("Levels/Grassy Plains", "Grassy Plains", "Grassy Plains", Config.TrackEasyDifficulty, "A tranquil meandering path"),
+                Level.ImportLevel("Levels/Village Loop", "Village Loop", "Village Loop", Config.TrackEasyDifficulty, "Enemies circle twice around a peaceful village"),
                 Level.ImportLevel("Levels/Islands", "Islands", "Islands", Config.TrackMediumDifficulty, "Scattered islands in an ocean"),
                 Level.ImportLevel("Levels/Rocky Bridges", "Rocky Bridges", "Rocky Bridges", Config.TrackHardDifficulty, "A harrowing journey through an abandoned mine")
             };
@@ -114,7 +115,7 @@ namespace TowerDefenseGame
             Components.Add(DifficultyName);
 
             StartButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.8f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.2f) };
-            StartButton.OnRelease += (x, y) => { GameMenu.CurrentLevel = Levels[CurrentIndex]; GameMenu.Difficulty = CurrentDifficulty; MenuManager.SwitchMenu("GameMenu"); };
+            StartButton.OnRelease += (x, y) => { GameMenu.CurrentLevel = Levels[CurrentIndex]; GameMenu.Difficulty = CurrentDifficulty; GameMenu.ShouldReset = true; MenuManager.SwitchMenu("GameMenu"); };
             StartButton.Style = buttonStyle;
             Components.Add(StartButton);
 
@@ -172,9 +173,10 @@ namespace TowerDefenseGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
+            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !MenuManager.InputEventHandled)
             {
                 MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
+                MenuManager.InputEventHandled = true;
             }
         }
     }

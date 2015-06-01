@@ -53,12 +53,13 @@ namespace TowerDefenseGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !EdgeGame.Game.Graphics.IsFullScreen)
+            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !EdgeGame.Game.Graphics.IsFullScreen && !MenuManager.InputEventHandled)
             {
                 if (System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?", "Quit", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
                 {
                     EdgeGame.Stop();
                 }
+                MenuManager.InputEventHandled = true;
             }
         }
 

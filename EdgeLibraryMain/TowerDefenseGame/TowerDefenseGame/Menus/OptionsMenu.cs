@@ -151,9 +151,10 @@ namespace TowerDefenseGame
 
         void Input_OnKeyRelease(Microsoft.Xna.Framework.Input.Keys key)
         {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey)
+            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !MenuManager.InputEventHandled)
             {
                 MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
+                MenuManager.InputEventHandled = true;
             }
         }
 
@@ -161,6 +162,7 @@ namespace TowerDefenseGame
         {
             base.SwitchTo();
 
+            /*
             if (MenuManager.PreviousMenu.Name == "GameMenu")
             {
                 QuitButton.Visible = true;
@@ -171,24 +173,6 @@ namespace TowerDefenseGame
                 QuitButton.Visible = false;
                 QuitButtonText.Visible = false;
             }
-
-            /*MusicButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (MusicButton.Width * MusicButton.Scale.X).ToSimUnits(), (MusicButton.Height * MusicButton.Scale.Y).ToSimUnits(), 1));
-            MusicButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-
-            SoundEffectsButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (SoundEffectsButton.Width * SoundEffectsButton.Scale.X).ToSimUnits(), (SoundEffectsButton.Height * SoundEffectsButton.Scale.Y).ToSimUnits(), 1));
-            SoundEffectsButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-
-            FullscreenButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (FullscreenButton.Width * FullscreenButton.Scale.X).ToSimUnits(), (FullscreenButton.Height * FullscreenButton.Scale.Y).ToSimUnits(), 1));
-            FullscreenButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-
-            ParticlesButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ParticlesButton.Width * ParticlesButton.Scale.X).ToSimUnits(), (ParticlesButton.Height * ParticlesButton.Scale.Y).ToSimUnits(), 1));
-            ParticlesButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-
-            ReturnButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (ReturnButton.Width * ReturnButton.Scale.X).ToSimUnits(), (ReturnButton.Height * ReturnButton.Scale.Y).ToSimUnits(), 1));
-            ReturnButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
-
-            QuitButton.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (QuitButton.Width * QuitButton.Scale.X).ToSimUnits(), (QuitButton.Height * QuitButton.Scale.Y).ToSimUnits(), 1));
-            QuitButton.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
              */
         }
     }
