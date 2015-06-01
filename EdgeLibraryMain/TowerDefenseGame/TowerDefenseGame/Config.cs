@@ -10,12 +10,34 @@ namespace TowerDefenseGame
 {
     public static class Config
     {
+        public static float[] EnemyHealthMultiplier = new float[] { 0.5f, 1f, 2f };
+        public static float[] TowerCostMultiplier = new float[] { 0.75f, 1f, 1.25f };
+        public static float[] LivesNumber = new float[] { 25, 10, 1 };
+
+        public static string NormalEnemyTexture = "NormalEnemy";
+
+        public static EnemyType NormalEnemy = new EnemyType(50, 1, 0, 1, new List<EnemyType>(), NormalEnemyTexture, Vector2.One);
+
+        public static List<Round> RoundList = new List<Round>()
+        {
+            new Round(new Dictionary<EnemyType,float>() {{NormalEnemy, 5}})
+        };
+
+        public static string TrackEasyDifficulty = "Easy";
+        public static string TrackMediumDifficulty = "Medium";
+        public static string TrackHardDifficulty = "Hard";
+
+        public static string EasyDifficulty = "Easy";
+        public static string MediumDifficulty = "Medium";
+        public static string HardDifficulty = "Hard";
+
         public static string StatusFont = "ComicSans-20";
         public static string BigStatusFont = "ComicSans-40";
         public static string SquareFont = "ComicSans-20";
         public static string DebugFont = "Impact-20";
 
         public static string MenuTitleFont = "Georgia-50";
+        public static string MenuMiniTitleFont = "Georgia-30";
         public static string MenuSubtitleFont = "Georgia-20";
         public static string MenuButtonTextFont = "Georgia-20";
         public static Color MenuButtonColor = Color.DarkOrange;

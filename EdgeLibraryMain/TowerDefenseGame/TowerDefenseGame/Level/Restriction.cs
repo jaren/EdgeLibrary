@@ -54,6 +54,7 @@ namespace TowerDefenseGame
     {
         Water,
         Path,
-        Object
+        Object,
+        Error
     }
 }

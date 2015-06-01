@@ -60,13 +60,13 @@ namespace TowerDefenseGame
         public OptionsMenu()
             : base("OptionsMenu")
         {
-            Title = new TextSprite(Config.MenuTitleFont, "Options Menu", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
+            Title = new TextSprite(Config.MenuTitleFont, "Options Menu", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.05f)) { Color = Config.MenuTextColor };
             Components.Add(Title);
 
-            SubTitle = new TextSprite(Config.MenuSubtitleFont, "", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
+            SubTitle = new TextSprite(Config.MenuSubtitleFont, "", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.1f)) { Color = Config.MenuTextColor };
             Components.Add(SubTitle);
 
-            QuitButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.95f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
+            QuitButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.95f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1) };
             QuitButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             QuitButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             QuitButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);
@@ -132,7 +132,7 @@ namespace TowerDefenseGame
             ParticlesButtonText = new TextSprite(Config.MenuButtonTextFont, "Particles", ParticlesButton.Position + new Vector2(ParticlesButton.Width, -ParticlesButton.Height / 2)) { CenterAsOrigin = false };
             Components.Add(ParticlesButtonText);
 
-            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
+            ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
             ReturnButton.Style.NormalTexture = EdgeGame.GetTexture(Config.ButtonNormalTexture);
             ReturnButton.Style.MouseOverTexture = EdgeGame.GetTexture(Config.ButtonMouseOverTexture);
             ReturnButton.Style.ClickTexture = EdgeGame.GetTexture(Config.ButtonClickTexture);

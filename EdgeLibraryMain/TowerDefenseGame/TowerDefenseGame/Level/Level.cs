@@ -12,18 +12,41 @@ namespace TowerDefenseGame
     {
         public WaypointList Waypoints;
         public List<Restriction> Restrictions;
+        public Vector2 Size;
+        public string Name;
+        public string Difficulty;
+        public string Description;
 
-        public Level(WaypointList waypoints, List<Restriction> restrictions, string texture)
+        public Level(WaypointList waypoints, List<Restriction> restrictions, string texture, string name, string difficulty, string description)
             : base(texture, Vector2.Zero)
         {
             Waypoints = waypoints;
             Restrictions = restrictions;
+            Size = new Vector2(EdgeGame.GetTexture(texture).Width, EdgeGame.GetTexture(texture).Height);
+            Name = name;
+            Difficulty = difficulty;
+            Description = description;
         }
 
-        public static Level ImportLevel(string xmlPath, string texture)
+        public void ResizeLevel(Vector2 size)
+        {
+            Vector2 ratio = new Vector2(Size.X / size.X, Size.Y / size.Y);
+
+            foreach(Waypoint waypoint in Waypoints.Waypoints)
+            {
+                waypoint.Position = new Vector2(waypoint.Position.X * ratio.X, waypoint.Position.Y * ratio.Y);
+            }
+            foreach(Restriction restriction in Restrictions)
+            {
+                restriction.BoundingBox = new Rectangle((int)(restriction.BoundingBox.X * ratio.X), (int)(restriction.BoundingBox.Y * ratio.Y), (int)(restriction.BoundingBox.Width * ratio.X), (int)(restriction.BoundingBox.Height * ratio.Y));
+            }
+            Size = size;
+        }
+
+        public static Level ImportLevel(string xmlPath, string texture, string name = "Level", string difficulty = "Easy", string description = "A level")
         {
             string completePath = string.Format("{0}\\{1}.tmx", EdgeGame.ContentRootDirectory, xmlPath);
-            XDocument document = XDocument.Load(xmlPath);
+            XDocument document = XDocument.Load(completePath);
 
             List<Waypoint> waypoints = new List<Waypoint>();
             List<Restriction> restrictions = new List<Restriction>();
@@ -82,7 +105,12 @@ namespace TowerDefenseGame
                         }
                         else
                         {
-                            RestrictionType restrictionType = (element.Attribute("name").Value == Config.ObjectsXMLName ? RestrictionType.Object : element.Attribute("name").Value == Config.PathXMLName ? RestrictionType.Path : element.Attribute("name").Value == Config.WaterXMLName ? RestrictionType.Water : RestrictionType.Object);
+                            RestrictionType restrictionType = (element.Attribute("name").Value == Config.ObjectsXMLName ? RestrictionType.Object : element.Attribute("name").Value == Config.PathXMLName ? RestrictionType.Path : element.Attribute("name").Value == Config.WaterXMLName ? RestrictionType.Water : RestrictionType.Error);
+                            if (restrictionType == RestrictionType.Error)
+                            {
+                                break;
+                            }
+
                             float x = float.Parse(innerElement.Attribute("x").Value);
                             float y = float.Parse(innerElement.Attribute("y").Value);
                             float width = float.Parse(innerElement.Attribute("width").Value);
@@ -102,7 +130,7 @@ namespace TowerDefenseGame
                 }
             }
 
-            return new Level(new WaypointList(waypoints), restrictions, texture);
+            return new Level(new WaypointList(waypoints), restrictions, texture, name, difficulty, description);
         }
     }
 }

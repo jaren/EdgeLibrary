@@ -47,7 +47,7 @@ namespace TowerDefenseGame
             PhysicsSprites = new List<Sprite>();
             PhysicsSpritesEmitters = new List<ParticleEmitter>();
 
-            Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y / 2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
+            Button screenButton = new Button("Pixel", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y / 2)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, EdgeGame.WindowSize.Y) };
             screenButton.OnClick += screenButton_OnClick;
             screenButton.OnRelease += screenButton_OnRelease;
             Components.Add(screenButton);
@@ -148,7 +148,7 @@ namespace TowerDefenseGame
 
         public override void SwitchTo()
         {
-            Sprite bottom = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, EdgeGame.WindowSize.Y)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
+            Sprite bottom = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
             bottom.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * bottom.Scale.X).ToSimUnits(), (bottom.Height * bottom.Scale.Y).ToSimUnits(), 1));
             bottom.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(bottom);
@@ -163,7 +163,7 @@ namespace TowerDefenseGame
             right.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(right);
 
-            Sprite top = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X / 2, 0)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
+            Sprite top = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X * 0.5f, 0)) { Visible = false, Scale = new Vector2(EdgeGame.WindowSize.X, 10), Color = Color.White };
             top.EnablePhysics(BodyFactory.CreateRectangle(EdgeGame.World, (bottom.Width * top.Scale.X).ToSimUnits(), (top.Height * top.Scale.Y).ToSimUnits(), 1));
             top.Body.BodyType = FarseerPhysics.Dynamics.BodyType.Static;
             Components.Add(top);

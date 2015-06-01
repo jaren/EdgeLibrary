@@ -30,7 +30,7 @@ namespace TowerDefenseGame
         public string Texture;
         public Vector2 Scale;
 
-        public EnemyType(float health, float speed, float armor, int livesTaken, List<EnemyType> deathEnemies, string texture, Vector2 scale, System.Action specialActions)
+        public EnemyType(float health, float speed, float armor, int livesTaken, List<EnemyType> deathEnemies, string texture, Vector2 scale, System.Action specialActions = null)
         {
             Health = health;
             Speed = speed;

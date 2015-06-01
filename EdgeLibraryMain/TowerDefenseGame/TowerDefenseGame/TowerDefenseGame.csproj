@@ -96,6 +96,7 @@
     <Compile Include="Level\WaypointList.cs" />
     <Compile Include="Menus\CreditsMenu.cs" />
     <Compile Include="Menus\GameMenu.cs" />
+    <Compile Include="Menus\GameSelectMenu.cs" />
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Menus\MenuBase.cs" />
     <Compile Include="Menus\MenuManager.cs" />

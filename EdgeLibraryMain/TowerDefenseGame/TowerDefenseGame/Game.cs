@@ -29,13 +29,20 @@ namespace TowerDefenseGame
 
             EdgeGame.OnUpdate += OnUpdate;
             EdgeGame.OnDraw += OnDraw;
+            EdgeGame.OnResized += EdgeGame_OnResized;
 
             MenuManager.Init();
             MenuManager.AddMenu(new MainMenu());
             MenuManager.AddMenu(new CreditsMenu());
             MenuManager.AddMenu(new GameMenu());
+            MenuManager.AddMenu(new GameSelectMenu());
             MenuManager.AddMenu(new OptionsMenu());
             MenuManager.SwitchMenu("MainMenu");
+        }
+
+        void EdgeGame_OnResized()
+        {
+            throw new NotImplementedException();
         }
 
         public void OnUpdate(GameTime gameTime)
@@ -80,8 +87,12 @@ namespace TowerDefenseGame
             EdgeGame.LoadBitmapFont("Fonts/KenVector/kenvector_future_regular_32", "Fonts/KenVector/kenvector_future_regular_32");
             EdgeGame.LoadBitmapFont("Fonts/windsong_regular_65", "Fonts/windsong_regular_65");
             EdgeGame.LoadTexturesInSpritesheet("ParticleSheet", "ParticleSheet");
+            EdgeGame.LoadTexturesInSpritesheet("GUI/ButtonSheet", "GUI/ButtonSheet");
             EdgeGame.LoadTexturesInSpritesheet("GUI/GreyGUI", "GUI/GreyGUI");
             EdgeGame.LoadTexturesInSpritesheet("GUI/WhiteIcons2x", "GUI/WhiteIcons2x");
+            EdgeGame.LoadTexture("Levels/Grassy Plains");
+            EdgeGame.LoadTexture("Levels/Islands");
+            EdgeGame.LoadTexture("Levels/Rocky Bridges");
 
             EdgeGame.LoadSong("Music/Hyperfun");
             EdgeGame.LoadSong("Music/The Curtain Rises");
