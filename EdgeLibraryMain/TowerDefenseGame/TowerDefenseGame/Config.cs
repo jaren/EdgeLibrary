@@ -12,7 +12,8 @@ namespace TowerDefenseGame
     {
         public static float[] EnemyHealthMultiplier = new float[] { 0.5f, 1f, 2f };
         public static float[] TowerCostMultiplier = new float[] { 0.75f, 1f, 1.25f };
-        public static float[] LivesNumber = new float[] { 25, 10, 1 };
+        public static int[] LivesNumber = new int[] { 25, 10, 1 };
+        public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
 
         public static string NormalEnemyTexture = "NormalEnemy";
 

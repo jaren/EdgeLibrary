@@ -10,6 +10,7 @@ namespace TowerDefenseGame
     {
         public List<Round> Rounds;
         public int CurrentIndex;
+        public bool RoundRunning;
 
         public RoundManager(List<Round> rounds)
         {
@@ -32,6 +33,7 @@ namespace TowerDefenseGame
         public void StartRound()
         {
             Rounds[CurrentIndex].Started = true;
+            RoundRunning = true;
         }
 
         public void round_OnEmitEnemy(Round round, EnemyType enemy)
@@ -40,6 +42,7 @@ namespace TowerDefenseGame
 
         public void round_OnFinish(Round round)
         {
+            RoundRunning = false;
             CurrentIndex++;
             Rounds[CurrentIndex].Started = false;
         }
