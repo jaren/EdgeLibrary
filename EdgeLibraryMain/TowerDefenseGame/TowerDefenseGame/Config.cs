@@ -10,9 +10,31 @@ namespace TowerDefenseGame
 {
     public static class Config
     {
+        public static float[] EnemyHealthMultiplier = new float[] { 0.5f, 1f, 2f };
+        public static float[] TowerCostMultiplier = new float[] { 0.75f, 1f, 1.25f };
+        public static int[] LivesNumber = new int[] { 25, 10, 1 };
+        public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
 
-        //Variables must be BEFORE lists, for some reason... otherwise, they end up null. Nobody knows why.
-        //START VARIABLES
+        public static List<EnemyType> Enemies = new List<EnemyType>()
+        {
+            new EnemyType(50, 1, 0, 1, new List<EnemyType>(), "NormalEnemy", Vector2.One, "Just a normal enemy.", null)
+        };
+
+        public static List<Round> RoundList = new List<Round>()
+        {
+            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 5}})
+        };
+
+        public static List<ProjectileData> Projectiles = new List<ProjectileData>()
+        {
+            new ProjectileData(1000, 1000, 0, 1, null)
+        };
+
+        public static List<TowerData> Towers = new List<TowerData>()
+        {
+            new TowerData(1, 10, 0, 300, Projectiles[0], "", Vector2.One, 200, "Just a normal tower.", null)
+        };
+
         public static string TrackEasyDifficulty = "Easy";
         public static string TrackMediumDifficulty = "Medium";
         public static string TrackHardDifficulty = "Hard";
@@ -48,33 +70,5 @@ namespace TowerDefenseGame
         public static float CameraScrollSpeed = 10f;
 
         public static Keys BackKey = Keys.Escape;
-
-        public static float[] EnemyHealthMultiplier = new float[] { 0.5f, 1f, 2f };
-        public static float[] TowerCostMultiplier = new float[] { 0.75f, 1f, 1.25f };
-        public static int[] LivesNumber = new int[] { 25, 10, 1 };
-        public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
-        //END VARIABLES
-
-        ////START LISTS
-        public static List<EnemyType> Enemies = new List<EnemyType>()
-        {
-            new EnemyType(50, 1, 0, 1, new List<EnemyType>(), "NormalEnemy", Vector2.One, "Just a normal enemy.", null)
-        };
-
-        public static List<Round> RoundList = new List<Round>()
-        {
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 5}})
-        };
-
-        public static List<TowerData> Towers = new List<TowerData>()
-        {
-            new TowerData(1, 10, 0, 300, Projectiles[0], "", Vector2.One, 200, "Just a normal tower.", null)
-        };
-
-        public static List<ProjectileData> Projectiles = new List<ProjectileData>()
-        {
-            new ProjectileData(1000, 1000, 0, 1, null)
-        };
-        //END LISTS
     }
 }
