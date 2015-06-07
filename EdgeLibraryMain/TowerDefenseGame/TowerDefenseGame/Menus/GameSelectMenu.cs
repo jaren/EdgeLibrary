@@ -1,5 +1,6 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace TowerDefenseGame
                 Level.ImportLevel("Levels/Rocky Bridges", "Rocky Bridges", "Rocky Bridges", Config.TrackHardDifficulty, "A harrowing journey through an abandoned mine")
             };
 
-            Sprite levelPreviewBacking = new Sprite("panelInset_beige", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.3f), Color.White, new Vector2(3.2f));
+            Sprite levelPreviewBacking = new Sprite("panelInset_beige", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.3f), Color.White, new Vector2(3.2f)) { SamplerState = SamplerState.LinearClamp };
             Components.Add(levelPreviewBacking);
 
             LevelPreview = new Sprite("", levelPreviewBacking.Position, Color.White, new Vector2(1.0f));

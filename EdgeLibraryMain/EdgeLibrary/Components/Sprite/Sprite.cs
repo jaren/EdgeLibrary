@@ -110,7 +110,10 @@ namespace EdgeLibrary
         private Vector2 _position;
 
         //Which blend state to use when drawing the sprite
-        public BlendState BlendState { get; set; }
+        public BlendState BlendState = BlendState.AlphaBlend;
+
+        //Which sampler state to use when drawing the sprite
+        public SamplerState SamplerState = SamplerState.LinearClamp;
 
         public delegate void SpriteEvent(Sprite sprite, GameTime gameTime);
         public event SpriteEvent OnAdded;
@@ -124,8 +127,6 @@ namespace EdgeLibrary
             Position = position;
 
             Data = new Dictionary<string, string>();
-
-            BlendState = BlendState.AlphaBlend;
 
             PhysicsEnabled = false;
 
@@ -308,16 +309,16 @@ namespace EdgeLibrary
         //Should be called before and after drawing
         protected void RestartSpriteBatch()
         {
-            if (BlendState != BlendState.AlphaBlend || !FollowsCamera)
+            if (BlendState != BlendState.AlphaBlend || SamplerState != SamplerState.LinearClamp || !FollowsCamera)
             {
                 EdgeGame.Game.SpriteBatch.End();
                 if (FollowsCamera)
                 {
-                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
+                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState, DepthStencilState.Default, RasterizerState.CullCounterClockwise, null, EdgeGame.Camera.GetTransform());
                 }
                 else
                 {
-                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise);
+                    EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState, DepthStencilState.Default, RasterizerState.CullCounterClockwise);
                 }
             }
 

@@ -27,6 +27,7 @@ namespace TowerDefenseGame
             Name = name;
             Difficulty = difficulty;
             Description = description;
+            SamplerState = SamplerState.PointClamp;
         }
 
         public void ResizeLevel(Vector2 size)
@@ -49,10 +50,7 @@ namespace TowerDefenseGame
 
         public override void DrawObject(GameTime gameTime)
         {
-            EdgeGame.Game.SpriteBatch.End();
-            EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            EdgeGame.Game.SpriteBatch.Draw(Texture, Position, null, Color, Rotation, OriginPoint, !ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
-            EdgeGame.Game.SpriteBatch.Begin();
+            base.DrawObject(gameTime);
         }
 
         public static Level ImportLevel(string xmlPath, string texture, string name = "Level", string difficulty = "Easy", string description = "A level")
