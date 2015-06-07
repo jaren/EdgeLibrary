@@ -38,6 +38,9 @@ namespace TowerDefenseGame
         public Button NextRoundButton;
 
         public List<Button> TowerButtons;
+        public List<Sprite> TowerSprites;
+        public List<TextSprite> TowerCostSprites;
+        public TextSprite TowerInfoSprite;
 
         public GameMenu() : base("GameMenu")
         {
@@ -88,7 +91,33 @@ namespace TowerDefenseGame
                 Components.Add(NextRoundButton);
 
                 TowerButtons = new List<Button>();
-                //Add tower buttons here
+                TowerSprites = new List<Sprite>();
+                TowerCostSprites = new List<TextSprite>();
+
+                Vector2 StartPosition = new Vector2(EdgeGame.WindowSize.X * 0.075f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f));
+                float xStep = 0.075f;
+                float towerYAdd = -50;
+                for(int i = 0; i < Config.Towers.Count; i++)
+                {
+                    Button towerButton = new Button("panelInset_beigeLight", new Vector2(StartPosition.X + (xStep * i), StartPosition.Y));
+                    towerButton.ID = i.ToString() + "_TowerButton";
+                    towerButton.OnMouseOver += towerButton_OnMouseOver;
+                    towerButton.OnMouseOff += towerButton_OnMouseOff;
+                    towerButton.OnClick += towerButton_OnClick;
+                    TowerButtons.Add(towerButton);
+                    Components.Add(towerButton);
+
+                    Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd));
+                    TowerSprites.Add(towerSprite);
+                    Components.Add(towerSprite);
+
+                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, Config.Towers[i].Cost.ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y - towerYAdd));
+                    TowerCostSprites.Add(towerCostSprite);
+                    Components.Add(towerCostSprite);
+                }
+
+                TowerInfoSprite = new TextSprite(Config.MenuMiniTitleFont, "Description: NONE", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.95f));
+                Components.Add(TowerInfoSprite);
 
                 //Must be initialized after the text, otherwise they will be null
                 Lives = Config.LivesNumber[(int)Difficulty];
@@ -98,6 +127,30 @@ namespace TowerDefenseGame
             EdgeGame.ClearColor = Color.Gray;
 
             base.SwitchTo();
+        }
+
+        void towerButton_OnClick(Button sender, GameTime gameTime)
+        {
+            int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
+
+            if (Money >= Config.Towers[numberID].Cost)
+            {
+                //Buy tower here
+            }
+        }
+
+        void towerButton_OnMouseOff(Button sender, GameTime gameTime)
+        {
+            int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
+
+            TowerInfoSprite.Text = "Description: NONE";
+        }
+
+        void towerButton_OnMouseOver(Button sender, GameTime gameTime)
+        {
+            int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
+
+            TowerInfoSprite.Text = "Description: " + Config.Towers[numberID].Description;
         }
 
         public override void SwitchOut()
