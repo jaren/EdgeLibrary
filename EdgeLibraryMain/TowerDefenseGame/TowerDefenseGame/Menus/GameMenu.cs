@@ -94,29 +94,34 @@ namespace TowerDefenseGame
                 TowerSprites = new List<Sprite>();
                 TowerCostSprites = new List<TextSprite>();
 
+                DebugText debug = new DebugText(Config.DebugFont, Vector2.Zero) { CenterAsOrigin = false };
+                Components.Add(debug);
+
                 Vector2 StartPosition = new Vector2(EdgeGame.WindowSize.X * 0.075f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f));
                 float xStep = 0.075f;
-                float towerYAdd = -50;
-                for(int i = 0; i < Config.Towers.Count; i++)
+                float towerYAdd = -15;
+                float towerYMin = 20;
+                for (int i = 0; i < Config.Towers.Count; i++)
                 {
-                    Button towerButton = new Button("panelInset_beigeLight", new Vector2(StartPosition.X + (xStep * i), StartPosition.Y));
-                    towerButton.ID = i.ToString() + "_TowerButton";
+                    Button towerButton = new Button("panelInset_beige", new Vector2(StartPosition.X + (xStep * i), StartPosition.Y)) { Scale = new Vector2(1f) };
+                    towerButton.ID = String.Format("{0}_TowerButton", i);
+                    towerButton.Style.NormalTexture = EdgeGame.GetTexture("panelInset_beige");
+                    towerButton.Style.MouseOverTexture = EdgeGame.GetTexture("panelInset_beige");
+                    towerButton.Style.ClickTexture = EdgeGame.GetTexture("panelInset_beige");
+                    towerButton.Style.AllColors = Color.White;
                     towerButton.OnMouseOver += towerButton_OnMouseOver;
                     towerButton.OnMouseOff += towerButton_OnMouseOff;
                     towerButton.OnClick += towerButton_OnClick;
                     TowerButtons.Add(towerButton);
-                    Components.Add(towerButton);
 
                     Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd));
                     TowerSprites.Add(towerSprite);
-                    Components.Add(towerSprite);
 
-                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, Config.Towers[i].Cost.ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y - towerYAdd));
+                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, Config.Towers[i].Cost.ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
                     TowerCostSprites.Add(towerCostSprite);
-                    Components.Add(towerCostSprite);
                 }
 
-                TowerInfoSprite = new TextSprite(Config.MenuMiniTitleFont, "Description: NONE", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.95f));
+                TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f), EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
 
                 //Must be initialized after the text, otherwise they will be null
@@ -143,14 +148,14 @@ namespace TowerDefenseGame
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
-            TowerInfoSprite.Text = "Description: NONE";
+            TowerInfoSprite.Text = "Description:\nNONE";
         }
 
         void towerButton_OnMouseOver(Button sender, GameTime gameTime)
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
-            TowerInfoSprite.Text = "Description: " + Config.Towers[numberID].Description;
+            TowerInfoSprite.Text = "Description:\n" + Config.Towers[numberID].Description;
         }
 
         public override void SwitchOut()
@@ -162,11 +167,38 @@ namespace TowerDefenseGame
 
         public override void UpdateObject(GameTime gameTime)
         {
+            foreach(Button button in TowerButtons)
+            {
+                button.Update(gameTime);
+            }
+
+            foreach(Sprite sprite in TowerSprites)
+            {
+                sprite.Update(gameTime);
+            }
+            foreach(TextSprite textSprite in TowerCostSprites)
+            {
+                textSprite.Update(gameTime);
+            }
+
             base.UpdateObject(gameTime);
         }
 
         public override void DrawObject(GameTime gameTime)
         {
+            foreach (Button button in TowerButtons)
+            {
+                button.Draw(gameTime);
+            }
+            foreach (Sprite sprite in TowerSprites)
+            {
+                sprite.Draw(gameTime);
+            }
+            foreach (TextSprite textSprite in TowerCostSprites)
+            {
+                textSprite.Draw(gameTime);
+            }
+
             base.DrawObject(gameTime);
         }
 

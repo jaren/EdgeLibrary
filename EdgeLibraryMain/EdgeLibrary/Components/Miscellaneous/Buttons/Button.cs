@@ -38,6 +38,8 @@ namespace EdgeLibrary
             Style = new Style(Texture, Color, Texture, Color, Texture, Color);
 
             ButtonState = ButtonClickState.Normal;
+
+            reloadBoundingBox();
         }
 
         protected virtual void ChangeState(ButtonClickState state)

@@ -30,7 +30,7 @@ namespace EdgeLibrary
         public bool PhysicsEnabled;
 
         //Sets the texture through a string
-        public string TextureName { set { Texture = EdgeGame.GetTexture(value); } }
+        public string TextureName { set { Texture = EdgeGame.GetTexture(value); reloadBoundingBox(); } }
 
         //Sets the scale with a Vector2
         public virtual Vector2 Scale
