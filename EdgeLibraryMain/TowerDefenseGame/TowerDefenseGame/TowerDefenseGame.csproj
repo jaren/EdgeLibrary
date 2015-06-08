@@ -64,10 +64,6 @@
     <StartupObject>TowerDefenseGame.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EdgeLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\EdgeLibrary\bin\x86\Debug\EdgeLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="FarseerPhysics XNA, Version=3.5.0.27198, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\EdgeLibrary\bin\x86\Debug\FarseerPhysics XNA.dll</HintPath>
@@ -107,6 +103,10 @@
     <Compile Include="Tower\Tower.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EdgeLibrary\EdgeLibrary.csproj">
+      <Project>{ad485453-05e0-4714-8630-bcc909d9106d}</Project>
+      <Name>EdgeLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TowerDefenseGameContent\TowerDefenseGameContent.contentproj">
       <Name>TowerDefenseGameContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

@@ -94,16 +94,13 @@ namespace TowerDefenseGame
                 TowerSprites = new List<Sprite>();
                 TowerCostSprites = new List<TextSprite>();
 
-                DebugText debug = new DebugText(Config.DebugFont, Vector2.Zero) { CenterAsOrigin = false };
-                Components.Add(debug);
-
                 Vector2 StartPosition = new Vector2(EdgeGame.WindowSize.X * 0.075f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f));
-                float xStep = 0.075f;
+                float xStep = 0.1f;
                 float towerYAdd = -15;
                 float towerYMin = 20;
                 for (int i = 0; i < Config.Towers.Count; i++)
                 {
-                    Button towerButton = new Button("panelInset_beige", new Vector2(StartPosition.X + (xStep * i), StartPosition.Y)) { Scale = new Vector2(1f) };
+                    Button towerButton = new Button("panelInset_beige", new Vector2(StartPosition.X + EdgeGame.WindowSize.X * (xStep * i), StartPosition.Y)) { Scale = new Vector2(1f) };
                     towerButton.ID = String.Format("{0}_TowerButton", i);
                     towerButton.Style.NormalTexture = EdgeGame.GetTexture("panelInset_beige");
                     towerButton.Style.MouseOverTexture = EdgeGame.GetTexture("panelInset_beige");
@@ -121,7 +118,7 @@ namespace TowerDefenseGame
                     TowerCostSprites.Add(towerCostSprite);
                 }
 
-                TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f), EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f)));
+                TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
 
                 //Must be initialized after the text, otherwise they will be null

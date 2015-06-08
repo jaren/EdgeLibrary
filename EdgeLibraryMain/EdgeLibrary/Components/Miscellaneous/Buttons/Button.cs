@@ -88,12 +88,12 @@ namespace EdgeLibrary
                         OnRelease(this, gameTime);
                     }
                 }
-                else if (LeftClick ? !Input.IsLeftClicking() : !Input.IsLeftClicking())
+                else if (LeftClick ? !Input.IsLeftClicking() : !Input.IsRightClicking())
                 {
                     ChangeState(ButtonClickState.MousedOver);
                     if (OnMouseOver != null)
                     {
-                        OnMouseOff(this, gameTime);
+                        OnMouseOver(this, gameTime);
                     }
                 }
 

@@ -22,7 +22,10 @@ namespace TowerDefenseGame
 
         public static List<Round> RoundList = new List<Round>()
         {
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 5}})
+            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 5}}),
+            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 10}}),
+            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 15}}),
+            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 20}})
         };
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
@@ -32,7 +35,9 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
-            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 200, "Just a normal tower.", null)
+            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 200, "Just a normal tower.", null),
+            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 300, "Not just a normal tower.", null),
+            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 400, "NOT just a normal tower.", null)
         };
 
         public static string TrackEasyDifficulty = "Easy";
