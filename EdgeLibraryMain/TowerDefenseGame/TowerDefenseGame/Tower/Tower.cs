@@ -11,7 +11,7 @@ namespace TowerDefenseGame
     {
         public TowerData TowerData;
 
-        public Tower(TowerData data) : base(data.Texture, Vector2.Zero)
+        public Tower(TowerData data, Vector2 position) : base(data.Texture, position)
         {
             TowerData = data;
         }

@@ -42,6 +42,12 @@ namespace TowerDefenseGame
         public List<TextSprite> TowerCostSprites;
         public TextSprite TowerInfoSprite;
 
+        public List<Tower> Towers;
+
+        public Button FloatingTower;
+        public TowerData SelectedTower;
+        public Sprite FloatingRange;
+
         public GameMenu() : base("GameMenu")
         {
             Input.OnKeyRelease += Input_OnKeyRelease;
@@ -90,6 +96,13 @@ namespace TowerDefenseGame
                 NextRoundButton.Style.AllColors = Color.White;
                 Components.Add(NextRoundButton);
 
+                FloatingTower = new Button("Pixel", Vector2.Zero);
+                FloatingTower.OnClick += FloatingTower_OnClick;
+                Components.Add(FloatingTower);
+
+                FloatingRange = new Sprite("Pixel", Vector2.Zero);
+                Components.Add(FloatingRange);
+
                 TowerButtons = new List<Button>();
                 TowerSprites = new List<Sprite>();
                 TowerCostSprites = new List<TextSprite>();
@@ -131,13 +144,44 @@ namespace TowerDefenseGame
             base.SwitchTo();
         }
 
+        void FloatingTower_OnClick(Button sender, GameTime gameTime)
+        {
+            //Checks for collision with all the restrictions - will need to add specific check for water, path, etc. later
+            if (CurrentLevel.BoundingBox.Contains(FloatingTower.BoundingBox))
+            {
+                foreach (Restriction restriction in CurrentLevel.Restrictions)
+                {
+                    if (restriction.IntersectsWith(FloatingTower.BoundingBox))
+                    {
+                        return;
+                    }
+                }
+            }
+
+            if (Money >= SelectedTower.Cost)
+            {
+                Money -= SelectedTower.Cost;
+                Towers.Add(new Tower(SelectedTower, Input.MousePosition));
+
+                FloatingTower.Visible = false;
+                FloatingTower.Enabled = false;
+                FloatingRange.Visible = false;
+                FloatingRange.Visible = false;
+            }
+        }
+
         void towerButton_OnClick(Button sender, GameTime gameTime)
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
             if (Money >= Config.Towers[numberID].Cost)
             {
-                //Buy tower here
+                FloatingTower.Visible = true;
+                FloatingTower.Enabled = true;
+                FloatingRange.Visible = true;
+                FloatingRange.Visible = true;
+                FloatingTower.TextureName = Config.Towers[numberID].Texture;
+                SelectedTower = Config.Towers[numberID];
             }
         }
 
@@ -164,6 +208,12 @@ namespace TowerDefenseGame
 
         public override void UpdateObject(GameTime gameTime)
         {
+            if (FloatingTower.Enabled)
+            {
+                FloatingTower.Position = Input.MousePosition;
+                FloatingRange.Position = Input.MousePosition;
+            }
+
             foreach(Button button in TowerButtons)
             {
                 button.Update(gameTime);
