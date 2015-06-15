@@ -17,6 +17,7 @@ namespace TowerDefenseGame
         public string Name;
         public string Difficulty;
         public string Description;
+        public Texture2D PreviewTexture;
 
         public Level(WaypointList waypoints, List<Restriction> restrictions, string texture, string name, string difficulty, string description)
             : base(texture, Vector2.Zero)
@@ -28,6 +29,7 @@ namespace TowerDefenseGame
             Difficulty = difficulty;
             Description = description;
             SamplerState = SamplerState.PointClamp;
+            PreviewTexture = EdgeGame.GetTexture(texture + " Preview");
         }
 
         public void ResizeLevel(Vector2 size)
