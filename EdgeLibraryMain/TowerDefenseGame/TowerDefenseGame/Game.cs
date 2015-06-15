@@ -95,6 +95,12 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Islands");
             EdgeGame.LoadTexture("Levels/Rocky Bridges");
             EdgeGame.LoadTexture("Levels/Village Loop");
+            EdgeGame.LoadTexture("Levels/Around the Lake");
+            EdgeGame.LoadTexture("Levels/Grassy Plains Preview");
+            EdgeGame.LoadTexture("Levels/Islands Preview");
+            EdgeGame.LoadTexture("Levels/Rocky Bridges Preview");
+            EdgeGame.LoadTexture("Levels/Village Loop Preview");
+            EdgeGame.LoadTexture("Levels/Around the Lake Preview");
 
             EdgeGame.LoadSong("Music/Hyperfun");
             EdgeGame.LoadSong("Music/The Curtain Rises");

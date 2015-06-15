@@ -435,6 +435,36 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Levels\Around the Lake Preview.png">
+      <Name>Around the Lake Preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Around the Lake.png">
+      <Name>Around the Lake</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Grassy Plains Preview.png">
+      <Name>Grassy Plains Preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Islands Preview.png">
+      <Name>Islands Preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Rocky Bridges Preview.png">
+      <Name>Rocky Bridges Preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Levels\Village Loop Preview.png">
+      <Name>Village Loop Preview</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="Particles\Explosion2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Explosion2</Name>
@@ -489,6 +519,12 @@
     </Content>
     <Content Include="Levels\Village Loop.tmx">
       <Name>Village Loop</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Levels\Around the Lake.tmx">
+      <Name>Around the Lake</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
