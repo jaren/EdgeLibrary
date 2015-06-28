@@ -58,7 +58,7 @@ namespace TowerDefenseGame
         public void OnLoadContent()
         {
             //Window size must be set here for the credits render target
-            EdgeGame.WindowSize = new Vector2(950);
+            EdgeGame.WindowSize = new Vector2(1024);
 
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-10");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-20");
@@ -101,6 +101,10 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Rocky Bridges Preview");
             EdgeGame.LoadTexture("Levels/Village Loop Preview");
             EdgeGame.LoadTexture("Levels/Around the Lake Preview");
+            EdgeGame.LoadTexture("Tower1");
+            EdgeGame.LoadTexture("Tower2");
+            EdgeGame.LoadTexture("Tower3");
+            EdgeGame.LoadTexture("Circle");
 
             EdgeGame.LoadSong("Music/Hyperfun");
             EdgeGame.LoadSong("Music/The Curtain Rises");

@@ -206,12 +206,32 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Circle.png">
+      <Name>Circle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Content Include="Fonts\KenVector\kenvector_future_regular_20.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>kenvector_future_regular_20</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
+    <Compile Include="Tower1.png">
+      <Name>Tower1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tower2.png">
+      <Name>Tower2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tower3.png">
+      <Name>Tower3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\KenVector\kenvector_future_regular_32.PNG">

@@ -35,9 +35,9 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
-            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 200, "Just a normal tower.", null),
-            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 300, "Not just a normal tower.", null),
-            new TowerData(1, 10, 0, 300, Projectiles[0], "Pixel", Vector2.One, 400, "NOT just a normal tower.", null)
+            new TowerData(20, 100, 150, 0, Projectiles[0], "Tower1", Vector2.One, 200, "Just a normal tower.", null),
+            new TowerData(7, 20, 100, 0, Projectiles[0], "Tower2", Vector2.One, 300, "Fast firing", null),
+            new TowerData(100, 300, 500, 0, Projectiles[0], "Tower3", Vector2.One, 400, "S", null)
         };
 
         public static string TrackEasyDifficulty = "Easy";

@@ -1,5 +1,6 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,8 @@ namespace TowerDefenseGame
 
                 Vector2 CommonRatio = new Vector2(0.85f);
 
+                Towers = new List<Tower>();
+
                 CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * CommonRatio.Y);
                 CurrentLevel.ResizeLevel(EdgeGame.WindowSize * CommonRatio);
                 Components.Add(CurrentLevel);
@@ -96,12 +99,16 @@ namespace TowerDefenseGame
                 NextRoundButton.Style.AllColors = Color.White;
                 Components.Add(NextRoundButton);
 
+                FloatingRange = new Sprite("Circle", Vector2.Zero);
+                Components.Add(FloatingRange);
+                FloatingRange.Visible = false;
+                FloatingRange.Enabled = false;
+
                 FloatingTower = new Button("Pixel", Vector2.Zero);
                 FloatingTower.OnClick += FloatingTower_OnClick;
                 Components.Add(FloatingTower);
-
-                FloatingRange = new Sprite("Pixel", Vector2.Zero);
-                Components.Add(FloatingRange);
+                FloatingTower.Visible = false;
+                FloatingTower.Enabled = false;
 
                 TowerButtons = new List<Button>();
                 TowerSprites = new List<Sprite>();
@@ -157,11 +164,15 @@ namespace TowerDefenseGame
                     }
                 }
             }
+            else
+            {
+                return;
+            }
 
             if (Money >= SelectedTower.Cost)
             {
                 Money -= SelectedTower.Cost;
-                Towers.Add(new Tower(SelectedTower, Input.MousePosition));
+               Towers.Add(new Tower(SelectedTower, Input.MousePosition));
 
                 FloatingTower.Visible = false;
                 FloatingTower.Enabled = false;
@@ -180,7 +191,8 @@ namespace TowerDefenseGame
                 FloatingTower.Enabled = true;
                 FloatingRange.Visible = true;
                 FloatingRange.Visible = true;
-                FloatingTower.TextureName = Config.Towers[numberID].Texture;
+                FloatingTower.Style.AllTextures = EdgeGame.GetTexture(Config.Towers[numberID].Texture);
+                FloatingRange.Scale = new Vector2(Config.Towers[numberID].Range / 500f);
                 SelectedTower = Config.Towers[numberID];
             }
         }
@@ -253,8 +265,18 @@ namespace TowerDefenseGame
         {
             if (MenuManager.SelectedMenu == this && key == Config.BackKey && !MenuManager.InputEventHandled)
             {
-                MenuManager.SwitchMenu("OptionsMenu");
-                MenuManager.InputEventHandled = true;
+                if (FloatingTower.Enabled == true)
+                {
+                    FloatingTower.Visible = false;
+                    FloatingTower.Enabled = false;
+                    FloatingRange.Visible = false;
+                    FloatingRange.Visible = false;
+                }
+                else
+                {
+                    MenuManager.SwitchMenu("OptionsMenu");
+                    MenuManager.InputEventHandled = true;
+                }
             }
         }
     }
