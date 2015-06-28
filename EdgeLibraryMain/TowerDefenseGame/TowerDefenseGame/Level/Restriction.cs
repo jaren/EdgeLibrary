@@ -26,6 +26,11 @@ namespace TowerDefenseGame
         {
             return CollisionDetection.CircleRectangle(center, radius, BoundingBox);
         }
+
+        public virtual void Resize(Vector2 scale)
+        {
+            BoundingBox = new Rectangle((int)(BoundingBox.X * scale.X), (int)(BoundingBox.Y * scale.Y), (int)(BoundingBox.Width * scale.X), (int)(BoundingBox.Height * scale.Y));
+        }
     }
 
     public class CircleRestriction : Restriction
@@ -47,6 +52,13 @@ namespace TowerDefenseGame
         public override bool IntersectsWith(Vector2 center, float radius)
         {
             return CollisionDetection.CircleCircle(Center, Radius, center, radius);
+        }
+
+        public override void Resize(Vector2 scale)
+        {
+            Radius *= scale.X;
+            Center = new Vector2(Center.X * scale.X, Center.Y * scale.Y);
+            base.Resize(scale);
         }
     }
 

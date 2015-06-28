@@ -34,7 +34,7 @@ namespace TowerDefenseGame
 
         public void ResizeLevel(Vector2 size)
         {
-            Vector2 ratio = new Vector2(Size.X / size.X, Size.Y / size.Y);
+            Vector2 ratio = new Vector2(size.X / Size.X, size.Y / Size.Y);
 
             foreach(Waypoint waypoint in Waypoints.Waypoints)
             {
@@ -42,7 +42,7 @@ namespace TowerDefenseGame
             }
             foreach(Restriction restriction in Restrictions)
             {
-                restriction.BoundingBox = new Rectangle((int)(restriction.BoundingBox.X * ratio.X), (int)(restriction.BoundingBox.Y * ratio.Y), (int)(restriction.BoundingBox.Width * ratio.X), (int)(restriction.BoundingBox.Height * ratio.Y));
+                restriction.Resize(ratio);
             }
 
             Size = size;

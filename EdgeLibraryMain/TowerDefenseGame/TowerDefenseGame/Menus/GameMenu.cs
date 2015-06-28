@@ -177,7 +177,7 @@ namespace TowerDefenseGame
                 FloatingTower.Visible = false;
                 FloatingTower.Enabled = false;
                 FloatingRange.Visible = false;
-                FloatingRange.Visible = false;
+                FloatingRange.Enabled = false;
             }
         }
 
@@ -190,7 +190,7 @@ namespace TowerDefenseGame
                 FloatingTower.Visible = true;
                 FloatingTower.Enabled = true;
                 FloatingRange.Visible = true;
-                FloatingRange.Visible = true;
+                FloatingRange.Enabled = true;
                 FloatingTower.Style.AllTextures = EdgeGame.GetTexture(Config.Towers[numberID].Texture);
                 FloatingRange.Scale = new Vector2(Config.Towers[numberID].Range / 500f);
                 SelectedTower = Config.Towers[numberID];
@@ -224,6 +224,30 @@ namespace TowerDefenseGame
             {
                 FloatingTower.Position = Input.MousePosition;
                 FloatingRange.Position = Input.MousePosition;
+
+                bool hasChanged = false;
+                if (CurrentLevel.BoundingBox.Contains(FloatingTower.BoundingBox))
+                {
+                    foreach (Restriction restriction in CurrentLevel.Restrictions)
+                    {
+                        if (restriction.IntersectsWith(FloatingTower.BoundingBox))
+                        {
+                            FloatingTower.Color = new Color(25, 25, 25, 150);
+                            hasChanged = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    FloatingTower.Color = new Color(25, 25, 25, 150);
+                    hasChanged = true;
+                }
+
+                if (!hasChanged)
+                {
+                    FloatingTower.Color = Color.White;
+                }
             }
 
             foreach(Button button in TowerButtons)
@@ -270,7 +294,7 @@ namespace TowerDefenseGame
                     FloatingTower.Visible = false;
                     FloatingTower.Enabled = false;
                     FloatingRange.Visible = false;
-                    FloatingRange.Visible = false;
+                    FloatingRange.Enabled = false;
                 }
                 else
                 {
