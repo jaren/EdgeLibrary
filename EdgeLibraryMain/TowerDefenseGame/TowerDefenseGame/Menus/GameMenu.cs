@@ -44,6 +44,7 @@ namespace TowerDefenseGame
         public TextSprite TowerInfoSprite;
 
         public List<Tower> Towers;
+        TowerPanel TowerPanel;
 
         public Button FloatingTower;
         public TowerData SelectedTower;
@@ -140,6 +141,9 @@ namespace TowerDefenseGame
 
                 TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
+
+                TowerPanel = new TowerPanel();
+                Components.Add(TowerPanel);
 
                 //Must be initialized after the text, otherwise they will be null
                 Lives = Config.LivesNumber[(int)Difficulty];
@@ -264,6 +268,16 @@ namespace TowerDefenseGame
                 textSprite.Update(gameTime);
             }
 
+            foreach(Tower tower in Towers)
+            {
+                tower.Update(gameTime);
+
+                if (tower.BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)) && Input.JustLeftClicked())
+                {
+                    TowerPanel.ShowWithTower(tower);
+                }
+            }
+
             base.UpdateObject(gameTime);
         }
 
@@ -281,6 +295,10 @@ namespace TowerDefenseGame
             {
                 textSprite.Draw(gameTime);
             }
+            foreach (Tower tower in Towers)
+            {
+                tower.Draw(gameTime);
+            }
 
             base.DrawObject(gameTime);
         }
@@ -296,11 +314,21 @@ namespace TowerDefenseGame
                     FloatingRange.Visible = false;
                     FloatingRange.Enabled = false;
                 }
+                else if (TowerPanel.Enabled == true)
+                {
+                    TowerPanel.Visible = false;
+                    TowerPanel.Enabled = false;
+                }
                 else
                 {
                     MenuManager.SwitchMenu("OptionsMenu");
                     MenuManager.InputEventHandled = true;
                 }
+            }
+
+            if (key == Keys.PageDown)
+            {
+                Money = Int32.MaxValue;
             }
         }
     }
