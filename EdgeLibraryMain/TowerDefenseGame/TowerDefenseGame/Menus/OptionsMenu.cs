@@ -80,7 +80,7 @@ namespace TowerDefenseGame
             QuitButtonText = new TextSprite(Config.MenuButtonTextFont, "Quit Game", QuitButton.Position);
             Components.Add(QuitButtonText);
 
-            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.35f, EdgeGame.WindowSize.Y * 0.35f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             MusicButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             MusicButton.OnStyle.AllColors = Config.MenuButtonColor;
             MusicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
@@ -90,10 +90,10 @@ namespace TowerDefenseGame
             MusicButton.On = MusicOn;
             Components.Add(MusicButton);
 
-            MusicButtonText = new TextSprite(Config.MenuButtonTextFont, "Music", MusicButton.Position + new Vector2(MusicButton.Width, -MusicButton.Height / 2)) { CenterAsOrigin = false };
+            MusicButtonText = new TextSprite(Config.MenuButtonTextFont, "Music", MusicButton.Position + new Vector2(0, -MusicButton.Height)) { CenterAsOrigin = true };
             Components.Add(MusicButtonText);
 
-            SoundEffectsButton = new ButtonToggle(SoundEffectsOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            SoundEffectsButton = new ButtonToggle(SoundEffectsOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.65f, EdgeGame.WindowSize.Y * 0.35f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             SoundEffectsButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             SoundEffectsButton.OnStyle.AllColors = Config.MenuButtonColor;
             SoundEffectsButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
@@ -103,10 +103,10 @@ namespace TowerDefenseGame
             SoundEffectsButton.On = SoundEffectsOn;
             Components.Add(SoundEffectsButton);
 
-            SoundEffectsButtonText = new TextSprite(Config.MenuButtonTextFont, "Sound Effects", SoundEffectsButton.Position + new Vector2(SoundEffectsButton.Width, -SoundEffectsButton.Height / 2)) { CenterAsOrigin = false };
+            SoundEffectsButtonText = new TextSprite(Config.MenuButtonTextFont, "Sound Effects", SoundEffectsButton.Position + new Vector2(0, -SoundEffectsButton.Height)) { CenterAsOrigin = true };
             Components.Add(SoundEffectsButtonText);
 
-            FullscreenButton = new ButtonToggle(FullscreenOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            FullscreenButton = new ButtonToggle(FullscreenOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.35f, EdgeGame.WindowSize.Y * 0.65f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             FullscreenButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             FullscreenButton.OnStyle.AllColors = Config.MenuButtonColor;
             FullscreenButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
@@ -116,10 +116,10 @@ namespace TowerDefenseGame
             FullscreenButton.On = FullscreenOn;
             Components.Add(FullscreenButton);
 
-            FullscreenButtonText = new TextSprite(Config.MenuButtonTextFont, "Fullscreen", FullscreenButton.Position + new Vector2(FullscreenButton.Width, -FullscreenButton.Height / 2)) { CenterAsOrigin = false };
+            FullscreenButtonText = new TextSprite(Config.MenuButtonTextFont, "Fullscreen", FullscreenButton.Position + new Vector2(0, -FullscreenButton.Height)) { CenterAsOrigin = true };
             Components.Add(FullscreenButtonText);
 
-            ParticlesButton = new ButtonToggle(ParticlesOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.6f, EdgeGame.WindowSize.Y * 0.6f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            ParticlesButton = new ButtonToggle(ParticlesOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.65f, EdgeGame.WindowSize.Y * 0.65f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             ParticlesButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             ParticlesButton.OnStyle.AllColors = Config.MenuButtonColor;
             ParticlesButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
@@ -129,7 +129,7 @@ namespace TowerDefenseGame
             ParticlesButton.On = ParticlesOn;
             Components.Add(ParticlesButton);
 
-            ParticlesButtonText = new TextSprite(Config.MenuButtonTextFont, "Particles", ParticlesButton.Position + new Vector2(ParticlesButton.Width, -ParticlesButton.Height / 2)) { CenterAsOrigin = false };
+            ParticlesButtonText = new TextSprite(Config.MenuButtonTextFont, "Particles", ParticlesButton.Position + new Vector2(0, -ParticlesButton.Height)) { CenterAsOrigin = true };
             Components.Add(ParticlesButtonText);
 
             ReturnButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.85f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.1f) };
