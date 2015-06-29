@@ -167,6 +167,13 @@ namespace TowerDefenseGame
                         return;
                     }
                 }
+                foreach(Tower tower in Towers)
+                {
+                    if (tower.BoundingBox.Intersects(FloatingTower.BoundingBox))
+                    {
+                        return;
+                    }
+                }
             }
             else
             {
@@ -229,6 +236,7 @@ namespace TowerDefenseGame
                 FloatingTower.Position = Input.MousePosition;
                 FloatingRange.Position = Input.MousePosition;
 
+                Color changedColor = new Color(25, 25, 25, 150);
                 bool hasChanged = false;
                 if (CurrentLevel.BoundingBox.Contains(FloatingTower.BoundingBox))
                 {
@@ -236,7 +244,16 @@ namespace TowerDefenseGame
                     {
                         if (restriction.IntersectsWith(FloatingTower.BoundingBox))
                         {
-                            FloatingTower.Color = new Color(25, 25, 25, 150);
+                            FloatingTower.Color = changedColor;
+                            hasChanged = true;
+                            break;
+                        }
+                    }
+                    foreach(Tower tower in Towers)
+                    {
+                        if (tower.BoundingBox.Intersects(FloatingTower.BoundingBox))
+                        {
+                            FloatingTower.Color = changedColor;
                             hasChanged = true;
                             break;
                         }
@@ -244,7 +261,7 @@ namespace TowerDefenseGame
                 }
                 else
                 {
-                    FloatingTower.Color = new Color(25, 25, 25, 150);
+                    FloatingTower.Color = changedColor;
                     hasChanged = true;
                 }
 

@@ -14,6 +14,7 @@ namespace TowerDefenseGame
         public Tower(TowerData data, Vector2 position) : base(data.Texture, position)
         {
             TowerData = data;
+            reloadBoundingBox();
         }
     }
 

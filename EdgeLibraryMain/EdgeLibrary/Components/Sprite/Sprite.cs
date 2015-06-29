@@ -151,6 +151,7 @@ namespace EdgeLibrary
             if (textureName != null)
             {
                 Texture = EdgeGame.GetTexture(textureName);
+                reloadBoundingBox();
             }
             reloadOriginPoint();
         }
