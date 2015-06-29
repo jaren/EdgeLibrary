@@ -96,11 +96,13 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Rocky Bridges");
             EdgeGame.LoadTexture("Levels/Village Loop");
             EdgeGame.LoadTexture("Levels/Around the Lake");
+            EdgeGame.LoadTexture("Levels/Return to the Village");
             EdgeGame.LoadTexture("Levels/Grassy Plains Preview");
             EdgeGame.LoadTexture("Levels/Islands Preview");
             EdgeGame.LoadTexture("Levels/Rocky Bridges Preview");
             EdgeGame.LoadTexture("Levels/Village Loop Preview");
             EdgeGame.LoadTexture("Levels/Around the Lake Preview");
+            EdgeGame.LoadTexture("Levels/Return to the Village Preview");
             EdgeGame.LoadTexture("Tower1");
             EdgeGame.LoadTexture("Tower2");
             EdgeGame.LoadTexture("Tower3");
