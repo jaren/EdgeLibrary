@@ -9,29 +9,30 @@ namespace TowerDefenseGame
 {
     public class Enemy : Sprite
     {
-        public EnemyType EnemyType;
+        public EnemyData EnemyType;
 
-        public Enemy(EnemyType type) : base (type.Texture, Vector2.Zero)
+        public Enemy(EnemyData data, Vector2 position) : base (data.Texture, position)
         {
-            EnemyType = type;
+            EnemyType = data;
         }
     }
 
-    public struct EnemyType
+    public struct EnemyData
     {
         public float Health;
         public float Speed;
         public float Armor;
         public int LivesTaken;
-        public List<EnemyType> DeathEnemies;
+        public List<EnemyData> DeathEnemies;
         public string Description;
 
-        public System.Action SpecialActions;
+        public System.Action SpecialActionsOnCreate;
+        public System.Action SpecialActionsOnDestroy;
 
         public string Texture;
         public Vector2 Scale;
 
-        public EnemyType(float health, float speed, float armor, int livesTaken, List<EnemyType> deathEnemies, string texture, Vector2 scale, string description = "", System.Action specialActions = null)
+        public EnemyData(float health, float speed, float armor, int livesTaken, List<EnemyData> deathEnemies, string texture, Vector2 scale, string description = "", System.Action specialActionsOnCreate = null, System.Action specialActionsOnDestroy = null)
         {
             Health = health;
             Speed = speed;
@@ -40,7 +41,8 @@ namespace TowerDefenseGame
             Texture = texture;
             Scale = scale;
             LivesTaken = livesTaken;
-            SpecialActions = specialActions;
+            SpecialActionsOnCreate = specialActionsOnCreate;
+            SpecialActionsOnDestroy = specialActionsOnDestroy;
             Description = description;
         }
     }

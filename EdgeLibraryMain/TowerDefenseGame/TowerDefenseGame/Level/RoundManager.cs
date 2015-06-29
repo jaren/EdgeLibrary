@@ -36,7 +36,7 @@ namespace TowerDefenseGame
             RoundRunning = true;
         }
 
-        public void round_OnEmitEnemy(Round round, EnemyType enemy)
+        public void round_OnEmitEnemy(Round round, EnemyData enemy)
         {
         }
 

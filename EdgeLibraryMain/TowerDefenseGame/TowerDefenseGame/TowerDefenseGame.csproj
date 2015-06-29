@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Enemy\Enemy.cs" />
+    <Compile Include="Tower\Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Level\CollisionDetection.cs" />
     <Compile Include="Level\Level.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="Menus\ParticleMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Tower\Projectile.cs" />
     <Compile Include="Tower\Tower.cs" />
     <Compile Include="Tower\TowerPanel.cs" />
   </ItemGroup>

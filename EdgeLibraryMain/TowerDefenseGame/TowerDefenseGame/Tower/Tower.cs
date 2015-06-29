@@ -14,7 +14,6 @@ namespace TowerDefenseGame
         public Tower(TowerData data, Vector2 position) : base(data.Texture, position)
         {
             TowerData = data;
-            reloadBoundingBox();
         }
     }
 
@@ -28,12 +27,14 @@ namespace TowerDefenseGame
         public ProjectileData AttackData;
         public string Description;
 
-        public System.Action SpecialActions;
+        public System.Action SpecialActionsOnShoot;
+        public System.Action SpecialActionsOnCreate;
+        public System.Action SpecialActionsOnSell;
 
         public string Texture;
         public Vector2 Scale;
 
-        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, string description = "", System.Action specialActions = null)
+        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, string description = "", System.Action specialActionsOnCreate = null, System.Action specialActionsOnShoot = null, System.Action specialActionsOnSell = null)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -43,27 +44,10 @@ namespace TowerDefenseGame
             Scale = scale;
             Accuracy = accuracy;
             Cost = cost;
-            SpecialActions = specialActions;
             Description = description;
-        }
-    }
-
-    public struct ProjectileData
-    {
-        public float MovementSpeed;
-        public float Range;
-        public int MaxEnemyPierce;
-        public float ArmorPierce;
-
-        public System.Action SpecialActions;
-
-        public ProjectileData(float movementSpeed, float range, float armorPierce, int maxEnemyPierce, System.Action specialActions)
-        {
-            MovementSpeed = movementSpeed;
-            Range = range;
-            ArmorPierce = armorPierce;
-            MaxEnemyPierce = maxEnemyPierce;
-            SpecialActions = specialActions;
+            SpecialActionsOnCreate = specialActionsOnCreate;
+            SpecialActionsOnSell = specialActionsOnSell;
+            SpecialActionsOnShoot = specialActionsOnShoot;
         }
     }
 }

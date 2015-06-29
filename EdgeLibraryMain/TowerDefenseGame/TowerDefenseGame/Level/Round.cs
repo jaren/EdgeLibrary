@@ -9,15 +9,15 @@ namespace TowerDefenseGame
 {
     public class Round : Ticker
     {
-        public Dictionary<EnemyType, float> Enemies;
+        public Dictionary<EnemyData, float> Enemies;
         public int CurrentIndex = 0;
 
         public delegate void RoundEvent(Round round);
-        public delegate void RoundEventEnemy(Round round, EnemyType enemy);
+        public delegate void RoundEventEnemy(Round round, EnemyData enemy);
         public event RoundEvent OnFinish;
         public event RoundEventEnemy OnEmitEnemy;
 
-        public Round(Dictionary<EnemyType, float> enemies) : base(0)
+        public Round(Dictionary<EnemyData, float> enemies) : base(0)
         {
             Enemies = enemies;
             base.OnTick += Round_OnTick;

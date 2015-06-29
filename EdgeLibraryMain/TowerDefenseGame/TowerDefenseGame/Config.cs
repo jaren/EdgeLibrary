@@ -15,29 +15,29 @@ namespace TowerDefenseGame
         public static int[] LivesNumber = new int[] { 25, 10, 1 };
         public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
 
-        public static List<EnemyType> Enemies = new List<EnemyType>()
+        public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyType(50, 1, 0, 1, new List<EnemyType>(), "NormalEnemy", Vector2.One, "Just a normal enemy.", null)
+            new EnemyData(50, 1, 0, 1, new List<EnemyData>(), "NormalEnemy", Vector2.One, "Just a normal enemy.")
         };
 
         public static List<Round> RoundList = new List<Round>()
         {
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 5}}),
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 10}}),
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 15}}),
-            new Round(new Dictionary<EnemyType,float>() {{Enemies[0], 20}})
+            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 5}}),
+            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 10}}),
+            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 15}}),
+            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 20}})
         };
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
         {
-            new ProjectileData(1000, 1000, 0, 1, null)
+            new ProjectileData(500, 1000, 0, 1, "Pixel", Vector2.One, 0)
         };
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
-            new TowerData(20, 100, 150, 0, Projectiles[0], "Tower1", Vector2.One, 200, "Just a normal tower.", null),
-            new TowerData(7, 20, 100, 0, Projectiles[0], "Tower2", Vector2.One, 300, "Fast firing", null),
-            new TowerData(100, 300, 500, 0, Projectiles[0], "Tower3", Vector2.One, 400, "S", null)
+            new TowerData(20, 100, 150, 0, Projectiles[0], "Tower1", Vector2.One, 200, "Just a normal tower."),
+            new TowerData(7, 20, 100, 0, Projectiles[0], "Tower2", Vector2.One, 300, "Fast firing"),
+            new TowerData(100, 300, 500, 0, Projectiles[0], "Tower3", Vector2.One, 400, "S")
         };
 
         public static string TrackEasyDifficulty = "Easy";
