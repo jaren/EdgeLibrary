@@ -12,6 +12,11 @@ namespace TowerDefenseGame
         public int CurrentIndex;
         public bool RoundRunning;
 
+        public delegate void RoundManagerEnemyEvent(Round round, EnemyData enemy);
+        public event RoundManagerEnemyEvent OnEmitEnemy;
+        public delegate void RoundManagerEvent(Round round);
+        public event RoundManagerEvent OnFinish;
+
         public RoundManager(List<Round> rounds)
         {
             Rounds = rounds;
@@ -38,6 +43,10 @@ namespace TowerDefenseGame
 
         public void round_OnEmitEnemy(Round round, EnemyData enemy)
         {
+            if (OnEmitEnemy != null)
+            {
+                OnEmitEnemy(round, enemy);
+            }
         }
 
         public void round_OnFinish(Round round)
@@ -45,6 +54,11 @@ namespace TowerDefenseGame
             RoundRunning = false;
             CurrentIndex++;
             Rounds[CurrentIndex].Started = false;
+
+            if (OnFinish != null)
+            {
+                OnFinish(round);
+            }
         }
     }
 }

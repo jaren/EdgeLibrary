@@ -17,7 +17,7 @@ namespace TowerDefenseGame
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyData(50, 1, 0, 1, new List<EnemyData>(), "NormalEnemy", Vector2.One, "Just a normal enemy.")
+            new EnemyData(50, 1, 1, 1, new List<EnemyData>(), "NormalEnemy", Vector2.One, 50, "Just a normal enemy.")
         };
 
         public static List<Round> RoundList = new List<Round>()
@@ -30,7 +30,7 @@ namespace TowerDefenseGame
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
         {
-            new ProjectileData(500, 1000, 0, 1, "Pixel", Vector2.One, 0)
+            new ProjectileData(500, 1000, 10, 0, 1, "Pixel", Vector2.One, 1, 0)
         };
 
         public static List<TowerData> Towers = new List<TowerData>()

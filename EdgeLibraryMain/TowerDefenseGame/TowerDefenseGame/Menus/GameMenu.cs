@@ -46,6 +46,8 @@ namespace TowerDefenseGame
         public List<Tower> Towers;
         TowerPanel TowerPanel;
 
+        public List<Enemy> Enemies;
+
         public Button FloatingTower;
         public TowerData SelectedTower;
         public Sprite FloatingRange;
@@ -65,10 +67,14 @@ namespace TowerDefenseGame
                 Components.Clear();
 
                 RoundManager = new RoundManager(Config.RoundList);
+                RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
+                RoundManager.OnFinish += RoundManager_OnFinish;
 
                 Vector2 CommonRatio = new Vector2(0.85f);
 
                 Towers = new List<Tower>();
+
+                Enemies = new List<Enemy>();
 
                 CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * CommonRatio.Y);
                 CurrentLevel.ResizeLevel(EdgeGame.WindowSize * CommonRatio);
@@ -155,6 +161,46 @@ namespace TowerDefenseGame
             base.SwitchTo();
         }
 
+        public void LoseGame()
+        {
+            //Add lose game stuff here
+        }
+
+        public void WinGame()
+        {
+            //Add win game stuff here
+        }
+
+        void RoundManager_OnFinish(Round round)
+        {
+            WinGame();
+        }
+
+        void RoundManager_OnEmitEnemy(Round round, EnemyData enemyData)
+        {
+            Enemy enemy = new Enemy(enemyData, CurrentLevel.Waypoints.Waypoints[0].Position);
+            enemy.OnReachWaypoint += enemy_OnReachWaypoint;
+            Enemies.Add(enemy);
+        }
+
+        void enemy_OnReachWaypoint(Enemy enemy, Waypoint waypoint)
+        {
+            List<Waypoint> nextWaypoints = CurrentLevel.Waypoints.NextWaypoint(waypoint);
+
+            if (nextWaypoints.Count == 0)
+            {
+                Lives -= enemy.EnemyData.LivesTaken;
+                if (Lives <= 0)
+                {
+                    LoseGame();
+                }
+            }
+            else
+            {
+                enemy.CurrentWaypoint = nextWaypoints[RandomTools.RandomInt(nextWaypoints.Count)];
+            }
+        }
+
         void FloatingTower_OnClick(Button sender, GameTime gameTime)
         {
             //Checks for collision with all the restrictions - will need to add specific check for water, path, etc. later
@@ -183,7 +229,9 @@ namespace TowerDefenseGame
             if (Money >= SelectedTower.Cost)
             {
                 Money -= SelectedTower.Cost;
-               Towers.Add(new Tower(SelectedTower, Input.MousePosition));
+                Tower tower = new Tower(SelectedTower, Input.MousePosition);
+                tower.TowerData.SpecialActionsOnCreate();
+                Towers.Add(tower);
 
                 FloatingTower.Visible = false;
                 FloatingTower.Enabled = false;
@@ -285,9 +333,15 @@ namespace TowerDefenseGame
                 textSprite.Update(gameTime);
             }
 
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.Update(gameTime);
+            }
+
             foreach(Tower tower in Towers)
             {
                 tower.Update(gameTime);
+                tower.UpdateTower(Enemies);
 
                 if (tower.BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)) && Input.JustLeftClicked())
                 {
