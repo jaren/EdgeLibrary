@@ -42,16 +42,22 @@ namespace TowerDefenseGame
             {
                 if (!PiercedEnemies.Contains(enemy))
                 {
-                if (CollisionDetection.CircleCircle(Position, ProjectileData.CollisionRadius, enemy.Position, enemy.EnemyData.CollisionRadius))
-                {
-                    enemy.Hit(ProjectileData.Damage, ProjectileData.ArmorPierce);
-                    PiercedEnemies.Add(enemy);
-                    PiercedEnemiesCount++;
-                    if (PiercedEnemiesCount >= ProjectileData.MaxEnemyPierce)
+                    if (CollisionDetection.CircleCircle(Position, ProjectileData.CollisionRadius, enemy.Position, enemy.EnemyData.CollisionRadius))
                     {
-                        markForDeletion();
+                        enemy.Hit(ProjectileData.Damage, ProjectileData.ArmorPierce);
+
+                        if (ProjectileData.SpecialActionsOnHit != null)
+                        {
+                            ProjectileData.SpecialActionsOnHit(this, enemy);
+                        }
+
+                        PiercedEnemies.Add(enemy);
+                        PiercedEnemiesCount++;
+                        if (PiercedEnemiesCount >= ProjectileData.MaxEnemyPierce)
+                        {
+                            markForDeletion();
+                        }
                     }
-                }
                 }
             }
         }

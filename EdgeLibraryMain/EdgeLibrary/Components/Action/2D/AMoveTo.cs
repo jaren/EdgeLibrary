@@ -89,7 +89,7 @@ namespace EdgeLibrary
 
 
         //Returns an AMoveTo Clone
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AMoveTo(TargetPosition, Speed);
         }

@@ -51,6 +51,10 @@ namespace EdgeLibrary
         public object Clone()
         {
             RandomTicker clone = (RandomTicker)MemberwiseClone();
+            if (OnTick != null)
+            {
+                clone.OnTick = (TickerEventHandler)OnTick.Clone();
+            }
             return clone;
         }
     }

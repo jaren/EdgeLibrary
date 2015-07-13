@@ -35,7 +35,18 @@ namespace EdgeLibrary
         protected abstract void UpdateAction(GameTime gameTime, Sprite sprite);
 
         //Returns a Clone of the action so that multiple sprites don't share the same action
-        public abstract Action Clone();
+        public Action Clone()
+        {
+            Action clonedAction = SubClone();
+            if (OnFinish != null)
+            {
+                clonedAction.OnFinish = (ActionEvent)OnFinish.Clone();
+            }
+            return clonedAction;
+        }
+
+        //Get a copy of the action - to be overridden
+        public abstract Action SubClone();
         
         //Resets the action so it can be run again
         public virtual void Reset() { }
@@ -45,7 +56,8 @@ namespace EdgeLibrary
         public void Stop() { toRemove = true; }
         protected void Stop(GameTime gameTime, Sprite sprite)
         {
-            toRemove = true; if (OnFinish != null)
+            toRemove = true; 
+            if (OnFinish != null)
             {
                 OnFinish(this, gameTime, sprite);
             }

@@ -184,6 +184,23 @@ namespace EdgeLibrary
         public virtual object Clone()
         {
             Sprite3D clone = (Sprite3D)MemberwiseClone();
+            if (OnUpdate != null)
+            {
+                clone.OnUpdate = (Sprite3DEvent)OnUpdate.Clone();
+            }
+            if (OnRemoved != null)
+            {
+                clone.OnRemoved = (Sprite3DEvent)OnRemoved.Clone();
+            }
+            if (OnDraw != null)
+            {
+                clone.OnDraw = (Sprite3DEvent)OnDraw.Clone();
+            }
+            if (OnAdded != null)
+            {
+                clone.OnAdded = (Sprite3DEvent)OnAdded.Clone();
+            }
+
             clone.Model = (SpriteModel)Model.Clone();
             return clone;
         }

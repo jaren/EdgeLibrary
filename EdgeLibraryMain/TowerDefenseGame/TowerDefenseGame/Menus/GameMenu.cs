@@ -99,7 +99,13 @@ namespace TowerDefenseGame
                 Components.Add(MoneyNumber);
 
                 NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.6f)) { Color = Color.White, Scale = new Vector2(1f) };
-                NextRoundButton.OnRelease += (x, y) => { if (!RoundManager.RoundRunning) { RoundManager.StartRound(); } };
+                NextRoundButton.OnRelease += (x, y) =>
+                {
+                    if (!RoundManager.RoundRunning) 
+                    {
+                        RoundManager.StartRound(); 
+                    }
+                };
                 NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
                 NextRoundButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
                 NextRoundButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");
@@ -180,6 +186,11 @@ namespace TowerDefenseGame
         {
             Enemy enemy = new Enemy(enemyData, CurrentLevel.Waypoints.Waypoints[0].Position);
             enemy.OnReachWaypoint += enemy_OnReachWaypoint;
+            if (enemy.EnemyData.SpecialActionsOnCreate != null)
+            {
+                enemy.EnemyData.SpecialActionsOnCreate(enemy);
+            }
+            enemy.CurrentWaypoint = CurrentLevel.Waypoints.Waypoints[0];
             Enemies.Add(enemy);
         }
 
@@ -230,7 +241,10 @@ namespace TowerDefenseGame
             {
                 Money -= SelectedTower.Cost;
                 Tower tower = new Tower(SelectedTower, Input.MousePosition);
-                tower.TowerData.SpecialActionsOnCreate();
+                if (tower.TowerData.SpecialActionsOnCreate != null)
+                {
+                    tower.TowerData.SpecialActionsOnCreate(tower);
+                }
                 Towers.Add(tower);
 
                 FloatingTower.Visible = false;
@@ -279,6 +293,8 @@ namespace TowerDefenseGame
 
         public override void UpdateObject(GameTime gameTime)
         {
+            RoundManager.Update(gameTime);
+
             if (FloatingTower.Enabled)
             {
                 FloatingTower.Position = Input.MousePosition;
@@ -369,6 +385,10 @@ namespace TowerDefenseGame
             foreach (Tower tower in Towers)
             {
                 tower.Draw(gameTime);
+            }
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.Draw(gameTime);
             }
 
             base.DrawObject(gameTime);

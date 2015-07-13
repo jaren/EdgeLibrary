@@ -38,7 +38,7 @@ namespace EdgeLibrary
             base.Reset();
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AWait(WaitTime);
         }

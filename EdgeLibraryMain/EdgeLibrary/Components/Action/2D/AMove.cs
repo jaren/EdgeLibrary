@@ -26,7 +26,7 @@ namespace EdgeLibrary
             sprite.Position += MoveVector * EdgeGame.GameSpeed;
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AMove(MoveVector);
         }

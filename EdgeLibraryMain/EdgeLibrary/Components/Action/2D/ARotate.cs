@@ -26,7 +26,7 @@ namespace EdgeLibrary
             sprite.Rotation += Speed * EdgeGame.GameSpeed;
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new ARotate(Speed);
         }

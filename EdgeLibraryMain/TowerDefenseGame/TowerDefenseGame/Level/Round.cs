@@ -9,7 +9,7 @@ namespace TowerDefenseGame
 {
     public class Round : Ticker
     {
-        public Dictionary<EnemyData, float> Enemies;
+        public List<KeyValuePair<EnemyData, float>> Enemies;
         public int CurrentIndex = 0;
 
         public delegate void RoundEvent(Round round);
@@ -17,23 +17,25 @@ namespace TowerDefenseGame
         public event RoundEvent OnFinish;
         public event RoundEventEnemy OnEmitEnemy;
 
-        public Round(Dictionary<EnemyData, float> enemies) : base(0)
+        public Round(List<KeyValuePair<EnemyData, float>> enemies) : base(0)
         {
             Enemies = enemies;
+            MillisecondsWait = Enemies[0].Value;
             base.OnTick += Round_OnTick;
         }
 
         void Round_OnTick(GameTime gameTime)
         {
             CurrentIndex++;
-            MillisecondsWait = Enemies.Values.ToList()[CurrentIndex];
 
-            OnEmitEnemy(this, Enemies.Keys.ToList()[CurrentIndex]);
-
-            if (CurrentIndex >= Enemies.Keys.Count && OnFinish != null)
+            if (CurrentIndex >= Enemies.Count && OnFinish != null)
             {
                 OnFinish(this);
+                return;
             }
+
+            MillisecondsWait = Enemies[CurrentIndex].Value;
+            OnEmitEnemy(this, Enemies[CurrentIndex].Key);
         }
     }
 }

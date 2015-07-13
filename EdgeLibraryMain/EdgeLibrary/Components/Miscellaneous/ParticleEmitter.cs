@@ -283,6 +283,10 @@ namespace EdgeLibrary
         {
             ParticleEmitter clone = (ParticleEmitter)base.Clone();
             clone.Particles = new List<Sprite>();
+            if (OnEmit != null)
+            {
+                clone.OnEmit = (ParticleEventHandler)OnEmit.Clone();
+            }
             foreach (Sprite particle in Particles)
             {
                 clone.Particles.Add((Sprite)particle.Clone());

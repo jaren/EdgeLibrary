@@ -26,7 +26,13 @@ namespace TowerDefenseGame
             {
                 round.OnEmitEnemy += round_OnEmitEnemy;
                 round.OnFinish += round_OnFinish;
+                round.Started = false;
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            Rounds[CurrentIndex].Update(gameTime);
         }
 
         public void Restart()
@@ -55,9 +61,12 @@ namespace TowerDefenseGame
             CurrentIndex++;
             Rounds[CurrentIndex].Started = false;
 
-            if (OnFinish != null)
+            if (CurrentIndex >= Rounds.Count)
             {
-                OnFinish(round);
+                if (OnFinish != null)
+                {
+                    OnFinish(round);
+                }
             }
         }
     }

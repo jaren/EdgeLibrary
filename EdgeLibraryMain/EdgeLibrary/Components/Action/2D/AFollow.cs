@@ -57,7 +57,7 @@ namespace EdgeLibrary
             return false;
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AFollow(Target, Speed);
         }

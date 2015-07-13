@@ -17,20 +17,52 @@ namespace TowerDefenseGame
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyData(50, 1, 1, 1, new List<EnemyData>(), "NormalEnemy", Vector2.One, 50, "Just a normal enemy.")
+            new EnemyData(50, 1, 1, 1, new List<EnemyData>(), "Enemy", Vector2.One, 50, "Just a normal enemy.")
         };
 
+        private static float round1Wait = 2000f;
+        private static float round2Wait = 1500f;
+        private static float round3Wait = 1000f;
+        private static float round4Wait = 500f;
         public static List<Round> RoundList = new List<Round>()
         {
-            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 5}}),
-            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 10}}),
-            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 15}}),
-            new Round(new Dictionary<EnemyData,float>() {{Enemies[0], 20}})
+            new Round(new List<KeyValuePair<EnemyData,float>>() 
+            {
+                new KeyValuePair<EnemyData, float>(Enemies[0], round1Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round1Wait)
+            }),
+            new Round(new List<KeyValuePair<EnemyData,float>>() 
+            {
+                new KeyValuePair<EnemyData, float>(Enemies[0], round2Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round2Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round2Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round2Wait)
+            }),
+            new Round(new List<KeyValuePair<EnemyData,float>>() 
+            {
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round3Wait)
+            }),
+            new Round(new List<KeyValuePair<EnemyData,float>>() 
+            {
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait),
+                new KeyValuePair<EnemyData, float>(Enemies[0], round4Wait)
+            })
         };
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
         {
-            new ProjectileData(500, 1000, 10, 0, 1, "Pixel", Vector2.One, 1, 0)
+            new ProjectileData(500, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0)
         };
 
         public static List<TowerData> Towers = new List<TowerData>()

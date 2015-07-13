@@ -62,7 +62,7 @@ namespace EdgeLibrary
             }
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new ARotateTowards(Target, Speed, AdditionalAngle);
         }

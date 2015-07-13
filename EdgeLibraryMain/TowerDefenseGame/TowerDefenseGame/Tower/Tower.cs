@@ -39,7 +39,12 @@ namespace TowerDefenseGame
                 Enemy selectedTarget = SelectTarget(Enemies);
                 if (selectedTarget != null)
                 {
-                    Projectiles.Add(new Projectile(TowerData.AttackData, selectedTarget, Position));
+                    Projectile projectile = new Projectile(TowerData.AttackData, selectedTarget, Position);
+                    if (projectile.ProjectileData.SpecialActionsOnCreate != null)
+                    {
+                        projectile.ProjectileData.SpecialActionsOnCreate(projectile);
+                    }
+                    Projectiles.Add(projectile);
                     canShoot = false;
                 }
             }
@@ -123,15 +128,15 @@ namespace TowerDefenseGame
         public ProjectileData AttackData;
         public string Description;
 
-        public System.Action SpecialActionsOnSelectTarget;
-        public System.Action SpecialActionsOnShoot;
-        public System.Action SpecialActionsOnCreate;
-        public System.Action SpecialActionsOnSell;
+        public System.Action<Tower, Enemy> SpecialActionsOnSelectTarget;
+        public System.Action<Tower, Enemy> SpecialActionsOnShoot;
+        public System.Action<Tower> SpecialActionsOnCreate;
+        public System.Action<Tower> SpecialActionsOnSell;
 
         public string Texture;
         public Vector2 Scale;
 
-        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, string description = "", System.Action specialActionsOnSelectTarget = null, System.Action specialActionsOnCreate = null, System.Action specialActionsOnShoot = null, System.Action specialActionsOnSell = null)
+        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, string description = "", System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;

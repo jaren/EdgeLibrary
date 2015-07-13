@@ -263,13 +263,13 @@ namespace EdgeLibrary
 
             //Updates the actions
             actionsToRemove.Clear();
-            foreach (KeyValuePair<string, Action> action in Actions)
+            for (int i = 0; i < Actions.Count; i++ )
             {
-                action.Value.Update(gameTime, this);
+                Actions.Values.ToList()[i].Update(gameTime, this);
 
-                if (action.Value.toRemove)
+                if (Actions.Values.ToList()[i].toRemove)
                 {
-                    actionsToRemove.Add(action.Key);
+                    actionsToRemove.Add(Actions.Keys.ToList()[i]);
                 }
             }
             foreach (string key in actionsToRemove)
@@ -339,6 +339,14 @@ namespace EdgeLibrary
         public virtual object Clone()
         {
             Sprite clone = (Sprite)MemberwiseClone();
+            if (OnAdded != null)
+            {
+                clone.OnAdded = (SpriteEvent)OnAdded.Clone();
+            }
+            if (OnRemoved != null)
+            {
+                clone.OnRemoved = (SpriteEvent)OnRemoved.Clone();
+            }
 
             if (PhysicsEnabled)
             {

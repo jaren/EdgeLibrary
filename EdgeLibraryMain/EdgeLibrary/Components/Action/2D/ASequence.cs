@@ -92,9 +92,11 @@ namespace EdgeLibrary
         }
 
         //Returns a new Action
-        public override Action Clone()
+        public override Action SubClone()
         {
-            return new ASequence(Actions);
+            ASequence sequence = new ASequence(Actions);
+            sequence.OnActionTransition = (ASequenceEvent)OnActionTransition.Clone();
+            return sequence;
         }
     }
 }

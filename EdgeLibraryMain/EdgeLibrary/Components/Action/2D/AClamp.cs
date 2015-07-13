@@ -35,7 +35,7 @@ namespace EdgeLibrary
             sprite.Position = Target.Position + AddPosition;
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AClamp(Target, AddPosition);
         }

@@ -29,7 +29,7 @@ namespace EdgeLibrary
             Stop(gameTime, sprite);
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new ARun(OnRun);
         }

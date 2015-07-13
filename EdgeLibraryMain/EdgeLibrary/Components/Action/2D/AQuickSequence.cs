@@ -65,7 +65,7 @@ namespace EdgeLibrary
         }
 
         //Returns a new Action
-        public override Action Clone()
+        public override Action SubClone()
         {
             return new AQuickSequence(Actions);
         }

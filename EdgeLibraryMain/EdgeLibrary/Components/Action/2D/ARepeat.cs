@@ -58,7 +58,7 @@ namespace EdgeLibrary
             base.Reset();
         }
 
-        public override Action Clone()
+        public override Action SubClone()
         {
             return RepeatForever ? new ARepeat(Action) : new ARepeat(LoopTimes, Action);
         }
