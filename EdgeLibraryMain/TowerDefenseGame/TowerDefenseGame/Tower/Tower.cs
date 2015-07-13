@@ -34,6 +34,7 @@ namespace TowerDefenseGame
 
         public void UpdateTower(List<Enemy> Enemies)
         {
+            //TODO: Make it so the tower only shoots when the round is started
             if (canShoot)
             {
                 Enemy selectedTarget = SelectTarget(Enemies);

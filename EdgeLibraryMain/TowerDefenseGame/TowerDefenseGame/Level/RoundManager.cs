@@ -32,7 +32,10 @@ namespace TowerDefenseGame
 
         public void Update(GameTime gameTime)
         {
-            Rounds[CurrentIndex].Update(gameTime);
+            if (CurrentIndex < Rounds.Count)
+            {
+                Rounds[CurrentIndex].Update(gameTime);
+            }
         }
 
         public void Restart()
@@ -59,7 +62,6 @@ namespace TowerDefenseGame
         {
             RoundRunning = false;
             CurrentIndex++;
-            Rounds[CurrentIndex].Started = false;
 
             if (CurrentIndex >= Rounds.Count)
             {
@@ -67,6 +69,10 @@ namespace TowerDefenseGame
                 {
                     OnFinish(round);
                 }
+            }
+            else
+            {
+                Rounds[CurrentIndex].Started = false;
             }
         }
     }
