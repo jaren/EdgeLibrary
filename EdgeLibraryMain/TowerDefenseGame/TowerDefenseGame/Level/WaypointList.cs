@@ -29,6 +29,20 @@ namespace TowerDefenseGame
 
             return returnWaypoints;
         }
+
+        public Waypoint GetRandomStartingWaypoint()
+        {
+            List<Waypoint> startingWaypoints = new List<Waypoint>();
+            foreach(Waypoint waypoint in Waypoints)
+            {
+                if (waypoint.Type == 0)
+                {
+                    startingWaypoints.Add(waypoint);
+                }
+            }
+
+            return startingWaypoints[EdgeLibrary.RandomTools.RandomInt(startingWaypoints.Count)];
+        }
     }
 
     public class Waypoint

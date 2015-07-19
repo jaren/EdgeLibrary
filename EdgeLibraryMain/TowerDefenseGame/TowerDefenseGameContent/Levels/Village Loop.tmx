@@ -104,71 +104,71 @@
   </object>
   <object id="57" x="56" y="152" width="16" height="16">
    <properties>
-    <property name="NextWaypoints" value="2"/>
-    <property name="WaypointID" value="1"/>
-    <property name="WaypointType" value="1"/>
-   </properties>
-  </object>
-  <object id="58" x="56" y="24" width="16" height="16">
-   <properties>
     <property name="NextWaypoints" value="3"/>
     <property name="WaypointID" value="2"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="59" x="184" y="24" width="16" height="16">
+  <object id="58" x="56" y="24" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="4"/>
     <property name="WaypointID" value="3"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="60" x="184" y="152" width="16" height="16">
+  <object id="59" x="184" y="24" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="5"/>
     <property name="WaypointID" value="4"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="64" x="56" y="152" width="16" height="16">
+  <object id="60" x="184" y="152" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="6"/>
     <property name="WaypointID" value="5"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="65" x="56" y="24" width="16" height="16">
+  <object id="64" x="56" y="152" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="7"/>
     <property name="WaypointID" value="6"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="66" x="184" y="24" width="16" height="16">
+  <object id="65" x="56" y="24" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="8"/>
     <property name="WaypointID" value="7"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="67" x="184" y="152" width="16" height="16">
+  <object id="66" x="184" y="24" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="9"/>
     <property name="WaypointID" value="8"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
-  <object id="68" x="120" y="152" width="16" height="16">
+  <object id="67" x="184" y="152" width="16" height="16">
    <properties>
     <property name="NextWaypoints" value="10"/>
     <property name="WaypointID" value="9"/>
     <property name="WaypointType" value="1"/>
    </properties>
   </object>
+  <object id="68" x="120" y="152" width="16" height="16">
+   <properties>
+    <property name="NextWaypoints" value="11"/>
+    <property name="WaypointID" value="10"/>
+    <property name="WaypointType" value="1"/>
+   </properties>
+  </object>
   <object id="69" x="120" y="248" width="16" height="16">
    <properties>
-    <property name="NextWaypoints" value="-1"/>
-    <property name="WaypointID" value="10"/>
+    <property name="NextWaypoints" value=""/>
+    <property name="WaypointID" value="11"/>
     <property name="WaypointType" value="2"/>
    </properties>
   </object>

@@ -557,10 +557,6 @@
       <Name>Grassy Plains</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Levels\Village Loop.tmx">
-      <Name>Village Loop</Name>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Levels\Around the Lake.tmx">
@@ -571,6 +567,12 @@
   <ItemGroup>
     <Content Include="Levels\Return to the Village.tmx">
       <Name>Return to the Village</Name>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Levels\Village Loop.tmx">
+      <Name>Village Loop</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -47,6 +47,7 @@ namespace TowerDefenseGame
         TowerPanel TowerPanel;
 
         public List<Enemy> Enemies;
+        private List<Enemy> EnemiesToRemove;
 
         public Button FloatingTower;
         public TowerData SelectedTower;
@@ -75,6 +76,7 @@ namespace TowerDefenseGame
                 Towers = new List<Tower>();
 
                 Enemies = new List<Enemy>();
+                EnemiesToRemove = new List<Enemy>();
 
                 CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * CommonRatio.Y);
                 CurrentLevel.ResizeLevel(EdgeGame.WindowSize * CommonRatio);
@@ -101,7 +103,7 @@ namespace TowerDefenseGame
                 NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.6f)) { Color = Color.White, Scale = new Vector2(1f) };
                 NextRoundButton.OnRelease += (x, y) =>
                 {
-                    if (!RoundManager.RoundRunning) 
+                    if (!RoundManager.RoundRunning && Enemies.Count == 0) 
                     {
                         RoundManager.StartRound(); 
                     }
@@ -184,13 +186,15 @@ namespace TowerDefenseGame
 
         void RoundManager_OnEmitEnemy(Round round, EnemyData enemyData)
         {
-            Enemy enemy = new Enemy(enemyData, CurrentLevel.Waypoints.Waypoints[0].Position);
+            Waypoint randomStartingWaypoint = CurrentLevel.Waypoints.GetRandomStartingWaypoint();
+            Enemy enemy = new Enemy(enemyData, randomStartingWaypoint.Position);
             enemy.OnReachWaypoint += enemy_OnReachWaypoint;
             if (enemy.EnemyData.SpecialActionsOnCreate != null)
             {
                 enemy.EnemyData.SpecialActionsOnCreate(enemy);
             }
-            enemy.CurrentWaypoint = CurrentLevel.Waypoints.Waypoints[0];
+            //Sets the next waypoint
+            enemy_OnReachWaypoint(enemy, randomStartingWaypoint);
             Enemies.Add(enemy);
         }
 
@@ -198,9 +202,10 @@ namespace TowerDefenseGame
         {
             List<Waypoint> nextWaypoints = CurrentLevel.Waypoints.NextWaypoint(waypoint);
 
-            if (nextWaypoints.Count == 0)
+            if (waypoint.Type == 2)
             {
                 Lives -= enemy.EnemyData.LivesTaken;
+                EnemiesToRemove.Add(enemy);
                 if (Lives <= 0)
                 {
                     LoseGame();
@@ -353,6 +358,11 @@ namespace TowerDefenseGame
             {
                 enemy.Update(gameTime);
             }
+            foreach(Enemy enemy in EnemiesToRemove)
+            {
+                Enemies.Remove(enemy);
+            }
+            EnemiesToRemove.Clear();
 
             foreach(Tower tower in Towers)
             {

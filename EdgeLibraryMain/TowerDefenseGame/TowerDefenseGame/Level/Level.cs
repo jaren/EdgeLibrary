@@ -98,9 +98,12 @@ namespace TowerDefenseGame
                                 if (waypointProperty.Attribute("name").Value == "NextWaypoints")
                                 {
                                     string[] nextWaypointsString = waypointProperty.Attribute("value").Value.Split(',');
-                                    foreach(string nextWaypoint in nextWaypointsString)
+                                    foreach (string nextWaypoint in nextWaypointsString)
                                     {
-                                        nextWaypoints.Add(int.Parse(nextWaypoint));
+                                        if (nextWaypoint != "")
+                                        {
+                                            nextWaypoints.Add(int.Parse(nextWaypoint));
+                                        }
                                     }
                                 }
                                 else if (waypointProperty.Attribute("name").Value == "WaypointID")
