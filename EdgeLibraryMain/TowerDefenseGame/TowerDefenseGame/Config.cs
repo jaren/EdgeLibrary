@@ -81,7 +81,11 @@ public static class Config
             }
             else
             {
-                projectile.AddAction(projectile.MoveAction);
+                if (projectile.MiscData == null)
+                {
+                    projectile.AddAction(projectile.MoveAction);
+                    projectile.MiscData = true;
+                }
             }
         })) //Homing
     };

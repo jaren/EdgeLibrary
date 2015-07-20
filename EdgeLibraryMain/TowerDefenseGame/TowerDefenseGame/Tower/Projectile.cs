@@ -14,6 +14,7 @@ namespace TowerDefenseGame
         public List<Enemy> PiercedEnemies;
         public int PiercedEnemiesCount;
         public AMoveTo MoveAction;
+        public Object MiscData;
 
         public Projectile(ProjectileData data, Enemy target, float accuracy, Vector2 position)
             : base(data.Texture, position)
