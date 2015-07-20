@@ -1,5 +1,6 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace TowerDefenseGame
         public Object MiscData;
 
         public Projectile(ProjectileData data, Enemy target, float accuracy, Vector2 position)
-            : base(data.Texture, position)
+            : base(data.Texture, position, Color.White, data.Scale)
         {
             ProjectileData = data;
             Target = target;

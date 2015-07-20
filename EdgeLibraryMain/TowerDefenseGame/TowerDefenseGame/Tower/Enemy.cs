@@ -12,6 +12,7 @@ namespace TowerDefenseGame
         public EnemyData EnemyData;
         public float TrackDistance;
         public float Health;
+        public List<Effect> Effects;
         public Waypoint CurrentWaypoint
         {
             get
@@ -37,6 +38,7 @@ namespace TowerDefenseGame
             EnemyData = data;
             TrackDistance = 0;
             Health = EnemyData.MaxHealth;
+            Effects = new List<Effect>();
         }
 
         public void Hit(float damage, float armorPierce)
@@ -63,9 +65,31 @@ namespace TowerDefenseGame
             OnReachWaypoint(this, currentWaypoint);
         }
 
+        public void AddEffect(Effect effect)
+        {
+            Effects.Add(effect);
+        }
+
+        public bool HasEffect(string name)
+        {
+            foreach (Effect addedEffects in Effects)
+            {
+                if (addedEffects.Name == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public override void UpdateObject(GameTime gameTime)
         {
             base.UpdateObject(gameTime);
+
+            foreach (Effect effect in Effects)
+            {
+                effect.EffectOnUpdate(this);
+            }
         }
     }
 

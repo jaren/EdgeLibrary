@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using EdgeLibrary;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TowerDefenseGame
 {
@@ -65,11 +66,20 @@ public static class Config
         }),
     };
 
+    public static List<Effect> Effects = new List<Effect>()
+    {
+        new Effect("Fire", 1, new Action<Enemy>( (enemy) =>
+        {
+            enemy.Health -= 1;
+            enemy.Color = Color.Red;
+        }), null)
+    };
+
     public static List<ProjectileData> Projectiles = new List<ProjectileData>()
     {
         new ProjectileData(10, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0), //Normal
-        new ProjectileData(50, 1000, 10, 0.2f, 1, "Projectile", Vector2.One, 2, 0), //High speed
-        new ProjectileData(3, 1000, 10, 0, 1, "Projectile", Vector2.One, 3, 0, new Action<Projectile>( (projectile) => 
+        new ProjectileData(50, 1000, 10, 0.2f, 1, "Projectile", Vector2.One, 1, 0), //High speed
+        new ProjectileData(3, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0, new Action<Projectile>( (projectile) =>  //Homing
         {
             if (projectile.Target.ShouldBeRemoved == false)
             {
@@ -87,7 +97,14 @@ public static class Config
                     projectile.MiscData = true;
                 }
             }
-        })) //Homing
+        })),
+        new ProjectileData(2, 800, 0, 0, 1, "Fire", Vector2.One*2, 1, 0, null, null, new Action<Projectile, Enemy>( (projectile, enemy) =>  //Fire
+        {
+            if (!enemy.HasEffect("Fire"))
+            {
+                enemy.AddEffect(Effects[0]);
+            }
+        })),
     };
 
     public static List<TowerData> Towers = new List<TowerData>()
@@ -95,7 +112,7 @@ public static class Config
         new TowerData(20, 100, 150, 0, Projectiles[0], "Tower1", Vector2.One, 100, "Normal firing medium damage"),
         new TowerData(7, 20, 100, 0, Projectiles[0], "Tower2", Vector2.One, 300, "Fast firing medium damage"),
         new TowerData(1, 50, 500, 100, Projectiles[2], "Tower3", Vector2.One, 400, "Fast firing long range low damage homing"),
-        new TowerData(100, 1000, 1000, 0, Projectiles[1], "Tower2", Vector2.One, 400, "Slow firing long range high damage accurate")
+        new TowerData(100, 0, 800, 80, Projectiles[3], "Tower2", Vector2.One, 400, "Fast firing long range inaccurate fire")
     };
 
     public static string TrackEasyDifficulty = "Easy";
