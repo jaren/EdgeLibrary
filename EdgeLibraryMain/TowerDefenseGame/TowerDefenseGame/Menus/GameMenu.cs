@@ -356,7 +356,15 @@ namespace TowerDefenseGame
 
             foreach (Enemy enemy in Enemies)
             {
-                enemy.Update(gameTime);
+                if (enemy.ShouldBeRemoved && enemy.Health <= 0)
+                {
+                    EnemiesToRemove.Add(enemy);
+                    Money += enemy.EnemyData.MoneyOnDeath;
+                }
+                else
+                {
+                    enemy.Update(gameTime);
+                }
             }
             foreach(Enemy enemy in EnemiesToRemove)
             {

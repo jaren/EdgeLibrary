@@ -104,6 +104,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Around the Lake Preview");
             EdgeGame.LoadTexture("Levels/Return to the Village Preview");
             EdgeGame.LoadTexture("Enemy");
+            EdgeGame.LoadTexture("BossEnemy");
             EdgeGame.LoadTexture("Projectile");
             EdgeGame.LoadTexture("Tower1");
             EdgeGame.LoadTexture("Tower2");

@@ -211,6 +211,11 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="BossEnemy.png">
+      <Name>BossEnemy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Enemy.png">
       <Name>Enemy</Name>
       <Importer>TextureImporter</Importer>

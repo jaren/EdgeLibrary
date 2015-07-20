@@ -41,13 +41,20 @@ namespace TowerDefenseGame
 
         public void Hit(float damage, float armorPierce)
         {
-            EnemyData.SpecialActionsOnHit(this);
+            if (EnemyData.SpecialActionsOnHit != null)
+            {
+                EnemyData.SpecialActionsOnHit(this);
+            }
 
-            Health -= damage / EnemyData.Armor / armorPierce;
+            Health -= damage - (EnemyData.Armor * (1 - armorPierce));
 
             if (Health <= 0)
             {
-                EnemyData.SpecialActionsOnDestroy(this);
+                if (EnemyData.SpecialActionsOnDestroy != null)
+                {
+                    EnemyData.SpecialActionsOnDestroy(this);
+                }
+                ShouldBeRemoved = true;
             }
         }
 
@@ -70,6 +77,8 @@ namespace TowerDefenseGame
         //Armor should be at least 1. Anything less will cause it to take more than normal damage
         public float Armor;
 
+        public int MoneyOnDeath;
+
         public int LivesTaken;
         public List<EnemyData> DeathEnemies;
         public string Description;
@@ -84,11 +93,12 @@ namespace TowerDefenseGame
         //For the base texture without scale - it will be multiplied with scale
         public float CollisionRadius;
 
-        public EnemyData(float maxHealth, float speed, float armor, int livesTaken, List<EnemyData> deathEnemies, string texture, Vector2 scale, float collisionRadius, string description = "", System.Action<Enemy> specialActionsOnCreate = null, System.Action<Enemy> specialActionsOnHit = null, System.Action<Enemy> specialActionsOnDestroy = null)
+        public EnemyData(float maxHealth, float speed, float armor, int moneyOnDeath, int livesTaken, List<EnemyData> deathEnemies, string texture, Vector2 scale, float collisionRadius, string description = "", System.Action<Enemy> specialActionsOnCreate = null, System.Action<Enemy> specialActionsOnHit = null, System.Action<Enemy> specialActionsOnDestroy = null)
         {
             MaxHealth = maxHealth;
             Speed = speed;
             Armor = armor;
+            MoneyOnDeath = moneyOnDeath;
             DeathEnemies = deathEnemies;
             Texture = texture;
             Scale = scale;

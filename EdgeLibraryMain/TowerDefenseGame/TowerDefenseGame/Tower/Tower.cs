@@ -40,7 +40,7 @@ namespace TowerDefenseGame
                 Enemy selectedTarget = SelectTarget(Enemies);
                 if (selectedTarget != null)
                 {
-                    Projectile projectile = new Projectile(TowerData.AttackData, selectedTarget, Position);
+                    Projectile projectile = new Projectile(TowerData.AttackData, selectedTarget, TowerData.Accuracy, Position);
                     if (projectile.ProjectileData.SpecialActionsOnCreate != null)
                     {
                         projectile.ProjectileData.SpecialActionsOnCreate(projectile);
@@ -58,6 +58,7 @@ namespace TowerDefenseGame
 
         public override void UpdateObject(GameTime gameTime)
         {
+            ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
             foreach(Projectile projectile in Projectiles)
             {
@@ -73,6 +74,15 @@ namespace TowerDefenseGame
             }
 
             base.UpdateObject(gameTime);
+        }
+
+        public override void DrawObject(GameTime gameTime)
+        {
+            foreach(Projectile projectile in Projectiles)
+            {
+                projectile.Draw(gameTime);
+            }
+            base.DrawObject(gameTime);
         }
 
         private Enemy SelectTarget(List<Enemy> Enemies)
@@ -124,6 +134,9 @@ namespace TowerDefenseGame
         public float AttackDamage;
         public float AttackSpeed;
         public float Range;
+
+        //0 - Perfect accuracy
+        //Any number higher than 0 is the spread (in pixels) at 100 distance from the tower
         public float Accuracy;
         public int Cost;
         public ProjectileData AttackData;

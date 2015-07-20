@@ -26,6 +26,8 @@ namespace TowerDefenseGame
 
         void Round_OnTick(GameTime gameTime)
         {
+
+            OnEmitEnemy(this, Enemies[CurrentIndex].Key);
             CurrentIndex++;
 
             if (CurrentIndex >= Enemies.Count && OnFinish != null)
@@ -35,7 +37,6 @@ namespace TowerDefenseGame
             }
 
             MillisecondsWait = Enemies[CurrentIndex].Value;
-            OnEmitEnemy(this, Enemies[CurrentIndex].Key);
         }
     }
 }
