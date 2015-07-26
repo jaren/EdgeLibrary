@@ -16,6 +16,8 @@ namespace TowerDefenseGame
         public event RoundManagerEnemyEvent OnEmitEnemy;
         public delegate void RoundManagerEvent(Round round);
         public event RoundManagerEvent OnFinish;
+        public delegate void RoundManagerNumberEvent(Round round, int number);
+        public event RoundManagerNumberEvent OnFinishRound;
 
         public RoundManager(List<Round> rounds)
         {
@@ -73,6 +75,11 @@ namespace TowerDefenseGame
             else
             {
                 Rounds[CurrentIndex].Started = false;
+            }
+
+            if (OnFinishRound != null)
+            {
+                OnFinishRound(round, CurrentIndex - 1);
             }
         }
     }

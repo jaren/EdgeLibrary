@@ -105,6 +105,7 @@ namespace TowerDefenseGame
                 {
                     if (!RoundManager.RoundRunning && Enemies.Count == 0) 
                     {
+                        RoundNumber.Text = (RoundManager.CurrentIndex+1).ToString();
                         RoundManager.StartRound(); 
                     }
                 };
