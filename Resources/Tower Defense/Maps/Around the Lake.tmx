@@ -55,7 +55,7 @@
   </object>
   <object id="16" x="248" y="200" width="16" height="16">
    <properties>
-    <property name="NextWaypoints" value=""/>
+    <property name="NextWaypoints" value="-1"/>
     <property name="WaypointID" value="5"/>
     <property name="WaypointType" value="2"/>
    </properties>

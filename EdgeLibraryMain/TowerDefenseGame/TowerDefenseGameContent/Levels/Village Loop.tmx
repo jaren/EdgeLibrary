@@ -167,7 +167,7 @@
   </object>
   <object id="69" x="120" y="248" width="16" height="16">
    <properties>
-    <property name="NextWaypoints" value=""/>
+    <property name="NextWaypoints" value="-1"/>
     <property name="WaypointID" value="11"/>
     <property name="WaypointType" value="2"/>
    </properties>

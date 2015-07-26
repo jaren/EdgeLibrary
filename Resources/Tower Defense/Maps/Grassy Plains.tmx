@@ -140,7 +140,7 @@
   </object>
   <object id="229" x="-8" y="128" width="16" height="16">
    <properties>
-    <property name="NextWaypoints" value=""/>
+    <property name="NextWaypoints" value="-1"/>
     <property name="WaypointID" value="7"/>
     <property name="WaypointType" value="2"/>
    </properties>
