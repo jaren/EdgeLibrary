@@ -16,6 +16,7 @@ namespace TowerDefenseGame
         public int PiercedEnemiesCount;
         public AMoveTo MoveAction;
         public Object MiscData;
+        private bool ToDelete = false;
 
         public Projectile(ProjectileData data, Enemy target, float accuracy, Vector2 position)
             : base(data.Texture, position, Color.White, data.Scale)
@@ -37,14 +38,19 @@ namespace TowerDefenseGame
 
         void moveAction_OnFinish(EdgeLibrary.Action action, GameTime gameTime, Sprite sprite)
         {
-            markForDeletion();
+            ToDelete = true;
         }
 
-        public void UpdateProjectile(List<Enemy> Enemies)
+        public void UpdateProjectile(List<Enemy> Enemies, Tower tower)
         {
             if (ProjectileData.SpecialActionsOnUpdate != null)
             {
-                ProjectileData.SpecialActionsOnUpdate(this);
+                ProjectileData.SpecialActionsOnUpdate(this, Enemies, tower);
+            }
+
+            if (ToDelete)
+            {
+                markForDeletion(tower);
             }
 
             foreach(Enemy enemy in Enemies)
@@ -57,25 +63,25 @@ namespace TowerDefenseGame
 
                         if (ProjectileData.SpecialActionsOnHit != null)
                         {
-                            ProjectileData.SpecialActionsOnHit(this, enemy);
+                            ProjectileData.SpecialActionsOnHit(this, enemy, tower);
                         }
 
                         PiercedEnemies.Add(enemy);
                         PiercedEnemiesCount++;
                         if (PiercedEnemiesCount >= ProjectileData.MaxEnemyPierce)
                         {
-                            markForDeletion();
+                            markForDeletion(tower);
                         }
                     }
                 }
             }
         }
 
-        private void markForDeletion()
+        private void markForDeletion(Tower tower)
         {
             if (ProjectileData.SpecialActionsOnDestroy != null)
             {
-                ProjectileData.SpecialActionsOnDestroy(this);
+                ProjectileData.SpecialActionsOnDestroy(this, tower);
             }
             ShouldBeRemoved = true;
         }
@@ -89,10 +95,10 @@ namespace TowerDefenseGame
         public float Damage;
         public float ArmorPierce;
 
-        public System.Action<Projectile, Enemy> SpecialActionsOnHit;
-        public System.Action<Projectile> SpecialActionsOnUpdate;
-        public System.Action<Projectile> SpecialActionsOnCreate;
-        public System.Action<Projectile> SpecialActionsOnDestroy;
+        public System.Action<Projectile, Enemy, Tower> SpecialActionsOnHit;
+        public System.Action<Projectile, List<Enemy>, Tower> SpecialActionsOnUpdate;
+        public System.Action<Projectile, Tower> SpecialActionsOnCreate;
+        public System.Action<Projectile, Tower> SpecialActionsOnDestroy;
 
         public string Texture;
         public Vector2 Scale;
@@ -101,7 +107,7 @@ namespace TowerDefenseGame
         //For the base texture without scale - it will be multiplied with scale
         public float CollisionRadius;
 
-        public ProjectileData(float movementSpeed, float range, float damage, float armorPierce, int maxEnemyPierce, string texture, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile> specialActionsOnUpdate = null, System.Action<Projectile> specialActionsOnDestroy = null, Action<Projectile, Enemy> specialActionsOnHit = null, System.Action<Projectile> specialActionsOnCreate = null)
+        public ProjectileData(float movementSpeed, float range, float damage, float armorPierce, int maxEnemyPierce, string texture, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile, List<Enemy>, Tower> specialActionsOnUpdate = null, System.Action<Projectile, Tower> specialActionsOnDestroy = null, Action<Projectile, Enemy, Tower> specialActionsOnHit = null, System.Action<Projectile, Tower> specialActionsOnCreate = null)
         {
             MovementSpeed = movementSpeed;
             Range = range;

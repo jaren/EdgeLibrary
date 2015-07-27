@@ -88,7 +88,7 @@ namespace TowerDefenseGame
 
             foreach (Effect effect in Effects)
             {
-                effect.EffectOnUpdate(this);
+                effect.UpdateEffect(this);
             }
         }
     }

@@ -43,7 +43,7 @@ namespace TowerDefenseGame
                     Projectile projectile = new Projectile(TowerData.AttackData, selectedTarget, TowerData.Accuracy, Position);
                     if (projectile.ProjectileData.SpecialActionsOnCreate != null)
                     {
-                        projectile.ProjectileData.SpecialActionsOnCreate(projectile);
+                        projectile.ProjectileData.SpecialActionsOnCreate(projectile, this);
                     }
                     Projectiles.Add(projectile);
                     canShoot = false;
@@ -52,7 +52,7 @@ namespace TowerDefenseGame
 
             foreach(Projectile projectile in Projectiles)
             {
-                projectile.UpdateProjectile(Enemies);
+                projectile.UpdateProjectile(Enemies, this);
             }
         }
 

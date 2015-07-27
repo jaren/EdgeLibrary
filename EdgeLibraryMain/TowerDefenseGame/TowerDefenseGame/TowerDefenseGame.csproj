@@ -82,8 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
-    <Compile Include="Tower\Effect.cs" />
-    <Compile Include="Tower\Enemy.cs" />
+    <Compile Include="Game Classes\Effects\Effect.cs" />
+    <Compile Include="Game Classes\Effects\FireEffect.cs" />
+    <Compile Include="Game Classes\Enemies\Enemy.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Level\CollisionDetection.cs" />
     <Compile Include="Level\Level.cs" />
@@ -101,9 +102,9 @@
     <Compile Include="Menus\ParticleMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Tower\Projectile.cs" />
-    <Compile Include="Tower\Tower.cs" />
-    <Compile Include="Tower\TowerPanel.cs" />
+    <Compile Include="Game Classes\Projectiles\Projectile.cs" />
+    <Compile Include="Game Classes\Towers\Tower.cs" />
+    <Compile Include="Game Classes\TowerPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibrary\EdgeLibrary.csproj">

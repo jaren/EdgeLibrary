@@ -66,20 +66,23 @@ public static class Config
         }),
     };
 
-    public static List<Effect> Effects = new List<Effect>()
-    {
-        new Effect("Fire", 1, new Action<Enemy>( (enemy) =>
-        {
-            enemy.Health -= 1;
-            enemy.Color = Color.Red;
-        }), null)
-    };
-
     public static List<ProjectileData> Projectiles = new List<ProjectileData>()
     {
         new ProjectileData(10, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0), //Normal
         new ProjectileData(50, 1000, 10, 0.2f, 1, "Projectile", Vector2.One, 1, 0), //High speed
-        new ProjectileData(3, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0, new Action<Projectile>( (projectile) =>  //Homing
+        new ProjectileData(10, 1000, 10, 0, 1, "Projectile2", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //Cluster
+        {
+            ProjectileData clusterElement = new ProjectileData(10, 1000, 10, 0, 1, "Projectile2", Vector2.One, 1, 0);
+            for (int i = 0; i < 10; i++)
+            {
+                tower.Projectiles.Add(new Projectile(clusterElement, projectile.Target, 50, projectile.Position));
+            }
+        })),
+        new ProjectileData(10, 500, 4, 0, 0, "ExplosiveProjectile", Vector2.One, 1, 0, null, null, new Action<Projectile, Enemy, Tower>( (projectile, enemies, tower) => //Exploding
+        {
+
+        })),
+        new ProjectileData(3, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>  //Homing
         {
             if (projectile.Target.ShouldBeRemoved == false)
             {
@@ -98,21 +101,21 @@ public static class Config
                 }
             }
         })),
-        new ProjectileData(2, 800, 0, 0, 1, "Fire", Vector2.One*2, 1, 0, null, null, new Action<Projectile, Enemy>( (projectile, enemy) =>  //Fire
+        new ProjectileData(2, 800, 0, 0, 1, "Fire", Vector2.One*2, 1, 0, null, null, new Action<Projectile, Enemy, Tower>( (projectile, enemy, tower) =>  //Fire
         {
             if (!enemy.HasEffect("Fire"))
             {
-                enemy.AddEffect(Effects[0]);
+                enemy.AddEffect(new FireEffect());
             }
-        })),
+        }))
     };
 
     public static List<TowerData> Towers = new List<TowerData>()
     {
-        new TowerData(20, 100, 150, 0, Projectiles[0], "Tower1", Vector2.One, 100, "Normal firing medium damage"),
-        new TowerData(7, 20, 100, 0, Projectiles[0], "Tower2", Vector2.One, 300, "Fast firing medium damage"),
-        new TowerData(1, 50, 500, 100, Projectiles[2], "Tower3", Vector2.One, 400, "Fast firing long range low damage homing"),
-        new TowerData(100, 0, 800, 80, Projectiles[3], "Tower2", Vector2.One, 400, "Fast firing long range inaccurate fire")
+        new TowerData(20, 1000, 400, 0, Projectiles[2], "Tower1", Vector2.One, 100, "Spread"),
+        new TowerData(7, 20, 600, 0, Projectiles[3], "Tower2", Vector2.One, 300, "Explosive"),
+        new TowerData(1, 50, 500, 100, Projectiles[4], "Tower3", Vector2.One, 400, "Homing"),
+        new TowerData(100, 0, 800, 80, Projectiles[5], "Tower2", Vector2.One, 400, "Fire")
     };
 
     public static string TrackEasyDifficulty = "Easy";

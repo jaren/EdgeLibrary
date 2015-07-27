@@ -9,15 +9,17 @@ namespace TowerDefenseGame
     public class Effect
     {
         public string Name;
-        public Action<Enemy> EffectOnUpdate;
         public Ticker Ticker;
 
-        public Effect(string name, float milliseconds, Action<Enemy> effectOnUpdate, Action<Enemy> effectOnTick)
+        public Effect(string name, float milliseconds)
         {
             Name = name;
-            EffectOnUpdate = effectOnUpdate;
             Ticker = new Ticker(milliseconds);
-            Ticker.Started = true;
+        }
+
+        public virtual void UpdateEffect(Enemy enemy)
+        {
+
         }
     }
 }

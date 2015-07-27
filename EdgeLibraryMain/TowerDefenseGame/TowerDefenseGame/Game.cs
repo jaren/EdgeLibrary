@@ -107,6 +107,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("BossEnemy");
             EdgeGame.LoadTexture("Projectile");
             EdgeGame.LoadTexture("Projectile2");
+            EdgeGame.LoadTexture("ExplosiveProjectile");
             EdgeGame.LoadTexture("Tower1");
             EdgeGame.LoadTexture("Tower2");
             EdgeGame.LoadTexture("Tower3");
