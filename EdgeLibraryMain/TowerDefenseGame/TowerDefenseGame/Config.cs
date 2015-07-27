@@ -98,8 +98,11 @@ namespace TowerDefenseGame
             }
         }), null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
         {
-            ((ExplosionProjectile)projectile).Explode(enemies, tower);
-            ((ExplosionProjectile)projectile).ToDelete = true;
+            if (projectile is ExplosionProjectile)
+            { 
+                ((ExplosionProjectile)projectile).Explode(enemies, tower);
+                ((ExplosionProjectile)projectile).ToDelete = true;
+            }
         }), new Action<Projectile,Tower>( (projectile, tower) => 
         {
             projectile.ToDelete = true;
