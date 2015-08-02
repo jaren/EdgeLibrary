@@ -16,7 +16,7 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>53627efd-9462-4d52-a001-8dba45018907</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Gear.ico</ApplicationIcon>
+    <ApplicationIcon>GearWhite.ico</ApplicationIcon>
     <Thumbnail>
     </Thumbnail>
     <PublishUrl>publish\</PublishUrl>
@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Gear.ico" />
+    <Content Include="GearWhite.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
