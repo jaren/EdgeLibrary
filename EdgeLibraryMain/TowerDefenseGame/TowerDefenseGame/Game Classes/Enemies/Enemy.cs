@@ -28,7 +28,7 @@ namespace TowerDefenseGame
             }
         }
         private Waypoint currentWaypoint;
-
+        private TextSprite enemyHealthBar = new TextSprite("Georgia-30", "||||||||||", Vector2.Zero);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
 
@@ -86,10 +86,26 @@ namespace TowerDefenseGame
         {
             base.UpdateObject(gameTime);
 
+            string healthBarText = "";
+            for (int i = 0; i < ((float)Health / (float)EnemyData.MaxHealth) * 100; i += 10)
+            {
+                healthBarText += "|";
+            }
+
+            enemyHealthBar.Text = healthBarText;
+            enemyHealthBar.Position = new Vector2(Position.X, Position.Y - (Height / 2));
+            enemyHealthBar.Update(gameTime);
+
             foreach (Effect effect in Effects)
             {
                 effect.UpdateEffect(this);
             }
+        }
+
+        public override void DrawObject(GameTime gameTime)
+        {
+            base.DrawObject(gameTime);
+            enemyHealthBar.Draw(gameTime);
         }
     }
 
