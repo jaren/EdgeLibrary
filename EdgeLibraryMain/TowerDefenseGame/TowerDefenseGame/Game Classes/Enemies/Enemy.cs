@@ -28,7 +28,7 @@ namespace TowerDefenseGame
             }
         }
         private Waypoint currentWaypoint;
-        private TextSprite enemyHealthBar = new TextSprite("Georgia-30", "||||||||||", Vector2.Zero);
+        private Sprite enemyHealthBar = new Sprite("health10", Vector2.Zero);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
 
@@ -86,14 +86,14 @@ namespace TowerDefenseGame
         {
             base.UpdateObject(gameTime);
 
-            string healthBarText = "";
-            for (int i = 0; i < ((float)Health / (float)EnemyData.MaxHealth) * 100; i += 10)
-            {
-                healthBarText += "|";
-            }
+            int textureNumber = (int)((Health / EnemyData.MaxHealth) * 10) + 1;
+            enemyHealthBar.TextureName = "health" + (textureNumber > 10 ? 10 : textureNumber);
+            enemyHealthBar.Scale = new Vector2(0.75f);
 
-            enemyHealthBar.Text = healthBarText;
-            enemyHealthBar.Position = new Vector2(Position.X, Position.Y - (Height / 2));
+            float healthBarYPos = Position.Y - (Height / 2f);
+            float altHealthBarYPos = Position.Y + (Height / 2f);
+
+            enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
             foreach (Effect effect in Effects)

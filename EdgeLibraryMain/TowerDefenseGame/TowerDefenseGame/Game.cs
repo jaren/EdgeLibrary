@@ -113,6 +113,17 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Tower2");
             EdgeGame.LoadTexture("Tower3");
             EdgeGame.LoadTexture("Circle");
+            EdgeGame.LoadTexture("Health Bar/health10");
+            EdgeGame.LoadTexture("Health Bar/health9");
+            EdgeGame.LoadTexture("Health Bar/health8");
+            EdgeGame.LoadTexture("Health Bar/health7");
+            EdgeGame.LoadTexture("Health Bar/health6");
+            EdgeGame.LoadTexture("Health Bar/health5");
+            EdgeGame.LoadTexture("Health Bar/health4");
+            EdgeGame.LoadTexture("Health Bar/health3");
+            EdgeGame.LoadTexture("Health Bar/health2");
+            EdgeGame.LoadTexture("Health Bar/health1");
+            EdgeGame.LoadTexture("Health Bar/health0");
 
             EdgeGame.LoadSong("Music/Hyperfun");
             EdgeGame.LoadSong("Music/The Curtain Rises");
