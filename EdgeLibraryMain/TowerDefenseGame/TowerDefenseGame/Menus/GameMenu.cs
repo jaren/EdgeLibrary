@@ -39,6 +39,7 @@ namespace TowerDefenseGame
         public TextSprite RemainingNumber;
         public TextSprite NextRoundText;
         public int DefeatedEnemies;
+        public int TotalEnemies;
 
         public Button NextRoundButton;
 
@@ -121,6 +122,8 @@ namespace TowerDefenseGame
                         RoundNumber.Text = (RoundManager.CurrentIndex+1).ToString();
                         RoundManager.StartRound();
                         DefeatedEnemies = 0;
+                        TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
+                        RemainingNumber.Text = TotalEnemies.ToString();
                     }
                 };
                 NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
@@ -185,7 +188,7 @@ namespace TowerDefenseGame
         }
 
         public void LoseGame()
-        {
+        { 
             //Add lose game stuff here
         }
 
@@ -315,7 +318,7 @@ namespace TowerDefenseGame
         {
             RoundManager.Update(gameTime);
 
-            RemainingNumber.Text = (RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count - DefeatedEnemies).ToString();
+            RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
             RemainingNumber.Update(gameTime);
 
             if (FloatingTower.Enabled)
