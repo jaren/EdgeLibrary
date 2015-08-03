@@ -23,6 +23,11 @@ namespace EdgeLibrary
         
         public void Update(GameTime gameTime, Sprite sprite)
         {
+            if (toRemove)
+            {
+                return;
+            }
+
             if (!Paused)
             {
                 //In case this action will be repeated - if it wasn't removed after updating, then it should be removed
