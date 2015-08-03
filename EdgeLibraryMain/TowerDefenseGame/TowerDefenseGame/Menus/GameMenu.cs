@@ -35,6 +35,10 @@ namespace TowerDefenseGame
         public TextSprite LivesText;
         public TextSprite MoneyNumber;
         public TextSprite MoneyText;
+        public TextSprite RemainingText;
+        public TextSprite RemainingNumber;
+        public TextSprite NextRoundText;
+        public int DefeatedEnemies;
 
         public Button NextRoundButton;
 
@@ -100,13 +104,23 @@ namespace TowerDefenseGame
                 MoneyNumber = new TextSprite("Georgia-60", Money.ToString(), new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.39f));
                 Components.Add(MoneyNumber);
 
-                NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.6f)) { Color = Color.White, Scale = new Vector2(1f) };
+                RemainingText = new TextSprite(Config.MenuSubtitleFont, "ENEMIES", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.5f));
+                Components.Add(RemainingText);
+
+                RemainingNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.54f));
+                Components.Add(RemainingNumber);
+
+                NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.84f));
+                Components.Add(NextRoundText);
+
+                NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.92f)) { Color = Color.White, Scale = new Vector2(1f) };
                 NextRoundButton.OnRelease += (x, y) =>
                 {
                     if (!RoundManager.RoundRunning && Enemies.Count == 0) 
                     {
                         RoundNumber.Text = (RoundManager.CurrentIndex+1).ToString();
-                        RoundManager.StartRound(); 
+                        RoundManager.StartRound();
+                        DefeatedEnemies = 0;
                     }
                 };
                 NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
@@ -301,6 +315,9 @@ namespace TowerDefenseGame
         {
             RoundManager.Update(gameTime);
 
+            RemainingNumber.Text = (RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count - DefeatedEnemies).ToString();
+            RemainingNumber.Update(gameTime);
+
             if (FloatingTower.Enabled)
             {
                 FloatingTower.Position = Input.MousePosition;
@@ -360,6 +377,7 @@ namespace TowerDefenseGame
                 if (enemy.ShouldBeRemoved && enemy.Health <= 0)
                 {
                     EnemiesToRemove.Add(enemy);
+                    DefeatedEnemies++;
                     Money += enemy.EnemyData.MoneyOnDeath;
                 }
                 else
@@ -409,6 +427,8 @@ namespace TowerDefenseGame
             {
                 enemy.Draw(gameTime);
             }
+
+            RemainingNumber.Draw(gameTime);
 
             base.DrawObject(gameTime);
         }
