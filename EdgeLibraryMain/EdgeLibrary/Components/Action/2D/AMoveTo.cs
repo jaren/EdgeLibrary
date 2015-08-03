@@ -19,6 +19,7 @@ namespace EdgeLibrary
 
         public AMoveTo(Vector2 targetPosition, float speed) : base()
         {
+            ID = MathExtensions.GenerateID(this);
             TargetPosition = targetPosition;
             Speed = speed;
         }

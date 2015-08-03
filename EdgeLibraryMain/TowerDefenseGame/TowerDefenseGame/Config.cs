@@ -26,6 +26,7 @@ namespace TowerDefenseGame
         private static float round2Wait = 1500f;
         private static float round3Wait = 1000f;
         private static float round4Wait = 500f;
+        private static float fastWait = 50;
         public static List<Round> RoundList = new List<Round>()
     {
         new Round(new List<RoundEnemyList>()
@@ -42,10 +43,11 @@ namespace TowerDefenseGame
         }),
         new Round(new List<RoundEnemyList>()
         {
-            new RoundEnemyList(Enemies[0],round1Wait,16)
+            new RoundEnemyList(Enemies[0],round4Wait,8)
         }),
         new Round(new List<RoundEnemyList>()
         {
+            new RoundEnemyList(Enemies[0],fastWait,10),
             new RoundEnemyList(Enemies[1],round1Wait,1)
         }),
         new Round(new List<RoundEnemyList>()
@@ -121,7 +123,17 @@ namespace TowerDefenseGame
             {
                 enemy.AddEffect(new FireEffect());
             }
-        }))
+        })),
+        new ProjectileData(10, 1000, 10, 0, 1, "Explosion", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //End tower
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                ProjectileData data = Projectiles[0];
+                data.Texture = "Explosion";
+                Projectile p = new Projectile(data, projectile.Target, 50, projectile.Position);
+                tower.Projectiles.Add(p);
+            }
+        })),
     };
 
         public static List<TowerData> Towers = new List<TowerData>()
@@ -129,7 +141,8 @@ namespace TowerDefenseGame
         new TowerData(20, 1000, 400, 0, Projectiles[2], "Tower1", Vector2.One, 100, "Spread"),
         new TowerData(7, 300, 600, 0, Projectiles[3], "Tower2", Vector2.One, 300, "Explosive"),
         new TowerData(1, 50, 500, 100, Projectiles[4], "Tower3", Vector2.One, 400, "Homing"),
-        new TowerData(100, 0, 800, 80, Projectiles[5], "Tower2", Vector2.One, 400, "Fire")
+        new TowerData(100, 0, 800, 80, Projectiles[5], "Tower2", Vector2.One, 400, "Fire"),
+        new TowerData(200, 0, 800, 80, Projectiles[6], "EndTower", Vector2.One, 40000, "(Happy Face)")
     };
 
         public static string TrackEasyDifficulty = "Easy";

@@ -16,6 +16,7 @@ namespace EdgeLibrary
     {
         public bool toRemove { get; private set; }
         public bool Paused;
+        public string ID;
 
         public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
         public event ActionEvent OnFinish;
@@ -56,6 +57,12 @@ namespace EdgeLibrary
         public void Stop() { toRemove = true; }
         protected void Stop(GameTime gameTime, Sprite sprite)
         {
+            if(GetType() == typeof(AMoveTo))
+            {
+
+            }
+            
+
             toRemove = true; 
             if (OnFinish != null)
             {

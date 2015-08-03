@@ -112,6 +112,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Tower1");
             EdgeGame.LoadTexture("Tower2");
             EdgeGame.LoadTexture("Tower3");
+            EdgeGame.LoadTexture("EndTower");
             EdgeGame.LoadTexture("Circle");
             EdgeGame.LoadTexture("Health Bar/health10");
             EdgeGame.LoadTexture("Health Bar/health9");
