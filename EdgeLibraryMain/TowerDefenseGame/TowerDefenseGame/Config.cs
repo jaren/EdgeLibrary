@@ -126,7 +126,7 @@ namespace TowerDefenseGame
         })),
         new ProjectileData(10, 1000, 10, 0, 1, "Explosion", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //End tower
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 ProjectileData data = Projectiles[0];
                 data.Texture = "Explosion";
