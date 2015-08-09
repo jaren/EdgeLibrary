@@ -12,17 +12,20 @@ namespace TowerDefenseGame
     {
         float ExplosionRadius;
         Texture2D ExplosionTexture;
+        Vector2 ExplosionScale;
 
-        public ExplosionProjectile(ProjectileData data, string explosionTexture, Enemy target, float accuracy, Vector2 position, float explosionRadius)
+        public ExplosionProjectile(ProjectileData data, string explosionTexture, Vector2 explosionScale, Enemy target, float accuracy, Vector2 position, float explosionRadius)
             : base(data, target, accuracy, position)
         {
             ExplosionRadius = explosionRadius;
+            ExplosionScale = explosionScale;
             ExplosionTexture = EdgeGame.GetTexture(explosionTexture);
         }
 
         public void Explode(List<Enemy> enemies, Tower tower)
         {
             Texture = ExplosionTexture;
+            Scale = ExplosionScale;
 
             foreach (Enemy enemy in enemies)
             {

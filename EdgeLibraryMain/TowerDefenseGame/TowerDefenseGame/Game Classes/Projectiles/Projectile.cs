@@ -22,6 +22,7 @@ namespace TowerDefenseGame
             : base(data.Texture, position, Color.White, data.Scale)
         {
             ProjectileData = data;
+            Scale = data.Scale;
             Target = target;
 
             PiercedEnemies = new List<Enemy>();

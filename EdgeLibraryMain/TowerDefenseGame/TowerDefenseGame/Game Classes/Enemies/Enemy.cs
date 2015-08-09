@@ -36,6 +36,7 @@ namespace TowerDefenseGame
             : base(data.Texture, position)
         {
             EnemyData = data;
+            Scale = data.Scale;
             TrackDistance = 0;
             Health = EnemyData.MaxHealth;
             Effects = new List<Effect>();

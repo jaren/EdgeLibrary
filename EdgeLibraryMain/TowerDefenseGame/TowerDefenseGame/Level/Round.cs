@@ -31,9 +31,14 @@ namespace TowerDefenseGame
             base.OnTick += Round_OnTick;
         }
 
+        int hitCount = 0;
         void Round_OnTick(GameTime gameTime)
         {
+            hitCount++;
+            if (CurrentIndex >= Enemies.Count())
+            {
 
+            }
             OnEmitEnemy(this, Enemies[CurrentIndex].Key);
             CurrentIndex++;
 

@@ -18,8 +18,8 @@ namespace TowerDefenseGame
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
     {
-        new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "Enemy", Vector2.One, 50, "Just a normal enemy."),
-        new EnemyData(50000, 0.5f, 0, 50, 1, new List<EnemyData>(), "BossEnemy", Vector2.One*2, 50, "Too much health.")
+        new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, "Just a normal enemy."),
+        new EnemyData(50000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, "NOT just a normal enemy.")
     };
 
         private static float round1Wait = 2000f;
@@ -58,17 +58,17 @@ namespace TowerDefenseGame
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
     {
-        new ProjectileData(10, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0), //Normal
-        new ProjectileData(50, 1000, 10, 0.2f, 1, "Projectile", Vector2.One, 1, 0), //High speed
-        new ProjectileData(10, 1000, 10, 0, 1, "Projectile2", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //Cluster
+        new ProjectileData(10, 1000, 10, 0, 1, "particle_darkGrey", Vector2.One*0.5f, 1, 0), //Normal
+        new ProjectileData(50, 1000, 10, 0.2f, 1, "lightning_yellow", Vector2.One, 1, 0), //High speed
+        new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //Cluster
         {
-            ProjectileData clusterElement = new ProjectileData(10, 1000, 10, 0, 1, "Projectile2", Vector2.One, 1, 0);
+            ProjectileData clusterElement = new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0);
             for (int i = 0; i < 10; i++)
             {
                 tower.Projectiles.Add(new Projectile(clusterElement, projectile.Target, 50, projectile.Position));
             }
         })),
-        new ProjectileData(10, 500, 4, 0, 0, "ExplosiveProjectile", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) => //Exploding
+        new ProjectileData(10, 500, 4, 0, 0, "coin_bronze", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) => //Exploding
         {
             if (projectile.Target.ShouldBeRemoved == false)
             {
@@ -96,9 +96,9 @@ namespace TowerDefenseGame
         }), new Action<Projectile,Tower>( (projectile, tower) => 
         {
             projectile.ToDelete = true;
-            tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "Explosion", projectile.Target, 100, projectile.Position, 300));
+            tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "coin_silver", new Vector2(2f), projectile.Target, 100, projectile.Position, 300));
         })),
-        new ProjectileData(3, 1000, 10, 0, 1, "Projectile", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>  //Homing
+        new ProjectileData(3, 1000, 10, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>  //Homing
         {
             if (projectile.Target.ShouldBeRemoved == false)
             {
@@ -117,19 +117,19 @@ namespace TowerDefenseGame
                 }
             }
         })),
-        new ProjectileData(2, 800, 0, 0, 1, "Fire", Vector2.One*2, 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>  //Fire
+        new ProjectileData(2, 800, 0, 0, 1, "portal_orangeParticle", Vector2.One, 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>  //Fire
         {
             if (!enemy.HasEffect("Fire"))
             {
                 enemy.AddEffect(new FireEffect());
             }
         })),
-        new ProjectileData(10, 1000, 10, 0, 1, "Explosion", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //End tower
+        new ProjectileData(10, 1000, 10, 0, 1, "coin_gold", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) => //End tower
         {
             for (int i = 0; i < 10; i++)
             {
                 ProjectileData data = Projectiles[0];
-                data.Texture = "Explosion";
+                data.Texture = "coin_gold";
                 Projectile p = new Projectile(data, projectile.Target, 50, projectile.Position);
                 tower.Projectiles.Add(p);
             }
@@ -138,11 +138,11 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
     {
-        new TowerData(20, 1000, 400, 0, Projectiles[2], "Tower1", Vector2.One, 100, "Spread"),
-        new TowerData(7, 300, 600, 0, Projectiles[3], "Tower2", Vector2.One, 300, "Explosive"),
-        new TowerData(1, 50, 500, 100, Projectiles[4], "Tower3", Vector2.One, 400, "Homing"),
-        new TowerData(100, 0, 800, 80, Projectiles[5], "Tower2", Vector2.One, 400, "Fire"),
-        new TowerData(200, 0, 800, 80, Projectiles[6], "EndTower", Vector2.One, 40000, "(Happy Face)")
+        new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", Vector2.One, 100, "Spread"),
+        new TowerData(7, 300, 600, 0, Projectiles[3], "enemyBlue2", Vector2.One, 300, "Explosive"),
+        new TowerData(1, 50, 500, 100, Projectiles[4], "enemyBlue3", Vector2.One, 400, "Homing"),
+        new TowerData(100, 0, 800, 80, Projectiles[5], "enemyBlue4", Vector2.One, 400, "Fire"),
+        new TowerData(200, 0, 800, 80, Projectiles[6], "enemyBlue5", Vector2.One, 40000, "(Happy Face)")
     };
 
         public static string TrackEasyDifficulty = "Easy";

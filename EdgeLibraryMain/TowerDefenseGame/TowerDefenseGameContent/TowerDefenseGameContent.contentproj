@@ -211,28 +211,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="BossEnemy.png">
-      <Name>BossEnemy</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Enemy.png">
-      <Name>Enemy</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="ExplosiveProjectile.png">
-      <Name>ExplosiveProjectile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Explosion.png">
       <Name>Explosion</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="EndTower.png">
-      <Name>EndTower</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -242,21 +222,6 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>
-    <Compile Include="Tower1.png">
-      <Name>Tower1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Tower2.png">
-      <Name>Tower2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Tower3.png">
-      <Name>Tower3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\KenVector\kenvector_future_regular_32.PNG">
@@ -439,20 +404,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Music\Hyperfun.mp3">
-      <Name>Hyperfun</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Music\The Curtain Rises.mp3">
-      <Name>The Curtain Rises</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Particles\Explosion2.png">
       <Name>Explosion2</Name>
       <Importer>TextureImporter</Importer>
@@ -575,6 +526,32 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
+    <Compile Include="Music\Chipper Doodle v2.mp3">
+      <Name>Chipper Doodle v2</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Firebrand.mp3">
+      <Name>Firebrand</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="Music\Funky Chunk.mp3">
+      <Name>Funky Chunk</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="KenneyImages.png">
+      <Name>KenneyImages</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Content Include="KenneyImages.xml">
+      <Name>KenneyImages</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Particles\Explosion2.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>Explosion2</Name>
@@ -593,31 +570,6 @@
     <Content Include="ParticleSheet.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Name>ParticleSheet</Name>
-      <Importer>XmlImporter</Importer>
-      <Processor>PassThroughProcessor</Processor>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="SpaceSheet.png">
-      <Name>SpaceSheet</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Projectile.png">
-      <Name>Projectile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Projectile2.png">
-      <Name>Projectile2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Content Include="SpaceSheet.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Name>SpaceSheet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Content>

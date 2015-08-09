@@ -91,6 +91,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexturesInSpritesheet("GUI/GreyGUI", "GUI/GreyGUI");
             EdgeGame.LoadTexturesInSpritesheet("GUI/WhiteIcons2x", "GUI/WhiteIcons2x");
             EdgeGame.LoadTexturesInSpritesheet("GUI/UIRPG", "GUI/UIRPG");
+            EdgeGame.LoadTexturesInSpritesheet("KenneyImages", "KenneyImages");
             EdgeGame.LoadTexture("Levels/Grassy Plains");
             EdgeGame.LoadTexture("Levels/Islands");
             EdgeGame.LoadTexture("Levels/Rocky Bridges");
@@ -103,16 +104,6 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Village Loop Preview");
             EdgeGame.LoadTexture("Levels/Around the Lake Preview");
             EdgeGame.LoadTexture("Levels/Return to the Village Preview");
-            EdgeGame.LoadTexture("Enemy");
-            EdgeGame.LoadTexture("BossEnemy");
-            EdgeGame.LoadTexture("Projectile");
-            EdgeGame.LoadTexture("Projectile2");
-            EdgeGame.LoadTexture("ExplosiveProjectile");
-            EdgeGame.LoadTexture("Explosion");
-            EdgeGame.LoadTexture("Tower1");
-            EdgeGame.LoadTexture("Tower2");
-            EdgeGame.LoadTexture("Tower3");
-            EdgeGame.LoadTexture("EndTower");
             EdgeGame.LoadTexture("Circle");
             EdgeGame.LoadTexture("Health Bar/health10");
             EdgeGame.LoadTexture("Health Bar/health9");
@@ -126,10 +117,11 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Health Bar/health1");
             EdgeGame.LoadTexture("Health Bar/health0");
 
-            EdgeGame.LoadSong("Music/Hyperfun");
-            EdgeGame.LoadSong("Music/The Curtain Rises");
-            EdgeGame.AddPlaylist("Music", "Hyperfun");
-            EdgeGame.AddPlaylist("TitleMusic", "The Curtain Rises");
+            EdgeGame.LoadSong("Music/Chipper Doodle v2");
+            EdgeGame.LoadSong("Music/Funky Chunk");
+            EdgeGame.LoadSong("Music/Firebrand");
+            EdgeGame.AddPlaylist("Music", "Chipper Doodle v2", "Funky Chunk");
+            EdgeGame.AddPlaylist("TitleMusic", "Firebrand");
 
             //Creating the Credits 'particle' text
             RenderTargetImager imager = new RenderTargetImager();
