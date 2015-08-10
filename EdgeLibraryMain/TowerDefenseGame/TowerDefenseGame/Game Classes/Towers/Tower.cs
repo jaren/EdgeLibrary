@@ -11,6 +11,7 @@ namespace TowerDefenseGame
     {
         public TowerData TowerData;
         public AttackTarget AttackTarget;
+        public Enemy Target;
         public Ticker ShootTicker;
         private bool canShoot;
         public List<Projectile> Projectiles;
@@ -35,12 +36,12 @@ namespace TowerDefenseGame
         public void UpdateTower(List<Enemy> Enemies)
         {
             //TODO: Make it so the tower only shoots when the round is started
+            Target = SelectTarget(Enemies);
             if (canShoot)
             {
-                Enemy selectedTarget = SelectTarget(Enemies);
-                if (selectedTarget != null)
+                if (Target != null)
                 {
-                    Projectile projectile = new Projectile(TowerData.AttackData, selectedTarget, TowerData.Accuracy, Position);
+                    Projectile projectile = new Projectile(TowerData.AttackData, Target, TowerData.Accuracy, Position);
                     if (projectile.ProjectileData.SpecialActionsOnCreate != null)
                     {
                         projectile.ProjectileData.SpecialActionsOnCreate(projectile, this);
@@ -71,6 +72,11 @@ namespace TowerDefenseGame
             foreach(Projectile projectile in projectilesToRemove)
             {
                 Projectiles.Remove(projectile);
+            }
+
+            if (Target != null)
+            {
+                Rotation = -1f*(float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
             }
 
             base.UpdateObject(gameTime);
@@ -149,8 +155,9 @@ namespace TowerDefenseGame
 
         public string Texture;
         public Vector2 Scale;
+        public float BaseRotation;
 
-        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, Vector2 scale, int cost, string description = "", System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null)
+        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, string description = "", System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -161,6 +168,7 @@ namespace TowerDefenseGame
             Accuracy = accuracy;
             Cost = cost;
             Description = description;
+            BaseRotation = baseRotation;
             SpecialActionsOnSelectTarget = specialActionsOnSelectTarget;
             SpecialActionsOnCreate = specialActionsOnCreate;
             SpecialActionsOnSell = specialActionsOnSell;
