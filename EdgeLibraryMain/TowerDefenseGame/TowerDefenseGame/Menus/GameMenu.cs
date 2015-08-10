@@ -12,7 +12,6 @@ namespace TowerDefenseGame
     public class GameMenu : MenuBase
     {
         public static Level CurrentLevel;
-        public static Difficulty Difficulty;
         public static bool ShouldReset;
         public RoundManager RoundManager;
 
@@ -167,7 +166,7 @@ namespace TowerDefenseGame
                     Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd));
                     TowerSprites.Add(towerSprite);
 
-                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, Config.Towers[i].Cost.ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
+                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, (Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
                     TowerCostSprites.Add(towerCostSprite);
                 }
 
@@ -178,8 +177,8 @@ namespace TowerDefenseGame
                 Components.Add(TowerPanel);
 
                 //Must be initialized after the text, otherwise they will be null
-                Lives = Config.LivesNumber[(int)Difficulty];
-                Money = Config.StartingMoneyNumber[(int)Difficulty];
+                Lives = Config.LivesNumber[(int)Config.Difficulty];
+                Money = Config.StartingMoneyNumber[(int)Config.Difficulty];
             }
 
             EdgeGame.ClearColor = Color.Gray;
@@ -281,7 +280,7 @@ namespace TowerDefenseGame
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
-            if (Money >= Config.Towers[numberID].Cost)
+            if (Money >= (Config.Towers[numberID].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]))
             {
                 FloatingTower.Visible = true;
                 FloatingTower.Enabled = true;

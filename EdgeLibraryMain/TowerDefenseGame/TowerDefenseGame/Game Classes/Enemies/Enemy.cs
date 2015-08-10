@@ -11,6 +11,7 @@ namespace TowerDefenseGame
     {
         public EnemyData EnemyData;
         public float TrackDistance;
+        public float RealMaxHealth;
         public float Health;
         public List<Effect> Effects;
         public Waypoint CurrentWaypoint
@@ -38,7 +39,8 @@ namespace TowerDefenseGame
             EnemyData = data;
             Scale = data.Scale;
             TrackDistance = 0;
-            Health = EnemyData.MaxHealth;
+            RealMaxHealth = EnemyData.MaxHealth * Config.EnemyHealthMultiplier[(int)Config.Difficulty];
+            Health = RealMaxHealth;
             Effects = new List<Effect>();
         }
 
@@ -87,7 +89,7 @@ namespace TowerDefenseGame
         {
             base.UpdateObject(gameTime);
 
-            int textureNumber = (int)((Health / EnemyData.MaxHealth) * 10) + 1;
+            int textureNumber = (int)((Health / RealMaxHealth) * 10) + 1;
             enemyHealthBar.TextureName = "health" + (textureNumber > 10 ? 10 : textureNumber);
             enemyHealthBar.Scale = new Vector2(0.75f);
 

@@ -121,7 +121,7 @@ namespace TowerDefenseGame
             Components.Add(DifficultyName);
 
             StartButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.8f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.2f) };
-            StartButton.OnRelease += (x, y) => { GameMenu.CurrentLevel = Levels[CurrentIndex]; GameMenu.Difficulty = CurrentDifficulty; GameMenu.ShouldReset = true; MenuManager.SwitchMenu("GameMenu"); };
+            StartButton.OnRelease += (x, y) => { GameMenu.CurrentLevel = Levels[CurrentIndex]; Config.Difficulty = CurrentDifficulty; GameMenu.ShouldReset = true; MenuManager.SwitchMenu("GameMenu"); };
             StartButton.Style = buttonStyle;
             Components.Add(StartButton);
 
