@@ -91,8 +91,8 @@ namespace TowerDefenseGame
             enemyHealthBar.TextureName = "health" + (textureNumber > 10 ? 10 : textureNumber);
             enemyHealthBar.Scale = new Vector2(0.75f);
 
-            float healthBarYPos = Position.Y - (Height / 2f);
-            float altHealthBarYPos = Position.Y + (Height / 2f);
+            float healthBarYPos = Position.Y - ((Height / 2f) * Scale.Y);
+            float altHealthBarYPos = Position.Y + ((Height / 2f) * Scale.Y);
 
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
