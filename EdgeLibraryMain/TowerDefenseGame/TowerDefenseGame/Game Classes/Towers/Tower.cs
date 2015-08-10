@@ -17,6 +17,8 @@ namespace TowerDefenseGame
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
 
+        private List<Sprite> previousTargets = new List<Sprite>();
+
         public Tower(TowerData data, Vector2 position)
             : base(data.Texture, position)
         {
@@ -35,7 +37,6 @@ namespace TowerDefenseGame
 
         public void UpdateTower(List<Enemy> Enemies)
         {
-            //TODO: Make it so the tower only shoots when the round is started
             Target = SelectTarget(Enemies);
             if (canShoot)
             {
@@ -48,6 +49,12 @@ namespace TowerDefenseGame
                     }
                     Projectiles.Add(projectile);
                     canShoot = false;
+
+                    projectile.TargetPosition.Normalize();
+                    for (int i = 0; i < 500; i++)
+                    {
+                        previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One*0.1f });
+                    }
                 }
             }
 
@@ -84,6 +91,11 @@ namespace TowerDefenseGame
 
         public override void DrawObject(GameTime gameTime)
         {
+            foreach(Sprite sprite in previousTargets)
+            {
+                sprite.Draw(gameTime);
+            }
+
             foreach(Projectile projectile in Projectiles)
             {
                 projectile.Draw(gameTime);

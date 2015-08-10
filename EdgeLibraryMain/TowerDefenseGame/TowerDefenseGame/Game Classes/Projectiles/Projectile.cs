@@ -11,6 +11,7 @@ namespace TowerDefenseGame
     public class Projectile : Sprite
     {
         public ProjectileData ProjectileData;
+        public Vector2 TargetPosition;
         public Enemy Target;
         public List<Enemy> PiercedEnemies;
         public int PiercedEnemiesCount;
@@ -28,11 +29,11 @@ namespace TowerDefenseGame
             PiercedEnemies = new List<Enemy>();
             PiercedEnemiesCount = 0;
 
-            Vector2 targetPosition = target.Position - Position;
-            targetPosition.Normalize();
-            targetPosition = new Vector2(targetPosition.X * ProjectileData.Range, targetPosition.Y * ProjectileData.Range);
-            targetPosition = new Vector2(targetPosition.X + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f), targetPosition.Y + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f));
-            MoveAction = new AMoveTo(targetPosition, ProjectileData.MovementSpeed);
+            TargetPosition = target.Position - Position;
+            TargetPosition.Normalize();
+            TargetPosition = new Vector2(TargetPosition.X * ProjectileData.Range, TargetPosition.Y * ProjectileData.Range);
+            TargetPosition = new Vector2(TargetPosition.X + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f), TargetPosition.Y + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f));
+            MoveAction = new AMoveTo(TargetPosition, ProjectileData.MovementSpeed);
             MoveAction.OnFinish += moveAction_OnFinish;
             AddAction("MoveAction", MoveAction);
         }

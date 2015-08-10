@@ -36,10 +36,12 @@ namespace TowerDefenseGame
         public TextSprite MoneyText;
         public TextSprite RemainingText;
         public TextSprite RemainingNumber;
+        public TextSprite GameSpeedText;
         public TextSprite NextRoundText;
         public int DefeatedEnemies;
         public int TotalEnemies;
 
+        public Button GameSpeedButton;
         public Button NextRoundButton;
 
         public List<Button> TowerButtons;
@@ -110,6 +112,27 @@ namespace TowerDefenseGame
                 RemainingNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.54f));
                 Components.Add(RemainingNumber);
 
+                GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.69f));
+                Components.Add(GameSpeedText);
+
+                GameSpeedButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.77f)) { Color = Color.White, Scale = new Vector2(1f) };
+                GameSpeedButton.OnRelease += (x, y) =>
+                {
+                    if (EdgeGame.GameSpeed == 1)
+                    {
+                        EdgeGame.GameSpeed = 3;
+                    }
+                    else
+                    {
+                        EdgeGame.GameSpeed = 1;
+                    }
+                };
+                GameSpeedButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
+                GameSpeedButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
+                GameSpeedButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");
+                GameSpeedButton.Style.AllColors = Color.White;
+                Components.Add(GameSpeedButton);
+
                 NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.84f));
                 Components.Add(NextRoundText);
 
@@ -123,6 +146,11 @@ namespace TowerDefenseGame
                         DefeatedEnemies = 0;
                         TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
                         RemainingNumber.Text = TotalEnemies.ToString();
+
+                        foreach (Tower tower in Towers)
+                        {
+                            tower.Projectiles.Clear();
+                        }
                     }
                 };
                 NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
