@@ -181,7 +181,6 @@ namespace TowerDefenseGame
         };
 
         public static List<TowerData> Towers = new List<TowerData>()
-<<<<<<< HEAD
     {
         new TowerData(20, 500, 1000, 10, Projectiles[0], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "TEST"),
         new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "Spread"),
@@ -190,15 +189,6 @@ namespace TowerDefenseGame
         new TowerData(100, 0, 800, 50, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), Vector2.One, 400, "Fire"),
         new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), Vector2.One, 40000, "(Happy Face)")
     };
-=======
-        {
-            new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "Spread"),
-            new TowerData(7, 300, 600, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), Vector2.One, 300, "Explosive"),
-            new TowerData(1, 100, 500, 100, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), Vector2.One, 400, "Homing"),
-            new TowerData(100, 200, 800, 80, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), Vector2.One, 400, "Fire"),
-            new TowerData(200, 10, 800, 80, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), Vector2.One, 40000, "(Happy Face)")
-        };
->>>>>>> origin/master
 
         public static string TrackEasyDifficulty = "Easy";
         public static string TrackMediumDifficulty = "Medium";

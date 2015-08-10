@@ -91,16 +91,12 @@ namespace TowerDefenseGame
 
         public override void DrawObject(GameTime gameTime)
         {
-<<<<<<< HEAD
             foreach(Sprite sprite in previousTargets)
             {
                 sprite.Draw(gameTime);
             }
 
             foreach(Projectile projectile in Projectiles)
-=======
-            foreach (Projectile projectile in Projectiles)
->>>>>>> origin/master
             {
                 projectile.Draw(gameTime);
             }
