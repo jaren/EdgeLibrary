@@ -99,9 +99,14 @@ namespace TowerDefenseGame
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
-            foreach (Effect effect in Effects)
+            for (int i = 0; i < Effects.Count(); i++)
             {
-                effect.UpdateEffect(this);
+                Effects[i].UpdateEffect(gameTime, this);
+                if (Effects[i].ShouldRemove)
+                {
+                    Effects.Remove(Effects[i]);
+                    i--;
+                }
             }
         }
 
@@ -109,6 +114,12 @@ namespace TowerDefenseGame
         {
             base.DrawObject(gameTime);
             enemyHealthBar.Draw(gameTime);
+        }
+
+        public enum Type
+        {
+            Default,
+            Boss
         }
     }
 
