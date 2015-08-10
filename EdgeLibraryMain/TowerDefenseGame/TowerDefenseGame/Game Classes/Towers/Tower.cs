@@ -51,7 +51,7 @@ namespace TowerDefenseGame
                 }
             }
 
-            foreach(Projectile projectile in Projectiles)
+            foreach (Projectile projectile in Projectiles)
             {
                 projectile.UpdateProjectile(Enemies, this);
             }
@@ -61,7 +61,7 @@ namespace TowerDefenseGame
         {
             ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
-            foreach(Projectile projectile in Projectiles)
+            foreach (Projectile projectile in Projectiles)
             {
                 projectile.Update(gameTime);
                 if (projectile.ShouldBeRemoved)
@@ -69,14 +69,14 @@ namespace TowerDefenseGame
                     projectilesToRemove.Add(projectile);
                 }
             }
-            foreach(Projectile projectile in projectilesToRemove)
+            foreach (Projectile projectile in projectilesToRemove)
             {
                 Projectiles.Remove(projectile);
             }
 
             if (Target != null)
             {
-                Rotation = -1f*(float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
+                Rotation = -1f * (float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
             }
 
             base.UpdateObject(gameTime);
@@ -84,7 +84,7 @@ namespace TowerDefenseGame
 
         public override void DrawObject(GameTime gameTime)
         {
-            foreach(Projectile projectile in Projectiles)
+            foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(gameTime);
             }
@@ -104,7 +104,7 @@ namespace TowerDefenseGame
 
             if (EnemiesInRange.Count == 0) { return null; }
 
-            switch(AttackTarget)
+            switch (AttackTarget)
             {
                 case AttackTarget.First:
                     EnemiesInRange.OrderBy(x => x.TrackDistance);

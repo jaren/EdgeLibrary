@@ -20,7 +20,7 @@ namespace EdgeLibrary
 
         public delegate void ActionEvent(Action action, GameTime gameTime, Sprite sprite);
         public event ActionEvent OnFinish;
-        
+
         public void Update(GameTime gameTime, Sprite sprite)
         {
             if (toRemove)
@@ -53,7 +53,7 @@ namespace EdgeLibrary
 
         //Get a copy of the action - to be overridden
         public abstract Action SubClone();
-        
+
         //Resets the action so it can be run again
         public virtual void Reset() { }
 
@@ -62,13 +62,13 @@ namespace EdgeLibrary
         public void Stop() { toRemove = true; }
         protected void Stop(GameTime gameTime, Sprite sprite)
         {
-            if(GetType() == typeof(AMoveTo))
+            if (GetType() == typeof(AMoveTo))
             {
 
             }
-            
 
-            toRemove = true; 
+
+            toRemove = true;
             if (OnFinish != null)
             {
                 OnFinish(this, gameTime, sprite);

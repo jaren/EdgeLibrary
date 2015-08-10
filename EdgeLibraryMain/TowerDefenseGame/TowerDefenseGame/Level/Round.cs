@@ -58,9 +58,9 @@ namespace TowerDefenseGame
         public float TimeBetween;
         public int Count;
 
-        public RoundEnemyList(EnemyData enemyData, float timeBetween, int count)
+        public RoundEnemyList(Enemy.Type enemyType, float timeBetween, int count)
         {
-            EnemyData = enemyData;
+            EnemyData = Config.Enemies[(int)enemyType];
             TimeBetween = timeBetween;
             Count = count;
         }
