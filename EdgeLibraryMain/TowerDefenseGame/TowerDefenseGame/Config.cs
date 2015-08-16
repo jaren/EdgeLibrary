@@ -182,7 +182,7 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
     {
-        new TowerData(20, 500, 1000, 10, Projectiles[0], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "TEST"),
+        new TowerData(20, 500, 1000, 0, Projectiles[0], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "TEST"),
         new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "Spread"),
         new TowerData(7, 300, 600, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), Vector2.One, 300, "Explosive"),
         new TowerData(1, 50, 500, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), Vector2.One, 400, "Homing"),

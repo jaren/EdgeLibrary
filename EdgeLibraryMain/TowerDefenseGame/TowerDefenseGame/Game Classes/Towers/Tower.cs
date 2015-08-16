@@ -51,6 +51,7 @@ namespace TowerDefenseGame
                     canShoot = false;
 
                     projectile.TargetPosition.Normalize();
+                    previousTargets.Clear();
                     for (int i = 0; i < 500; i++)
                     {
                         previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One*0.1f });

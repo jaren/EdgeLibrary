@@ -35,10 +35,12 @@ namespace TowerDefenseGame
         {
             OnEmitEnemy(this, Enemies[CurrentIndex].Key);
             CurrentIndex++;
-
-            if (CurrentIndex >= Enemies.Count && OnFinish != null)
+            if (CurrentIndex >= Enemies.Count)
             {
-                OnFinish(this);
+                if (OnFinish != null)
+                {
+                    OnFinish(this);
+                }
                 return;
             }
 
