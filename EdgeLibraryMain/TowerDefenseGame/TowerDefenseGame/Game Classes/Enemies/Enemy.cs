@@ -30,6 +30,7 @@ namespace TowerDefenseGame
         }
         private Waypoint currentWaypoint;
         private Sprite enemyHealthBar = new Sprite("health10", Vector2.Zero);
+        private TextSprite debugEnemyHealth = new TextSprite("Georgia-40", "", Vector2.Zero);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
 
@@ -99,6 +100,11 @@ namespace TowerDefenseGame
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
+            debugEnemyHealth.Text = Health.ToString();
+            debugEnemyHealth.Position = Position;
+            debugEnemyHealth.Update(gameTime);
+            debugEnemyHealth.Visible = Config.DebugMode;
+
             for (int i = 0; i < Effects.Count(); i++)
             {
                 Effects[i].UpdateEffect(gameTime, this);
@@ -114,6 +120,7 @@ namespace TowerDefenseGame
         {
             base.DrawObject(gameTime);
             enemyHealthBar.Draw(gameTime);
+            debugEnemyHealth.Draw(gameTime);
         }
 
         public enum Type

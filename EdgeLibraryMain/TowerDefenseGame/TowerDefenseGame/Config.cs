@@ -16,6 +16,7 @@ namespace TowerDefenseGame
         public static int[] LivesNumber = new int[] { 25, 10, 1 };
         public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
         public static Difficulty Difficulty;
+        public static bool DebugMode = false;
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {

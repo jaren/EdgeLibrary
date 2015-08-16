@@ -38,6 +38,7 @@ namespace TowerDefenseGame
         public TextSprite RemainingNumber;
         public TextSprite GameSpeedText;
         public TextSprite NextRoundText;
+        public TextSprite DebugModeText;
         public int DefeatedEnemies;
         public int TotalEnemies;
 
@@ -90,6 +91,10 @@ namespace TowerDefenseGame
 
                 RoundText = new TextSprite(Config.MenuSubtitleFont, "ROUND", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f), EdgeGame.WindowSize.Y * 0.05f));
                 Components.Add(RoundText);
+
+                DebugModeText = new TextSprite(Config.MenuSubtitleFont, "DEBUG", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.03f), Color.Yellow, Vector2.One);
+                DebugModeText.Visible = false;
+                Components.Add(DebugModeText);
 
                 RoundNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.09f));
                 Components.Add(RoundNumber);
@@ -348,6 +353,8 @@ namespace TowerDefenseGame
             RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
             RemainingNumber.Update(gameTime);
 
+            DebugModeText.Visible = Config.DebugMode;
+
             if (FloatingTower.Enabled)
             {
                 FloatingTower.Position = Input.MousePosition;
@@ -489,6 +496,10 @@ namespace TowerDefenseGame
             if (key == Keys.PageDown)
             {
                 Money = Int32.MaxValue;
+            }
+            else if (key == Keys.PageUp)
+            {
+                Config.DebugMode = !Config.DebugMode;
             }
         }
     }
