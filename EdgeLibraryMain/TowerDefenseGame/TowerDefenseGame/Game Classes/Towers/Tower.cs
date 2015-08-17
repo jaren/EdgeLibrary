@@ -61,13 +61,14 @@ namespace TowerDefenseGame
                     projectile.Rotation = Rotation + projectile.ProjectileData.BaseRotation;
                     Projectiles.Add(projectile);
                     canShoot = false;
+                    ShootTicker.elapsedMilliseconds = 0;
 
                     projectile.TargetPosition.Normalize();
                     previousTargets.Clear();
 
                     if (Config.DebugMode)
                     {
-                        for (int i = 0; i < 500; i++)
+                        for (int i = 0; i < 100; i++)
                         {
                             previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One * 0.1f });
                         }

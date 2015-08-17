@@ -22,7 +22,7 @@ namespace TowerDefenseGame
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
             new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, "Just a normal enemy."),
-            new EnemyData(50000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, "NOT just a normal enemy.")
+            new EnemyData(10000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, "NOT just a normal enemy.")
         };
 
         private static float baseWaitTime = 1000f;
@@ -111,7 +111,7 @@ namespace TowerDefenseGame
                     projectile.RemoveAction("MoveAction");
                     Vector2 differenceVector = projectile.Target.Position - projectile.Position;
                     differenceVector.Normalize();
-                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed);
+                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
                     projectile.Position += differenceVector;
                 }
                 else
@@ -145,7 +145,7 @@ namespace TowerDefenseGame
                     projectile.RemoveAction("MoveAction");
                     Vector2 differenceVector = projectile.Target.Position - projectile.Position;
                     differenceVector.Normalize();
-                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed);
+                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
                     projectile.Position += differenceVector;
                 }
                 else

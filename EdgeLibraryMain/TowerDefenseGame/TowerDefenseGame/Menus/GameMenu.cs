@@ -77,6 +77,7 @@ namespace TowerDefenseGame
                 RoundManager = new RoundManager(Config.RoundList);
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
                 RoundManager.OnFinish += RoundManager_OnFinish;
+                RoundManager.OnFinishRound += RoundManager_OnFinishRound;
 
                 Vector2 CommonRatio = new Vector2(0.85f);
 
@@ -150,6 +151,7 @@ namespace TowerDefenseGame
                         RoundManager.StartRound();
                         DefeatedEnemies = 0;
                         TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
+
                         RemainingNumber.Text = TotalEnemies.ToString();
 
                         foreach (Tower tower in Towers)
@@ -219,6 +221,11 @@ namespace TowerDefenseGame
             base.SwitchTo();
         }
 
+        private void RoundManager_OnFinishRound(Round round, int number)
+        {
+            Money += (RoundManager.CurrentIndex - 1) * 50;
+        }
+
         public void LoseGame()
         { 
             //Add lose game stuff here
@@ -256,6 +263,13 @@ namespace TowerDefenseGame
             {
                 Lives -= enemy.EnemyData.LivesTaken;
                 EnemiesToRemove.Add(enemy);
+
+                DefeatedEnemies++;
+                if (DefeatedEnemies == TotalEnemies)
+                {
+                    Money += (RoundManager.CurrentIndex - 1) * 50;
+                }
+
                 if (Lives <= 0)
                 {
                     LoseGame();
@@ -418,6 +432,10 @@ namespace TowerDefenseGame
                 {
                     EnemiesToRemove.Add(enemy);
                     DefeatedEnemies++;
+                    if(DefeatedEnemies == TotalEnemies)
+                    {
+                        Money += (RoundManager.CurrentIndex - 1) * 50;
+                    }
                     Money += enemy.EnemyData.MoneyOnDeath;
                 }
                 else
