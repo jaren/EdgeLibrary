@@ -18,6 +18,7 @@ namespace TowerDefenseGame
         private List<Projectile> projectilesToRemove;
 
         private List<Sprite> previousTargets = new List<Sprite>();
+        private Sprite towerRange;
 
         public Tower(TowerData data, Vector2 position)
             : base(data.Texture, position)
@@ -28,6 +29,9 @@ namespace TowerDefenseGame
             ShootTicker.Started = true;
             canShoot = false;
             Projectiles = new List<Projectile>();
+            towerRange = new Sprite("Circle", Position);
+            towerRange.Scale = new Vector2(TowerData.Range / 500f);
+            Scale = TowerData.Scale;
         }
 
         void ShootTicker_OnTick(GameTime gameTime)
@@ -38,6 +42,12 @@ namespace TowerDefenseGame
         public void UpdateTower(List<Enemy> Enemies)
         {
             Target = SelectTarget(Enemies);
+
+            if (Target != null)
+            {
+                Rotation = -1f * (float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
+            }
+
             if (canShoot)
             {
                 if (Target != null)
@@ -47,14 +57,20 @@ namespace TowerDefenseGame
                     {
                         projectile.ProjectileData.SpecialActionsOnCreate(projectile, this);
                     }
+
+                    projectile.Rotation = Rotation + projectile.ProjectileData.BaseRotation;
                     Projectiles.Add(projectile);
                     canShoot = false;
 
                     projectile.TargetPosition.Normalize();
                     previousTargets.Clear();
-                    for (int i = 0; i < 500; i++)
+
+                    if (Config.DebugMode)
                     {
-                        previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One*0.1f });
+                        for (int i = 0; i < 500; i++)
+                        {
+                            previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One * 0.1f });
+                        }
                     }
                 }
             }
@@ -69,6 +85,8 @@ namespace TowerDefenseGame
         {
             ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
+            towerRange.Visible = Config.ShowRanges;
+
             foreach (Projectile projectile in Projectiles)
             {
                 projectile.Update(gameTime);
@@ -82,16 +100,13 @@ namespace TowerDefenseGame
                 Projectiles.Remove(projectile);
             }
 
-            if (Target != null)
-            {
-                Rotation = -1f * (float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
-            }
-
             base.UpdateObject(gameTime);
         }
 
         public override void DrawObject(GameTime gameTime)
         {
+            towerRange.Draw(gameTime);
+
             foreach(Sprite sprite in previousTargets)
             {
                 sprite.Draw(gameTime);

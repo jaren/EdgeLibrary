@@ -17,6 +17,7 @@ namespace TowerDefenseGame
         public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
         public static Difficulty Difficulty;
         public static bool DebugMode = false;
+        public static bool ShowRanges = false;
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
@@ -85,13 +86,13 @@ namespace TowerDefenseGame
 
         public static List<ProjectileData> Projectiles = new List<ProjectileData>()
         {
-            //Normal
+            //Normal - 0
             new ProjectileData(10, 1000, 10, 0, 1, "particle_darkGrey", Vector2.One*0.5f, 1, 0),
 
-            //High Speed Projectile
+            //High Speed Projectile - 1
             new ProjectileData(50, 1000, 10, 0.2f, 1, "lightning_yellow", Vector2.One, 1, 0),
 
-            #region Cluster Projectile
+            #region Cluster Projectile - 2
             new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
                 ProjectileData clusterElement = new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0);
@@ -102,8 +103,8 @@ namespace TowerDefenseGame
             })),
             #endregion
 
-            #region Exploding Projectile
-                new ProjectileData(10, 500, 4, 0, 0, "coin_bronze", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
+            #region Exploding Projectile - 3
+                new ProjectileData(10, 500, 200, 0, 0, "coin_bronze", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
             {
                 if (projectile.Target.ShouldBeRemoved == false)
                 {
@@ -131,11 +132,12 @@ namespace TowerDefenseGame
             }), new Action<Projectile,Tower>( (projectile, tower) =>
             {
                 projectile.ToDelete = true;
-                tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "coin_silver", new Vector2(2f), projectile.Target, 100, projectile.Position, 300));
+                int explosionRadius = 200;
+                tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
             })),
                 #endregion
 
-            #region Homing Projectile
+            #region Homing Projectile - 4
             new ProjectileData(3, 1000, 10, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
             {
                 if (projectile.Target.ShouldBeRemoved == false)
@@ -157,8 +159,8 @@ namespace TowerDefenseGame
             })),
                 #endregion
 
-            #region Fire Projectile
-            new ProjectileData(2, 800, 0, 0, 1, "portal_orangeParticle", Vector2.One, 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            #region Fire Projectile - 5
+            new ProjectileData(2, 200, 0, 0, 1, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 if (!enemy.HasEffect("Fire"))
                 {
@@ -167,7 +169,7 @@ namespace TowerDefenseGame
             })),
                 #endregion
 
-            #region Coin Projectile
+            #region Coin Projectile - 6
             new ProjectileData(10, 1000, 10, 0, 1, "coin_gold", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
                 for (int i = 0; i < 10; i++)
@@ -183,12 +185,12 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
     {
-        new TowerData(20, 500, 1000, 0, Projectiles[0], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "TEST"),
-        new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), Vector2.One, 100, "Spread"),
-        new TowerData(7, 300, 600, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), Vector2.One, 300, "Explosive"),
-        new TowerData(1, 50, 500, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), Vector2.One, 400, "Homing"),
-        new TowerData(100, 0, 800, 50, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), Vector2.One, 400, "Fire"),
-        new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), Vector2.One, 40000, "(Happy Face)")
+        new TowerData(20, 500, 1000, 0, Projectiles[0], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 100, "TEST"),
+        new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 100, "Spread"),
+        new TowerData(7, 4000, 500, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, "Explosive"),
+        new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "Homing"),
+        new TowerData(100, 1500, 200, 50, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 400, "Fire"),
+        new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
     };
 
         public static string TrackEasyDifficulty = "Easy";

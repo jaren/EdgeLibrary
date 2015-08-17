@@ -196,7 +196,7 @@ namespace TowerDefenseGame
                     towerButton.OnClick += towerButton_OnClick;
                     TowerButtons.Add(towerButton);
 
-                    Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd));
+                    Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd)) { Scale = new Vector2(0.65f) };
                     TowerSprites.Add(towerSprite);
 
                     TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, (Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
@@ -317,9 +317,12 @@ namespace TowerDefenseGame
             {
                 FloatingTower.Visible = true;
                 FloatingTower.Enabled = true;
+                FloatingTower.Style.AllTextures = EdgeGame.GetTexture(Config.Towers[numberID].Texture);
+                FloatingTower.Texture = EdgeGame.GetTexture(Config.Towers[numberID].Texture);
+                FloatingTower.Scale = Config.Towers[numberID].Scale;
+
                 FloatingRange.Visible = true;
                 FloatingRange.Enabled = true;
-                FloatingTower.Style.AllTextures = EdgeGame.GetTexture(Config.Towers[numberID].Texture);
                 FloatingRange.Scale = new Vector2(Config.Towers[numberID].Range / 500f);
                 SelectedTower = Config.Towers[numberID];
             }
@@ -500,6 +503,11 @@ namespace TowerDefenseGame
             else if (key == Keys.PageUp)
             {
                 Config.DebugMode = !Config.DebugMode;
+                Config.ShowRanges = false;
+            }
+            else if (key == Keys.Home)
+            {
+                Config.ShowRanges = !Config.ShowRanges;
             }
         }
     }
