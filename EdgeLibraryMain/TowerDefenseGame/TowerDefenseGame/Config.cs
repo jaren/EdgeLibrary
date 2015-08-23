@@ -182,7 +182,7 @@ namespace TowerDefenseGame
                 #endregion
 
             #region Fire Projectile - 5
-            new ProjectileData(2, 200, 0, 0, 1, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            new ProjectileData(5, 350, 0, 0, 1, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 if (!enemy.HasEffect("Fire"))
                 {
@@ -211,7 +211,7 @@ namespace TowerDefenseGame
         new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 100, "Spread"),
         new TowerData(7, 4000, 500, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, "Explosive"),
         new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "Homing"),
-        new TowerData(100, 1500, 200, 50, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 400, "Fire"),
+        new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 400, "Fire"),
         new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
     };
 

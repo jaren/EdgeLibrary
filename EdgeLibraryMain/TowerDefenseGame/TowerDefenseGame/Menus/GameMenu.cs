@@ -524,7 +524,7 @@ namespace TowerDefenseGame
 
             if (key == Keys.PageDown)
             {
-                Money = Int32.MaxValue;
+                Money = Int16.MaxValue;
             }
             else if (key == Keys.PageUp)
             {

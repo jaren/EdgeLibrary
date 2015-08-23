@@ -33,6 +33,7 @@ namespace TowerDefenseGame
             TargetPosition.Normalize();
             TargetPosition = new Vector2(TargetPosition.X * ProjectileData.Range, TargetPosition.Y * ProjectileData.Range);
             TargetPosition = new Vector2(TargetPosition.X + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f), TargetPosition.Y + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f));
+            TargetPosition = TargetPosition + Position;
             MoveAction = new AMoveTo(TargetPosition, ProjectileData.MovementSpeed);
             MoveAction.OnFinish += moveAction_OnFinish;
             AddAction("MoveAction", MoveAction);
