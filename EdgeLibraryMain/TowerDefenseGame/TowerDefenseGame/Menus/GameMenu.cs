@@ -132,10 +132,12 @@ namespace TowerDefenseGame
                     if (EdgeGame.GameSpeed == 1)
                     {
                         EdgeGame.GameSpeed = 3;
+                        GameSpeedButton.Style.AllColors = Color.Goldenrod;
                     }
                     else
                     {
                         EdgeGame.GameSpeed = 1;
+                        GameSpeedButton.Style.AllColors = Color.White;
                     }
                 };
                 GameSpeedButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");

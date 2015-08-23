@@ -14,7 +14,7 @@ namespace TowerDefenseGame
         public static float[] EnemyHealthMultiplier = new float[] { 0.5f, 1f, 2f };
         public static float[] TowerCostMultiplier = new float[] { 0.75f, 1f, 1.25f };
         public static int[] LivesNumber = new int[] { 25, 10, 1 };
-        public static int[] StartingMoneyNumber = new int[] { 600, 550, 500 };
+        public static int[] StartingMoneyNumber = new int[] { 600, 500, 400 };
         public static Difficulty Difficulty;
         public static bool DebugMode = false;
         public static bool ShowRanges = false;
@@ -116,7 +116,18 @@ namespace TowerDefenseGame
                 }
                 else
                 {
-                    if (projectile.MiscData == null)
+                    bool foundTarget = false;
+                    foreach (Enemy enemy in enemies)
+                    {
+                        if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
+                        {
+                            foundTarget = true;
+                            projectile.Target = enemy;
+                            projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
+                        }
+                    }
+
+                    if (!foundTarget && projectile.MiscData == null)
                     {
                         projectile.AddAction(projectile.MoveAction);
                         projectile.MiscData = true;
@@ -135,7 +146,7 @@ namespace TowerDefenseGame
                 int explosionRadius = 200;
                 tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
             })),
-                #endregion
+            #endregion
 
             #region Homing Projectile - 4
             new ProjectileData(3, 1000, 10, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
@@ -150,7 +161,18 @@ namespace TowerDefenseGame
                 }
                 else
                 {
-                    if (projectile.MiscData == null)
+                    bool foundTarget = false;
+                    foreach (Enemy enemy in enemies)
+                    {
+                        if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
+                        {
+                            foundTarget = true;
+                            projectile.Target = enemy;
+                            projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
+                        }
+                    }
+
+                    if (!foundTarget && projectile.MiscData == null)
                     {
                         projectile.AddAction(projectile.MoveAction);
                         projectile.MiscData = true;
