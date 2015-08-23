@@ -31,7 +31,7 @@ namespace TowerDefenseGame
         public bool CompletedPath;
         private Waypoint currentWaypoint;
         private Sprite enemyHealthBar = new Sprite("health10", Vector2.Zero);
-        private TextSprite debugEnemyHealth = new TextSprite("Georgia-40", "", Vector2.Zero, Color.Red, Vector2.One);
+        private TextSprite debugEnemyHealth = new TextSprite("Georgia-20", "", Vector2.Zero, Color.White, Vector2.One);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
 
@@ -128,7 +128,8 @@ namespace TowerDefenseGame
         public enum Type
         {
             Default,
-            Boss
+            Boss,
+            Ufo
         }
     }
 

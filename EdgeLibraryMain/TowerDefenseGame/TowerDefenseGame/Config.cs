@@ -24,7 +24,8 @@ namespace TowerDefenseGame
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
             new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 1, "Just a normal enemy."),
-            new EnemyData(10000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 1, "NOT just a normal enemy.")
+            new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 1, "NOT just a normal enemy."),
+            new EnemyData(1000,2,0,75,1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")
         };
 
         private static float baseWaitTime = 1000f;
@@ -42,45 +43,53 @@ namespace TowerDefenseGame
             }),
             new Round(new List<RoundEnemyList>() //3
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.25f, 5)
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.25f, 5),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 2f, 1)
             }),
             new Round(new List<RoundEnemyList>() //4
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 8)
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 8),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.2f, 2)
             }),
             new Round(new List<RoundEnemyList>() //5
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 10),
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 5),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 5),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 1)
             }),
             new Round(new List<RoundEnemyList>() //6
             {
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 4),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
             }),
             new Round(new List<RoundEnemyList>() //7
             {
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 5),
+                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 9),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 4),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 4)
+                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
             }),
             new Round(new List<RoundEnemyList>() //8
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 20)
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 15),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3f, 1),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 14)
             }),
             new Round(new List<RoundEnemyList>() //9
             {
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 5, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 4),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 5, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 10),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 9)
             }),
             new Round(new List<RoundEnemyList>() //10
             {
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 50),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 10)
             }),
         };
@@ -145,7 +154,7 @@ namespace TowerDefenseGame
             }), new Action<Projectile,Tower>( (projectile, tower) =>
             {
                 projectile.ToDelete = true;
-                int explosionRadius = 200;
+                int explosionRadius = 125;
                 tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
             })),
             #endregion
@@ -210,7 +219,7 @@ namespace TowerDefenseGame
         public static List<TowerData> Towers = new List<TowerData>()
     {
         new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 100, "Spread"),
-        new TowerData(7, 4000, 500, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, "Explosive"),
+        new TowerData(7, 5000, 300, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, "Explosive"),
         new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "Homing"),
         new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 400, "Fire"),
         //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
