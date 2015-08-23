@@ -43,25 +43,23 @@ namespace TowerDefenseGame
             }),
             new Round(new List<RoundEnemyList>() //3
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.25f, 5),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 2f, 1)
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.25f, 5)
             }),
             new Round(new List<RoundEnemyList>() //4
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 8),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.2f, 2)
             }),
             new Round(new List<RoundEnemyList>() //5
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 5),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 5),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 1),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 1)
             }),
             new Round(new List<RoundEnemyList>() //6
             {
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 4),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 2),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
             }),
@@ -69,7 +67,7 @@ namespace TowerDefenseGame
             {
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 9),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
                 new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
             }),
@@ -77,19 +75,20 @@ namespace TowerDefenseGame
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 15),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3f, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 14)
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 9)
             }),
             new Round(new List<RoundEnemyList>() //9
             {
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 10),
+                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 5),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 5),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4),
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 9)
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4)
             }),
             new Round(new List<RoundEnemyList>() //10
             {
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 50),
+                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 20),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 10)
             }),
         };
@@ -101,10 +100,10 @@ namespace TowerDefenseGame
             new ProjectileData(10, 1000, 10, 0, 1, "particle_darkGrey", Vector2.One*0.5f, 1, 0),
 
             //High Speed Projectile - 1
-            new ProjectileData(50, 1000, 10, 0.2f, 1, "lightning_yellow", Vector2.One, 1, 0),
+            new ProjectileData(30, 1000, 100, 0.5f, 5, "lighting_yellow", Vector2.One * 1.5f, 1, 0),
 
             #region Cluster Projectile - 2
-            new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
+            new ProjectileData(10, 1000, 25, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
                 ProjectileData clusterElement = new ProjectileData(10, 1000, 10, 0, 1, "particle_pink", Vector2.One, 1, 0);
                 for (int i = 0; i < 10; i++)
@@ -217,13 +216,14 @@ namespace TowerDefenseGame
         };
 
         public static List<TowerData> Towers = new List<TowerData>()
-    {
-        new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 100, "Spread"),
-        new TowerData(7, 5000, 300, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, "Explosive"),
-        new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "Homing"),
-        new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 400, "Fire"),
-        //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
-    };
+        {
+            new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, "Spread"),
+            new TowerData(7, 5000, 300, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, "Explosive"),
+            new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, "Homing"),
+            new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, "Fire"),
+            new TowerData(1, 3000, 450, 0, Projectiles[1], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "High Speed")
+            //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
+        };
 
         public static string TrackEasyDifficulty = "Easy";
         public static string TrackMediumDifficulty = "Medium";
