@@ -85,10 +85,14 @@
     <Compile Include="Game Classes\Effects\Effect.cs" />
     <Compile Include="Game Classes\Effects\FireEffect.cs" />
     <Compile Include="Game Classes\Enemies\Enemy.cs" />
+    <Compile Include="Game Classes\Panels\InfoPanel.cs" />
+    <Compile Include="Game Classes\Panels\QuitPanel.cs" />
+    <Compile Include="Game Classes\Panels\TowerPanel.cs" />
     <Compile Include="Game Classes\Projectiles\ExplosionProjectile.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Level\CollisionDetection.cs" />
     <Compile Include="Level\Level.cs" />
+    <Compile Include="Level\ProceduralRoundManager.cs" />
     <Compile Include="Level\Restriction.cs" />
     <Compile Include="Level\Round.cs" />
     <Compile Include="Level\RoundManager.cs" />

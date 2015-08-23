@@ -136,6 +136,7 @@ namespace TowerDefenseGame
     {
         public float MaxHealth;
         public float Speed;
+        public int Difficulty;
 
         //Armor should be at least 1. Anything less will cause it to take more than normal damage
         public float Armor;
@@ -156,7 +157,7 @@ namespace TowerDefenseGame
         //For the base texture without scale - it will be multiplied with scale
         public float CollisionRadius;
 
-        public EnemyData(float maxHealth, float speed, float armor, int moneyOnDeath, int livesTaken, List<EnemyData> deathEnemies, string texture, Vector2 scale, float collisionRadius, string description = "", System.Action<Enemy> specialActionsOnCreate = null, System.Action<Enemy> specialActionsOnHit = null, System.Action<Enemy> specialActionsOnDestroy = null)
+        public EnemyData(float maxHealth, float speed, float armor, int moneyOnDeath, int livesTaken, List<EnemyData> deathEnemies, string texture, Vector2 scale, float collisionRadius, int difficulty, string description = "", System.Action<Enemy> specialActionsOnCreate = null, System.Action<Enemy> specialActionsOnHit = null, System.Action<Enemy> specialActionsOnDestroy = null)
         {
             MaxHealth = maxHealth;
             Speed = speed;
@@ -171,6 +172,7 @@ namespace TowerDefenseGame
             SpecialActionsOnHit = specialActionsOnHit;
             SpecialActionsOnDestroy = specialActionsOnDestroy;
             Description = description;
+            Difficulty = difficulty;
         }
     }
 }

@@ -19,10 +19,12 @@ namespace TowerDefenseGame
         public static bool DebugMode = false;
         public static bool ShowRanges = false;
 
+        public static Vector2 CommonRatio = new Vector2(0.85f);
+
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, "Just a normal enemy."),
-            new EnemyData(10000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, "NOT just a normal enemy.")
+            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 1, "Just a normal enemy."),
+            new EnemyData(10000, 0.5f, 0, 50, 1, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 1, "NOT just a normal enemy.")
         };
 
         private static float baseWaitTime = 1000f;

@@ -15,35 +15,27 @@ namespace TowerDefenseGame
         public static bool ShouldReset;
         public RoundManager RoundManager;
 
+        public QuitPanel QuitPanel;
+        public TowerPanel TowerPanel;
+        public InfoPanel InfoPanel;
+
         public int Lives
         {
             get { return lives; }
-            set { lives = value; LivesNumber.Text = lives.ToString(); }
+            set { lives = value; InfoPanel.LivesNumber.Text = lives.ToString(); }
         }
         private int lives;
         public int Money
         {
             get { return money; }
-            set { money = value; MoneyNumber.Text = money.ToString(); }
+            set { money = value; InfoPanel.MoneyNumber.Text = money.ToString(); }
         }
         private int money;
 
-        public TextSprite RoundNumber;
-        public TextSprite RoundText;
-        public TextSprite LivesNumber;
-        public TextSprite LivesText;
-        public TextSprite MoneyNumber;
-        public TextSprite MoneyText;
-        public TextSprite RemainingText;
-        public TextSprite RemainingNumber;
-        public TextSprite GameSpeedText;
-        public TextSprite NextRoundText;
-        public TextSprite DebugModeText;
         public int DefeatedEnemies;
         public int TotalEnemies;
 
-        public Button GameSpeedButton;
-        public Button NextRoundButton;
+        public bool CanStartRound;
 
         public List<Button> TowerButtons;
         public List<Sprite> TowerSprites;
@@ -51,7 +43,6 @@ namespace TowerDefenseGame
         public TextSprite TowerInfoSprite;
 
         public List<Tower> Towers;
-        TowerPanel TowerPanel;
 
         public List<Enemy> Enemies;
         private List<Enemy> EnemiesToRemove;
@@ -74,6 +65,8 @@ namespace TowerDefenseGame
 
                 Components.Clear();
 
+                CanStartRound = true;
+
                 List<Round> roundList = new List<Round>();
                 foreach (Round round in Config.RoundList)
                 {
@@ -81,85 +74,43 @@ namespace TowerDefenseGame
                 }
                 RoundManager = new RoundManager(roundList);
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
-                RoundManager.OnFinish += RoundManager_OnFinish;
                 RoundManager.OnFinishRound += RoundManager_OnFinishRound;
-
-                Vector2 CommonRatio = new Vector2(0.85f);
 
                 Towers = new List<Tower>();
 
                 Enemies = new List<Enemy>();
                 EnemiesToRemove = new List<Enemy>();
 
-                CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * CommonRatio.Y);
-                CurrentLevel.ResizeLevel(EdgeGame.WindowSize * CommonRatio);
+                CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * Config.CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * Config.CommonRatio.Y);
+                CurrentLevel.ResizeLevel(EdgeGame.WindowSize * Config.CommonRatio);
                 Components.Add(CurrentLevel);
 
-                RoundText = new TextSprite(Config.MenuSubtitleFont, "ROUND", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f), EdgeGame.WindowSize.Y * 0.05f));
-                Components.Add(RoundText);
-
-                DebugModeText = new TextSprite(Config.MenuSubtitleFont, "DEBUG", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.03f), Color.Yellow, Vector2.One);
-                DebugModeText.Visible = false;
-                Components.Add(DebugModeText);
-
-                RoundNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.09f));
-                Components.Add(RoundNumber);
-
-                LivesText = new TextSprite(Config.MenuSubtitleFont, "LIVES", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.2f));
-                Components.Add(LivesText);
-
-                LivesNumber = new TextSprite("Georgia-60", Lives.ToString(), new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.24f));
-                Components.Add(LivesNumber);
-
-                MoneyText = new TextSprite(Config.MenuSubtitleFont, "MONEY", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.35f));
-                Components.Add(MoneyText);
-
-                MoneyNumber = new TextSprite("Georgia-60", Money.ToString(), new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.39f));
-                Components.Add(MoneyNumber);
-
-                RemainingText = new TextSprite(Config.MenuSubtitleFont, "ENEMIES", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.5f));
-                Components.Add(RemainingText);
-
-                RemainingNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.54f));
-                Components.Add(RemainingNumber);
-
-                GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.69f));
-                Components.Add(GameSpeedText);
-
-                GameSpeedButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.77f)) { Color = Color.White, Scale = new Vector2(1f) };
-                GameSpeedButton.OnRelease += (x, y) =>
+                InfoPanel = new InfoPanel() { Visible = true };
+                InfoPanel.LivesNumber.Text = Lives.ToString();
+                InfoPanel.MoneyNumber.Text = Money.ToString();
+                InfoPanel.GameSpeedButton.OnRelease += (x, y) =>
                 {
                     if (EdgeGame.GameSpeed == 1)
                     {
                         EdgeGame.GameSpeed = 3;
-                        GameSpeedButton.Style.AllColors = Color.Goldenrod;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.Goldenrod;
                     }
                     else
                     {
                         EdgeGame.GameSpeed = 1;
-                        GameSpeedButton.Style.AllColors = Color.White;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.White;
                     }
                 };
-                GameSpeedButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
-                GameSpeedButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
-                GameSpeedButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");
-                GameSpeedButton.Style.AllColors = Color.White;
-                Components.Add(GameSpeedButton);
-
-                NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.84f));
-                Components.Add(NextRoundText);
-
-                NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.92f)) { Color = Color.White, Scale = new Vector2(1f) };
-                NextRoundButton.OnRelease += (x, y) =>
+                InfoPanel.NextRoundButton.OnRelease += (x, y) =>
                 {
-                    if (!RoundManager.RoundRunning && Enemies.Count == 0) 
+                    if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
                     {
-                        RoundNumber.Text = (RoundManager.CurrentIndex+1).ToString();
+                        InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
                         RoundManager.StartRound();
                         DefeatedEnemies = 0;
                         TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
 
-                        RemainingNumber.Text = TotalEnemies.ToString();
+                        InfoPanel.RemainingNumber.Text = TotalEnemies.ToString();
 
                         foreach (Tower tower in Towers)
                         {
@@ -167,11 +118,21 @@ namespace TowerDefenseGame
                         }
                     }
                 };
-                NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
-                NextRoundButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
-                NextRoundButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");
-                NextRoundButton.Style.AllColors = Color.White;
-                Components.Add(NextRoundButton);
+                Components.Add(InfoPanel);
+
+                TowerPanel = new TowerPanel() { Visible = false };
+                Components.Add(TowerPanel);
+                QuitPanel = new QuitPanel() { Visible = false };
+                QuitPanel.ContinueButton.OnRelease += (x, y) =>
+                {
+                    CanStartRound = true;
+                    QuitPanel.Visible = false;
+                };
+                QuitPanel.QuitButton.OnRelease += (x, y) =>
+                {
+                    MenuManager.SwitchMenu("MainMenu");
+                };
+                Components.Add(QuitPanel);
 
                 FloatingRange = new Sprite("Circle", Vector2.Zero);
                 Components.Add(FloatingRange);
@@ -188,7 +149,7 @@ namespace TowerDefenseGame
                 TowerSprites = new List<Sprite>();
                 TowerCostSprites = new List<TextSprite>();
 
-                Vector2 StartPosition = new Vector2(EdgeGame.WindowSize.X * 0.075f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f));
+                Vector2 StartPosition = new Vector2(EdgeGame.WindowSize.X * 0.075f, EdgeGame.WindowSize.Y * (Config.CommonRatio.Y + (1f - Config.CommonRatio.Y) / 2f));
                 float xStep = 0.1f;
                 float towerYAdd = -15;
                 float towerYMin = 20;
@@ -212,7 +173,7 @@ namespace TowerDefenseGame
                     TowerCostSprites.Add(towerCostSprite);
                 }
 
-                TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (CommonRatio.X + (1f - CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (CommonRatio.Y + (1f - CommonRatio.Y) / 2f)));
+                TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (Config.CommonRatio.X + (1f - Config.CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (Config.CommonRatio.Y + (1f - Config.CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
 
                 TowerPanel = new TowerPanel();
@@ -231,6 +192,11 @@ namespace TowerDefenseGame
         private void RoundManager_OnFinishRound(Round round, int number)
         {
             Money += (RoundManager.CurrentIndex - 1) * 50;
+
+            if (number >= RoundManager.Rounds.Count - 1)
+            {
+                WinGame();
+            }
         }
 
         public void LoseGame()
@@ -240,12 +206,8 @@ namespace TowerDefenseGame
 
         public void WinGame()
         {
-            //Add win game stuff here
-        }
-
-        void RoundManager_OnFinish(Round round)
-        {
-            WinGame();
+            QuitPanel.Visible = true;
+            CanStartRound = false;
         }
 
         void RoundManager_OnEmitEnemy(Round round, EnemyData enemyData)
@@ -375,10 +337,10 @@ namespace TowerDefenseGame
         {
             RoundManager.Update(gameTime);
 
-            RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
-            RemainingNumber.Update(gameTime);
+            InfoPanel.RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
+            InfoPanel.RemainingNumber.Update(gameTime);
 
-            DebugModeText.Visible = Config.DebugMode;
+            InfoPanel.DebugModeText.Visible = Config.DebugMode;
 
             if (FloatingTower.Enabled)
             {
@@ -493,8 +455,6 @@ namespace TowerDefenseGame
             {
                 enemy.Draw(gameTime);
             }
-
-            RemainingNumber.Draw(gameTime);
 
             base.DrawObject(gameTime);
         }
