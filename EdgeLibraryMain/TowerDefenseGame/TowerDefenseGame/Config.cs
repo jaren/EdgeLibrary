@@ -106,7 +106,7 @@ namespace TowerDefenseGame
             #region Exploding Projectile - 3
                 new ProjectileData(10, 500, 200, 0, 0, "coin_bronze", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
             {
-                if (projectile.Target.ShouldBeRemoved == false)
+                if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
                 {
                     projectile.RemoveAction("MoveAction");
                     Vector2 differenceVector = projectile.Target.Position - projectile.Position;
@@ -140,7 +140,7 @@ namespace TowerDefenseGame
             #region Homing Projectile - 4
             new ProjectileData(3, 1000, 10, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
             {
-                if (projectile.Target.ShouldBeRemoved == false)
+                if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
                 {
                     projectile.RemoveAction("MoveAction");
                     Vector2 differenceVector = projectile.Target.Position - projectile.Position;

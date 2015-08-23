@@ -267,6 +267,7 @@ namespace TowerDefenseGame
             if (waypoint.Type == 2)
             {
                 Lives -= enemy.EnemyData.LivesTaken;
+                enemy.CompletedPath = true;
                 EnemiesToRemove.Add(enemy);
 
                 DefeatedEnemies++;

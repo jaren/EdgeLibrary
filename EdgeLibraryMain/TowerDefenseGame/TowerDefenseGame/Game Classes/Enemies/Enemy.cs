@@ -28,6 +28,7 @@ namespace TowerDefenseGame
                 AddAction(moveAction);
             }
         }
+        public bool CompletedPath;
         private Waypoint currentWaypoint;
         private Sprite enemyHealthBar = new Sprite("health10", Vector2.Zero);
         private TextSprite debugEnemyHealth = new TextSprite("Georgia-40", "", Vector2.Zero, Color.Red, Vector2.One);
@@ -42,6 +43,7 @@ namespace TowerDefenseGame
             TrackDistance = 0;
             RealMaxHealth = EnemyData.MaxHealth * Config.EnemyHealthMultiplier[(int)Config.Difficulty];
             Health = RealMaxHealth;
+            CompletedPath = false;
             Effects = new List<Effect>();
         }
 
