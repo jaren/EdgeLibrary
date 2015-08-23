@@ -74,7 +74,12 @@ namespace TowerDefenseGame
 
                 Components.Clear();
 
-                RoundManager = new RoundManager(Config.RoundList);
+                List<Round> roundList = new List<Round>();
+                foreach (Round round in Config.RoundList)
+                {
+                    roundList.Add(round.Clone());
+                }
+                RoundManager = new RoundManager(roundList);
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
                 RoundManager.OnFinish += RoundManager_OnFinish;
                 RoundManager.OnFinishRound += RoundManager_OnFinishRound;

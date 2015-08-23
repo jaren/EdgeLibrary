@@ -10,6 +10,7 @@ namespace TowerDefenseGame
     public class Round : Ticker
     {
         public List<KeyValuePair<EnemyData,float>> Enemies;
+        public List<RoundEnemyList> EnemiesList;
         public int CurrentIndex = 0;
 
         public delegate void RoundEvent(Round round);
@@ -19,6 +20,7 @@ namespace TowerDefenseGame
 
         public Round(List<RoundEnemyList> enemies) : base(0)
         {
+            EnemiesList = enemies;
             Enemies = new List<KeyValuePair<EnemyData, float>>();
             foreach (RoundEnemyList enemy in enemies)
             {
@@ -45,6 +47,11 @@ namespace TowerDefenseGame
             }
 
             MillisecondsWait = Enemies[CurrentIndex].Value;
+        }
+
+        public new Round Clone()
+        {
+            return new Round(EnemiesList);
         }
     }
 
