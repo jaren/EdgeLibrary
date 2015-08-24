@@ -74,7 +74,6 @@ namespace TowerDefenseGame
                 }
                 RoundManager = new RoundManager(roundList);
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
-                RoundManager.OnFinishRound += RoundManager_OnFinishRound;
 
                 Towers = new List<Tower>();
 
@@ -92,8 +91,23 @@ namespace TowerDefenseGame
                 {
                     if (EdgeGame.GameSpeed == 1)
                     {
-                        EdgeGame.GameSpeed = 3;
+                        EdgeGame.GameSpeed = 2;
                         InfoPanel.GameSpeedButton.Style.AllColors = Color.Goldenrod;
+                    }
+                    else if (EdgeGame.GameSpeed == 2)
+                    {
+                        EdgeGame.GameSpeed = 3;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.OrangeRed;
+                    }
+                    else if (EdgeGame.GameSpeed == 3)
+                    {
+                        EdgeGame.GameSpeed = 4;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.Red;
+                    }
+                    else if (EdgeGame.GameSpeed == 4)
+                    {
+                        EdgeGame.GameSpeed = 6;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.Cyan;
                     }
                     else
                     {
@@ -176,9 +190,6 @@ namespace TowerDefenseGame
                 TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (Config.CommonRatio.X + (1f - Config.CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (Config.CommonRatio.Y + (1f - Config.CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
 
-                TowerPanel = new TowerPanel();
-                Components.Add(TowerPanel);
-
                 //Must be initialized after the text, otherwise they will be null
                 Lives = Config.LivesNumber[(int)Config.Difficulty];
                 Money = Config.StartingMoneyNumber[(int)Config.Difficulty];
@@ -187,16 +198,6 @@ namespace TowerDefenseGame
             EdgeGame.ClearColor = Color.Gray;
 
             base.SwitchTo();
-        }
-
-        private void RoundManager_OnFinishRound(Round round, int number)
-        {
-            Money += (RoundManager.CurrentIndex - 1) * 50;
-
-            if (number >= RoundManager.Rounds.Count - 1)
-            {
-                WinGame();
-            }
         }
 
         public void LoseGame()
@@ -237,7 +238,7 @@ namespace TowerDefenseGame
                 DefeatedEnemies++;
                 if (DefeatedEnemies == TotalEnemies)
                 {
-                    Money += (RoundManager.CurrentIndex - 1) * 50;
+                    Money += (RoundManager.CurrentIndex) * 50;
                 }
 
                 if (Lives <= 0)
@@ -404,8 +405,14 @@ namespace TowerDefenseGame
                     DefeatedEnemies++;
                     if(DefeatedEnemies == TotalEnemies)
                     {
-                        Money += (RoundManager.CurrentIndex - 1) * 50;
+                        Money += (RoundManager.CurrentIndex) * 50;
+
+                        if (RoundManager.CurrentIndex - 1 >= RoundManager.Rounds.Count - 1)
+                        {
+                            WinGame();
+                        }
                     }
+
                     Money += enemy.EnemyData.MoneyOnDeath;
                 }
                 else
@@ -423,11 +430,6 @@ namespace TowerDefenseGame
             {
                 tower.Update(gameTime);
                 tower.UpdateTower(Enemies);
-
-                if (tower.BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)) && Input.JustLeftClicked())
-                {
-                    TowerPanel.ShowWithTower(tower);
-                }
             }
 
             base.UpdateObject(gameTime);
@@ -469,11 +471,6 @@ namespace TowerDefenseGame
                     FloatingTower.Enabled = false;
                     FloatingRange.Visible = false;
                     FloatingRange.Enabled = false;
-                }
-                else if (TowerPanel.Enabled == true)
-                {
-                    TowerPanel.Visible = false;
-                    TowerPanel.Enabled = false;
                 }
                 else
                 {
