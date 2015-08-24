@@ -76,6 +76,24 @@ namespace TowerDefenseGame
             Effects.Add(effect);
         }
 
+        public bool RemoveEffect(string name)
+        {
+            Effect badEffect = null;
+            foreach (Effect addedEffect in Effects)
+            {
+                if (addedEffect.Name == name)
+                {
+                    badEffect = addedEffect;
+                }
+            }
+            if (badEffect != null)
+            {
+                Effects.Remove(badEffect);
+                return true;
+            }
+            return false;
+        }
+
         public bool HasEffect(string name)
         {
             foreach (Effect addedEffects in Effects)
@@ -92,7 +110,7 @@ namespace TowerDefenseGame
         {
             base.UpdateObject(gameTime);
 
-            int textureNumber = (int)((Health / RealMaxHealth) * 10) + 1;
+            int textureNumber = (int)Math.Round((Health / RealMaxHealth) * 10);
             enemyHealthBar.TextureName = "health" + (textureNumber > 10 ? 10 : textureNumber);
             enemyHealthBar.Scale = new Vector2(0.75f);
 

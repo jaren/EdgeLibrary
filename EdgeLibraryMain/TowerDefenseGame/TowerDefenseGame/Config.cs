@@ -192,12 +192,10 @@ namespace TowerDefenseGame
                 #endregion
 
             #region Fire Projectile - 5
-            new ProjectileData(5, 350, 0, 0, 1, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            new ProjectileData(5, 350, 0, 0, 2, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
-                if (!enemy.HasEffect("Fire"))
-                {
-                    enemy.AddEffect(new FireEffect(3000));
-                }
+                enemy.RemoveEffect("Fire");
+                enemy.AddEffect(new FireEffect(3000));
             })),
                 #endregion
 
