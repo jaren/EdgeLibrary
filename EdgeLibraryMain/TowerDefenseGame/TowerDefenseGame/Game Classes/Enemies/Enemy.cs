@@ -92,7 +92,7 @@ namespace TowerDefenseGame
         {
             base.UpdateObject(gameTime);
 
-            int textureNumber = (int)((Health / RealMaxHealth) * 10) + 1;
+            int textureNumber = (int)Math.Round((Health / RealMaxHealth) * 10);
             enemyHealthBar.TextureName = "health" + (textureNumber > 10 ? 10 : textureNumber);
             enemyHealthBar.Scale = new Vector2(0.75f);
 
