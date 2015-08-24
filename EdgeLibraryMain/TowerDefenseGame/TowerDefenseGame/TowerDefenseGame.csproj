@@ -109,7 +109,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game Classes\Projectiles\Projectile.cs" />
     <Compile Include="Game Classes\Towers\Tower.cs" />
-    <Compile Include="Game Classes\TowerPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EdgeLibrary\EdgeLibrary.csproj">
