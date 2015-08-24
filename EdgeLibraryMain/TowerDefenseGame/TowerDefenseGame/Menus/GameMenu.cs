@@ -76,7 +76,6 @@ namespace TowerDefenseGame
                 }
                 RoundManager = new RoundManager(roundList);
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
-                RoundManager.OnFinishRound += RoundManager_OnFinishRound;
 
                 Towers = new List<Tower>();
 
@@ -438,11 +437,6 @@ namespace TowerDefenseGame
             {
                 tower.Update(gameTime);
                 tower.UpdateTower(Enemies);
-
-                if (tower.BoundingBox.Contains(new Point((int)Input.MousePosition.X, (int)Input.MousePosition.Y)) && Input.JustLeftClicked())
-                {
-                    TowerPanel.ShowWithTower(tower);
-                }
             }
 
             base.UpdateObject(gameTime);
