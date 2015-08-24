@@ -29,7 +29,7 @@ namespace TowerDefenseGame
                     Enemies.Add(new KeyValuePair<EnemyData,float>(enemy.EnemyData, enemy.TimeBetween));
                 }
             }
-            MillisecondsWait = enemies[0].TimeBetween;
+
             base.OnTick += Round_OnTick;
         }
 

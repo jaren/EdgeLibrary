@@ -32,7 +32,7 @@ namespace TowerDefenseGame
             }
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (CurrentIndex < Rounds.Count)
             {
@@ -40,19 +40,19 @@ namespace TowerDefenseGame
             }
         }
 
-        public void Restart()
+        public virtual void Restart()
         {
             CurrentIndex = 0;
             StartRound();
         }
 
-        public void StartRound()
+        public virtual void StartRound()
         {
             Rounds[CurrentIndex].Started = true;
             RoundRunning = true;
         }
 
-        public void round_OnEmitEnemy(Round round, EnemyData enemy)
+        public virtual void round_OnEmitEnemy(Round round, EnemyData enemy)
         {
             if (OnEmitEnemy != null)
             {
@@ -60,7 +60,7 @@ namespace TowerDefenseGame
             }
         }
 
-        public void round_OnFinish(Round round)
+        public virtual void round_OnFinish(Round round)
         {
             RoundRunning = false;
             CurrentIndex++;

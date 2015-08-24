@@ -36,6 +36,7 @@ namespace TowerDefenseGame
         public int TotalEnemies;
 
         public bool CanStartRound;
+        public bool Freeplay;
 
         public List<Button> TowerButtons;
         public List<Sprite> TowerSprites;
@@ -66,6 +67,7 @@ namespace TowerDefenseGame
                 Components.Clear();
 
                 CanStartRound = true;
+                Freeplay = false;
 
                 List<Round> roundList = new List<Round>();
                 foreach (Round round in Config.RoundList)
@@ -85,7 +87,7 @@ namespace TowerDefenseGame
                 CurrentLevel.ResizeLevel(EdgeGame.WindowSize * Config.CommonRatio);
                 Components.Add(CurrentLevel);
 
-                InfoPanel = new InfoPanel() { Visible = true };
+                InfoPanel = new InfoPanel() { Visible = true, Enabled = true };
                 InfoPanel.LivesNumber.Text = Lives.ToString();
                 InfoPanel.MoneyNumber.Text = Money.ToString();
                 InfoPanel.GameSpeedButton.OnRelease += (x, y) =>
@@ -108,7 +110,15 @@ namespace TowerDefenseGame
                         InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
                         RoundManager.StartRound();
                         DefeatedEnemies = 0;
-                        TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
+
+                        if (!Freeplay)
+                        {
+                            TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
+                        }
+                        else
+                        {
+                            TotalEnemies = ((ProceduralRoundManager)RoundManager).CurrentRound.Enemies.Count;
+                        }
 
                         InfoPanel.RemainingNumber.Text = TotalEnemies.ToString();
 
@@ -120,13 +130,17 @@ namespace TowerDefenseGame
                 };
                 Components.Add(InfoPanel);
 
-                TowerPanel = new TowerPanel() { Visible = false };
+                TowerPanel = new TowerPanel() { Visible = false, Enabled = false };
                 Components.Add(TowerPanel);
-                QuitPanel = new QuitPanel() { Visible = false };
+                QuitPanel = new QuitPanel() { Visible = false, Enabled = false };
                 QuitPanel.ContinueButton.OnRelease += (x, y) =>
                 {
                     CanStartRound = true;
                     QuitPanel.Visible = false;
+                    Freeplay = true;
+                    RoundManager = new ProceduralRoundManager();
+                    RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
+                    RoundManager.OnFinishRound += RoundManager_OnFinishRound;
                 };
                 QuitPanel.QuitButton.OnRelease += (x, y) =>
                 {
@@ -193,7 +207,7 @@ namespace TowerDefenseGame
         {
             Money += (RoundManager.CurrentIndex - 1) * 50;
 
-            if (number >= RoundManager.Rounds.Count - 1)
+            if (number >= RoundManager.Rounds.Count - 1 && !Freeplay)
             {
                 WinGame();
             }
@@ -207,6 +221,7 @@ namespace TowerDefenseGame
         public void WinGame()
         {
             QuitPanel.Visible = true;
+            QuitPanel.Enabled = true;
             CanStartRound = false;
         }
 

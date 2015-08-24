@@ -23,8 +23,8 @@ namespace TowerDefenseGame
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 1, "Just a normal enemy."),
-            new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 1, "NOT just a normal enemy."),
+            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 4, "Just a normal enemy."),
+            new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy."),
             new EnemyData(1000,2,0,75,1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")
         };
 
@@ -36,7 +36,7 @@ namespace TowerDefenseGame
             new Round(new List<RoundEnemyList>() //1
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 2f, 1)
-            }),
+            }),/*
             new Round(new List<RoundEnemyList>() //2
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.5f, 3)
@@ -90,7 +90,7 @@ namespace TowerDefenseGame
             {
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 20),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 10)
-            }),
+            }),*/
         };
         #endregion
 
