@@ -36,7 +36,7 @@ namespace TowerDefenseGame
             new Round(new List<RoundEnemyList>() //1
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 2f, 1)
-            }),/*
+            }),
             new Round(new List<RoundEnemyList>() //2
             {
                 new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.5f, 3)
@@ -90,7 +90,7 @@ namespace TowerDefenseGame
             {
                 new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 20),
                 new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 10)
-            }),*/
+            }),
         };
         #endregion
 

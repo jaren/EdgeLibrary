@@ -20,6 +20,7 @@ namespace TowerDefenseGame
         public TextSprite GameSpeedText;
         public TextSprite NextRoundText;
         public TextSprite DebugModeText;
+        public TextSprite DebugGameSpeedText;
 
         public Button GameSpeedButton;
         public Button NextRoundButton;
@@ -57,12 +58,15 @@ namespace TowerDefenseGame
             GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.69f));
             Components.Add(GameSpeedText);
 
-            GameSpeedButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.77f)) { Color = Color.White, Scale = new Vector2(1f) };
+            DebugGameSpeedText = new TextSprite("Georgia-30", "x" + EdgeGame.GameSpeed, new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.77f), Color.Green, Vector2.One);
+
+            GameSpeedButton = new Button("ShadedDark25", DebugGameSpeedText.Position) { Color = Color.White, Scale = new Vector2(1f) };
             GameSpeedButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
             GameSpeedButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
             GameSpeedButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");
             GameSpeedButton.Style.AllColors = Color.White;
             Components.Add(GameSpeedButton);
+            Components.Add(DebugGameSpeedText);
 
             NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.84f));
             Components.Add(NextRoundText);

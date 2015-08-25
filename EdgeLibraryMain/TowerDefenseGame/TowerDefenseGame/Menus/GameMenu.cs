@@ -95,11 +95,19 @@ namespace TowerDefenseGame
                     {
                         EdgeGame.GameSpeed = 3;
                         InfoPanel.GameSpeedButton.Style.AllColors = Color.Goldenrod;
+                        InfoPanel.DebugGameSpeedText.Text = "x" + EdgeGame.GameSpeed;
+                    }
+                    else if (EdgeGame.GameSpeed == 3)
+                    {
+                        EdgeGame.GameSpeed = 5;
+                        InfoPanel.GameSpeedButton.Style.AllColors = Color.Cyan;
+                        InfoPanel.DebugGameSpeedText.Text = "x" + EdgeGame.GameSpeed;
                     }
                     else
                     {
                         EdgeGame.GameSpeed = 1;
                         InfoPanel.GameSpeedButton.Style.AllColors = Color.White;
+                        InfoPanel.DebugGameSpeedText.Text = "x" + EdgeGame.GameSpeed;
                     }
                 };
                 InfoPanel.NextRoundButton.OnRelease += (x, y) =>
@@ -355,6 +363,7 @@ namespace TowerDefenseGame
             InfoPanel.RemainingNumber.Update(gameTime);
 
             InfoPanel.DebugModeText.Visible = Config.DebugMode;
+            InfoPanel.DebugGameSpeedText.Visible = Config.DebugMode;
 
             if (FloatingTower.Enabled)
             {
