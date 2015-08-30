@@ -58,7 +58,7 @@ namespace TowerDefenseGame
         public void OnLoadContent()
         {
             //Window size must be set here for the credits render target
-            EdgeGame.WindowSize = new Vector2(1024);
+            EdgeGame.WindowSize = new Vector2(1000, 800);
 
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-10");
             EdgeGame.LoadFont("Fonts/Comic Sans/ComicSans-20");

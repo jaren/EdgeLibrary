@@ -19,6 +19,8 @@ namespace TowerDefenseGame
         public TowerPanel TowerPanel;
         public InfoPanel InfoPanel;
 
+        public bool CanOpenTowerMenu = true;
+
         public int Lives
         {
             get { return lives; }
@@ -55,6 +57,7 @@ namespace TowerDefenseGame
         public GameMenu() : base("GameMenu")
         {
             Input.OnKeyRelease += Input_OnKeyRelease;
+            Input.OnReleaseClick += Input_OnReleaseClick;
             ShouldReset = false;
         }
 
@@ -312,6 +315,7 @@ namespace TowerDefenseGame
                 FloatingTower.Enabled = false;
                 FloatingRange.Visible = false;
                 FloatingRange.Enabled = false;
+                CanOpenTowerMenu = false;
             }
         }
 
@@ -475,6 +479,27 @@ namespace TowerDefenseGame
             }
 
             base.DrawObject(gameTime);
+        }
+
+        void Input_OnReleaseClick(Vector2 mousePosition, Vector2 previousMousePosition)
+        {
+            //If the click was released from the floating tower, then the menu should not show
+            if (!CanOpenTowerMenu)
+            {
+                CanOpenTowerMenu = true;
+                return;
+            }
+
+            if (MenuManager.SelectedMenu == this && CanOpenTowerMenu)
+            {
+                foreach (Tower tower in Towers)
+                {
+                    if (tower.BoundingBox.Contains(new Point((int)mousePosition.X, (int)mousePosition.Y)))
+                    {
+                        TowerPanel.Enable(tower);
+                    }
+                }
+            }
         }
 
         void Input_OnKeyRelease(Keys key)

@@ -14,9 +14,17 @@ namespace TowerDefenseGame
         public Button SellButton;
         public TextSprite SellSprite;
         public Sprite TowerPicture;
+        public Tower SelectedTower;
 
         public TowerPanel() : base(new List<Microsoft.Xna.Framework.GameComponent>())
         {
+        }
+
+        public void Enable(Tower tower)
+        {
+            SelectedTower = tower;
+            Enabled = true;
+            Visible = true;
         }
     }
 }

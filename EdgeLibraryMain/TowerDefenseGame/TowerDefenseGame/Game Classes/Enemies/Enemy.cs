@@ -147,7 +147,8 @@ namespace TowerDefenseGame
         {
             Default,
             Boss,
-            Ufo
+            Ufo,
+            BossUfo
         }
     }
 
