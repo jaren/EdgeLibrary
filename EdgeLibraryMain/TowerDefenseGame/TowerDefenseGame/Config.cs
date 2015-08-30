@@ -23,9 +23,9 @@ namespace TowerDefenseGame
 
         public static List<EnemyData> Enemies = new List<EnemyData>()
         {
-            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 4, "Just a normal enemy."),
-            new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy."),
-            new EnemyData(1000,2,0,75,1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")
+            new EnemyData(500, 1, 0, 50, 2, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 4, "Just a normal enemy."),
+            new EnemyData(10000, 0.5f, 0, 100, 3, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy."),
+            new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")
         };
 
         private static float baseWaitTime = 1000f;
