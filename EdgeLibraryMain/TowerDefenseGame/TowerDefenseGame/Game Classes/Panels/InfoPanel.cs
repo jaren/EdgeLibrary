@@ -55,10 +55,10 @@ namespace TowerDefenseGame
             RemainingNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.54f));
             Components.Add(RemainingNumber);
 
-            GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.69f));
+            GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.64f));
             Components.Add(GameSpeedText);
 
-            DebugGameSpeedText = new TextSprite("Georgia-30", "x" + EdgeGame.GameSpeed, new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.77f), Color.Green, Vector2.One);
+            DebugGameSpeedText = new TextSprite("Georgia-30", "x" + EdgeGame.GameSpeed, new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.73f), Color.Green, Vector2.One);
 
             GameSpeedButton = new Button("ShadedDark25", DebugGameSpeedText.Position) { Color = Color.White, Scale = new Vector2(1f) };
             GameSpeedButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
@@ -68,10 +68,10 @@ namespace TowerDefenseGame
             Components.Add(GameSpeedButton);
             Components.Add(DebugGameSpeedText);
 
-            NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.84f));
+            NextRoundText = new TextSprite("Georgia-20", "NEXT\nROUND", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.85f));
             Components.Add(NextRoundText);
 
-            NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.92f)) { Color = Color.White, Scale = new Vector2(1f) };
+            NextRoundButton = new Button("ShadedDark25", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.94f)) { Color = Color.White, Scale = new Vector2(1f) };
             NextRoundButton.Style.NormalTexture = EdgeGame.GetTexture("ShadedDark25");
             NextRoundButton.Style.MouseOverTexture = EdgeGame.GetTexture("ShadedDark25");
             NextRoundButton.Style.ClickTexture = EdgeGame.GetTexture("FlatDark24");

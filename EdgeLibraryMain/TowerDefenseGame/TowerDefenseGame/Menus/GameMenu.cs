@@ -193,7 +193,7 @@ namespace TowerDefenseGame
                     Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd)) { Scale = new Vector2(0.65f) };
                     TowerSprites.Add(towerSprite);
 
-                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, (Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
+                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, ((int)(Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty])).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
                     TowerCostSprites.Add(towerCostSprite);
                 }
 
@@ -301,9 +301,9 @@ namespace TowerDefenseGame
                 return;
             }
 
-            if (Money >= SelectedTower.Cost)
+            if (Money >= (int)(SelectedTower.Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]))
             {
-                Money -= SelectedTower.Cost;
+                Money -= (int)(SelectedTower.Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]);
                 Tower tower = new Tower(SelectedTower, Input.MousePosition);
                 if (tower.TowerData.SpecialActionsOnCreate != null)
                 {
@@ -527,7 +527,7 @@ namespace TowerDefenseGame
 
             if (key == Keys.PageDown)
             {
-                Money = Int32.MaxValue/2;
+                Money = int.MaxValue/2;
             }
             else if (key == Keys.PageUp)
             {
