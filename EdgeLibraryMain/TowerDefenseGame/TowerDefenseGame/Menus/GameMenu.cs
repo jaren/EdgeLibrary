@@ -240,6 +240,7 @@ namespace TowerDefenseGame
             Waypoint randomStartingWaypoint = CurrentLevel.Waypoints.GetRandomStartingWaypoint();
             Enemy enemy = new Enemy(enemyData, randomStartingWaypoint.Position);
             enemy.OnReachWaypoint += enemy_OnReachWaypoint;
+            enemy.OnSpawnEnemies += enemy_OnSpawnEnemies;
             if (enemy.EnemyData.SpecialActionsOnCreate != null)
             {
                 enemy.EnemyData.SpecialActionsOnCreate(enemy);
@@ -247,6 +248,14 @@ namespace TowerDefenseGame
             //Sets the next waypoint
             enemy_OnReachWaypoint(enemy, randomStartingWaypoint);
             Enemies.Add(enemy);
+        }
+
+        void enemy_OnSpawnEnemies(Enemy enemy, List<EnemyData> spawnedEnemies)
+        {
+            foreach (EnemyData spawnedEnemy in spawnedEnemies)
+            {
+                RoundManager_OnEmitEnemy(null, spawnedEnemy);
+            }
         }
 
         void enemy_OnReachWaypoint(Enemy enemy, Waypoint waypoint)

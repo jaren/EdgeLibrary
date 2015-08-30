@@ -34,6 +34,8 @@ namespace TowerDefenseGame
         private TextSprite debugEnemyHealth = new TextSprite("Georgia-20", "", Vector2.Zero, Color.White, Vector2.One);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
+        public delegate void EnemyDeathEvent(Enemy enemy, List<EnemyData> spawnedEnemies);
+        public event EnemyDeathEvent OnSpawnEnemies;
 
         public Enemy(EnemyData data, Vector2 position)
             : base(data.Texture, position)
@@ -62,6 +64,12 @@ namespace TowerDefenseGame
                 {
                     EnemyData.SpecialActionsOnDestroy(this);
                 }
+
+                if (OnSpawnEnemies != null)
+                {
+                    OnSpawnEnemies(this, EnemyData.DeathEnemies);
+                }
+
                 ShouldBeRemoved = true;
             }
         }
@@ -141,14 +149,6 @@ namespace TowerDefenseGame
             base.DrawObject(gameTime);
             enemyHealthBar.Draw(gameTime);
             debugEnemyHealth.Draw(gameTime);
-        }
-
-        public enum Type
-        {
-            Default,
-            Boss,
-            Ufo,
-            BossUfo
         }
     }
 

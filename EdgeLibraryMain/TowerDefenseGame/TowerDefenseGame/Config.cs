@@ -21,12 +21,12 @@ namespace TowerDefenseGame
 
         public static Vector2 CommonRatio = new Vector2(0.85f);
 
-        public static List<EnemyData> Enemies = new List<EnemyData>()
+        public static Dictionary<string,EnemyData> Enemies = new Dictionary<string,EnemyData>()
         {
-            new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 8, "Just a normal enemy."),
-            new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy."),
-            new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy."),
-            new EnemyData(10000, 2, 0, 750, 10, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 1, "Vous etes mort.")
+            {"Normal", new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 8, "Just a normal enemy.")},
+            {"Boss Slow", new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy.")},
+            {"Fast", new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")},
+            {"Boss Fast", new EnemyData(10000, 2, 0, 750, 10, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 1, "Vous etes mort.")}
         };
 
         private static float baseWaitTime = 1000f;
@@ -36,65 +36,65 @@ namespace TowerDefenseGame
         {
             new Round(new List<RoundEnemyList>() //1
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 2f, 1)
+                new RoundEnemyList("Normal",baseWaitTime * 2f, 1)
             }),
             new Round(new List<RoundEnemyList>() //2
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.5f, 3)
+                new RoundEnemyList("Normal",baseWaitTime * 1.5f, 3)
             }),
             new Round(new List<RoundEnemyList>() //3
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime * 1.25f, 5)
+                new RoundEnemyList("Normal",baseWaitTime * 1.25f, 5)
             }),
             new Round(new List<RoundEnemyList>() //4
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 8),
+                new RoundEnemyList("Normal",baseWaitTime, 8),
             }),
             new Round(new List<RoundEnemyList>() //5
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 5),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 1),
-                new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 1)
+                new RoundEnemyList("Normal",baseWaitTime, 5),
+                new RoundEnemyList("Fast", baseWaitTime * 1.25f, 1),
+                new RoundEnemyList("Boss Slow",baseWaitTime * 4, 1)
             }),
             new Round(new List<RoundEnemyList>() //6
             {
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 2),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
+                new RoundEnemyList("Normal", baseWaitTime, 10),
+                new RoundEnemyList("Fast", baseWaitTime * 3, 1),
+                new RoundEnemyList("Fast", baseWaitTime * 1.25f, 2),
+                new RoundEnemyList("Normal", baseWaitTime * 3, 1),
+                new RoundEnemyList("Normal", baseWaitTime, 9)
             }),
             new Round(new List<RoundEnemyList>() //7
             {
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 10),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime * 3, 1),
-                new RoundEnemyList(Enemy.Type.Default, baseWaitTime, 9)
+                new RoundEnemyList("Normal", baseWaitTime, 10),
+                new RoundEnemyList("Fast", baseWaitTime * 3, 1),
+                new RoundEnemyList("Fast", baseWaitTime, 4),
+                new RoundEnemyList("Normal", baseWaitTime * 3, 1),
+                new RoundEnemyList("Normal", baseWaitTime, 9)
             }),
             new Round(new List<RoundEnemyList>() //8
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 15),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 3f, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.25f, 9)
+                new RoundEnemyList("Normal",baseWaitTime, 15),
+                new RoundEnemyList("Fast", baseWaitTime * 3f, 1),
+                new RoundEnemyList("Fast", baseWaitTime * 1.25f, 9)
             }),
             new Round(new List<RoundEnemyList>() //9
             {
-                new RoundEnemyList(Enemy.Type.Default,baseWaitTime, 5),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 5),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 5, 1),
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime, 4)
+                new RoundEnemyList("Normal",baseWaitTime, 5),
+                new RoundEnemyList("Fast", baseWaitTime, 5),
+                new RoundEnemyList("Fast", baseWaitTime * 5, 1),
+                new RoundEnemyList("Fast", baseWaitTime, 4),
+                new RoundEnemyList("Fast", baseWaitTime * 5, 1),
+                new RoundEnemyList("Fast", baseWaitTime, 4)
             }),
             new Round(new List<RoundEnemyList>() //10
             {
-                new RoundEnemyList(Enemy.Type.Ufo, baseWaitTime * 1.5f, 20),
-                new RoundEnemyList(Enemy.Type.Boss,baseWaitTime * 4, 10)
+                new RoundEnemyList("Fast", baseWaitTime * 1.5f, 20),
+                new RoundEnemyList("Boss Slow",baseWaitTime * 4, 10)
             }),
             new Round(new List<RoundEnemyList>() //11
             {
-                new RoundEnemyList(Enemy.Type.BossUfo, baseWaitTime * 1.5f, 1)
+                new RoundEnemyList("Boss Fast", baseWaitTime * 1.5f, 1)
             }),
         };
         #endregion

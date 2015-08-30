@@ -59,14 +59,14 @@ namespace TowerDefenseGame
             for (int i = 0; i < RandomTools.RandomInt(1, (int)Math.Pow(CurrentIndex, 1.5f) + 2); i++)
             {
                 List<EnemyData> enemyData = new List<EnemyData>();
-                foreach (EnemyData data in Config.Enemies)
+                foreach (EnemyData data in Config.Enemies.Values.ToList())
                 {
                     for (int count = 0; count < data.Usualness; count++)
                     {
                         enemyData.Add(data);
                     }
                 }
-                RoundEnemyList list = new RoundEnemyList(0, RandomTools.RandomFloat(10, 3000), RandomTools.RandomInt(5, (CurrentIndex+1)*5));
+                RoundEnemyList list = new RoundEnemyList("Normal", RandomTools.RandomFloat(10, 3000), RandomTools.RandomInt(5, (CurrentIndex+1)*5));
                 list.EnemyData = enemyData[RandomTools.RandomInt(0, enemyData.Count)];
                 enemiesList.Add(list);
             }
