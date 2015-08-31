@@ -47,9 +47,10 @@ namespace TowerDefenseGame
                 //Medium
                 Level.ImportLevel("Levels/Islands", "Islands", "Islands", Config.TrackMediumDifficulty, "Scattered islands in an ocean"),
                 Level.ImportLevel("Levels/Around the Lake", "Around the Lake", "Around the Lake", Config.TrackMediumDifficulty, "Enemies travel on two paths around a large lake"),
-                Level.ImportLevel("Levels/Return to the Village", "Return to the Village", "Return to the Village", Config.TrackMediumDifficulty, "Enemies return to attack a different part of the village"),
                 //Hard
-                Level.ImportLevel("Levels/Rocky Bridges", "Rocky Bridges", "Rocky Bridges", Config.TrackHardDifficulty, "A harrowing journey through an abandoned mine")
+                Level.ImportLevel("Levels/Return to the Village", "Return to the Village", "Return to the Village", Config.TrackHardDifficulty, "Enemies return to attack a different part of the village"),
+                Level.ImportLevel("Levels/Rocky Bridges", "Rocky Bridges", "Rocky Bridges", Config.TrackHardDifficulty, "A harrowing journey through an abandoned mine"),
+                Level.ImportLevel("Levels/Color Quadrants", "Color Quadrants", "Colored Quadrants", Config.TrackHardDifficulty, "Disco Dance Party!!!")
             };
 
             Sprite levelPreviewBacking = new Sprite("panelInset_beige", new Vector2(EdgeGame.WindowSize.X * 0.5f, EdgeGame.WindowSize.Y * 0.3f), Color.White, new Vector2(3.2f)) { SamplerState = SamplerState.LinearClamp };

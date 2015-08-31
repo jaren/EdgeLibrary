@@ -104,6 +104,8 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Village Loop Preview");
             EdgeGame.LoadTexture("Levels/Around the Lake Preview");
             EdgeGame.LoadTexture("Levels/Return to the Village Preview");
+            EdgeGame.LoadTexture("Levels/Color Quadrants");
+            EdgeGame.LoadTexture("Levels/Color Quadrants Preview");
             EdgeGame.LoadTexture("Circle");
             EdgeGame.LoadTexture("Health Bar/health10");
             EdgeGame.LoadTexture("Health Bar/health9");
