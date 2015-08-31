@@ -67,6 +67,8 @@ namespace TowerDefenseGame
             {
                 ShouldReset = false;
 
+                EdgeGame.GameSpeed = 1;
+
                 Components.Clear();
 
                 CanStartRound = true;
