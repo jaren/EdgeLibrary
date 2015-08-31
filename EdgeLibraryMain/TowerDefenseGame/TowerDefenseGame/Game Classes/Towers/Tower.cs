@@ -52,7 +52,7 @@ namespace TowerDefenseGame
             {
                 if (Target != null)
                 {
-                    Projectile projectile = new Projectile(TowerData.AttackData, Target, TowerData.Accuracy, Position);
+                    Projectile projectile = new Projectile(TowerData.AttackData, TowerData.AttackDamage, Target, TowerData.Accuracy, Position);
                     if (projectile.ProjectileData.SpecialActionsOnCreate != null)
                     {
                         projectile.ProjectileData.SpecialActionsOnCreate(projectile, this);

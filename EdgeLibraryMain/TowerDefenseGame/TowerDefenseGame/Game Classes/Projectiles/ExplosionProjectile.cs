@@ -14,8 +14,8 @@ namespace TowerDefenseGame
         Texture2D ExplosionTexture;
         Vector2 ExplosionScale;
 
-        public ExplosionProjectile(ProjectileData data, string explosionTexture, Vector2 explosionScale, Enemy target, float accuracy, Vector2 position, float explosionRadius)
-            : base(data, target, accuracy, position)
+        public ExplosionProjectile(ProjectileData data, float damage, string explosionTexture, Vector2 explosionScale, Enemy target, float accuracy, Vector2 position, float explosionRadius)
+            : base(data, damage, target, accuracy, position)
         {
             ExplosionRadius = explosionRadius;
             ExplosionScale = explosionScale;
@@ -31,7 +31,7 @@ namespace TowerDefenseGame
             {
                 if (CollisionDetection.CircleCircle(Position, ExplosionRadius, enemy.Position, enemy.EnemyData.CollisionRadius))
                 {
-                    enemy.Hit(ProjectileData.Damage, ProjectileData.ArmorPierce);
+                    enemy.Hit(Damage, ProjectileData.ArmorPierce);
 
                     //Causes a crash: stack overflow, infinite loop
                     //if (ProjectileData.SpecialActionsOnHit != null)

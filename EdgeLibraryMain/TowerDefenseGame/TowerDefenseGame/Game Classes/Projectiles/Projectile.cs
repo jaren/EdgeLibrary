@@ -13,13 +13,14 @@ namespace TowerDefenseGame
         public ProjectileData ProjectileData;
         public Vector2 TargetPosition;
         public Enemy Target;
+        public float Damage;
         public List<Enemy> PiercedEnemies;
         public int PiercedEnemiesCount;
         public AMoveTo MoveAction;
         public Object MiscData;
         public bool ToDelete = false;
 
-        public Projectile(ProjectileData data, Enemy target, float accuracy, Vector2 position)
+        public Projectile(ProjectileData data, float damage, Enemy target, float accuracy, Vector2 position)
             : base(data.Texture, position, Color.White, data.Scale)
         {
             ProjectileData = data;
@@ -28,6 +29,8 @@ namespace TowerDefenseGame
 
             PiercedEnemies = new List<Enemy>();
             PiercedEnemiesCount = 0;
+
+            Damage = damage;
 
             TargetPosition = target.Position - Position;
             TargetPosition.Normalize();
@@ -62,7 +65,7 @@ namespace TowerDefenseGame
                 {
                     if (CollisionDetection.CircleCircle(Position, ProjectileData.CollisionRadius, enemy.Position, enemy.EnemyData.CollisionRadius))
                     {
-                        enemy.Hit(ProjectileData.Damage, ProjectileData.ArmorPierce);
+                        enemy.Hit(Damage, ProjectileData.ArmorPierce);
 
                         if (ProjectileData.SpecialActionsOnHit != null)
                         {
@@ -95,7 +98,6 @@ namespace TowerDefenseGame
         public float MovementSpeed;
         public float Range;
         public int MaxEnemyPierce;
-        public float Damage;
         public float ArmorPierce;
 
         public System.Action<Projectile, List<Enemy>, Enemy, Tower> SpecialActionsOnHit;
@@ -110,11 +112,10 @@ namespace TowerDefenseGame
         //For the base texture without scale - it will be multiplied with scale
         public float CollisionRadius;
 
-        public ProjectileData(float movementSpeed, float range, float damage, float armorPierce, int maxEnemyPierce, string texture, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile, List<Enemy>, Tower> specialActionsOnUpdate = null, System.Action<Projectile, Tower> specialActionsOnDestroy = null, Action<Projectile, List<Enemy>, Enemy, Tower> specialActionsOnHit = null, System.Action<Projectile, Tower> specialActionsOnCreate = null)
+        public ProjectileData(float movementSpeed, float range, float armorPierce, int maxEnemyPierce, string texture, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile, List<Enemy>, Tower> specialActionsOnUpdate = null, System.Action<Projectile, Tower> specialActionsOnDestroy = null, Action<Projectile, List<Enemy>, Enemy, Tower> specialActionsOnHit = null, System.Action<Projectile, Tower> specialActionsOnCreate = null)
         {
             MovementSpeed = movementSpeed;
             Range = range;
-            Damage = damage;
             ArmorPierce = armorPierce;
             MaxEnemyPierce = maxEnemyPierce;
             Texture = texture;
