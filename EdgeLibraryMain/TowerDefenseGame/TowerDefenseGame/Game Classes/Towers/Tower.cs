@@ -164,6 +164,13 @@ namespace TowerDefenseGame
         Weak
     }
 
+    [Flags]
+    public enum PlaceableArea
+    {
+        Land = 1,
+        Water = 2
+    }
+
     public struct TowerData
     {
         public float AttackDamage;
@@ -174,6 +181,7 @@ namespace TowerDefenseGame
         //Any number higher than 0 is the spread (in pixels) at 100 distance from the tower
         public float Accuracy;
         public int Cost;
+        public PlaceableArea PlaceableArea;
         public ProjectileData AttackData;
         public string Description;
 
@@ -186,7 +194,7 @@ namespace TowerDefenseGame
         public Vector2 Scale;
         public float BaseRotation;
 
-        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, string description = "", System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null)
+        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, PlaceableArea placeableArea, string description = "", System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -196,6 +204,7 @@ namespace TowerDefenseGame
             Scale = scale;
             Accuracy = accuracy;
             Cost = cost;
+            PlaceableArea = placeableArea;
             Description = description;
             BaseRotation = baseRotation;
             SpecialActionsOnSelectTarget = specialActionsOnSelectTarget;

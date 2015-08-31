@@ -220,11 +220,11 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
-            new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, "Spread"),
-            new TowerData(7, 5000, 300, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, "Explosive"),
-            new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, "Homing"),
-            new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, "Fire"),
-            new TowerData(1, 3000, 450, 0, Projectiles[1], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, "High Speed")
+            new TowerData(20, 1000, 400, 0, Projectiles[2], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), "Spread"),
+            new TowerData(7, 5000, 300, 0, Projectiles[3], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Explosive"),
+            new TowerData(1, 100, 350, 0, Projectiles[4], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), "Homing"),
+            new TowerData(100, 1500, 200, 25, Projectiles[5], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), "Fire"),
+            new TowerData(1, 3000, 450, 0, Projectiles[1], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), "High Speed")
             //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
         };
 

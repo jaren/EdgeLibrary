@@ -287,25 +287,7 @@ namespace TowerDefenseGame
 
         void FloatingTower_OnClick(Button sender, GameTime gameTime)
         {
-            //Checks for collision with all the restrictions - will need to add specific check for water, path, etc. later
-            if (CurrentLevel.BoundingBox.Contains(FloatingTower.BoundingBox))
-            {
-                foreach (Restriction restriction in CurrentLevel.Restrictions)
-                {
-                    if (restriction.IntersectsWith(FloatingTower.BoundingBox))
-                    {
-                        return;
-                    }
-                }
-                foreach(Tower tower in Towers)
-                {
-                    if (tower.BoundingBox.Intersects(FloatingTower.BoundingBox))
-                    {
-                        return;
-                    }
-                }
-            }
-            else
+            if (CheckForCollision(SelectedTower, FloatingTower.BoundingBox))
             {
                 return;
             }
@@ -326,6 +308,53 @@ namespace TowerDefenseGame
                 FloatingRange.Enabled = false;
                 CanOpenTowerMenu = false;
             }
+        }
+
+        public bool CheckForCollision(TowerData data, Rectangle boundingBox)
+        {
+            //Checks for collision with all the restrictions
+            if (CurrentLevel.BoundingBox.Contains(boundingBox))
+            {
+                if ((data.PlaceableArea & PlaceableArea.Land) == PlaceableArea.Land)
+                {
+                    //For land towers, checks that no water/path is intersecting
+                    foreach (Restriction restriction in CurrentLevel.Restrictions)
+                    {
+                        if ((restriction.Type != RestrictionType.Water || !((data.PlaceableArea & PlaceableArea.Water) == PlaceableArea.Water)) && restriction.IntersectsWith(boundingBox))
+                        {
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    //For non-land towers, checks that there is water available
+                    bool foundPlace = false;
+                    foreach (Restriction restriction in CurrentLevel.Restrictions)
+                    {
+                        if (restriction.Type == RestrictionType.Water && restriction.IntersectsWith(boundingBox))
+                        {
+                            foundPlace = true;
+                        }
+                    }
+                    if (!foundPlace)
+                    {
+                        return true; ;
+                    }
+                }
+                foreach (Tower tower in Towers)
+                {
+                    if (tower.BoundingBox.Intersects(boundingBox))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return true;
+            }
+            return false;
         }
 
         void towerButton_OnClick(Button sender, GameTime gameTime)
@@ -384,35 +413,12 @@ namespace TowerDefenseGame
                 FloatingRange.Position = Input.MousePosition;
 
                 Color changedColor = new Color(25, 25, 25, 150);
-                bool hasChanged = false;
-                if (CurrentLevel.BoundingBox.Contains(FloatingTower.BoundingBox))
-                {
-                    foreach (Restriction restriction in CurrentLevel.Restrictions)
-                    {
-                        if (restriction.IntersectsWith(FloatingTower.BoundingBox))
-                        {
-                            FloatingTower.Color = changedColor;
-                            hasChanged = true;
-                            break;
-                        }
-                    }
-                    foreach(Tower tower in Towers)
-                    {
-                        if (tower.BoundingBox.Intersects(FloatingTower.BoundingBox))
-                        {
-                            FloatingTower.Color = changedColor;
-                            hasChanged = true;
-                            break;
-                        }
-                    }
-                }
-                else
+
+                if (CheckForCollision(SelectedTower, FloatingTower.BoundingBox))
                 {
                     FloatingTower.Color = changedColor;
-                    hasChanged = true;
                 }
-
-                if (!hasChanged)
+                else
                 {
                     FloatingTower.Color = Color.White;
                 }
