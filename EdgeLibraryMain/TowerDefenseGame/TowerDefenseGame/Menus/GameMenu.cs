@@ -148,6 +148,7 @@ namespace TowerDefenseGame
                 {
                     CanStartRound = true;
                     QuitPanel.Visible = false;
+                    QuitPanel.Enabled = false;
                     Freeplay = true;
                     RoundManager = new ProceduralRoundManager();
                     ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
@@ -520,24 +521,32 @@ namespace TowerDefenseGame
 
         void Input_OnKeyRelease(Keys key)
         {
-            if (MenuManager.SelectedMenu == this && key == Config.BackKey && !MenuManager.InputEventHandled)
+            if (MenuManager.SelectedMenu == this && !MenuManager.InputEventHandled)
             {
-                if (FloatingTower.Enabled == true)
+                if (key == Config.BackKey)
                 {
-                    FloatingTower.Visible = false;
-                    FloatingTower.Enabled = false;
-                    FloatingRange.Visible = false;
-                    FloatingRange.Enabled = false;
+                    if (FloatingTower.Enabled == true)
+                    {
+                        FloatingTower.Visible = false;
+                        FloatingTower.Enabled = false;
+                        FloatingRange.Visible = false;
+                        FloatingRange.Enabled = false;
+                    }
+                    else if (TowerPanel.Enabled == true)
+                    {
+                        TowerPanel.Visible = false;
+                        TowerPanel.Enabled = false;
+                    }
+                    else
+                    {
+                        MenuManager.SwitchMenu("OptionsMenu");
+                        MenuManager.InputEventHandled = true;
+                    }
                 }
-                else if (TowerPanel.Enabled == true)
+
+                if (key >= Keys.D1 && key <= Keys.D5)
                 {
-                    TowerPanel.Visible = false;
-                    TowerPanel.Enabled = false;
-                }
-                else
-                {
-                    MenuManager.SwitchMenu("OptionsMenu");
-                    MenuManager.InputEventHandled = true;
+                    towerButton_OnClick(new Button("", Vector2.Zero) {ID=String.Format("{0}_", (int)key - 49)}, EdgeGame.GameTime);
                 }
             }
 
