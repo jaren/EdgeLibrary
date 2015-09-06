@@ -37,6 +37,7 @@ namespace TowerDefenseGame
         public override void round_OnFinish(Round round)
         {
             CurrentRound = GenerateRound();
+            CurrentRound.Started = false;
             CurrentIndex++;
 
             RoundRunning = false;
@@ -63,10 +64,13 @@ namespace TowerDefenseGame
                 {
                     for (int count = 0; count < data.Usualness; count++)
                     {
-                        enemyData.Add(data);
+                        EnemyData clonedData = data.Clone();
+                        clonedData.MaxHealth *= 1 + (CurrentIndex * (int)Config.Difficulty * 0.1f);
+                        clonedData.Speed *= 1 + (CurrentIndex * (int)Config.Difficulty * 0.1f);
+                        enemyData.Add(clonedData);
                     }
                 }
-                RoundEnemyList list = new RoundEnemyList("Normal", RandomTools.RandomFloat(10, 3000), RandomTools.RandomInt(5, (CurrentIndex+1)*5));
+                RoundEnemyList list = new RoundEnemyList("Normal", RandomTools.RandomFloat(10, (1000-(CurrentIndex*100) > 10 ? 1000-(CurrentIndex*100) : 10)), RandomTools.RandomInt(5, (CurrentIndex+1)*5));
                 list.EnemyData = enemyData[RandomTools.RandomInt(0, enemyData.Count)];
                 enemiesList.Add(list);
             }

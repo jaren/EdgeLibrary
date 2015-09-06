@@ -140,10 +140,9 @@ namespace TowerDefenseGame
                         }
                     }
                 };
-                Components.Add(InfoPanel);
 
                 TowerPanel = new TowerPanel() { Visible = false, Enabled = false };
-                Components.Add(TowerPanel);
+
                 QuitPanel = new QuitPanel() { Visible = false, Enabled = false };
                 QuitPanel.ContinueButton.OnRelease += (x, y) =>
                 {
@@ -151,14 +150,12 @@ namespace TowerDefenseGame
                     QuitPanel.Visible = false;
                     Freeplay = true;
                     RoundManager = new ProceduralRoundManager();
-                    RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
-                    RoundManager.OnFinishRound += RoundManager_OnFinishRound;
+                    ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
                 };
                 QuitPanel.QuitButton.OnRelease += (x, y) =>
                 {
                     MenuManager.SwitchMenu("MainMenu");
                 };
-                Components.Add(QuitPanel);
 
                 FloatingRange = new Sprite("Circle", Vector2.Zero);
                 Components.Add(FloatingRange);
@@ -213,16 +210,6 @@ namespace TowerDefenseGame
             EdgeGame.ClearColor = Color.Gray;
 
             base.SwitchTo();
-        }
-
-        private void RoundManager_OnFinishRound(Round round, int number)
-        {
-            Money += (RoundManager.CurrentIndex - 1) * 50;
-
-            if (number >= RoundManager.Rounds.Count - 1 && !Freeplay)
-            {
-                WinGame();
-            }
         }
 
         public void LoseGame()
@@ -449,6 +436,10 @@ namespace TowerDefenseGame
                     if(DefeatedEnemies == TotalEnemies)
                     {
                         Money += (RoundManager.CurrentIndex - 1) * 50;
+                        if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
+                        {
+                            WinGame();
+                        }
                     }
                     Money += enemy.EnemyData.MoneyOnDeath;
                 }
@@ -468,6 +459,10 @@ namespace TowerDefenseGame
                 tower.Update(gameTime);
                 tower.UpdateTower(Enemies);
             }
+
+            InfoPanel.Update(gameTime);
+            QuitPanel.Update(gameTime);
+            TowerPanel.Update(gameTime);
 
             base.UpdateObject(gameTime);
         }
@@ -494,6 +489,10 @@ namespace TowerDefenseGame
             {
                 enemy.Draw(gameTime);
             }
+
+            InfoPanel.Draw(gameTime);
+            QuitPanel.Draw(gameTime);
+            TowerPanel.Draw(gameTime);
 
             base.DrawObject(gameTime);
         }

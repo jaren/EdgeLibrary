@@ -194,5 +194,10 @@ namespace TowerDefenseGame
             Description = description;
             Usualness = usualness;
         }
+
+        public EnemyData Clone()
+        {
+            return new EnemyData(MaxHealth, Speed, Armor, MoneyOnDeath, LivesTaken, new List<EnemyData>(DeathEnemies), Texture, Scale, CollisionRadius, Usualness, Description, SpecialActionsOnCreate, SpecialActionsOnHit, SpecialActionsOnDestroy);
+        }
     }
 }
