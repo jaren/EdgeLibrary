@@ -10,6 +10,7 @@ namespace TowerDefenseGame
     public class Enemy : Sprite
     {
         public EnemyData EnemyData;
+        private EnemyData enemyData;
         public float TrackDistance;
         public float RealMaxHealth;
         public float Health;
@@ -71,6 +72,30 @@ namespace TowerDefenseGame
                 }
 
                 ShouldBeRemoved = true;
+            }
+        }
+
+        public void ChangeSpeed(float speed)
+        {
+            if (speed != enemyData.Speed)
+            {
+                enemyData.Speed = speed;
+
+                //Resets the the move action when speed is changed
+                string actionToRemove = "";
+                foreach (string action in Actions.Keys.ToList())
+                {
+                    if (action.Contains("AMoveTo"))
+                    {
+                        actionToRemove = action;
+                        break;
+                    }
+                }
+                if (actionToRemove != "")
+                {
+                    Actions.Remove(actionToRemove);
+                }
+                CurrentWaypoint = currentWaypoint; //Calls the function to create a new move action
             }
         }
 

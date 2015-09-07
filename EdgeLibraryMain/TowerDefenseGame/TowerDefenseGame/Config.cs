@@ -21,7 +21,7 @@ namespace TowerDefenseGame
 
         public static Vector2 CommonRatio = new Vector2(0.85f);
 
-        public static Dictionary<string,EnemyData> Enemies = new Dictionary<string,EnemyData>()
+        public static Dictionary<string, EnemyData> Enemies = new Dictionary<string, EnemyData>()
         {
             {"Normal", new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 8, "Just a normal enemy.")},
             {"Boss Slow", new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy.")},
@@ -99,13 +99,13 @@ namespace TowerDefenseGame
         };
         #endregion
 
-        public static Dictionary<string,ProjectileData> Projectiles = new Dictionary<string,ProjectileData>()
+        public static Dictionary<string, ProjectileData> Projectiles = new Dictionary<string, ProjectileData>()
         {
             {"Normal", new ProjectileData(10, 1000, 0, 1, "particle_darkGrey", Vector2.One*0.5f, 1, 0)},
 
             {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Vector2.One * 1.5f, 1, 0)},
 
-            #region Cluster Projectile - 2
+            #region Cluster Projectile
             {"Cluster", new ProjectileData(10, 1000, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
                 ProjectileData clusterElement = new ProjectileData(10, 1000, 0, 1, "particle_pink", Vector2.One, 1, 0);
@@ -116,7 +116,7 @@ namespace TowerDefenseGame
             }))},
             #endregion
 
-            #region Exploding Projectile - 3
+            #region Exploding Projectile
             {"Explosive", new ProjectileData(10, 500, 0, 0, "coin_bronze", Vector2.One, 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 if (projectile is ExplosionProjectile)
@@ -132,8 +132,8 @@ namespace TowerDefenseGame
             }))},
             #endregion
 
-            #region Homing Projectile - 4
-            {"Homing", new ProjectileData(4, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
+            #region Homing Projectile
+            {"Homing", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
             {
                 if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
                 {
@@ -165,7 +165,54 @@ namespace TowerDefenseGame
             }))},
             #endregion
 
-            #region Fire Projectile - 5
+            #region Homing Explosive Projectile
+            {"Homing Explosive", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
+            {
+                if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
+                {
+                    projectile.RemoveAction("MoveAction");
+                    Vector2 differenceVector = projectile.Target.Position - projectile.Position;
+                    differenceVector.Normalize();
+                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
+                    projectile.Position += differenceVector;
+                }
+                else
+                {
+                    bool foundTarget = false;
+                    foreach (Enemy enemy in enemies)
+                    {
+                        if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
+                        {
+                            foundTarget = true;
+                            projectile.Target = enemy;
+                            projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
+                        }
+                    }
+
+                    if (!foundTarget && projectile.MiscData == null)
+                    {
+                        projectile.AddAction(projectile.MoveAction);
+                        projectile.MiscData = true;
+                    }
+                }
+            }), null, 
+            new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {
+                if (projectile is ExplosionProjectile)
+                {
+                    ((ExplosionProjectile)projectile).Explode(enemies, tower);
+                    ((ExplosionProjectile)projectile).ToDelete = true;
+                }
+            }), new Action<Projectile,Tower>( (projectile, tower) =>
+            {
+                projectile.ToDelete = true;
+                int explosionRadius = 150;
+                tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
+            })
+            )},
+            #endregion
+
+            #region Fire Projectile
             {"Fire", new ProjectileData(5, 350, 0, 2, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 enemy.RemoveEffect("Fire");
@@ -173,7 +220,7 @@ namespace TowerDefenseGame
             }))},
             #endregion
 
-            #region Coin Projectile - 6
+            #region Coin Projectile
             {"Coin", new ProjectileData(2, 1000, 0, 1, "coin_gold", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
                 for (int i = 0; i < 10; i++)
@@ -189,12 +236,24 @@ namespace TowerDefenseGame
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
-            new TowerData(25, 1000, 400, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), "Spread"),
-            new TowerData(200, 5000, 300, 0, Projectiles["Explosive"], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Explosive"),
-            new TowerData(3, 100, 350, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), "Homing"),
-            new TowerData(20, 1500, 200, 25, Projectiles["Fire"], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), "Fire"),
-            new TowerData(40, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), "High Speed")
-            //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)")
+            new TowerData(25, 1000, 400, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), "Spread", ""),
+            new TowerData(0, 0, 100, 0, new ProjectileData(), "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Slow", "", null, null, new Action<Tower, List<Enemy>>((tower, enemies) => 
+                {
+                    foreach(Enemy enemy in enemies)
+                    {
+                        if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range*tower.TowerData.Range))
+                        {
+                            enemy.AddEffect(new SlowEffect(0.5f, 1000));
+                        }
+                    }
+                }), null, null, false),
+            new TowerData(10, 100, 350, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), "Homing", ""),
+            new TowerData(20, 1500, 200, 25, Projectiles["Fire"], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), "Fire", ""),
+            new TowerData(40, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), "High Speed", ""),
+            //new TowerData(200, 0, 800, 70, Projectiles[6], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 40000, "(Happy Face)"),
+
+             new TowerData(20, 100, 750, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing Explosives", "Homing"),
+             new TowerData(0, 0, 150, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Slow Fire", "Slow"),
         };
 
         public static string TrackEasyDifficulty = "Easy";

@@ -117,31 +117,16 @@ namespace TowerDefenseGame
                 };
                 InfoPanel.NextRoundButton.OnRelease += (x, y) =>
                 {
-                    if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
-                    {
-                        InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
-                        RoundManager.StartRound();
-                        DefeatedEnemies = 0;
-
-                        if (!Freeplay)
-                        {
-                            TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
-                        }
-                        else
-                        {
-                            TotalEnemies = ((ProceduralRoundManager)RoundManager).CurrentRound.Enemies.Count;
-                        }
-
-                        InfoPanel.RemainingNumber.Text = TotalEnemies.ToString();
-
-                        foreach (Tower tower in Towers)
-                        {
-                            tower.Projectiles.Clear();
-                        }
-                    }
+                    StartRound();
                 };
 
                 TowerPanel = new TowerPanel() { Visible = false, Enabled = false };
+                TowerPanel.OnUpgradeTower += TowerPanel_OnUpgradeTower;
+                TowerPanel.SellButton.OnRelease += (x, y) =>
+                {
+                    Towers.Remove(TowerPanel.SelectedTower);
+                    Money += TowerPanel.SelectedTower.TowerData.Cost * (int)(1 - 0.25f * (int)Config.Difficulty);
+                };
 
                 QuitPanel = new QuitPanel() { Visible = false, Enabled = false };
                 QuitPanel.ContinueButton.OnRelease += (x, y) =>
@@ -179,29 +164,29 @@ namespace TowerDefenseGame
                 float towerYMin = 20;
                 for (int i = 0; i < Config.Towers.Count; i++)
                 {
-                    Button towerButton = new Button("panelInset_beige", new Vector2(StartPosition.X + EdgeGame.WindowSize.X * (xStep * i), StartPosition.Y)) { Scale = new Vector2(1f) };
-                    towerButton.ID = String.Format("{0}_TowerButton", i);
-                    towerButton.Style.NormalTexture = EdgeGame.GetTexture("panelInset_beige");
-                    towerButton.Style.MouseOverTexture = EdgeGame.GetTexture("panelInset_beige");
-                    towerButton.Style.ClickTexture = EdgeGame.GetTexture("panelInset_beige");
-                    towerButton.Style.AllColors = Color.White;
-                    towerButton.OnMouseOver += towerButton_OnMouseOver;
-                    towerButton.OnMouseOff += towerButton_OnMouseOff;
-                    towerButton.OnClick += towerButton_OnClick;
-                    TowerButtons.Add(towerButton);
+                    if (Config.Towers[i].BaseName == "")
+                    {
+                        Button towerButton = new Button("panelInset_beige", new Vector2(StartPosition.X + EdgeGame.WindowSize.X * (xStep * i), StartPosition.Y)) { Scale = new Vector2(1f) };
+                        towerButton.ID = String.Format("{0}_TowerButton", i);
+                        towerButton.Style.NormalTexture = EdgeGame.GetTexture("panelInset_beige");
+                        towerButton.Style.MouseOverTexture = EdgeGame.GetTexture("panelInset_beige");
+                        towerButton.Style.ClickTexture = EdgeGame.GetTexture("panelInset_beige");
+                        towerButton.Style.AllColors = Color.White;
+                        towerButton.OnMouseOver += towerButton_OnMouseOver;
+                        towerButton.OnMouseOff += towerButton_OnMouseOff;
+                        towerButton.OnClick += towerButton_OnClick;
+                        TowerButtons.Add(towerButton);
 
-                    Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd)) { Scale = new Vector2(0.65f) };
-                    TowerSprites.Add(towerSprite);
+                        Sprite towerSprite = new Sprite(Config.Towers[i].Texture, new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYAdd)) { Scale = new Vector2(0.65f) };
+                        TowerSprites.Add(towerSprite);
 
-                    TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, ((int)(Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty])).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
-                    TowerCostSprites.Add(towerCostSprite);
+                        TextSprite towerCostSprite = new TextSprite(Config.MenuButtonTextFont, ((int)(Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty])).ToString(), new Vector2(towerButton.Position.X, towerButton.Position.Y + towerYMin));
+                        TowerCostSprites.Add(towerCostSprite);
+                    }
                 }
 
                 TowerInfoSprite = new TextSprite(Config.MenuButtonTextFont, "Description:\nNONE", new Vector2(EdgeGame.WindowSize.X * (Config.CommonRatio.X + (1f - Config.CommonRatio.X) / 2f) - EdgeGame.WindowSize.X * 0.3f, EdgeGame.WindowSize.Y * (Config.CommonRatio.Y + (1f - Config.CommonRatio.Y) / 2f)));
                 Components.Add(TowerInfoSprite);
-
-                TowerPanel = new TowerPanel();
-                Components.Add(TowerPanel);
 
                 //Must be initialized after the text, otherwise they will be null
                 Lives = Config.LivesNumber[(int)Config.Difficulty];
@@ -211,6 +196,26 @@ namespace TowerDefenseGame
             EdgeGame.ClearColor = Color.Gray;
 
             base.SwitchTo();
+        }
+
+        void TowerPanel_OnUpgradeTower(string upgradeId, Tower tower)
+        {
+            foreach(TowerData data in Config.Towers)
+            {
+                if (data.Name == upgradeId)
+                {
+                    if (Money >= data.Cost)
+                    {
+                        Money -= data.Cost;
+                        Towers.Add(new Tower(data, tower.Position));
+                        Towers.Remove(tower);
+
+                        TowerPanel.Visible = false;
+                        TowerPanel.Enabled = false;
+                    }
+                    return;
+                }
+            }
         }
 
         public void LoseGame()
@@ -300,6 +305,32 @@ namespace TowerDefenseGame
             }
         }
 
+        public void StartRound()
+        {
+            if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
+            {
+                InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
+                RoundManager.StartRound();
+                DefeatedEnemies = 0;
+
+                if (!Freeplay)
+                {
+                    TotalEnemies = RoundManager.Rounds[RoundManager.CurrentIndex].Enemies.Count;
+                }
+                else
+                {
+                    TotalEnemies = ((ProceduralRoundManager)RoundManager).CurrentRound.Enemies.Count;
+                }
+
+                InfoPanel.RemainingNumber.Text = TotalEnemies.ToString();
+
+                foreach (Tower tower in Towers)
+                {
+                    tower.Projectiles.Clear();
+                }
+            }
+        }
+
         public bool CheckForCollision(TowerData data, Rectangle boundingBox)
         {
             //Checks for collision with all the restrictions
@@ -370,14 +401,14 @@ namespace TowerDefenseGame
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
-            TowerInfoSprite.Text = "Description:\nNONE";
+            TowerInfoSprite.Text = "Selected:\nNONE";
         }
 
         void towerButton_OnMouseOver(Button sender, GameTime gameTime)
         {
             int numberID = Convert.ToInt32(sender.ID.Split('_')[0]);
 
-            TowerInfoSprite.Text = "Description:\n" + Config.Towers[numberID].Description;
+            TowerInfoSprite.Text = "Selected:\n" + Config.Towers[numberID].Name;
         }
 
         public override void SwitchOut()
@@ -542,6 +573,11 @@ namespace TowerDefenseGame
                         MenuManager.SwitchMenu("OptionsMenu");
                         MenuManager.InputEventHandled = true;
                     }
+                }
+
+                if (key == Keys.Space)
+                {
+                    StartRound();
                 }
 
                 if (key >= Keys.D1 && key <= Keys.D5)
