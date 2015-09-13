@@ -202,7 +202,7 @@ namespace TowerDefenseGame
         public float BaseRotation;
         public bool EmitsProjectile;
 
-        public TowerData(float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, PlaceableArea placeableArea, string name, string baseName, System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, List<Enemy>> specialActionsOnUpdate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null, bool emitsProjectile = true)
+        public TowerData(string name, float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, PlaceableArea placeableArea, string baseName, System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, List<Enemy>> specialActionsOnUpdate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null, bool emitsProjectile = true)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;

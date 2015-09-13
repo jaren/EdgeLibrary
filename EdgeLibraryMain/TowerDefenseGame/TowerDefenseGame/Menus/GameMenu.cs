@@ -15,6 +15,8 @@ namespace TowerDefenseGame
         public static bool ShouldReset;
         public RoundManager RoundManager;
 
+        bool AutoRoundStart = false;
+
         public QuitPanel QuitPanel;
         public TowerPanel TowerPanel;
         public InfoPanel InfoPanel;
@@ -200,7 +202,7 @@ namespace TowerDefenseGame
 
         void TowerPanel_OnUpgradeTower(string upgradeId, Tower tower)
         {
-            foreach(TowerData data in Config.Towers)
+            foreach (TowerData data in Config.Towers)
             {
                 if (data.Name == upgradeId)
                 {
@@ -219,7 +221,7 @@ namespace TowerDefenseGame
         }
 
         public void LoseGame()
-        { 
+        {
             //Add lose game stuff here
         }
 
@@ -445,16 +447,16 @@ namespace TowerDefenseGame
                 }
             }
 
-            foreach(Button button in TowerButtons)
+            foreach (Button button in TowerButtons)
             {
                 button.Update(gameTime);
             }
 
-            foreach(Sprite sprite in TowerSprites)
+            foreach (Sprite sprite in TowerSprites)
             {
                 sprite.Update(gameTime);
             }
-            foreach(TextSprite textSprite in TowerCostSprites)
+            foreach (TextSprite textSprite in TowerCostSprites)
             {
                 textSprite.Update(gameTime);
             }
@@ -465,7 +467,7 @@ namespace TowerDefenseGame
                 {
                     EnemiesToRemove.Add(enemy);
                     DefeatedEnemies++;
-                    if(DefeatedEnemies == TotalEnemies)
+                    if (DefeatedEnemies == TotalEnemies)
                     {
                         Money += (RoundManager.CurrentIndex - 1) * 50;
                         if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
@@ -480,13 +482,13 @@ namespace TowerDefenseGame
                     enemy.Update(gameTime);
                 }
             }
-            foreach(Enemy enemy in EnemiesToRemove)
+            foreach (Enemy enemy in EnemiesToRemove)
             {
                 Enemies.Remove(enemy);
             }
             EnemiesToRemove.Clear();
 
-            foreach(Tower tower in Towers)
+            foreach (Tower tower in Towers)
             {
                 tower.Update(gameTime);
                 tower.UpdateTower(Enemies);
@@ -497,6 +499,11 @@ namespace TowerDefenseGame
             TowerPanel.Update(gameTime);
 
             base.UpdateObject(gameTime);
+
+            if (AutoRoundStart && !RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
+            {
+                StartRound();
+            }
         }
 
         public override void DrawObject(GameTime gameTime)
@@ -582,13 +589,20 @@ namespace TowerDefenseGame
 
                 if (key >= Keys.D1 && key <= Keys.D5)
                 {
-                    towerButton_OnClick(new Button("", Vector2.Zero) {ID=String.Format("{0}_", (int)key - 49)}, EdgeGame.GameTime);
+                    towerButton_OnClick(new Button("", Vector2.Zero) { ID = String.Format("{0}_", (int)key - 49) }, EdgeGame.GameTime);
+                }
+
+                if (key == Keys.R)
+                {
+                    AutoRoundStart = !AutoRoundStart;
+                    InfoPanel.NextRoundButton.Color = AutoRoundStart ? Color.Goldenrod : Color.White;
+                    InfoPanel.NextRoundButton.Style.AllColors = AutoRoundStart ? Color.Goldenrod : Color.White;
                 }
             }
 
             if (key == Keys.PageDown)
             {
-                Money = int.MaxValue/2;
+                Money = int.MaxValue / 2;
             }
             else if (key == Keys.PageUp)
             {
