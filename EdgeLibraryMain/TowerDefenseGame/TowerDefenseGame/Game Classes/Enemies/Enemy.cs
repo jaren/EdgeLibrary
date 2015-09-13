@@ -80,22 +80,14 @@ namespace TowerDefenseGame
             if (speed != enemyData.Speed)
             {
                 enemyData.Speed = speed;
-
-                //Resets the the move action when speed is changed
-                string actionToRemove = "";
-                foreach (string action in Actions.Keys.ToList())
+                
+                foreach (EdgeLibrary.Action action in Actions.Values.ToList())
                 {
-                    if (action.Contains("AMoveTo"))
+                    if (action is AMoveTo)
                     {
-                        actionToRemove = action;
-                        break;
+                        ((AMoveTo)action).Speed = enemyData.Speed;
                     }
                 }
-                if (actionToRemove != "")
-                {
-                    Actions.Remove(actionToRemove);
-                }
-                CurrentWaypoint = currentWaypoint; //Calls the function to create a new move action
             }
         }
 
@@ -107,6 +99,18 @@ namespace TowerDefenseGame
         public void AddEffect(Effect effect)
         {
             Effects.Add(effect);
+        }
+
+        public Effect GetEffect(string name)
+        {
+            foreach (Effect effect in Effects)
+            {
+                if (effect.Name == name)
+                {
+                    return effect;
+                }
+            }
+            return null;
         }
 
         public bool RemoveEffect(string name)

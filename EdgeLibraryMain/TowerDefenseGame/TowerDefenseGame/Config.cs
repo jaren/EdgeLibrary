@@ -129,20 +129,17 @@ namespace TowerDefenseGame
 
             {"Fire", new ProjectileData(5, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
-                enemy.RemoveEffect("Fire");
-                enemy.AddEffect(new FireEffect(3000));
+                EnemyAddFireEffect(enemy, 3000);
             }))},
 
             {"Cluster Fire", new ProjectileData(7, 500, 0, 2, "flameBlue", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
-                enemy.RemoveEffect("Fire");
-                enemy.AddEffect(new FireEffect(3000));
+                EnemyAddFireEffect(enemy, 3000);
             }), new Action<Projectile,Tower>( (projectile, tower) => 
             {
                 ProjectileData clusterElement = new ProjectileData(7, 500, 0, 2, "flameBlue", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>((eProjectile, eEnemies, eEnemy, eTower) =>
                 {
-                    eEnemy.RemoveEffect("Fire");
-                    eEnemy.AddEffect(new FireEffect(3000));
+                    EnemyAddFireEffect(eEnemy, 3000);
                 }));
 
                 for (int i = 0; i < 10; i++)
@@ -151,6 +148,18 @@ namespace TowerDefenseGame
                 }
             }))},
         };
+
+        public static void EnemyAddFireEffect(Enemy enemy, int duration)
+        {
+            if (enemy.HasEffect("Fire"))
+            {
+                ((FireEffect)enemy.GetEffect("Fire")).Duration = duration;
+            }
+            else
+            {
+                enemy.AddEffect(new FireEffect(duration));
+            }
+        }
 
         public static void HomingProjectileHome(Projectile projectile, List<Enemy> enemies, Tower tower)
         {
@@ -208,7 +217,7 @@ namespace TowerDefenseGame
                     {
                         if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range*tower.TowerData.Range))
                         {
-                            enemy.AddEffect(new SlowEffect(0.5f, 1000));
+                            enemy.AddEffect(new SlowEffect(0.5f, 2000));
                         }
                     }
                 }), null, null, false),
@@ -220,8 +229,25 @@ namespace TowerDefenseGame
             //Upgrades
             new TowerData("Homing Explosives", 20, 550, 400, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
             new TowerData("Cluster Fire", 0, 1500, 400, 25, Projectiles["Cluster Fire"], "enemyRed4", MathHelper.ToRadians(0), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
-            new TowerData("Homing Explosives", 20, 550, 400, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
-            new TowerData("Slow Fire", 0, 0, 150, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Slow"),
+            new TowerData("Slow Fire", 0, 0, 150, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
+                {
+                    foreach(Enemy enemy in enemies)
+                    {
+                        if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range*tower.TowerData.Range))
+                        {
+                            enemy.AddEffect(new SlowEffect(0.5f, 3000));
+
+                            if (enemy.HasEffect("Fire"))
+                            {
+                                ((FireEffect)enemy.GetEffect("Fire")).Duration = 3000;
+                            }
+                            else
+                            {
+                                enemy.AddEffect(new FireEffect(3000));
+                            }
+                        }
+                    }
+                }), null, null, false),
         };
 
         public static string TrackEasyDifficulty = "Easy";
