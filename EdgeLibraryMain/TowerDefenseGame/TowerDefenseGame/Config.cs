@@ -101,48 +101,55 @@ namespace TowerDefenseGame
 
         public static Dictionary<string, ProjectileData> Projectiles = new Dictionary<string, ProjectileData>()
         {
-            {"Normal", new ProjectileData(10, 1000, 0, 1, "particle_darkGrey", Vector2.One*0.5f, 1, 0)},
+            {"Normal", new ProjectileData(10, 1000, 0, 1, "particle_darkGrey", Color.White, Vector2.One*0.5f, 1, 0)},
 
-            {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Vector2.One * 1.5f, 1, 0)},
+            {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Color.White, Vector2.One * 1.5f, 1, 0)},
 
-            #region Cluster Projectile
-            {"Cluster", new ProjectileData(10, 1000, 0, 1, "particle_pink", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
+            {"Cluster", new ProjectileData(10, 1000, 0, 1, "particle_pink", Color.White, Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
             {
-                ProjectileData clusterElement = new ProjectileData(10, 1000, 0, 1, "particle_pink", Vector2.One, 1, 0);
+                ProjectileData clusterElement = new ProjectileData(10, 1000, 0, 1, "particle_pink", Color.White, Vector2.One, 1, 0);
                 for (int i = 0; i < 10; i++)
                 {
-                    tower.Projectiles.Add(new Projectile(clusterElement, projectile.Damage, projectile.Target, 50, projectile.Position));
+                    tower.Projectiles.Add(new Projectile(clusterElement, projectile.Damage, projectile.Target, 50, projectile.Position) { Rotation = tower.Rotation + projectile.ProjectileData.BaseRotation });
                 }
             }))},
-            #endregion
 
-            #region Exploding Projectile
-            {"Explosive", new ProjectileData(10, 500, 0, 0, "coin_bronze", Vector2.One, 1, 0, null, null, ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
+            {"Explosive", new ProjectileData(10, 500, 0, 0, "coin_bronze", Color.White, Vector2.One, 1, 0, null, null, ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
             {
                 ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
             }))},
-            #endregion
 
-            #region Homing Projectile
-            {"Homing", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, HomingProjectileHome)},
-            #endregion
+            {"Homing", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Color.White, Vector2.One, 1, 0, HomingProjectileHome)},
 
-            #region Homing Explosive Projectile
-            {"Homing Explosive", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, HomingProjectileHome, null, 
+            {"Homing Explosive", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Color.White, Vector2.One, 1, 0, HomingProjectileHome, null, 
             ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
             {
                 ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
-            })
-            )},
-            #endregion
+            }))},
 
-            #region Fire Projectile
-            {"Fire", new ProjectileData(5, 350, 0, 2, "flame", new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {"Fire", new ProjectileData(5, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 enemy.RemoveEffect("Fire");
                 enemy.AddEffect(new FireEffect(3000));
             }))},
-            #endregion
+
+            {"Cluster Fire", new ProjectileData(7, 500, 0, 2, "flameBlue", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {
+                enemy.RemoveEffect("Fire");
+                enemy.AddEffect(new FireEffect(3000));
+            }), new Action<Projectile,Tower>( (projectile, tower) => 
+            {
+                ProjectileData clusterElement = new ProjectileData(7, 500, 0, 2, "flameBlue", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>((eProjectile, eEnemies, eEnemy, eTower) =>
+                {
+                    eEnemy.RemoveEffect("Fire");
+                    eEnemy.AddEffect(new FireEffect(3000));
+                }));
+
+                for (int i = 0; i < 10; i++)
+                {
+                    tower.Projectiles.Add(new Projectile(clusterElement, projectile.Damage, projectile.Target, 50, projectile.Position) { Rotation = tower.Rotation + projectile.ProjectileData.BaseRotation});
+                }
+            }))},
         };
 
         public static void HomingProjectileHome(Projectile projectile, List<Enemy> enemies, Tower tower)
@@ -211,6 +218,8 @@ namespace TowerDefenseGame
             new TowerData("High Speed", 100, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
             
             //Upgrades
+            new TowerData("Homing Explosives", 20, 550, 400, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
+            new TowerData("Cluster Fire", 0, 1500, 400, 25, Projectiles["Cluster Fire"], "enemyRed4", MathHelper.ToRadians(0), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("Homing Explosives", 20, 550, 400, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
             new TowerData("Slow Fire", 0, 0, 150, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "Slow"),
         };

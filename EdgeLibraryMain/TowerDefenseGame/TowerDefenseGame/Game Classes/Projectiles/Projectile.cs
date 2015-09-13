@@ -25,6 +25,7 @@ namespace TowerDefenseGame
         {
             ProjectileData = data;
             Scale = data.Scale;
+            Color = data.Color;
             Target = target;
 
             PiercedEnemies = new List<Enemy>();
@@ -106,13 +107,14 @@ namespace TowerDefenseGame
         public System.Action<Projectile, Tower> SpecialActionsOnDestroy;
 
         public string Texture;
+        public Color Color;
         public Vector2 Scale;
         public float BaseRotation;
 
         //For the base texture without scale - it will be multiplied with scale
         public float CollisionRadius;
 
-        public ProjectileData(float movementSpeed, float range, float armorPierce, int maxEnemyPierce, string texture, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile, List<Enemy>, Tower> specialActionsOnUpdate = null, System.Action<Projectile, Tower> specialActionsOnDestroy = null, Action<Projectile, List<Enemy>, Enemy, Tower> specialActionsOnHit = null, System.Action<Projectile, Tower> specialActionsOnCreate = null)
+        public ProjectileData(float movementSpeed, float range, float armorPierce, int maxEnemyPierce, string texture, Color color, Vector2 scale, float collisionRadius, float baseRotation, System.Action<Projectile, List<Enemy>, Tower> specialActionsOnUpdate = null, System.Action<Projectile, Tower> specialActionsOnDestroy = null, Action<Projectile, List<Enemy>, Enemy, Tower> specialActionsOnHit = null, System.Action<Projectile, Tower> specialActionsOnCreate = null)
         {
             MovementSpeed = movementSpeed;
             Range = range;
@@ -120,6 +122,7 @@ namespace TowerDefenseGame
             MaxEnemyPierce = maxEnemyPierce;
             Texture = texture;
             Scale = scale;
+            Color = color;
             CollisionRadius = collisionRadius * (float)Math.Sqrt(Scale.X * Scale.Y);
             BaseRotation = baseRotation;
             SpecialActionsOnUpdate = specialActionsOnUpdate;
