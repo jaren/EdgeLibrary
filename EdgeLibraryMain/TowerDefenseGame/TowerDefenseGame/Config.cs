@@ -117,97 +117,21 @@ namespace TowerDefenseGame
             #endregion
 
             #region Exploding Projectile
-            {"Explosive", new ProjectileData(10, 500, 0, 0, "coin_bronze", Vector2.One, 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {"Explosive", new ProjectileData(10, 500, 0, 0, "coin_bronze", Vector2.One, 1, 0, null, null, ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
             {
-                if (projectile is ExplosionProjectile)
-                {
-                    ((ExplosionProjectile)projectile).Explode(enemies, tower);
-                    ((ExplosionProjectile)projectile).ToDelete = true;
-                }
-            }), new Action<Projectile,Tower>( (projectile, tower) =>
-            {
-                projectile.ToDelete = true;
-                int explosionRadius = 125;
-                tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
+                ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
             }))},
             #endregion
 
             #region Homing Projectile
-            {"Homing", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
-            {
-                if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
-                {
-                    projectile.RemoveAction("MoveAction");
-                    Vector2 differenceVector = projectile.Target.Position - projectile.Position;
-                    differenceVector.Normalize();
-                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
-                    projectile.Position += differenceVector;
-                }
-                else
-                {
-                    bool foundTarget = false;
-                    foreach (Enemy enemy in enemies)
-                    {
-                        if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
-                        {
-                            foundTarget = true;
-                            projectile.Target = enemy;
-                            projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
-                        }
-                    }
-
-                    if (!foundTarget && projectile.MiscData == null)
-                    {
-                        projectile.AddAction(projectile.MoveAction);
-                        projectile.MiscData = true;
-                    }
-                }
-            }))},
+            {"Homing", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, HomingProjectileHome)},
             #endregion
 
             #region Homing Explosive Projectile
-            {"Homing Explosive", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, new Action<Projectile, List<Enemy>, Tower>( (projectile, enemies, tower) =>
+            {"Homing Explosive", new ProjectileData(10, 1000, 0, 1, "portal_yellowParticle", Vector2.One, 1, 0, HomingProjectileHome, null, 
+            ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
             {
-                if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
-                {
-                    projectile.RemoveAction("MoveAction");
-                    Vector2 differenceVector = projectile.Target.Position - projectile.Position;
-                    differenceVector.Normalize();
-                    differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
-                    projectile.Position += differenceVector;
-                }
-                else
-                {
-                    bool foundTarget = false;
-                    foreach (Enemy enemy in enemies)
-                    {
-                        if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
-                        {
-                            foundTarget = true;
-                            projectile.Target = enemy;
-                            projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
-                        }
-                    }
-
-                    if (!foundTarget && projectile.MiscData == null)
-                    {
-                        projectile.AddAction(projectile.MoveAction);
-                        projectile.MiscData = true;
-                    }
-                }
-            }), null,
-            new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
-            {
-                if (projectile is ExplosionProjectile)
-                {
-                    ((ExplosionProjectile)projectile).Explode(enemies, tower);
-                    ((ExplosionProjectile)projectile).ToDelete = true;
-                }
-            }), new Action<Projectile,Tower>( (projectile, tower) =>
-            {
-                projectile.ToDelete = true;
-                int explosionRadius = 150;
-                tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, "coin_silver", new Vector2(explosionRadius / 61f * 2), projectile.Target, 100, projectile.Position, explosionRadius));
+                ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
             })
             )},
             #endregion
@@ -219,20 +143,53 @@ namespace TowerDefenseGame
                 enemy.AddEffect(new FireEffect(3000));
             }))},
             #endregion
-
-            #region Coin Projectile
-            {"Coin", new ProjectileData(2, 1000, 0, 1, "coin_gold", Vector2.One, 1, 0, null, null, null, new Action<Projectile, Tower>( (projectile, tower) =>
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    ProjectileData data = Projectiles["Normal"];
-                    data.Texture = "coin_gold";
-                    Projectile p = new Projectile(data, projectile.Damage, projectile.Target, 50, projectile.Position);
-                    tower.Projectiles.Add(p);
-                }
-            }))},
-            #endregion
         };
+
+        public static void HomingProjectileHome(Projectile projectile, List<Enemy> enemies, Tower tower)
+        {
+            if (projectile.Target.ShouldBeRemoved == false && !projectile.Target.CompletedPath)
+            {
+                projectile.RemoveAction("MoveAction");
+                Vector2 differenceVector = projectile.Target.Position - projectile.Position;
+                differenceVector.Normalize();
+                differenceVector = new Vector2(differenceVector.X * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed, differenceVector.Y * projectile.ProjectileData.MovementSpeed * EdgeGame.GameSpeed);
+                projectile.Position += differenceVector;
+            }
+            else
+            {
+                bool foundTarget = false;
+                foreach (Enemy enemy in enemies)
+                {
+                    if (!enemy.ShouldBeRemoved && !projectile.Target.CompletedPath)
+                    {
+                        foundTarget = true;
+                        projectile.Target = enemy;
+                        projectile.ProjectileData.SpecialActionsOnUpdate(projectile, enemies, tower);
+                    }
+                }
+
+                if (!foundTarget && projectile.MiscData == null)
+                {
+                    projectile.AddAction(projectile.MoveAction);
+                    projectile.MiscData = true;
+                }
+            }
+        }
+
+        public static void ExplosionProjectileExplode(Projectile projectile, List<Enemy> enemies, Enemy enemy, Tower tower)
+        {
+            if (projectile is ExplosionProjectile)
+            {
+                ((ExplosionProjectile)projectile).Explode(enemies, tower);
+                ((ExplosionProjectile)projectile).ToDelete = true;
+            }
+        }
+
+        public static void ExplosionProjectileCreate(Projectile projectile, Tower tower, float explosionRadius, string texture, float textureSize, int accuracy)
+        {
+            projectile.ToDelete = true;
+            tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, texture, new Vector2(explosionRadius / textureSize * 2), projectile.Target, accuracy, projectile.Position, explosionRadius));
+        }
 
         public static List<TowerData> Towers = new List<TowerData>()
         {
@@ -248,6 +205,7 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
+
             new TowerData("Homing", 10, 250, 350, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), ""),
             new TowerData("Fire", 0, 1500, 200, 25, Projectiles["Fire"], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
             new TowerData("High Speed", 100, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),

@@ -19,6 +19,7 @@ namespace TowerDefenseGame
         public Sprite TowerPicture;
         public List<Button> UpgradeButtons;
         public List<TextSprite> UpgradeSprites;
+        public bool ButtonCanClick;
         public Tower SelectedTower
         {
             get
@@ -42,17 +43,18 @@ namespace TowerDefenseGame
                         button.Style = new Style(EdgeGame.GetTexture(Config.ButtonMouseOverTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor);
                         button.OnRelease += (x, y) =>
                         {
-                            if (OnUpgradeTower != null)
+                            if (Visible && ButtonCanClick)
                             {
-                                OnUpgradeTower(x.ID.Split('_')[0], SelectedTower);
+                                if (OnUpgradeTower != null)
+                                {
+                                    OnUpgradeTower(x.ID.Split('_')[0], SelectedTower);
+                                }
                             }
                         };
                         UpgradeButtons.Add(button);
-                        base.Components.Add(button);
 
                         TextSprite text = new TextSprite(Config.StatusFont, data.Name + " (" + data.Cost + ")", button.Position) { Color = Color.White };
                         UpgradeSprites.Add(text);
-                        base.Components.Add(text);
 
                         upgradeCount++;
                     }
@@ -63,12 +65,16 @@ namespace TowerDefenseGame
 
         public delegate void UpgradeEvent(string upgradeId, Tower tower);
         public event UpgradeEvent OnUpgradeTower;
+        public delegate void SellEvent(Tower tower);
+        public event SellEvent OnSellTower;
 
         public TowerPanel()
             : base(new List<Microsoft.Xna.Framework.GameComponent>())
         {
             UpgradeButtons = new List<Button>();
             UpgradeSprites = new List<TextSprite>();
+
+            ButtonCanClick = false;
 
             BackPanel = new Sprite("grey_panel", new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.5f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.6f)) { Color = new Color(20, 20, 20, 175), Scale = new Vector2(5f, 5f) };
             base.Components.Add(BackPanel);
@@ -78,7 +84,7 @@ namespace TowerDefenseGame
 
             SellButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.35f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.85f)) { Color = Config.MenuButtonColor };
             SellButton.Style = new Style(EdgeGame.GetTexture(Config.ButtonMouseOverTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor);
-            SellButton.OnRelease += (x, y) => { this.Visible = false; this.Enabled = false; };
+            SellButton.OnRelease += (x, y) => { if (Visible == true && ButtonCanClick) { Visible = false; Enabled = false; if (OnSellTower != null) { OnSellTower(SelectedTower); } } };
             base.Components.Add(SellButton);
 
             SellSprite = new TextSprite(Config.StatusFont, "Sell", SellButton.Position) { Color = Color.White };
@@ -86,7 +92,7 @@ namespace TowerDefenseGame
 
             CloseButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.65f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.85f)) { Color = Config.MenuButtonColor };
             CloseButton.Style = new Style(EdgeGame.GetTexture(Config.ButtonMouseOverTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor);
-            CloseButton.OnRelease += (x, y) => { this.Visible = false; this.Enabled = false; };
+            CloseButton.OnRelease += (x, y) => { if (this.Visible == true && ButtonCanClick) { this.Visible = false; this.Enabled = false; } };
             base.Components.Add(CloseButton);
 
             CloseSprite = new TextSprite(Config.StatusFont, "Close", CloseButton.Position) { Color = Color.White };
@@ -96,11 +102,39 @@ namespace TowerDefenseGame
             base.Components.Add(TowerName);
         }
 
+        public override void UpdateObject(GameTime gameTime)
+        {
+            base.UpdateObject(gameTime);
+            foreach (Button upgradeButton in UpgradeButtons)
+            {
+                upgradeButton.Update(gameTime);
+            }
+            foreach (Sprite upgradeSprite in UpgradeSprites)
+            {
+                upgradeSprite.Update(gameTime);
+            }
+            ButtonCanClick = true;
+        }
+
+        public override void DrawObject(GameTime gameTime)
+        {
+            base.DrawObject(gameTime);
+            foreach (Button upgradeButton in UpgradeButtons)
+            {
+                upgradeButton.Draw(gameTime);
+            }
+            foreach (Sprite upgradeSprite in UpgradeSprites)
+            {
+                upgradeSprite.Draw(gameTime);
+            }
+        }
+
         public void Enable(Tower tower)
         {
             SelectedTower = tower;
             Enabled = true;
             Visible = true;
+            ButtonCanClick = false;
         }
     }
 }
