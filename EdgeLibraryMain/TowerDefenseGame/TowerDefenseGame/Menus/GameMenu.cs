@@ -122,11 +122,7 @@ namespace TowerDefenseGame
 
                 TowerPanel = new TowerPanel() { Visible = false, Enabled = false };
                 TowerPanel.OnUpgradeTower += TowerPanel_OnUpgradeTower;
-                TowerPanel.SellButton.OnRelease += (x, y) =>
-                {
-                    Towers.Remove(TowerPanel.SelectedTower);
-                    Money += TowerPanel.SelectedTower.TowerData.Cost * (int)(1 - 0.25f * (int)Config.Difficulty);
-                };
+                TowerPanel.OnSellTower += TowerPanel_OnSellTower;
 
                 QuitPanel = new QuitPanel() { Visible = false, Enabled = false };
                 QuitPanel.ContinueButton.OnRelease += (x, y) =>
@@ -198,6 +194,15 @@ namespace TowerDefenseGame
             base.SwitchTo();
         }
 
+        void TowerPanel_OnSellTower(Tower tower)
+        {
+            if (Towers.Contains(tower))
+            {
+                Towers.Remove(tower);
+                Money += (int)(tower.TowerData.Cost * 0.25f * (int)Config.Difficulty);
+            }
+        }
+
         void TowerPanel_OnUpgradeTower(string upgradeId, Tower tower)
         {
             foreach(TowerData data in Config.Towers)
@@ -207,7 +212,8 @@ namespace TowerDefenseGame
                     if (Money >= data.Cost)
                     {
                         Money -= data.Cost;
-                        Towers.Add(new Tower(data, tower.Position));
+                        Tower newTower = new Tower(data, tower.Position);
+                        Towers.Add(newTower);
                         Towers.Remove(tower);
 
                         TowerPanel.Visible = false;
