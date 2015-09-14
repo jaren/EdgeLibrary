@@ -532,6 +532,7 @@ namespace TowerDefenseGame
 
             InfoPanel.Update(gameTime);
             WinPanel.Update(gameTime);
+            LosePanel.Update(gameTime);
             TowerPanel.Update(gameTime);
 
             base.UpdateObject(gameTime);
@@ -571,6 +572,7 @@ namespace TowerDefenseGame
 
             InfoPanel.Draw(gameTime);
             WinPanel.Draw(gameTime);
+            LosePanel.Draw(gameTime);
             TowerPanel.Draw(gameTime);
 
             base.DrawObject(gameTime);
