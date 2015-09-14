@@ -86,8 +86,8 @@
     <Compile Include="Game Classes\Effects\FireEffect.cs" />
     <Compile Include="Game Classes\Effects\SlowEffect.cs" />
     <Compile Include="Game Classes\Enemies\Enemy.cs" />
+    <Compile Include="Game Classes\Panels\DialogPanel.cs" />
     <Compile Include="Game Classes\Panels\InfoPanel.cs" />
-    <Compile Include="Game Classes\Panels\QuitPanel.cs" />
     <Compile Include="Game Classes\Panels\TowerPanel.cs" />
     <Compile Include="Game Classes\Projectiles\ExplosionProjectile.cs" />
     <Compile Include="Game.cs" />

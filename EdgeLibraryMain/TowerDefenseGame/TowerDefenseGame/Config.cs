@@ -221,7 +221,6 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
-
             new TowerData("Homing", 10, 250, 350, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), ""),
             new TowerData("Fire", 0, 1500, 200, 25, Projectiles["Fire"], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
             new TowerData("High Speed", 100, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),

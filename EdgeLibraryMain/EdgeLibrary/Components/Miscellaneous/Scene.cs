@@ -16,6 +16,8 @@ namespace EdgeLibrary
     /// </summary>
     public class Scene : DrawableGameComponent, ICloneable
     {
+        public BlendState BlendState = BlendState.AlphaBlend;
+        public SamplerState SamplerState = SamplerState.LinearClamp;
         public GameComponentCollection Components { get; protected set; }
 
         public Scene(List<GameComponent> components) : base(EdgeGame.Game)
@@ -52,16 +54,36 @@ namespace EdgeLibrary
 
         }
 
-        public override sealed void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             if (Visible)
             {
+                RestartSpriteBatch();
+
                 foreach (DrawableGameComponent component in Components.OfType<DrawableGameComponent>())
                 {
                     component.Draw(gameTime);
                 }
                 base.Draw(gameTime);
                 DrawObject(gameTime);
+
+                RestartSpriteBatch();
+            }
+        }
+
+        //Restarts the spritebatch if the blend state is not AlphaBlend
+        //Should be called before and after drawing
+        protected void RestartSpriteBatch(bool forceRestart = false)
+        {
+            if (forceRestart || BlendState != BlendState.AlphaBlend || SamplerState != SamplerState.LinearClamp)
+            {
+                EdgeGame.Game.SpriteBatch.End();
+                EdgeGame.Game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState, SamplerState, DepthStencilState.Default, RasterizerState.CullCounterClockwise);
+            }
+
+            if (!EdgeGame.Game.SpriteBatch.IsStarted)
+            {
+                EdgeGame.Game.SpriteBatch.Begin();
             }
         }
 

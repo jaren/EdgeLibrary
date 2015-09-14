@@ -17,7 +17,8 @@ namespace TowerDefenseGame
 
         bool AutoRoundStart = false;
 
-        public QuitPanel QuitPanel;
+        public DialogPanel WinPanel;
+        public DialogPanel LosePanel;
         public TowerPanel TowerPanel;
         public InfoPanel InfoPanel;
 
@@ -142,20 +143,25 @@ namespace TowerDefenseGame
                 TowerPanel.OnUpgradeTower += TowerPanel_OnUpgradeTower;
                 TowerPanel.OnSellTower += TowerPanel_OnSellTower;
 
-                QuitPanel = new QuitPanel() { Visible = false, Enabled = false };
-                QuitPanel.ContinueButton.OnRelease += (x, y) =>
+
+                WinPanel = new DialogPanel("Congratulations! You Won the Game!", "Continue", "Quit",() => 
                 {
                     CanStartRound = true;
-                    QuitPanel.Visible = false;
-                    QuitPanel.Enabled = false;
                     Freeplay = true;
                     RoundManager = new ProceduralRoundManager();
                     ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
-                };
-                QuitPanel.QuitButton.OnRelease += (x, y) =>
+                }, () =>
                 {
                     MenuManager.SwitchMenu("MainMenu");
-                };
+                });
+
+                LosePanel = new DialogPanel("Congratulations! You Lost the Game!", "New Game", "Main Menu", () =>
+                {
+                    MenuManager.SwitchMenu("GameSelectMenu");
+                }, () =>
+                {
+                    MenuManager.SwitchMenu("MainMenu");
+                });
 
                 FloatingRange = new Sprite("Circle", Vector2.Zero);
                 Components.Add(FloatingRange);
@@ -246,13 +252,19 @@ namespace TowerDefenseGame
 
         public void LoseGame()
         {
-            //Add lose game stuff here
+            LosePanel.Show();
+            AutoRoundStart = false;
+            InfoPanel.NextRoundButton.Color = AutoRoundStart ? Color.Goldenrod : Color.White;
+            InfoPanel.NextRoundButton.Style.AllColors = AutoRoundStart ? Color.Goldenrod : Color.White;
+            CanStartRound = false;
         }
 
         public void WinGame()
         {
-            QuitPanel.Visible = true;
-            QuitPanel.Enabled = true;
+            WinPanel.Show();
+            AutoRoundStart = false;
+            InfoPanel.NextRoundButton.Color = AutoRoundStart ? Color.Goldenrod : Color.White;
+            InfoPanel.NextRoundButton.Style.AllColors = AutoRoundStart ? Color.Goldenrod : Color.White;
             CanStartRound = false;
         }
 
@@ -519,7 +531,7 @@ namespace TowerDefenseGame
             }
 
             InfoPanel.Update(gameTime);
-            QuitPanel.Update(gameTime);
+            WinPanel.Update(gameTime);
             TowerPanel.Update(gameTime);
 
             base.UpdateObject(gameTime);
@@ -558,7 +570,7 @@ namespace TowerDefenseGame
             }
 
             InfoPanel.Draw(gameTime);
-            QuitPanel.Draw(gameTime);
+            WinPanel.Draw(gameTime);
             TowerPanel.Draw(gameTime);
 
             base.DrawObject(gameTime);

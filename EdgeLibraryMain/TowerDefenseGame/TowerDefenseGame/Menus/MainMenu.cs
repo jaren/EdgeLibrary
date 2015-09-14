@@ -14,6 +14,7 @@ namespace TowerDefenseGame
         private Button startGameButton;
         private Button optionsButton;
         private Button creditsButton;
+        DialogPanel quitDialog;
 
         public MainMenu() : base("MainMenu")
         {
@@ -48,6 +49,9 @@ namespace TowerDefenseGame
             TextSprite creditsButtonText = new TextSprite(Config.MenuButtonTextFont, "CREDITS", creditsButton.Position);
             Components.Add(creditsButtonText);
 
+            quitDialog = new DialogPanel("Are you sure you want to exit the game?", "Cancel", "Quit", () => { }, () => { EdgeGame.Stop(); });
+            Components.Add(quitDialog);
+
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
 
@@ -55,11 +59,8 @@ namespace TowerDefenseGame
         {
             if (MenuManager.SelectedMenu == this && key == Config.BackKey && !EdgeGame.Game.Graphics.IsFullScreen && !MenuManager.InputEventHandled)
             {
-                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?", "Quit", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
-                {
-                    EdgeGame.Stop();
-                }
                 MenuManager.InputEventHandled = true;
+                quitDialog.Show();
             }
         }
 
