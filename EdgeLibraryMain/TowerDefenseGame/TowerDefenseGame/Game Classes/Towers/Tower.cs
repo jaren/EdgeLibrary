@@ -14,6 +14,7 @@ namespace TowerDefenseGame
         public Enemy Target;
         public Ticker ShootTicker;
         private bool canShoot;
+        public List<Projectile> ProjectilesToAdd;
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
 
@@ -29,6 +30,7 @@ namespace TowerDefenseGame
             ShootTicker.Started = true;
             canShoot = false;
             Projectiles = new List<Projectile>();
+            ProjectilesToAdd = new List<Projectile>();
             towerRange = new Sprite("Circle", Position);
             towerRange.Scale = new Vector2(TowerData.Range / 500f);
             Scale = TowerData.Scale;
@@ -92,6 +94,9 @@ namespace TowerDefenseGame
             ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
             towerRange.Visible = Config.ShowRanges;
+
+            Projectiles.AddRange(ProjectilesToAdd);
+            ProjectilesToAdd.Clear();
 
             foreach (Projectile projectile in Projectiles)
             {
