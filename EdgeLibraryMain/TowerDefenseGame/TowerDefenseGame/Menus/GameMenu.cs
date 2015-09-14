@@ -155,7 +155,7 @@ namespace TowerDefenseGame
                     MenuManager.SwitchMenu("MainMenu");
                 });
 
-                LosePanel = new DialogPanel("Congratulations! You Lost the Game!", "New Game", "Main Menu", () =>
+                LosePanel = new DialogPanel("\"Congratulations!\" You LOST the Game!", "New Game", "Main Menu", () =>
                 {
                     MenuManager.SwitchMenu("GameSelectMenu");
                 }, () =>
@@ -587,7 +587,7 @@ namespace TowerDefenseGame
                 return;
             }
 
-            if (MenuManager.SelectedMenu == this && CanOpenTowerMenu)
+            if (MenuManager.SelectedMenu == this && CanOpenTowerMenu && !TowerPanel.Visible)
             {
                 foreach (Tower tower in Towers)
                 {

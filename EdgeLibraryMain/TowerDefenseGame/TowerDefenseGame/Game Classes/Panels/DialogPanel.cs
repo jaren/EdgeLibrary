@@ -29,7 +29,7 @@ namespace TowerDefenseGame
             LeftButton.OnRelease += (x, y) => { Hide(); leftAction(); };
             base.Components.Add(LeftButton);
 
-            LeftText = new TextSprite(Config.MenuButtonTextFont, "Continue", LeftButton.Position);
+            LeftText = new TextSprite(Config.MenuButtonTextFont, leftButtonText, LeftButton.Position);
             base.Components.Add(LeftText);
 
             RightButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * 0.5f + BackPanel.Width * BackPanel.Scale.X * 0.2f, EdgeGame.WindowSize.Y * 0.55f)) { Color = Config.MenuButtonColor };
@@ -37,7 +37,7 @@ namespace TowerDefenseGame
             RightButton.OnRelease += (x, y) => { Hide(); rightAction(); };
             base.Components.Add(RightButton);
 
-            RightText = new TextSprite(Config.MenuButtonTextFont, "Quit", RightButton.Position);
+            RightText = new TextSprite(Config.MenuButtonTextFont, rightButtonText, RightButton.Position);
             base.Components.Add(RightText);
 
             Hide();
