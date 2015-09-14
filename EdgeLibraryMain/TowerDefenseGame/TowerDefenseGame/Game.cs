@@ -78,6 +78,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadFont("Fonts/Georgia/Georgia-40");
             EdgeGame.LoadFont("Fonts/Georgia/Georgia-50");
             EdgeGame.LoadFont("Fonts/Georgia/Georgia-60");
+            EdgeGame.LoadFont("Fonts/Georgia/Georgia-SemiSmall");
             EdgeGame.LoadFont("Fonts/Impact/Impact-10");
             EdgeGame.LoadFont("Fonts/Impact/Impact-20");
             EdgeGame.LoadFont("Fonts/Impact/Impact-30");

@@ -267,6 +267,7 @@ namespace TowerDefenseGame
         public static string MenuMiniTitleFont = "Georgia-30";
         public static string MenuSubtitleFont = "Georgia-20";
         public static string MenuButtonTextFont = "Georgia-20";
+        public static string MenuSmallFont = "Georgia-SemiSmall";
         public static Color MenuButtonColor = Color.DarkOrange;
         public static Color MenuTextColor = Color.Orange;
 
