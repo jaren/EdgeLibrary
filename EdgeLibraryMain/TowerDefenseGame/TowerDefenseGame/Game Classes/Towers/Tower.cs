@@ -18,7 +18,6 @@ namespace TowerDefenseGame
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
 
-        private List<Sprite> previousTargets = new List<Sprite>();
         private Sprite towerRange;
 
         public Tower(TowerData data, Vector2 position)
@@ -50,7 +49,7 @@ namespace TowerDefenseGame
                 TowerData.SpecialActionsOnUpdate(this, Enemies);
             }
 
-            if (Target != null)
+            if (Target != null && TowerData.TracksEnemies)
             {
                 Rotation = -1f * (float)Math.Atan2(Position.X - Target.Position.X, Position.Y - Target.Position.Y) + TowerData.BaseRotation;
             }
@@ -67,20 +66,17 @@ namespace TowerDefenseGame
 
                     projectile.Rotation = Rotation + projectile.ProjectileData.BaseRotation;
                     Projectiles.Add(projectile);
-                    canShoot = false;
-                    ShootTicker.elapsedMilliseconds = 0;
 
                     projectile.TargetPosition.Normalize();
-                    previousTargets.Clear();
-
-                    if (Config.DebugMode)
-                    {
-                        for (int i = 0; i < 100; i++)
-                        {
-                            previousTargets.Add(new Sprite("portal_orangeParticle", Position + projectile.TargetPosition * i) { Color = Color.Red, Scale = Vector2.One * 0.1f });
-                        }
-                    }
                 }
+
+                if (Enemies.Count > 0 && TowerData.SpecialActionsOnShoot != null)
+                {
+                    TowerData.SpecialActionsOnShoot(this, Enemies, Target);
+                }
+
+                canShoot = false;
+                ShootTicker.elapsedMilliseconds = 0;
             }
 
             foreach (Projectile projectile in Projectiles)
@@ -118,12 +114,7 @@ namespace TowerDefenseGame
         {
             towerRange.Draw(gameTime);
 
-            foreach(Sprite sprite in previousTargets)
-            {
-                sprite.Draw(gameTime);
-            }
-
-            foreach(Projectile projectile in Projectiles)
+            foreach (Projectile projectile in Projectiles)
             {
                 projectile.Draw(gameTime);
             }
@@ -147,18 +138,34 @@ namespace TowerDefenseGame
             {
                 case AttackTarget.First:
                     EnemiesInRange.OrderBy(x => x.TrackDistance);
+                    if (TowerData.SpecialActionsOnSelectTarget != null)
+                    {
+                        TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
+                    }
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Last:
                     EnemiesInRange.OrderByDescending(x => x.TrackDistance);
+                    if (TowerData.SpecialActionsOnSelectTarget != null)
+                    {
+                        TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
+                    }
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Strong:
                     EnemiesInRange.OrderByDescending(x => x.Health).ThenByDescending(x => x.EnemyData.Armor);
+                    if (TowerData.SpecialActionsOnSelectTarget != null)
+                    {
+                        TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
+                    }
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Weak:
                     EnemiesInRange.OrderBy(x => x.Health).ThenBy(x => x.EnemyData.Armor);
+                    if (TowerData.SpecialActionsOnSelectTarget != null)
+                    {
+                        TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
+                    }
                     return EnemiesInRange[0];
                     break;
             }
@@ -196,8 +203,8 @@ namespace TowerDefenseGame
         public string Name;
         public string BaseName;
 
-        public System.Action<Tower, Enemy> SpecialActionsOnSelectTarget;
-        public System.Action<Tower, Enemy> SpecialActionsOnShoot;
+        public System.Action<Tower, List<Enemy>, Enemy> SpecialActionsOnSelectTarget;
+        public System.Action<Tower, List<Enemy>, Enemy> SpecialActionsOnShoot;
         public System.Action<Tower, List<Enemy>> SpecialActionsOnUpdate;
         public System.Action<Tower> SpecialActionsOnCreate;
         public System.Action<Tower> SpecialActionsOnSell;
@@ -206,8 +213,9 @@ namespace TowerDefenseGame
         public Vector2 Scale;
         public float BaseRotation;
         public bool EmitsProjectile;
+        public bool TracksEnemies;
 
-        public TowerData(string name, float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, PlaceableArea placeableArea, string baseName, System.Action<Tower, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, List<Enemy>> specialActionsOnUpdate = null, System.Action<Tower, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null, bool emitsProjectile = true)
+        public TowerData(string name, float attackDamage, float attackSpeed, float range, float accuracy, ProjectileData attackData, string texture, float baseRotation, Vector2 scale, int cost, PlaceableArea placeableArea, string baseName, bool tracksEnemies = true, System.Action<Tower, List<Enemy>, Enemy> specialActionsOnSelectTarget = null, System.Action<Tower> specialActionsOnCreate = null, System.Action<Tower, List<Enemy>> specialActionsOnUpdate = null, System.Action<Tower, List<Enemy>, Enemy> specialActionsOnShoot = null, System.Action<Tower> specialActionsOnSell = null, bool emitsProjectile = true)
         {
             AttackDamage = attackDamage;
             AttackSpeed = attackSpeed;
@@ -221,6 +229,7 @@ namespace TowerDefenseGame
             Name = name;
             BaseName = baseName;
             BaseRotation = baseRotation;
+            TracksEnemies = tracksEnemies;
             SpecialActionsOnSelectTarget = specialActionsOnSelectTarget;
             SpecialActionsOnCreate = specialActionsOnCreate;
             SpecialActionsOnSell = specialActionsOnSell;

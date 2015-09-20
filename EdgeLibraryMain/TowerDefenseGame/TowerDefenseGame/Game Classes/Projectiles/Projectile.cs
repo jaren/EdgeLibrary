@@ -26,14 +26,22 @@ namespace TowerDefenseGame
             ProjectileData = data;
             Scale = data.Scale;
             Color = data.Color;
-            Target = target;
 
             PiercedEnemies = new List<Enemy>();
             PiercedEnemiesCount = 0;
 
             Damage = damage;
 
-            TargetPosition = target.Position - Position;
+            if (target != null)
+            {
+                Target = target;
+                SetTargetPosition(target.Position, accuracy);
+            }
+        }
+
+        public void SetTargetPosition(Vector2 targetPosition, float accuracy)
+        {
+            TargetPosition = targetPosition - Position;
             TargetPosition.Normalize();
             TargetPosition = new Vector2(TargetPosition.X * ProjectileData.Range, TargetPosition.Y * ProjectileData.Range);
             TargetPosition = new Vector2(TargetPosition.X + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f), TargetPosition.Y + RandomTools.RandomFloat(-accuracy * ProjectileData.Range / 100f, accuracy * ProjectileData.Range / 100f));
