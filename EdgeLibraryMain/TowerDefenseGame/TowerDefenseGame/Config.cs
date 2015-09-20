@@ -236,7 +236,7 @@ namespace TowerDefenseGame
         public static List<TowerData> Towers = new List<TowerData>()
         {
             //Base Towers
-            new TowerData("Spread", 25, 1000, 400, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), ""),
+            new TowerData("Spread", 25, 1000, 300, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), ""),
             new TowerData("Slow", 0, 0, 100, 0, new ProjectileData(), "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 500, (PlaceableArea.Land), "", null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
                 {
                     foreach(Enemy enemy in enemies)
@@ -247,16 +247,16 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
-            new TowerData("Homing", 10, 250, 350, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), ""),
+            new TowerData("Homing", 10, 400, 400, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land), ""),
             new TowerData("Fire", 0, 1500, 200, 25, Projectiles["Fire"], "enemyBlue4", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
             new TowerData("High Speed", 100, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
-            new TowerData("Gatling", 3, 10, 200, 40, Projectiles["Inaccurate"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 600, (PlaceableArea.Land), ""),
+            new TowerData("Gatling", 3, 50, 200, 40, Projectiles["Inaccurate"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 600, (PlaceableArea.Land), ""),
             
             //Upgrades
-            new TowerData("Homing Explosives", 20, 550, 400, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
-            new TowerData("Cluster Fire", 0, 1500, 400, 25, Projectiles["Cluster Fire"], "enemyRed4", MathHelper.ToRadians(0), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
+            new TowerData("Homing Explosives", 20, 750, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
+            new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed4", MathHelper.ToRadians(0), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("High Speed Cluster", 100, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "High Speed"),
-            new TowerData("Slow Fire", 0, 0, 150, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
+            new TowerData("Slow Fire", 0, 0, 400, 0, new ProjectileData(), "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
                 {
                     foreach(Enemy enemy in enemies)
                     {
@@ -266,11 +266,11 @@ namespace TowerDefenseGame
 
                             if (enemy.HasEffect("Fire"))
                             {
-                                ((FireEffect)enemy.GetEffect("Fire")).Duration = 3000;
+                                ((FireEffect)enemy.GetEffect("Fire")).Duration = 1000;
                             }
                             else
                             {
-                                enemy.AddEffect(new FireEffect(3000));
+                                enemy.AddEffect(new FireEffect(1000));
                             }
                         }
                     }
