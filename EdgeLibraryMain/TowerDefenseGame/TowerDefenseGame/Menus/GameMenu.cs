@@ -651,10 +651,10 @@ namespace TowerDefenseGame
                 Config.DebugMode = !Config.DebugMode;
                 Config.ShowRanges = false;
             }
-            else if (key == Keys.Home)
+            /*else if (key == Keys.Home)
             {
                 Config.ShowRanges = !Config.ShowRanges;
-            }
+            }*/
         }
     }
 

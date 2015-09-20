@@ -14,6 +14,7 @@ namespace TowerDefenseGame
         public Enemy Target;
         public Ticker ShootTicker;
         private bool canShoot;
+        public bool ShowRadius = false;
         public List<Projectile> ProjectilesToAdd;
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
@@ -89,7 +90,7 @@ namespace TowerDefenseGame
         {
             ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
-            towerRange.Visible = Config.ShowRanges;
+            towerRange.Visible = ShowRadius;
 
             Projectiles.AddRange(ProjectilesToAdd);
             ProjectilesToAdd.Clear();
