@@ -82,6 +82,11 @@ namespace TowerDefenseGame
 
         public override void SwitchTo()
         {
+            if (OptionsMenu.MusicOn)
+            {
+                EdgeGame.playPlaylist("Music");
+            }
+
             if (ShouldReset)
             {
                 ShouldReset = false;

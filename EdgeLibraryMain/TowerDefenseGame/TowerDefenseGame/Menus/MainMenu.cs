@@ -86,11 +86,6 @@ namespace TowerDefenseGame
         public override void SwitchOut()
         {
             base.SwitchOut();
-
-            if (OptionsMenu.MusicOn)
-            {
-                EdgeGame.playPlaylist("Music");
-            }
         }
     }
 }

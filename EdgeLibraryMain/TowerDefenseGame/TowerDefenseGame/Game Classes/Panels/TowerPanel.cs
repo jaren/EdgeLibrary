@@ -19,6 +19,8 @@ namespace TowerDefenseGame
         public TextSprite RangeText;
         public ButtonMultiToggle TargetButton;
         public TextSprite TargetText;
+        public ButtonToggle ShowTargetButton;
+        public TextSprite ShowTargetText;
         public TextSprite CloseSprite;
         public Sprite TowerPicture;
         public List<Button> UpgradeButtons;
@@ -38,6 +40,8 @@ namespace TowerDefenseGame
 
                 UpgradeButtons.Clear();
                 UpgradeSprites.Clear();
+
+                SellSprite.Text = "Sell (" + (int)(selectedTower.TowerData.Cost * 0.75f / (int)Config.Difficulty) + ")";
 
                 int upgradeCount = 0;
                 foreach (TowerData data in Config.Towers)
@@ -83,7 +87,7 @@ namespace TowerDefenseGame
 
             ButtonCanClick = false;
 
-            BackPanel = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.5f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.5f)) { Color = new Color(40,40,40), Scale = new Vector2(500f, 500f) };
+            BackPanel = new Sprite("Pixel", new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.5f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.5f)) { Color = new Color(40, 40, 40), Scale = new Vector2(500f, 500f) };
             base.Components.Add(BackPanel);
 
             NoUpgradesText = new TextSprite(Config.StatusFont, "No Upgrades Available", new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.5f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.3f));
@@ -100,31 +104,45 @@ namespace TowerDefenseGame
             SellSprite = new TextSprite(Config.StatusFont, "Sell", SellButton.Position) { Color = Color.White };
             base.Components.Add(SellSprite);
 
-            TargetButton = new ButtonMultiToggle(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.65f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.7f), 3) { Color = Config.MenuButtonColor };
+            ShowTargetButton = new ButtonToggle(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.65f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.7f)) { Color = Config.MenuButtonColor };
+            ShowTargetButton.Style = buttonStyle;
+            ShowTargetButton.OffStyle = buttonStyle;
+            ShowTargetButton.On = false;
+            ShowTargetButton.OnStyle = new Style(EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor);
+            ShowTargetButton.OnRelease += (x, y) =>
+            {
+                selectedTower.ShowTarget = !selectedTower.ShowTarget;
+            };
+            Components.Add(ShowTargetButton);
+
+            ShowTargetText = new TextSprite(Config.StatusFont, "Show Target", ShowTargetButton.Position) { Color = Color.White };
+            base.Components.Add(ShowTargetText);
+
+            TargetButton = new ButtonMultiToggle(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.5f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.6f), 3) { Color = Config.MenuButtonColor, Scale = new Vector2(2.5f, 1f) };
             TargetButton.Style = buttonStyle;
             TargetButton.Styles = new List<Style>() { buttonStyle };
             TargetButton.OnToggled += (x, y) =>
             {
-                TargetText.Text = targetTypes[TargetButton.CurrentIndex];
+                TargetText.Text = "Target: " + targetTypes[TargetButton.CurrentIndex];
                 selectedTower.AttackTarget = (AttackTarget)Enum.Parse(typeof(AttackTarget), targetTypes[TargetButton.CurrentIndex]);
             };
             Components.Add(TargetButton);
 
-            TargetText = new TextSprite(Config.StatusFont, "First", TargetButton.Position);
+            TargetText = new TextSprite(Config.StatusFont, "Target: First", TargetButton.Position);
             Components.Add(TargetText);
 
             RangeButton = new ButtonToggle(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.35f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.7f)) { Color = Config.MenuButtonColor };
             RangeButton.Style = buttonStyle;
             RangeButton.OffStyle = buttonStyle;
             RangeButton.On = false;
-            RangeButton.OnStyle = new Style(EdgeGame.GetTexture(Config.ButtonClickTexture),Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture),Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture),Config.MenuButtonColor);
+            RangeButton.OnStyle = new Style(EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor);
             RangeButton.OnRelease += (x, y) =>
             {
                 selectedTower.ShowRadius = !selectedTower.ShowRadius;
             };
             Components.Add(RangeButton);
 
-            RangeText = new TextSprite(Config.StatusFont, "Show Radius", RangeButton.Position);
+            RangeText = new TextSprite(Config.StatusFont, "Show Range", RangeButton.Position);
             Components.Add(RangeText);
 
             CloseButton = new Button(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.65f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.8f)) { Color = Config.MenuButtonColor };

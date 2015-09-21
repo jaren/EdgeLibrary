@@ -56,6 +56,7 @@ namespace TowerDefenseGame
         public TextSprite ParticlesButtonText;
         public Button ReturnButton;
         public TextSprite ReturnButtonText;
+        public DialogPanel QuitPanel;
 
         public OptionsMenu()
             : base("OptionsMenu")
@@ -73,7 +74,14 @@ namespace TowerDefenseGame
             QuitButton.Style.AllColors = Config.MenuButtonColor;
             QuitButton.OnRelease += (x, y) =>
             {
-                MenuManager.SwitchMenu("MainMenu");
+                if (MenuManager.PreviousMenu.Name == "GameMenu")
+                {
+                    QuitPanel.Show();
+                }
+                else
+                {
+                    MenuManager.SwitchMenu("MainMenu");
+                }
             };
             Components.Add(QuitButton);
 
@@ -145,6 +153,9 @@ namespace TowerDefenseGame
 
             ReturnButtonText = new TextSprite(Config.MenuButtonTextFont, "Back", ReturnButton.Position);
             Components.Add(ReturnButtonText);
+
+            QuitPanel = new DialogPanel("If you quit you will lose game progrees", "Quit", "Cancel", () => { MenuManager.SwitchMenu("MainMenu"); }, () => { });
+            Components.Add(QuitPanel);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }

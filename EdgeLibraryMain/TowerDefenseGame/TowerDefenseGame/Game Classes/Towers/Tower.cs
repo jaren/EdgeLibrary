@@ -15,6 +15,7 @@ namespace TowerDefenseGame
         public Ticker ShootTicker;
         private bool canShoot;
         public bool ShowRadius = false;
+        public bool ShowTarget = false;
         public List<Projectile> ProjectilesToAdd;
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
@@ -88,6 +89,11 @@ namespace TowerDefenseGame
 
         public override void UpdateObject(GameTime gameTime)
         {
+            if (ShowTarget && Target != null)
+            {
+                Target.BeingTargeted = true;
+            }
+
             ShootTicker.Update(gameTime);
             projectilesToRemove = new List<Projectile>();
             towerRange.Visible = ShowRadius;

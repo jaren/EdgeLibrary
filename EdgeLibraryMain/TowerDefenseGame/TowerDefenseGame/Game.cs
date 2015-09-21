@@ -121,6 +121,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Health Bar/health2");
             EdgeGame.LoadTexture("Health Bar/health1");
             EdgeGame.LoadTexture("Health Bar/health0");
+            EdgeGame.LoadTexture("target");
 
             EdgeGame.LoadSong("Music/Chipper Doodle v2");
             EdgeGame.LoadSong("Music/Funky Chunk");

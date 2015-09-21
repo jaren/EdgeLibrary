@@ -32,11 +32,13 @@ namespace TowerDefenseGame
         public bool CompletedPath;
         private Waypoint currentWaypoint;
         private Sprite enemyHealthBar = new Sprite("health10", Vector2.Zero);
+        private Sprite targetIcon = new Sprite("target", Vector2.Zero);
         private TextSprite debugEnemyHealth = new TextSprite("Georgia-20", "", Vector2.Zero, Color.White, Vector2.One);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
         public delegate void EnemyDeathEvent(Enemy enemy, List<EnemyData> spawnedEnemies);
         public event EnemyDeathEvent OnSpawnEnemies;
+        public bool BeingTargeted = false;
 
         public Enemy(EnemyData data, Vector2 position)
             : base(data.Texture, position)
@@ -157,6 +159,16 @@ namespace TowerDefenseGame
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
+            Color = Color.White;
+            if (BeingTargeted)
+            {
+                Color = Color.Red;
+                targetIcon.Position = Position;
+                targetIcon.Color = Color.Red;
+                targetIcon.Update(gameTime);
+                BeingTargeted = false;
+            }
+
             debugEnemyHealth.Text = Health.ToString();
             debugEnemyHealth.Position = Position;
             debugEnemyHealth.Update(gameTime);
@@ -178,6 +190,7 @@ namespace TowerDefenseGame
             base.DrawObject(gameTime);
             enemyHealthBar.Draw(gameTime);
             debugEnemyHealth.Draw(gameTime);
+            targetIcon.Draw(gameTime);
         }
     }
 
