@@ -99,6 +99,13 @@ namespace TowerDefenseGame
             towerRange.Visible = ShowRadius;
 
             Projectiles.AddRange(ProjectilesToAdd);
+            foreach (Projectile projectile in ProjectilesToAdd)
+            {
+                if (projectile.ProjectileData.SpecialActionsOnCreate != null)
+                {
+                    projectile.ProjectileData.SpecialActionsOnCreate(projectile, this);
+                }
+            }
             ProjectilesToAdd.Clear();
 
             foreach (Projectile projectile in Projectiles)

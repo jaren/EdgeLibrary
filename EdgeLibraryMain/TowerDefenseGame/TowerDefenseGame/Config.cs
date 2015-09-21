@@ -254,8 +254,11 @@ namespace TowerDefenseGame
 
         public static void ExplosionProjectileCreate(Projectile projectile, Tower tower, float explosionRadius, string texture, float textureSize, int accuracy)
         {
+            if (!(projectile is ExplosionProjectile))
+            {
             projectile.ToDelete = true;
             tower.ProjectilesToAdd.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, texture, new Vector2(explosionRadius / textureSize * 2), projectile.Target, accuracy, projectile.Position, explosionRadius));
+            }
         }
 
         public static List<TowerData> Towers = new List<TowerData>()
@@ -310,7 +313,7 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
-           new TowerData("Sprinkler Expander", 120, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 1500, (PlaceableArea.Water), "Sprinkler", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+           new TowerData("Sprinkler Expander", 120, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 2500, (PlaceableArea.Water), "Sprinkler", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
                {
                    if (tower.Projectiles.Count == 0)
                    {
