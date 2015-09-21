@@ -105,6 +105,31 @@ namespace TowerDefenseGame
 
             {"Sprinkler", new ProjectileData(4, 1500, 0, 1, "particle_blue", Color.White, Vector2.One*0.6f, 1, 0)},
 
+            {"Sprinkler Expander", new ProjectileData(0, 1500, 0, 10000, "CircleOutline", Color.White, Vector2.One*0.6f, 1, 0, new Action<Projectile,List<Enemy>,Tower>((projectile, enemies, enemy) => 
+                {
+                    projectile.Scale += new Vector2(0.01f) * EdgeGame.GameSpeed;
+                    foreach (Enemy eachEnemy in enemies)
+                    {
+                        if (Vector2.DistanceSquared(eachEnemy.Position, projectile.Position) <= (projectile.Texture.Width/2 * projectile.Scale.X)*(projectile.Texture.Width/2 * projectile.Scale.X))
+                        {
+                            if (!projectile.Data["EnemiesHit"].Split(',').Contains(eachEnemy.ID))
+                            {
+                                eachEnemy.Hit(projectile.Damage, projectile.ProjectileData.ArmorPierce);
+                                projectile.Data["EnemiesHit"] += eachEnemy.ID;
+                            }
+                        }
+                    }
+
+                    if (projectile.Scale.X*projectile.Texture.Width >= (EdgeGame.WindowSize.X + EdgeGame.WindowSize.Y)/2)
+                    {
+                        projectile.ToDelete = true;
+                    }
+                }), null, null, new Action<Projectile,Tower>((projectile, tower) => 
+                    {
+                        projectile.Scale = new Vector2(0);
+                        projectile.Data.Add("EnemiesHit", "");
+                    }))},
+
             {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Color.White, Vector2.One * 1.5f, 1, 0)},
 
             {"High Speed Cluster", new ProjectileData(10, 1000, 0.5f, 1, "lighting_yellow", Color.White, Vector2.One * 1.5f, 1, 0, null, null, new Action<Projectile,List<Enemy>,Enemy,Tower>( (projectile, enemies, enemy, tower) =>
@@ -230,7 +255,7 @@ namespace TowerDefenseGame
         public static void ExplosionProjectileCreate(Projectile projectile, Tower tower, float explosionRadius, string texture, float textureSize, int accuracy)
         {
             projectile.ToDelete = true;
-            tower.Projectiles.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, texture, new Vector2(explosionRadius / textureSize * 2), projectile.Target, accuracy, projectile.Position, explosionRadius));
+            tower.ProjectilesToAdd.Add(new ExplosionProjectile(projectile.ProjectileData, projectile.Damage, texture, new Vector2(explosionRadius / textureSize * 2), projectile.Target, accuracy, projectile.Position, explosionRadius));
         }
 
         public static List<TowerData> Towers = new List<TowerData>()
@@ -250,12 +275,16 @@ namespace TowerDefenseGame
             new TowerData("Homing", 10, 400, 400, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land | PlaceableArea.Water), ""),
             new TowerData("Fire", 0, 1500, 200, 25, Projectiles["Fire"], "enemyBlue2", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
             new TowerData("High Speed", 100, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
-            new TowerData("Sprinkler", 60, 100, 200, 40, new ProjectileData(), "playerShip3_blue", MathHelper.ToRadians(0), new Vector2(0.5f), 600, (PlaceableArea.Water), "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+            new TowerData("Sprinkler", 60, 100, 1000, 0, new ProjectileData(), "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 600, (PlaceableArea.Water), "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
                 {
-                    tower.Rotation += MathHelper.ToRadians(1) * EdgeGame.GameSpeed;
+                    tower.Rotation += MathHelper.ToRadians(3) * EdgeGame.GameSpeed;
                     Projectile sprinklerProjectile = new Projectile(Projectiles["Sprinkler"], tower.TowerData.AttackDamage, null, 0, tower.Position);
+                    if (sprinklerProjectile.ProjectileData.SpecialActionsOnCreate != null)
+                    {
+                        sprinklerProjectile.ProjectileData.SpecialActionsOnCreate(sprinklerProjectile, tower);
+                    }
                     sprinklerProjectile.SetTargetPosition(new Vector2(sprinklerProjectile.Position.X + (float)Math.Cos(tower.Rotation), sprinklerProjectile.Position.Y + (float)Math.Sin(tower.Rotation)), tower.TowerData.Accuracy);
-                    tower.Projectiles.Add(sprinklerProjectile);
+                    tower.ProjectilesToAdd.Add(sprinklerProjectile);
                 }), null, false),
             
             //Upgrades
@@ -281,6 +310,13 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
+           new TowerData("Sprinkler Expander", 120, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 1500, (PlaceableArea.Water), "Sprinkler", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+               {
+                   if (tower.Projectiles.Count == 0)
+                   {
+                       tower.ProjectilesToAdd.Add(new Projectile(tower.TowerData.AttackData, tower.TowerData.AttackDamage, null, 0, tower.Position));
+                   }
+               }), null, false),
         };
 
         public static string TrackEasyDifficulty = "Easy";

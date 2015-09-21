@@ -108,6 +108,7 @@ namespace TowerDefenseGame
             EdgeGame.LoadTexture("Levels/Color Quadrants");
             EdgeGame.LoadTexture("Levels/Color Quadrants Preview");
             EdgeGame.LoadTexture("Circle");
+            EdgeGame.LoadTexture("CircleOutline");
             EdgeGame.LoadTexture("flameBlue");
             EdgeGame.LoadTexture("Health Bar/health10");
             EdgeGame.LoadTexture("Health Bar/health9");
