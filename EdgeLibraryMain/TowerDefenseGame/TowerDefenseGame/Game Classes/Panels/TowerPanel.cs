@@ -107,7 +107,6 @@ namespace TowerDefenseGame
             ShowTargetButton = new ButtonToggle(Config.ButtonNormalTexture, new Vector2(EdgeGame.WindowSize.X * Config.CommonRatio.X * 0.65f, EdgeGame.WindowSize.Y * Config.CommonRatio.Y * 0.7f)) { Color = Config.MenuButtonColor };
             ShowTargetButton.Style = buttonStyle;
             ShowTargetButton.OffStyle = buttonStyle;
-            ShowTargetButton.On = false;
             ShowTargetButton.OnStyle = new Style(EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonClickTexture), Config.MenuButtonColor, EdgeGame.GetTexture(Config.ButtonNormalTexture), Config.MenuButtonColor);
             ShowTargetButton.OnRelease += (x, y) =>
             {
@@ -123,8 +122,8 @@ namespace TowerDefenseGame
             TargetButton.Styles = new List<Style>() { buttonStyle };
             TargetButton.OnToggled += (x, y) =>
             {
-                TargetText.Text = "Target: " + targetTypes[TargetButton.CurrentIndex];
                 selectedTower.AttackTarget = (AttackTarget)Enum.Parse(typeof(AttackTarget), targetTypes[TargetButton.CurrentIndex]);
+                TargetText.Text = "Target: " + selectedTower.AttackTarget.ToString();
             };
             Components.Add(TargetButton);
 
@@ -166,6 +165,8 @@ namespace TowerDefenseGame
                 upgradeSprite.Update(gameTime);
             }
             ButtonCanClick = true;
+            ShowTargetButton.On = selectedTower.ShowTarget;
+            RangeButton.On = selectedTower.ShowRadius;
         }
 
         public override void DrawObject(GameTime gameTime)
@@ -187,6 +188,12 @@ namespace TowerDefenseGame
             Enabled = true;
             Visible = true;
             ButtonCanClick = false;
+            TargetText.Text = "Target: " + tower.AttackTarget.ToString();
+            TargetButton.CurrentIndex = (int)tower.AttackTarget;
+            ShowTargetButton.On = tower.ShowTarget;
+            RangeButton.On = tower.ShowRadius;
+            ShowTargetButton.Style = ShowTargetButton.On ? ShowTargetButton.OnStyle : ShowTargetButton.OffStyle;
+            RangeButton.Style = RangeButton.On ? RangeButton.OnStyle : RangeButton.OffStyle;
         }
     }
 }

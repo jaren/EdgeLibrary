@@ -39,6 +39,7 @@ namespace TowerDefenseGame
         public delegate void EnemyDeathEvent(Enemy enemy, List<EnemyData> spawnedEnemies);
         public event EnemyDeathEvent OnSpawnEnemies;
         public bool BeingTargeted = false;
+        public Tower TargetTower = null;
 
         public Enemy(EnemyData data, Vector2 position)
             : base(data.Texture, position)
@@ -60,6 +61,7 @@ namespace TowerDefenseGame
             }
 
             Health -= damage - (EnemyData.Armor * (1 - armorPierce));
+            Color = Color.Firebrick;
 
             if (Health <= 0)
             {
@@ -159,14 +161,21 @@ namespace TowerDefenseGame
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
+            TrackDistance++;
+
             Color = Color.White;
             if (BeingTargeted)
             {
-                Color = Color.Red;
+                targetIcon.Visible = true;
                 targetIcon.Position = Position;
-                targetIcon.Color = Color.Red;
+                targetIcon.Color = TargetTower.TowerColor;
                 targetIcon.Update(gameTime);
                 BeingTargeted = false;
+                TargetTower = null;
+            }
+            else
+            {
+                targetIcon.Visible = false;
             }
 
             debugEnemyHealth.Text = Health.ToString();

@@ -13,12 +13,14 @@ namespace TowerDefenseGame
         public AttackTarget AttackTarget;
         public Enemy Target;
         public Ticker ShootTicker;
+        public Color TowerColor;
         private bool canShoot;
         public bool ShowRadius = false;
         public bool ShowTarget = false;
         public List<Projectile> ProjectilesToAdd;
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
+        private Sprite targetIcon = new Sprite("target", Vector2.Zero);
 
         private Sprite towerRange;
 
@@ -35,6 +37,7 @@ namespace TowerDefenseGame
             towerRange = new Sprite("Circle", Position);
             towerRange.Scale = new Vector2(TowerData.Range / 500f);
             Scale = TowerData.Scale;
+            TowerColor = RandomTools.RandomColor();
         }
 
         void ShootTicker_OnTick(GameTime gameTime)
@@ -92,6 +95,12 @@ namespace TowerDefenseGame
             if (ShowTarget && Target != null)
             {
                 Target.BeingTargeted = true;
+                Target.TargetTower = this;
+                Color = TowerColor;
+            }
+            else
+            {
+                Color = Color.White;
             }
 
             ShootTicker.Update(gameTime);
@@ -133,6 +142,7 @@ namespace TowerDefenseGame
                 projectile.Draw(gameTime);
             }
             base.DrawObject(gameTime);
+            targetIcon.Draw(gameTime);
         }
 
         private Enemy SelectTarget(List<Enemy> Enemies)
@@ -151,7 +161,7 @@ namespace TowerDefenseGame
             switch (AttackTarget)
             {
                 case AttackTarget.First:
-                    EnemiesInRange.OrderBy(x => x.TrackDistance);
+                    EnemiesInRange = EnemiesInRange.OrderByDescending(x => x.TrackDistance).ToList();
                     if (TowerData.SpecialActionsOnSelectTarget != null)
                     {
                         TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
@@ -159,7 +169,7 @@ namespace TowerDefenseGame
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Last:
-                    EnemiesInRange.OrderByDescending(x => x.TrackDistance);
+                    EnemiesInRange = EnemiesInRange.OrderBy(x => x.TrackDistance).ToList();
                     if (TowerData.SpecialActionsOnSelectTarget != null)
                     {
                         TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
@@ -167,7 +177,7 @@ namespace TowerDefenseGame
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Strong:
-                    EnemiesInRange.OrderByDescending(x => x.Health).ThenByDescending(x => x.EnemyData.Armor);
+                    EnemiesInRange = EnemiesInRange.OrderByDescending(x => x.Health).ThenByDescending(x => x.EnemyData.Armor).ToList();
                     if (TowerData.SpecialActionsOnSelectTarget != null)
                     {
                         TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);
@@ -175,7 +185,7 @@ namespace TowerDefenseGame
                     return EnemiesInRange[0];
                     break;
                 case AttackTarget.Weak:
-                    EnemiesInRange.OrderBy(x => x.Health).ThenBy(x => x.EnemyData.Armor);
+                    EnemiesInRange = EnemiesInRange.OrderBy(x => x.Health).ThenBy(x => x.EnemyData.Armor).ToList();
                     if (TowerData.SpecialActionsOnSelectTarget != null)
                     {
                         TowerData.SpecialActionsOnSelectTarget(this, Enemies, EnemiesInRange[0]);

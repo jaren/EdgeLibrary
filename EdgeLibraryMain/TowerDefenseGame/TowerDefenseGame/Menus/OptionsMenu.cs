@@ -57,6 +57,7 @@ namespace TowerDefenseGame
         public Button ReturnButton;
         public TextSprite ReturnButtonText;
         public DialogPanel QuitPanel;
+        public DialogPanel ExitGamePanel;
 
         public OptionsMenu()
             : base("OptionsMenu")
@@ -77,6 +78,10 @@ namespace TowerDefenseGame
                 if (MenuManager.PreviousMenu.Name == "GameMenu")
                 {
                     QuitPanel.Show();
+                }
+                else if (MenuManager.PreviousMenu.Name == "MainMenu")
+                {
+                    ExitGamePanel.Show();
                 }
                 else
                 {
@@ -156,6 +161,9 @@ namespace TowerDefenseGame
 
             QuitPanel = new DialogPanel("If you quit you will lose game progrees", "Quit", "Cancel", () => { MenuManager.SwitchMenu("MainMenu"); }, () => { });
             Components.Add(QuitPanel);
+
+            ExitGamePanel = new DialogPanel("Are you sure you want to exit the game?", "Cancel", "Quit", () => { }, () => { EdgeGame.Stop(); });
+            Components.Add(ExitGamePanel);
 
             Input.OnKeyRelease += Input_OnKeyRelease;
         }
