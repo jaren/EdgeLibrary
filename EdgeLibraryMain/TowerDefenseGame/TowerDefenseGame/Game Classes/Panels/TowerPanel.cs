@@ -194,6 +194,7 @@ namespace TowerDefenseGame
             RangeButton.On = tower.ShowRadius;
             ShowTargetButton.Style = ShowTargetButton.On ? ShowTargetButton.OnStyle : ShowTargetButton.OffStyle;
             RangeButton.Style = RangeButton.On ? RangeButton.OnStyle : RangeButton.OffStyle;
+            TowerName.Color = tower.TowerColor;
         }
     }
 }
