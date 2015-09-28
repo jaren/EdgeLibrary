@@ -131,7 +131,7 @@ namespace TowerDefenseGame
                         projectile.Data.Add("EnemiesHit", "");
                     }))},
 
-            {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Color.White, Vector2.One * 1.5f, 1, 0)},
+            {"High Speed", new ProjectileData(50, 1000, 0.5f, 5, "lighting_yellow", Color.White, Vector2.One * 1.5f, 5, 0)},
 
             {"High Speed Cluster", new ProjectileData(10, 1000, 0.5f, 1, "lighting_yellow", Color.White, Vector2.One * 1.5f, 1, 0, null, null, new Action<Projectile,List<Enemy>,Enemy,Tower>( (projectile, enemies, enemy, tower) =>
             {
@@ -194,7 +194,7 @@ namespace TowerDefenseGame
                     EnemyAddFireEffect(eEnemy, 3000);
                 }));
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     tower.ProjectilesToAdd.Add(new Projectile(clusterElement, projectile.Damage, projectile.Target, 50, projectile.Position) { Rotation = tower.Rotation + projectile.ProjectileData.BaseRotation});
                 }
@@ -283,8 +283,8 @@ namespace TowerDefenseGame
                     }
                 }), null, null, false),
             new TowerData("Homing", 10, 400, 400, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land | PlaceableArea.Water), ""),
-            new TowerData("Fire", 0, 1500, 200, 25, Projectiles["Fire"], "enemyBlue2", MathHelper.ToRadians(0), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
-            new TowerData("High Speed", 200, 3000, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
+            new TowerData("Fire", 0, 1250, 200, 0, Projectiles["Fire"], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
+            new TowerData("High Speed", 200, 2500, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
             new TowerData("Sprinkler", 60, 100, 1000, 0, new ProjectileData(), "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 600, (PlaceableArea.Water), "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
                 {
                     tower.Rotation += MathHelper.ToRadians(3) * EdgeGame.GameSpeed;
@@ -299,9 +299,9 @@ namespace TowerDefenseGame
             
             //Upgrades
             new TowerData("Homing Explosives", 20, 750, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
-            new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(0), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
+            new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("High Speed Cluster", 150, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "High Speed"),
-            new TowerData("Slow Fire", 0, 0, 400, 0, new ProjectileData(), "enemyRed4", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
+            new TowerData("Slow Fire", 0, 0, 100, 0, new ProjectileData(), "enemyRed4", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
                 {
                     foreach(Enemy enemy in enemies)
                     {

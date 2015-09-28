@@ -72,7 +72,7 @@ namespace TowerDefenseGame
             {
                 if (!PiercedEnemies.Contains(enemy))
                 {
-                    if (CollisionDetection.CircleCircle(Position, ProjectileData.CollisionRadius, enemy.Position, enemy.EnemyData.CollisionRadius))
+                    if (CollisionDetection.CircleCircle(Position, ProjectileData.CollisionRadius * EdgeGame.GameSpeed, enemy.Position, enemy.EnemyData.CollisionRadius))
                     {
                         enemy.Hit(Damage, ProjectileData.ArmorPierce);
 

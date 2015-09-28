@@ -12,6 +12,7 @@ namespace TowerDefenseGame
         public EnemyData EnemyData;
         private EnemyData enemyData;
         public float TrackDistance;
+        public float Age;
         public float RealMaxHealth;
         public float Health;
         public List<Effect> Effects;
@@ -61,7 +62,10 @@ namespace TowerDefenseGame
             }
 
             Health -= damage - (EnemyData.Armor * (1 - armorPierce));
-            Color = Color.Firebrick;
+            if (!HasEffect("Fire"))
+            {
+                Color = Color.Firebrick;
+            }
 
             if (Health <= 0)
             {
@@ -161,7 +165,8 @@ namespace TowerDefenseGame
             enemyHealthBar.Position = new Vector2(Position.X, healthBarYPos < 0 ? altHealthBarYPos : healthBarYPos);
             enemyHealthBar.Update(gameTime);
 
-            TrackDistance++;
+            Age++;
+            TrackDistance = Age * EnemyData.Speed;
 
             Color = Color.White;
             if (BeingTargeted)
