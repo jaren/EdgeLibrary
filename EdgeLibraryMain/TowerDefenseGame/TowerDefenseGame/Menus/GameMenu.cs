@@ -230,7 +230,7 @@ namespace TowerDefenseGame
             if (Towers.Contains(tower))
             {
                 Towers.Remove(tower);
-                Money += (int)(tower.TowerData.Cost * 0.75f / (int)Config.Difficulty);
+                Money += (int)(tower.TowerData.Cost * (0.80f - 0.2f * (int)Config.Difficulty));
             }
         }
 

@@ -41,7 +41,23 @@ namespace TowerDefenseGame
                 UpgradeButtons.Clear();
                 UpgradeSprites.Clear();
 
-                SellSprite.Text = "Sell (" + (int)(selectedTower.TowerData.Cost * 0.75f / (int)Config.Difficulty) + ")";
+                ShowTargetButton.On = selectedTower.ShowTarget;
+                ShowTargetButton.Style = ShowTargetButton.On ? ShowTargetButton.OnStyle : ShowTargetButton.OffStyle;
+                ShowTargetButton.Texture = ShowTargetButton.Style.NormalTexture;
+                ShowTargetButton.Color = ShowTargetButton.Style.NormalColor;
+
+                RangeButton.On = selectedTower.ShowRadius;
+                RangeButton.Style = RangeButton.On ? RangeButton.OnStyle : RangeButton.OffStyle;
+                RangeButton.Texture = RangeButton.Style.NormalTexture;
+                RangeButton.Color = RangeButton.Style.NormalColor;
+
+                TargetButton.CurrentIndex = (int)selectedTower.AttackTarget;
+                TargetButton.Style = TargetButton.Styles[TargetButton.CurrentIndex];
+                TargetButton.Texture = TargetButton.Style.NormalTexture;
+                TargetButton.Color = TargetButton.Style.NormalColor;
+                TargetText.Text = "Target: " + selectedTower.AttackTarget.ToString();
+
+                SellSprite.Text = "Sell (" + (int)(selectedTower.TowerData.Cost * (0.80f - 0.2f * (int)Config.Difficulty)) + ")";
 
                 int upgradeCount = 0;
                 foreach (TowerData data in Config.Towers)

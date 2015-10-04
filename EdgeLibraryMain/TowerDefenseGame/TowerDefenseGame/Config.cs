@@ -298,6 +298,7 @@ namespace TowerDefenseGame
                 }), null, false),
             
             //Upgrades
+            new TowerData("Spread", 25, 2000, 300, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), ""),
             new TowerData("Homing Explosives", 20, 750, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
             new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("High Speed Cluster", 150, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "High Speed"),
