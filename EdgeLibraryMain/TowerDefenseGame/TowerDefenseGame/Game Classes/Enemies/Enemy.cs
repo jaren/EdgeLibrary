@@ -16,6 +16,7 @@ namespace TowerDefenseGame
         public float RealMaxHealth;
         public float Health;
         public List<Effect> Effects;
+        public bool CountsEnemy = true;
         public Waypoint CurrentWaypoint
         {
             get
@@ -37,7 +38,7 @@ namespace TowerDefenseGame
         private TextSprite debugEnemyHealth = new TextSprite("Georgia-20", "", Vector2.Zero, Color.White, Vector2.One);
         public delegate void EnemyEvent(Enemy enemy, Waypoint waypoint);
         public event EnemyEvent OnReachWaypoint;
-        public delegate void EnemyDeathEvent(Enemy enemy, List<EnemyData> spawnedEnemies);
+        public delegate void EnemyDeathEvent(Enemy enemy, List<Enemy> spawnedEnemies);
         public event EnemyDeathEvent OnSpawnEnemies;
         public bool BeingTargeted = false;
         public Tower TargetTower = null;
@@ -56,30 +57,43 @@ namespace TowerDefenseGame
 
         public void Hit(float damage, float armorPierce)
         {
-            if (EnemyData.SpecialActionsOnHit != null)
+            if (!ShouldBeRemoved)
             {
-                EnemyData.SpecialActionsOnHit(this);
-            }
-
-            Health -= damage - (EnemyData.Armor * (1 - armorPierce));
-            if (!HasEffect("Fire"))
-            {
-                Color = Color.Firebrick;
-            }
-
-            if (Health <= 0)
-            {
-                if (EnemyData.SpecialActionsOnDestroy != null)
+                if (EnemyData.SpecialActionsOnHit != null)
                 {
-                    EnemyData.SpecialActionsOnDestroy(this);
+                    EnemyData.SpecialActionsOnHit(this);
                 }
 
-                if (OnSpawnEnemies != null)
+                Health -= damage - (EnemyData.Armor * (1 - armorPierce));
+                if (!HasEffect("Fire"))
                 {
-                    OnSpawnEnemies(this, EnemyData.DeathEnemies);
+                    Color = Color.Firebrick;
                 }
 
-                ShouldBeRemoved = true;
+                if (Health <= 0)
+                {
+                    if (EnemyData.SpecialActionsOnDestroy != null)
+                    {
+                        EnemyData.SpecialActionsOnDestroy(this);
+                    }
+
+                    if (OnSpawnEnemies != null)
+                    {
+                        List<Enemy> deathEnemies = new List<Enemy>();
+                        Vector2 moveVector = currentWaypoint.Position - Position;
+                        moveVector.Normalize();
+                        foreach (EnemyData data in EnemyData.DeathEnemies)
+                        {
+                            Vector2 modifiedPosition = Position + (RandomTools.RandomFloat(-1 * Config.DeathEnemySpawnDifference, Config.DeathEnemySpawnDifference) * moveVector);
+                            Enemy enemy = new Enemy(data, modifiedPosition) { CountsEnemy = false };
+                            enemy.CurrentWaypoint = currentWaypoint;
+                            deathEnemies.Add(enemy);
+                        }
+                        OnSpawnEnemies(this, deathEnemies);
+                    }
+
+                    ShouldBeRemoved = true;
+                }
             }
         }
 

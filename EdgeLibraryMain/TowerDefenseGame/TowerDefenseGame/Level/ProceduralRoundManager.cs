@@ -65,8 +65,8 @@ namespace TowerDefenseGame
                     for (int count = 0; count < data.Usualness; count++)
                     {
                         EnemyData clonedData = data.Clone();
-                        clonedData.MaxHealth *= 1 + (CurrentIndex * (int)Config.Difficulty * 0.1f);
-                        clonedData.Speed *= 1 + (CurrentIndex * (int)Config.Difficulty * 0.1f);
+                        clonedData.MaxHealth *= 1 + (CurrentIndex * CurrentIndex * (int)Config.Difficulty * 0.1f);
+                        clonedData.Speed *= 1 + (CurrentIndex * CurrentIndex * (int)Config.Difficulty * 0.1f);
                         enemyData.Add(clonedData);
                     }
                 }

@@ -18,15 +18,19 @@ namespace TowerDefenseGame
         public static Difficulty Difficulty;
         public static bool DebugMode = false;
         public static bool ShowRanges = false;
+        public static float DeathEnemySpawnDifference = 100;
 
         public static Vector2 CommonRatio = new Vector2(0.85f);
+
+        public static EnemyData bossReallySlowMini = new EnemyData(1000, 1.5f, 0.5f, 100, 1, new List<EnemyData>(), "particle_grey", Vector2.One, 25, 0, "Mini!");
 
         public static Dictionary<string, EnemyData> Enemies = new Dictionary<string, EnemyData>()
         {
             {"Normal", new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 8, "Just a normal enemy.")},
             {"Boss Slow", new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy.")},
-            {"Fast", new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 1, "A slightly less normal enemy.")},
-            {"Boss Fast", new EnemyData(10000, 2, 0, 750, 9, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 1, "Vous etes mort.")}
+            {"Fast", new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 4, "A slightly less normal enemy.")},
+            {"Boss Fast", new EnemyData(10000, 2, 0, 750, 9, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 2, "Vous etes mort.")},
+            {"Boss Really Slow", new EnemyData(1000000, 0.05f, 0.75f, 2000, 10, new List<EnemyData>(){bossReallySlowMini,bossReallySlowMini,bossReallySlowMini,bossReallySlowMini}, "particle_darkGrey", Vector2.One*2, 50, 1, "Vous etes tres mort.")}
         };
 
         private static float baseWaitTime = 1000f;
@@ -95,6 +99,16 @@ namespace TowerDefenseGame
             new Round(new List<RoundEnemyList>() //11
             {
                 new RoundEnemyList("Boss Fast", baseWaitTime * 1.5f, 1)
+            }),
+            new Round(new List<RoundEnemyList>() //12
+            {
+                new RoundEnemyList("Boss Fast", baseWaitTime * 1.5f, 2),
+                new RoundEnemyList("Fast", baseWaitTime/20f, 100)
+
+            }),
+            new Round(new List<RoundEnemyList>() //13
+            {
+                new RoundEnemyList("Boss Really Slow", baseWaitTime * 1.5f, 1)
             }),
         };
         #endregion
@@ -298,7 +312,7 @@ namespace TowerDefenseGame
                 }), null, false),
             
             //Upgrades
-            new TowerData("Spread", 25, 2000, 300, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), ""),
+            new TowerData("Fast Spread", 40, 500, 300, 0, Projectiles["Cluster"], "enemyRed1", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "Spread"),
             new TowerData("Homing Explosives", 20, 750, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
             new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("High Speed Cluster", 150, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "High Speed"),

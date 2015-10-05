@@ -67,6 +67,7 @@ namespace TowerDefenseGame
         public List<Tower> Towers;
 
         public List<Enemy> Enemies;
+        private List<Enemy> EnemiesToAdd;
         private List<Enemy> EnemiesToRemove;
 
         public Button FloatingTower;
@@ -109,6 +110,7 @@ namespace TowerDefenseGame
                 Towers = new List<Tower>();
 
                 Enemies = new List<Enemy>();
+                EnemiesToAdd = new List<Enemy>();
                 EnemiesToRemove = new List<Enemy>();
 
                 CurrentLevel.Position = new Vector2(EdgeGame.WindowSize.X * 0.5f * Config.CommonRatio.X, EdgeGame.WindowSize.Y * 0.5f * Config.CommonRatio.Y);
@@ -288,11 +290,17 @@ namespace TowerDefenseGame
             Enemies.Add(enemy);
         }
 
-        void enemy_OnSpawnEnemies(Enemy enemy, List<EnemyData> spawnedEnemies)
+        void enemy_OnSpawnEnemies(Enemy enemy, List<Enemy> spawnedEnemies)
         {
-            foreach (EnemyData spawnedEnemy in spawnedEnemies)
+            foreach (Enemy spawnedEnemy in spawnedEnemies)
             {
-                RoundManager_OnEmitEnemy(null, spawnedEnemy);
+                if (spawnedEnemy.EnemyData.SpecialActionsOnCreate != null)
+                {
+                    spawnedEnemy.EnemyData.SpecialActionsOnCreate(enemy);
+                }
+                spawnedEnemy.OnReachWaypoint += enemy_OnReachWaypoint;
+                spawnedEnemy.OnSpawnEnemies += enemy_OnSpawnEnemies;
+                EnemiesToAdd.Add(spawnedEnemy);
             }
         }
 
@@ -306,8 +314,11 @@ namespace TowerDefenseGame
                 enemy.CompletedPath = true;
                 EnemiesToRemove.Add(enemy);
 
-                DefeatedEnemies++;
-                if (DefeatedEnemies == TotalEnemies)
+                if (enemy.CountsEnemy)
+                {
+                    DefeatedEnemies++;
+                }
+                if (DefeatedEnemies == TotalEnemies && Enemies.Count == 0)
                 {
                     Money += (RoundManager.CurrentIndex - 1) * 50;
                 }
@@ -461,6 +472,13 @@ namespace TowerDefenseGame
         {
             RoundManager.Update(gameTime);
 
+            if (EnemiesToAdd.Count > 0)
+            {
+
+            }
+            Enemies.AddRange(EnemiesToAdd);
+            EnemiesToAdd.Clear();
+
             InfoPanel.RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
             InfoPanel.RemainingNumber.Update(gameTime);
 
@@ -507,8 +525,11 @@ namespace TowerDefenseGame
                 if (enemy.ShouldBeRemoved && enemy.Health <= 0)
                 {
                     EnemiesToRemove.Add(enemy);
-                    DefeatedEnemies++;
-                    if (DefeatedEnemies == TotalEnemies)
+                    if (enemy.CountsEnemy)
+                    {
+                        DefeatedEnemies++;
+                    }
+                    if (DefeatedEnemies == TotalEnemies && Enemies.Count <= 1)
                     {
                         Money += (RoundManager.CurrentIndex - 1) * 50;
                         if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
