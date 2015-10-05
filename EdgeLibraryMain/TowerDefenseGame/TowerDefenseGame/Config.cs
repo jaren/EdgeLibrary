@@ -299,6 +299,7 @@ namespace TowerDefenseGame
             
             //Upgrades
             new TowerData("Homing Explosives", 25, 500, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
+            new TowerData("Spread", 25, 2000, 300, 0, Projectiles["Cluster"], "enemyBlue1", MathHelper.ToRadians(180), new Vector2(0.5f), 200, (PlaceableArea.Land), ""),
             new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
             new TowerData("High Speed Cluster", 100, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed"),
             new TowerData("Slow Fire", 0, 0, 100, 0, new ProjectileData(), "enemyRed4", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
