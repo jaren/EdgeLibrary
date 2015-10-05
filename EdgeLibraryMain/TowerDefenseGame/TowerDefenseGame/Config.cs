@@ -193,7 +193,7 @@ namespace TowerDefenseGame
                 ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
             }))},
 
-            {"Fire", new ProjectileData(5, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {"Fire", new ProjectileData(10, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 EnemyAddFireEffect(enemy, 3000);
             }))},
@@ -296,10 +296,10 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
-            new TowerData("Homing", 10, 400, 400, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land | PlaceableArea.Water), ""),
-            new TowerData("Fire", 0, 1250, 200, 0, Projectiles["Fire"], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
+            new TowerData("Homing", 5, 100, 400, 0, Projectiles["Homing"], "enemyBlue3", MathHelper.ToRadians(180), new Vector2(0.5f), 750, (PlaceableArea.Land | PlaceableArea.Water), ""),
+            new TowerData("Fire", 0, 2000, 200, 0, Projectiles["Fire"], "enemyBlue2", MathHelper.ToRadians(180), new Vector2(0.5f), 300, (PlaceableArea.Land), ""),
             new TowerData("High Speed", 200, 2500, 450, 0, Projectiles["High Speed"], "enemyBlue5", MathHelper.ToRadians(180), new Vector2(0.5f), 400, (PlaceableArea.Land), ""),
-            new TowerData("Sprinkler", 60, 100, 1000, 0, new ProjectileData(), "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 600, (PlaceableArea.Water), "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+            new TowerData("Sprinkler", 60, 100, 1000, 0, new ProjectileData(), "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 2000, (PlaceableArea.Water), "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
                 {
                     tower.Rotation += MathHelper.ToRadians(3) * EdgeGame.GameSpeed;
                     Projectile sprinklerProjectile = new Projectile(Projectiles["Sprinkler"], tower.TowerData.AttackDamage, null, 0, tower.Position);
@@ -313,9 +313,9 @@ namespace TowerDefenseGame
             
             //Upgrades
             new TowerData("Fast Spread", 40, 500, 300, 0, Projectiles["Cluster"], "enemyRed1", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "Spread"),
-            new TowerData("Homing Explosives", 20, 750, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
+            new TowerData("Homing Explosives", 25, 500, 300, 0, Projectiles["Homing Explosive"], "enemyRed3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing"),
             new TowerData("Cluster Fire", 0, 2000, 300, 25, Projectiles["Cluster Fire"], "enemyRed2", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Fire"),
-            new TowerData("High Speed Cluster", 150, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "High Speed"),
+            new TowerData("High Speed Cluster", 100, 3000, 450, 0, Projectiles["High Speed Cluster"], "enemyRed5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed"),
             new TowerData("Slow Fire", 0, 0, 100, 0, new ProjectileData(), "enemyRed4", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Slow", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
                 {
                     foreach(Enemy enemy in enemies)
@@ -326,16 +326,16 @@ namespace TowerDefenseGame
 
                             if (enemy.HasEffect("Fire"))
                             {
-                                ((FireEffect)enemy.GetEffect("Fire")).Duration = 1000;
+                                ((FireEffect)enemy.GetEffect("Fire")).Duration = 250;
                             }
                             else
                             {
-                                enemy.AddEffect(new FireEffect(1000));
+                                enemy.AddEffect(new FireEffect(250));
                             }
                         }
                     }
                 }), null, null, false),
-           new TowerData("Sprinkler Expander", 120, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 2500, (PlaceableArea.Water), "Sprinkler", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+           new TowerData("Sprinkler Expander", 120, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_blue", MathHelper.ToRadians(90), new Vector2(0.5f), 5000, (PlaceableArea.Water), "Sprinkler", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
                {
                    if (tower.Projectiles.Count == 0)
                    {
