@@ -20,7 +20,7 @@ namespace TowerDefenseGame
         public List<Projectile> ProjectilesToAdd;
         public List<Projectile> Projectiles;
         private List<Projectile> projectilesToRemove;
-        private Sprite targetIcon = new Sprite("target", Vector2.Zero);
+        private Sprite targetIcon = new Sprite("target", Vector2.Zero) { Visible = false };
 
         private Sprite towerRange;
 
