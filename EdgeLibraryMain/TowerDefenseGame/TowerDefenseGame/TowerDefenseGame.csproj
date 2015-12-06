@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Game Classes\Effects\DamageEffect.cs" />
     <Compile Include="Game Classes\Effects\Effect.cs" />
     <Compile Include="Game Classes\Effects\FireEffect.cs" />
     <Compile Include="Game Classes\Effects\SlowEffect.cs" />

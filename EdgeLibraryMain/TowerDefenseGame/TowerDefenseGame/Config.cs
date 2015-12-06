@@ -23,14 +23,16 @@ namespace TowerDefenseGame
         public static Vector2 CommonRatio = new Vector2(0.85f);
 
         public static EnemyData bossReallySlowMini = new EnemyData(1000, 1.5f, 0.5f, 100, 1, new List<EnemyData>(), "particle_grey", Vector2.One, 25, 0, "Mini!");
+        public static EnemyData rockMini = new EnemyData(1000000, 1.5f, 0.5f, 100, 1, new List<EnemyData>(), "particle_grey", Vector2.One*5, 25, 0, "Super rock!");
 
         public static Dictionary<string, EnemyData> Enemies = new Dictionary<string, EnemyData>()
         {
-            {"Normal", new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 8, "Just a normal enemy.")},
-            {"Boss Slow", new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2, "NOT just a normal enemy.")},
-            {"Fast", new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 4, "A slightly less normal enemy.")},
-            {"Boss Fast", new EnemyData(10000, 2, 0, 750, 9, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 2, "Vous etes mort.")},
-            {"Boss Really Slow", new EnemyData(1000000, 0.05f, 0.75f, 2000, 10, new List<EnemyData>(){bossReallySlowMini,bossReallySlowMini,bossReallySlowMini,bossReallySlowMini}, "particle_darkGrey", Vector2.One*2, 50, 1, "Vous etes tres mort.")}
+            {"Normal", new EnemyData(500, 1, 0, 50, 1, new List<EnemyData>(), "spikeBall1", Vector2.One*0.5f, 50, 5000, "Just a normal enemy.")},
+            {"Boss Slow", new EnemyData(10000, 0.5f, 0, 100, 2, new List<EnemyData>(), "sun2", Vector2.One*1.5f, 50, 2000, "NOT just a normal enemy.")},
+            {"Fast", new EnemyData(300, 2, 0, 50, 1, new List<EnemyData>(), "ufoRed", Vector2.One * 0.5f, 50, 2000, "A slightly less normal enemy.")},
+            {"Boss Fast", new EnemyData(10000, 2, 0, 750, 9, new List<EnemyData>(), "ufoRed", Vector2.One * 2f, 50, 1000, "Vous etes mort.")},
+            {"Boss Really Slow", new EnemyData(1000000, 0.05f, 0.75f, 2000, 10, new List<EnemyData>(){bossReallySlowMini,bossReallySlowMini,bossReallySlowMini,bossReallySlowMini}, "particle_darkGrey", Vector2.One*2, 50, 500, "Vous etes tres mort.")},
+            {"Rock", new EnemyData(99999999, 0.05f, 0.75f, 2000, 10, new List<EnemyData>(){rockMini,rockMini,rockMini,rockMini}, "particle_darkGrey", Vector2.One*7, 50, 1, "End of the game")}
         };
 
         private static float baseWaitTime = 1000f;
@@ -105,10 +107,6 @@ namespace TowerDefenseGame
                 new RoundEnemyList("Boss Fast", baseWaitTime * 1.5f, 2),
                 new RoundEnemyList("Fast", baseWaitTime/20f, 100)
 
-            }),
-            new Round(new List<RoundEnemyList>() //13
-            {
-                new RoundEnemyList("Boss Really Slow", baseWaitTime * 1.5f, 1)
             }),
         };
         #endregion
@@ -191,6 +189,12 @@ namespace TowerDefenseGame
             ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
             {
                 ExplosionProjectileCreate(projectile, tower, 150, "coin_silver", 61, 0);
+            }))},
+
+            {"Homing Explosive 2", new ProjectileData(10, 1000, 1, 1, "portal_orangeParticle", Color.White, Vector2.One, 1, 0, HomingProjectileHome, null,
+            ExplosionProjectileExplode, new Action<Projectile,Tower>( (projectile, tower) =>
+            {
+                ExplosionProjectileCreate(projectile, tower, 300, "coin_gold", 61, 0);
             }))},
 
             {"Fire", new ProjectileData(10, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
@@ -342,6 +346,35 @@ namespace TowerDefenseGame
                        tower.ProjectilesToAdd.Add(new Projectile(tower.TowerData.AttackData, tower.TowerData.AttackDamage, null, 0, tower.Position));
                    }
                }), null, false),
+
+        new TowerData("Do not buy fire", 1000, 0, 1000, 25, Projectiles["Cluster Fire"], "enemyBlack2", MathHelper.ToRadians(180), new Vector2(0.5f), 15000, (PlaceableArea.Land), "Cluster Fire"),
+        new TowerData("Do not buy spread", 400, 0, 600, 25, Projectiles["Cluster"], "enemyBlack1", MathHelper.ToRadians(180), new Vector2(0.5f), 20000, (PlaceableArea.Land), "Fast Spread"),
+        new TowerData("Do not buy slow", 0, 0, 300, 0, new ProjectileData(), "enemyBlack4", MathHelper.ToRadians(180), new Vector2(0.5f), 35000, (PlaceableArea.Land), "Slow Fire", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
+                {
+                    foreach(Enemy enemy in enemies)
+                    {
+                        if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range*tower.TowerData.Range))
+                        {
+                            enemy.AddEffect(new SlowEffect(0.05f, 3000));
+                        }
+                    }
+                }), null, null, false),
+        new TowerData("Do not buy water", 1200, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_red", MathHelper.ToRadians(90), new Vector2(0.5f), 50000, (PlaceableArea.Water), "Sprinkler Expander", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+               {
+                   if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range * tower.TowerData.Range))
+                   {
+                       if (enemy.HasEffect("Damage"))
+                       {
+                           ((DamageEffect)enemy.GetEffect("Damage")).Duration = 250;
+                       }
+                       else
+                       {
+                           enemy.AddEffect(new DamageEffect("Damage", 100, Color.GreenYellow, Color.DarkGreen, 250));
+                       }
+                   }
+               }), null, false),
+            new TowerData("Do not buy high speed", 1000, 30, 450, 0, Projectiles["High Speed Cluster"], "enemyBlack5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed Cluster"),
+            new TowerData("Do not buy homing", 250, 0, 1000, 0, Projectiles["Homing Explosive 2"], "enemyBlack3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing Explosives"),
            #endregion
         };
 
