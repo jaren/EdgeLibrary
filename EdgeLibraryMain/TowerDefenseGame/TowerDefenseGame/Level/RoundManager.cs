@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TowerDefenseGame
 {
@@ -24,7 +21,7 @@ namespace TowerDefenseGame
             Rounds = rounds;
             CurrentIndex = 0;
 
-            foreach(Round round in Rounds)
+            foreach (Round round in Rounds)
             {
                 round.OnEmitEnemy += round_OnEmitEnemy;
                 round.OnFinish += round_OnFinish;

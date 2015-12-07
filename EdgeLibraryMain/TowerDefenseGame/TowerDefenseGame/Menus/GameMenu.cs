@@ -1,11 +1,8 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TowerDefenseGame
 {
@@ -33,11 +30,30 @@ namespace TowerDefenseGame
         public int Money
         {
             get { return money; }
-            set 
+            set
             {
-                money = value; 
-                InfoPanel.MoneyNumber.Text = money.ToString();
-            
+                money = value;
+                if (money >= 1000000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000000f)) + "B";
+                }
+                else if (money >= 1000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000f)) + "M";
+                }
+                else if (money >= 10000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000f)) + "K";
+                }
+                else if (money >= 1000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000f), 1) + "K";
+                }
+                else
+                {
+                    InfoPanel.MoneyNumber.Text = money.ToString();
+                }
+
                 for (int i = 0; i < TowerSprites.Count; i++)
                 {
                     if (Money >= (Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]))
@@ -151,16 +167,16 @@ namespace TowerDefenseGame
                 TowerPanel.OnSellTower += TowerPanel_OnSellTower;
 
 
-                WinPanel = new DialogPanel("Congratulations! You Won the Game!", "Continue", "Quit",() => 
-                {
-                    CanStartRound = true;
-                    Freeplay = true;
-                    RoundManager = new ProceduralRoundManager();
-                    ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
-                }, () =>
-                {
-                    MenuManager.SwitchMenu("MainMenu");
-                });
+                WinPanel = new DialogPanel("Congratulations! You Won the Game!", "Continue", "Quit", () =>
+                 {
+                     CanStartRound = true;
+                     Freeplay = true;
+                     RoundManager = new ProceduralRoundManager();
+                     ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
+                 }, () =>
+                 {
+                     MenuManager.SwitchMenu("MainMenu");
+                 });
 
                 LosePanel = new DialogPanel("\"Congratulations!\" You LOST the Game!", "New Game", "Main Menu", () =>
                 {
@@ -273,6 +289,7 @@ namespace TowerDefenseGame
             InfoPanel.NextRoundButton.Color = AutoRoundStart ? Color.Goldenrod : Color.White;
             InfoPanel.NextRoundButton.Style.AllColors = AutoRoundStart ? Color.Goldenrod : Color.White;
             CanStartRound = false;
+            InfoPanel.RoundNumber.Text = "1+";
         }
 
         void RoundManager_OnEmitEnemy(Round round, EnemyData enemyData)
@@ -361,9 +378,9 @@ namespace TowerDefenseGame
 
         public void StartRound()
         {
-            if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
+            if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound /*&& RoundManager.CurrentIndex != RoundManager.Rounds.Count*/)
             {
-                InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
+                InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString() + (Freeplay ? "+" : "");
                 RoundManager.StartRound();
                 DefeatedEnemies = 0;
 
@@ -534,7 +551,9 @@ namespace TowerDefenseGame
                         Money += (RoundManager.CurrentIndex - 1) * 50;
                         if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
                         {
+                            AutoRoundStart = false;
                             WinGame();
+                            AutoRoundStart = false;
                         }
                     }
                     Money += enemy.EnemyData.MoneyOnDeath;
