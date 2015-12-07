@@ -1,11 +1,8 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TowerDefenseGame
 {
@@ -35,10 +32,33 @@ namespace TowerDefenseGame
         public int Money
         {
             get { return money; }
-            set 
+            set
             {
                 money = value;
-                InfoPanel.MoneyNumber.Text = money.ToString();
+                if (money >= 1000000000 || money <= -1000000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000000f), 1) + "B";
+                }
+                else if (money >= 10000000 || money <= -10000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000f)) + "M";
+                }
+                else if (money >= 1000000 || money <= -1000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000f), 1) + "M";
+                }
+                else if (money >= 10000 || money <= -100000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000f)) + "K";
+                }
+                else if (money >= 1000 || money <= -1000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000f), 1) + "K";
+                }
+                else
+                {
+                    InfoPanel.MoneyNumber.Text = money.ToString();
+                }
 
                 for (int i = 0; i < TowerSprites.Count; i++)
                 {
@@ -124,8 +144,30 @@ namespace TowerDefenseGame
                 Components.Add(CurrentLevel);
 
                 InfoPanel = new InfoPanel() { Visible = true, Enabled = true };
-                InfoPanel.LivesNumber.Text = Lives.ToString();
-                InfoPanel.MoneyNumber.Text = Money.ToString();
+                if (Lives >= 1000000000 || Lives <= -1000000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000000f), 1) + "B";
+                }
+                else if (Lives >= 10000000 || Lives <= -10000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000000f)) + "M";
+                }
+                else if (Lives >= 1000000 || Lives <= -1000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000f), 1) + "M";
+                }
+                else if (Lives >= 10000 || Lives <= -100000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000f)) + "K";
+                }
+                else if (Lives >= 1000 || Lives <= -1000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000f), 1) + "K";
+                }
+                else
+                {
+                    InfoPanel.LivesNumber.Text = Lives.ToString();
+                }
                 InfoPanel.GameSpeedButton.OnRelease += (x, y) =>
                 {
                     if (EdgeGame.GameSpeed == 1)
@@ -157,16 +199,16 @@ namespace TowerDefenseGame
                 TowerPanel.OnSellTower += TowerPanel_OnSellTower;
 
 
-                WinPanel = new DialogPanel("Congratulations! You Won the Game!", "Continue", "Quit",() => 
-                {
-                    CanStartRound = true;
-                    Freeplay = true;
-                    RoundManager = new ProceduralRoundManager();
-                    ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
-                }, () =>
-                {
-                    MenuManager.SwitchMenu("MainMenu");
-                });
+                WinPanel = new DialogPanel("Congratulations! You Won the Game!", "Continue", "Quit", () =>
+                 {
+                     CanStartRound = true;
+                     Freeplay = true;
+                     RoundManager = new ProceduralRoundManager();
+                     ((ProceduralRoundManager)RoundManager).OnEmitEnemy += RoundManager_OnEmitEnemy;
+                 }, () =>
+                 {
+                     MenuManager.SwitchMenu("MainMenu");
+                 });
 
                 LosePanel = new DialogPanel("\"Congratulations!\" You LOST the Game!", "New Game", "Main Menu", () =>
                 {
@@ -279,6 +321,7 @@ namespace TowerDefenseGame
             InfoPanel.NextRoundButton.Color = AutoRoundStart ? Color.Goldenrod : Color.White;
             InfoPanel.NextRoundButton.Style.AllColors = AutoRoundStart ? Color.Goldenrod : Color.White;
             CanStartRound = false;
+            InfoPanel.RoundNumber.Text = "1+";
         }
 
         void RoundManager_OnEmitEnemy(Round round, EnemyData enemyData)
@@ -367,9 +410,9 @@ namespace TowerDefenseGame
 
         public void StartRound()
         {
-            if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound)
+            if (!RoundManager.RoundRunning && Enemies.Count == 0 && CanStartRound /*&& RoundManager.CurrentIndex != RoundManager.Rounds.Count*/)
             {
-                InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString();
+                InfoPanel.RoundNumber.Text = (RoundManager.CurrentIndex + 1).ToString() + (Freeplay ? "+" : "");
                 RoundManager.StartRound();
                 DefeatedEnemies = 0;
 
@@ -543,7 +586,9 @@ namespace TowerDefenseGame
                         Money += (RoundManager.CurrentIndex - 1) * 50;
                         if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
                         {
+                            AutoRoundStart = false;
                             WinGame();
+                            AutoRoundStart = false;
                         }
                     }
                     Money += enemy.EnemyData.MoneyOnDeath;

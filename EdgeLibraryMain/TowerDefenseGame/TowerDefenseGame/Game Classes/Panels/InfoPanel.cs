@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EdgeLibrary;
+﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
 
 namespace TowerDefenseGame
@@ -34,25 +30,25 @@ namespace TowerDefenseGame
             DebugModeText.Visible = false;
             Components.Add(DebugModeText);
 
-            RoundNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.09f));
+            RoundNumber = new TextSprite("Georgia-50", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.1f));
             Components.Add(RoundNumber);
 
             LivesText = new TextSprite(Config.MenuSubtitleFont, "LIVES", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.2f));
             Components.Add(LivesText);
 
-            LivesNumber = new TextSprite("Georgia-60", "", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.24f));
+            LivesNumber = new TextSprite("Georgia-50", "", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.25f));
             Components.Add(LivesNumber);
 
             MoneyText = new TextSprite(Config.MenuSubtitleFont, "MONEY", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.35f));
             Components.Add(MoneyText);
 
-            MoneyNumber = new TextSprite("Georgia-60", "", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.39f));
+            MoneyNumber = new TextSprite("Georgia-50", "", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.4f));
             Components.Add(MoneyNumber);
 
             RemainingText = new TextSprite(Config.MenuSubtitleFont, "ENEMIES", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.5f));
             Components.Add(RemainingText);
 
-            RemainingNumber = new TextSprite("Georgia-60", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.54f));
+            RemainingNumber = new TextSprite("Georgia-50", "0", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.55f));
             Components.Add(RemainingNumber);
 
             GameSpeedText = new TextSprite("Georgia-20", "GAME\nSPEED", new Vector2(RoundText.Position.X, EdgeGame.WindowSize.Y * 0.64f));
