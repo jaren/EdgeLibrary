@@ -33,19 +33,23 @@ namespace TowerDefenseGame
             set
             {
                 money = value;
-                if (money >= 1000000000)
+                if (money >= 1000000000 || money <= -1000000000)
                 {
-                    InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000000f)) + "B";
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000000f), 1) + "B";
                 }
-                else if (money >= 1000000)
+                else if (money >= 10000000 || money <= -10000000)
                 {
                     InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000f)) + "M";
                 }
-                else if (money >= 10000)
+                else if (money >= 1000000 || money <= -1000000)
+                {
+                    InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000f), 1) + "M";
+                }
+                else if (money >= 10000 || money <= -100000)
                 {
                     InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000f)) + "K";
                 }
-                else if (money >= 1000)
+                else if (money >= 1000 || money <= -1000)
                 {
                     InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000f), 1) + "K";
                 }
