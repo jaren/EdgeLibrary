@@ -32,7 +32,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000000f), 1) + "B";
                 }
-                else if (Lives >= 10000000 || Lives <= -10000000)
+                else if (Lives >= 100000000 || Lives <= -100000000)
                 {
                     InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000000f)) + "M";
                 }
@@ -40,7 +40,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000f), 1) + "M";
                 }
-                else if (Lives >= 10000 || Lives <= -100000)
+                else if (Lives >= 100000 || Lives <= -1000000)
                 {
                     InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000f)) + "K";
                 }
@@ -65,7 +65,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000000f), 1) + "B";
                 }
-                else if (money >= 10000000 || money <= -10000000)
+                else if (money >= 100000000 || money <= -100000000)
                 {
                     InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000000f)) + "M";
                 }
@@ -73,7 +73,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.MoneyNumber.Text = Math.Round(((float)money / 1000000f), 1) + "M";
                 }
-                else if (money >= 10000 || money <= -100000)
+                else if (money >= 100000 || money <= -1000000)
                 {
                     InfoPanel.MoneyNumber.Text = Math.Floor(((float)money / 1000f)) + "K";
                 }
@@ -174,7 +174,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000000f), 1) + "B";
                 }
-                else if (Lives >= 10000000 || Lives <= -10000000)
+                else if (Lives >= 100000000 || Lives <= -100000000)
                 {
                     InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000000f)) + "M";
                 }
@@ -182,7 +182,7 @@ namespace TowerDefenseGame
                 {
                     InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000f), 1) + "M";
                 }
-                else if (Lives >= 10000 || Lives <= -100000)
+                else if (Lives >= 100000 || Lives <= -1000000)
                 {
                     InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000f)) + "K";
                 }
@@ -613,8 +613,10 @@ namespace TowerDefenseGame
                         if (RoundManager.CurrentIndex >= RoundManager.Rounds.Count && !Freeplay)
                         {
                             AutoRoundStart = false;
+                            CanStartRound = false;
                             WinGame();
                             AutoRoundStart = false;
+                            CanStartRound = false;
                         }
                     }
                     Money += enemy.EnemyData.MoneyOnDeath;
