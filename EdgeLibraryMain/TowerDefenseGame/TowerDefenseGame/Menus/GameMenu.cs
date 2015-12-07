@@ -26,7 +26,33 @@ namespace TowerDefenseGame
         public int Lives
         {
             get { return lives; }
-            set { lives = value; InfoPanel.LivesNumber.Text = lives.ToString(); }
+            set
+            {
+                lives = value; if (Lives >= 1000000000 || Lives <= -1000000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000000f), 1) + "B";
+                }
+                else if (Lives >= 10000000 || Lives <= -10000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000000f)) + "M";
+                }
+                else if (Lives >= 1000000 || Lives <= -1000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000f), 1) + "M";
+                }
+                else if (Lives >= 10000 || Lives <= -100000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000f)) + "K";
+                }
+                else if (Lives >= 1000 || Lives <= -1000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000f), 1) + "K";
+                }
+                else
+                {
+                    InfoPanel.LivesNumber.Text = Lives.ToString();
+                }
+            }
         }
         private int lives;
         public int Money
