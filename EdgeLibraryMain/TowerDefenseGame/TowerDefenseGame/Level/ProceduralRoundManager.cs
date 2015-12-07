@@ -70,7 +70,7 @@ namespace TowerDefenseGame
                         enemyData.Add(clonedData);
                     }
                 }
-                RoundEnemyList list = new RoundEnemyList("Normal", RandomTools.RandomFloat(10, (1000-(CurrentIndex*100) > 10 ? 1000-(CurrentIndex*100) : 10)), RandomTools.RandomInt(5, (CurrentIndex+1)*5));
+                RoundEnemyList list = new RoundEnemyList("Normal", RandomTools.RandomFloat(10, (1000-(CurrentIndex*100) > 10 ? 1000-(CurrentIndex*100) : 10)), RandomTools.RandomInt(5, (CurrentIndex+1)));
                 list.EnemyData = enemyData[RandomTools.RandomInt(0, enemyData.Count)];
                 enemiesList.Add(list);
             }

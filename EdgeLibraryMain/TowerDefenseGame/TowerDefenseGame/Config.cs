@@ -197,6 +197,16 @@ namespace TowerDefenseGame
                 ExplosionProjectileCreate(projectile, tower, 300, "coin_gold", 61, 0);
             }))},
 
+            {"Factory Projectile", new ProjectileData(2, 1000, 0, 2, "portal_orangeParticle", Color.White, new Vector2(1.25f), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {
+                EnemyAddDamageEffect(enemy, 1000, Color.White, Color.Black, 30000);
+            }))},
+
+            {"Factory Projectile 2", new ProjectileData(1, 1000, 0, 2, "portal_yellowParticle", Color.White, new Vector2(1.25f), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
+            {
+                EnemyAddDamageEffect(enemy, 10000, Color.White, Color.Black, 30000);
+            }))},
+
             {"Fire", new ProjectileData(10, 350, 0, 2, "flame", Color.White, new Vector2(1), 1, 0, null, null, new Action<Projectile, List<Enemy>, Enemy, Tower>( (projectile, enemies, enemy, tower) =>
             {
                 EnemyAddFireEffect(enemy, 3000);
@@ -231,6 +241,18 @@ namespace TowerDefenseGame
             else
             {
                 enemy.AddEffect(new FireEffect(duration));
+            }
+        }
+
+        public static void EnemyAddDamageEffect(Enemy enemy, int damage, Color minColor, Color maxColor, int duration)
+        {
+            if (enemy.HasEffect("Damage"))
+            {
+                ((DamageEffect)enemy.GetEffect("Damage")).Duration = duration;
+            }
+            else
+            {
+                enemy.AddEffect(new DamageEffect("Damage", damage, minColor, maxColor, duration));
             }
         }
 
@@ -316,10 +338,10 @@ namespace TowerDefenseGame
                 }), null, false),
             new TowerData("Factory", 0, 100, 0, 0, new ProjectileData(), "portal_orangeParticle", 0, Vector2.One*2, 100000, PlaceableArea.Land | PlaceableArea.Water, "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
             {
-                if (GameMenu.Instance.Money > 2000)
+                if (GameMenu.Instance.Money > 1000)
                 {
                     GameMenu.Instance.Lives += 1;
-                    GameMenu.Instance.Money -= 2000;
+                    GameMenu.Instance.Money -= 1000;
                 }
             })),
             
@@ -354,13 +376,17 @@ namespace TowerDefenseGame
                        tower.ProjectilesToAdd.Add(new Projectile(tower.TowerData.AttackData, tower.TowerData.AttackDamage, null, 0, tower.Position));
                    }
                }), null, false),
-            new TowerData("Factory Creator", 0, 1000, 0, 0, new ProjectileData(), "portal_orangeParticle", 0, Vector2.One*4, 10000000, PlaceableArea.Land | PlaceableArea.Water, "Factory", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
+            new TowerData("Factory Creator", 1000, 1000, 0, 0, new ProjectileData(), "portal_orangeParticle", 0, Vector2.One*4, 10000000, PlaceableArea.Land | PlaceableArea.Water, "Factory", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, targetedEnemy) => 
             {
-                if (GameMenu.Instance.Money > 2000)
+                if (GameMenu.Instance.Money > 20000)
                 {
-                    GameMenu.Instance.Lives += 100;
-                    GameMenu.Instance.TowersToAdd.Add(new Tower(Config.Towers[6], new Vector2(RandomTools.RandomFloat(tower.Position.X - 100, tower.Position.X + 100), RandomTools.RandomFloat(tower.Position.Y - 100, tower.Position.Y + 100))));
-                    GameMenu.Instance.Money -= 2000;
+                    foreach (Enemy enemy in enemies)
+                    {
+                        tower.ProjectilesToAdd.Add(new Projectile(Config.Projectiles["Factory Projectile"], tower.TowerData.AttackDamage, enemy, 0, tower.Position));  
+                    }
+
+                    GameMenu.Instance.Lives += 10;
+                    GameMenu.Instance.Money -= 20000;
                 }
             })),
 
@@ -395,13 +421,17 @@ namespace TowerDefenseGame
                }), null, false),
             new TowerData("Improved High Speed", 1000, 30, 450, 0, Projectiles["High Speed Cluster"], "enemyBlack5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed Cluster"),
             new TowerData("Improved Homing", 250, 0, 1000, 0, Projectiles["Homing Explosive 2"], "enemyBlack3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing Explosives"),
-            new TowerData("Improved Factory", 0, 1000, 0, 0, new ProjectileData(), "portal_yellowParticle", 0, Vector2.One*8, 1000000000, PlaceableArea.Land | PlaceableArea.Water, "Factory Creator", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
+            new TowerData("Improved Factory", 100000, 1000, 0, 0, new ProjectileData(), "portal_yellowParticle", 0, Vector2.One*8, 1000000000, PlaceableArea.Land | PlaceableArea.Water, "Factory Creator", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, targetedEnemy) => 
             {
-                if (GameMenu.Instance.Money > 2000)
+                if (GameMenu.Instance.Money > 2000000)
                 {
-                    GameMenu.Instance.Lives += 100;
-                    GameMenu.Instance.TowersToAdd.Add(new Tower(Config.Towers[13], new Vector2(RandomTools.RandomFloat(tower.Position.X - 300, tower.Position.X + 300), RandomTools.RandomFloat(tower.Position.Y - 300, tower.Position.Y + 300))));
-                    GameMenu.Instance.Money -= 2000;
+                    foreach (Enemy enemy in enemies)
+                    {
+                            tower.ProjectilesToAdd.Add(new Projectile(Config.Projectiles["Factory Projectile 2"], tower.TowerData.AttackDamage, enemy, 0, tower.Position));
+                    }
+
+                    GameMenu.Instance.Lives += 500;
+                    GameMenu.Instance.Money -= 2000000;
                 }
             })),
            #endregion
