@@ -138,8 +138,30 @@ namespace TowerDefenseGame
                 Components.Add(CurrentLevel);
 
                 InfoPanel = new InfoPanel() { Visible = true, Enabled = true };
-                InfoPanel.LivesNumber.Text = Lives.ToString();
-                InfoPanel.MoneyNumber.Text = Money.ToString();
+                if (Lives >= 1000000000 || Lives <= -1000000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000000f), 1) + "B";
+                }
+                else if (Lives >= 10000000 || Lives <= -10000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000000f)) + "M";
+                }
+                else if (Lives >= 1000000 || Lives <= -1000000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000000f), 1) + "M";
+                }
+                else if (Lives >= 10000 || Lives <= -100000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Floor(((float)Lives / 1000f)) + "K";
+                }
+                else if (Lives >= 1000 || Lives <= -1000)
+                {
+                    InfoPanel.LivesNumber.Text = Math.Round(((float)Lives / 1000f), 1) + "K";
+                }
+                else
+                {
+                    InfoPanel.LivesNumber.Text = Lives.ToString();
+                }
                 InfoPanel.GameSpeedButton.OnRelease += (x, y) =>
                 {
                     if (EdgeGame.GameSpeed == 1)
