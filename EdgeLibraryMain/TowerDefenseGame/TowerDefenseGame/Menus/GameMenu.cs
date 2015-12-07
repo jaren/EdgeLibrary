@@ -22,6 +22,8 @@ namespace TowerDefenseGame
         public TowerPanel TowerPanel;
         public InfoPanel InfoPanel;
 
+        public static GameMenu Instance;
+
         public bool CanOpenTowerMenu = true;
 
         public int Lives
@@ -35,9 +37,9 @@ namespace TowerDefenseGame
             get { return money; }
             set 
             {
-                money = value; 
+                money = value;
                 InfoPanel.MoneyNumber.Text = money.ToString();
-            
+
                 for (int i = 0; i < TowerSprites.Count; i++)
                 {
                     if (Money >= (Config.Towers[i].Cost * Config.TowerCostMultiplier[(int)Config.Difficulty]))
@@ -65,6 +67,7 @@ namespace TowerDefenseGame
         public List<TextSprite> TowerInfoSprites;
 
         public List<Tower> Towers;
+        public List<Tower> TowersToAdd;
 
         public List<Enemy> Enemies;
         private List<Enemy> EnemiesToAdd;
@@ -83,6 +86,8 @@ namespace TowerDefenseGame
 
         public override void SwitchTo()
         {
+            Instance = this;
+
             if (OptionsMenu.MusicOn)
             {
                 EdgeGame.playPlaylist("Music");
@@ -108,6 +113,7 @@ namespace TowerDefenseGame
                 RoundManager.OnEmitEnemy += RoundManager_OnEmitEnemy;
 
                 Towers = new List<Tower>();
+                TowersToAdd = new List<Tower>();
 
                 Enemies = new List<Enemy>();
                 EnemiesToAdd = new List<Enemy>();
@@ -479,6 +485,9 @@ namespace TowerDefenseGame
             Enemies.AddRange(EnemiesToAdd);
             EnemiesToAdd.Clear();
 
+            Towers.AddRange(TowersToAdd);
+            TowersToAdd.Clear();
+
             InfoPanel.RemainingNumber.Text = (TotalEnemies - DefeatedEnemies).ToString();
             InfoPanel.RemainingNumber.Update(gameTime);
 
@@ -655,7 +664,7 @@ namespace TowerDefenseGame
                     StartRound();
                 }
 
-                if (key >= Keys.D1 && key <= Keys.D5)
+                if (key >= Keys.D1 && key <= Keys.D7)
                 {
                     towerButton_OnClick(new Button("", Vector2.Zero) { ID = String.Format("{0}_", (int)key - 49) }, EdgeGame.GameTime);
                 }

@@ -314,6 +314,14 @@ namespace TowerDefenseGame
                     sprinklerProjectile.SetTargetPosition(new Vector2(sprinklerProjectile.Position.X + (float)Math.Cos(tower.Rotation), sprinklerProjectile.Position.Y + (float)Math.Sin(tower.Rotation)), tower.TowerData.Accuracy);
                     tower.ProjectilesToAdd.Add(sprinklerProjectile);
                 }), null, false),
+            new TowerData("Factory", 0, 100, 0, 0, new ProjectileData(), "portal_orangeParticle", 0, Vector2.One*2, 100000, PlaceableArea.Land | PlaceableArea.Water, "", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
+            {
+                if (GameMenu.Instance.Money > 2000)
+                {
+                    GameMenu.Instance.Lives += 1;
+                    GameMenu.Instance.Money -= 2000;
+                }
+            })),
             
             //Upgrades
             new TowerData("Fast Spread", 40, 500, 300, 0, Projectiles["Cluster"], "enemyRed1", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "Spread"),
@@ -346,10 +354,19 @@ namespace TowerDefenseGame
                        tower.ProjectilesToAdd.Add(new Projectile(tower.TowerData.AttackData, tower.TowerData.AttackDamage, null, 0, tower.Position));
                    }
                }), null, false),
+            new TowerData("Factory Creator", 0, 1000, 0, 0, new ProjectileData(), "portal_orangeParticle", 0, Vector2.One*4, 10000000, PlaceableArea.Land | PlaceableArea.Water, "Factory", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
+            {
+                if (GameMenu.Instance.Money > 2000)
+                {
+                    GameMenu.Instance.Lives += 100;
+                    GameMenu.Instance.TowersToAdd.Add(new Tower(Config.Towers[6], new Vector2(RandomTools.RandomFloat(tower.Position.X - 100, tower.Position.X + 100), RandomTools.RandomFloat(tower.Position.Y - 100, tower.Position.Y + 100))));
+                    GameMenu.Instance.Money -= 2000;
+                }
+            })),
 
-        new TowerData("Do not buy fire", 1000, 0, 1000, 25, Projectiles["Cluster Fire"], "enemyBlack2", MathHelper.ToRadians(180), new Vector2(0.5f), 15000, (PlaceableArea.Land), "Cluster Fire"),
-        new TowerData("Do not buy spread", 400, 0, 600, 25, Projectiles["Cluster"], "enemyBlack1", MathHelper.ToRadians(180), new Vector2(0.5f), 20000, (PlaceableArea.Land), "Fast Spread"),
-        new TowerData("Do not buy slow", 0, 0, 300, 0, new ProjectileData(), "enemyBlack4", MathHelper.ToRadians(180), new Vector2(0.5f), 35000, (PlaceableArea.Land), "Slow Fire", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
+        new TowerData("Improved Fire", 1000, 0, 1000, 25, Projectiles["Cluster Fire"], "enemyBlack2", MathHelper.ToRadians(180), new Vector2(0.5f), 15000, (PlaceableArea.Land), "Cluster Fire"),
+        new TowerData("Improved Spread", 400, 0, 600, 25, Projectiles["Cluster"], "enemyBlack1", MathHelper.ToRadians(180), new Vector2(0.5f), 20000, (PlaceableArea.Land), "Fast Spread"),
+        new TowerData("Improved Slow", 0, 0, 300, 0, new ProjectileData(), "enemyBlack4", MathHelper.ToRadians(180), new Vector2(0.5f), 35000, (PlaceableArea.Land), "Slow Fire", false, null, null, new Action<Tower, List<Enemy>>((tower, enemies) =>
                 {
                     foreach(Enemy enemy in enemies)
                     {
@@ -359,8 +376,10 @@ namespace TowerDefenseGame
                         }
                     }
                 }), null, null, false),
-        new TowerData("Do not buy water", 1200, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_red", MathHelper.ToRadians(90), new Vector2(0.5f), 50000, (PlaceableArea.Water), "Sprinkler Expander", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) =>
+        new TowerData("Improved Sprinkler", 1200, 0, 1000, 0, Projectiles["Sprinkler Expander"], "playerShip3_red", MathHelper.ToRadians(90), new Vector2(0.5f), 50000, (PlaceableArea.Water), "Sprinkler Expander", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, targetedEnemy) =>
                {
+                   foreach(Enemy enemy in enemies)
+                   {
                    if (Vector2.DistanceSquared(enemy.Position, tower.Position) <= (tower.TowerData.Range * tower.TowerData.Range))
                    {
                        if (enemy.HasEffect("Damage"))
@@ -372,9 +391,19 @@ namespace TowerDefenseGame
                            enemy.AddEffect(new DamageEffect("Damage", 100, Color.GreenYellow, Color.DarkGreen, 250));
                        }
                    }
+                   }
                }), null, false),
-            new TowerData("Do not buy high speed", 1000, 30, 450, 0, Projectiles["High Speed Cluster"], "enemyBlack5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed Cluster"),
-            new TowerData("Do not buy homing", 250, 0, 1000, 0, Projectiles["Homing Explosive 2"], "enemyBlack3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing Explosives"),
+            new TowerData("Improved High Speed", 1000, 30, 450, 0, Projectiles["High Speed Cluster"], "enemyBlack5", MathHelper.ToRadians(180), new Vector2(0.5f), 2000, (PlaceableArea.Land), "High Speed Cluster"),
+            new TowerData("Improved Homing", 250, 0, 1000, 0, Projectiles["Homing Explosive 2"], "enemyBlack3", MathHelper.ToRadians(180), new Vector2(0.5f), 1500, (PlaceableArea.Land), "Homing Explosives"),
+            new TowerData("Improved Factory", 0, 1000, 0, 0, new ProjectileData(), "portal_yellowParticle", 0, Vector2.One*8, 1000000000, PlaceableArea.Land | PlaceableArea.Water, "Factory Creator", false, null, null, null, new Action<Tower,List<Enemy>,Enemy>((tower, enemies, enemy) => 
+            {
+                if (GameMenu.Instance.Money > 2000)
+                {
+                    GameMenu.Instance.Lives += 100;
+                    GameMenu.Instance.TowersToAdd.Add(new Tower(Config.Towers[13], new Vector2(RandomTools.RandomFloat(tower.Position.X - 300, tower.Position.X + 300), RandomTools.RandomFloat(tower.Position.Y - 300, tower.Position.Y + 300))));
+                    GameMenu.Instance.Money -= 2000;
+                }
+            })),
            #endregion
         };
 
