@@ -393,7 +393,7 @@ namespace TowerDefenseGame
                 {
                     DefeatedEnemies++;
                 }
-                if (DefeatedEnemies == TotalEnemies && Enemies.Count == 0)
+                if (DefeatedEnemies == TotalEnemies && Enemies.Count == 1)
                 {
                     Money += (RoundManager.CurrentIndex - 1) * 50;
                 }

@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TowerDefenseGame
 {
@@ -52,7 +50,11 @@ namespace TowerDefenseGame
                 RangeButton.Color = RangeButton.Style.NormalColor;
 
                 TargetButton.CurrentIndex = (int)selectedTower.AttackTarget;
-                TargetButton.Style = TargetButton.Styles[TargetButton.CurrentIndex];
+                try
+                {
+                    TargetButton.Style = TargetButton.Styles[TargetButton.CurrentIndex];
+                }
+                catch { }
                 TargetButton.Texture = TargetButton.Style.NormalTexture;
                 TargetButton.Color = TargetButton.Style.NormalColor;
                 TargetText.Text = "Target: " + selectedTower.AttackTarget.ToString();
