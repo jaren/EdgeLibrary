@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CheckersGame
 {
@@ -29,7 +26,7 @@ namespace CheckersGame
 
         public static bool SwitchMenu(string name)
         {
-            foreach(MenuBase menu in Menus)
+            foreach (MenuBase menu in Menus)
             {
                 if (menu.Name == name)
                 {

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CheckersGame
 {
@@ -28,6 +26,19 @@ namespace CheckersGame
          * etc.
          */
 
+        public static Piece GetCorrespondingPiece(Piece p)
+        {
+            foreach (Square s in BoardManager.Instance.Board.Squares)
+            {
+                if (s.Location() == p.Location())
+                {
+                    return s.OccupyingPiece;
+                }
+            }
+
+            return null;
+        }
+
         public static Dictionary<Piece, List<Move>> GeneratePlayerMoves(bool player1, Board board = null)
         {
             //Must be set here because BoardManager.Instance.Board is not a compile-time constant
@@ -41,7 +52,7 @@ namespace CheckersGame
             Dictionary<Piece, List<Move>> jumps = PlayerCanMultiJumpTo(player1, board); //Single jumps
             foreach (Piece piece in jumps.Keys)
             {
-                Moves.Add(piece, jumps[piece]);
+                Moves.Add(GetCorrespondingPiece(piece), jumps[piece]);
             }
 
             Dictionary<Piece, List<Square>> moves = new Dictionary<Piece, List<Square>>();
@@ -56,7 +67,7 @@ namespace CheckersGame
                     {
                         moveList.Add(new Move(new List<Square>() { board.Squares[move.Key.X, move.Key.Y], square }));
                     }
-                    Moves.Add(move.Key, moveList);
+                    Moves.Add(GetCorrespondingPiece(move.Key), moveList);
                 }
             }
 
@@ -225,13 +236,13 @@ namespace CheckersGame
         {
             List<Move> CompletedJumpSequences = new List<Move>();
             Board fakeBoard = (Board)BoardManager.Instance.Board.Clone();
-            PieceCanMultiJumpTo(fakeBoard.Squares[piece.X,piece.Y].OccupyingPiece, fakeBoard, CompletedJumpSequences);
+            PieceCanMultiJumpTo(fakeBoard.Squares[piece.X, piece.Y].OccupyingPiece, fakeBoard, CompletedJumpSequences);
             return CompletedJumpSequences;
         }
 
         private static void PieceCanMultiJumpTo(Piece piece, Board FakeBoard, List<Move> JumpSequences, Move CurrentMove = null)
         {
-            foreach (Square jump in PieceCanJumpTo(piece,FakeBoard))
+            foreach (Square jump in PieceCanJumpTo(piece, FakeBoard))
             {
                 Move MoveToRun;
 
@@ -316,7 +327,7 @@ namespace CheckersGame
                         List<Square> validMoves = PieceCanMoveTo(square.OccupyingPiece);
                         if (validMoves.Count != 0)
                         {
-                            moves.Add(square.OccupyingPiece, validMoves);
+                            moves.Add(GetCorrespondingPiece(square.OccupyingPiece), validMoves);
                         }
                     }
                 }

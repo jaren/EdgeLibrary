@@ -26,9 +26,9 @@ namespace CheckersGame
             Instance = new BoardManager3D();
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
         }
     }
 }

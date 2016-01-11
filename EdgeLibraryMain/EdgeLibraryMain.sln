@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgeLibrary", "EdgeLibrary\EdgeLibrary.csproj", "{AD485453-05E0-4714-8630-BCC909D9106D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerDefenseGame", "TowerDefenseGame\TowerDefenseGame\TowerDefenseGame.csproj", "{BBB855A4-6870-43F7-A9B0-9653860F862A}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "TowerDefenseGameContent", "TowerDefenseGame\TowerDefenseGameContent\TowerDefenseGameContent.contentproj", "{44ED241E-A467-4F9E-8CAD-16C4456780E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerDefenseGameContent", "TowerDefenseGame\TowerDefenseGameContent\TowerDefenseGameContent.contentproj", "{44ED241E-A467-4F9E-8CAD-16C4456780E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckersGame", "CheckersGame\CheckersGame\CheckersGame.csproj", "{716053B0-207A-4B6D-853B-E81571185448}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{BBB855A4-6870-43F7-A9B0-9653860F862A}.Release|x86.Build.0 = Release|x86
 		{44ED241E-A467-4F9E-8CAD-16C4456780E8}.Debug|x86.ActiveCfg = Debug|x86
 		{44ED241E-A467-4F9E-8CAD-16C4456780E8}.Release|x86.ActiveCfg = Release|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Debug|x86.ActiveCfg = Debug|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Debug|x86.Build.0 = Debug|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Release|x86.ActiveCfg = Release|x86
+		{716053B0-207A-4B6D-853B-E81571185448}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

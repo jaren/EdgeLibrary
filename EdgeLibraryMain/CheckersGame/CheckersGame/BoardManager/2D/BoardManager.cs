@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CheckersGame.CheckersService;
 using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using CheckersGame.CheckersService;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CheckersGame
 {
@@ -65,7 +62,7 @@ namespace CheckersGame
             Components.Add(DebugSprite);
 
             //Initializing the teamtext
-            TeamText =  "This shouldn't be seen...";
+            TeamText = "This shouldn't be seen...";
 
             if (MenuManager.PreviousMenu is ToGameMenu)
             {
@@ -120,7 +117,7 @@ namespace CheckersGame
         }
 
         //Necessary override to not draw the BoardManager
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             if (Visible)
             {
@@ -135,9 +132,9 @@ namespace CheckersGame
         }
 
         //Updates the board
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
 
             foreach (GameComponent component in Components)
             {

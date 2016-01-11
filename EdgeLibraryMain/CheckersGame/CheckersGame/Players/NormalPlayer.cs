@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EdgeLibrary;
+﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace CheckersGame
 {
@@ -148,7 +146,14 @@ namespace CheckersGame
         private void SetFirstSquare()
         {
             //Checks if the square is valid
-            if (MousedOverSquare.OccupyingPiece != null && PossibleMoves.Keys.Contains(MousedOverSquare.OccupyingPiece))
+            List<Vector2> PossibleSquares = new List<Vector2>();
+            foreach (Piece p in PossibleMoves.Keys)
+            {
+                PossibleSquares.Add(new Vector2(p.X, p.Y));
+            }
+
+
+            if (MousedOverSquare.OccupyingPiece != null && PossibleSquares.Contains(new Vector2(MousedOverSquare.X, MousedOverSquare.Y)))
             {
                 //Sets the start square
                 startSquare = MousedOverSquare;

@@ -14,7 +14,7 @@ namespace CheckersGame
 
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
         }
     }

@@ -33,7 +33,7 @@ namespace CheckersGame
             bottomRectangle = new Rectangle((int)(position.X - size / 2 - borderWidth), (int)(position.Y + size / 2), (int)(size + borderWidth * 2), (int)borderWidth);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             EdgeGame.Game.SpriteBatch.Draw(Texture, leftRectangle, Color);
             EdgeGame.Game.SpriteBatch.Draw(Texture, rightRectangle, Color);

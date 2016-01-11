@@ -85,7 +85,7 @@ namespace CheckersGame
             cubeSpriteOutline = new Sprite3D(Vector3.Zero, cubeOutline);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             cubeSprite.Draw(gameTime);
             cubeSpriteOutline.Draw(gameTime);

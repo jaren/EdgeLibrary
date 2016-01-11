@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EdgeLibrary;
+﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace CheckersGame
 {
@@ -98,15 +96,15 @@ namespace CheckersGame
             return false;
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             //To make sure the pieces get drawn on top of the squares
-            foreach(Square square in Squares)
+            foreach (Square square in Squares)
             {
                 square.Draw(gameTime);
             }
 
-            foreach(Square square in Squares)
+            foreach (Square square in Squares)
             {
                 if (square.OccupyingPiece != null)
                 {
@@ -124,9 +122,9 @@ namespace CheckersGame
             Border.Draw(gameTime);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
             Border.Update(gameTime);
 
             foreach (Square square in Squares)
@@ -142,7 +140,7 @@ namespace CheckersGame
 
         public bool CapturePiece(Piece piece)
         {
-            foreach(Square square in Squares)
+            foreach (Square square in Squares)
             {
                 if (square.OccupyingPiece == piece)
                 {
@@ -199,7 +197,7 @@ namespace CheckersGame
 
         public Square GetSquareBetween(Square origin, Square destination)
         {
-            if(Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
+            if (Math.Abs(destination.X - origin.X) != 1 || Math.Abs(destination.Y - origin.Y) != 1)
             {
                 return Squares[(destination.X + origin.X) / 2, (destination.Y + origin.Y) / 2];
             }
@@ -211,7 +209,7 @@ namespace CheckersGame
         {
             Board board = (Board)base.Clone();
             board.Squares = new Square[Size, Size];
-            for (int x = 0; x < Size; x++ )
+            for (int x = 0; x < Size; x++)
             {
                 for (int y = 0; y < Size; y++)
                 {
@@ -220,7 +218,7 @@ namespace CheckersGame
                 }
             }
             board.CapturedPieces.Clear();
-            foreach(Piece capturedPiece in CapturedPieces)
+            foreach (Piece capturedPiece in CapturedPieces)
             {
                 board.CapturedPieces.Add((Piece)capturedPiece.Clone());
             }

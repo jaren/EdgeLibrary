@@ -20,16 +20,16 @@ namespace CheckersGame
             };
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
 
             BoardManager.Instance.Update(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
 
             BoardManager.Instance.Draw(gameTime);
         }

@@ -17,9 +17,9 @@ namespace CheckersGame
             Colors = colors;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
 
         public void Display(string text, ColorChangeIndex index = null)

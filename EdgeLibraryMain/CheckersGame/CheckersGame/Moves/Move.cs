@@ -176,7 +176,7 @@ namespace CheckersGame
 
         void MoveSequence_OnTransition(ASequence sequence, Action action, Sprite sprite, GameTime gameTime)
         {
-            OnComplete(SquarePath, JumpedSquares, MoveIndex++);
+            //OnComplete(SquarePath, JumpedSquares, MoveIndex++);
         }
 
         //Moves a move from one board to another

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EdgeLibrary;
+﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace CheckersGame
 {
@@ -26,12 +23,17 @@ namespace CheckersGame
             : base(texture, position)
         {
             Size = size;
-            Scale = new Vector2(size/Width, size/Height);
+            Scale = new Vector2(size / Width, size / Height);
             DefaultColor = color;
             Color = color;
 
             SquareNumber = new TextSprite(Config.SquareFont, "", Position) { CenterAsOrigin = true, Color = Config.SquareNumberColor };
             SquareLines = new List<Sprite>();
+        }
+
+        public Vector2 Location()
+        {
+            return new Vector2(X, Y);
         }
 
         public bool CheckForClick()
@@ -40,14 +42,14 @@ namespace CheckersGame
             && Input.MousePosition.Y > Position.Y - Size / 2 && Input.MousePosition.Y < Position.Y + Size / 2;
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
 
             if (OccupyingPiece != null)
             {

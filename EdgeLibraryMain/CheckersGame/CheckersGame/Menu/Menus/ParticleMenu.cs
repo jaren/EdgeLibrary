@@ -1,10 +1,7 @@
 ﻿using EdgeLibrary;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CheckersGame
 {
@@ -76,23 +73,23 @@ namespace CheckersGame
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
             foreach (Sprite physicsSprite in PhysicsSprites)
             {
                 physicsSprite.Rotation = 0;
                 physicsSprite.Update(gameTime);
             }
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
             foreach (Sprite physicsSprite in PhysicsSprites)
             {
                 physicsSprite.Draw(gameTime);
             }
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
         }
 
         public override void SwitchOut()

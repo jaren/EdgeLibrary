@@ -1,10 +1,5 @@
 ﻿using EdgeLibrary;
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CheckersGame
 {
@@ -26,6 +21,11 @@ namespace CheckersGame
         public int X;
         public int Y;
 
+        public Vector2 Location()
+        {
+            return new Vector2(X, Y);
+        }
+
         public Piece(string textureName, Vector2 position, Color color, float size, bool topTeam)
             : base(textureName, position)
         {
@@ -37,9 +37,9 @@ namespace CheckersGame
             Fake = false;
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void DrawObject(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            base.DrawObject(gameTime);
 
             if (King)
             {
@@ -52,16 +52,16 @@ namespace CheckersGame
             if (ShowX)
             {
                 RestartSpriteBatch();
-                
+
                 EdgeGame.Game.SpriteBatch.Draw(EdgeGame.GetTexture(Config.XTexture), Position, null, Color.White, Rotation, OriginPoint, ScaleWithCamera ? Scale / EdgeGame.Camera.Scale : Scale, SpriteEffects, 0);
 
                 RestartSpriteBatch();
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void UpdateObject(GameTime gameTime)
         {
-            base.Update(gameTime);
+            base.UpdateObject(gameTime);
         }
     }
 }
