@@ -9,6 +9,7 @@ namespace CheckersGame
         public bool ShowX;
         public bool Player1;
         public bool Fake;
+        public string BoardID;
 
         public float Size
         {

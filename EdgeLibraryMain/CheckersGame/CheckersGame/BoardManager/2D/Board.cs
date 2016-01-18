@@ -47,7 +47,7 @@ namespace CheckersGame
                 for (int y = 0; y < size; y++)
                 {
                     hasPiece = !hasPiece;
-                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance) * x, topLeft.Y + (squareSize + squareDistance) * y), squareSize, hasPiece ? color1 : color2) { X = x, Y = y, TopLeft = new Vector2(topLeft.X + x * squareSize - (squareSize / 2), topLeft.Y + y * squareSize - (squareSize / 2)) };
+                    Squares[x, y] = new Square(squareTexture, new Vector2(topLeft.X + (squareSize + squareDistance) * x, topLeft.Y + (squareSize + squareDistance) * y), squareSize, hasPiece ? color1 : color2, ID) { X = x, Y = y, TopLeft = new Vector2(topLeft.X + x * squareSize - (squareSize / 2), topLeft.Y + y * squareSize - (squareSize / 2)) };
 
                     if (hasPiece && (y < ((size - 3) / 2 + 1) || y > ((size - 3) / 2 + 2)))
                     {

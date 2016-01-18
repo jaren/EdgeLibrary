@@ -17,15 +17,18 @@ namespace CheckersGame
         public int X;
         public int Y;
 
+        public string BoardID;
+
         private float Size;
 
-        public Square(string texture, Vector2 position, float size, Color color)
+        public Square(string texture, Vector2 position, float size, Color color, string boardID)
             : base(texture, position)
         {
             Size = size;
             Scale = new Vector2(size / Width, size / Height);
             DefaultColor = color;
             Color = color;
+            BoardID = boardID;
 
             SquareNumber = new TextSprite(Config.SquareFont, "", Position) { CenterAsOrigin = true, Color = Config.SquareNumberColor };
             SquareLines = new List<Sprite>();
@@ -65,6 +68,7 @@ namespace CheckersGame
             {
                 piece.X = X;
                 piece.Y = Y;
+                piece.BoardID = BoardID;
             }
 
             OccupyingPiece = piece;
