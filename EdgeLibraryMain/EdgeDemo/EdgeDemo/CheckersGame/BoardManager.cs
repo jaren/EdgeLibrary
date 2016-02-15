@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using EdgeDemo.CheckersService;
 using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using EdgeDemo.CheckersService;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -61,7 +58,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(DebugSprite);
 
             //Initializing the teamtext
-            TeamText =  "This shouldn't be seen...";
+            TeamText = "This shouldn't be seen...";
 
             if (MenuManager.PreviousMenu is ToGameMenu)
             {
@@ -102,7 +99,7 @@ namespace EdgeDemo.CheckersGame
             Components.Add(MessageSprite);
 
             //Initializing capture sprite
-            CaptureSprite = new TextSprite(Config.StatusFont, "Top Team Captures: 0\nBottom Team Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
+            CaptureSprite = new TextSprite(Config.StatusFont, Player1.Name + " Captures: 0\n" + Player2.Name + " Captures: 0", new Vector2(0, 50)) { CenterAsOrigin = false, FollowsCamera = false, ScaleWithCamera = false };
             Components.Add(CaptureSprite);
 
             //Subscribes to the player events
@@ -183,7 +180,7 @@ namespace EdgeDemo.CheckersGame
         //Ends the game
         public static void EndGame()
         {
-            
+
             MessageSprite.Display((!Player1Turn ? Player1.Name : Player2.Name) + " Has Won the Game", new ColorChangeIndex(5000, Color.Blue, Color.Transparent));
             Ticker ticker = new Ticker(6000);
             ticker.Enabled = true;

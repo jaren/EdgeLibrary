@@ -1,9 +1,5 @@
 ﻿using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -34,6 +30,7 @@ namespace EdgeDemo.CheckersGame
                 manager = new BoardManager();
                 Components.Add(manager);
             }
+            BoardManager.ResetGame = true;
 
             base.SwitchTo();
         }

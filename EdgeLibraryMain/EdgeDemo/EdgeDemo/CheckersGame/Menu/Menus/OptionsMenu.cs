@@ -1,11 +1,7 @@
-﻿using EdgeLibrary;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EdgeDemo.CheckersService;
+﻿using EdgeDemo.CheckersService;
+using EdgeLibrary;
 using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -14,9 +10,9 @@ namespace EdgeDemo.CheckersGame
         public static bool MusicOn
         {
             get { return musicOn; }
-            set 
+            set
             {
-                musicOn = value; 
+                musicOn = value;
                 if (value)
                 {
                     EdgeGame.playPlaylist("Music");
@@ -32,7 +28,7 @@ namespace EdgeDemo.CheckersGame
         public static bool FullscreenOn
         {
             get { return fullscreenOn; }
-            set 
+            set
             {
                 fullscreenOn = value;
 
@@ -76,7 +72,7 @@ namespace EdgeDemo.CheckersGame
             QuitButton.Style.AllColors = Config.MenuButtonColor;
             QuitButton.OnRelease += (x, y) =>
             {
-                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK) 
+                if (System.Windows.Forms.MessageBox.Show("Are you sure you want to leave this game?", "Leave?", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
                 {
                     if (Config.GetGameType() == Config.GameType.Online)
                     {
@@ -91,7 +87,7 @@ namespace EdgeDemo.CheckersGame
             QuitButtonText = new TextSprite(Config.MenuButtonTextFont, "Quit Game", QuitButton.Position);
             Components.Add(QuitButtonText);
 
-            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) {  Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
+            MusicButton = new ButtonToggle(MusicOn ? "grey_boxCheckmark" : "grey_boxCross", new Vector2(EdgeGame.WindowSize.X * 0.25f, EdgeGame.WindowSize.Y * 0.25f)) { Color = Config.MenuButtonColor, Scale = new Vector2(1.25f) };
             MusicButton.OnStyle.AllTextures = EdgeGame.GetTexture("grey_boxCheckmark");
             MusicButton.OnStyle.AllColors = Config.MenuButtonColor;
             MusicButton.OffStyle.AllTextures = EdgeGame.GetTexture("grey_boxCross");
@@ -150,6 +146,7 @@ namespace EdgeDemo.CheckersGame
             ReturnButton.Style.AllColors = Config.MenuButtonColor;
             ReturnButton.OnRelease += (x, y) =>
             {
+                BoardManager.ResetGame = false;
                 MenuManager.SwitchMenu(MenuManager.PreviousMenu.Name);
             };
             Components.Add(ReturnButton);

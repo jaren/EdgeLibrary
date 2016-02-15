@@ -1,10 +1,7 @@
 ﻿using EdgeDemo.CheckersService;
 using EdgeLibrary;
 using Microsoft.Xna.Framework;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace EdgeDemo.CheckersGame
 {
@@ -39,7 +36,7 @@ namespace EdgeDemo.CheckersGame
             SquarePath = squarePath;
             Piece = StartSquare.OccupyingPiece;
             JumpedSquares = jumpedSquares == null ? new List<Square>() : jumpedSquares;
-            
+
             MoveIndex = 0;
         }
 
@@ -138,7 +135,7 @@ namespace EdgeDemo.CheckersGame
         ASequence MoveSequence;
         public void RunMove(Board boardToRunOn)
         {
-            if(boardToRunOn == null)
+            if (boardToRunOn == null)
             {
                 boardToRunOn = BoardManager.Board;
             }
@@ -164,7 +161,7 @@ namespace EdgeDemo.CheckersGame
             }
             if (boardToRunOn == BoardManager.Board)
             {
-                BoardManager.CaptureSprite.Text = "Top Team Captures: " + boardToRunOn.TopTeamCaptures + "\nBottom Team Captures: " + boardToRunOn.BottomTeamCaptures;
+                BoardManager.CaptureSprite.Text = BoardManager.Player1.Name + " Captures: " + boardToRunOn.TopTeamCaptures + "\n" + BoardManager.Player2.Name + " Captures: " + boardToRunOn.BottomTeamCaptures;
             }
             //********************
 
